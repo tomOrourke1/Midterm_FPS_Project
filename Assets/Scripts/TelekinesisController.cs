@@ -61,7 +61,7 @@ public class TelekinesisController : MonoBehaviour
 
     void TelekinesisStart()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             // suck item
 
@@ -139,7 +139,7 @@ public class TelekinesisController : MonoBehaviour
 
     void ReleaseObject()
     {
-        if ((Input.GetKeyUp(KeyCode.Mouse0) || !Input.GetKey(KeyCode.Mouse0)) && stachedObject != null)
+        if ((Input.GetKeyUp(KeyCode.Mouse1) || !Input.GetKey(KeyCode.Mouse1)) && stachedObject != null)
         {
 
             stachedObject.GetRigidbody().useGravity = true;
