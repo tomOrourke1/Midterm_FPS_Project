@@ -16,7 +16,6 @@ public class MoveableObject : MonoBehaviour, ITelekinesis
 
     public Rigidbody GetRigidbody()
     {
-        Debug.Log("Get RB");
         return rb;
     }
 

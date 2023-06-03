@@ -46,7 +46,14 @@ public class TelekinesisController : MonoBehaviour
 
     }
 
-    
+
+
+    private void FixedUpdate()
+    {
+        
+    }
+
+
 
 
 
@@ -110,6 +117,7 @@ public class TelekinesisController : MonoBehaviour
             if (toNextDist > toPosDist)
             {
                 force *= toPosDist / toNextDist;
+                Debug.LogError("TO CLOSE TO THE POS");
             }
 
 
@@ -133,7 +141,11 @@ public class TelekinesisController : MonoBehaviour
             // if it is being held than trow it.
             // otherwise just release it
 
-
+            var dist = Vector3.Distance(desiredPos.position, stachedObject.GetPosition());
+            if (dist <= 0.1f)
+            {
+                stachedObject.TakeVelocity(cam.transform.forward * pushForce);
+            }
 
             stachedObject = null;
         }
