@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class TelekinesisController : MonoBehaviour
@@ -13,11 +14,14 @@ public class TelekinesisController : MonoBehaviour
     [SerializeField] float range;
     [SerializeField] int pullForce;
     [SerializeField] int pushForce;
+    [SerializeField] int releaseForce;
+
+    [SerializeField] int rotationSpeed;
 
     [SerializeField] float yOffset;
 
     [SerializeField][Range(0, 5)] float timeSpeed;
-
+    [SerializeField][Range(0, 1)] float allowedDistanceToThrow;
 
     bool isHoldingObject;
     float timePressed;
@@ -41,8 +45,6 @@ public class TelekinesisController : MonoBehaviour
         PullObject();
 
         ReleaseObject();       
-
-
 
     }
 
@@ -106,9 +108,6 @@ public class TelekinesisController : MonoBehaviour
             Debug.DrawLine(desPos, pos);
 
 
-            //stachedObject.TakeVelocity(dirToDesPos);
-
-
             // account if the force is too strong
             var force = dirToDesPos * pullForce;
             var nextPos = force * Time.deltaTime + pos;
@@ -117,13 +116,20 @@ public class TelekinesisController : MonoBehaviour
             if (toNextDist > toPosDist)
             {
                 force *= toPosDist / toNextDist;
-                Debug.LogError("TO CLOSE TO THE POS");
             }
 
 
             stachedObject.TakeVelocity(force);
 
 
+
+            // rotation
+
+            var rb = stachedObject.GetRigidbody();
+
+
+            //rb.rotation = Quaternion.Lerp(rb.rotation, Quaternion.LookRotation(cam.transform.forward), Time.deltaTime * rotationSpeed);
+            rb.angularVelocity = (Vector3.Cross(Vector3.up, rb.transform.up) + Vector3.Cross(cam.transform.forward, rb.transform.forward) ).normalized * rotationSpeed;
 
 
             timePressed += Time.deltaTime;
@@ -142,35 +148,49 @@ public class TelekinesisController : MonoBehaviour
             // otherwise just release it
 
             var dist = Vector3.Distance(desiredPos.position, stachedObject.GetPosition());
-            if (dist <= 0.1f)
+            if (dist <= allowedDistanceToThrow)
             {
-                stachedObject.TakeVelocity(cam.transform.forward * pushForce);
+                RaycastHit hit;
+                bool does = Physics.Raycast(cam.ViewportPointToRay(new Vector3(0.5f, 0.5f)), out hit, 100);
+                Vector3 dir;
+                if(does)
+                {
+                    dir = hit.point - stachedObject.GetPosition();
+                }
+                else
+                {
+                    dir = (cam.transform.forward * 100 + cam.transform.position) - stachedObject.GetPosition();
+                }
+
+                stachedObject.TakeVelocity(dir.normalized * pushForce);
+            }
+            else
+            {
+                var vel = stachedObject.GetVelocity();
+
+                // if the object is moving faster than the push force then cap it at the push force
+                if(vel.magnitude > releaseForce)
+                {
+                    stachedObject.TakeVelocity(releaseForce * (vel.normalized));
+                }
+
+
+                
+
             }
 
             stachedObject = null;
+        }
+        else if (Input.GetKeyDown(KeyCode.E) && stachedObject != null)
+        {
+            stachedObject.TakeVelocity(stachedObject.GetVelocity() * 0.02f);
+            stachedObject.GetRigidbody().useGravity = true;
+            stachedObject = null;            
         }
 
     }
 
 
-
-
-    
-    Vector3 CalculateCubicBezierPoint(Vector3 p0, Vector3 p1, float t)
-    {
-        float u = 1 - t;
-        float tt = t * t;
-        float uu = u * u;
-        float uuu = uu * u;
-        float ttt = tt * t;
-
-        Vector3 p = uuu * p0;
-        p += 3 * uu * t * p1;
-        //p += 3 * u * tt * p2;
-        //p += ttt * p3;
-
-        return p;
-    }
 
 
     Vector3 lerp2(Vector3 p0, Vector3 p1, Vector3 p2, float t)
