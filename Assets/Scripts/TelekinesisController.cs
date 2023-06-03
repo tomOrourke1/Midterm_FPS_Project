@@ -33,7 +33,7 @@ public class TelekinesisController : MonoBehaviour
     }
 
 
-    void FixedUpdate()
+    void Update()
     {
 
         TelekinesisStart();
@@ -98,11 +98,25 @@ public class TelekinesisController : MonoBehaviour
             Vector3 dirToDesPos = desPos - pos;
             Debug.DrawLine(desPos, pos);
 
-            
+
             //stachedObject.TakeVelocity(dirToDesPos);
 
-            var rb = stachedObject.GetRigidbody();
-            rb.position = desPos;
+
+            // account if the force is too strong
+            var force = dirToDesPos * pullForce;
+            var nextPos = force * Time.deltaTime + pos;
+            var toNextDist = Vector3.Distance(nextPos, pos);
+            var toPosDist = Vector3.Distance(desiredPos.position, pos);
+            if (toNextDist > toPosDist)
+            {
+                force *= toPosDist / toNextDist;
+            }
+
+
+            stachedObject.TakeVelocity(force);
+
+
+
 
             timePressed += Time.deltaTime;
             timePressed = Mathf.Clamp01(timePressed);
@@ -111,7 +125,7 @@ public class TelekinesisController : MonoBehaviour
 
     void ReleaseObject()
     {
-        if (Input.GetKeyUp(KeyCode.Mouse0) && stachedObject != null)
+        if ((Input.GetKeyUp(KeyCode.Mouse0) || !Input.GetKey(KeyCode.Mouse0)) && stachedObject != null)
         {
 
             stachedObject.GetRigidbody().useGravity = true;
