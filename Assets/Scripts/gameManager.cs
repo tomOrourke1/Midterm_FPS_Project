@@ -58,11 +58,16 @@ public class gameManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
        
-        activeMenu.SetActive(false);
-        activeMenu = null;
+       StartCoroutine(WaitToTurnOffUI());
      
     }
 
+    IEnumerator WaitToTurnOffUI()
+    {
+        yield return new WaitForSeconds(0.5f);
+        activeMenu.SetActive(false);
+        activeMenu = null;
+    }
     //function for when the game is won
     IEnumerator WinGame()
     {
