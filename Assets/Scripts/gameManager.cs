@@ -17,7 +17,7 @@ public class gameManager : MonoBehaviour
     public GameObject winMenu;
     public GameObject loseMenu;
 
-    public bool isPaused;
+ 
     float timescaleOrig;
   
     void Awake()
@@ -31,29 +31,39 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Cancel") && activeMenu == null)
+        //pauses the game
+        if (Input.GetKeyDown(KeyCode.Escape) && activeMenu == null)
         {
-            isPaused = !isPaused;
+           
             activeMenu = pausemenu;
-            activeMenu.SetActive(isPaused);
+            activeMenu.SetActive(true);
             Paused();
+        
         }
     }
+    //stes game to paused state
     public void Paused()
     {
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
+        UI_Manager.instance.EnableBoolAnimator(UI_Manager.instance.PausePanel);
     }
+    
+    //resumes game while paused
     public void Unpaused()
     {
+        UI_Manager.instance.DisableBoolAnimator(UI_Manager.instance.PausePanel);
         Time.timeScale = timescaleOrig;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        isPaused =!isPaused;
+       
         activeMenu.SetActive(false);
         activeMenu = null;
+     
     }
+
+    //function for when the game is won
     IEnumerator WinGame()
     {
         yield return new WaitForSeconds(3);
@@ -61,6 +71,7 @@ public class gameManager : MonoBehaviour
         activeMenu.SetActive(true);
         Paused();
     }
+    //function for when the game is lost
     IEnumerator LoseGame()
     {
         yield return new WaitForSeconds(3);
