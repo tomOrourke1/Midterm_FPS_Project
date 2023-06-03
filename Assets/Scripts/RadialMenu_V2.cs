@@ -21,33 +21,38 @@ public class RadialMenu_V2 : MonoBehaviour
     /// The angle between each slice in the radial menu.
     /// </summary>
     int sliceAng;
-    
+
     /// <summary>
     /// Keeps track of if the radial menu should be displayed or not.
     /// </summary>
     bool isMenuBeingShown;
-    
+
     /// <summary>
     /// Keeps track of if the angle is above the minimum amount of degrees.
     /// </summary>
     bool withinRadialMin;
-    
+
     /// <summary>
     /// Keeps track of if the angle is below the minimum amount of degrees
     /// Used in adjusting the selector image.
     /// </summary>
     bool withinRadialMax;
-    
+
     /// <summary>
     /// Keeps track of the Mouse's position. Used in adjusting the selector image.
     /// </summary>
     Vector2 mousePos;
-    
+
     /// <summary>
     /// Keeps track of the rotation angle from the mouse to the middle.
     /// Used in adjusting the selector and updating the arrow image
     /// </summary>
     float rotateAngle;
+
+    /// <summary>
+    /// Defines what ability is being used currently, and which one to select when leaving the radial menu.
+    /// </summary>
+    int trackedKinesis;
 
     #endregion
 
@@ -69,7 +74,13 @@ public class RadialMenu_V2 : MonoBehaviour
             ToggleMenu();
         }
 
-        if (isMenuBeingShown)
+        if (Input.GetKeyUp(KeyCode.Q))
+        {
+            ToggleMenu();
+            SelectKinesis(trackedKinesis);
+        }
+
+        if (Input.GetKey(KeyCode.Q) && isMenuBeingShown)
         {
             UpdateMousePosition();
             UpdateSelectedItem();
@@ -90,7 +101,7 @@ public class RadialMenu_V2 : MonoBehaviour
     void UpdateMousePosition()
     {
         mousePos = Input.mousePosition - new Vector3(Screen.width / 2, Screen.height / 2);
-        
+
         rotateAngle = Vector2.SignedAngle(Vector2.up, mousePos);
         rotateAngle = rotateAngle < 0 ? rotateAngle + 360 : rotateAngle;
         arrow.rotation = Quaternion.Euler(0, 0, rotateAngle);
@@ -109,12 +120,34 @@ public class RadialMenu_V2 : MonoBehaviour
             if (withinRadialMin && withinRadialMax)
             {
                 selector.transform.rotation = Quaternion.Euler(0, 0, sliceIndex * sliceAng + (sliceAng * 3));
+                trackedKinesis = sliceIndex;
+                Debug.Log(trackedKinesis);
             }
         }
     }
 
-    void SelectKinesis()
+    void SelectKinesis(int _angle)
     {
-
+        switch (_angle)
+        {
+            case 0:
+                Debug.Log("Finger Pistol");
+                break;
+            case 1:
+                Debug.Log("Pyrokinesis");
+                break;
+            case 2:
+                Debug.Log("Cryokinesis");
+                break;
+            case 3:
+                Debug.Log("Aerokinesis");
+                break;
+            case 4:
+                Debug.Log("Electrokinesis");
+                break;
+            
+            default:
+                break;
+        }
     }
 }
