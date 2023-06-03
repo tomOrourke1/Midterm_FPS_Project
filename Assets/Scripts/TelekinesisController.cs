@@ -129,7 +129,7 @@ public class TelekinesisController : MonoBehaviour
 
 
             //rb.rotation = Quaternion.Lerp(rb.rotation, Quaternion.LookRotation(cam.transform.forward), Time.deltaTime * rotationSpeed);
-            rb.angularVelocity = (Vector3.Cross(Vector3.up, rb.transform.up) + Vector3.Cross(cam.transform.forward, rb.transform.forward) ).normalized * rotationSpeed;
+            //rb.angularVelocity = (Vector3.Cross(Vector3.up, rb.transform.up) + Vector3.Cross(cam.transform.forward, rb.transform.forward) ).normalized * rotationSpeed;
 
 
             timePressed += Time.deltaTime;
