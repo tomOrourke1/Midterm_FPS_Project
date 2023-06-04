@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,12 +7,12 @@ public class RadialMenu_V2 : MonoBehaviour
     [Header("Components")]
     [Tooltip("The Radial weapon wheel UI to toggle.")]
     [SerializeField] GameObject radialUI;
+    [SerializeField] GameObject reticleUI;
+    [Tooltip("The Player Stats UI to enable/disable when turning on/off the Radial Menu.")]
+    [SerializeField] GameObject translucentBackground;
+    [SerializeField] TextMeshProUGUI infoBox;
     [Tooltip("The arrow to adjust to look at the mouse.")]
     [SerializeField] Transform arrow;
-    [Tooltip("The Player Stats UI to enable/disable when turning on/off the Radial Menu.")]
-    [SerializeField] GameObject playerStatsUI;
-    [Tooltip("The Reticle UI to enable/disable when turning on/off the Radial Menu.")]
-    [SerializeField] GameObject reticleUI;
     [SerializeField] GameObject[] slices;
     [Tooltip("A transparent selector to display which item is being hovered on.")]
     [SerializeField] Transform selector;
@@ -65,36 +66,19 @@ public class RadialMenu_V2 : MonoBehaviour
         // then when the player presses Q it will show up again in the update funciton.
         isMenuBeingShown = false;
         radialUI.SetActive(isMenuBeingShown);
+        translucentBackground.SetActive(isMenuBeingShown);
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            ToggleMenu();
-        }
-
-        if (Input.GetKeyUp(KeyCode.Q))
-        {
-            ToggleMenu();
-            SelectKinesis(trackedKinesis);
-        }
-
-        if (Input.GetKey(KeyCode.Q) && isMenuBeingShown)
-        {
-            UpdateMousePosition();
-            UpdateSelectedItem();
-        }
+        UpdateKeys();
     }
 
     void ToggleMenu()
     {
         isMenuBeingShown = !isMenuBeingShown;
-
-        // Turn off Player Stats UI and Reticle from being shown if
-        // the radial menu is to be shown.
-        playerStatsUI.SetActive(!isMenuBeingShown);
         reticleUI.SetActive(!isMenuBeingShown);
+        translucentBackground.SetActive(isMenuBeingShown);
         radialUI.SetActive(isMenuBeingShown);
     }
 
@@ -121,33 +105,89 @@ public class RadialMenu_V2 : MonoBehaviour
             {
                 selector.transform.rotation = Quaternion.Euler(0, 0, sliceIndex * sliceAng + (sliceAng * 3));
                 trackedKinesis = sliceIndex;
+                DisplayKinesisInRadialMenu(sliceIndex);
                 Debug.Log(trackedKinesis);
             }
         }
     }
 
-    void SelectKinesis(int _angle)
+    /// <summary>
+    /// Provides functionality to run functions to set which gun is in use.
+    /// Pass in the selected slice and it will set the current gun to that type of kinesis.
+    /// </summary>
+    /// <param name="sliceIndx">The indexed slice to use.</param>
+    void SelectKinesis(int sliceIndx)
     {
-        switch (_angle)
+        switch (sliceIndx)
         {
             case 0:
-                Debug.Log("Finger Pistol");
+                infoBox.SetText("Finger Pistol");
                 break;
-            case 1:
-                Debug.Log("Pyrokinesis");
-                break;
-            case 2:
-                Debug.Log("Cryokinesis");
-                break;
+            case 1:            
+                infoBox.SetText("Pyrokinesis");
+                break;                      
+            case 2:                         
+                infoBox.SetText("Cryokinesis");
+                break;                      
             case 3:
-                Debug.Log("Aerokinesis");
-                break;
+                infoBox.SetText("Aerokinesis");
+                break;         
             case 4:
-                Debug.Log("Electrokinesis");
+                infoBox.SetText("Electrokinesis");
                 break;
             
             default:
                 break;
+        }
+    }
+
+    /// <summary>
+    /// Purely for displaying the type of kinesis in the Radial Menu.
+    /// Not for getting the gun type.
+    /// </summary>
+    /// <param name="idx">The index of the kinesis type to use.</param>
+    void DisplayKinesisInRadialMenu(int idx)
+    {
+        switch (idx)
+        {
+            case 0:
+                infoBox.SetText("Finger Pistol");
+                break;
+            case 1:
+                infoBox.SetText("Pyrokinesis");
+                break;
+            case 2:
+                infoBox.SetText("Cryokinesis");
+                break;
+            case 3:
+                infoBox.SetText("Aerokinesis");
+                break;
+            case 4:
+                infoBox.SetText("Electrokinesis");
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    void UpdateKeys()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            ToggleMenu();
+        }
+
+        if (Input.GetKeyUp(KeyCode.Q))
+        {
+            ToggleMenu();
+            SelectKinesis(trackedKinesis);
+        }
+
+        if (Input.GetKey(KeyCode.Q) && isMenuBeingShown)
+        {
+            UpdateMousePosition();
+            UpdateSelectedItem();
         }
     }
 }
