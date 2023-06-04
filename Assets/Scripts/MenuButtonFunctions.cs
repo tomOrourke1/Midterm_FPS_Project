@@ -13,6 +13,7 @@ public class MenuButtonFunctions : MonoBehaviour
     public void Restart()
     {
         gameManager.instance.Unpaused();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     public void ExitToMenu()
     {
@@ -21,5 +22,11 @@ public class MenuButtonFunctions : MonoBehaviour
     public void ExitGame()
     {
         Application.Quit();
+    }
+    public void NextLevel()
+    {
+        gameManager.instance.Unpaused();
+        //May change function later
+        // SceneManager.LoadScene(SceneManager.GetSceneByName();
     }
 }
