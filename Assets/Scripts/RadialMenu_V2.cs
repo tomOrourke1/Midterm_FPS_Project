@@ -121,21 +121,21 @@ public class RadialMenu_V2 : MonoBehaviour
         switch (sliceIndx)
         {
             case 0:
-                infoBox.SetText("Finger Pistol");
+                // Functionality To Select the Kinesis Type will be put in here. For now this is temporary.
                 break;
-            case 1:            
-                infoBox.SetText("Pyrokinesis");
-                break;                      
-            case 2:                         
-                infoBox.SetText("Cryokinesis");
-                break;                      
+            case 1:
+                // Functionality To Select the Kinesis Type will be put in here. For now this is temporary.
+                break;
+            case 2:
+                // Functionality To Select the Kinesis Type will be put in here. For now this is temporary.
+                break;
             case 3:
-                infoBox.SetText("Aerokinesis");
-                break;         
-            case 4:
-                infoBox.SetText("Electrokinesis");
+                // Functionality To Select the Kinesis Type will be put in here. For now this is temporary.
                 break;
-            
+            case 4:
+                // Functionality To Select the Kinesis Type will be put in here. For now this is temporary.
+                break;
+
             default:
                 break;
         }
@@ -151,19 +151,19 @@ public class RadialMenu_V2 : MonoBehaviour
         switch (idx)
         {
             case 0:
-                infoBox.SetText("Finger Pistol");
+                infoBox.SetText(slices[idx].GetComponent<RadialSliceName>().weaponName);
                 break;
-            case 1:
-                infoBox.SetText("Pyrokinesis");
-                break;
+            case 1: 
+                infoBox.SetText(slices[idx].GetComponent<RadialSliceName>().weaponName);
+                break;  
             case 2:
-                infoBox.SetText("Cryokinesis");
+                infoBox.SetText(slices[idx].GetComponent<RadialSliceName>().weaponName);
                 break;
             case 3:
-                infoBox.SetText("Aerokinesis");
+                infoBox.SetText(slices[idx].GetComponent<RadialSliceName>().weaponName);
                 break;
             case 4:
-                infoBox.SetText("Electrokinesis");
+                infoBox.SetText(slices[idx].GetComponent<RadialSliceName>().weaponName);
                 break;
 
             default:
