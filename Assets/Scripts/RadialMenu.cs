@@ -2,19 +2,22 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RadialMenu_V2 : MonoBehaviour
+public class RadialMenu : MonoBehaviour
 {
     [Header("Components")]
-    [Tooltip("The Radial weapon wheel UI to toggle.")]
+    [Tooltip("The Radial Weapon Wheel UI to toggle. This is the \"RadialMenu\" Game Object prefab and should be under the \"UI\" Game Object.")]
     [SerializeField] GameObject radialUI;
+    [Tooltip("The reticle prefab can be found in the \"Prefabs\" Folder and should be placed under the \"UI\" Game Object.")]
     [SerializeField] GameObject reticleUI;
-    [Tooltip("The Player Stats UI to enable/disable when turning on/off the Radial Menu.")]
+    [Tooltip("The Translucent Background to tint the screen. This a Game Object prefab that should be placed under the \"UI\".")]
     [SerializeField] GameObject translucentBackground;
+    [Tooltip("Displays the current hovered Kinesis in the Radial Menu. The Info Box is found under the \"RadialMenu\" Game Object prefab.")]
     [SerializeField] TextMeshProUGUI infoBox;
-    [Tooltip("The arrow to adjust to look at the mouse.")]
+    [Tooltip("The arrow rotating around to face the mouse's position. This is found under the \"RadialMenu\" Game Object prefab.")]
     [SerializeField] Transform arrow;
+    [Tooltip("The Radial Slices of each Kinesis Type. This is found under the \"RadialMenu\" Game Object prefab.")]
     [SerializeField] GameObject[] slices;
-    [Tooltip("A transparent selector to display which item is being hovered on.")]
+    [Tooltip("A transparent selector to higlight which item is being hovered on. This is found under the \"RadialMenu\" Game Object prefab.")]
     [SerializeField] Transform selector;
 
     #region ScriptVariables
