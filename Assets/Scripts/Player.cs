@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     [Range(10, 50)][SerializeField] float gravityValue;
     [Range(8, 25)][SerializeField] float jumpHeight;
     [SerializeField] int jumpMax;
+    [SerializeField] int DashMax;
     [SerializeField] float DashSpeed;
     [SerializeField] float DashDuration;
     [SerializeField] float DashCooldown;
@@ -21,15 +22,17 @@ public class Player : MonoBehaviour
     private Vector3 playerVelocity;
     private Vector3 move;
     private int jumpTimes;
+    private int currentDashes;
     private bool groundedPlayer;
     private bool isDashing;
-    private bool dashReady;
+    private bool DashRecharging;
 
     // Start is called before the first frame update
     void Start()
     {
         isDashing = false;
-        dashReady = true;
+        DashRecharging = false;
+        currentDashes = DashMax;
         controller = gameObject.AddComponent<CharacterController>();
     }
 
@@ -41,7 +44,12 @@ public class Player : MonoBehaviour
 
     void Movement()
     {
-        if (Input.GetButtonDown("Fire3") && dashReady/* && (playerVelocity.x != 0 || playerVelocity.z != 0)*/)
+        if (!DashRecharging && currentDashes < DashMax)
+        {
+            StartCoroutine(ReachargeDash());
+        }
+
+        if (Input.GetButtonDown("Fire3") && currentDashes > 0/* && (playerVelocity.x != 0 || playerVelocity.z != 0)*/)
         {
             StartCoroutine(Dash());
         }
@@ -57,10 +65,12 @@ public class Player : MonoBehaviour
 
         if (isDashing)
         {
+            // Move the player at dash speed
             controller.Move(move * Time.deltaTime * DashSpeed);
         }
         else
         {
+            // Move the player at walk speed
             controller.Move(move * Time.deltaTime * playerSpeed);
         }
 
@@ -82,15 +92,16 @@ public class Player : MonoBehaviour
     {
         isDashing = true;
         yield return new WaitForSeconds(DashDuration);
-        StartCoroutine(DashCooldownTimer());
+        currentDashes--;
         isDashing = false;
     }
 
-    IEnumerator DashCooldownTimer()
+    IEnumerator ReachargeDash()
     {
-        dashReady = false;
+        DashRecharging = true;
         yield return new WaitForSeconds(DashCooldown);
-        dashReady = true;
+        currentDashes++;
+        DashRecharging = false;
     }
 
 }
