@@ -38,7 +38,7 @@ public class gameManager : MonoBehaviour
             activeMenu = pausemenu;
             activeMenu.SetActive(true);
             Paused();
-        
+            UI_Manager.instance.EnableBoolAnimator(UI_Manager.instance.PausePanel);
         }
     }
     //stes game to paused state
@@ -47,13 +47,15 @@ public class gameManager : MonoBehaviour
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
-        UI_Manager.instance.EnableBoolAnimator(UI_Manager.instance.PausePanel);
+     
     }
     
     //resumes game while paused
     public void Unpaused()
     {
         UI_Manager.instance.DisableBoolAnimator(UI_Manager.instance.PausePanel);
+        UI_Manager.instance.DisableBoolAnimator(UI_Manager.instance.WinPanel);
+        UI_Manager.instance.DisableBoolAnimator(UI_Manager.instance.LossPanel);
         Time.timeScale = timescaleOrig;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -75,6 +77,7 @@ public class gameManager : MonoBehaviour
         activeMenu = winMenu;
         activeMenu.SetActive(true);
         Paused();
+        UI_Manager.instance.EnableBoolAnimator(UI_Manager.instance.WinPanel);
     }
     //function for when the game is lost
     IEnumerator LoseGame()
@@ -83,6 +86,7 @@ public class gameManager : MonoBehaviour
         activeMenu = loseMenu;
         activeMenu.SetActive(true);
         Paused();
+        UI_Manager.instance.EnableBoolAnimator(UI_Manager.instance.LossPanel);
     }
 
 

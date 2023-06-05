@@ -6,6 +6,8 @@ public class UI_Manager : MonoBehaviour
 {
     //the pause menu
     public Animator PausePanel;
+    public Animator WinPanel;
+    public Animator LossPanel;
 
     public static UI_Manager instance;
 
