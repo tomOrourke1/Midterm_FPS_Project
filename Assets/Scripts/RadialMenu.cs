@@ -58,6 +58,16 @@ public class RadialMenu : MonoBehaviour
     /// </summary>
     int trackedKinesis;
 
+    /// <summary>
+    /// Maximum distance from the center that the arrow in the radial menu can go.
+    /// </summary>
+    [SerializeField] float maxArrowDist;
+
+    /// <summary>
+    /// Scale that the arrow will get the magnitude from the mouses position from the center of the screen.
+    /// </summary>
+    float arrowScale;
+
     #endregion
 
 
@@ -84,18 +94,18 @@ public class RadialMenu : MonoBehaviour
 
     void UpdateMousePosition()
     {
-
         var screenPos = new Vector3(Screen.width / 2, Screen.height / 2);
         mousePos = Input.mousePosition - screenPos;
 
-        var scale = mousePos.magnitude;
-
+        arrowScale = mousePos.magnitude / 75;
+        if (arrowScale >= maxArrowDist)
+            arrowScale = maxArrowDist;
 
         rotateAngle = Vector2.SignedAngle(Vector2.up, mousePos);
         rotateAngle = rotateAngle < 0 ? rotateAngle + 360 : rotateAngle;
         arrow.rotation = Quaternion.Euler(0, 0, rotateAngle);
 
-        arrow.localScale = new Vector3(1, scale, 1);
+        arrow.localScale = new Vector3(1, arrowScale, 1);
     }
 
     void UpdateSelectedItem()
