@@ -99,6 +99,8 @@ public class Player : MonoBehaviour
 
     public void RespawnPlayer()
     {
+        gameManager.instance.pStatsUI.UpdateValues();
+
         controller.enabled = false;
         if(gameManager.instance != null && gameManager.instance.PlayerSpawnPOS != null)
         {
@@ -148,6 +150,21 @@ public class Player : MonoBehaviour
     public float GetPlayerMaxShield()
     {
         return maxShield;
+    }
+
+    public void TakeDamage(int dmg)
+    {
+        currentHP -= dmg;
+        if (currentHP <= 0)
+        {
+            StartCoroutine(FlashDamage());
+        }
+    }
+    IEnumerator FlashDamage()
+    {
+        //gameManager.instance.flashDamage.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        //gameManager.instance.flashDamage.gameObject.SetActive(false);
     }
 
 }
