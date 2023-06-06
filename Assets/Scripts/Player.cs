@@ -21,7 +21,6 @@ public class Player : MonoBehaviour
     [SerializeField] float DashDuration;
     [SerializeField] float DashCooldown;
 
-    private PlayerStats_UI p_stats;
     private Vector3 playerVelocity;
     private Vector3 move;
     private float currentHP;
@@ -104,7 +103,6 @@ public class Player : MonoBehaviour
         transform.position = gameManager.instance.PlayerSpawnPOS.transform.position;
         controller.enabled = true;
         currentHP = maxHP;
-        p_stats.UpdateValues();
     }
 
     IEnumerator Dash()
