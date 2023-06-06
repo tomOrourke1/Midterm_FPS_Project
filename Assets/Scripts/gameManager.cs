@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class gameManager : MonoBehaviour
 {
-
     public static gameManager instance;
 
     [Header("-----Player Stuff-----")]
@@ -16,16 +15,21 @@ public class gameManager : MonoBehaviour
     public GameObject activeMenu;
     public GameObject winMenu;
     public GameObject loseMenu;
-
- 
+    private RadialMenu radialMenuScriptRef;
+    private PlayerStats_UI pStatsUI;
     float timescaleOrig;
-  
+
     void Awake()
     {
         instance = this;
         timescaleOrig = Time.timeScale;
-       // player = GameObject.FindGameObjectWithTag("INSERT_PLAYER_HERE");
+        // player = GameObject.FindGameObjectWithTag("INSERT_PLAYER_HERE");
         //playerscript = player.GetComponent<INSERT_PLAYER_SCRIPT_HERE>();
+    
+        // 6/5/2023 - Kevin W.
+        // Gets the Radial Menu Script off of the UI Game Object
+        radialMenuScriptRef = GetComponent<RadialMenu>();
+        pStatsUI = GetComponent<PlayerStats_UI>();
     }
 
     // Update is called once per frame
@@ -34,12 +38,19 @@ public class gameManager : MonoBehaviour
         //pauses the game
         if (Input.GetKeyDown(KeyCode.Escape) && activeMenu == null)
         {
-           
             activeMenu = pausemenu;
             activeMenu.SetActive(true);
             Paused();
             UI_Manager.instance.EnableBoolAnimator(UI_Manager.instance.PausePanel);
         }
+ 
+        // 6/5/2023 - Kevin W.
+        // Updates the keys in the Radial Menu Script
+        radialMenuScriptRef.UpdateKeys();
+        // remove this when taking damage and receiving damage is implemented
+        // and replace it to update the corresponding damage of the type (HP | Focus | Shield)
+        // when those types are taken. 
+        pStatsUI.UpdateValues();
     }
     //stes game to paused state
     public void Paused()
@@ -47,9 +58,8 @@ public class gameManager : MonoBehaviour
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
-     
     }
-    
+
     //resumes game while paused
     public void Unpaused()
     {
@@ -59,9 +69,8 @@ public class gameManager : MonoBehaviour
         Time.timeScale = timescaleOrig;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-       
-       StartCoroutine(WaitToTurnOffUI());
-     
+
+        StartCoroutine(WaitToTurnOffUI());
     }
 
     IEnumerator WaitToTurnOffUI()

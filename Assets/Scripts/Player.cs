@@ -8,17 +8,23 @@ public class Player : MonoBehaviour
     [SerializeField] CharacterController controller;
 
     [Header("----- Player Stats -----")]
-    [SerializeField] int HP;
-    [SerializeField] int Focus;
-    [Range(3, 8)][SerializeField] float playerSpeed;
-    [Range(10, 50)][SerializeField] float gravityValue;
-    [Range(8, 25)][SerializeField] float jumpHeight;
+    [SerializeField] float maxHP;
+    [SerializeField] float maxFocus;
+    // 6/5/2023 - Kevin W.
+    // Added currentHP and currentFocus 
+    // Stores the current HP so we can keep track of the max and current seperately
+    [SerializeField] private float currentHP;
+    [SerializeField]private float currentFocus;
+    [SerializeField, Range(3, 8)] float playerSpeed;
+    [SerializeField, Range(10, 50)] float gravityValue;
+    [SerializeField, Range(8, 25)] float jumpHeight;
     [SerializeField] int jumpMax;
     [SerializeField] int DashMax;
     [SerializeField] float DashSpeed;
     [SerializeField] float DashDuration;
     [SerializeField] float DashCooldown;
 
+    
     private Vector3 playerVelocity;
     private Vector3 move;
     private int jumpTimes;
@@ -34,6 +40,12 @@ public class Player : MonoBehaviour
         DashRecharging = false;
         currentDashes = DashMax;
         controller = gameObject.AddComponent<CharacterController>();
+
+        // 6/5/2023 - Kevin W.
+        // Added values so they can be updated properly.
+        // When taking damage refer to currentHP as the variable to change. 
+        currentHP = maxHP;
+        currentFocus = maxFocus;
     }
 
     // Update is called once per frame
@@ -102,6 +114,26 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(DashCooldown);
         currentDashes++;
         DashRecharging = false;
+    }
+
+    // 6/5/2023 - Additions made by Kevin W.
+    // Introduced these functions to allow for the UI
+    // to grab the stats easily without interfering with them
+    public float GetPlayerCurrentHP()
+    {
+        return currentHP;
+    }
+    public float GetPlayerCurrentFocus()
+    {
+        return currentFocus;
+    }
+    public float GetPlayerMaxHP()
+    {
+        return maxHP;
+    }
+    public float GetPlayerMaxFocus()
+    {
+        return maxFocus;
     }
 
 }

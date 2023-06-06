@@ -72,11 +72,6 @@ public class RadialMenu : MonoBehaviour
         translucentBackground.SetActive(isMenuBeingShown);
     }
 
-    private void Update()
-    {
-        UpdateKeys();
-    }
-
     void ToggleMenu()
     {
         isMenuBeingShown = !isMenuBeingShown;
@@ -109,7 +104,7 @@ public class RadialMenu : MonoBehaviour
                 selector.transform.rotation = Quaternion.Euler(0, 0, sliceIndex * sliceAng + (sliceAng * 3));
                 trackedKinesis = sliceIndex;
                 DisplayKinesisInRadialMenu(sliceIndex);
-                Debug.Log(trackedKinesis);
+                //Debug.Log(trackedKinesis);
             }
         }
     }
@@ -174,16 +169,18 @@ public class RadialMenu : MonoBehaviour
         }
     }
 
-    void UpdateKeys()
+    public void UpdateKeys()
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
             ToggleMenu();
+            GameObject.Find("Player").GetComponentInChildren<CameraController>().enabled = isMenuBeingShown;
         }
 
         if (Input.GetKeyUp(KeyCode.Q))
         {
             ToggleMenu();
+            GameObject.Find("Player").GetComponentInChildren<CameraController>().enabled = isMenuBeingShown;
             SelectKinesis(trackedKinesis);
         }
 

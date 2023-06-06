@@ -11,21 +11,38 @@ public class PlayerStats_UI : MonoBehaviour
     [Tooltip("Health image to alter.")]
     [SerializeField] Slider healthSlider;
 
-    [Header("Temporary Stats")]
-    [SerializeField] public float maxFocus;
-    [SerializeField] public float maxShield;
-    [SerializeField] public float maxHP;
-    [SerializeField] public float currentFocus;
-    [SerializeField] public float currentShield;
-    [SerializeField] public float currentHP;
+    // C# has inherent private protection but defining it just to be safe
+    private float maxFocus;
+    private float maxShield;
+    private float maxHP;
+    private float currentHP;
+    private float currentFocus;
+    private float currentShield;
+
+    // So we can find what each stat is easily
+    private Player playerScriptRef;
 
     // Start is called before the first frame update
     void Start()
     {
-        currentFocus = maxFocus;
-        currentShield = maxShield;
-        currentHP = maxHP;
+        playerScriptRef = GameObject.Find("Player").GetComponent<Player>();
 
+        maxFocus = playerScriptRef.GetPlayerMaxHP();
+        maxHP = playerScriptRef.GetPlayerMaxHP();
+        currentHP = playerScriptRef.GetPlayerCurrentHP();
+        currentFocus = playerScriptRef.GetPlayerCurrentFocus();
+
+        // Update when Shield is added to the Player script
+        currentShield = maxHP;
+
+        UpdateFocus();
+        UpdateShield();
+        UpdateHealth();
+    }
+
+    // When the damage and HP refilling are added introduce these into those functions. 
+    public void UpdateValues()
+    {
         UpdateFocus();
         UpdateShield();
         UpdateHealth();
@@ -33,7 +50,7 @@ public class PlayerStats_UI : MonoBehaviour
 
     public void UpdateFocus()
     {
-        focusSlider.value = currentFocus / maxFocus;
+        focusSlider.value = playerScriptRef.GetPlayerCurrentFocus() / maxFocus;
     }
     public void UpdateShield()
     {
@@ -41,6 +58,6 @@ public class PlayerStats_UI : MonoBehaviour
     }
     public void UpdateHealth()
     {
-        healthSlider.value = currentHP / maxHP;
+        healthSlider.value = playerScriptRef.GetPlayerCurrentHP() / maxHP;
     }
 }

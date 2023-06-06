@@ -110,10 +110,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 847320448734065884}
+  - component: {fileID: 847320448734065880}
   - component: {fileID: 847320448734065885}
   - component: {fileID: 847320448734065886}
   - component: {fileID: 847320448734065887}
-  - component: {fileID: 847320448734065880}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -137,6 +137,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &847320448734065880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847320448734065881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03e9afcc00cf0bb40bf1572f0ad225d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 0}
+  maxHP: 10
+  maxFocus: 10
+  playerSpeed: 6
+  gravityValue: 20
+  jumpHeight: 8
+  jumpMax: 2
+  DashMax: 3
+  DashSpeed: 50
+  DashDuration: 0.1
+  DashCooldown: 1
 --- !u!33 &847320448734065885
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -201,26 +224,3 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &847320448734065880
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 847320448734065881}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03e9afcc00cf0bb40bf1572f0ad225d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 0}
-  HP: 0
-  Focus: 0
-  playerSpeed: 6
-  gravityValue: 20
-  jumpHeight: 8
-  jumpMax: 2
-  DashMax: 3
-  DashSpeed: 50
-  DashDuration: 0.1
-  DashCooldown: 1
