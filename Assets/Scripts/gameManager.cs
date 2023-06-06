@@ -30,7 +30,7 @@ public class gameManager : MonoBehaviour
         timescaleOrig = Time.timeScale;
 
         //sets both the player and player script
-         player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("Player");
         playerscript = player.GetComponent<Player>();
         //sets spawn point
         PlayerSpawnPOS = GameObject.FindGameObjectWithTag("Player Spawn Pos");
