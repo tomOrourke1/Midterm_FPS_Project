@@ -17,8 +17,10 @@ public class gameManager : MonoBehaviour
     public GameObject winMenu;
     public GameObject loseMenu;
     public GameObject PlayerSpawnPOS;
+    private GameObject CheckPoint;
     private RadialMenu radialMenuScriptRef;
-    private PlayerStats_UI pStatsUI;
+    public PlayerStats_UI pStatsUI;
+    [SerializeField] GameObject flashDamage;
     float timescaleOrig;
 
     public int enemiesRemaining;
@@ -109,6 +111,16 @@ public class gameManager : MonoBehaviour
     {
         enemiesRemaining -= amount;
         enemiesRemainingText.text = enemiesRemaining.ToString("F0");
+        if(enemiesRemaining <= 0)
+        {
+            StartCoroutine(WinGame());
+        }
     }
-
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            CheckPoint.SetActive(true);
+        }
+    }
 }
