@@ -55,5 +55,8 @@ public class DoorScript : MonoBehaviour, IDoorActivator
         }
     }
 
-
+    public bool GetOpenStatus()
+    {
+        return isOpen;
+    }
 }
