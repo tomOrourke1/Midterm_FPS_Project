@@ -25,7 +25,10 @@ public class PlayerStats_UI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerScriptRef = GameObject.Find("Player").GetComponent<Player>();     
+
+        
+        playerScriptRef = gameManager.instance.playerscript;
+
 
         maxFocus = playerScriptRef.GetPlayerMaxHP();
         maxHP = playerScriptRef.GetPlayerMaxHP();
@@ -43,6 +46,9 @@ public class PlayerStats_UI : MonoBehaviour
     // When the damage and HP refilling are added introduce these into those functions. 
     public void UpdateValues()
     {
+        if (playerScriptRef == null)
+            playerScriptRef = gameManager.instance.playerscript;
+
         UpdateFocus();
         UpdateShield();
         UpdateHealth();

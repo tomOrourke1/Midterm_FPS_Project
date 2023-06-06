@@ -23,24 +23,52 @@ public class EnemyAI : MonoBehaviour, IDamagable
     [SerializeField] float enemyRateFire;
     [SerializeField] GameObject bullet;
 
-    Vector3 playerDir;
+    Vector3 startingPos;
     Vector3 playerDirection;
     float stoppingDistanceOriginal;
     float angleToPlayer;
     bool playerSeen;
     bool enemyShooting;
 
+    bool destinationChosen;
+    float stoppingDistOrig;
+
     void Start()
     {
         //gameManager.instance.UpdateGameGoal(+1);
-        
+        startingPos = transform.position;
+        stoppingDistanceOriginal = agent.stoppingDistance;
     }
 
     void Update()
     {
-        if(playerSeen && EnemySeePlayer())
+        if(playerSeen && !EnemySeePlayer())
         {
-            
+            StartCoroutine(Roam());
+        }
+        else if(agent.destination != gameManager.instance.player.transform.position)
+        {
+            StartCoroutine(Roam());
+        }
+    }
+
+    IEnumerator Roam()
+    {
+        if(!destinationChosen && agent.remainingDistance < 0.05f)
+        {
+            destinationChosen = true;
+            agent.stoppingDistance = 0;
+
+            yield return new WaitForSeconds(roamTimer);
+            destinationChosen = false;
+
+            Vector3 randomPos = Random.insideUnitSphere * roamDist;
+            randomPos += startingPos;
+
+            NavMeshHit hit;
+            NavMesh.SamplePosition(randomPos, out hit, roamDist, 1);
+
+            agent.SetDestination(hit.position);
         }
     }
 
@@ -123,6 +151,7 @@ public class EnemyAI : MonoBehaviour, IDamagable
     IEnumerator EnemyShooting()
     {
         enemyShooting = true;
+        EnemyFacePlayer();
         Instantiate(bullet, enemyShootPos.position, transform.rotation);
         yield return new WaitForSeconds(enemyRateFire);
         enemyShooting = false;
@@ -137,6 +166,7 @@ public class EnemyAI : MonoBehaviour, IDamagable
 
         if (enemyHP <= 0)
         {
+            // Kevin CME BCAK HERE gameManager.instance.UpdateGameGoal(-1);
             Destroy(gameObject);
         }
     }
