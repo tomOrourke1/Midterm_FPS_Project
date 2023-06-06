@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
         isDashing = false;
         DashRecharging = false;
         currentDashes = DashMax;
-        controller = gameObject.AddComponent<CharacterController>();
+        //controller = gameObject.AddComponent<CharacterController>();
         RespawnPlayer();
         currentHP = maxHP;
         currentShield = maxShield;
@@ -100,7 +100,10 @@ public class Player : MonoBehaviour
     public void RespawnPlayer()
     {
         controller.enabled = false;
-        transform.position = gameManager.instance.PlayerSpawnPOS.transform.position;
+        if(gameManager.instance != null)
+        {
+            transform.position = gameManager.instance.PlayerSpawnPOS.transform.position;
+        }
         controller.enabled = true;
         currentHP = maxHP;
     }
