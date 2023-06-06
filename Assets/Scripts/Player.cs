@@ -100,7 +100,7 @@ public class Player : MonoBehaviour
     public void RespawnPlayer()
     {
         controller.enabled = false;
-        if(gameManager.instance != null)
+        if(gameManager.instance != null && gameManager.instance.PlayerSpawnPOS != null)
         {
             transform.position = gameManager.instance.PlayerSpawnPOS.transform.position;
         }
