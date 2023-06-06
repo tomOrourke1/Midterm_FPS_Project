@@ -5,11 +5,11 @@ public class PlayerStats_UI : MonoBehaviour
 {
     [Header("Player Stat Fillers")]
     [Tooltip("Focus image to alter.")]
-    [SerializeField] Slider focusSlider;
+    [SerializeField] Image focusSlider;
     [Tooltip("Shield image to alter.")]    
-    [SerializeField] Slider shieldSlider;
+    [SerializeField] Image shieldSlider;
     [Tooltip("Health image to alter.")]
-    [SerializeField] Slider healthSlider;
+    [SerializeField] Image healthSlider;
 
     // C# has inherent private protection but defining it just to be safe
     private float maxFocus;
@@ -50,14 +50,14 @@ public class PlayerStats_UI : MonoBehaviour
 
     public void UpdateFocus()
     {
-        focusSlider.value = playerScriptRef.GetPlayerCurrentFocus() / maxFocus;
+        focusSlider.fillAmount = playerScriptRef.GetPlayerCurrentFocus() / maxFocus;
     }
     public void UpdateShield()
     {
-        shieldSlider.value = currentShield / maxShield;
+        shieldSlider.fillAmount = currentShield / maxShield;
     }
     public void UpdateHealth()
     {
-        healthSlider.value = playerScriptRef.GetPlayerCurrentHP() / maxHP;
+        healthSlider.fillAmount = playerScriptRef.GetPlayerCurrentHP() / maxHP;
     }
 }
