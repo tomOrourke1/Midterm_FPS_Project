@@ -20,12 +20,12 @@ public class PlayerStats_UI : MonoBehaviour
     private float currentShield;
 
     // So we can find what each stat is easily
-    private Player playerScriptRef;
+    [SerializeField] Player playerScriptRef;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerScriptRef = GameObject.Find("Player").GetComponent<Player>(); 
+        playerScriptRef = GameObject.Find("Player").GetComponent<Player>();     
 
         maxFocus = playerScriptRef.GetPlayerMaxHP();
         maxHP = playerScriptRef.GetPlayerMaxHP();
