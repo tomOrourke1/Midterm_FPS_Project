@@ -60,6 +60,8 @@ public class RadialMenu : MonoBehaviour
 
     #endregion
 
+
+
     private void Start()
     {
         sliceAng = 360 / slices.Length;
@@ -82,12 +84,18 @@ public class RadialMenu : MonoBehaviour
 
     void UpdateMousePosition()
     {
-        mousePos = Input.mousePosition - new Vector3(Screen.width / 2, Screen.height / 2);
+
+        var screenPos = new Vector3(Screen.width / 2, Screen.height / 2);
+        mousePos = Input.mousePosition - screenPos;
+
+        var scale = mousePos.magnitude;
+
 
         rotateAngle = Vector2.SignedAngle(Vector2.up, mousePos);
         rotateAngle = rotateAngle < 0 ? rotateAngle + 360 : rotateAngle;
         arrow.rotation = Quaternion.Euler(0, 0, rotateAngle);
 
+        arrow.localScale = new Vector3(1, scale, 1);
     }
 
     void UpdateSelectedItem()
@@ -174,14 +182,16 @@ public class RadialMenu : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             ToggleMenu();
-            GameObject.Find("Player").GetComponentInChildren<CameraController>().enabled = isMenuBeingShown;
+            GameObject.Find("Player").GetComponentInChildren<CameraController>().enabled = !isMenuBeingShown;
+            Cursor.lockState = CursorLockMode.Confined;
         }
 
         if (Input.GetKeyUp(KeyCode.Q))
         {
             ToggleMenu();
-            GameObject.Find("Player").GetComponentInChildren<CameraController>().enabled = isMenuBeingShown;
+            GameObject.Find("Player").GetComponentInChildren<CameraController>().enabled = !isMenuBeingShown;
             SelectKinesis(trackedKinesis);
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
         if (Input.GetKey(KeyCode.Q) && isMenuBeingShown)
