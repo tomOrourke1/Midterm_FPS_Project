@@ -25,7 +25,7 @@ public class PlayerStats_UI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerScriptRef = GameObject.Find("Player").GetComponent<Player>();
+        playerScriptRef = GameObject.Find("Player").GetComponent<Player>(); 
 
         maxFocus = playerScriptRef.GetPlayerMaxHP();
         maxHP = playerScriptRef.GetPlayerMaxHP();

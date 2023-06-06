@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class gameManager : MonoBehaviour
 {
@@ -8,24 +9,31 @@ public class gameManager : MonoBehaviour
 
     [Header("-----Player Stuff-----")]
     public GameObject player;
-    //public INSERT_PLAYERSCRIPT_HERE playerscript;
+    public Player playerscript;
 
     [Header("-----UI Stuff-----")]
     public GameObject pausemenu;
     public GameObject activeMenu;
     public GameObject winMenu;
     public GameObject loseMenu;
+    public GameObject PlayerSpawnPOS;
     private RadialMenu radialMenuScriptRef;
     private PlayerStats_UI pStatsUI;
     float timescaleOrig;
+
+    public int enemiesRemaining;
+    public TextMeshProUGUI enemiesRemainingText;
 
     void Awake()
     {
         instance = this;
         timescaleOrig = Time.timeScale;
-        // player = GameObject.FindGameObjectWithTag("INSERT_PLAYER_HERE");
-        //playerscript = player.GetComponent<INSERT_PLAYER_SCRIPT_HERE>();
-    
+
+        //sets both the player and player script
+         player = GameObject.FindGameObjectWithTag("Player");
+        playerscript = player.GetComponent<Player>();
+        //sets spawn point
+        PlayerSpawnPOS = GameObject.FindGameObjectWithTag("Player Spawn Pos");
         // 6/5/2023 - Kevin W.
         // Gets the Radial Menu Script off of the UI Game Object
         radialMenuScriptRef = GetComponent<RadialMenu>();
@@ -97,6 +105,10 @@ public class gameManager : MonoBehaviour
         Paused();
         UI_Manager.instance.EnableBoolAnimator(UI_Manager.instance.LossPanel);
     }
-
+    private void UpdateGameGoal(int amount)
+    {
+        enemiesRemaining -= amount;
+        enemiesRemainingText.text = enemiesRemaining.ToString("F0");
+    }
 
 }

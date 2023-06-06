@@ -30,4 +30,9 @@ public class MenuButtonFunctions : MonoBehaviour
         //May change function later
         // SceneManager.LoadScene(SceneManager.GetSceneByName();
     }
+    public void Respawn()
+    {
+        gameManager.instance.Unpaused();
+        gameManager.instance.playerscript.RespawnPlayer();
+    }
 }
