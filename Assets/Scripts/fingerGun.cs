@@ -8,7 +8,7 @@ public class fingerGun : MonoBehaviour
     [Header("----- Finger Gun Settings -----")]
 
     [SerializeField] int shootDamage;
-    [SerializeField] int fireRate;
+    [SerializeField] float fireRate;
     [SerializeField] int shootDist;
     [SerializeField] int speed;
     [SerializeField] GameObject fingerBullet;

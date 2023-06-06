@@ -30,7 +30,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 5410451277757737795}
   m_Father: {fileID: 847320448734065884}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -97,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8209ec2dc3f145a47b7b8c7a60f89581, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivity: 720
+  sensitivity: 200
   lockVerMin: -90
   lockVerMax: 90
   invertY: 0
@@ -114,6 +115,8 @@ GameObject:
   - component: {fileID: 847320448734065885}
   - component: {fileID: 847320448734065886}
   - component: {fileID: 847320448734065887}
+  - component: {fileID: 6896435042382046022}
+  - component: {fileID: 8837992345269671648}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -152,6 +155,7 @@ MonoBehaviour:
   controller: {fileID: 0}
   maxHP: 10
   maxFocus: 10
+  maxShield: 0
   playerSpeed: 6
   gravityValue: 20
   jumpHeight: 8
@@ -224,3 +228,74 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6896435042382046022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847320448734065881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 976b671649261a440855aefa85d3c543, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shootDamage: 7
+  fireRate: 0.1
+  shootDist: 30
+  speed: 0
+  fingerBullet: {fileID: 0}
+  shootPos: {fileID: 0}
+--- !u!114 &8837992345269671648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847320448734065881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c688910ff9d57b458ca476ae7eac0f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 847320448619245781}
+  desiredPos: {fileID: 5410451277757737795}
+  range: 25
+  pullForce: 20
+  pushForce: 20
+  releaseForce: 10
+  rotationSpeed: 0
+  yOffset: 0
+  timeSpeed: 1.68
+  allowedDistanceToThrow: 0.804
+--- !u!1 &6851882470558871928
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5410451277757737795}
+  m_Layer: 0
+  m_Name: telekinesis
+  m_TagString: Untagged
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5410451277757737795
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6851882470558871928}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.3, y: -0.18, z: 2.38}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 847320448619245780}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
