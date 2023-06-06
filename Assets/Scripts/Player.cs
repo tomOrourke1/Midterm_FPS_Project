@@ -10,11 +10,8 @@ public class Player : MonoBehaviour
     [Header("----- Player Stats -----")]
     [SerializeField] float maxHP;
     [SerializeField] float maxFocus;
-    // 6/5/2023 - Kevin W.
-    // Added currentHP and currentFocus 
-    // Stores the current HP so we can keep track of the max and current seperately
-    [SerializeField] private float currentHP;
-    [SerializeField]private float currentFocus;
+    [SerializeField] float maxShield;
+
     [SerializeField, Range(3, 8)] float playerSpeed;
     [SerializeField, Range(10, 50)] float gravityValue;
     [SerializeField, Range(8, 25)] float jumpHeight;
@@ -27,6 +24,9 @@ public class Player : MonoBehaviour
     
     private Vector3 playerVelocity;
     private Vector3 move;
+    private float currentHP;
+    private float currentShield;
+    private float currentFocus;
     private int jumpTimes;
     private int currentDashes;
     private bool groundedPlayer;
@@ -41,10 +41,8 @@ public class Player : MonoBehaviour
         currentDashes = DashMax;
         controller = gameObject.AddComponent<CharacterController>();
 
-        // 6/5/2023 - Kevin W.
-        // Added values so they can be updated properly.
-        // When taking damage refer to currentHP as the variable to change. 
         currentHP = maxHP;
+        currentShield = maxShield;
         currentFocus = maxFocus;
     }
 
@@ -116,17 +114,19 @@ public class Player : MonoBehaviour
         DashRecharging = false;
     }
 
-    // 6/5/2023 - Additions made by Kevin W.
-    // Introduced these functions to allow for the UI
-    // to grab the stats easily without interfering with them
     public float GetPlayerCurrentHP()
     {
         return currentHP;
+    }
+    public float GetPlayerCurrentShield() 
+    { 
+        return currentShield; 
     }
     public float GetPlayerCurrentFocus()
     {
         return currentFocus;
     }
+
     public float GetPlayerMaxHP()
     {
         return maxHP;
@@ -134,6 +134,10 @@ public class Player : MonoBehaviour
     public float GetPlayerMaxFocus()
     {
         return maxFocus;
+    }
+    public float GetPlayerMaxShield()
+    {
+        return maxShield;
     }
 
 }
