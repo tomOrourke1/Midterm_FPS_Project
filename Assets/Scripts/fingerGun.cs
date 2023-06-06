@@ -41,12 +41,15 @@ public class fingerGun : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f,0.5f)), out hit, shootDist))
         {
-            IDamage damageable = hit.collider.GetComponent<IDamage>();
+            IDamagable damageable = hit.collider.GetComponent<IDamagable>();
 
             if(damageable != null)
             {
-                damageable.takeDamage(shootDamage);
+                damageable.TakeDamage(shootDamage);
             }
+
+            
+
         }
 
         yield return new WaitForSeconds(fireRate);

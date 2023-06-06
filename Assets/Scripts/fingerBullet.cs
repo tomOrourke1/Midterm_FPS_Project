@@ -21,11 +21,11 @@ public class fingerBullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        IDamage damageable = other.GetComponent<IDamage>();
+        IDamagable damageable = other.GetComponent<IDamagable>();
 
         if (damageable != null)
         {
-            damageable.takeDamage(damage);
+            damageable.TakeDamage(damage);
         }
 
         Destroy(gameObject);
