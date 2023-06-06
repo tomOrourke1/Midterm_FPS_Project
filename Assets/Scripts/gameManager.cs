@@ -17,13 +17,14 @@ public class gameManager : MonoBehaviour
     public GameObject winMenu;
     public GameObject loseMenu;
     public GameObject PlayerSpawnPOS;
-    private GameObject CheckPoint;
+  
     private RadialMenu radialMenuScriptRef;
     public PlayerStats_UI pStatsUI;
     [SerializeField] GameObject flashDamage;
     float timescaleOrig;
 
     public int enemiesRemaining;
+    private int KeyCounter;
     public TextMeshProUGUI enemiesRemainingText;
 
     void Awake()
@@ -116,11 +117,5 @@ public class gameManager : MonoBehaviour
             StartCoroutine(WinGame());
         }
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            CheckPoint.SetActive(true);
-        }
-    }
+   
 }
