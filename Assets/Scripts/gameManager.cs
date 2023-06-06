@@ -105,7 +105,7 @@ public class gameManager : MonoBehaviour
         Paused();
         UI_Manager.instance.EnableBoolAnimator(UI_Manager.instance.LossPanel);
     }
-    private void UpdateGameGoal(int amount)
+    public void UpdateGameGoal(int amount)
     {
         enemiesRemaining -= amount;
         enemiesRemainingText.text = enemiesRemaining.ToString("F0");
