@@ -3548,7 +3548,6 @@ MonoBehaviour:
   PlayerSpawnPOS: {fileID: 0}
   pStatsUI: {fileID: 0}
   flashDamage: {fileID: 0}
-  enemiesRemaining: 0
   enemiesRemainingText: {fileID: 761291027}
 --- !u!114 &5661053257741582650
 MonoBehaviour:
@@ -3594,13 +3593,20 @@ MonoBehaviour:
   translucentBackground: {fileID: 2939818899828917174}
   infoBox: {fileID: 5789301924074020185}
   arrow: {fileID: 1886728014519398053}
-  slices:
-  - {fileID: 5789301922879315191}
-  - {fileID: 5789301923678243116}
-  - {fileID: 5789301923707292614}
-  - {fileID: 5789301924734267040}
-  - {fileID: 5789301924109871298}
   selector: {fileID: 3076109771631987705}
+  _slices:
+  - slice: {fileID: 5789301923707292614}
+    sliceEnabled: 1
+  - slice: {fileID: 5789301924109871298}
+    sliceEnabled: 1
+  - slice: {fileID: 5789301922879315191}
+    sliceEnabled: 0
+  - slice: {fileID: 5789301924734267040}
+    sliceEnabled: 0
+  - slice: {fileID: 5789301923678243116}
+    sliceEnabled: 0
+  disabledColor: {fileID: 2100000, guid: 4363c0d6d66939943a9982d21dc637c3, type: 2}
+  enabledColor: {fileID: 2100000, guid: 4d4c1d7d1399d634da7567fa4a02565b, type: 2}
   maxArrowDist: 3
 --- !u!114 &866238320461390695
 MonoBehaviour:
