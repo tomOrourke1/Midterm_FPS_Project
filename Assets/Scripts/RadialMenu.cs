@@ -42,7 +42,7 @@ public class RadialMenu : MonoBehaviour
     [Tooltip("The reticle prefab can be found in the \"Prefabs\" Folder and should be placed under the \"UI\" Game Object.")]
     [SerializeField] GameObject reticleUI;
     [Tooltip("The Translucent Background to tint the screen. This a Game Object prefab that should be placed under the \"UI\".")]
-    [SerializeField] GameObject translucentBackground;
+    [SerializeField] public GameObject translucentBackground;
     [Tooltip("Displays the current hovered Kinesis in the Radial Menu. The Info Box is found under the \"RadialMenu\" Game Object prefab.")]
     [SerializeField] TextMeshProUGUI infoBox;
     [Tooltip("The arrow rotating around to face the mouse's position. This is found under the \"RadialMenu\" Game Object prefab.")]
