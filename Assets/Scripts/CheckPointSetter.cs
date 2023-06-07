@@ -5,24 +5,23 @@ using UnityEngine;
 public class CheckPointSetter : MonoBehaviour
 {
     private GameObject CheckPoint;
-    Transform CheckPointPos;
+    [SerializeField] GameObject CheckPointPos;
 
  
    
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+  
     private void OnTriggerEnter(Collider other)
     {
+        //checks if player enters the collider
         if (other.CompareTag("Player"))
         {
-            CheckPoint.SetActive(true);
+            SetCheckPoint();
         }
     }
-    void SetSpawnPoint() 
-    {
 
+    //Sets the players spawn point to the checkpoint they touch
+    void SetCheckPoint() 
+    {
+        gameManager.instance.PlayerSpawnPOS = CheckPointPos; 
     }
 }
