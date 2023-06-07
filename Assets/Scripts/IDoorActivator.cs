@@ -10,4 +10,5 @@ public interface IDoorActivator
     void SetLockStatus(bool locked);
 
     bool GetOpenStatus();
+    bool GetLockedStatus();
 }

@@ -9,21 +9,26 @@ public class KillZones : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //Debug.Log("Player");
+            Debug.Log("Player");
             // This kills the player
             PlayerKill();
         } 
         else if (other.CompareTag("Enemy"))
         {
-            //Debug.Log("Enemy");
+            Debug.Log("Enemy");
             // This Kills the enemy
             EnemyKill(other);
         }
         else if (other.CompareTag("Prop"))
         {
-            //Debug.Log("Prop");
+            Debug.Log("Prop");
             // This deletes the object
             PropKill(other);
+        }
+        else
+        {
+            Debug.LogError("Object: " + other.name + " tag?: " + other.gameObject.tag);
+            Debug.Log("Other");
         }
     }
     void PlayerKill()

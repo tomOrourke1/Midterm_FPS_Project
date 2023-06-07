@@ -84,14 +84,7 @@ public class EnemyAI : MonoBehaviour, IDamagable
         playerDirection = gameManager.instance.player.transform.position - enemyHeadPos.position;
         angleToPlayer = Vector3.Angle(new Vector3(playerDirection.x, 0, playerDirection.z), transform.forward);
 
-        //Debug.DrawRay(enemyHeadPos.position, playerDirection);
-        //Debug.Log(angleToPlayer);
-
         RaycastHit hit;
-
-        //Debug.Log(agent.remainingDistance);
-        //Debug.Log(gameManager.instance.player.transform.position);
-
 
         if (Physics.Raycast(enemyHeadPos.position, playerDirection, out hit))
         {

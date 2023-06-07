@@ -55,10 +55,14 @@ public class gameManager : MonoBehaviour
             Paused();
             UI_Manager.instance.EnableBoolAnimator(UI_Manager.instance.PausePanel);
         }
- 
-        // 6/5/2023 - Kevin W.
-        // Updates the keys in the Radial Menu Script
-        radialMenuScriptRef.UpdateKeys();
+        if (Input.GetKeyDown(KeyCode.Q) && activeMenu == null)
+        {
+            DisableMenus();
+        }
+
+            // 6/5/2023 - Kevin W.
+            // Updates the keys in the Radial Menu Script
+            radialMenuScriptRef.UpdateKeys();
         // remove this when taking damage and receiving damage is implemented
         // and replace it to update the corresponding damage of the type (HP | Focus | Shield)
         // when those types are taken. 
@@ -118,5 +122,18 @@ public class gameManager : MonoBehaviour
             StartCoroutine(WinGame());
         }
     }
-   
+    public int GetKeyCounter() 
+    {
+        return KeyCounter;
+    }
+    public void SetKeyCounter(int counter) 
+    {
+     KeyCounter = counter;
+    }
+    private void DisableMenus() 
+    {
+        pausemenu.SetActive(false);
+        winMenu.SetActive(false);
+        loseMenu.SetActive(false);
+    }
 }
