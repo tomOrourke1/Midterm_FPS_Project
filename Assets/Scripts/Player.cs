@@ -106,7 +106,7 @@ public class Player : MonoBehaviour, IDamagable
 
         // If pressing left shift and there are dashes available
         // then dash
-        if (!isCrouching && Input.GetKeyUp(KeyCode.LeftShift) && currentDashes > 0/* && (playerVelocity.x != 0 || playerVelocity.z != 0)*/)
+        if (!isCrouching && Input.GetKeyDown(KeyCode.LeftShift) && currentDashes > 0/* && (playerVelocity.x != 0 || playerVelocity.z != 0)*/)
         {
             // This prevents dash from being called while dash is active.
             StartCoroutine(StartDash());
