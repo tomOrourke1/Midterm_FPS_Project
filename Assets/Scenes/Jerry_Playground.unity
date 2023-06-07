@@ -220,29 +220,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 47365355}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &642081497 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 847320448734065881, guid: c4a60ea4562fdec4d89fa9bbc5d50159, type: 3}
-  m_PrefabInstance: {fileID: 847320446979529915}
-  m_PrefabAsset: {fileID: 0}
---- !u!143 &642081505
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 642081497}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &676175406
 GameObject:
   m_ObjectHideFlags: 0
@@ -768,14 +745,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 847320448734065880, guid: c4a60ea4562fdec4d89fa9bbc5d50159, type: 3}
-      propertyPath: maxShield
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 847320448734065880, guid: c4a60ea4562fdec4d89fa9bbc5d50159, type: 3}
-      propertyPath: controller
-      value: 
-      objectReference: {fileID: 642081505}
     - target: {fileID: 847320448734065881, guid: c4a60ea4562fdec4d89fa9bbc5d50159, type: 3}
       propertyPath: m_Name
       value: Player
@@ -824,6 +793,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 847320448734065887, guid: c4a60ea4562fdec4d89fa9bbc5d50159, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4a60ea4562fdec4d89fa9bbc5d50159, type: 3}

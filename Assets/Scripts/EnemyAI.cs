@@ -35,18 +35,18 @@ public class EnemyAI : MonoBehaviour, IDamagable
 
     void Start()
     {
-        //gameManager.instance.UpdateGameGoal(+1);
+        gameManager.instance.UpdateGameGoal(+1);
         startingPos = transform.position;
         stoppingDistanceOriginal = agent.stoppingDistance;
     }
 
     void Update()
     {
-        if(playerSeen && !EnemySeePlayer())
+        if (playerSeen && !EnemySeePlayer())
         {
             StartCoroutine(Roam());
         }
-        else if(agent.destination != gameManager.instance.player.transform.position)
+        else if (agent.destination != gameManager.instance.player.transform.position)
         {
             StartCoroutine(Roam());
         }
@@ -54,7 +54,7 @@ public class EnemyAI : MonoBehaviour, IDamagable
 
     IEnumerator Roam()
     {
-        if(!destinationChosen && agent.remainingDistance < 0.05f)
+        if (!destinationChosen && agent.remainingDistance < 0.05f)
         {
             destinationChosen = true;
             agent.stoppingDistance = 0;
@@ -80,32 +80,32 @@ public class EnemyAI : MonoBehaviour, IDamagable
     bool EnemySeePlayer()
     {
         agent.stoppingDistance = stoppingDistanceOriginal;
-        
+
         playerDirection = gameManager.instance.player.transform.position - enemyHeadPos.position;
         angleToPlayer = Vector3.Angle(new Vector3(playerDirection.x, 0, playerDirection.z), transform.forward);
 
-        Debug.DrawRay(enemyHeadPos.position, playerDirection);
-        Debug.Log(angleToPlayer);
+        //Debug.DrawRay(enemyHeadPos.position, playerDirection);
+        //Debug.Log(angleToPlayer);
 
         RaycastHit hit;
 
-        Debug.Log(agent.remainingDistance);
-        Debug.Log(gameManager.instance.player.transform.position);
+        //Debug.Log(agent.remainingDistance);
+        //Debug.Log(gameManager.instance.player.transform.position);
 
 
         if (Physics.Raycast(enemyHeadPos.position, playerDirection, out hit))
         {
-            if(hit.collider.CompareTag("Player") && angleToPlayer <= viewPlayerConeAngle)
+            if (hit.collider.CompareTag("Player") && angleToPlayer <= viewPlayerConeAngle)
             {
                 agent.SetDestination(gameManager.instance.player.transform.position);
-                
+
 
                 if (agent.remainingDistance <= agent.stoppingDistance)
                 {
                     EnemyFacePlayer();
                 }
 
-                if(!enemyShooting)
+                if (!enemyShooting)
                 {
                     StartCoroutine(EnemyShooting());
                 }
@@ -166,7 +166,7 @@ public class EnemyAI : MonoBehaviour, IDamagable
 
         if (enemyHP <= 0)
         {
-            // Kevin CME BCAK HERE gameManager.instance.UpdateGameGoal(-1);
+            gameManager.instance.UpdateGameGoal(-1);
             Destroy(gameObject);
         }
     }

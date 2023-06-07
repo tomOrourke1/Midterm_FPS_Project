@@ -11,15 +11,22 @@ public class Player : MonoBehaviour
     [SerializeField] float maxHP;
     [SerializeField] float maxFocus;
     [SerializeField] float maxShield;
-
     [SerializeField, Range(3, 8)] float playerSpeed;
+
+    [Header("----- Jump Stats -----")]
     [SerializeField, Range(10, 50)] float gravityValue;
     [SerializeField, Range(8, 25)] float jumpHeight;
     [SerializeField] int jumpMax;
+
+    [Header("----- Dash Stats -----")]
     [SerializeField] int DashMax;
     [SerializeField] float DashSpeed;
     [SerializeField] float DashDuration;
     [SerializeField] float DashCooldown;
+
+    [Header("----- Crouch Stats -----")]
+    [SerializeField] float CrouchSpeed;
+
 
     private Vector3 playerVelocity;
     private Vector3 move;
@@ -53,15 +60,20 @@ public class Player : MonoBehaviour
 
     void Movement()
     {
+        // If dash is not recharging and there are less dashes than the max
+        // then start recharging dashes
         if (!DashRecharging && currentDashes < DashMax)
         {
             StartCoroutine(RechargeDash());
         }
 
+        // If pressing left shift and there are dashes available
+        // then dash
         if (Input.GetButtonDown("Fire3") && currentDashes > 0/* && (playerVelocity.x != 0 || playerVelocity.z != 0)*/)
         {
             StartCoroutine(Dash());
         }
+
 
         groundedPlayer = controller.isGrounded;
         if (groundedPlayer && playerVelocity.y < 0)
@@ -155,11 +167,18 @@ public class Player : MonoBehaviour
     public void TakeDamage(int dmg)
     {
         currentHP -= dmg;
+        
+        // Moved this outside of the if statement because the screen
+        // should always falsh red when recieving damage.
+        //StartCoroutine(FlashDamage());
+
         if (currentHP <= 0)
         {
-            StartCoroutine(FlashDamage());
+            // Currently the lose coroutine is not functioning
+            gameManager.instance.LoseGame();
         }
     }
+
     IEnumerator FlashDamage()
     {
         //gameManager.instance.flashDamage.gameObject.SetActive(true);

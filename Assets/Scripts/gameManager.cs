@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.ComponentModel;
 
 public class gameManager : MonoBehaviour
 {
@@ -23,7 +24,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject flashDamage;
     float timescaleOrig;
 
-    public int enemiesRemaining;
+    private int enemiesRemaining;
     private int KeyCounter;
     public TextMeshProUGUI enemiesRemainingText;
 
@@ -100,7 +101,7 @@ public class gameManager : MonoBehaviour
         UI_Manager.instance.EnableBoolAnimator(UI_Manager.instance.WinPanel);
     }
     //function for when the game is lost
-    IEnumerator LoseGame()
+    public IEnumerator LoseGame()
     {
         yield return new WaitForSeconds(3);
         activeMenu = loseMenu;
@@ -110,7 +111,7 @@ public class gameManager : MonoBehaviour
     }
     public void UpdateGameGoal(int amount)
     {
-        enemiesRemaining -= amount;
+        enemiesRemaining += amount;
         enemiesRemainingText.text = enemiesRemaining.ToString("F0");
         if(enemiesRemaining <= 0)
         {

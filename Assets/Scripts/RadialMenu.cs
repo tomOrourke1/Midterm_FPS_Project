@@ -1,6 +1,38 @@
+using System.Xml.Schema;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+
+[System.Serializable]
+struct SlicesStruct
+{
+    [Tooltip("The Radial Slices of each Kinesis Type. This is found under the \"RadialMenu\" Game Object prefab.")]
+    [SerializeField] GameObject slice;
+    [Tooltip("If the slice is enabled or disabled.")]
+    [SerializeField] bool sliceEnabled;
+    [SerializeField] string sliceName;
+
+    public GameObject GetSlice()
+    {
+        return slice;
+    }
+
+    public bool GetBool()
+    {
+        return sliceEnabled;
+    }
+
+    public void SetSliceMaterial(Material material)
+    {
+        slice.GetComponent<Image>().material = material;
+    }
+
+    public string GetName()
+    {
+        return sliceName;
+    }
+}
 
 public class RadialMenu : MonoBehaviour
 {
@@ -15,10 +47,16 @@ public class RadialMenu : MonoBehaviour
     [SerializeField] TextMeshProUGUI infoBox;
     [Tooltip("The arrow rotating around to face the mouse's position. This is found under the \"RadialMenu\" Game Object prefab.")]
     [SerializeField] Transform arrow;
-    [Tooltip("The Radial Slices of each Kinesis Type. This is found under the \"RadialMenu\" Game Object prefab.")]
-    [SerializeField] GameObject[] slices;
     [Tooltip("A transparent selector to higlight which item is being hovered on. This is found under the \"RadialMenu\" Game Object prefab.")]
     [SerializeField] Transform selector;
+    [Tooltip("A list of each radial option, and if they are enabled or not.")]
+    [SerializeField] SlicesStruct[] _slices;
+    [Tooltip("Disabled color that the slice will be set to. The slice meaning the radial slice in the radial menu.")]
+    [SerializeField] Material disabledColor;
+    [Tooltip("Enabled color that the slice will be set to. The slice meaning the radial slice in the radial menu.")]
+    [SerializeField] Material enabledColor;
+    [SerializeField, Range(75, 500)] int sliceDistanceFromCenter;
+    [SerializeField] Transform sliceParentTransform;
 
     #region ScriptVariables
     /// <summary>
@@ -70,26 +108,33 @@ public class RadialMenu : MonoBehaviour
 
     #endregion
 
-
+    float timescaleOriginal;
 
     private void Start()
     {
-        sliceAng = 360 / slices.Length;
-
+        sliceAng = 360 / _slices.Length;
+        GenerateSlices();
+        UpdateSlices();
         // On the first frame if the radial menu is left on
         // in the inspector, turn it off no matter what. So it doesn't show.
         // then when the player presses Q it will show up again in the update funciton.
         isMenuBeingShown = false;
         radialUI.SetActive(isMenuBeingShown);
         translucentBackground.SetActive(isMenuBeingShown);
+        timescaleOriginal = Time.timeScale;
     }
 
     void ToggleMenu()
     {
+        UpdateSlices();
         isMenuBeingShown = !isMenuBeingShown;
         reticleUI.SetActive(!isMenuBeingShown);
         translucentBackground.SetActive(isMenuBeingShown);
         radialUI.SetActive(isMenuBeingShown);
+        if (isMenuBeingShown)
+            Time.timeScale = 0;
+        else
+            Time.timeScale = timescaleOriginal;
     }
 
     void UpdateMousePosition()
@@ -110,19 +155,16 @@ public class RadialMenu : MonoBehaviour
 
     void UpdateSelectedItem()
     {
-        for (int sliceIndex = 0; sliceIndex < slices.Length; ++sliceIndex)
+        for (int sliceIndex = 0; sliceIndex < _slices.Length; ++sliceIndex)
         {
             // Checks to see if the current slice is within the minimum or maximum angles
             // of the slice. 
             withinRadialMin = rotateAngle > sliceIndex * sliceAng;
             withinRadialMax = rotateAngle < (sliceIndex + 1) * sliceAng;
 
-            if (withinRadialMin && withinRadialMax)
+            if (withinRadialMin && withinRadialMax && _slices[sliceIndex].GetBool())
             {
-                selector.transform.rotation = Quaternion.Euler(0, 0, sliceIndex * sliceAng + (sliceAng * 3));
-                trackedKinesis = sliceIndex;
                 DisplayKinesisInRadialMenu(sliceIndex);
-                //Debug.Log(trackedKinesis);
             }
         }
     }
@@ -164,27 +206,13 @@ public class RadialMenu : MonoBehaviour
     /// <param name="idx">The index of the kinesis type to use.</param>
     void DisplayKinesisInRadialMenu(int idx)
     {
-        switch (idx)
-        {
-            case 0:
-                infoBox.SetText(slices[idx].GetComponent<RadialSliceName>().weaponName);
-                break;
-            case 1: 
-                infoBox.SetText(slices[idx].GetComponent<RadialSliceName>().weaponName);
-                break;  
-            case 2:
-                infoBox.SetText(slices[idx].GetComponent<RadialSliceName>().weaponName);
-                break;
-            case 3:
-                infoBox.SetText(slices[idx].GetComponent<RadialSliceName>().weaponName);
-                break;
-            case 4:
-                infoBox.SetText(slices[idx].GetComponent<RadialSliceName>().weaponName);
-                break;
-
-            default:
-                break;
-        }
+        infoBox.SetText(_slices[idx].GetName());
+        // Updates the tracked kinesis only when it can be displayed so we don't update it when its being hovered over.
+        // Meaning we need to reach this function (which can only happen if the slice is also enabled) to even get
+        // into the slices and update what radial option slice we chose.
+        trackedKinesis = idx;
+        selector.transform.rotation = Quaternion.Euler(0, 0, idx * sliceAng + (sliceAng * 3));
+        //Debug.Log("Tracked Kinesis " + trackedKinesis);
     }
 
     public void UpdateKeys()
@@ -208,6 +236,34 @@ public class RadialMenu : MonoBehaviour
         {
             UpdateMousePosition();
             UpdateSelectedItem();
+        }
+    }
+
+    void GenerateSlices()
+    {
+        for (int sliceIndex = 0; sliceIndex < _slices.Length; ++sliceIndex)
+        {
+            Quaternion rot = Quaternion.Euler(0, 0, (sliceIndex + 1) * sliceAng);
+
+            float xPos, yPos;
+            yPos = sliceDistanceFromCenter * Mathf.Sin(sliceAng * (sliceIndex) * Mathf.Deg2Rad);
+            yPos += Screen.height / 2;
+            xPos = sliceDistanceFromCenter * Mathf.Cos(sliceAng * (sliceIndex) * Mathf.Deg2Rad);
+            xPos += Screen.width / 2;
+
+            Instantiate(_slices[sliceIndex].GetSlice(), new Vector3(xPos, yPos, 0), rot, sliceParentTransform);
+        }
+    }
+
+    void UpdateSlices()
+    {
+        for (int sliceIndex = 0; sliceIndex < _slices.Length; ++sliceIndex)
+        {
+            if (_slices[sliceIndex].GetBool())
+                _slices[sliceIndex].GetSlice().GetComponent<Image>().material = enabledColor;
+            else
+                _slices[sliceIndex].GetSlice().GetComponent<Image>().material = disabledColor;
+
         }
     }
 }
