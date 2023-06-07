@@ -163,10 +163,28 @@ public class RadialMenu : MonoBehaviour
         {
             // Checks to see if the current slice is within the minimum or maximum angles
             // of the slice. 
-            withinRadialMin = rotateAngle > sliceIndex * sliceAng + offsetAngle;
-            withinRadialMax = rotateAngle < (sliceIndex + 1) * sliceAng + offsetAngle;
 
-            if (withinRadialMin && withinRadialMax && _slices[sliceIndex].GetBool())
+            float minAngle = sliceIndex * sliceAng + offsetAngle;
+            float maxAngle = (sliceIndex + 1) * sliceAng + offsetAngle;
+
+            if (minAngle >= 360)
+            {
+                minAngle -= 360;
+            }
+
+            if (maxAngle >= 360)
+            {
+                maxAngle -= 360;
+            }
+
+            bool withinBounds = minAngle > rotateAngle && rotateAngle < maxAngle;
+            Debug.Log(withinBounds);
+
+
+            //withinRadialMin = rotateAngle > minAngle;
+            //withinRadialMax = rotateAngle < maxAngle;
+
+            if (withinBounds && _slices[sliceIndex].GetBool())
             {
                 DisplayKinesisInRadialMenu(sliceIndex);
             }
@@ -245,12 +263,12 @@ public class RadialMenu : MonoBehaviour
 
     void GenerateSlices()
     {
-        for (int sliceIndex = 1; sliceIndex < _slices.Length; ++sliceIndex)
+        for (int sliceIndex = 0; sliceIndex < _slices.Length; ++sliceIndex)
         {
             // ToDo
             // Start at a single point, so the first radial item, then rotate around on a pivot
             // and instantiate at those places. try that
-            
+
             Quaternion rot = Quaternion.Euler(0, 0, (sliceIndex) * sliceAng);
 
             float xPos, yPos;
