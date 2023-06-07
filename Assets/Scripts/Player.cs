@@ -38,7 +38,7 @@ public class Player : MonoBehaviour, IDamagable
     private Vector3 playerVelocity;
     private Vector3 move;
     private bool groundedPlayer;
-    
+
     // Stats
     private float currentHP;
     private float currentShield;
@@ -206,7 +206,16 @@ public class Player : MonoBehaviour, IDamagable
 
     public void TakeDamage(int dmg)
     {
-        currentHP -= dmg;
+
+        if (currentShield <= 0)
+        {
+            currentHP -= dmg;
+        }
+        else
+        {
+            currentShield -= dmg;
+        }
+        
         gameManager.instance.pStatsUI.UpdateValues();
 
         // Moved this outside of the if statement because the screen

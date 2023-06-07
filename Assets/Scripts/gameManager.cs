@@ -3,6 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.ComponentModel;
+using UnityEngine.XR;
+
+
+
+public enum MenuState
+{
+    radial,
+    active,
+    none
+}
 
 public class gameManager : MonoBehaviour
 {
@@ -18,7 +28,8 @@ public class gameManager : MonoBehaviour
     public GameObject winMenu;
     public GameObject loseMenu;
     public GameObject PlayerSpawnPOS;
-  
+    public GameObject radialMenu;
+
     private RadialMenu radialMenuScriptRef;
     public PlayerStats_UI pStatsUI;
     [SerializeField] GameObject flashDamage;
@@ -27,6 +38,10 @@ public class gameManager : MonoBehaviour
     private int enemiesRemaining;
     public int KeyCounter;
     public TextMeshProUGUI enemiesRemainingText;
+
+
+
+    public MenuState menuState;
 
     void Awake()
     {
@@ -48,21 +63,25 @@ public class gameManager : MonoBehaviour
     void Update()
     {
         //pauses the game
-        if (Input.GetKeyDown(KeyCode.Escape) && activeMenu == null)
+        if (Input.GetKeyDown(KeyCode.Escape) && activeMenu == null && !Input.GetKeyUp(KeyCode.Q) && menuState != MenuState.active)
         {
             activeMenu = pausemenu;
             activeMenu.SetActive(true);
             Paused();
             UI_Manager.instance.EnableBoolAnimator(UI_Manager.instance.PausePanel);
         }
-        if (Input.GetKeyDown(KeyCode.Q) && activeMenu == null)
+        else if (activeMenu == null && menuState != MenuState.none) 
         {
-            DisableMenus();
+            //radialMenuScriptRef.UpdateKeys();
+            
         }
+        
+        
+            
+        
 
-            // 6/5/2023 - Kevin W.
-            // Updates the keys in the Radial Menu Script
-            radialMenuScriptRef.UpdateKeys();
+        // 6/5/2023 - Kevin W.
+        // Updates the keys in the Radial Menu Script
         // remove this when taking damage and receiving damage is implemented
         // and replace it to update the corresponding damage of the type (HP | Focus | Shield)
         // when those types are taken. 
@@ -74,6 +93,9 @@ public class gameManager : MonoBehaviour
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
+
+
+        menuState = MenuState.none;
     }
 
     //resumes game while paused
@@ -87,6 +109,7 @@ public class gameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         StartCoroutine(WaitToTurnOffUI());
+
     }
 
     IEnumerator WaitToTurnOffUI()
@@ -94,6 +117,8 @@ public class gameManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         activeMenu.SetActive(false);
         activeMenu = null;
+
+        menuState = MenuState.radial;
     }
     //function for when the game is won
     IEnumerator WinGame()
