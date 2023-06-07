@@ -55,7 +55,9 @@ public class RadialMenu : MonoBehaviour
     [SerializeField] Material disabledColor;
     [Tooltip("Enabled color that the slice will be set to. The slice meaning the radial slice in the radial menu.")]
     [SerializeField] Material enabledColor;
+    [Tooltip("Distance the slice is from the middle of the screen.")]
     [SerializeField, Range(75, 500)] int sliceDistanceFromCenter;
+    [Tooltip("The parent object the slices will spawn under.")]
     [SerializeField] Transform sliceParentTransform;
 
     #region ScriptVariables
@@ -109,10 +111,12 @@ public class RadialMenu : MonoBehaviour
     #endregion
 
     float timescaleOriginal;
+    float offsetAngle;
 
     private void Start()
     {
         sliceAng = 360 / _slices.Length;
+        offsetAngle = sliceAng + sliceAng / 2;
         GenerateSlices();
         UpdateSlices();
         // On the first frame if the radial menu is left on
@@ -148,8 +152,8 @@ public class RadialMenu : MonoBehaviour
 
         rotateAngle = Vector2.SignedAngle(Vector2.up, mousePos);
         rotateAngle = rotateAngle < 0 ? rotateAngle + 360 : rotateAngle;
-        arrow.rotation = Quaternion.Euler(0, 0, rotateAngle);
 
+        arrow.rotation = Quaternion.Euler(0, 0, rotateAngle);
         arrow.localScale = new Vector3(1, arrowScale, 1);
     }
 
@@ -159,8 +163,8 @@ public class RadialMenu : MonoBehaviour
         {
             // Checks to see if the current slice is within the minimum or maximum angles
             // of the slice. 
-            withinRadialMin = rotateAngle > sliceIndex * sliceAng;
-            withinRadialMax = rotateAngle < (sliceIndex + 1) * sliceAng;
+            withinRadialMin = rotateAngle > sliceIndex * sliceAng + offsetAngle;
+            withinRadialMax = rotateAngle < (sliceIndex + 1) * sliceAng + offsetAngle;
 
             if (withinRadialMin && withinRadialMax && _slices[sliceIndex].GetBool())
             {
@@ -211,8 +215,7 @@ public class RadialMenu : MonoBehaviour
         // Meaning we need to reach this function (which can only happen if the slice is also enabled) to even get
         // into the slices and update what radial option slice we chose.
         trackedKinesis = idx;
-        selector.transform.rotation = Quaternion.Euler(0, 0, idx * sliceAng + (sliceAng * 3));
-        //Debug.Log("Tracked Kinesis " + trackedKinesis);
+        selector.transform.rotation = Quaternion.Euler(0, 0, idx * sliceAng + (sliceAng * 1) - offsetAngle);
     }
 
     public void UpdateKeys()
@@ -234,6 +237,7 @@ public class RadialMenu : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Q) && isMenuBeingShown)
         {
+            UpdateSlices();
             UpdateMousePosition();
             UpdateSelectedItem();
         }
@@ -241,9 +245,13 @@ public class RadialMenu : MonoBehaviour
 
     void GenerateSlices()
     {
-        for (int sliceIndex = 0; sliceIndex < _slices.Length; ++sliceIndex)
+        for (int sliceIndex = 1; sliceIndex < _slices.Length; ++sliceIndex)
         {
-            Quaternion rot = Quaternion.Euler(0, 0, (sliceIndex + 1) * sliceAng);
+            // ToDo
+            // Start at a single point, so the first radial item, then rotate around on a pivot
+            // and instantiate at those places. try that
+            
+            Quaternion rot = Quaternion.Euler(0, 0, (sliceIndex) * sliceAng);
 
             float xPos, yPos;
             yPos = sliceDistanceFromCenter * Mathf.Sin(sliceAng * (sliceIndex) * Mathf.Deg2Rad);
