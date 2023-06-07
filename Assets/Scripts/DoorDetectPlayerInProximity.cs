@@ -6,6 +6,7 @@ public class DoorDetectPlayerInProximity : MonoBehaviour
 {
     [SerializeField] IDoorActivator door;
 
+    int count;
 
     private void Start()
     {
@@ -14,11 +15,19 @@ public class DoorDetectPlayerInProximity : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        door.Activate();
+        if(count == 0)
+        {
+            door.Activate();
+        }
+        count++;
     }
 
     private void OnTriggerExit(Collider other)
     {
-        door.Activate();
+        count--;
+        if(count == 0)
+        {
+            door.Activate();
+        }
     }
 }
