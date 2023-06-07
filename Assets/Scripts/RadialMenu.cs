@@ -1,3 +1,4 @@
+using System.Xml.Schema;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -54,6 +55,8 @@ public class RadialMenu : MonoBehaviour
     [SerializeField] Material disabledColor;
     [Tooltip("Enabled color that the slice will be set to. The slice meaning the radial slice in the radial menu.")]
     [SerializeField] Material enabledColor;
+    [SerializeField, Range(75, 500)] int sliceDistanceFromCenter;
+    [SerializeField] Transform sliceParentTransform;
 
     #region ScriptVariables
     /// <summary>
@@ -110,6 +113,7 @@ public class RadialMenu : MonoBehaviour
     private void Start()
     {
         sliceAng = 360 / _slices.Length;
+        GenerateSlices();
         UpdateSlices();
         // On the first frame if the radial menu is left on
         // in the inspector, turn it off no matter what. So it doesn't show.
@@ -208,7 +212,7 @@ public class RadialMenu : MonoBehaviour
         // into the slices and update what radial option slice we chose.
         trackedKinesis = idx;
         selector.transform.rotation = Quaternion.Euler(0, 0, idx * sliceAng + (sliceAng * 3));
-        Debug.Log("Tracked Kinesis " + trackedKinesis);
+        //Debug.Log("Tracked Kinesis " + trackedKinesis);
     }
 
     public void UpdateKeys()
@@ -232,6 +236,22 @@ public class RadialMenu : MonoBehaviour
         {
             UpdateMousePosition();
             UpdateSelectedItem();
+        }
+    }
+
+    void GenerateSlices()
+    {
+        for (int sliceIndex = 0; sliceIndex < _slices.Length; ++sliceIndex)
+        {
+            Quaternion rot = Quaternion.Euler(0, 0, (sliceIndex + 1) * sliceAng);
+
+            float xPos, yPos;
+            yPos = sliceDistanceFromCenter * Mathf.Sin(sliceAng * (sliceIndex) * Mathf.Deg2Rad);
+            yPos += Screen.height / 2;
+            xPos = sliceDistanceFromCenter * Mathf.Cos(sliceAng * (sliceIndex) * Mathf.Deg2Rad);
+            xPos += Screen.width / 2;
+
+            Instantiate(_slices[sliceIndex].GetSlice(), new Vector3(xPos, yPos, 0), rot, sliceParentTransform);
         }
     }
 
