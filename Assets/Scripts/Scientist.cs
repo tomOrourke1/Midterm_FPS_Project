@@ -43,6 +43,7 @@ public class Scientist : MonoBehaviour, IDamagable
 
         if (scientistHP <= 0)
         {
+            gameManager.instance.KeyCounter += 1;
             // Kevin CME BCAK HERE gameManager.instance.UpdateGameGoal(-1);
             Destroy(gameObject);
         }

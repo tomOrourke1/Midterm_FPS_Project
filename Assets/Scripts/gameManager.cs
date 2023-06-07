@@ -25,7 +25,7 @@ public class gameManager : MonoBehaviour
     float timescaleOrig;
 
     private int enemiesRemaining;
-    private int KeyCounter;
+   public int KeyCounter;
     public TextMeshProUGUI enemiesRemainingText;
 
     void Awake()
