@@ -18,6 +18,7 @@ public class EnemyAI : MonoBehaviour, IDamagable
     [SerializeField] int viewPlayerConeAngle;
     [SerializeField, Range(1, 100)] int roamDist;
     [SerializeField, Range(0, 10)] float roamTimer;
+    private Color enemyColor;
 
     // Enemy Damage
     [SerializeField] float enemyRateFire;
@@ -35,6 +36,9 @@ public class EnemyAI : MonoBehaviour, IDamagable
 
     void Start()
     {
+
+        enemyColor = model.material.color;
+        
         gameManager.instance.UpdateGameGoal(+1);
         startingPos = transform.position;
         stoppingDistanceOriginal = agent.stoppingDistance;
@@ -136,9 +140,10 @@ public class EnemyAI : MonoBehaviour, IDamagable
 
     IEnumerator EnemyDamageFlash()
     {
+
         model.material.color = Color.red;
         yield return new WaitForSeconds(0.2f);
-        model.material.color = Color.white;
+        model.material.color = enemyColor;
     }
 
     IEnumerator EnemyShooting()
