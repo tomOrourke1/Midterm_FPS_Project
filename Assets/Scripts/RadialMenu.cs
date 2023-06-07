@@ -238,22 +238,26 @@ public class RadialMenu : MonoBehaviour
 
     public void UpdateKeys()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && gameManager.instance.menuState != MenuState.none)
         {
             ToggleMenu();
             GameObject.Find("Player").GetComponentInChildren<CameraController>().enabled = !isMenuBeingShown;
             Cursor.lockState = CursorLockMode.Confined;
+            //  gameManager.instance.activeMenu = gameManager.instance.radialMenu;
+            gameManager.instance.menuState = MenuState.active;
         }
 
-        if (Input.GetKeyUp(KeyCode.Q))
+        if (Input.GetKeyUp(KeyCode.Q) || gameManager.instance.menuState == MenuState.none)
         {
             ToggleMenu();
             GameObject.Find("Player").GetComponentInChildren<CameraController>().enabled = !isMenuBeingShown;
             SelectKinesis(trackedKinesis);
             Cursor.lockState = CursorLockMode.Locked;
+            //  gameManager.instance.activeMenu = null;
+            gameManager.instance.menuState = MenuState.radial;
         }
 
-        if (Input.GetKey(KeyCode.Q) && isMenuBeingShown)
+        if (Input.GetKey(KeyCode.Q) && isMenuBeingShown && gameManager.instance.menuState != MenuState.none)
         {
             UpdateSlices();
             UpdateMousePosition();
