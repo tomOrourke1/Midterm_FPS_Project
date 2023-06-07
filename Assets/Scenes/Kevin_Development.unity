@@ -181,7 +181,7 @@ PrefabInstance:
     - target: {fileID: 5303328456843015683, guid: 84eef94f3909ab744bb0e8bda3070722, type: 3}
       propertyPath: model
       value: 
-      objectReference: {fileID: 2030840598}
+      objectReference: {fileID: 1122561212}
     - target: {fileID: 5303328456843015684, guid: 84eef94f3909ab744bb0e8bda3070722, type: 3}
       propertyPath: m_Name
       value: Enemy
@@ -394,6 +394,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 847320448619245771, guid: c4a60ea4562fdec4d89fa9bbc5d50159, type: 3}
+      propertyPath: sensitivity
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 847320448734065881, guid: c4a60ea4562fdec4d89fa9bbc5d50159, type: 3}
       propertyPath: m_Name
       value: Player
@@ -543,6 +547,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!23 &1122561212 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 34697703, guid: 84eef94f3909ab744bb0e8bda3070722, type: 3}
+  m_PrefabInstance: {fileID: 438890436}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1158497877
 GameObject:
   m_ObjectHideFlags: 0
@@ -614,11 +623,6 @@ Transform:
 --- !u!195 &2030840597 stripped
 NavMeshAgent:
   m_CorrespondingSourceObject: {fileID: 5303328456843015682, guid: 84eef94f3909ab744bb0e8bda3070722, type: 3}
-  m_PrefabInstance: {fileID: 438890436}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &2030840598 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 5303328456843015686, guid: 84eef94f3909ab744bb0e8bda3070722, type: 3}
   m_PrefabInstance: {fileID: 438890436}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1886728016302263456
