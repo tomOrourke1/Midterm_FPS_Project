@@ -27,6 +27,7 @@ public class CountedActivationScript : MonoBehaviour
         if(count >= desiredCount && !activated)
         {
             activationEvent?.Invoke();
+            activated = true;
         }
     }
 
