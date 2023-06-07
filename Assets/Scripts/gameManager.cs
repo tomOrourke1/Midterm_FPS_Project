@@ -118,5 +118,12 @@ public class gameManager : MonoBehaviour
             StartCoroutine(WinGame());
         }
     }
-   
+    public int GetKeyCounter() 
+    {
+        return KeyCounter;
+    }
+    public void SetKeyCounter(int counter) 
+    {
+     KeyCounter = counter;
+    }
 }
