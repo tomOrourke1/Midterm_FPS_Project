@@ -15,10 +15,18 @@ public class DoorDetectPlayerInProximity : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(gameManager.instance.GetKeyCounter() > 0 && door.GetLockedStatus())
+
+        if(door.GetLockedStatus())
         {
-            door.SetLockStatus(false);
-            gameManager.instance.SetKeyCounter(gameManager.instance.GetKeyCounter() - 1);
+            bool player = other.CompareTag("Player");
+            if(player)
+            {
+                if (gameManager.instance.GetKeyCounter() > 0)
+                {
+                    door.SetLockStatus(false);
+                    gameManager.instance.SetKeyCounter(gameManager.instance.GetKeyCounter() - 1);
+                }
+            }
         }
 
         if(count == 0)
