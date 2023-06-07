@@ -10,6 +10,7 @@ struct SlicesStruct
     [SerializeField] GameObject slice;
     [Tooltip("If the slice is enabled or disabled.")]
     [SerializeField] bool sliceEnabled;
+    [SerializeField] string sliceName;
 
     public GameObject GetSlice()
     {
@@ -24,6 +25,11 @@ struct SlicesStruct
     public void SetSliceMaterial(Material material)
     {
         slice.GetComponent<Image>().material = material;
+    }
+
+    public string GetName()
+    {
+        return sliceName;
     }
 }
 
@@ -99,35 +105,32 @@ public class RadialMenu : MonoBehaviour
 
     #endregion
 
-    private void Awake()
-    {
-        for (int sliceIndex = 0; sliceIndex < _slices.Length; ++sliceIndex)
-        {
-            if (_slices[sliceIndex].GetBool())
-                _slices[sliceIndex].SetSliceMaterial(enabledColor);
-            else
-                _slices[sliceIndex].SetSliceMaterial(disabledColor);
-        }
-    }
+    float timescaleOriginal;
 
     private void Start()
     {
         sliceAng = 360 / _slices.Length;
-
+        UpdateSlices();
         // On the first frame if the radial menu is left on
         // in the inspector, turn it off no matter what. So it doesn't show.
         // then when the player presses Q it will show up again in the update funciton.
         isMenuBeingShown = false;
         radialUI.SetActive(isMenuBeingShown);
         translucentBackground.SetActive(isMenuBeingShown);
+        timescaleOriginal = Time.timeScale;
     }
 
     void ToggleMenu()
     {
+        UpdateSlices();
         isMenuBeingShown = !isMenuBeingShown;
         reticleUI.SetActive(!isMenuBeingShown);
         translucentBackground.SetActive(isMenuBeingShown);
         radialUI.SetActive(isMenuBeingShown);
+        if (isMenuBeingShown)
+            Time.timeScale = 0;
+        else
+            Time.timeScale = timescaleOriginal;
     }
 
     void UpdateMousePosition()
@@ -199,7 +202,7 @@ public class RadialMenu : MonoBehaviour
     /// <param name="idx">The index of the kinesis type to use.</param>
     void DisplayKinesisInRadialMenu(int idx)
     {
-        infoBox.SetText(_slices[idx].GetSlice().GetComponent<RadialSliceName>().weaponName);
+        infoBox.SetText(_slices[idx].GetName());
         // Updates the tracked kinesis only when it can be displayed so we don't update it when its being hovered over.
         // Meaning we need to reach this function (which can only happen if the slice is also enabled) to even get
         // into the slices and update what radial option slice we chose.
@@ -229,6 +232,18 @@ public class RadialMenu : MonoBehaviour
         {
             UpdateMousePosition();
             UpdateSelectedItem();
+        }
+    }
+
+    void UpdateSlices()
+    {
+        for (int sliceIndex = 0; sliceIndex < _slices.Length; ++sliceIndex)
+        {
+            if (_slices[sliceIndex].GetBool())
+                _slices[sliceIndex].GetSlice().GetComponent<Image>().material = enabledColor;
+            else
+                _slices[sliceIndex].GetSlice().GetComponent<Image>().material = disabledColor;
+
         }
     }
 }
