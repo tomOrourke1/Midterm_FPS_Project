@@ -28,7 +28,12 @@ public class DoorScript : MonoBehaviour, IDoorActivator
     {
         if(!locked)
         {
+            if(activation)
+            {
+                isOpen = !isOpen;
+            }
             activation = true;
+            
         }
     }
 
