@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
@@ -20,6 +22,10 @@ public class TelekinesisController : MonoBehaviour
 
     [SerializeField] float yOffset;
 
+    [Space]
+    [SerializeField] float focusCost;
+
+    [Space]
     [SerializeField][Range(0, 5)] float timeSpeed;
     [SerializeField][Range(0, 1)] float allowedDistanceToThrow;
 
@@ -40,6 +46,9 @@ public class TelekinesisController : MonoBehaviour
     void Update()
     {
 
+
+
+
         TelekinesisStart();
 
         PullObject();
@@ -57,13 +66,19 @@ public class TelekinesisController : MonoBehaviour
 
 
 
-
+    bool IsObjectNull()
+    {
+        var obj = stachedObject as UnityEngine.Object;
+        
+        return obj == null;
+    }
 
     void TelekinesisStart()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (Input.GetKeyDown(KeyCode.Mouse1) && gameManager.instance.playerscript.GetPlayerCurrentFocus() >= focusCost)
         {
             // suck item
+
 
             Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f));
             RaycastHit hit;
@@ -75,7 +90,9 @@ public class TelekinesisController : MonoBehaviour
                 timePressed = 0;
                 if(stachedObject != null)
                 {
-
+                    gameManager.instance.playerscript.AddFocus(-focusCost);
+                    gameManager.instance.pStatsUI.UpdateValues();
+                    
                     originalPos = stachedObject.GetPosition();
                     stachedObject.GetRigidbody().useGravity = false;
                 }
@@ -86,7 +103,7 @@ public class TelekinesisController : MonoBehaviour
 
     void PullObject()
     {
-        if (stachedObject != null)
+        if (stachedObject != null && !IsObjectNull())
         {
             var pos = stachedObject.GetPosition();
 
@@ -130,7 +147,7 @@ public class TelekinesisController : MonoBehaviour
 
             //rb.rotation = Quaternion.Lerp(rb.rotation, Quaternion.LookRotation(cam.transform.forward), Time.deltaTime * rotationSpeed);
             //rb.angularVelocity = (Vector3.Cross(Vector3.up, rb.transform.up) + Vector3.Cross(cam.transform.forward, rb.transform.forward) ).normalized * rotationSpeed;
-
+            rb.angularVelocity = Vector3.zero;
 
             timePressed += Time.deltaTime;
             timePressed = Mathf.Clamp01(timePressed);
@@ -139,7 +156,7 @@ public class TelekinesisController : MonoBehaviour
 
     void ReleaseObject()
     {
-        if ((Input.GetKeyUp(KeyCode.Mouse1) || !Input.GetKey(KeyCode.Mouse1)) && stachedObject != null)
+        if ((Input.GetKeyUp(KeyCode.Mouse1) || !Input.GetKey(KeyCode.Mouse1)) && stachedObject != null && !IsObjectNull())
         {
 
             stachedObject.GetRigidbody().useGravity = true;

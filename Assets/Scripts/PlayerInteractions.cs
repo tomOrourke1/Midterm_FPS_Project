@@ -11,12 +11,12 @@ public class PlayerInteractions : MonoBehaviour
 
     private void Start()
     {
-        inTransition = true;
+
     }
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && inTransition)
+        if (Input.GetKeyDown(KeyCode.E) && !inTransition)
         {
             StartCoroutine(ElevatorInteract());
         }

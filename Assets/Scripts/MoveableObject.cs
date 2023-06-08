@@ -7,8 +7,10 @@ public class MoveableObject : MonoBehaviour, ITelekinesis
 {
 
     [SerializeField] Rigidbody rb;
-
+    [SerializeField] int damage;
     bool thrown;
+
+
 
     public Vector3 GetPosition()
     {
@@ -36,16 +38,16 @@ public class MoveableObject : MonoBehaviour, ITelekinesis
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(thrown)
+        if(thrown && !collision.collider.CompareTag("Player"))
         {
             var iDamage = collision.collider.GetComponent<IDamagable>();
             if(iDamage != null)
             {
-                // calculate the daamge based off of velocity thrown?
-                int damage = 10; 
                 iDamage.TakeDamage(damage);
             }
         }
+
+        thrown = false;
     }
 
     public Vector3 GetVelocity()

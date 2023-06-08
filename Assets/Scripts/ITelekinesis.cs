@@ -9,4 +9,6 @@ public interface ITelekinesis
     Vector3 GetPosition();
     Vector3 GetVelocity();
 
+
+
 }

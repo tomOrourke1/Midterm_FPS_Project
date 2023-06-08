@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8209ec2dc3f145a47b7b8c7a60f89581, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivity: 720
+  sensitivity: 200
   lockVerMin: -90
   lockVerMax: 90
   invertY: 0
@@ -117,6 +117,8 @@ GameObject:
   - component: {fileID: 6896435042382046022}
   - component: {fileID: 8837992345269671648}
   - component: {fileID: 642081505}
+  - component: {fileID: 1769448000}
+  - component: {fileID: 29618596}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -229,12 +231,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 976b671649261a440855aefa85d3c543, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootDamage: 7
-  fireRate: 0.1
+  shootDamage: 6
+  fireRate: 0.15
   shootDist: 30
   speed: 0
   fingerBullet: {fileID: 0}
   shootPos: {fileID: 0}
+  focusAmount: 1
 --- !u!114 &8837992345269671648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,6 +258,7 @@ MonoBehaviour:
   releaseForce: 10
   rotationSpeed: 0
   yOffset: 0
+  focusCost: 2.5
   timeSpeed: 1.68
   allowedDistanceToThrow: 0.804
 --- !u!143 &642081505
@@ -275,6 +279,37 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1769448000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847320448734065881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c7b67d8ee3d6b54b823146cff62eaab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tele: {fileID: 8837992345269671648}
+  gun: {fileID: 6896435042382046022}
+  player: {fileID: 847320448734065880}
+  timeToRegen: 3
+  amountOverTime: 0.5
+--- !u!114 &29618596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847320448734065881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ba290d56aa3d274380c86592f2466a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inTransition: 0
+  waitRate: 1
 --- !u!1 &6851882470558871928
 GameObject:
   m_ObjectHideFlags: 0

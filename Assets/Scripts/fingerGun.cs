@@ -14,6 +14,9 @@ public class fingerGun : MonoBehaviour
     [SerializeField] GameObject fingerBullet;
     [SerializeField] Transform shootPos;
 
+
+    [SerializeField] float focusAmount;
+
     private bool isShooting;
 
 
@@ -46,6 +49,9 @@ public class fingerGun : MonoBehaviour
             if(damageable != null)
             {
                 damageable.TakeDamage(shootDamage);
+                gameManager.instance.playerscript.AddFocus(focusAmount);
+                gameManager.instance.pStatsUI.UpdateValues();
+                
             }
 
             

@@ -35,4 +35,9 @@ public class MenuButtonFunctions : MonoBehaviour
         gameManager.instance.Unpaused();
         gameManager.instance.playerscript.RespawnPlayer();
     }
+
+    public void MainMenuNewGame()
+    {
+        SceneManager.LoadScene("Tom_Tutorial_Shooting_Range");
+    }
 }
