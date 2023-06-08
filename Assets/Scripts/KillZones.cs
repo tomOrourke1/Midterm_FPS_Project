@@ -9,19 +9,19 @@ public class KillZones : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Player");
+            Debug.Log("Player: " + other.name + "\nTag: " + other.gameObject.tag + "\nThing: " + other.GetType());
             // This kills the player
             PlayerKill();
         } 
         else if (other.CompareTag("Enemy"))
         {
-            Debug.Log("Enemy");
+            Debug.Log("Enemy: " + other.name + "\nTag: " + other.gameObject.tag + "\nThing: " + other.GetType());
             // This Kills the enemy
             EnemyKill(other);
         }
         else if (other.CompareTag("Prop"))
         {
-            Debug.Log("Prop");
+            Debug.Log("Prop: " + other.name + "\nTag: " + other.gameObject.tag + "\nThing: " + other.GetType());
             // This deletes the object
             PropKill(other);
         }
@@ -35,9 +35,11 @@ public class KillZones : MonoBehaviour
     {
         // Get max health
         float maxHP = gameManager.instance.playerscript.GetPlayerMaxHP();
+        float maxShield = gameManager.instance.playerscript.GetPlayerMaxShield();
+
 
         // Deal damage to the player equal to max HP
-        gameManager.instance.playerscript.TakeDamage((int) maxHP);
+        gameManager.instance.playerscript.TakeDamage((int) maxHP + (int) maxShield);
     }
 
     void EnemyKill(Collider other)

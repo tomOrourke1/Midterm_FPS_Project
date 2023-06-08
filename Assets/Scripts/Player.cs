@@ -22,7 +22,7 @@ public class Player : MonoBehaviour, IDamagable
     [SerializeField] int jumpMax;
 
     [Header("----- Dash Stats -----")]
-    [SerializeField] int DashMax;
+    [SerializeField] int maxDashes;
     [SerializeField] float DashSpeed;
     [SerializeField] float DashDuration;
     [SerializeField] float DashCooldown;
@@ -73,7 +73,7 @@ public class Player : MonoBehaviour, IDamagable
         origCamPos = mainCamera.transform.localPosition;
         crouchCameraPos = new Vector3(0,0,0);
         origHeight = controller.height;
-        currentDashes = DashMax;
+        currentDashes = maxDashes;
         //controller = gameObject.AddComponent<CharacterController>();
         RespawnPlayer();
         currentHP = maxHP;
@@ -94,7 +94,7 @@ public class Player : MonoBehaviour, IDamagable
     {
         // If dash is not recharging and there are less dashes than the max
         // then start recharging dashes
-        if (!DashRecharging && currentDashes < DashMax)
+        if (!DashRecharging && currentDashes < maxDashes)
         {
             StartCoroutine(RechargeDash());
         }
@@ -150,8 +150,6 @@ public class Player : MonoBehaviour, IDamagable
 
     public void RespawnPlayer()
     {
-        gameManager.instance.pStatsUI.UpdateValues();
-
         controller.enabled = false;
         if(gameManager.instance != null && gameManager.instance.GetPlayerSpawnPOS() != null)
         {
@@ -163,7 +161,9 @@ public class Player : MonoBehaviour, IDamagable
             transform.rotation = Quaternion.LookRotation(forward);
         }
         controller.enabled = true;
-        currentHP = maxHP;
+
+        UpdatePlayerStats();
+
     }
 
     IEnumerator StartDash()
@@ -229,7 +229,13 @@ public class Player : MonoBehaviour, IDamagable
 
     public void TakeDamage(int dmg)
     {
-        if (currentShield <= 0)
+        if (dmg > currentShield)
+        {
+            int hpDmg = dmg - (int) currentShield;
+            currentShield = 0;
+            currentHP -= hpDmg;
+        }
+        else if (currentShield <= 0)
             currentHP -= dmg;
         else
             currentShield -= dmg;
@@ -298,5 +304,16 @@ public class Player : MonoBehaviour, IDamagable
                 unCrouching = false;
             }
         }
+    }
+
+    void UpdatePlayerStats()
+    {
+        currentHP = maxHP;
+        currentFocus = maxFocus;
+        currentShield = maxShield;
+        currentDashes = maxDashes;
+        jumpTimes = 0;
+
+        gameManager.instance.pStatsUI.UpdateValues();
     }
 }
