@@ -37,7 +37,9 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI enemiesRemainingText;
     [SerializeField] float objectiveFadeInTimer;
     [SerializeField] AnimationCurve displayCurve;
-    [SerializeField] GameObject fadeInObjective;
+    [SerializeField] GameObject firstObjective;
+    [SerializeField] GameObject elevatorObjectiveDisplay;
+    private GameObject fadeInObjective;
 
     private RadialMenu radialMenuScriptRef;
     private float timescaleOrig;
@@ -55,10 +57,13 @@ public class gameManager : MonoBehaviour
         playerscript = player.GetComponent<Player>();
         //sets spawn point
         PlayerSpawnPOS = GameObject.FindGameObjectWithTag("Player Spawn Pos");
-        // 6/5/2023 - Kevin W.
-        // Gets the Radial Menu Script off of the UI Game Object
+        
         radialMenuScriptRef = GetComponent<RadialMenu>();
         pStatsUI = GetComponent<PlayerStats_UI>();
+
+        elevatorObjectiveDisplay.SetActive(false);
+        firstObjective.SetActive(true);
+
     }
 
     // Update is called once per frame
@@ -76,6 +81,12 @@ public class gameManager : MonoBehaviour
         {
             //radialMenuScriptRef.UpdateKeys();
             
+        }
+
+        // testing switching objectives - kevin w.
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            StartObjective();
         }
     }
     //stes game to paused state
@@ -134,7 +145,7 @@ public class gameManager : MonoBehaviour
         enemiesRemainingText.text = enemiesRemaining.ToString("F0");
         if(enemiesRemaining <= 0)
         {
-            StartCoroutine(WinGame());
+            DisplayElevatorObjective();
         }
     }
     public int GetKeyCounter() 
@@ -167,18 +178,32 @@ public class gameManager : MonoBehaviour
         PlayerSpawnPOS = _spawnPosGameObj;
     }
 
+    private void DisplayElevatorObjective()
+    {
+        elevatorObjectiveDisplay.SetActive(true);
+        firstObjective.SetActive(false);
+    }
+
+    private void StartObjective()
+    {
+        fadeInObjective = firstObjective;
+        StartCoroutine(MoveTransitionIn());
+        // Going to add more stuff about keeping track of objectives and such.
+    }
+
     IEnumerator MoveTransitionIn()
     {
         // Create a float storing the timer
-        float timerFadeIn = 1f;
+        float timerFadeIn = 0f;
 
         // While the timer is above a 'second'
-        while (timerFadeIn > 0f)
+        while (timerFadeIn > objectiveFadeInTimer)
         {
             // Add the Time.deltatime (interval in seconds from last frame to current frame) to the timer
-            timerFadeIn -= Time.deltaTime;
-            // Evaluate the curve and then set that the alpha's amount
-            float alphaColorFadeIn = displayCurve.Evaluate(timerFadeIn);
+            timerFadeIn += Time.deltaTime;
+            // Evaluate the curve and then set that the movement amount
+            float moveAmt = displayCurve.Evaluate(timerFadeIn);
+            fadeInObjective.transform.position = new Vector3(moveAmt * 50, fadeInObjective.transform.position.y, fadeInObjective.transform.position.z);
 
             yield return 0;
         }
