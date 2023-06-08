@@ -74,6 +74,7 @@ public class Player : MonoBehaviour, IDamagable
         currentHP = maxHP;
         currentShield = maxShield;
         currentFocus = maxFocus;
+        gameManager.instance.pStatsUI.UpdateValues();
 
         unCrouching = false;
     }
@@ -173,9 +174,9 @@ public class Player : MonoBehaviour, IDamagable
 
     IEnumerator FlashDamage()
     {
-        //gameManager.instance.flashDamage.gameObject.SetActive(true);
+        gameManager.instance.GetFlashImage().gameObject.SetActive(true);
         yield return new WaitForSeconds(0.1f);
-        //gameManager.instance.flashDamage.gameObject.SetActive(false);
+        gameManager.instance.GetFlashImage().gameObject.SetActive(false);
     }
 
     public float GetPlayerCurrentHP()
@@ -206,27 +207,17 @@ public class Player : MonoBehaviour, IDamagable
 
     public void TakeDamage(int dmg)
     {
-
         if (currentShield <= 0)
-        {
             currentHP -= dmg;
-        }
         else
-        {
             currentShield -= dmg;
-        }
         
         gameManager.instance.pStatsUI.UpdateValues();
 
-        // Moved this outside of the if statement because the screen
-        // should always falsh red when recieving damage.
-        //StartCoroutine(FlashDamage());
+        StartCoroutine(FlashDamage());
 
         if (currentHP <= 0)
-        {
-            // Currently the lose coroutine is not functioning
             gameManager.instance.LoseGame();
-        }
 
     }
 
