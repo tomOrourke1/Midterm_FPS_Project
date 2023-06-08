@@ -4,8 +4,7 @@ using UnityEngine;
 using TMPro;
 using System.ComponentModel;
 using UnityEngine.XR;
-
-
+using UnityEngine.UI;
 
 public enum MenuState
 {
@@ -38,8 +37,6 @@ public class gameManager : MonoBehaviour
     private int enemiesRemaining;
     public int KeyCounter;
     public TextMeshProUGUI enemiesRemainingText;
-
-
 
     public MenuState menuState;
 
@@ -75,17 +72,6 @@ public class gameManager : MonoBehaviour
             //radialMenuScriptRef.UpdateKeys();
             
         }
-        
-        
-            
-        
-
-        // 6/5/2023 - Kevin W.
-        // Updates the keys in the Radial Menu Script
-        // remove this when taking damage and receiving damage is implemented
-        // and replace it to update the corresponding damage of the type (HP | Focus | Shield)
-        // when those types are taken. 
-        pStatsUI.UpdateValues();
     }
     //stes game to paused state
     public void Paused()
@@ -130,12 +116,11 @@ public class gameManager : MonoBehaviour
         UI_Manager.instance.EnableBoolAnimator(UI_Manager.instance.WinPanel);
     }
     //function for when the game is lost
-    public IEnumerator LoseGame()
+    public void LoseGame()
     {
-        yield return new WaitForSeconds(3);
+        Paused();
         activeMenu = loseMenu;
         activeMenu.SetActive(true);
-        Paused();
         UI_Manager.instance.EnableBoolAnimator(UI_Manager.instance.LossPanel);
     }
     public void UpdateGameGoal(int amount)
@@ -160,5 +145,10 @@ public class gameManager : MonoBehaviour
         pausemenu.SetActive(false);
         winMenu.SetActive(false);
         loseMenu.SetActive(false);
+    }
+
+    public Image GetFlashImage()
+    {
+        return flashDamage.GetComponent<Image>();
     }
 }
