@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8209ec2dc3f145a47b7b8c7a60f89581, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivity: 200
+  sensitivity: 720
   lockVerMin: -90
   lockVerMax: 90
   invertY: 0
@@ -119,6 +119,7 @@ GameObject:
   - component: {fileID: 642081505}
   - component: {fileID: 1769448000}
   - component: {fileID: 29618596}
+  - component: {fileID: 1522680994}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -163,7 +164,7 @@ MonoBehaviour:
   gravityValue: 20
   jumpHeight: 8
   jumpMax: 2
-  DashMax: 3
+  maxDashes: 2
   DashSpeed: 50
   DashDuration: 0.1
   DashCooldown: 1
@@ -310,6 +311,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inTransition: 0
   waitRate: 1
+--- !u!114 &1522680994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847320448734065881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe32b1787ba19bf409359233a30ee1df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 847320448734065880}
 --- !u!1 &6851882470558871928
 GameObject:
   m_ObjectHideFlags: 0
