@@ -10,6 +10,8 @@ public class MoveableObject : MonoBehaviour, ITelekinesis
     [SerializeField] int damage;
     bool thrown;
 
+
+
     public Vector3 GetPosition()
     {
         return transform.position;

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
-using static System.Runtime.CompilerServices.RuntimeHelpers;
 
 public class Player : MonoBehaviour, IDamagable
 {
@@ -58,6 +57,12 @@ public class Player : MonoBehaviour, IDamagable
     private Vector3 origCamPos;
     private Vector3 crouchCameraPos;
     bool unCrouching;
+
+
+    // events
+    public delegate void UpdateFocus(float amt);
+    public event UpdateFocus OnFocusUpdate;
+
 
     // Start is called before the first frame update
     void Start()
@@ -196,7 +201,12 @@ public class Player : MonoBehaviour, IDamagable
     {
         currentFocus += amt;
         currentFocus = Mathf.Clamp(currentFocus, 0, maxFocus);
+        OnFocusUpdate?.Invoke(amt);
     }    
+    public bool AtMaxFocus()
+    {
+        return currentFocus == maxFocus;
+    }
 
 
     public float GetPlayerMaxHP()

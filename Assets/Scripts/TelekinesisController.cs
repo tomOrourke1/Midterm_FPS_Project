@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
@@ -44,6 +46,9 @@ public class TelekinesisController : MonoBehaviour
     void Update()
     {
 
+
+
+
         TelekinesisStart();
 
         PullObject();
@@ -61,7 +66,12 @@ public class TelekinesisController : MonoBehaviour
 
 
 
-
+    bool IsObjectNull()
+    {
+        var obj = stachedObject as UnityEngine.Object;
+        
+        return obj == null;
+    }
 
     void TelekinesisStart()
     {
@@ -93,7 +103,7 @@ public class TelekinesisController : MonoBehaviour
 
     void PullObject()
     {
-        if (stachedObject != null)
+        if (stachedObject != null && !IsObjectNull())
         {
             var pos = stachedObject.GetPosition();
 
@@ -146,7 +156,7 @@ public class TelekinesisController : MonoBehaviour
 
     void ReleaseObject()
     {
-        if ((Input.GetKeyUp(KeyCode.Mouse1) || !Input.GetKey(KeyCode.Mouse1)) && stachedObject != null)
+        if ((Input.GetKeyUp(KeyCode.Mouse1) || !Input.GetKey(KeyCode.Mouse1)) && stachedObject != null && !IsObjectNull())
         {
 
             stachedObject.GetRigidbody().useGravity = true;
