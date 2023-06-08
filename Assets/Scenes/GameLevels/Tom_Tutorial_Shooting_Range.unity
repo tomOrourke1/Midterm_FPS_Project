@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 26026d4155ababd48ba750affa8fffeb, type: 2}
   m_LightingSettings: {fileID: 1235630791}
 --- !u!196 &4
 NavMeshSettings:
@@ -248,6 +248,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6831464854326791867, guid: 965f1db012c6e174fae713b5add3fa69, type: 3}
   m_PrefabInstance: {fileID: 18800290}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &29618587 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 847320448734065881, guid: c4a60ea4562fdec4d89fa9bbc5d50159, type: 3}
+  m_PrefabInstance: {fileID: 869633895}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &29618596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 29618587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ba290d56aa3d274380c86592f2466a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inTransition: 0
+  waitRate: 1
 --- !u!1001 &43654268
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5959,6 +5978,10 @@ PrefabInstance:
     - target: {fileID: 3366236952066039543, guid: 323dd31d2fe659946bbdb6c77c108085, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3366236952174946244, guid: 323dd31d2fe659946bbdb6c77c108085, type: 3}
+      propertyPath: sceneName
+      value: Adam_Level_1
       objectReference: {fileID: 0}
     - target: {fileID: 8104645047946917070, guid: 323dd31d2fe659946bbdb6c77c108085, type: 3}
       propertyPath: m_LocalScale.y
