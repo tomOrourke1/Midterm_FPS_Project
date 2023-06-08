@@ -148,9 +148,9 @@ public class Player : MonoBehaviour, IDamagable
         gameManager.instance.pStatsUI.UpdateValues();
 
         controller.enabled = false;
-        if(gameManager.instance != null && gameManager.instance.PlayerSpawnPOS != null)
+        if(gameManager.instance != null && gameManager.instance.GetPlayerSpawnPOS() != null)
         {
-            transform.position = gameManager.instance.PlayerSpawnPOS.transform.position;
+            transform.position = gameManager.instance.GetPlayerSpawnPOS().transform.position;
         }
         controller.enabled = true;
         currentHP = maxHP;
