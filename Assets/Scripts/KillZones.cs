@@ -12,58 +12,71 @@ public class KillZones : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            //Debug.Log("Player: " + other.name + "\nTag: " + other.gameObject.tag + "\nThing: " + other.GetType());
-            
-            if (DealsDamage)
-            {
-                // Damages the player
-                PlayerDamage();
-            }
-            else
-            {
-                // This kills the player
-                PlayerKill();
-            }
-            
-        } 
-        else if (other.CompareTag("Enemy"))
-        {
-            //Debug.Log("Enemy: " + other.name + "\nTag: " + other.gameObject.tag + "\nThing: " + other.GetType());
+        IDamagable damageable = other.GetComponent<IDamagable>();
 
-            if (DealsDamage)
-            {
-                // Damages the enemy
-                EnemyDamage(other);
-            }
-            else
-            {
-                // This Kills the enemy
-                EnemyKill(other);
-            }
-        }
-        else if (other.CompareTag("Prop"))
+        if(damageable != null)
         {
-            //Debug.Log("Prop: " + other.name + "\nTag: " + other.gameObject.tag + "\nThing: " + other.GetType());
-
-            if (DealsDamage)
-            {
-                // Does nothing to the object
-
-            }
-            else
-            {
-                // This deletes the object
-                PropKill(other);
-            }
+            damageable.TakeDamage(Damage);
         }
         else
         {
-            // Unhandled game objects go here
-            Debug.LogError("Object: " + other.name + " tag?: " + other.gameObject.tag);
-            Debug.Log("Other");
+            Destroy(other);
         }
+
+
+        // Interfaces 
+        //if (other.CompareTag("Player"))
+        //{
+        //    //Debug.Log("Player: " + other.name + "\nTag: " + other.gameObject.tag + "\nThing: " + other.GetType());
+            
+        //    if (DealsDamage)
+        //    {
+        //        // Damages the player
+        //        PlayerDamage();
+        //    }
+        //    else
+        //    {
+        //        // This kills the player
+        //        PlayerKill();
+        //    }
+            
+        //} 
+        //else if (other.CompareTag("Enemy"))
+        //{
+        //    //Debug.Log("Enemy: " + other.name + "\nTag: " + other.gameObject.tag + "\nThing: " + other.GetType());
+
+        //    if (DealsDamage)
+        //    {
+        //        // Damages the enemy
+        //        EnemyDamage(other);
+        //    }
+        //    else
+        //    {
+        //        // This Kills the enemy
+        //        EnemyKill(other);
+        //    }
+        //}
+        //else if (other.CompareTag("Prop"))
+        //{
+        //    //Debug.Log("Prop: " + other.name + "\nTag: " + other.gameObject.tag + "\nThing: " + other.GetType());
+
+        //    if (DealsDamage)
+        //    {
+        //        // Does nothing to the object
+
+        //    }
+        //    else
+        //    {
+        //        // This deletes the object
+        //        PropKill(other);
+        //    }
+        //}
+        //else
+        //{
+        //    // Unhandled game objects go here
+        //    Debug.LogError("Object: " + other.name + " tag?: " + other.gameObject.tag);
+        //    Debug.Log("Other");
+        //}
     }
     void PlayerKill()
     {
