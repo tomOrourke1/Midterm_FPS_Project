@@ -19,36 +19,22 @@ public class PlayerStats_UI : MonoBehaviour
     private float currentFocus;
     private float currentShield;
 
-    // So we can find what each stat is easily
-    [SerializeField] Player playerScriptRef;
-
-    // Start is called before the first frame update
     void Start()
     {
 
-        
-        playerScriptRef = gameManager.instance.playerscript;
+        maxFocus = gameManager.instance.playerscript.GetPlayerMaxHP();
+        maxHP = gameManager.instance.playerscript.GetPlayerMaxHP();
+        maxShield = gameManager.instance.playerscript.GetPlayerMaxShield();
+        currentHP = gameManager.instance.playerscript.GetPlayerCurrentHP();
+        currentFocus = gameManager.instance.playerscript.GetPlayerCurrentFocus();
+        currentShield = gameManager.instance.playerscript.GetPlayerCurrentShield();
 
-
-        maxFocus = playerScriptRef.GetPlayerMaxHP();
-        maxHP = playerScriptRef.GetPlayerMaxHP();
-        currentHP = playerScriptRef.GetPlayerCurrentHP();
-        currentFocus = playerScriptRef.GetPlayerCurrentFocus();
-
-        // Update when Shield is added to the Player script
-        currentShield = maxHP;
-
-        UpdateFocus();
-        UpdateShield();
-        UpdateHealth();
+        UpdateValues();
     }
 
     // When the damage and HP refilling are added introduce these into those functions. 
     public void UpdateValues()
     {
-        if (playerScriptRef == null)
-            playerScriptRef = gameManager.instance.playerscript;
-
         UpdateFocus();
         UpdateShield();
         UpdateHealth();
@@ -56,14 +42,14 @@ public class PlayerStats_UI : MonoBehaviour
 
     public void UpdateFocus()
     {
-        focusSlider.fillAmount = playerScriptRef.GetPlayerCurrentFocus() / maxFocus;
+        focusSlider.fillAmount = gameManager.instance.playerscript.GetPlayerCurrentFocus() / maxFocus;
     }
     public void UpdateShield()
     {
-        shieldSlider.fillAmount = currentShield / maxShield;
+        shieldSlider.fillAmount = gameManager.instance.playerscript.GetPlayerCurrentShield() / maxShield;
     }
     public void UpdateHealth()
     {
-        healthSlider.fillAmount = playerScriptRef.GetPlayerCurrentHP() / maxHP;
+        healthSlider.fillAmount = gameManager.instance.playerscript.GetPlayerCurrentHP() / maxHP;
     }
 }

@@ -4,8 +4,8 @@ using UnityEngine;
 using TMPro;
 using System.ComponentModel;
 using UnityEngine.XR;
-
-
+using UnityEngine.UI;
+using Unity.VisualScripting;
 
 public enum MenuState
 {
@@ -21,25 +21,27 @@ public class gameManager : MonoBehaviour
     [Header("-----Player Stuff-----")]
     public GameObject player;
     public Player playerscript;
-
-    [Header("-----UI Stuff-----")]
-    public GameObject pausemenu;
-    public GameObject activeMenu;
-    public GameObject winMenu;
-    public GameObject loseMenu;
-    public GameObject PlayerSpawnPOS;
-    public GameObject radialMenu;
-
-    private RadialMenu radialMenuScriptRef;
     public PlayerStats_UI pStatsUI;
     [SerializeField] GameObject flashDamage;
-    float timescaleOrig;
 
-    private int enemiesRemaining;
+    [Header(" Menu States ")]
+    [SerializeField] GameObject pausemenu;
+    [SerializeField] GameObject activeMenu;
+    [SerializeField] GameObject winMenu;
+    [SerializeField] GameObject loseMenu;
+    [SerializeField] GameObject radialMenu;
+    [SerializeField] GameObject PlayerSpawnPOS;
+
+    [Header("Objective Items")]
     public int KeyCounter;
     public TextMeshProUGUI enemiesRemainingText;
+    [SerializeField] float objectiveFadeInTimer;
+    [SerializeField] AnimationCurve displayCurve;
+    [SerializeField] GameObject fadeInObjective;
 
-
+    private RadialMenu radialMenuScriptRef;
+    private float timescaleOrig;
+    private int enemiesRemaining;
 
     public MenuState menuState;
 
@@ -75,17 +77,6 @@ public class gameManager : MonoBehaviour
             //radialMenuScriptRef.UpdateKeys();
             
         }
-        
-        
-            
-        
-
-        // 6/5/2023 - Kevin W.
-        // Updates the keys in the Radial Menu Script
-        // remove this when taking damage and receiving damage is implemented
-        // and replace it to update the corresponding damage of the type (HP | Focus | Shield)
-        // when those types are taken. 
-        pStatsUI.UpdateValues();
     }
     //stes game to paused state
     public void Paused()
@@ -130,12 +121,11 @@ public class gameManager : MonoBehaviour
         UI_Manager.instance.EnableBoolAnimator(UI_Manager.instance.WinPanel);
     }
     //function for when the game is lost
-    public IEnumerator LoseGame()
+    public void LoseGame()
     {
-        yield return new WaitForSeconds(3);
+        Paused();
         activeMenu = loseMenu;
         activeMenu.SetActive(true);
-        Paused();
         UI_Manager.instance.EnableBoolAnimator(UI_Manager.instance.LossPanel);
     }
     public void UpdateGameGoal(int amount)
@@ -160,5 +150,37 @@ public class gameManager : MonoBehaviour
         pausemenu.SetActive(false);
         winMenu.SetActive(false);
         loseMenu.SetActive(false);
+    }
+
+    public Image GetFlashImage()
+    {
+        return flashDamage.GetComponent<Image>();
+    }
+
+    public GameObject GetPlayerSpawnPOS()
+    {
+        return PlayerSpawnPOS;
+    }
+
+    public void SetPlayerSpawnPos(GameObject _spawnPosGameObj)
+    {
+        PlayerSpawnPOS = _spawnPosGameObj;
+    }
+
+    IEnumerator MoveTransitionIn()
+    {
+        // Create a float storing the timer
+        float timerFadeIn = 1f;
+
+        // While the timer is above a 'second'
+        while (timerFadeIn > 0f)
+        {
+            // Add the Time.deltatime (interval in seconds from last frame to current frame) to the timer
+            timerFadeIn -= Time.deltaTime;
+            // Evaluate the curve and then set that the alpha's amount
+            float alphaColorFadeIn = displayCurve.Evaluate(timerFadeIn);
+
+            yield return 0;
+        }
     }
 }

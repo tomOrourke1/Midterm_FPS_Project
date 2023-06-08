@@ -8,15 +8,18 @@ public class Scientist : MonoBehaviour, IDamagable
     [SerializeField] Renderer model;
     [SerializeField] float runAwayDist = 20.0f;
     [SerializeField] NavMeshAgent agent;
+    [SerializeField] GameObject key;
 
     [SerializeField] int scientistHP;
 
     bool playerSeen;
+    Color scientistColor;
 
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        scientistColor = model.material.color;
     }
 
     // Update is called once per frame
@@ -43,8 +46,8 @@ public class Scientist : MonoBehaviour, IDamagable
 
         if (scientistHP <= 0)
         {
-            gameManager.instance.KeyCounter += 1;
-            Instantiate(gameObject, transform.position, Quaternion.identity);
+           if(key != null)
+                Instantiate(key, transform.position, transform.rotation);
             // Kevin CME BCAK HERE gameManager.instance.UpdateGameGoal(-1);
             Destroy(gameObject);
         }
@@ -54,6 +57,6 @@ public class Scientist : MonoBehaviour, IDamagable
     {
         model.material.color = Color.red;
         yield return new WaitForSeconds(0.2f);
-        model.material.color = Color.white;
+        model.material.color = scientistColor;
     }
 }
