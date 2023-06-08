@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 854e2f39bcd4adf4a8423a7f6b97616d, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -1141,6 +1141,7 @@ GameObject:
   - component: {fileID: 1290482374}
   - component: {fileID: 1290482373}
   - component: {fileID: 1290482372}
+  - component: {fileID: 1290482375}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1214,6 +1215,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 30, y: 45, z: 0}
+--- !u!114 &1290482375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1290482371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59e9226d2b9013d49a4f3061ee7944ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1317178981
 GameObject:
   m_ObjectHideFlags: 0
@@ -1241,8 +1254,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1317178981}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.673, y: 4, z: 1.07}
-  m_LocalScale: {x: 1.7478501, y: 9, z: 1}
+  m_LocalPosition: {x: 0.6730003, y: 6.5099983, z: 1.0699996}
+  m_LocalScale: {x: 2.7184312, y: 66.591896, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1394247013}
@@ -2364,6 +2377,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8422322003988284905, guid: 80b2d9091edaec442bd851c640f3bed3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8422322004318958531, guid: 80b2d9091edaec442bd851c640f3bed3, type: 3}
       propertyPath: m_RootOrder
       value: 3

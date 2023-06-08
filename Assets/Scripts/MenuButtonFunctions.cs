@@ -18,7 +18,7 @@ public class MenuButtonFunctions : MonoBehaviour
     public void ExitToMenu()
     {
         gameManager.instance.Unpaused();
-        Debug.Log("Main Menu");
+        SceneManager.LoadScene("MainMenu");
     }
     public void ExitGame()
     {

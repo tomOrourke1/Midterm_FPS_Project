@@ -155,7 +155,12 @@ public class Player : MonoBehaviour, IDamagable
         controller.enabled = false;
         if(gameManager.instance != null && gameManager.instance.GetPlayerSpawnPOS() != null)
         {
-            transform.position = gameManager.instance.GetPlayerSpawnPOS().transform.position;
+            var tra = gameManager.instance.GetPlayerSpawnPOS().transform;
+            transform.position = tra.position;
+            var forward = tra.forward;
+            forward.y = 0;
+            forward.Normalize();
+            transform.rotation = Quaternion.LookRotation(forward);
         }
         controller.enabled = true;
         currentHP = maxHP;
