@@ -107,7 +107,7 @@ public class Player : MonoBehaviour, IDamagable
 
         // If pressing left shift and there are dashes available
         // then dash
-        if (!isCrouching && Input.GetKeyUp(KeyCode.LeftShift) && currentDashes > 0/* && (playerVelocity.x != 0 || playerVelocity.z != 0)*/)
+        if (!isCrouching && Input.GetKeyDown(KeyCode.LeftShift) && currentDashes > 0/* && (playerVelocity.x != 0 || playerVelocity.z != 0)*/)
         {
             // This prevents dash from being called while dash is active.
             StartCoroutine(StartDash());
@@ -191,6 +191,13 @@ public class Player : MonoBehaviour, IDamagable
     {
         return currentFocus;
     }
+
+    public void AddFocus(float amt)
+    {
+        currentFocus += amt;
+        currentFocus = Mathf.Clamp(currentFocus, 0, maxFocus);
+    }    
+
 
     public float GetPlayerMaxHP()
     {

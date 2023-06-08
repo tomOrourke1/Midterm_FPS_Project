@@ -150,7 +150,11 @@ public class EnemyAI : MonoBehaviour, IDamagable
     {
         enemyShooting = true;
         EnemyFacePlayer();
-        Instantiate(bullet, enemyShootPos.position, transform.rotation);
+
+        var dirToPlayer = gameManager.instance.player.transform.position - enemyShootPos.position;
+        dirToPlayer.Normalize();
+
+        Instantiate(bullet, enemyShootPos.position, Quaternion.LookRotation(dirToPlayer));
         yield return new WaitForSeconds(enemyRateFire);
         enemyShooting = false;
     }
