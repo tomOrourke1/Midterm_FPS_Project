@@ -22,6 +22,6 @@ public class CheckPointSetter : MonoBehaviour
     //Sets the players spawn point to the checkpoint they touch
     void SetCheckPoint() 
     {
-        gameManager.instance.PlayerSpawnPOS = CheckPointPos; 
+        gameManager.instance.SetPlayerSpawnPos(CheckPointPos); 
     }
 }
