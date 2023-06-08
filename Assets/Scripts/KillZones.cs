@@ -5,28 +5,62 @@ using UnityEngine;
 public class KillZones : MonoBehaviour
 {
 
+    [SerializeField] bool DealsDamage;
+    [SerializeField] int Damage;
+
+    [SerializeField] bool EnemyDamageable;
+
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Player: " + other.name + "\nTag: " + other.gameObject.tag + "\nThing: " + other.GetType());
-            // This kills the player
-            PlayerKill();
+            //Debug.Log("Player: " + other.name + "\nTag: " + other.gameObject.tag + "\nThing: " + other.GetType());
+            
+            if (DealsDamage)
+            {
+                // Damages the player
+                PlayerDamage();
+            }
+            else
+            {
+                // This kills the player
+                PlayerKill();
+            }
+            
         } 
         else if (other.CompareTag("Enemy"))
         {
-            Debug.Log("Enemy: " + other.name + "\nTag: " + other.gameObject.tag + "\nThing: " + other.GetType());
-            // This Kills the enemy
-            EnemyKill(other);
+            //Debug.Log("Enemy: " + other.name + "\nTag: " + other.gameObject.tag + "\nThing: " + other.GetType());
+
+            if (DealsDamage)
+            {
+                // Damages the enemy
+                EnemyDamage(other);
+            }
+            else
+            {
+                // This Kills the enemy
+                EnemyKill(other);
+            }
         }
         else if (other.CompareTag("Prop"))
         {
-            Debug.Log("Prop: " + other.name + "\nTag: " + other.gameObject.tag + "\nThing: " + other.GetType());
-            // This deletes the object
-            PropKill(other);
+            //Debug.Log("Prop: " + other.name + "\nTag: " + other.gameObject.tag + "\nThing: " + other.GetType());
+
+            if (DealsDamage)
+            {
+                // Does nothing to the object
+
+            }
+            else
+            {
+                // This deletes the object
+                PropKill(other);
+            }
         }
         else
         {
+            // Unhandled game objects go here
             Debug.LogError("Object: " + other.name + " tag?: " + other.gameObject.tag);
             Debug.Log("Other");
         }
@@ -41,6 +75,10 @@ public class KillZones : MonoBehaviour
         // Deal damage to the player equal to max HP
         gameManager.instance.playerscript.TakeDamage((int) maxHP + (int) maxShield);
     }
+    void PlayerDamage()
+    {
+        gameManager.instance.playerscript.TakeDamage(Damage);
+    }
 
     void EnemyKill(Collider other)
     {
@@ -50,6 +88,15 @@ public class KillZones : MonoBehaviour
         // Destroys enemy
         Destroy(other.gameObject);
     }    
+    void EnemyDamage(Collider other)
+    {
+        IDamagable damageable = other.GetComponent<IDamagable>();
+
+        if (damageable != null && !EnemyDamageable)
+        {
+            damageable.TakeDamage(Damage);
+        }
+    }
 
     void PropKill(Collider other)
     {
