@@ -33,7 +33,11 @@ public class DoorDetectPlayerInProximity : MonoBehaviour
         {
             door.Activate();
         }
-        count++;
+
+        if (!other.CompareTag("Enemy Bullet"))
+        {
+            count++;
+        }
     }
 
     private void OnTriggerExit(Collider other)
