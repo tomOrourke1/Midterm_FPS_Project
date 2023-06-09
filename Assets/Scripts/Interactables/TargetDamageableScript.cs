@@ -6,12 +6,12 @@ using UnityEngine.Events;
 public class TargetDamageableScript : MonoBehaviour, IDamagable
 {
 
-    [SerializeField] int maxTargetHp;
+    [SerializeField] float maxTargetHp;
 
     [SerializeField] UnityEvent targetDeathEvent;
     [SerializeField] Renderer targetRenderer;
     [SerializeField] Material targeCheckedMaterial;
-    int currentTargetHp;
+    float currentTargetHp;
     bool activated;
 
     private void Start()
@@ -19,7 +19,7 @@ public class TargetDamageableScript : MonoBehaviour, IDamagable
         currentTargetHp = maxTargetHp;
         activated = false;
     }
-    public void TakeDamage(int dmg)
+    public void TakeDamage(float dmg)
     {
         currentTargetHp -= dmg;
         if(currentTargetHp <= 0 && !activated) 

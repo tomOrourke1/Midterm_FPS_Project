@@ -12,7 +12,7 @@ public class EnemyAI : MonoBehaviour, IDamagable
     [SerializeField] Transform enemyShootPos;
 
     // Enemy Stats
-    [SerializeField] int enemyHP;
+    [SerializeField] float enemyHP;
     [SerializeField] int enemyWalkSpeed;
     [SerializeField] int facePlayerSpeed;
     [SerializeField] int viewPlayerConeAngle;
@@ -76,7 +76,7 @@ public class EnemyAI : MonoBehaviour, IDamagable
         }
     }
 
-    int getEnemyHP()
+    public float GetEnemyHP()
     {
         return enemyHP;
     }
@@ -159,7 +159,7 @@ public class EnemyAI : MonoBehaviour, IDamagable
         enemyShooting = false;
     }
 
-    void IDamagable.TakeDamage(int playerDmg)
+    void IDamagable.TakeDamage(float playerDmg)
     {
         enemyHP -= playerDmg;
 

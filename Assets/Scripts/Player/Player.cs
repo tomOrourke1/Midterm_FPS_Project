@@ -227,11 +227,11 @@ public class Player : MonoBehaviour, IDamagable
         return maxShield;
     }
 
-    public void TakeDamage(int dmg)
+    public void TakeDamage(float dmg)
     {
         if (dmg > currentShield)
         {
-            int hpDmg = dmg - (int) currentShield;
+            float hpDmg = dmg - currentShield;
             currentShield = 0;
             currentHP -= hpDmg;
         }

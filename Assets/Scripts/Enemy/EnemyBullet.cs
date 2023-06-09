@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour
 {
-    [SerializeField] int enBulletDamage;
-    [SerializeField] int enBulletspeed;
+    [Header("Bullet Stats")]
+    [SerializeField] float bulletDamage;
+    [SerializeField] int bulletSpeed;
     [SerializeField] float destroyBulletTimer;
 
     [SerializeField] Rigidbody rb;
 
-    // Start is called before the first frame update
     void Start()
     {
         Destroy(gameObject, destroyBulletTimer);
-        rb.velocity = transform.forward * enBulletspeed;
+        rb.velocity = transform.forward * bulletSpeed;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -23,7 +23,7 @@ public class EnemyBullet : MonoBehaviour
 
         if (damagable != null)
         {
-            damagable.TakeDamage(enBulletDamage);
+            damagable.TakeDamage(bulletDamage);
         }
 
         Destroy(gameObject);

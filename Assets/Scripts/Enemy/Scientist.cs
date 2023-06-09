@@ -10,7 +10,7 @@ public class Scientist : MonoBehaviour, IDamagable
     [SerializeField] NavMeshAgent agent;
     [SerializeField] GameObject key;
 
-    [SerializeField] int scientistHP;
+    [SerializeField] float scientistHP;
 
     bool playerSeen;
     Color scientistColor;
@@ -37,7 +37,7 @@ public class Scientist : MonoBehaviour, IDamagable
         }
     }
 
-    void IDamagable.TakeDamage(int playerDmg)
+    void IDamagable.TakeDamage(float playerDmg)
     {
         scientistHP -= playerDmg;
 
