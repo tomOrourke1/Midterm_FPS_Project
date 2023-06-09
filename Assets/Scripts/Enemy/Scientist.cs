@@ -5,14 +5,14 @@ using UnityEngine.AI;
 
 public class Scientist : MonoBehaviour, IDamagable
 {
-    [SerializeField] Renderer model;
+    [Header("")]
+    [SerializeField] float scientistHP;
     [SerializeField] float runAwayDist = 20.0f;
+    [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] GameObject key;
 
-    [SerializeField] float scientistHP;
-
-    bool playerSeen;
+    // Color Component for when the scientist gets damaged
     Color scientistColor;
 
     // Start is called before the first frame update

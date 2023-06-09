@@ -5,40 +5,37 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour, IDamagable
 {
-    // Enemy Components
-    [SerializeField] Renderer model;
-    [SerializeField] NavMeshAgent agent;
+    [Header("Enemy Stats")]
+    [SerializeField] float enemyHP;
+    [SerializeField] int enemySpeed;
+    [SerializeField] int turnSpeed;
+    [SerializeField] int peripheralAngle;
+    [SerializeField, Range(1, 100)] int roamDist;
+    [SerializeField, Range(0, 10)] float roamTimer;
+
+    [Header("Enemy Components")]
+    [SerializeField] Renderer enemyMeshRenderer;
     [SerializeField] Transform enemyHeadPos;
     [SerializeField] Transform enemyShootPos;
 
-    // Enemy Stats
-    [SerializeField] float enemyHP;
-    [SerializeField] int enemyWalkSpeed;
-    [SerializeField] int facePlayerSpeed;
-    [SerializeField] int viewPlayerConeAngle;
-    [SerializeField, Range(1, 100)] int roamDist;
-    [SerializeField, Range(0, 10)] float roamTimer;
-    private Color enemyColor;
-
-    // Enemy Damage
+    [Header("Enemy Weapon Info")]
     [SerializeField] float enemyRateFire;
     [SerializeField] GameObject bullet;
 
+    NavMeshAgent agent;
+    Color enemyColor;
     Vector3 startingPos;
     Vector3 playerDirection;
     float stoppingDistanceOriginal;
     float angleToPlayer;
     bool playerSeen;
     bool enemyShooting;
-
     bool destinationChosen;
-    float stoppingDistOrig;
 
     void Start()
     {
-
-        enemyColor = model.material.color;
-        
+        enemyColor = enemyMeshRenderer.material.color;
+        agent = GetComponent<NavMeshAgent>();
         gameManager.instance.UpdateGameGoal(+1);
         startingPos = transform.position;
         stoppingDistanceOriginal = agent.stoppingDistance;
@@ -47,13 +44,14 @@ public class EnemyAI : MonoBehaviour, IDamagable
     void Update()
     {
         if (playerSeen && !EnemySeePlayer())
-        {
             StartCoroutine(Roam());
-        }
         else if (agent.destination != gameManager.instance.player.transform.position)
-        {
             StartCoroutine(Roam());
-        }
+    }
+
+    public float GetEnemyHP()
+    {
+        return enemyHP;
     }
 
     IEnumerator Roam()
@@ -76,11 +74,6 @@ public class EnemyAI : MonoBehaviour, IDamagable
         }
     }
 
-    public float GetEnemyHP()
-    {
-        return enemyHP;
-    }
-
     bool EnemySeePlayer()
     {
         agent.stoppingDistance = stoppingDistanceOriginal;
@@ -92,7 +85,7 @@ public class EnemyAI : MonoBehaviour, IDamagable
 
         if (Physics.Raycast(enemyHeadPos.position, playerDirection, out hit))
         {
-            if (hit.collider.CompareTag("Player") && angleToPlayer <= viewPlayerConeAngle)
+            if (hit.collider.CompareTag("Player") && angleToPlayer <= peripheralAngle)
             {
                 agent.SetDestination(gameManager.instance.player.transform.position);
 
@@ -135,15 +128,15 @@ public class EnemyAI : MonoBehaviour, IDamagable
     void EnemyFacePlayer()
     {
         Quaternion rotate = Quaternion.LookRotation(new Vector3(playerDirection.x, 0, playerDirection.z));
-        transform.rotation = Quaternion.Lerp(transform.rotation, rotate, Time.deltaTime * facePlayerSpeed);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rotate, Time.deltaTime * turnSpeed);
     }
 
     IEnumerator EnemyDamageFlash()
     {
 
-        model.material.color = Color.red;
+        enemyMeshRenderer.material.color = Color.red;
         yield return new WaitForSeconds(0.2f);
-        model.material.color = enemyColor;
+        enemyMeshRenderer.material.color = enemyColor;
     }
 
     IEnumerator EnemyShooting()
