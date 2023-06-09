@@ -268,6 +268,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5303328456843015683, guid: 84eef94f3909ab744bb0e8bda3070722, type: 3}
+      propertyPath: enemyHP
+      value: 99999
+      objectReference: {fileID: 0}
+    - target: {fileID: 5303328456843015683, guid: 84eef94f3909ab744bb0e8bda3070722, type: 3}
+      propertyPath: enemyRateFire
+      value: 999999
+      objectReference: {fileID: 0}
     - target: {fileID: 5303328456843015684, guid: 84eef94f3909ab744bb0e8bda3070722, type: 3}
       propertyPath: m_Name
       value: Security Guard (Basic)
@@ -1128,10 +1136,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa85fdc0349158641a7445ba4dad7d9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knifeDamage: 99999
-  attackRate: 1
+  knifeDamage: 1
+  attackRate: 0.5
   knifeRange: 0.9
   knifeRadius: 0.7
+  smallCastRange: 0.9
+  smallCastRadius: 0.6
 --- !u!1 &1790279909
 GameObject:
   m_ObjectHideFlags: 0
