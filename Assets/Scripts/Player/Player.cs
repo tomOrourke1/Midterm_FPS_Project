@@ -29,9 +29,8 @@ public class Player : MonoBehaviour, IDamagable
 
     [Header("----- Crouch Stats -----")]
     [SerializeField] float CrouchSpeed;
-
-
     [SerializeField] float unCrouchSpeed;
+
 
     // Movement
     private Vector3 playerVelocity;
@@ -62,7 +61,6 @@ public class Player : MonoBehaviour, IDamagable
     // events
     public delegate void UpdateFocus(float amt);
     public event UpdateFocus OnFocusUpdate;
-
 
     // Start is called before the first frame update
     void Start()
@@ -212,7 +210,6 @@ public class Player : MonoBehaviour, IDamagable
     {
         return currentFocus == maxFocus;
     }
-
 
     public float GetPlayerMaxHP()
     {
