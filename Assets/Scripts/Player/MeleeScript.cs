@@ -38,15 +38,15 @@ public class MeleeScript : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
-    {
-        //RaycastHit hit;
-        //Physics.SphereCast(Camera.main.transform.position, knifeRadius, Camera.main.transform.forward, out hit, knifeRange);
+    //private void OnDrawGizmos()
+    //{
+    //    //RaycastHit hit;
+    //    //Physics.SphereCast(Camera.main.transform.position, knifeRadius, Camera.main.transform.forward, out hit, knifeRange);
 
-        Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
-        Gizmos.DrawWireSphere(ray.GetPoint(knifeRange), knifeRadius);
+    //    Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+    //    Gizmos.DrawWireSphere(ray.GetPoint(knifeRange), knifeRadius);
 
-    }
+    //}
 
     IEnumerator Knife()
     {
