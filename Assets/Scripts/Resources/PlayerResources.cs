@@ -12,13 +12,10 @@ public class PlayerResources : MonoBehaviour, IDamagable, IHealReciever, IFocusR
     public ShieldPool Shield => shield;
     public FocusPool Focus => focus;
 
-
     private void Start()
     {
         FillAllStats();
     }
-
-    
 
     private void OnEnable()
     {
@@ -29,19 +26,21 @@ public class PlayerResources : MonoBehaviour, IDamagable, IHealReciever, IFocusR
         health.OnResourceDepleted -= PlayerDied;
     }
 
-
     public void TakeDamage(float dmg)
     {
         if(shield.SpendResource(dmg))
         {
-            UIManager.instance.FlashShieldDisplay();
+            var shieldBreak = shield.AtMin() ?
+                StartCoroutine(UIManager.instance.GetFlashDamageScript().CrackShieldDisplay()) :
+                StartCoroutine(UIManager.instance.GetFlashDamageScript().FlashShieldDisplay());
         }
         else
         {
-            UIManager.instance.FlashDamageDisplay();
             float diff = dmg - shield.CurrentValue;
             shield.Decrease(shield.CurrentValue);
             health.Decrease(diff);
+            StartCoroutine(UIManager.instance.GetFlashDamageScript().FlashDamageDisplay());
+
         }
         UIManager.instance.GetPlayerStats().UpdateValues();
     }

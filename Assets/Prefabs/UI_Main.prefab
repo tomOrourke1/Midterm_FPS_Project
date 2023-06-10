@@ -3055,6 +3055,7 @@ GameObject:
   - component: {fileID: 5661053257741582647}
   - component: {fileID: 5661053257741582650}
   - component: {fileID: 5661053257741582649}
+  - component: {fileID: 5988196484222682889}
   - component: {fileID: 866238320461390695}
   - component: {fileID: 198655326078740097}
   - component: {fileID: 5661053257741582646}
@@ -3134,11 +3135,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuState: 2
-  statsUIRef: {fileID: 0}
-  flashDamage: {fileID: 18075364}
-  flashShield: {fileID: 0}
-  screenCrack: {fileID: 0}
   sceneFader: {fileID: 6075739459790756786}
+  statsUIRef: {fileID: 866238320461390695}
   activeMenu: {fileID: 0}
   pauseMenu: {fileID: 7135949735108110942}
   winMenu: {fileID: 4946717797418961804}
@@ -3147,6 +3145,21 @@ MonoBehaviour:
   PausePanel: {fileID: 1642484207466182061}
   WinPanel: {fileID: 3221958684515828137}
   LossPanel: {fileID: 7243351805135643626}
+--- !u!114 &5988196484222682889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5661053257741582640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60dcdcb1ac17558449b8fb75ad44c12e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashDamage: {fileID: 18075366}
+  flashShield: {fileID: 8054867426942006758}
+  screenCrack: {fileID: 6630890389141353526}
 --- !u!114 &866238320461390695
 MonoBehaviour:
   m_ObjectHideFlags: 0

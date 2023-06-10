@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,16 +14,13 @@ public enum MenuState
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager instance;
     public MenuState menuState;
-    
+    private FlashDamage flashImageScript;
+    [SerializeField] Image sceneFader;
+
     [Header("Stats UI Script")]
     [SerializeField] PlayerStatsUI statsUIRef;
-
-    [Header("Popup Images")]
-    [SerializeField] Image flashDamage;
-    [SerializeField] Image flashShield;
-    [SerializeField] Image screenCrack;
-    [SerializeField] Image sceneFader;
 
     [Header("Menu States ")]
     [SerializeField] GameObject activeMenu;
@@ -36,13 +34,15 @@ public class UIManager : MonoBehaviour
     [SerializeField] Animator WinPanel;
     [SerializeField] Animator LossPanel;
 
-    [Space]
-    public static UIManager instance;
-
     private void Awake()
     {
         instance = this;
+    }
+
+    private void Start()
+    {
         statsUIRef = GetComponent<PlayerStatsUI>();
+        flashImageScript = GetComponent<FlashDamage>();
     }
 
     private void Update()
@@ -118,19 +118,7 @@ public class UIManager : MonoBehaviour
         loseMenu.SetActive(false);
     }
 
-    public IEnumerator FlashDamageDisplay()
-    {
-        flashDamage.gameObject.SetActive(true);
-        yield return new WaitForSeconds(0.1f);
-        flashDamage.gameObject.SetActive(false);
-    }
-    public IEnumerator FlashShieldDisplay()
-    {
-        flashShield.gameObject.SetActive(true);
-        yield return new WaitForSeconds(0.1f);
-        flashShield.gameObject.SetActive(false);
-    }
-
+   
     //Function will remove the pause menu from the screen
     public void DisableBoolAnimator(Animator animator)
     {
@@ -147,8 +135,14 @@ public class UIManager : MonoBehaviour
     {
         return statsUIRef;
     }
+
     public Image GetSceneFader()
     {
         return sceneFader;
+    }
+
+    public FlashDamage GetFlashDamageScript()
+    {
+        return flashImageScript;
     }
 }
