@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class Scientist : MonoBehaviour, IDamagable
 {
-    [Header("")]
+    [Header("Scientist Stats")]
     [SerializeField] float scientistHP;
     [SerializeField] float runAwayDist = 20.0f;
     [SerializeField] Renderer model;

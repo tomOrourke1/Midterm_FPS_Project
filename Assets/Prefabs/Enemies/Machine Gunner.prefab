@@ -216,16 +216,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d05c22010b5332148aa42974951da84b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  model: {fileID: 7739010460197726980}
-  agent: {fileID: 2521813622194435484}
-  enemyHeadPos: {fileID: 2521813621346959396}
-  enemyShootPos: {fileID: 2521813621054424990}
   enemyHP: 10
-  enemyWalkSpeed: 1
-  facePlayerSpeed: 60
-  viewPlayerConeAngle: 90
+  enemySpeed: 0
+  turnSpeed: 0
+  peripheralAngle: 0
   roamDist: 20
   roamTimer: 3
+  agent: {fileID: 2521813622194435484}
+  enemyMeshRenderer: {fileID: 7739010460197726980}
+  enemyHeadPos: {fileID: 2521813621346959396}
+  enemyShootPos: {fileID: 2521813621054424990}
   enemyRateFire: 0.6
   bullet: {fileID: 5779099364001243127, guid: 1907d588480e97948a8cd1d1c3d48f28, type: 3}
 --- !u!195 &2521813622194435484

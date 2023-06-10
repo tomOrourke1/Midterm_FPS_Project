@@ -12,8 +12,9 @@ public class EnemyAI : MonoBehaviour, IDamagable
     [SerializeField] int peripheralAngle;
     [SerializeField, Range(1, 100)] int roamDist;
     [SerializeField, Range(0, 10)] float roamTimer;
-
+    
     [Header("Enemy Components")]
+    [SerializeField] NavMeshAgent agent;
     [SerializeField] Renderer enemyMeshRenderer;
     [SerializeField] Transform enemyHeadPos;
     [SerializeField] Transform enemyShootPos;
@@ -22,7 +23,6 @@ public class EnemyAI : MonoBehaviour, IDamagable
     [SerializeField] float enemyRateFire;
     [SerializeField] GameObject bullet;
 
-    NavMeshAgent agent;
     Color enemyColor;
     Vector3 startingPos;
     Vector3 playerDirection;
@@ -35,7 +35,6 @@ public class EnemyAI : MonoBehaviour, IDamagable
     void Start()
     {
         enemyColor = enemyMeshRenderer.material.color;
-        agent = GetComponent<NavMeshAgent>();
         gameManager.instance.UpdateGameGoal(+1);
         startingPos = transform.position;
         stoppingDistanceOriginal = agent.stoppingDistance;
@@ -89,22 +88,15 @@ public class EnemyAI : MonoBehaviour, IDamagable
             {
                 agent.SetDestination(gameManager.instance.player.transform.position);
 
-
                 if (agent.remainingDistance <= agent.stoppingDistance)
-                {
                     EnemyFacePlayer();
-                }
 
                 if (!enemyShooting)
-                {
                     StartCoroutine(EnemyShooting());
-                }
 
                 return true;
             }
         }
-
-
         agent.stoppingDistance = 0;
         return false;
     }
@@ -112,17 +104,13 @@ public class EnemyAI : MonoBehaviour, IDamagable
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
-        {
             playerSeen = true;
-        }
     }
 
     void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
-        {
             playerSeen = false;
-        }
     }
 
     void EnemyFacePlayer()
@@ -133,7 +121,6 @@ public class EnemyAI : MonoBehaviour, IDamagable
 
     IEnumerator EnemyDamageFlash()
     {
-
         enemyMeshRenderer.material.color = Color.red;
         yield return new WaitForSeconds(0.2f);
         enemyMeshRenderer.material.color = enemyColor;

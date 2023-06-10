@@ -1,11 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using System.ComponentModel;
-using UnityEngine.XR;
 using UnityEngine.UI;
-using Unity.VisualScripting;
 
 public enum MenuState
 {
@@ -33,13 +29,16 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject PlayerSpawnPOS;
 
     [Header("Objective Items")]
-    public int KeyCounter;
-    public TextMeshProUGUI enemiesRemainingText;
+    [SerializeField] int KeyCounter;
     [SerializeField] float objectiveFadeInTimer;
+    [SerializeField] TextMeshProUGUI enemiesRemainingText;
     [SerializeField] AnimationCurve displayCurve;
     [SerializeField] GameObject firstObjective;
     [SerializeField] GameObject elevatorObjectiveDisplay;
     private GameObject fadeInObjective;
+
+    [Header("Scene Transitioning")]
+    [SerializeField] Image sceneFader;
 
     private RadialMenu radialMenuScriptRef;
     private float timescaleOrig;
@@ -52,12 +51,12 @@ public class gameManager : MonoBehaviour
         instance = this;
         timescaleOrig = Time.timeScale;
 
-        //sets both the player and player script
+        // Sets both the player and player script
         player = GameObject.FindGameObjectWithTag("Player");
         playerscript = player.GetComponent<Player>();
-        //sets spawn point
+
         PlayerSpawnPOS = GameObject.FindGameObjectWithTag("Player Spawn Pos");
-        
+
         radialMenuScriptRef = GetComponent<RadialMenu>();
         pStatsUI = GetComponent<PlayerStats_UI>();
 
@@ -77,30 +76,23 @@ public class gameManager : MonoBehaviour
             Paused();
             UI_Manager.instance.EnableBoolAnimator(UI_Manager.instance.PausePanel);
         }
-        else if (activeMenu == null && menuState != MenuState.none) 
+        else if (activeMenu == null && menuState != MenuState.none)
         {
             //radialMenuScriptRef.UpdateKeys();
-            
-        }
-
-        // testing switching objectives - kevin w.
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            StartObjective();
         }
     }
-    //stes game to paused state
+
+    // Sets game to paused state
     public void Paused()
     {
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
 
-
         menuState = MenuState.none;
     }
 
-    //resumes game while paused
+    // resumes game while paused
     public void Unpaused()
     {
         UI_Manager.instance.DisableBoolAnimator(UI_Manager.instance.PausePanel);
@@ -111,7 +103,6 @@ public class gameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         StartCoroutine(WaitToTurnOffUI());
-
     }
 
     IEnumerator WaitToTurnOffUI()
@@ -122,7 +113,7 @@ public class gameManager : MonoBehaviour
 
         menuState = MenuState.radial;
     }
-    //function for when the game is won
+
     IEnumerator WinGame()
     {
         yield return new WaitForSeconds(3);
@@ -131,7 +122,7 @@ public class gameManager : MonoBehaviour
         Paused();
         UI_Manager.instance.EnableBoolAnimator(UI_Manager.instance.WinPanel);
     }
-    //function for when the game is lost
+
     public void LoseGame()
     {
         Paused();
@@ -139,30 +130,42 @@ public class gameManager : MonoBehaviour
         activeMenu.SetActive(true);
         UI_Manager.instance.EnableBoolAnimator(UI_Manager.instance.LossPanel);
     }
+
     public void UpdateGameGoal(int amount)
     {
         enemiesRemaining += amount;
         enemiesRemainingText.text = enemiesRemaining.ToString("F0");
-        if(enemiesRemaining <= 0)
+        if (enemiesRemaining <= 0)
         {
             DisplayElevatorObjective();
         }
     }
-    public int GetKeyCounter() 
-    {
-        return KeyCounter;
-    }
-    public void SetKeyCounter(int counter) 
-    {
-     KeyCounter = counter;
-    }
-    private void DisableMenus() 
+
+    private void DisableMenus()
     {
         pausemenu.SetActive(false);
         winMenu.SetActive(false);
         loseMenu.SetActive(false);
     }
 
+    private void DisplayElevatorObjective()
+    {
+        elevatorObjectiveDisplay.SetActive(true);
+        firstObjective.SetActive(false);
+    }
+
+
+
+
+
+    // Get/Set area, for any private variable that needs to be retrieved and/set then do it through
+    // a Get/Set function
+
+    public int GetKeyCounter()
+    {
+        return KeyCounter;
+
+    }
     public Image GetFlashImage()
     {
         return flashDamage.GetComponent<Image>();
@@ -173,39 +176,18 @@ public class gameManager : MonoBehaviour
         return PlayerSpawnPOS;
     }
 
+    public Image GetSceneFader()
+    {
+        return sceneFader;
+    }
+
+    public void SetKeyCounter(int counter)
+    {
+        KeyCounter = counter;
+    }
+
     public void SetPlayerSpawnPos(GameObject _spawnPosGameObj)
     {
         PlayerSpawnPOS = _spawnPosGameObj;
-    }
-
-    private void DisplayElevatorObjective()
-    {
-        elevatorObjectiveDisplay.SetActive(true);
-        firstObjective.SetActive(false);
-    }
-
-    private void StartObjective()
-    {
-        fadeInObjective = firstObjective;
-        StartCoroutine(MoveTransitionIn());
-        // Going to add more stuff about keeping track of objectives and such.
-    }
-
-    IEnumerator MoveTransitionIn()
-    {
-        // Create a float storing the timer
-        float timerFadeIn = 0f;
-
-        // While the timer is above a 'second'
-        while (timerFadeIn > objectiveFadeInTimer)
-        {
-            // Add the Time.deltatime (interval in seconds from last frame to current frame) to the timer
-            timerFadeIn += Time.deltaTime;
-            // Evaluate the curve and then set that the movement amount
-            float moveAmt = displayCurve.Evaluate(timerFadeIn);
-            fadeInObjective.transform.position = new Vector3(moveAmt * 50, fadeInObjective.transform.position.y, fadeInObjective.transform.position.z);
-
-            yield return 0;
-        }
     }
 }

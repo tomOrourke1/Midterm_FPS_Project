@@ -7,16 +7,19 @@ using UnityEngine.SceneManagement;
 public class ElevatorScript : MonoBehaviour, IInteractable
 {
     [Header("Components")]
+    [SerializeField, Range(.01f, 5)] float loadingTime = 1.5f;
+    [SerializeField, Range(.01f, 5)] float exitingTime = 3.5f;
     [Tooltip("The animation curve component to use.")]
     [SerializeField] AnimationCurve curve;
     [Tooltip("The next scene to load. SPELL THE NAME RIGHT!")]
     [SerializeField] string sceneName;
-    
+
     private Image image;
 
     private void Start()
     {
-        image = gameManager.instance.GetComponent<RadialMenu>().translucentBackground.GetComponent<Image>();
+        image = gameManager.instance.GetSceneFader();
+        StartCoroutine(FadeIn());
     }
 
     public void Interact()
@@ -32,8 +35,8 @@ public class ElevatorScript : MonoBehaviour, IInteractable
     /// <param name="scene">The name of the scene to switch to.</param>
     public void FadeTo(string scene)
     {
-        SceneManager.LoadScene(scene);
         StartCoroutine(FadeOut(scene));
+        SceneManager.LoadScene(scene);
     }
 
     /// <summary>
@@ -44,7 +47,7 @@ public class ElevatorScript : MonoBehaviour, IInteractable
     IEnumerator FadeIn()
     {
         // Create a float storing the timer
-        float timerFadeIn = 1f;
+        float timerFadeIn = loadingTime;
 
         // While the timer is above a 'second'
         while (timerFadeIn > 0f)
@@ -71,7 +74,7 @@ public class ElevatorScript : MonoBehaviour, IInteractable
         float timerFadeOut = 0f;
 
         // While the timer is below a 'second'
-        while (timerFadeOut < 1f)
+        while (timerFadeOut < exitingTime)
         {
             // Add the Time.deltatime (interval in seconds from last frame to current frame) to the timer
             timerFadeOut += Time.deltaTime;

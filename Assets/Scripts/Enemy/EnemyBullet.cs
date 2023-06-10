@@ -22,9 +22,7 @@ public class EnemyBullet : MonoBehaviour
         IDamagable damagable = other.GetComponent<IDamagable>();
 
         if (damagable != null)
-        {
             damagable.TakeDamage(bulletDamage);
-        }
 
         Destroy(gameObject);
     }
