@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuButtonFunctions : MonoBehaviour
 {
+
     // Start is called before the first frame update
     public void Resume()
     {
@@ -27,8 +28,9 @@ public class MenuButtonFunctions : MonoBehaviour
     public void NextLevel()
     {
         gameManager.instance.Unpaused();
-        //May change function later
-        // SceneManager.LoadScene(SceneManager.GetSceneByName();
+        // Will need to implement a way to get the next level's name
+        // from the game manager and load the scene via that.
+        // This script should be solely for functions and using them.
     }
     public void Respawn()
     {
@@ -36,8 +38,4 @@ public class MenuButtonFunctions : MonoBehaviour
         gameManager.instance.playerscript.RespawnPlayer();
     }
 
-    public void MainMenuNewGame()
-    {
-        SceneManager.LoadScene("Tom_Tutorial_Shooting_Range");
-    }
 }
