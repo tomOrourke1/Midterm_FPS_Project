@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class ElevatorScript : MonoBehaviour, IInteractable
 {
@@ -12,13 +13,18 @@ public class ElevatorScript : MonoBehaviour, IInteractable
     [Tooltip("The animation curve component to use.")]
     [SerializeField] AnimationCurve curve;
     [Tooltip("The next scene to load. SPELL THE NAME RIGHT!")]
-    [SerializeField] string sceneName;
+    [SerializeField] string sceneName = "Tom_Tutorial_Shooting_Range";
 
-    private Image image;
+    // This is serialized because of main menu.
+    // Main menu doesn't have a game manager so we need to have the option
+    // of getting it via inspector.
+    [SerializeField] Image image;
 
     private void Start()
     {
-        image = gameManager.instance.GetSceneFader();
+        if (image == null)
+            image = gameManager.instance.GetSceneFader();
+
         StartCoroutine(FadeIn());
     }
 
@@ -35,8 +41,8 @@ public class ElevatorScript : MonoBehaviour, IInteractable
     /// <param name="scene">The name of the scene to switch to.</param>
     public void FadeTo(string scene)
     {
+        Debug.Log(scene);
         StartCoroutine(FadeOut(scene));
-        SceneManager.LoadScene(scene);
     }
 
     /// <summary>
@@ -60,6 +66,8 @@ public class ElevatorScript : MonoBehaviour, IInteractable
             image.color = new Color(0f, 0f, 0f, alphaColorFadeIn);
             yield return 0;
         }
+
+        image.GameObject().SetActive(false);
     }
     /// <summary>
     /// The FadeOut() function will create a timer, as time moves along the
@@ -70,6 +78,7 @@ public class ElevatorScript : MonoBehaviour, IInteractable
     /// <returns></returns>
     IEnumerator FadeOut(string scene)
     {
+        image.GameObject().SetActive(true);
         // Create a float storing the timer
         float timerFadeOut = 0f;
 
@@ -84,8 +93,8 @@ public class ElevatorScript : MonoBehaviour, IInteractable
             image.color = new Color(0f, 0f, 0f, alphaColorFadeOut);
             yield return 0;
         }
-
         // After fading the scene out transition to the scene we want to load
         SceneManager.LoadScene(scene);
+
     }
 }
