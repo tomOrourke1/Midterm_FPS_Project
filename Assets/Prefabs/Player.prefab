@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: 642081505}
   - component: {fileID: 847320448734065886}
   - component: {fileID: 847320448734065885}
+  - component: {fileID: 1522680995}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -182,13 +183,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 976b671649261a440855aefa85d3c543, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootDamage: 2
+  bulletDamage: 0
   fireRate: 0.15
+  focusCost: 0
   shootDist: 30
-  speed: 0
-  fingerBullet: {fileID: 0}
-  shootPos: {fileID: 0}
-  focusAmount: 1
 --- !u!114 &8837992345269671648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,6 +321,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 847320448734065881}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1522680995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847320448734065881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa85fdc0349158641a7445ba4dad7d9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knifeDamage: 1
+  attackRate: 0.5
+  knifeRange: 0.9
+  knifeRadius: 0.7
+  smallCastRange: 0.9
+  smallCastRadius: 0.6
 --- !u!1 &6851882470558871928
 GameObject:
   m_ObjectHideFlags: 0
