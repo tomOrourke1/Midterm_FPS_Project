@@ -24,6 +24,11 @@ public class PlayerStats_UI : MonoBehaviour
     // When the damage and HP refilling are added introduce these into those functions. 
     public void UpdateValues()
     {
+        if(instance == null)
+        {
+            instance = gameManager.instance.playerResources;
+        }
+
         focusSlider.fillAmount = instance.Focus.GetPercent();
         shieldSlider.fillAmount = instance.Shield.GetPercent();
         healthSlider.fillAmount = instance.Health.GetPercent();
