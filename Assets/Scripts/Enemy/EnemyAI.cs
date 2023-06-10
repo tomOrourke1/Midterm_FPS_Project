@@ -35,7 +35,6 @@ public class EnemyAI : MonoBehaviour, IDamagable
     void Start()
     {
         enemyColor = enemyMeshRenderer.material.color;
-        gameManager.instance.UpdateGameGoal(+1);
         startingPos = transform.position;
         stoppingDistanceOriginal = agent.stoppingDistance;
     }
@@ -148,7 +147,6 @@ public class EnemyAI : MonoBehaviour, IDamagable
 
         if (enemyHP <= 0)
         {
-            gameManager.instance.UpdateGameGoal(-1);
             Destroy(gameObject);
         }
     }
