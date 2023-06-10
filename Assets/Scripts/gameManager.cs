@@ -31,12 +31,6 @@ public class gameManager : MonoBehaviour
 
     [Header("Objective Items")]
     [SerializeField] int KeyCounter;
-    [SerializeField] float objectiveFadeInTimer;
-    [SerializeField] TextMeshProUGUI enemiesRemainingText;
-    [SerializeField] AnimationCurve displayCurve;
-    [SerializeField] GameObject firstObjective;
-    [SerializeField] GameObject elevatorObjectiveDisplay;
-    private GameObject fadeInObjective;
 
     [Header("Scene Transitioning")]
     [SerializeField] Image sceneFader;
@@ -62,8 +56,7 @@ public class gameManager : MonoBehaviour
         radialMenuScriptRef = GetComponent<RadialMenu>();
         pStatsUI = GetComponent<PlayerStats_UI>();
 
-        elevatorObjectiveDisplay.SetActive(false);
-        firstObjective.SetActive(true);
+
 
     }
 
@@ -133,15 +126,6 @@ public class gameManager : MonoBehaviour
         UI_Manager.instance.EnableBoolAnimator(UI_Manager.instance.LossPanel);
     }
 
-    public void UpdateGameGoal(int amount)
-    {
-        enemiesRemaining += amount;
-        enemiesRemainingText.text = enemiesRemaining.ToString("F0");
-        if (enemiesRemaining <= 0)
-        {
-            DisplayElevatorObjective();
-        }
-    }
 
     private void DisableMenus()
     {
@@ -150,11 +134,6 @@ public class gameManager : MonoBehaviour
         loseMenu.SetActive(false);
     }
 
-    private void DisplayElevatorObjective()
-    {
-        elevatorObjectiveDisplay.SetActive(true);
-        firstObjective.SetActive(false);
-    }
 
 
 
