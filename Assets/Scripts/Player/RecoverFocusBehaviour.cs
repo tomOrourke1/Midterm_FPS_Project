@@ -7,7 +7,7 @@ public class RecoverFocusBehaviour : MonoBehaviour
     [Header("----- Components ------")]
     [SerializeField] TelekinesisController tele;
     [SerializeField] fingerGun gun;
-    [SerializeField] Player player;
+    [SerializeField] PlayerResources playerResources;
 
     [Header("----- values ------")]
     [SerializeField] float timeToRegen;
@@ -16,26 +16,27 @@ public class RecoverFocusBehaviour : MonoBehaviour
     float timer;
 
 
-    private void Start()
+    private void OnEnable()
     {
-        gameManager.instance.playerscript.OnFocusUpdate += SetTime;
+        playerResources.Focus.OnResourceDecrease += SetTime;
+    }
+    private void OnDisable()
+    {
+        playerResources.Focus.OnResourceDecrease -= SetTime;
     }
 
     private void Update()
     {
-        if (!gameManager.instance.playerscript.AtMaxFocus() && (Time.time - timer) > timeToRegen )
+        if(!playerResources.Focus.AtMax() && (Time.time - timer) > timeToRegen)
         {
-            gameManager.instance.playerscript.AddFocus(amountOverTime * Time.deltaTime);
-            gameManager.instance.pStatsUI.UpdateFocus();
+            playerResources.AddFocus(amountOverTime * Time.deltaTime);
         }
+
     }
 
-    void SetTime(float amt)
+    void SetTime()
     {
-        if(amt < 0 )
-        {
-            timer = Time.time;
-        }
+        timer = Time.time;
     }
 
 }

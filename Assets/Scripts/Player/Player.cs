@@ -4,16 +4,13 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class Player : MonoBehaviour, IDamagable
+public class Player : MonoBehaviour
 {
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
     [SerializeField] Camera mainCamera;
 
     [Header("----- Player Stats -----")]
-    [SerializeField] float maxHP;
-    [SerializeField] float maxFocus;
-    [SerializeField] float maxShield;
     [SerializeField, Range(3, 8)] float playerSpeed;
 
     [Header("----- Jump Stats -----")]
@@ -37,10 +34,6 @@ public class Player : MonoBehaviour, IDamagable
     private Vector3 move;
     private bool groundedPlayer;
 
-    // Stats
-    private float currentHP;
-    private float currentShield;
-    private float currentFocus;
 
     // Jump
     private int jumpTimes;
@@ -58,10 +51,6 @@ public class Player : MonoBehaviour, IDamagable
     bool unCrouching;
 
 
-    // events
-    public delegate void UpdateFocus(float amt);
-    public event UpdateFocus OnFocusUpdate;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -74,9 +63,6 @@ public class Player : MonoBehaviour, IDamagable
         currentDashes = maxDashes;
         //controller = gameObject.AddComponent<CharacterController>();
         RespawnPlayer();
-        currentHP = maxHP;
-        currentShield = maxShield;
-        currentFocus = maxFocus;
         gameManager.instance.pStatsUI.UpdateValues();
 
         unCrouching = false;
@@ -160,7 +146,7 @@ public class Player : MonoBehaviour, IDamagable
         }
         controller.enabled = true;
 
-        UpdatePlayerStats();
+        UpdatePlayerStats();    // this updates the player dashes when the player respawns.
 
     }
 
@@ -187,64 +173,8 @@ public class Player : MonoBehaviour, IDamagable
         gameManager.instance.GetFlashImage().gameObject.SetActive(false);
     }
 
-    public float GetPlayerCurrentHP()
-    {
-        return currentHP;
-    }
-    public float GetPlayerCurrentShield() 
-    { 
-        return currentShield; 
-    }
-    public float GetPlayerCurrentFocus()
-    {
-        return currentFocus;
-    }
 
-    public void AddFocus(float amt)
-    {
-        currentFocus += amt;
-        currentFocus = Mathf.Clamp(currentFocus, 0, maxFocus);
-        OnFocusUpdate?.Invoke(amt);
-    }    
-    public bool AtMaxFocus()
-    {
-        return currentFocus == maxFocus;
-    }
 
-    public float GetPlayerMaxHP()
-    {
-        return maxHP;
-    }
-    public float GetPlayerMaxFocus()
-    {
-        return maxFocus;
-    }
-    public float GetPlayerMaxShield()
-    {
-        return maxShield;
-    }
-
-    public void TakeDamage(float dmg)
-    {
-        if (dmg > currentShield)
-        {
-            float hpDmg = dmg - currentShield;
-            currentShield = 0;
-            currentHP -= hpDmg;
-        }
-        else if (currentShield <= 0)
-            currentHP -= dmg;
-        else
-            currentShield -= dmg;
-        
-        gameManager.instance.pStatsUI.UpdateValues();
-
-        StartCoroutine(FlashDamage());
-
-        if (currentHP <= 0)
-            gameManager.instance.LoseGame();
-
-    }
 
     void handleWalk()
     {
@@ -305,11 +235,9 @@ public class Player : MonoBehaviour, IDamagable
 
     void UpdatePlayerStats()
     {
-        currentHP = maxHP;
-        currentFocus = maxFocus;
-        currentShield = maxShield;
         currentDashes = maxDashes;
         jumpTimes = 0;
+        gameManager.instance.playerResources.FillAllStats();
 
         gameManager.instance.pStatsUI.UpdateValues();
     }
