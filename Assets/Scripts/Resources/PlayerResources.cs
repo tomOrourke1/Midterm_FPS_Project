@@ -34,39 +34,41 @@ public class PlayerResources : MonoBehaviour, IDamagable, IHealReciever, IFocusR
     {
         if(shield.SpendResource(dmg))
         {
+            UIManager.instance.FlashShieldDisplay();
         }
         else
         {
+            UIManager.instance.FlashDamageDisplay();
             float diff = dmg - shield.CurrentValue;
             shield.Decrease(shield.CurrentValue);
             health.Decrease(diff);
         }
-        gameManager.instance.pStatsUI.UpdateValues();
+        UIManager.instance.GetPlayerStats().UpdateValues();
     }
 
     void PlayerDied()
     {
         // trigger lose game if the player dies
-        gameManager.instance.LoseGame();
+        UIManager.instance.LoseGame();
     }
 
     public void AddHealing(float healAmount)
     {
         health.Increase(healAmount);
-        gameManager.instance.pStatsUI.UpdateValues();
+        UIManager.instance.GetPlayerStats().UpdateValues();
     }
 
     public bool SpendFocus(float amt)
     {
         var b = focus.SpendResource(amt);
-        gameManager.instance.pStatsUI.UpdateValues();
+        UIManager.instance.GetPlayerStats().UpdateValues();
         return b;
     }
 
     public void AddFocus(float amt)
     {
         focus.Increase(amt);
-        gameManager.instance.pStatsUI.UpdateValues();
+        UIManager.instance.GetPlayerStats().UpdateValues();
     }
 
 

@@ -32,7 +32,7 @@ public class fingerGun : MonoBehaviour
             if(damageable != null)
             {
                 damageable.TakeDamage(bulletDamage);
-                gameManager.instance.playerResources.AddFocus(focusPerShot);
+                GameManager.instance.GetPlayerResources().AddFocus(focusPerShot);
             }
         }
 

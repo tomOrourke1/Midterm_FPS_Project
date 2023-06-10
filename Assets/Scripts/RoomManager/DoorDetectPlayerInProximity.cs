@@ -21,10 +21,10 @@ public class DoorDetectPlayerInProximity : MonoBehaviour
             bool player = other.CompareTag("Player");
             if(player)
             {
-                if (gameManager.instance.GetKeyCounter() > 0)
+                if (GameManager.instance.GetKeyCounter() > 0)
                 {
                     door.SetLockStatus(false);
-                    gameManager.instance.SetKeyCounter(gameManager.instance.GetKeyCounter() - 1);
+                    GameManager.instance.SetKeyCounter(GameManager.instance.GetKeyCounter() - 1);
                 }
             }
         }

@@ -23,7 +23,7 @@ public class KeyScript : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            gameManager.instance.SetKeyCounter(1);
+            GameManager.instance.SetKeyCounter(1);
             Destroy(gameObject);
         }
     }

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerStats_UI : MonoBehaviour
+public class PlayerStatsUI : MonoBehaviour
 {
     [Header("Player Stat Fillers")]
     [Tooltip("Focus image to alter.")]
@@ -12,12 +12,11 @@ public class PlayerStats_UI : MonoBehaviour
     [SerializeField] Image healthSlider;
 
     // C# has inherent private protection but defining it just to be safe
-
     PlayerResources instance;
 
     void Start()
     {
-        instance = gameManager.instance.playerResources;
+        instance = GameManager.instance.GetPlayerResources();
         UpdateValues();
     }
 
@@ -26,7 +25,7 @@ public class PlayerStats_UI : MonoBehaviour
     {
         if(instance == null)
         {
-            instance = gameManager.instance.playerResources;
+            instance = GameManager.instance.GetPlayerResources();
         }
 
         focusSlider.fillAmount = instance.Focus.GetPercent();

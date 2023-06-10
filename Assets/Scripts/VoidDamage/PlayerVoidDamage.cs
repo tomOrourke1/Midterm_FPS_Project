@@ -7,6 +7,6 @@ public class PlayerVoidDamage : MonoBehaviour, IVoidDamage
 
     public void FallIntoTheVoid()
     {
-        gameManager.instance.LoseGame();
+        UIManager.instance.LoseGame();
     }
 }

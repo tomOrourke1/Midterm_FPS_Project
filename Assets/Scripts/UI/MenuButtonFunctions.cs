@@ -9,16 +9,16 @@ public class MenuButtonFunctions : MonoBehaviour
     // Start is called before the first frame update
     public void Resume()
     {
-        gameManager.instance.Unpaused();
+        UIManager.instance.Unpaused();
     }
     public void Restart()
     {
-        gameManager.instance.Unpaused();
+        UIManager.instance.Unpaused();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     public void ExitToMenu()
     {
-        gameManager.instance.Unpaused();
+        UIManager.instance.Unpaused();
         SceneManager.LoadScene("MainMenu");
     }
     public void ExitGame()
@@ -27,15 +27,15 @@ public class MenuButtonFunctions : MonoBehaviour
     }
     public void NextLevel()
     {
-        gameManager.instance.Unpaused();
+        UIManager.instance.Unpaused();
         // Will need to implement a way to get the next level's name
         // from the game manager and load the scene via that.
         // This script should be solely for functions and using them.
     }
     public void Respawn()
     {
-        gameManager.instance.Unpaused();
-        gameManager.instance.playerscript.RespawnPlayer();
+        UIManager.instance.Unpaused();
+        GameManager.instance.GetPlayerScript().RespawnPlayer();
     }
 
 }

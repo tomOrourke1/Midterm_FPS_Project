@@ -117,7 +117,7 @@ public class RadialMenu : MonoBehaviour
     {
         sliceAng = 360 / _slices.Length;
         offsetAngle = sliceAng + sliceAng / 2;
-        GenerateSlices();
+        //GenerateSlices();
         UpdateSlices();
         // On the first frame if the radial menu is left on
         // in the inspector, turn it off no matter what. So it doesn't show.
@@ -238,26 +238,26 @@ public class RadialMenu : MonoBehaviour
 
     public void UpdateKeys()
     {
-        if (Input.GetKeyDown(KeyCode.Q) && gameManager.instance.menuState != MenuState.none)
+        if (Input.GetKeyDown(KeyCode.Q) && UIManager.instance.menuState != MenuState.none)
         {
             ToggleMenu();
             GameObject.Find("Player").GetComponentInChildren<CameraController>().enabled = !isMenuBeingShown;
             Cursor.lockState = CursorLockMode.Confined;
             //  gameManager.instance.activeMenu = gameManager.instance.radialMenu;
-            gameManager.instance.menuState = MenuState.active;
+            UIManager.instance.menuState = MenuState.active;
         }
 
-        if (Input.GetKeyUp(KeyCode.Q) || gameManager.instance.menuState == MenuState.none)
+        if (Input.GetKeyUp(KeyCode.Q) || UIManager.instance.menuState == MenuState.none)
         {
             ToggleMenu();
             GameObject.Find("Player").GetComponentInChildren<CameraController>().enabled = !isMenuBeingShown;
             SelectKinesis(trackedKinesis);
             Cursor.lockState = CursorLockMode.Locked;
             //  gameManager.instance.activeMenu = null;
-            gameManager.instance.menuState = MenuState.radial;
+            UIManager.instance.menuState = MenuState.radial;
         }
 
-        if (Input.GetKey(KeyCode.Q) && isMenuBeingShown && gameManager.instance.menuState != MenuState.none)
+        if (Input.GetKey(KeyCode.Q) && isMenuBeingShown && UIManager.instance.menuState != MenuState.none)
         {
             UpdateSlices();
             UpdateMousePosition();
@@ -265,25 +265,25 @@ public class RadialMenu : MonoBehaviour
         }
     }
 
-    void GenerateSlices()
-    {
-        for (int sliceIndex = 0; sliceIndex < _slices.Length; ++sliceIndex)
-        {
-            // ToDo
-            // Start at a single point, so the first radial item, then rotate around on a pivot
-            // and instantiate at those places. try that
+    //void GenerateSlices()
+    //{
+    //    for (int sliceIndex = 0; sliceIndex < _slices.Length; ++sliceIndex)
+    //    {
+    //        // ToDo
+    //        // Start at a single point, so the first radial item, then rotate around on a pivot
+    //        // and instantiate at those places. try that
 
-            Quaternion rot = Quaternion.Euler(0, 0, (sliceIndex) * sliceAng);
+    //        Quaternion rot = Quaternion.Euler(0, 0, (sliceIndex) * sliceAng);
 
-            float xPos, yPos;
-            yPos = sliceDistanceFromCenter * Mathf.Sin(sliceAng * (sliceIndex) * Mathf.Deg2Rad);
-            yPos += Screen.height / 2;
-            xPos = sliceDistanceFromCenter * Mathf.Cos(sliceAng * (sliceIndex) * Mathf.Deg2Rad);
-            xPos += Screen.width / 2;
+    //        float xPos, yPos;
+    //        yPos = sliceDistanceFromCenter * Mathf.Sin(sliceAng * (sliceIndex) * Mathf.Deg2Rad);
+    //        yPos += Screen.height / 2;
+    //        xPos = sliceDistanceFromCenter * Mathf.Cos(sliceAng * (sliceIndex) * Mathf.Deg2Rad);
+    //        xPos += Screen.width / 2;
 
-            Instantiate(_slices[sliceIndex].GetSlice(), new Vector3(xPos, yPos, 0), rot, sliceParentTransform);
-        }
-    }
+    //        Instantiate(_slices[sliceIndex].GetSlice(), new Vector3(xPos, yPos, 0), rot, sliceParentTransform);
+    //    }
+    //}
 
     void UpdateSlices()
     {

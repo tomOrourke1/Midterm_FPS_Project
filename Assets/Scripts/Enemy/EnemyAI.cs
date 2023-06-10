@@ -43,7 +43,7 @@ public class EnemyAI : MonoBehaviour, IDamagable
     {
         if (playerSeen && !EnemySeePlayer())
             StartCoroutine(Roam());
-        else if (agent.destination != gameManager.instance.player.transform.position)
+        else if (agent.destination != GameManager.instance.GetPlayerObj().transform.position)
             StartCoroutine(Roam());
     }
 
@@ -76,7 +76,7 @@ public class EnemyAI : MonoBehaviour, IDamagable
     {
         agent.stoppingDistance = stoppingDistanceOriginal;
 
-        playerDirection = gameManager.instance.player.transform.position - enemyHeadPos.position;
+        playerDirection = GameManager.instance.GetPlayerObj().transform.position - enemyHeadPos.position;
         angleToPlayer = Vector3.Angle(new Vector3(playerDirection.x, 0, playerDirection.z), transform.forward);
 
         RaycastHit hit;
@@ -85,7 +85,7 @@ public class EnemyAI : MonoBehaviour, IDamagable
         {
             if (hit.collider.CompareTag("Player") && angleToPlayer <= peripheralAngle)
             {
-                agent.SetDestination(gameManager.instance.player.transform.position);
+                agent.SetDestination(GameManager.instance.GetPlayerObj().transform.position);
 
                 if (agent.remainingDistance <= agent.stoppingDistance)
                     EnemyFacePlayer();
@@ -130,7 +130,7 @@ public class EnemyAI : MonoBehaviour, IDamagable
         enemyShooting = true;
         EnemyFacePlayer();
 
-        var dirToPlayer = gameManager.instance.player.transform.position - enemyShootPos.position;
+        var dirToPlayer = GameManager.instance.GetPlayerObj().transform.position - enemyShootPos.position;
         dirToPlayer.Normalize();
 
         Instantiate(bullet, enemyShootPos.position, Quaternion.LookRotation(dirToPlayer));
@@ -142,7 +142,7 @@ public class EnemyAI : MonoBehaviour, IDamagable
     {
         enemyHP -= playerDmg;
 
-        agent.SetDestination(gameManager.instance.player.transform.position);
+        agent.SetDestination(GameManager.instance.GetPlayerObj().transform.position);
         StartCoroutine(EnemyDamageFlash());
 
         if (enemyHP <= 0)
