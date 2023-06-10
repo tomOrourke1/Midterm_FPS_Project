@@ -17,6 +17,7 @@ public class gameManager : MonoBehaviour
     [Header("-----Player Stuff-----")]
     public GameObject player;
     public Player playerscript;
+    public PlayerResources playerResources;
     public PlayerStats_UI pStatsUI;
     [SerializeField] GameObject flashDamage;
 
@@ -54,6 +55,7 @@ public class gameManager : MonoBehaviour
         // Sets both the player and player script
         player = GameObject.FindGameObjectWithTag("Player");
         playerscript = player.GetComponent<Player>();
+        playerResources = player.GetComponent<PlayerResources>();
 
         PlayerSpawnPOS = GameObject.FindGameObjectWithTag("Player Spawn Pos");
 

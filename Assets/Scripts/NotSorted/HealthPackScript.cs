@@ -8,7 +8,7 @@ public class HealthPackScript : MonoBehaviour
     [SerializeField] float freq;
     [SerializeField] float amp;
     [Header("-----Healing Stuff-----")]
-    [Range(-100, 0)][SerializeField] int healingAmount;
+    [Range(0, 100)][SerializeField] int healingAmount;
 
 
 
@@ -27,11 +27,14 @@ public class HealthPackScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+
+        var heal = other.GetComponent<IHealReciever>();
+
+        if(heal != null)
         {
-            gameManager.instance.playerscript.TakeDamage(healingAmount);
-            gameManager.instance.pStatsUI.UpdateValues();
+            heal.AddHealing(healingAmount);
             Destroy(gameObject);
         }
+
     }
 }

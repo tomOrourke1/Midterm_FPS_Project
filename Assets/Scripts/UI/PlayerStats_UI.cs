@@ -12,44 +12,21 @@ public class PlayerStats_UI : MonoBehaviour
     [SerializeField] Image healthSlider;
 
     // C# has inherent private protection but defining it just to be safe
-    private float maxFocus;
-    private float maxShield;
-    private float maxHP;
-    private float currentHP;
-    private float currentFocus;
-    private float currentShield;
+
+    PlayerResources instance;
 
     void Start()
     {
-
-        maxFocus = gameManager.instance.playerscript.GetPlayerMaxHP();
-        maxHP = gameManager.instance.playerscript.GetPlayerMaxHP();
-        maxShield = gameManager.instance.playerscript.GetPlayerMaxShield();
-        currentHP = gameManager.instance.playerscript.GetPlayerCurrentHP();
-        currentFocus = gameManager.instance.playerscript.GetPlayerCurrentFocus();
-        currentShield = gameManager.instance.playerscript.GetPlayerCurrentShield();
-
+        instance = gameManager.instance.playerResources;
         UpdateValues();
     }
 
     // When the damage and HP refilling are added introduce these into those functions. 
     public void UpdateValues()
     {
-        UpdateFocus();
-        UpdateShield();
-        UpdateHealth();
+        focusSlider.fillAmount = instance.Focus.GetPercent();
+        shieldSlider.fillAmount = instance.Shield.GetPercent();
+        healthSlider.fillAmount = instance.Health.GetPercent();
     }
 
-    public void UpdateFocus()
-    {
-        focusSlider.fillAmount = gameManager.instance.playerscript.GetPlayerCurrentFocus() / maxFocus;
-    }
-    public void UpdateShield()
-    {
-        shieldSlider.fillAmount = gameManager.instance.playerscript.GetPlayerCurrentShield() / maxShield;
-    }
-    public void UpdateHealth()
-    {
-        healthSlider.fillAmount = gameManager.instance.playerscript.GetPlayerCurrentHP() / maxHP;
-    }
 }

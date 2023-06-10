@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8209ec2dc3f145a47b7b8c7a60f89581, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivity: 720
+  sensitivity: 200
   lockVerMin: -90
   lockVerMax: 90
   invertY: 0
@@ -112,15 +112,16 @@ GameObject:
   m_Component:
   - component: {fileID: 847320448734065884}
   - component: {fileID: 847320448734065880}
+  - component: {fileID: 164878508403180583}
   - component: {fileID: 6896435042382046022}
   - component: {fileID: 8837992345269671648}
+  - component: {fileID: 1522680995}
   - component: {fileID: 1769448000}
   - component: {fileID: 29618596}
   - component: {fileID: 1522680994}
   - component: {fileID: 642081505}
   - component: {fileID: 847320448734065886}
   - component: {fileID: 847320448734065885}
-  - component: {fileID: 1522680995}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -158,9 +159,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 642081505}
   mainCamera: {fileID: 847320448619245781}
-  maxHP: 10
-  maxFocus: 10
-  maxShield: 5
   playerSpeed: 6
   gravityValue: 20
   jumpHeight: 8
@@ -171,6 +169,24 @@ MonoBehaviour:
   DashCooldown: 1
   CrouchSpeed: 0
   unCrouchSpeed: 10
+--- !u!114 &164878508403180583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847320448734065881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55ff74cd33b2a424b96e0e5981649f68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health:
+    maxValue: 10
+  shield:
+    maxValue: 10
+  focus:
+    maxValue: 10
 --- !u!114 &6896435042382046022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,9 +199,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 976b671649261a440855aefa85d3c543, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletDamage: 0
+  bulletDamage: 1
   fireRate: 0.15
-  focusCost: 0
+  focusPerShot: 3
   shootDist: 30
 --- !u!114 &8837992345269671648
 MonoBehaviour:
@@ -210,6 +226,24 @@ MonoBehaviour:
   focusCost: 2.5
   timeSpeed: 1.68
   allowedDistanceToThrow: 0.804
+--- !u!114 &1522680995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847320448734065881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa85fdc0349158641a7445ba4dad7d9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knifeDamage: 1
+  attackRate: 0.5
+  knifeRange: 0.9
+  knifeRadius: 0.7
+  smallCastRange: 0.9
+  smallCastRadius: 0.6
 --- !u!114 &1769448000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,7 +258,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tele: {fileID: 8837992345269671648}
   gun: {fileID: 6896435042382046022}
-  player: {fileID: 847320448734065880}
+  playerResources: {fileID: 164878508403180583}
   timeToRegen: 3
   amountOverTime: 0.5
 --- !u!114 &29618596
@@ -321,24 +355,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 847320448734065881}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1522680995
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 847320448734065881}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa85fdc0349158641a7445ba4dad7d9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  knifeDamage: 1
-  attackRate: 0.5
-  knifeRange: 0.9
-  knifeRadius: 0.7
-  smallCastRange: 0.9
-  smallCastRadius: 0.6
 --- !u!1 &6851882470558871928
 GameObject:
   m_ObjectHideFlags: 0

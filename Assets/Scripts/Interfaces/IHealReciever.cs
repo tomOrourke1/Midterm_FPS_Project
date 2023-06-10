@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[System.Serializable]
-public class HealthPool : Resource
-{
 
+public interface IHealReciever
+{
+    void AddHealing(float  healAmount);
 }

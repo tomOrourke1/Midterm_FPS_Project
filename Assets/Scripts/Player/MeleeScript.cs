@@ -53,7 +53,6 @@ public class MeleeScript : MonoBehaviour
 
         isKnifing = true;
         RaycastHit hit;
-        float maxFocus = gameManager.instance.playerscript.GetPlayerMaxFocus();
 
         if (Physics.SphereCast(Camera.main.transform.position, smallCastRadius, Camera.main.transform.forward, out hit, smallCastRange))
         {

@@ -73,7 +73,7 @@ public class TelekinesisController : MonoBehaviour
 
     void TelekinesisStart()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse1) && gameManager.instance.playerscript.GetPlayerCurrentFocus() >= focusCost)
+        if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             // suck item
 
@@ -86,13 +86,14 @@ public class TelekinesisController : MonoBehaviour
             {
                 stachedObject = hit.collider.GetComponent<ITelekinesis>();
                 timePressed = 0;
-                if(stachedObject != null)
+                if(stachedObject != null && gameManager.instance.playerResources.SpendFocus(focusCost))
                 {
-                    gameManager.instance.playerscript.AddFocus(-focusCost);
-                    gameManager.instance.pStatsUI.UpdateValues();
-                    
                     originalPos = stachedObject.GetPosition();
                     stachedObject.GetRigidbody().useGravity = false;
+                }
+                else
+                {
+                    stachedObject = null;
                 }
             }
         }

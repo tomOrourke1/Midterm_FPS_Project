@@ -8,7 +8,7 @@ public class fingerGun : MonoBehaviour
     [Tooltip("Damage that the player will deal to the enemy with the basic finger pistol.")]
     [SerializeField] int bulletDamage;
     [SerializeField] float fireRate;
-    [SerializeField] float focusCost;
+    [SerializeField] float focusPerShot;
     [SerializeField] int shootDist;
 
     private bool isShooting;
@@ -32,8 +32,7 @@ public class fingerGun : MonoBehaviour
             if(damageable != null)
             {
                 damageable.TakeDamage(bulletDamage);
-                gameManager.instance.playerscript.AddFocus(focusCost);
-                gameManager.instance.pStatsUI.UpdateValues();
+                gameManager.instance.playerResources.AddFocus(focusPerShot);
             }
         }
 
