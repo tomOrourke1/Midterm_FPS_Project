@@ -20,18 +20,18 @@ public class PlayerResources : MonoBehaviour, IDamagable, IHealReciever, IFocusR
     private void OnEnable()
     {
         health.OnResourceDepleted += PlayerDied;
-        health.OnResourceDecrease += UIManager.instance.FlashPlayerHealthHit;
+        //health.OnResourceDecrease += UIManager.instance.FlashPlayerHealthHit;
 
-        shield.OnResourceDepleted += UIManager.instance.FlashBreakShield;
-        shield.OnResourceDecrease += UIManager.instance.FlashPlayerShieldHit;
+        //shield.OnResourceDepleted += UIManager.instance.FlashBreakShield;
+        //shield.OnResourceDecrease += UIManager.instance.FlashPlayerShieldHit;
     }
     private void OnDisable()
     {
         health.OnResourceDepleted -= PlayerDied;
-        health.OnResourceDecrease -= UIManager.instance.FlashPlayerHealthHit;
+        //health.OnResourceDecrease -= UIManager.instance.FlashPlayerHealthHit;
 
-        shield.OnResourceDepleted -= UIManager.instance.FlashBreakShield;
-        shield.OnResourceDecrease -= UIManager.instance.FlashPlayerShieldHit;
+        //shield.OnResourceDepleted -= UIManager.instance.FlashBreakShield;
+        //shield.OnResourceDecrease -= UIManager.instance.FlashPlayerShieldHit;
     }
 
     public void TakeDamage(float dmg)
