@@ -20,27 +20,33 @@ public class PlayerResources : MonoBehaviour, IDamagable, IHealReciever, IFocusR
     private void OnEnable()
     {
         health.OnResourceDepleted += PlayerDied;
+        health.OnResourceDecrease += UIManager.instance.FlashPlayerHealthHit;
+
+        shield.OnResourceDepleted += UIManager.instance.FlashBreakShield;
+        shield.OnResourceDecrease += UIManager.instance.FlashPlayerShieldHit;
     }
     private void OnDisable()
     {
         health.OnResourceDepleted -= PlayerDied;
+        health.OnResourceDecrease -= UIManager.instance.FlashPlayerHealthHit;
+
+        shield.OnResourceDepleted -= UIManager.instance.FlashBreakShield;
+        shield.OnResourceDecrease -= UIManager.instance.FlashPlayerShieldHit;
     }
 
     public void TakeDamage(float dmg)
     {
         if(shield.SpendResource(dmg))
         {
-            var shieldBreak = shield.AtMin() ?
-                StartCoroutine(UIManager.instance.GetFlashDamageScript().CrackShieldDisplay()) :
-                StartCoroutine(UIManager.instance.GetFlashDamageScript().FlashShieldDisplay());
+            //UIManager.instance.FlashPlayerShieldHit();
+            //UIManager.instance.FlashBreakShield();
         }
         else
         {
             float diff = dmg - shield.CurrentValue;
             shield.Decrease(shield.CurrentValue);
             health.Decrease(diff);
-            StartCoroutine(UIManager.instance.GetFlashDamageScript().FlashDamageDisplay());
-
+            //UIManager.instance.FlashPlayerHealthHit();
         }
         UIManager.instance.GetPlayerStats().UpdateValues();
     }

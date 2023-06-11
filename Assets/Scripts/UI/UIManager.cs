@@ -145,4 +145,18 @@ public class UIManager : MonoBehaviour
     {
         return flashImageScript;
     }
+
+    public void FlashBreakShield()
+    {
+        StartCoroutine(flashImageScript.CrackShieldDisplay());
+    }
+
+    public void FlashPlayerHealthHit()
+    {
+        StartCoroutine(flashImageScript.FlashDamageDisplay());
+    }
+    public void FlashPlayerShieldHit()
+    {
+        StartCoroutine(flashImageScript.FlashShieldDisplay());
+    }
 }
