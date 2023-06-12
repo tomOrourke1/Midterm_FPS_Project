@@ -14,8 +14,16 @@ public class Laser : MonoBehaviour
     [SerializeField] float HitRate;
     [SerializeField] bool LaserOn;
 
+    [Header("----- Timed Lasers -----")]
+    [SerializeField] bool TimedLasers;
+    [SerializeField] float LaserUpTime;
+    [SerializeField] float LaserDownTime;
+
+
+
     LineRenderer laser;
     bool attackOnCooldown;
+    float startTime;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +32,7 @@ public class Laser : MonoBehaviour
         attackOnCooldown = false;
 
         ResetLaser();
+        startTime = Time.time;
     }
 
     // Update is called once per frame
@@ -33,17 +42,42 @@ public class Laser : MonoBehaviour
         {
             laser.enabled = true;
             RayCast();
-        } else
+
+            HandleLaser(LaserUpTime);
+        } 
+        else
         {
             laser.enabled = false;
+            HandleLaser(LaserDownTime);
         }
+
     }
+
+
+    void HandleLaser(float time)
+    {
+        if (TimedLasers)
+        {
+            if (Time.time - startTime >= time)
+            {
+                startTime = Time.time;
+                LaserOn = !LaserOn;
+            }
+        }
+
+
+        // if the time.time - start time >= currentTimeAgainst
+        // set time. time
+        // swap bool
+    }
+
+
 
     void RayCast()
     {
         RaycastHit hit;
 
-        if (Physics.Raycast(laser.transform.localPosition, transform.up, out hit, maxDistance))
+        if (Physics.Raycast(transform.position, transform.up, out hit, maxDistance))
         {
             UpdateLaser(hit.point);
 
@@ -63,18 +97,18 @@ public class Laser : MonoBehaviour
     void ResetLaser()
     {
         Vector3 endPoint;
-        endPoint = laser.transform.localPosition;
+        endPoint = transform.position;
 
         Vector3 maxDistPoint = new Vector3(0, maxDistance, 0);
         endPoint += maxDistPoint;
 
-        laser.SetPosition(0, laser.transform.localPosition);
+        laser.SetPosition(0, transform.position);
         laser.SetPosition(1, endPoint);
     }
 
     void UpdateLaser(Vector3 hitPoint = new Vector3())
     {
-        laser.SetPosition(0, laser.transform.localPosition);
+        laser.SetPosition(0, transform.position);
         laser.SetPosition(1, hitPoint);
     }
 
