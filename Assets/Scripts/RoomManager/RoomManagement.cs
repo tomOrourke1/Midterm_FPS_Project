@@ -25,7 +25,5 @@ public class RoomManagement : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-
-
     }
 }
