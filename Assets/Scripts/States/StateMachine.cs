@@ -13,14 +13,8 @@ public class StateMachine
     private Dictionary<IState, List<StateTransition>> _stateTransitions = new Dictionary<IState, List<StateTransition>>();
     private List<StateTransition> _anyStateTransitions = new List<StateTransition>();
 
-    List<IState> states = new List<IState>();
     IState currentState;
 
-
-    public void Add(IState state)
-    {
-        states.Add(state);
-    }
 
     public void AddTransition(IState from, IState to, Func<bool> condition)
     {

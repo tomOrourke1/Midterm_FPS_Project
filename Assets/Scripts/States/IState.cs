@@ -8,4 +8,7 @@ public interface IState
     void OnEnter();
     void OnExit();
 
+    bool ExitCondition() { return false; }
+
+
 }

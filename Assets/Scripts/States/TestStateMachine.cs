@@ -21,11 +21,6 @@ public class TestStateMachine : MonoBehaviour
         var attack = new AttackPlayer();
         var dead = new DeadState();
 
-        _stateMachine.Add(idle);
-        _stateMachine.Add(chasePlayer);
-        _stateMachine.Add(attack);
-        
-
 
         _stateMachine.AddTransition(idle, chasePlayer, () => Vector3.Distance(agent.transform.position, goToPosition.position) > 3);
         _stateMachine.AddTransition(chasePlayer, attack, () => Vector3.Distance(agent.transform.position, goToPosition.position) < 3f);
