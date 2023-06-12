@@ -19,6 +19,9 @@ public class UIManager : MonoBehaviour
     private FlashDamage flashImageScript;
     [SerializeField] Image sceneFader;
 
+    [Header("Hitmarker")]
+    [SerializeField] GameObject hitmarker;
+    
     [Header("Stats UI")]
     [SerializeField] PlayerStatsUI statsUIRef;
     [SerializeField] GameObject playerStatsObj;
@@ -134,6 +137,9 @@ public class UIManager : MonoBehaviour
         pauseMenu.SetActive(false);
         winMenu.SetActive(false);
         loseMenu.SetActive(false);
+        settingsMenu.SetActive(false);
+        radialMenu.SetActive(false);
+        hitmarker.SetActive(false);
     }
     public PlayerStatsUI GetPlayerStats()
     {
@@ -162,5 +168,10 @@ public class UIManager : MonoBehaviour
     public void FlashPlayerShieldHit()
     {
         StartCoroutine(flashImageScript.FlashShieldDisplay());
+    }
+
+    public GameObject GetHitmarker()
+    {
+        return hitmarker;
     }
 }
