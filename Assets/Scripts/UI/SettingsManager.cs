@@ -12,9 +12,18 @@ public class SettingsManager : MonoBehaviour
         masterMix.SetFloat("MasterVolume", vol);
     }
 
-    public void SetMouseSens(float sens)
+    public void SetCameraFOV(float fov)
     {
-        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().fieldOfView = sens;
+        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().fieldOfView = fov;
     }
 
+    public void SetMouseSens(float sens)
+    {
+        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>().SetSensitivity(sens);
+    }
+
+    public void SetCameraInvertY(bool invert)
+    {
+        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>().SetInvert(invert);
+    }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] int sensitivity;
+    [SerializeField] float sensitivity;
 
     [SerializeField] int lockVerMin;
     [SerializeField] int lockVerMax;
@@ -44,5 +44,15 @@ public class CameraController : MonoBehaviour
 
         // Rotates left and right (Y-axis)
         transform.parent.Rotate(Vector3.up * mouseX);
+    }
+
+    public void SetSensitivity(float s)
+    {
+        sensitivity = s;
+    }
+
+    public void SetInvert(bool b)
+    {
+        invertY = b;
     }
 }
