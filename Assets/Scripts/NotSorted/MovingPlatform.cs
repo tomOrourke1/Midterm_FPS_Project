@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MovingPlatform : MonoBehaviour
@@ -10,7 +12,7 @@ public class MovingPlatform : MonoBehaviour
     [Range(1, 100)][SerializeField] float speed;
 
     Transform placeholder;
-    float translatedSpeed;
+    float totalDistance;
     float currentDistance;
     bool moving;
 
@@ -24,8 +26,9 @@ public class MovingPlatform : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        translatedSpeed = 0.0001f * (speed);
-        if (currentDistance >= 1)
+        totalDistance = Vector3.Distance(startPos.position, endPos.position);
+
+        if (currentDistance >= totalDistance)
         {
             moving = false;
             StartCoroutine(Wait());
@@ -33,8 +36,8 @@ public class MovingPlatform : MonoBehaviour
         else if (moving)
         {
             // moving
-            currentDistance += translatedSpeed;
-            transform.localPosition = Vector3.Lerp(startPos.localPosition, endPos.localPosition, currentDistance);
+            currentDistance = Math.Clamp(currentDistance + speed * Time.deltaTime, 0, totalDistance);
+            transform.localPosition = Vector3.MoveTowards(startPos.localPosition, endPos.localPosition, currentDistance);
         }
     }
     
