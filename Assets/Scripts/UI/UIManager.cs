@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public enum MenuState
@@ -97,6 +99,7 @@ public class UIManager : MonoBehaviour
     public void SettingsShown()
     {
         activeMenu.SetActive(false);
+
         activeMenu = settingsMenu;
         activeMenu.SetActive(true);
     }

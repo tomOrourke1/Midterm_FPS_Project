@@ -3274,6 +3274,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   masterMix: {fileID: 24100000, guid: 94efd4a4905cf0d4b932e654d29a8da0, type: 2}
+  volumeSlider: {fileID: 1485371741}
+  fovSlider: {fileID: 8327054479335261458}
+  sensitivitySlider: {fileID: 7567392191910746465}
+  invertYToggle: {fileID: 243872768}
 --- !u!222 &4294380801273587299
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9525,10 +9529,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 4800591055092306446}
   m_HandleRect: {fileID: 4602136288085270496}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 1
   m_MaxValue: 500
   m_WholeNumbers: 1
-  m_Value: 0
+  m_Value: 200
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:

@@ -51,8 +51,18 @@ public class CameraController : MonoBehaviour
         sensitivity = s;
     }
 
+    public float GetSensitivity()
+    {
+        return sensitivity;
+    }
+
     public void SetInvert(bool b)
     {
         invertY = b;
+    }
+
+    public bool GetInvert()
+    {
+        return invertY;
     }
 }
