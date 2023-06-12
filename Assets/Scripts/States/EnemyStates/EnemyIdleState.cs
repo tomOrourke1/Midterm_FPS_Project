@@ -18,7 +18,7 @@ public class EnemyIdleState : EnemyState
 
     public override void OnEnter()
     {
-        base.OnEnter();
+        base.OnEnter(); // this has to be here
         
 
     }
