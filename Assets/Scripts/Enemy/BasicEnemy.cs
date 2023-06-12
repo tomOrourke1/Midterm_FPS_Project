@@ -8,6 +8,7 @@ public class BasicEnemy : EnemyBase, IDamagable
     [SerializeField] EnemyIdleState idleState;
     [SerializeField] EnemyChasePlayerState chasePlayer;
     [SerializeField] EnemyMoveAwayState moveAway;
+    [SerializeField] EnemyStrafeState strafeState;
 
     [Header("--- other values ---")]
     [SerializeField] float attackRange;
@@ -19,13 +20,14 @@ public class BasicEnemy : EnemyBase, IDamagable
         stateMachine = new StateMachine();
         stateMachine.SetState(idleState);
 
-        stateMachine.AddTransition(idleState, chasePlayer, OnChasePlayer);
-        stateMachine.AddTransition(chasePlayer, idleState, OnIdle);
+        stateMachine.AddTransition(strafeState, chasePlayer, OnChasePlayer);
+        stateMachine.AddTransition(chasePlayer, strafeState, OnStrafe);
 
         stateMachine.AddTransition(chasePlayer, moveAway, OnMoveAway);
-        stateMachine.AddTransition(moveAway, idleState, OnIdle);
-        stateMachine.AddTransition(idleState, moveAway, OnMoveAway);
+        stateMachine.AddTransition(moveAway, strafeState, OnStrafe);
+        stateMachine.AddTransition(strafeState, moveAway, OnMoveAway);
 
+        stateMachine.AddTransition(idleState, chasePlayer, OnChasePlayer);
 
 
     }
@@ -45,7 +47,7 @@ public class BasicEnemy : EnemyBase, IDamagable
 
         return enabled && inDistance;
     }
-    bool OnIdle()
+    bool OnStrafe()
     {
         bool enabled = enemyEnabled;
         var dist = Vector3.Distance(GameManager.instance.GetPlayerObj().transform.position, transform.position);

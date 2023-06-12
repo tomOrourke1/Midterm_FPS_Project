@@ -7,7 +7,6 @@ public class EnemyIdleState : EnemyState
 
     public override void Tick()
     {
-
     }
 
 
