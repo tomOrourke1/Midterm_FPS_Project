@@ -9,7 +9,7 @@ public class SettingsManager : MonoBehaviour
 
     public void SetVolume(float vol)
     {
-        masterMix.SetFloat("volume", vol);
+        masterMix.SetFloat("MasterVolume", vol);
     }
 
 
