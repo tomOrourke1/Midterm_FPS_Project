@@ -12,5 +12,9 @@ public class SettingsManager : MonoBehaviour
         masterMix.SetFloat("MasterVolume", vol);
     }
 
+    public void SetMouseSens(float sens)
+    {
+        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().fieldOfView = sens;
+    }
 
 }
