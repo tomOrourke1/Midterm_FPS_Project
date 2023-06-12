@@ -16,8 +16,6 @@ public abstract class EnemyState : MonoBehaviour, IState
     [SerializeField] protected float stoppingDist;
 
 
-    [Header("--- Attack Values ---")]
-    [SerializeField] protected float shootRate;
 
 
 

@@ -19,6 +19,10 @@ public class EnemyBullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.isTrigger)
+            return;
+
+
         IDamagable damagable = other.GetComponent<IDamagable>();
 
         if (damagable != null)
