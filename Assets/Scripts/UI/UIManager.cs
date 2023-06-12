@@ -19,10 +19,11 @@ public class UIManager : MonoBehaviour
     private FlashDamage flashImageScript;
     [SerializeField] Image sceneFader;
 
-    [Header("Stats UI Script")]
+    [Header("Stats UI")]
     [SerializeField] PlayerStatsUI statsUIRef;
+    [SerializeField] GameObject playerStatsObj;
 
-    [Header("Menu States ")]
+    [Header("Menu States")]
     [SerializeField] GameObject activeMenu;
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject winMenu;
@@ -30,9 +31,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject radialMenu;
 
     [Header("Animator Components")]
-    [SerializeField] Animator PausePanel;
-    [SerializeField] Animator WinPanel;
-    [SerializeField] Animator LossPanel;
+    [SerializeField] Animator PauseAnimController;
+    [SerializeField] Animator WinAnimControlller;
+    [SerializeField] Animator LoseAnimController;
 
     private void Awake()
     {
@@ -41,6 +42,7 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
+        DisableMenus();
         statsUIRef = GetComponent<PlayerStatsUI>();
         flashImageScript = GetComponent<FlashDamage>();
     }
@@ -52,8 +54,8 @@ public class UIManager : MonoBehaviour
         {
             activeMenu = pauseMenu;
             activeMenu.SetActive(true);
-            Paused();
-            EnableBoolAnimator(PausePanel);
+            PauseGame();
+            //EnableBoolAnimator(PausePanel);
         }
         else if (activeMenu == null && menuState != MenuState.none)
         {
@@ -63,24 +65,27 @@ public class UIManager : MonoBehaviour
     }
 
     // Sets game to paused state
-    public void Paused()
+    public void PauseGame()
     {
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
-
+        playerStatsObj.SetActive(false);
         menuState = MenuState.none;
     }
 
     // resumes game while paused
     public void Unpaused()
     {
-        DisableBoolAnimator(PausePanel);
-        DisableBoolAnimator(WinPanel);
-        DisableBoolAnimator(LossPanel);
+        PauseAnimController.SetTrigger("ExitPause");
+        LoseAnimController.SetTrigger("ExitLose");
+        WinAnimControlller.SetTrigger("ExitWin");
+
         Time.timeScale = GameManager.instance.GetOriginalTimeScale();
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+
+        playerStatsObj.SetActive(true);
 
         StartCoroutine(WaitToTurnOffUI());
     }
@@ -99,16 +104,14 @@ public class UIManager : MonoBehaviour
         yield return new WaitForSeconds(3);
         activeMenu = winMenu;
         activeMenu.SetActive(true);
-        Paused();
-        EnableBoolAnimator(WinPanel);
+        PauseGame();
     }
 
     public void LoseGame()
     {
-        Paused();
         activeMenu = loseMenu;
         activeMenu.SetActive(true);
-        EnableBoolAnimator(LossPanel);
+        PauseGame();
     }
 
     private void DisableMenus()
@@ -117,20 +120,6 @@ public class UIManager : MonoBehaviour
         winMenu.SetActive(false);
         loseMenu.SetActive(false);
     }
-
-   
-    //Function will remove the pause menu from the screen
-    public void DisableBoolAnimator(Animator animator)
-    {
-        animator.SetBool("IsDisplayed", false);
-    }
-
-    //Will bring the pause menu on screen
-    public void EnableBoolAnimator(Animator animator)
-    {
-        animator.SetBool("IsDisplayed", true);
-    }
-
     public PlayerStatsUI GetPlayerStats()
     {
         return statsUIRef;
