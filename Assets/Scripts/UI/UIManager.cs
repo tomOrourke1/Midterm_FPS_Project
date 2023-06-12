@@ -28,6 +28,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject winMenu;
     [SerializeField] GameObject loseMenu;
+    [SerializeField] GameObject settingsMenu;
     [SerializeField] GameObject radialMenu;
 
     [Header("Animator Components")]
@@ -88,6 +89,20 @@ public class UIManager : MonoBehaviour
         playerStatsObj.SetActive(true);
 
         StartCoroutine(WaitToTurnOffUI());
+    }
+
+    public void SettingsShown()
+    {
+        activeMenu.SetActive(false);
+        activeMenu = settingsMenu;
+        activeMenu.SetActive(true);
+    }
+
+    public void ApplySettings()
+    {
+        activeMenu.SetActive(false);
+        activeMenu = pauseMenu;
+        activeMenu.SetActive(true);
     }
 
     IEnumerator WaitToTurnOffUI()
