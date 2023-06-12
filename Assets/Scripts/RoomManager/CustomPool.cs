@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class CustomPool : MonoBehaviour
 {
@@ -8,9 +9,34 @@ public class CustomPool : MonoBehaviour
     [SerializeField] GameObject objectToPool;
     [SerializeField] int poolCount;
 
+
+
+    /*
+    Object pool requirements
+    
+    store objects in pool
+    
+    Get object in pool
+    - and activate it
+
+    turn off object in pool
+    - reset values on the object
+
+    max Amount of objects
+    initial amount of objects
+
+    Generate more objects if need be
+    - to less <= the object cap 
+
+
+
+
+    */
+
+
+
     private void Start()
     {
-        ResetObj = ReturnObject;
         pool = new List<GameObject>();
         GameObject tempAdd;
         for (int i = 0; i < poolCount; i++)
@@ -41,8 +67,6 @@ public class CustomPool : MonoBehaviour
 
     public int GetPoolCount()
     {
-        Transform temp = null;
-        ResetObj(temp);
         return poolCount;
     }
 
@@ -52,6 +76,4 @@ public class CustomPool : MonoBehaviour
         return null;
     }
 
-    public delegate GameObject ResetObject(Transform loc);
-    public ResetObject ResetObj;
 }
