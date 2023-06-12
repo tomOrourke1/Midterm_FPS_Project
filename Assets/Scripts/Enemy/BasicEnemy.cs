@@ -10,7 +10,6 @@ public class BasicEnemy : EnemyBase, IDamagable
     [SerializeField] EnemyMoveAwayState moveAway;
 
     [Header("--- other values ---")]
-    [SerializeField] float followRange;
     [SerializeField] float attackRange;
     [SerializeField] float moveAwayRange;
 
@@ -25,6 +24,7 @@ public class BasicEnemy : EnemyBase, IDamagable
 
         stateMachine.AddTransition(chasePlayer, moveAway, OnMoveAway);
         stateMachine.AddTransition(moveAway, idleState, OnIdle);
+        stateMachine.AddTransition(idleState, moveAway, OnMoveAway);
 
 
 
@@ -36,19 +36,20 @@ public class BasicEnemy : EnemyBase, IDamagable
         var dist = Vector3.Distance(GameManager.instance.GetPlayerObj().transform.position, transform.position);
 
 
-        return dist < moveAwayRange;
+        return dist <= moveAwayRange;
     }
     bool OnChasePlayer()
     {
         bool enabled = enemyEnabled;
-        bool inDistance = Vector3.Distance(GameManager.instance.GetPlayerObj().transform.position, transform.position) < followRange;
+        bool inDistance = Vector3.Distance(GameManager.instance.GetPlayerObj().transform.position, transform.position) > attackRange;
 
         return enabled && inDistance;
     }
     bool OnIdle()
     {
         bool enabled = enemyEnabled;
-        bool inDistance = Vector3.Distance(GameManager.instance.GetPlayerObj().transform.position, transform.position) > attackRange;
+        var dist = Vector3.Distance(GameManager.instance.GetPlayerObj().transform.position, transform.position);
+        bool inDistance =  (dist <= attackRange) && (dist > moveAwayRange);
         
         return enabled && inDistance;
     }

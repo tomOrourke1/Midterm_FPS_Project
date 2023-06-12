@@ -11,6 +11,7 @@ public abstract class EnemyState : MonoBehaviour, IState
 
     [Header("--- State Agent Values ---")]
     [SerializeField] protected float moveSpeed;
+    [SerializeField] protected float acceleration;
     [SerializeField] protected float rotSpeed;
     [SerializeField] protected float stoppingDist;
 
@@ -23,6 +24,7 @@ public abstract class EnemyState : MonoBehaviour, IState
     protected void SetAgent()
     {
         agent.speed = moveSpeed;
+        agent.acceleration = acceleration;
         agent.angularSpeed = rotSpeed;
         agent.stoppingDistance = stoppingDist;
     }

@@ -9,16 +9,42 @@ public class EnemyMoveAwayState : EnemyState
 
 
 
+    bool canExit;
+
     public override void Tick()
     {
-        var awayPos = transform.position - GameManager.instance.GetPlayerObj().transform.position;
-        awayPos.Normalize();
 
-        awayPos *= pointDistance;
-        NavMeshHit hit;
-        NavMesh.SamplePosition(awayPos, out hit, 100, 1);
-        agent.SetDestination(awayPos + transform.position);
+        var direction = transform.position - GameManager.instance.GetPlayerObj().transform.position;
+        direction.Normalize();
+
+        direction *= pointDistance;
+
+        var newPos = direction + transform.position;
+
+
+        agent.SetDestination(newPos);
+
+
     }
 
 
+    public override void OnEnter()
+    {
+        base.OnEnter();
+        canExit = false;
+
+
+    }
+
+    public override void OnExit()
+    {
+
+
+
+    }
+
+    public override bool ExitCondition()
+    {
+        return canExit;
+    }
 }

@@ -19,13 +19,19 @@ public class Resource
     public float MaxValue => maxValue;
 
 
+    bool depleated = false;
+
     public void Decrease(float amount)
     {
+        if (depleated)
+            return;
+
         curValue = Mathf.Max(curValue - amount, 0);
         OnResourceDecrease?.Invoke();
         if(curValue == 0)
         {
             OnResourceDepleted?.Invoke();
+            depleated = true;
         }
 
     }
@@ -34,11 +40,13 @@ public class Resource
     {
         curValue = Mathf.Min(curValue + amount, maxValue);
         OnResourceIncrease?.Invoke();
+        depleated = false;
     }
 
     public void FillToMax()
     {
         curValue = maxValue;
+        depleated = false;
     }
 
     public bool SpendResource(float amount)

@@ -169,8 +169,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 1462817103}
   moveSpeed: 10
-  rotSpeed: 100
-  stoppingDist: 8
+  acceleration: 50
+  rotSpeed: 600
+  stoppingDist: 7
   shootRate: 999999
 --- !u!1 &276093337
 GameObject:
@@ -218,10 +219,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 1462817103}
   moveSpeed: 20
-  rotSpeed: 400
+  acceleration: 50
+  rotSpeed: 600
   stoppingDist: 0
   shootRate: 0
-  pointDistance: 7.5
+  pointDistance: 6
 --- !u!1 &310094589
 GameObject:
   m_ObjectHideFlags: 0
@@ -969,6 +971,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6075739459790756786, guid: d3e1397c13fe1c5499ce82a0ff389be3, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7213646295399266878, guid: d3e1397c13fe1c5499ce82a0ff389be3, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -995,7 +1001,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7575004612305767516, guid: d3e1397c13fe1c5499ce82a0ff389be3, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5661053257259707748, guid: d3e1397c13fe1c5499ce82a0ff389be3, type: 3}
@@ -1428,9 +1434,8 @@ MonoBehaviour:
   idleState: {fileID: 1736496689}
   chasePlayer: {fileID: 107953530}
   moveAway: {fileID: 276093339}
-  followRange: 20
-  attackRange: 14
-  moveAwayRange: 8
+  attackRange: 10
+  moveAwayRange: 6
 --- !u!136 &1462817099
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1600,7 +1605,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 1462817103}
   moveSpeed: 5
-  rotSpeed: 50
+  acceleration: 50
+  rotSpeed: 600
   stoppingDist: 6
   shootRate: 1
 --- !u!1 &1776055925

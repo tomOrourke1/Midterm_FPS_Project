@@ -20,18 +20,18 @@ public class PlayerResources : MonoBehaviour, IDamagable, IHealReciever, IFocusR
     private void OnEnable()
     {
         health.OnResourceDepleted += PlayerDied;
-        //health.OnResourceDecrease += UIManager.instance.FlashPlayerHealthHit;
+        health.OnResourceDecrease += FlashDamage;
 
-        //shield.OnResourceDepleted += UIManager.instance.FlashBreakShield;
-        //shield.OnResourceDecrease += UIManager.instance.FlashPlayerShieldHit;
+        shield.OnResourceDepleted += BreakShield;
+        shield.OnResourceDecrease += FlashShield;
     }
     private void OnDisable()
     {
         health.OnResourceDepleted -= PlayerDied;
-        //health.OnResourceDecrease -= UIManager.instance.FlashPlayerHealthHit;
+        health.OnResourceDecrease -= FlashDamage;
 
-        //shield.OnResourceDepleted -= UIManager.instance.FlashBreakShield;
-        //shield.OnResourceDecrease -= UIManager.instance.FlashPlayerShieldHit;
+        shield.OnResourceDepleted -= BreakShield;
+        shield.OnResourceDecrease -= FlashShield;
     }
 
     public void TakeDamage(float dmg)
@@ -82,5 +82,19 @@ public class PlayerResources : MonoBehaviour, IDamagable, IHealReciever, IFocusR
         health.FillToMax();
         shield.FillToMax();
         focus.FillToMax();
+    }
+
+
+    private void FlashDamage()
+    {
+        UIManager.instance.FlashPlayerHealthHit();
+    }
+    private void FlashShield()
+    {
+        UIManager.instance.FlashPlayerShieldHit();
+    }
+    private void BreakShield()
+    {
+        UIManager.instance.FlashBreakShield();
     }
 }
