@@ -15,7 +15,6 @@ public class InputManager : MonoBehaviour
     public GameInput Input => input;
     public GameInput.PlayerActions Action => input.Player;
 
-
     private void Awake()
     {
         Instance = this;
@@ -27,7 +26,9 @@ public class InputManager : MonoBehaviour
         input.Player.Enable();
 
         input.Player.Escape.performed += OnEscape;
-        input.Player.OpenRadialWheel.performed += OnRadMenu;
+        input.Player.OpenRadialWheel.started += OnRadMenu;
+        input.Player.OpenRadialWheel.performed += OnRadUpdate;
+        input.Player.OpenRadialWheel.canceled += OnRadClose;
     }
 
     private void OnEnable()
@@ -37,31 +38,31 @@ public class InputManager : MonoBehaviour
     private void OnDisable()
     {
         input.Player.Escape.performed -= OnEscape;
-        input.Player.OpenRadialWheel.performed -= OnRadMenu;
+        input.Player.OpenRadialWheel.started -= OnRadMenu;
+        input.Player.OpenRadialWheel.performed -= OnRadUpdate;
+        input.Player.OpenRadialWheel.canceled -= OnRadClose;
+
     }
 
     private void OnRadMenu(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        if (context.action.inProgress)
-        {
-            UIManager.instance.UpdateRadialWheel();
-        }
-        else if (context.action.WasPressedThisFrame())
-        {
-            UIManager.instance.ShowRadialMenu();
-        }
-        else if (context.action.WasReleasedThisFrame())
-        {
-            UIManager.instance.HideRadialMenu();
-        }
+        UIManager.instance.ShowRadialMenu();
+    }
+
+    private void OnRadUpdate(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        UIManager.instance.UpdateRadialWheel();
+    }
+
+    private void OnRadClose(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        UIManager.instance.HideRadialMenu();
     }
 
     private void OnEscape(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
         UIManager.instance.PauseGame();
     }
-
-
 
     private void Update()
     {

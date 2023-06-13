@@ -68,44 +68,73 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    // Get/Set area, for any private variable that needs to be retrieved and/set then do it through
-    // a Get/Set function
-
+    /// <summary>
+    /// Gets the key counter for the room manager.
+    /// </summary>
+    /// <returns></returns>
     public int GetKeyCounter()
     {
         return KeyCounter;
     }
 
+    /// <summary>
+    /// Returns the player spawn position as a game object. Used in the player script.
+    /// </summary>
+    /// <returns></returns>
     public GameObject GetPlayerSpawnPOS()
     {
         return PlayerSpawnPOS;
     }
 
+    /// <summary>
+    /// Sets the key amount to a certain value.
+    /// </summary>
+    /// <param name="counter">The value to change to.</param>
     public void SetKeyCounter(int counter)
     {
         KeyCounter = counter;
     }
 
+    /// <summary>
+    /// Moves the player spawn position to where the passed in object is.
+    /// </summary>
+    /// <param name="_spawnPosGameObj">Game Object to change the position to.</param>
     public void SetPlayerSpawnPos(GameObject _spawnPosGameObj)
     {
         PlayerSpawnPOS = _spawnPosGameObj;
     }
 
+    /// <summary>
+    /// Returns the original time scale that the game was in.
+    /// </summary>
+    /// <returns></returns>
     public float GetOriginalTimeScale()
     {
         return timescaleOrig;
     }
 
+    /// <summary>
+    /// Returns the player object. Used in many enemy based scripts.
+    /// </summary>
+    /// <returns></returns>
     public GameObject GetPlayerObj()
     {
         return player;
     }
 
+    /// <summary>
+    /// Returns the player script. Should be used in respawning.
+    /// </summary>
+    /// <returns></returns>
     public Player GetPlayerScript()
     {
         return playerscript;
     }
 
+    /// <summary>
+    /// Returns the player resources script. 
+    /// </summary>
+    /// <returns></returns>
     public PlayerResources GetPlayerResources()
     {
         return playerResources;
