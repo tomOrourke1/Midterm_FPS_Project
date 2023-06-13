@@ -24,12 +24,13 @@ public class InputManager : MonoBehaviour
     {
         input = new GameInput();
         input.Player.Enable();
+
+        input.Player.Escape.performed += OnEscape;
+        input.Player.OpenRadialWheel.performed += OnRadMenu;
     }
 
     private void OnEnable()
     {
-        input.Player.Escape.performed += OnEscape;
-        input.Player.OpenRadialWheel.performed += OnRadMenu;
     }
     private void OnDisable()
     {
