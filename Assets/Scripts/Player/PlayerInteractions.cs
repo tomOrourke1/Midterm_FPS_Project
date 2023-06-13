@@ -7,7 +7,6 @@ public class PlayerInteractions : MonoBehaviour
 {
     [Header("Components")]
     [SerializeField] bool inTransition;
-    [SerializeField] float waitRate = 1.0f;
 
     private void Start()
     {

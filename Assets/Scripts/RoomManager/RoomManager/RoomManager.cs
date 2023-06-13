@@ -2,19 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
-public enum  SpawnAbles
-{
-    basicEnemy,
-    machineGunner,
-    turret,
-    scientist,
-    key,
-    box
-}
-
-
 public class RoomManager : MonoBehaviour
 {
 
@@ -29,8 +16,6 @@ public class RoomManager : MonoBehaviour
 
     // doors locked status
     // read the room function
-
-
 
     [SerializeField] Transform boxTrans;
     [SerializeField] BoxCollider box;

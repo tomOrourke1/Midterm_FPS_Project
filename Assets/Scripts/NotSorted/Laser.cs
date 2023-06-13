@@ -22,14 +22,12 @@ public class Laser : MonoBehaviour
 
 
     LineRenderer laser;
-    bool attackOnCooldown;
     float startTime;
 
     // Start is called before the first frame update
     void Start()
     {
         laser = GetComponent<LineRenderer>();
-        attackOnCooldown = false;
 
         ResetLaser();
         startTime = Time.time;
