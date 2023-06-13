@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class MoveableObject : MonoBehaviour, ITelekinesis
+public class MoveableObject : MonoBehaviour, ITelekinesis, IEntity
 {
 
     [SerializeField] Rigidbody rb;
@@ -53,5 +53,10 @@ public class MoveableObject : MonoBehaviour, ITelekinesis
     public Vector3 GetVelocity()
     {
         return rb.velocity;
+    }
+
+    public void Respawn()
+    {
+        Destroy(gameObject);
     }
 }
