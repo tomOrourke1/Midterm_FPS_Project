@@ -37,7 +37,7 @@ public class fingerGun : MonoBehaviour
                 UIManager.instance.GetHitmarker().SetActive(true);
                 yield return new WaitForSeconds(0.05f);
                 UIManager.instance.GetHitmarker().SetActive(false);
-                GameManager.instance.GetPlayerResources().AddFocus(focusPerShot);
+                gameManager.instance.GetPlayerResources().AddFocus(focusPerShot);
             }
         }
 

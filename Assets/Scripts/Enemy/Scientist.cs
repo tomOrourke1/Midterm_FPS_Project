@@ -25,11 +25,11 @@ public class Scientist : MonoBehaviour, IDamagable
     // Update is called once per frame
     void Update()
     {
-        float distanceFromPlay = Vector3.Distance(transform.position, GameManager.instance.GetPlayerObj().transform.position);
+        float distanceFromPlay = Vector3.Distance(transform.position, gameManager.instance.GetPlayerObj().transform.position);
 
         if(distanceFromPlay < runAwayDist)
         {
-            Vector3 playerDir = transform.position - GameManager.instance.GetPlayerObj().transform.position;
+            Vector3 playerDir = transform.position - gameManager.instance.GetPlayerObj().transform.position;
 
             Vector3 newPos = transform.position + playerDir;
 
@@ -41,7 +41,7 @@ public class Scientist : MonoBehaviour, IDamagable
     {
         scientistHP -= playerDmg;
 
-        agent.SetDestination(GameManager.instance.GetPlayerObj().transform.position);
+        agent.SetDestination(gameManager.instance.GetPlayerObj().transform.position);
         StartCoroutine(EnemyDamageFlash());
 
         if (scientistHP <= 0)

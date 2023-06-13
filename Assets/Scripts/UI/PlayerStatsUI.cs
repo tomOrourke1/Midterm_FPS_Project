@@ -16,7 +16,7 @@ public class PlayerStatsUI : MonoBehaviour
 
     void Start()
     {
-        instance = GameManager.instance.GetPlayerResources();
+        instance = gameManager.instance.GetPlayerResources();
         UpdateValues();
     }
 
@@ -25,7 +25,7 @@ public class PlayerStatsUI : MonoBehaviour
     {
         if(instance == null)
         {
-            instance = GameManager.instance.GetPlayerResources();
+            instance = gameManager.instance.GetPlayerResources();
         }
 
         focusSlider.fillAmount = instance.Focus.GetPercent();

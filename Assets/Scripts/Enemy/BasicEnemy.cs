@@ -63,7 +63,7 @@ public class BasicEnemy : EnemyBase, IDamagable
 
     bool OnMoveAway()
     {
-        var dist = Vector3.Distance(GameManager.instance.GetPlayerObj().transform.position, transform.position);
+        var dist = Vector3.Distance(gameManager.instance.GetPlayerObj().transform.position, transform.position);
 
 
         return dist <= moveAwayRange;
@@ -71,14 +71,14 @@ public class BasicEnemy : EnemyBase, IDamagable
     bool OnChasePlayer()
     {
         bool enabled = enemyEnabled;
-        bool inDistance = Vector3.Distance(GameManager.instance.GetPlayerObj().transform.position, transform.position) > attackRange;
+        bool inDistance = Vector3.Distance(gameManager.instance.GetPlayerObj().transform.position, transform.position) > attackRange;
 
         return enabled && inDistance;
     }
     bool OnStrafe()
     {
         bool enabled = enemyEnabled;
-        var dist = Vector3.Distance(GameManager.instance.GetPlayerObj().transform.position, transform.position);
+        var dist = Vector3.Distance(gameManager.instance.GetPlayerObj().transform.position, transform.position);
         bool inDistance =  (dist <= attackRange) && (dist > moveAwayRange);
         
         return enabled && inDistance;

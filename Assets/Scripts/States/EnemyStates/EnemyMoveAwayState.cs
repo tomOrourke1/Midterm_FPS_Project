@@ -14,7 +14,7 @@ public class EnemyMoveAwayState : EnemyState
     public override void Tick()
     {
 
-        var direction = transform.position - GameManager.instance.GetPlayerObj().transform.position;
+        var direction = transform.position - gameManager.instance.GetPlayerObj().transform.position;
         direction.Normalize();
 
         direction *= pointDistance;
