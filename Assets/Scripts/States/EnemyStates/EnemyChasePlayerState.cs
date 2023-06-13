@@ -14,7 +14,7 @@ public class EnemyChasePlayerState : EnemyState
         //var dist = Vector3.Distance(GameManager.instance.GetPlayerObj().transform.position, transform.position);
 
 
-        agent.SetDestination(gameManager.instance.GetPlayerObj().transform.position);
+        agent.SetDestination(GameManager.instance.GetPlayerObj().transform.position);
     }
 
 

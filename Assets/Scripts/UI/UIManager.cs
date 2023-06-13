@@ -70,8 +70,8 @@ public class UIManager : MonoBehaviour
     // Sets game to paused state
     public void PauseGame()
     {
-        gameManager.instance.TimePause();
-        gameManager.instance.MouseUnlockShow();
+        GameManager.instance.TimePause();
+        GameManager.instance.MouseUnlockShow();
         playerStatsObj.SetActive(false);
         menuState = MenuState.none;
     }
@@ -83,8 +83,8 @@ public class UIManager : MonoBehaviour
         LoseAnimController.SetTrigger("ExitLose");
         WinAnimControlller.SetTrigger("ExitWin");
 
-        gameManager.instance.TimeUnpause();
-        gameManager.instance.MouseLockHide();
+        GameManager.instance.TimeUnpause();
+        GameManager.instance.MouseLockHide();
         playerStatsObj.SetActive(true);
 
 

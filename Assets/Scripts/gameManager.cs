@@ -2,9 +2,9 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 
-public class gameManager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-    public static gameManager instance;
+    public static GameManager instance;
 
     [Header("-----Player Stuff-----")]
     [SerializeField] GameObject player;

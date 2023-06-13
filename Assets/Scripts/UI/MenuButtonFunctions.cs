@@ -35,7 +35,7 @@ public class MenuButtonFunctions : MonoBehaviour
     public void Respawn()
     {
         UIManager.instance.Unpaused();
-        gameManager.instance.GetPlayerScript().RespawnPlayer();
+        GameManager.instance.GetPlayerScript().RespawnPlayer();
     }
 
 }

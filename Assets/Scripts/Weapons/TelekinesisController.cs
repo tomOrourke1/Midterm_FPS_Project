@@ -86,7 +86,7 @@ public class TelekinesisController : MonoBehaviour
             {
                 stachedObject = hit.collider.GetComponent<ITelekinesis>();
                 timePressed = 0;
-                if(stachedObject != null && gameManager.instance.GetPlayerResources().SpendFocus(focusCost))
+                if(stachedObject != null && GameManager.instance.GetPlayerResources().SpendFocus(focusCost))
                 {
                     originalPos = stachedObject.GetPosition();
                     stachedObject.GetRigidbody().useGravity = false;

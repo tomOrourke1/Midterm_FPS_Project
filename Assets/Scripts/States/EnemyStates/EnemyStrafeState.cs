@@ -14,7 +14,7 @@ public class EnemyStrafeState : EnemyState
     public override void Tick()
     {
 
-        var playerPos = gameManager.instance.GetPlayerObj().transform.position;
+        var playerPos = GameManager.instance.GetPlayerObj().transform.position;
         var dirToPlayer = (playerPos - transform.position);
         dirToPlayer.y = 0;
         dirToPlayer.Normalize();

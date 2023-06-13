@@ -135,9 +135,9 @@ public class Player : MonoBehaviour
     public void RespawnPlayer()
     {
         controller.enabled = false;
-        if(gameManager.instance != null && gameManager.instance.GetPlayerSpawnPOS() != null)
+        if(GameManager.instance != null && GameManager.instance.GetPlayerSpawnPOS() != null)
         {
-            var tra = gameManager.instance.GetPlayerSpawnPOS().transform;
+            var tra = GameManager.instance.GetPlayerSpawnPOS().transform;
             transform.position = tra.position;
             var forward = tra.forward;
             forward.y = 0;
@@ -228,7 +228,7 @@ public class Player : MonoBehaviour
     {
         currentDashes = maxDashes;
         jumpTimes = 0;
-        gameManager.instance.GetPlayerResources().FillAllStats();
+        GameManager.instance.GetPlayerResources().FillAllStats();
 
         UIManager.instance.GetPlayerStats().UpdateValues();
     }
