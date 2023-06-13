@@ -183,6 +183,7 @@ public class RadialMenu : MonoBehaviour
 
             if (withinBounds && _slices[sliceIndex].GetBool())
                 DisplayKinesisInRadialMenu(sliceIndex);
+
         }
     }
 
@@ -229,34 +230,6 @@ public class RadialMenu : MonoBehaviour
         // into the slices and update what radial option slice we chose.
         trackedKinesis = idx;
         selector.transform.rotation = Quaternion.Euler(0, 0, idx * sliceAng + (sliceAng * 1) - offsetAngle);
-    }
-
-    public void UpdateKeys()
-    {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            ShowRadialMenu();
-            // Replace with turning off camera input part later
-            GameObject.Find("Player").GetComponentInChildren<CameraController>().enabled = false;
-            Cursor.lockState = CursorLockMode.Confined;
-            //  gameManager.instance.activeMenu = gameManager.instance.radialMenu;
-            UIManager.instance.menuState = MenuState.active;
-        }
-
-        if (Input.GetKeyUp(KeyCode.Q))
-        {
-            HideRadialMenu();
-            // Replace with turning on camera input part later
-            GameObject.Find("Player").GetComponentInChildren<CameraController>().enabled = true;
-            SelectKinesis(trackedKinesis);
-            Cursor.lockState = CursorLockMode.Locked;
-            //  gameManager.instance.activeMenu = null;
-            UIManager.instance.menuState = MenuState.radial;
-        }
-
-        if (Input.GetKey(KeyCode.Q) && isMenuBeingShown)
-        {
-        }
     }
 
     void UpdateSlices()

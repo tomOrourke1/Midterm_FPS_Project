@@ -10,6 +10,7 @@ public class InputManager : MonoBehaviour
     public static InputManager Instance;
 
     GameInput input;
+    bool isRadialShowing;
 
     // properties
     public GameInput Input => input;
@@ -26,9 +27,11 @@ public class InputManager : MonoBehaviour
         input.Player.Enable();
 
         input.Player.Escape.performed += OnEscape;
-        input.Player.OpenRadialWheel.started += OnRadMenu;
-        input.Player.OpenRadialWheel.performed += OnRadUpdate;
+        input.Player.OpenRadialWheel.started += OnRadShow;
         input.Player.OpenRadialWheel.canceled += OnRadClose;
+
+
+        isRadialShowing = false;
     }
 
     private void OnEnable()
@@ -38,36 +41,49 @@ public class InputManager : MonoBehaviour
     private void OnDisable()
     {
         input.Player.Escape.performed -= OnEscape;
-        input.Player.OpenRadialWheel.started -= OnRadMenu;
-        input.Player.OpenRadialWheel.performed -= OnRadUpdate;
+        input.Player.OpenRadialWheel.started -= OnRadShow;
         input.Player.OpenRadialWheel.canceled -= OnRadClose;
 
     }
 
-    private void OnRadMenu(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    private void OnRadShow(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        UIManager.instance.ShowRadialMenu();
-    }
-
-    private void OnRadUpdate(UnityEngine.InputSystem.InputAction.CallbackContext context)
-    {
-        UIManager.instance.UpdateRadialWheel();
+        if (UIManager.instance.currentState == MenuState.none)
+        {
+            UIManager.instance.ShowRadialMenu();
+            isRadialShowing = true;
+        }
     }
 
     private void OnRadClose(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        UIManager.instance.HideRadialMenu();
+        if (UIManager.instance.currentState == MenuState.radial)
+        {
+            UIManager.instance.HideRadialMenu();
+            isRadialShowing = false;
+        }
     }
 
     private void OnEscape(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        UIManager.instance.PauseGame();
+        if (UIManager.instance.currentState == MenuState.none)
+        {
+            UIManager.instance.PauseGame();
+        }
+        else if (UIManager.instance.currentState == MenuState.paused)
+        {
+            UIManager.instance.Unpaused();
+        }
     }
 
     private void Update()
     {
-
+        if (UIManager.instance.currentState == MenuState.radial && isRadialShowing)
+        {
+            UIManager.instance.UpdateRadialWheel();
+        }
     }
+
 
 
 }

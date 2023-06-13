@@ -10,14 +10,14 @@ using UnityEngine.UI;
 public enum MenuState
 {
     radial,
-    active,
+    paused,
     none
 }
 
 public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
-    public MenuState menuState;
+    public MenuState currentState;
     private FlashDamage flashImageScript;
 
     [Header("Radial Menu Script")]
@@ -61,12 +61,13 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void PauseGame()
     {
+        currentState = MenuState.paused;
         activeMenu = pauseMenu;
         activeMenu.SetActive(true);
         GameManager.instance.TimePause();
         GameManager.instance.MouseUnlockShow();
         playerStatsObj.SetActive(false);
-        menuState = MenuState.none;
+        PauseAnimController.SetBool("ExitPause", false);
     }
 
     /// <summary>
@@ -74,17 +75,14 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void Unpaused()
     {
-        PauseAnimController.SetTrigger("ExitPause");
-        LoseAnimController.SetTrigger("ExitLose");
-        WinAnimControlller.SetTrigger("ExitWin");
-
+        PauseAnimController.SetBool("ExitPause", true);
         GameManager.instance.TimeUnpause();
         GameManager.instance.MouseLockHide();
         playerStatsObj.SetActive(true);
 
-
+        currentState = MenuState.none;
         // See if we can fix this glitch.
-        StartCoroutine(WaitToTurnOffUI());
+        //StartCoroutine(WaitToTurnOffUI());
     }
 
     /// <summary>
@@ -92,6 +90,10 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void ShowRadialMenu()
     {
+        currentState = MenuState.radial;
+        Cursor.lockState = CursorLockMode.Confined;
+        GameManager.instance.TimePause();
+        TurnOffCameraScript();
         radialScript.ShowRadialMenu();
     }
 
@@ -101,6 +103,10 @@ public class UIManager : MonoBehaviour
     public void HideRadialMenu()
     {
         radialScript.HideRadialMenu();
+        Cursor.lockState = CursorLockMode.Locked;
+        GameManager.instance.TimeUnpause();
+        TurnOnCameraScript();
+        currentState = MenuState.none;
     }
 
     /// <summary>
@@ -134,6 +140,24 @@ public class UIManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Turns off the player's camera script so the radial menu can update.
+    /// Should only be called in the ShowRadialMenu Script.
+    /// </summary>
+    public void TurnOffCameraScript()
+    {
+        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>().enabled = false;
+    }
+
+    /// <summary>
+    /// Turns on the player's camera script so the radial menu can update.
+    /// Should only be called in the HideRadialMenu Script.
+    /// </summary>
+    public void TurnOnCameraScript()
+    {
+        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>().enabled = true;
+    }
+
+    /// <summary>
     /// I dont know. This is apparently here to fix a bug, but might not be needed. Will need to test that.
     /// </summary>
     /// <returns></returns>
@@ -142,8 +166,6 @@ public class UIManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         activeMenu.SetActive(false);
         activeMenu = null;
-
-        menuState = MenuState.radial;
     }
 
     /// <summary>
