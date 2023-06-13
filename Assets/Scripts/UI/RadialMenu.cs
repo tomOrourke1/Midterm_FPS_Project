@@ -135,10 +135,7 @@ public class RadialMenu : MonoBehaviour
         reticleUI.SetActive(!isMenuBeingShown);
         translucentBackground.SetActive(isMenuBeingShown);
         radialUI.SetActive(isMenuBeingShown);
-        if (isMenuBeingShown)
-            Time.timeScale = 0;
-        else
-            Time.timeScale = timescaleOriginal;
+        
     }
 
     void UpdateMousePosition()
@@ -163,31 +160,23 @@ public class RadialMenu : MonoBehaviour
         {
             // Checks to see if the current slice is within the minimum or maximum angles
             // of the slice. 
-
             float minAngle = sliceIndex * sliceAng + offsetAngle;
             float maxAngle = (sliceIndex + 1) * sliceAng + offsetAngle;
 
             if (minAngle >= 360)
-            {
                 minAngle -= 360;
-            }
 
             if (maxAngle >= 360)
-            {
                 maxAngle -= 360;
-            }
 
             bool withinBounds = minAngle > rotateAngle && rotateAngle < maxAngle;
             Debug.Log(withinBounds);
-
 
             //withinRadialMin = rotateAngle > minAngle;
             //withinRadialMax = rotateAngle < maxAngle;
 
             if (withinBounds && _slices[sliceIndex].GetBool())
-            {
                 DisplayKinesisInRadialMenu(sliceIndex);
-            }
         }
     }
 
@@ -264,26 +253,6 @@ public class RadialMenu : MonoBehaviour
             UpdateSelectedItem();
         }
     }
-
-    //void GenerateSlices()
-    //{
-    //    for (int sliceIndex = 0; sliceIndex < _slices.Length; ++sliceIndex)
-    //    {
-    //        // ToDo
-    //        // Start at a single point, so the first radial item, then rotate around on a pivot
-    //        // and instantiate at those places. try that
-
-    //        Quaternion rot = Quaternion.Euler(0, 0, (sliceIndex) * sliceAng);
-
-    //        float xPos, yPos;
-    //        yPos = sliceDistanceFromCenter * Mathf.Sin(sliceAng * (sliceIndex) * Mathf.Deg2Rad);
-    //        yPos += Screen.height / 2;
-    //        xPos = sliceDistanceFromCenter * Mathf.Cos(sliceAng * (sliceIndex) * Mathf.Deg2Rad);
-    //        xPos += Screen.width / 2;
-
-    //        Instantiate(_slices[sliceIndex].GetSlice(), new Vector3(xPos, yPos, 0), rot, sliceParentTransform);
-    //    }
-    //}
 
     void UpdateSlices()
     {

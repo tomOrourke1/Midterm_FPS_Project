@@ -52,7 +52,6 @@ public class UIManager : MonoBehaviour
         statsUIRef = GetComponent<PlayerStatsUI>();
         flashImageScript = GetComponent<FlashDamage>();
     }
-
     private void Update()
     {
         //pauses the game
@@ -67,15 +66,12 @@ public class UIManager : MonoBehaviour
         {
             //radialMenuScriptRef.UpdateKeys();
         }
-
     }
-
     // Sets game to paused state
     public void PauseGame()
     {
-        Time.timeScale = 0;
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.Confined;
+        GameManager.instance.TimePause();
+        GameManager.instance.MouseUnlockShow();
         playerStatsObj.SetActive(false);
         menuState = MenuState.none;
     }
@@ -87,12 +83,12 @@ public class UIManager : MonoBehaviour
         LoseAnimController.SetTrigger("ExitLose");
         WinAnimControlller.SetTrigger("ExitWin");
 
-        Time.timeScale = GameManager.instance.GetOriginalTimeScale();
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-
+        GameManager.instance.TimeUnpause();
+        GameManager.instance.MouseLockHide();
         playerStatsObj.SetActive(true);
 
+
+        // See if we can fix this glitch.
         StartCoroutine(WaitToTurnOffUI());
     }
 

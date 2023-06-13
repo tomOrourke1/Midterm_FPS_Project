@@ -8,27 +8,27 @@ public class CustomPool : MonoBehaviour
     [SerializeField] List<GameObject> pool;
     [SerializeField] GameObject objectToPool;
     [SerializeField] int poolCount;
+    [SerializeField] int minAmount;
+    [SerializeField] int maxAmount;
 
 
-
-    /*
-    Object pool requirements
-    
-    store objects in pool
-    
-    Get object in pool
-    - and activate it
-
-    turn off object in pool
-    - reset values on the object
-
-    max Amount of objects
-    initial amount of objects
-
-    Generate more objects if need be
-    - to less <= the object cap 
-
-
+    /*     
+           Object pool requirements
+           
+   Done    store objects in pool
+           
+   Done    Get object in pool
+   Done    - and activate it
+           
+   Not     turn off object in pool
+  Entirely - reset values on the object
+   Done    
+           
+  Done-    max Amount of objects
+  Done-    initial amount of objects
+           
+   Not     Generate more objects if need be
+   Done    - to less <= the object cap 
 
 
     */
@@ -49,7 +49,6 @@ public class CustomPool : MonoBehaviour
 
     public GameObject GetPooledObject()
     {
-
         for (int i = 0; i < poolCount; i++)
         {
             if (!pool[i].activeInHierarchy)
@@ -72,7 +71,6 @@ public class CustomPool : MonoBehaviour
 
     public GameObject ReturnObject(Transform loc)
     {
-        
         return null;
     }
 

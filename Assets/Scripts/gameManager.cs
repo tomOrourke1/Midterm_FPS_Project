@@ -15,7 +15,6 @@ public class GameManager : MonoBehaviour
     [Header("Objective Items")]
     [SerializeField] int KeyCounter;
 
-
     private float timescaleOrig;
 
     void Awake()
@@ -28,6 +27,47 @@ public class GameManager : MonoBehaviour
         playerscript = player.GetComponent<Player>();
         playerResources = player.GetComponent<PlayerResources>();
         PlayerSpawnPOS = GameObject.FindGameObjectWithTag("Player Spawn Pos");
+    }
+
+    private void Start()
+    {
+        timescaleOrig = Time.timeScale;
+    }
+
+   
+
+    /// <summary>
+    /// Pauses Time.
+    /// </summary>
+    public void TimePause()
+    {
+        Time.timeScale = 0;
+    }
+
+    /// <summary>
+    /// Unpauses time to the original time scale.
+    /// </summary>
+    public void TimeUnpause()
+    {
+        Time.timeScale = timescaleOrig;
+    }
+
+    /// <summary>
+    /// Sets the mouse to visible and sets the cursors lock state to confined.
+    /// </summary>
+    public void MouseUnlockShow()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
+    }
+
+    /// <summary>
+    /// Sets the mouse to hide and then locks it from moving.
+    /// </summary>
+    public void MouseLockHide()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Get/Set area, for any private variable that needs to be retrieved and/set then do it through
