@@ -34,8 +34,6 @@ public class GameManager : MonoBehaviour
         timescaleOrig = Time.timeScale;
     }
 
-   
-
     /// <summary>
     /// Pauses Time.
     /// </summary>
@@ -77,6 +75,7 @@ public class GameManager : MonoBehaviour
     {
         return KeyCounter;
     }
+
     public GameObject GetPlayerSpawnPOS()
     {
         return PlayerSpawnPOS;

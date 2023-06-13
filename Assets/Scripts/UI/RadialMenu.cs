@@ -110,7 +110,6 @@ public class RadialMenu : MonoBehaviour
 
     #endregion
 
-    float timescaleOriginal;
     float offsetAngle;
 
     private void Start()
@@ -125,17 +124,28 @@ public class RadialMenu : MonoBehaviour
         isMenuBeingShown = false;
         radialUI.SetActive(isMenuBeingShown);
         translucentBackground.SetActive(isMenuBeingShown);
-        timescaleOriginal = Time.timeScale;
     }
 
-    void ToggleMenu()
+    /// <summary>
+    /// Turns the radial menu to the ON state.
+    /// </summary>
+    public void ShowRadialMenu()
     {
         UpdateSlices();
-        isMenuBeingShown = !isMenuBeingShown;
-        reticleUI.SetActive(!isMenuBeingShown);
-        translucentBackground.SetActive(isMenuBeingShown);
-        radialUI.SetActive(isMenuBeingShown);
-        
+        reticleUI.SetActive(false);
+        translucentBackground.SetActive(true);
+        radialUI.SetActive(true);
+    }
+
+    /// <summary>
+    /// Turns the radial menu to the OFF state.
+    /// </summary>
+    public void HideRadialMenu()
+    {
+        reticleUI.SetActive(true);
+        translucentBackground.SetActive(false);
+        radialUI.SetActive(false);
+        UpdateSlices();
     }
 
     void UpdateMousePosition()
@@ -170,10 +180,6 @@ public class RadialMenu : MonoBehaviour
                 maxAngle -= 360;
 
             bool withinBounds = minAngle > rotateAngle && rotateAngle < maxAngle;
-            Debug.Log(withinBounds);
-
-            //withinRadialMin = rotateAngle > minAngle;
-            //withinRadialMax = rotateAngle < maxAngle;
 
             if (withinBounds && _slices[sliceIndex].GetBool())
                 DisplayKinesisInRadialMenu(sliceIndex);
@@ -227,30 +233,29 @@ public class RadialMenu : MonoBehaviour
 
     public void UpdateKeys()
     {
-        if (Input.GetKeyDown(KeyCode.Q) && UIManager.instance.menuState != MenuState.none)
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            ToggleMenu();
-            GameObject.Find("Player").GetComponentInChildren<CameraController>().enabled = !isMenuBeingShown;
+            ShowRadialMenu();
+            // Replace with turning off camera input part later
+            GameObject.Find("Player").GetComponentInChildren<CameraController>().enabled = false;
             Cursor.lockState = CursorLockMode.Confined;
             //  gameManager.instance.activeMenu = gameManager.instance.radialMenu;
             UIManager.instance.menuState = MenuState.active;
         }
 
-        if (Input.GetKeyUp(KeyCode.Q) || UIManager.instance.menuState == MenuState.none)
+        if (Input.GetKeyUp(KeyCode.Q))
         {
-            ToggleMenu();
-            GameObject.Find("Player").GetComponentInChildren<CameraController>().enabled = !isMenuBeingShown;
+            HideRadialMenu();
+            // Replace with turning on camera input part later
+            GameObject.Find("Player").GetComponentInChildren<CameraController>().enabled = true;
             SelectKinesis(trackedKinesis);
             Cursor.lockState = CursorLockMode.Locked;
             //  gameManager.instance.activeMenu = null;
             UIManager.instance.menuState = MenuState.radial;
         }
 
-        if (Input.GetKey(KeyCode.Q) && isMenuBeingShown && UIManager.instance.menuState != MenuState.none)
+        if (Input.GetKey(KeyCode.Q) && isMenuBeingShown)
         {
-            UpdateSlices();
-            UpdateMousePosition();
-            UpdateSelectedItem();
         }
     }
 
@@ -264,5 +269,18 @@ public class RadialMenu : MonoBehaviour
                 _slices[sliceIndex].GetSlice().GetComponent<Image>().material = disabledColor;
 
         }
+    }
+
+    /// <summary>
+    /// Runs the 3 functions to
+    /// 1. Update the Slices.
+    /// 2. Update where the mouse is positioned at.
+    /// 3. Update which selected slice you are highlighting.
+    /// </summary>
+    public void SelectSlice()
+    {
+        UpdateSlices();
+        UpdateMousePosition();
+        UpdateSelectedItem();
     }
 }

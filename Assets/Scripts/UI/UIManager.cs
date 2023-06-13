@@ -19,14 +19,9 @@ public class UIManager : MonoBehaviour
     public static UIManager instance;
     public MenuState menuState;
     private FlashDamage flashImageScript;
-    [SerializeField] Image sceneFader;
 
-    [Header("Hitmarker")]
-    [SerializeField] GameObject hitmarker;
-    
-    [Header("Stats UI")]
-    [SerializeField] PlayerStatsUI statsUIRef;
-    [SerializeField] GameObject playerStatsObj;
+    [Header("Radial Menu Script")]
+    [SerializeField] RadialMenu radialScript;
 
     [Header("Menu States")]
     [SerializeField] GameObject activeMenu;
@@ -36,10 +31,18 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject settingsMenu;
     [SerializeField] GameObject radialMenu;
 
+    [Header("Stats UI")]
+    [SerializeField] PlayerStatsUI statsUIRef;
+    [SerializeField] GameObject playerStatsObj;
+
     [Header("Animator Components")]
     [SerializeField] Animator PauseAnimController;
     [SerializeField] Animator WinAnimControlller;
     [SerializeField] Animator LoseAnimController;
+    
+    [Header("Misc Images")]
+    [SerializeField] GameObject hitmarker;
+    [SerializeField] Image sceneFader;
 
     private void Awake()
     {
@@ -52,31 +55,23 @@ public class UIManager : MonoBehaviour
         statsUIRef = GetComponent<PlayerStatsUI>();
         flashImageScript = GetComponent<FlashDamage>();
     }
-    private void Update()
-    {
-        //pauses the game
-        if (Input.GetKeyDown(KeyCode.Escape) && activeMenu == null && !Input.GetKeyUp(KeyCode.Q) && menuState != MenuState.active)
-        {
-            activeMenu = pauseMenu;
-            activeMenu.SetActive(true);
-            PauseGame();
-            //EnableBoolAnimator(PausePanel);
-        }
-        else if (activeMenu == null && menuState != MenuState.none)
-        {
-            //radialMenuScriptRef.UpdateKeys();
-        }
-    }
-    // Sets game to paused state
+
+    /// <summary>
+    /// Pauses the game. Shows the cursor and unlocks it.
+    /// </summary>
     public void PauseGame()
     {
+        activeMenu = pauseMenu;
+        activeMenu.SetActive(true);
         GameManager.instance.TimePause();
         GameManager.instance.MouseUnlockShow();
         playerStatsObj.SetActive(false);
         menuState = MenuState.none;
     }
 
-    // resumes game while paused
+    /// <summary>
+    /// Unpauses the game. Resets the cursor back to being invisible and locked.
+    /// </summary>
     public void Unpaused()
     {
         PauseAnimController.SetTrigger("ExitPause");
@@ -92,6 +87,34 @@ public class UIManager : MonoBehaviour
         StartCoroutine(WaitToTurnOffUI());
     }
 
+    /// <summary>
+    /// Runs the ShowRadialMenu function from the radial menu script.
+    /// </summary>
+    public void ShowRadialMenu()
+    {
+        radialScript.ShowRadialMenu();
+    }
+
+    /// <summary>
+    /// Runs the HideRadialMenu function from the radial menu script.
+    /// </summary>
+    public void HideRadialMenu()
+    {
+        radialScript.HideRadialMenu();
+    }
+
+    /// <summary>
+    /// Runs the SelectSlice function from the radial menu script.
+    /// </summary>
+    public void UpdateRadialWheel()
+    {
+        radialScript.SelectSlice();
+    }
+
+    /// <summary>
+    /// Shows the settings menu. Should not be called anywhere in code. 
+    /// Should only be used in the settings button under the pause menu settings option button.
+    /// </summary>
     public void SettingsShown()
     {
         activeMenu.SetActive(false);
@@ -99,7 +122,10 @@ public class UIManager : MonoBehaviour
         activeMenu = settingsMenu;
         activeMenu.SetActive(true);
     }
-
+    
+    /// <summary>
+    /// Closes the settings menu and shows the pause menu. Also sets the ActiveMenu to the pause menu.
+    /// </summary>
     public void ApplySettings()
     {
         activeMenu.SetActive(false);
@@ -107,6 +133,10 @@ public class UIManager : MonoBehaviour
         activeMenu.SetActive(true);
     }
 
+    /// <summary>
+    /// I dont know. This is apparently here to fix a bug, but might not be needed. Will need to test that.
+    /// </summary>
+    /// <returns></returns>
     IEnumerator WaitToTurnOffUI()
     {
         yield return new WaitForSeconds(0.5f);
@@ -116,6 +146,10 @@ public class UIManager : MonoBehaviour
         menuState = MenuState.radial;
     }
 
+    /// <summary>
+    /// Displays the win game UI. Don't totally need this but we can repurpose this for the end credits later.
+    /// </summary>
+    /// <returns></returns>
     IEnumerator WinGame()
     {
         yield return new WaitForSeconds(3);
@@ -124,6 +158,10 @@ public class UIManager : MonoBehaviour
         PauseGame();
     }
 
+    /// <summary>
+    /// Runs the lose game logic, also sets the active menu to the lose menu.
+    /// Also pauses the game.
+    /// </summary>
     public void LoseGame()
     {
         activeMenu = loseMenu;
@@ -131,6 +169,10 @@ public class UIManager : MonoBehaviour
         PauseGame();
     }
 
+    /// <summary>
+    /// Sets the | Pause Menu, Win Menu, Lose Menu, Settings Menu, Radial Menu, and Hitmarker (image) |
+    /// to false when loading the game initially. Should only be called when the game starts in the UI manager.
+    /// </summary>
     private void DisableMenus()
     {
         pauseMenu.SetActive(false);
@@ -140,37 +182,58 @@ public class UIManager : MonoBehaviour
         radialMenu.SetActive(false);
         hitmarker.SetActive(false);
     }
+    
+    /// <summary>
+    /// Returns the player stats script reference.
+    /// </summary>
+    /// <returns></returns>
     public PlayerStatsUI GetPlayerStats()
     {
         return statsUIRef;
     }
 
+    /// <summary>
+    /// Return the scene fader to transition scenes. Should only be used in the elevator script.
+    /// </summary>
+    /// <returns></returns>
     public Image GetSceneFader()
     {
         return sceneFader;
     }
 
-    public FlashDamage GetFlashDamageScript()
+    /// <summary>
+    /// Returns the Hitmarker game object to turn on and off. Used in the Finger Gun script during the Shoot IEnumerator.
+    /// </summary>
+    /// <returns></returns>
+    public GameObject GetHitmarker()
     {
-        return flashImageScript;
+        return hitmarker;
     }
 
+    /// <summary>
+    /// Flashes the screen with the shield breaking image.
+    /// Should only be used in the PlayerResource script.
+    /// </summary>
     public void FlashBreakShield()
     {
         StartCoroutine(flashImageScript.CrackShieldDisplay());
     }
 
+    /// <summary>
+    /// Flashes the screen when the player takes damage (that is of thier hp). 
+    /// Should only be used in the PlayerResource script.
+    /// </summary>
     public void FlashPlayerHealthHit()
     {
         StartCoroutine(flashImageScript.FlashDamageDisplay());
     }
+    
+    /// <summary>
+    /// Flashes the screen with the shield damage image.
+    /// Should only be used in the PlayerResource script.
+    /// </summary>
     public void FlashPlayerShieldHit()
     {
         StartCoroutine(flashImageScript.FlashShieldDisplay());
-    }
-
-    public GameObject GetHitmarker()
-    {
-        return hitmarker;
     }
 }

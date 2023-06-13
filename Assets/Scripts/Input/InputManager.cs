@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.Interactions;
 
 public class InputManager : MonoBehaviour
 {
@@ -32,6 +33,7 @@ public class InputManager : MonoBehaviour
     private void OnEnable()
     {
     }
+
     private void OnDisable()
     {
         input.Player.Escape.performed -= OnEscape;
@@ -40,12 +42,23 @@ public class InputManager : MonoBehaviour
 
     private void OnRadMenu(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-
+        if (context.action.inProgress)
+        {
+            UIManager.instance.UpdateRadialWheel();
+        }
+        else if (context.action.WasPressedThisFrame())
+        {
+            UIManager.instance.ShowRadialMenu();
+        }
+        else if (context.action.WasReleasedThisFrame())
+        {
+            UIManager.instance.HideRadialMenu();
+        }
     }
 
     private void OnEscape(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-
+        UIManager.instance.PauseGame();
     }
 
 
