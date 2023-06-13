@@ -29,15 +29,18 @@ public class fingerGun : MonoBehaviour
 
         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
         {
-            IDamagable damageable = hit.collider.GetComponent<IDamagable>();
-
-            if (damageable != null)
+            if (UIManager.instance.currentState == MenuState.none)
             {
-                damageable.TakeDamage(bulletDamage);
-                UIManager.instance.GetHitmarker().SetActive(true);
-                yield return new WaitForSeconds(0.05f);
-                UIManager.instance.GetHitmarker().SetActive(false);
-                GameManager.instance.GetPlayerResources().AddFocus(focusPerShot);
+                IDamagable damageable = hit.collider.GetComponent<IDamagable>();
+
+                if (damageable != null)
+                {
+                    damageable.TakeDamage(bulletDamage);
+                    UIManager.instance.GetHitmarker().SetActive(true);
+                    yield return new WaitForSeconds(0.05f);
+                    UIManager.instance.GetHitmarker().SetActive(false);
+                    GameManager.instance.GetPlayerResources().AddFocus(focusPerShot);
+                }
             }
         }
 

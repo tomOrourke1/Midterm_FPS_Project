@@ -11,6 +11,7 @@ public enum MenuState
 {
     radial,
     paused,
+    death,
     none
 }
 
@@ -36,9 +37,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject playerStatsObj;
 
     [Header("Animator Components")]
-    [SerializeField] Animator PauseAnimController;
-    [SerializeField] Animator WinAnimControlller;
-    [SerializeField] Animator LoseAnimController;
+    [SerializeField] Animator pauseAnimController;
+    [SerializeField] Animator winAnimController;
+    [SerializeField] Animator loseAnimController;
     
     [Header("Misc Images")]
     [SerializeField] GameObject hitmarker;
@@ -67,7 +68,7 @@ public class UIManager : MonoBehaviour
         GameManager.instance.TimePause();
         GameManager.instance.MouseUnlockShow();
         playerStatsObj.SetActive(false);
-        PauseAnimController.SetBool("ExitPause", false);
+        pauseAnimController.SetBool("ExitPause", false);
     }
 
     /// <summary>
@@ -75,14 +76,20 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void Unpaused()
     {
-        PauseAnimController.SetBool("ExitPause", true);
+        if (currentState == MenuState.paused)
+        {
+            pauseAnimController.SetBool("ExitPause", true);
+        }
+        else if (currentState == MenuState.death)
+        {
+            loseAnimController.SetTrigger("ExitLose");
+            DisableMenus();
+        }
         GameManager.instance.TimeUnpause();
         GameManager.instance.MouseLockHide();
         playerStatsObj.SetActive(true);
 
         currentState = MenuState.none;
-        // See if we can fix this glitch.
-        //StartCoroutine(WaitToTurnOffUI());
     }
 
     /// <summary>
@@ -158,17 +165,6 @@ public class UIManager : MonoBehaviour
     }
 
     /// <summary>
-    /// I dont know. This is apparently here to fix a bug, but might not be needed. Will need to test that.
-    /// </summary>
-    /// <returns></returns>
-    IEnumerator WaitToTurnOffUI()
-    {
-        yield return new WaitForSeconds(0.5f);
-        activeMenu.SetActive(false);
-        activeMenu = null;
-    }
-
-    /// <summary>
     /// Displays the win game UI. Don't totally need this but we can repurpose this for the end credits later.
     /// </summary>
     /// <returns></returns>
@@ -187,8 +183,10 @@ public class UIManager : MonoBehaviour
     public void LoseGame()
     {
         activeMenu = loseMenu;
+        currentState = MenuState.death;
         activeMenu.SetActive(true);
-        PauseGame();
+        GameManager.instance.TimePause();
+        GameManager.instance.MouseUnlockShow();
     }
 
     /// <summary>
@@ -257,5 +255,23 @@ public class UIManager : MonoBehaviour
     public void FlashPlayerShieldHit()
     {
         StartCoroutine(flashImageScript.FlashShieldDisplay());
+    }
+
+    /// <summary>
+    /// Returns the pause animator controller so we can manipulate bools.
+    /// </summary>
+    /// <returns></returns>
+    public Animator ReturnPauseAnimator()
+    {
+        return pauseAnimController;
+    }
+    
+    /// <summary>
+    /// Returns the lose animator controller so we can manipulate bools.
+    /// </summary>
+    /// <returns></returns>
+    public Animator ReturnLoseAnimator()
+    {
+        return loseAnimController;
     }
 }
