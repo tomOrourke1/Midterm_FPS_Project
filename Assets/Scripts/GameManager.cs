@@ -132,6 +132,15 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Returns the players current position.
+    /// </summary>
+    /// <returns></returns>
+    public Vector3 GetPlayerPOS()
+    {
+        return player.transform.position;
+    }
+
+    /// <summary>
     /// Returns the player resources script. 
     /// </summary>
     /// <returns></returns>
