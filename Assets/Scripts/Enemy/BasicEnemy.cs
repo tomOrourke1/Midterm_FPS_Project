@@ -23,7 +23,6 @@ public class BasicEnemy : EnemyBase, IDamagable
     {
         health.FillToMax();
 
-
         stateMachine = new StateMachine();
         stateMachine.SetState(idleState);
 
