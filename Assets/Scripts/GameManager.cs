@@ -148,4 +148,12 @@ public class GameManager : MonoBehaviour
     {
         return playerResources;
     }
+
+    /// <summary>
+    /// Respawn the player, reset the current room. 
+    /// </summary>
+    public void RespawnCaller()
+    {
+
+    }
 }

@@ -36,6 +36,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] PlayerStatsUI statsUIRef;
     [SerializeField] GameObject playerStatsObj;
 
+
     [Header("Animator Components")]
     [SerializeField] Animator pauseAnimController;
     [SerializeField] Animator winAnimController;
@@ -257,21 +258,5 @@ public class UIManager : MonoBehaviour
         StartCoroutine(flashImageScript.FlashShieldDisplay());
     }
 
-    /// <summary>
-    /// Returns the pause animator controller so we can manipulate bools.
-    /// </summary>
-    /// <returns></returns>
-    public Animator ReturnPauseAnimator()
-    {
-        return pauseAnimController;
-    }
-    
-    /// <summary>
-    /// Returns the lose animator controller so we can manipulate bools.
-    /// </summary>
-    /// <returns></returns>
-    public Animator ReturnLoseAnimator()
-    {
-        return loseAnimController;
-    }
+
 }
