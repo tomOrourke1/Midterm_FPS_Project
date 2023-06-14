@@ -29,7 +29,7 @@ public class RoomManager : MonoBehaviour
     {
         ReadTheRoom();
         SpawnEntities();
-        StartCoroutine(kill());
+        //StartCoroutine(kill());
     }
 
     IEnumerator kill()
