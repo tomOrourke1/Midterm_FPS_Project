@@ -22,20 +22,21 @@ public class RoomManager : MonoBehaviour
     [SerializeField] List<GameObject> Entities = new List<GameObject>();
     // Just the IEntity of each entity that is currently alive
     List<IEntity> entities;
+    List<IEnvironment> environment;
     List<IEntitySpawner> Spawners;
 
     private void Start()
     {
         ReadTheRoom();
         SpawnEntities();
-        //StartCoroutine(kill());
+        StartCoroutine(kill());
     }
 
-    //IEnumerator kill()
-    //{
-    //    yield return new WaitForSeconds(3);
-    //    ClearRoom();
-    //}
+    IEnumerator kill()
+    {
+        yield return new WaitForSeconds(3);
+        ClearRoom();
+    }
 
     void ReadTheRoom()
     {
@@ -62,10 +63,16 @@ public class RoomManager : MonoBehaviour
     void ClearRoom()
     {
         entities = new List<IEntity>(gameObject.GetComponentsInChildren<IEntity>());
+        environment = new List<IEnvironment>(gameObject.GetComponentsInChildren<IEnvironment>());
 
         for (int i = 0; i < entities.Count; i++)
         {
             entities[i].Respawn();
+        }
+
+        for (int i = 0;i < environment.Count; i++)
+        {
+            environment[i].ResetObject();
         }
     }
 
