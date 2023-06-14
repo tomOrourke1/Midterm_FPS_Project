@@ -166,7 +166,6 @@ public class Player : MonoBehaviour
         DashRecharging = false;
     }
 
-
     void handleWalk()
     {
         // Move the player at walk speed
