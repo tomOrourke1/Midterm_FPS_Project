@@ -11,7 +11,7 @@ public class Laser : MonoBehaviour, IEnvironment
     [Header("----- Laser Stats -----")]
     [SerializeField] float maxDistance;
     [SerializeField] float Damage;
-    [SerializeField] float HitRate;
+    //[SerializeField] float HitRate;
     [SerializeField] bool LaserOn;
 
     [Header("----- Timed Lasers -----")]
@@ -99,7 +99,7 @@ public class Laser : MonoBehaviour, IEnvironment
         Vector3 endPoint;
         endPoint = transform.position;
 
-        Vector3 maxDistPoint = new Vector3(0, maxDistance, 0);
+        Vector3 maxDistPoint = transform.up * maxDistance;
         endPoint += maxDistPoint;
 
         laser.SetPosition(0, transform.position);

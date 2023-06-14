@@ -12,21 +12,19 @@ public class RotatingBlock : MonoBehaviour
     [SerializeField] bool smoothRotation;
     [SerializeField] float stopDuration;
     [SerializeField] float stopRate;
+    [SerializeField] float rotationAngle;
+
 
     Quaternion currentRotation;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        currentRotation = transform.rotation;
-    }
+    
+    float timeCount;
+    Quaternion newRotation;
 
     // Update is called once per frame
     void Update()
     {
-        // Quaternion q;
-       
+        var rotation = Quaternion.AngleAxis(rotationAngle * Time.deltaTime, Vector3.up);
 
-        // Quaternion.Lerp(currentRotation, q, rotationSpeed * Time.deltaTime);
+        transform.localRotation = Quaternion.Lerp(transform.localRotation, transform.localRotation * rotation, Time.deltaTime * rotationSpeed);
     }
 }
