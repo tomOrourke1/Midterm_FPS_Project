@@ -27,7 +27,7 @@ public class KeyChain : MonoBehaviour
         keys -= num;
     }
 
-    public void clear()
+    public void Clear()
     {
         keys = 0;
     }

@@ -25,7 +25,7 @@ public class DoorDetectPlayerInProximity : MonoBehaviour, IEnvironment
                 if (GameManager.instance.GetKeyCounter() > 0)
                 {
                     door.SetLockStatus(false);
-                    GameManager.instance.SetKeyCounter(GameManager.instance.GetKeyCounter() - 1);
+                    GameManager.instance.GetKeyChain().removeKeys(1);
                 }
             }
         }

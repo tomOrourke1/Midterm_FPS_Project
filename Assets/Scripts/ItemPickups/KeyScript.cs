@@ -25,7 +25,6 @@ public class KeyScript : MonoBehaviour, IEntity
     {
         if (other.CompareTag("Player"))
         {
-            //GameManager.instance.SetKeyCounter(1);
             GameManager.instance.GetKeyChain().addKeys(1);
             Destroy(gameObject);
         }

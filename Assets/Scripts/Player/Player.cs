@@ -146,6 +146,9 @@ public class Player : MonoBehaviour
         }
         controller.enabled = true;
 
+        // Reset the player's keys
+        GameManager.instance.GetKeyChain().Clear();
+
         UpdatePlayerStats();    // this updates the player dashes when the player respawns.
 
     }
