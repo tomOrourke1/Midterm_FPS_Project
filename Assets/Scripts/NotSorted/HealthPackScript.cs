@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthPackScript : MonoBehaviour
+public class HealthPackScript : MonoBehaviour, IEntity
 {
     [Header("-----Floating Stuff-----")]
     [SerializeField] float freq;
@@ -36,5 +36,10 @@ public class HealthPackScript : MonoBehaviour
             Destroy(gameObject);
         }
 
+    }
+
+    public void Respawn()
+    {
+        Destroy(gameObject);
     }
 }

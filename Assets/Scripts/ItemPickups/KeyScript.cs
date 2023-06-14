@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KeyScript : MonoBehaviour
+public class KeyScript : MonoBehaviour, IEntity
 {
     [SerializeField] float freq;
     [SerializeField] float amp;
@@ -14,11 +14,13 @@ public class KeyScript : MonoBehaviour
     {
         startingPos = transform.position;
     }
+    
     private void Update()
     {
         transform.position = new Vector3(transform.position.x, startingPos.y + Mathf.Sin(Time.time*freq) * amp, transform.position.z);
        
     }
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -26,5 +28,10 @@ public class KeyScript : MonoBehaviour
             GameManager.instance.SetKeyCounter(1);
             Destroy(gameObject);
         }
+    }
+
+    public void Respawn()
+    {
+        Destroy(gameObject);
     }
 }
