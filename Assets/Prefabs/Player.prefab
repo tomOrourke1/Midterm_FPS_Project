@@ -205,6 +205,21 @@ MonoBehaviour:
   fireRate: 0.15
   focusPerShot: 3
   shootDist: 30
+  shootEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1710197404075379116}
+        m_TargetAssemblyTypeName: FIngerGunParticlePlayer, Assembly-CSharp
+        m_MethodName: FireParticles
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8837992345269671648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -462,3 +477,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9202323601360018306, guid: c319fbad0cc262b418a57b24a0fead14, type: 3}
   m_PrefabInstance: {fileID: 8664787084755541627}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1710197404075379116 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8035642778535483351, guid: c319fbad0cc262b418a57b24a0fead14, type: 3}
+  m_PrefabInstance: {fileID: 8664787084755541627}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c94f180a5eaf4354f845d0b1cbbe54fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
