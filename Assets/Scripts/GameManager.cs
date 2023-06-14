@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
         playerscript = player.GetComponent<Player>();
         playerResources = player.GetComponent<PlayerResources>();
         PlayerSpawnPOS = GameObject.FindGameObjectWithTag("Player Spawn Pos");
+        keyChain = player.GetComponent<KeyChain>();
     }
 
     private void Start()
