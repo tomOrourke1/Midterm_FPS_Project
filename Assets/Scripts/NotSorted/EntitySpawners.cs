@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpawners : MonoBehaviour, IEntitySpawner
+public class EntitySpawners : MonoBehaviour, IEntitySpawner
 {
     [Header("----- Spawned Entity -----")]
     [SerializeField] GameObject Entity;
@@ -10,11 +10,17 @@ public class EnemySpawners : MonoBehaviour, IEntitySpawner
     private void Start()
     {
         // Maybe remove this later when Room Manager can Detect when the player enters the room
-        Spawn();
+        GetObject();
     }
 
-    public void Spawn()
+    public GameObject GetObject()
     {
-        Instantiate(Entity, transform.position, transform.rotation);
+        return Entity;
+        //Instantiate(Entity, transform.position, transform.rotation);
+    }
+
+    public Transform GetTransform()
+    {
+        return gameObject.transform;
     }
 }

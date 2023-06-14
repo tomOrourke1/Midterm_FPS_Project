@@ -7,5 +7,7 @@ public interface IEntitySpawner
     /// <summary>
     /// Spawns the GameObject that is tied to the spawner.
     /// </summary>
-    public void Spawn();
+    public GameObject GetObject();
+
+    public Transform GetTransform();
 }
