@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject PlayerSpawnPOS;
     [SerializeField] Player playerscript;
     [SerializeField] PlayerResources playerResources;
+    [SerializeField] KeyChain keyChain;
 
     [Header("Objective Items")]
     [SerializeField] int KeyCounter;
@@ -129,6 +130,15 @@ public class GameManager : MonoBehaviour
     public Player GetPlayerScript()
     {
         return playerscript;
+    }
+
+    /// <summary>
+    /// Returns the keychain. Should be used for adding or removing keys.
+    /// </summary>
+    /// <returns></returns>
+    public KeyChain GetKeyChain()
+    {
+        return keyChain;
     }
 
     /// <summary>
