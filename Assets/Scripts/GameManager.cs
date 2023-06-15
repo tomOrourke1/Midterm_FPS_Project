@@ -167,4 +167,9 @@ public class GameManager : MonoBehaviour
     {
 
     }
+
+    public KeyChain ReturnKeyScript()
+    {
+        return player.GetComponent<KeyChain>();
+    }
 }

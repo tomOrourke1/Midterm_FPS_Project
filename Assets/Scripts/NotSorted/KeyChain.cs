@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class KeyChain : MonoBehaviour
 {
-    int keys;
+    [SerializeField] int keys;
+    [SerializeField] int maxKeys;
 
     // Start is called before the first frame update
     void Start()
@@ -20,15 +21,23 @@ public class KeyChain : MonoBehaviour
     public void addKeys(int num)
     {
         keys += num;
+        UIManager.instance.GetKeyUI().ShowKeyUI();
     }
 
     public void removeKeys(int num)
     {
         keys -= num;
+        UIManager.instance.GetKeyUI().ShowKeyUI();
     }
 
     public void Clear()
     {
         keys = 0;
+        UIManager.instance.GetKeyUI().ShowKeyUI();
+    }
+
+    public int GetMaxKeys()
+    {
+        return maxKeys;
     }
 }
