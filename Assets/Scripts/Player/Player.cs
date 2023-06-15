@@ -20,9 +20,10 @@ public class Player : MonoBehaviour
 
     [Header("----- Dash Stats -----")]
     [SerializeField] int maxDashes;
-    [SerializeField] float DashSpeed;
-    [SerializeField] float DashDuration;
+    [SerializeField, Range(0, 1)] float DashSpeed;
+    [SerializeField, Range(.01f, 1)] float DashDuration;
     [SerializeField] float DashCooldown;
+    [SerializeField, Range(.01f, 20)] float tiltAmount;
 
     [Header("----- Crouch Stats -----")]
     [SerializeField] float CrouchSpeed;
@@ -42,6 +43,11 @@ public class Player : MonoBehaviour
     private int currentDashes;
     private bool isDashing;
     private bool DashRecharging;
+    Vector3 dashDir;
+    float newTilt;
+    float origTilt;
+    float origFov;
+    float dashFovZoom;
 
     // Crouch
     private bool isCrouching;
@@ -49,6 +55,7 @@ public class Player : MonoBehaviour
     private Vector3 origCamPos;
     private Vector3 crouchCameraPos;
     bool unCrouching;
+
 
 
     // Start is called before the first frame update
@@ -61,6 +68,8 @@ public class Player : MonoBehaviour
         crouchCameraPos = new Vector3(0,0,0);
         origHeight = controller.height;
         currentDashes = maxDashes;
+        origFov = Camera.main.fieldOfView;
+
         //controller = gameObject.AddComponent<CharacterController>();
         RespawnPlayer();
         UIManager.instance.GetPlayerStats().UpdateValues();
@@ -96,10 +105,10 @@ public class Player : MonoBehaviour
 
         // If pressing left shift and there are dashes available
         // then dash
-        if (!isCrouching && Input.GetKeyDown(KeyCode.LeftShift) && currentDashes > 0 && move.normalized.magnitude > 0.5f)
+        if (!isCrouching && !isDashing && Input.GetKeyDown(KeyCode.LeftShift) && currentDashes > 0 && move.normalized.magnitude > 0.5f)
         {
             // This prevents dash from being called while dash is active.
-            StartCoroutine(StartDash());
+            StartCoroutine(StartDash(move));
         }
 
         // Resets the jumps when player lands
@@ -109,27 +118,63 @@ public class Player : MonoBehaviour
             playerVelocity.y = 0f;
             jumpTimes = 0;
         }
-        
+
+
         // Sets vector for movement
         move = (transform.right * Input.GetAxis("Horizontal") + (transform.forward * Input.GetAxis("Vertical")));
 
-        if (isDashing)
-        {
+        checkVertical();
+        checkHorizontal();
 
-            handleDash();
-        }
-        else
-        {
-            handleWalk();
-        }
-
+        handleWalk();
         handleJump();
+
+        // Return field of view to normal
+        Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, origFov, Time.deltaTime * 5);
 
         // Gravity
         playerVelocity.y -= gravityValue * Time.deltaTime;
+
+        // Move
         controller.Move(playerVelocity * Time.deltaTime);
         
        
+    }
+
+    void checkHorizontal()
+    {
+        //float zRotation = Mathf.Clamp(Camera.main.transform.rotation.z, , );
+
+        //transform.localRotation = Quaternion.Euler(0, 0, 0);
+
+        if (Input.GetAxis("Horizontal") == 0)
+        {
+            newTilt = origTilt;
+        }
+        else if (Input.GetAxis("Horizontal") > 0)
+        {
+            newTilt = origTilt - tiltAmount;
+        }
+        else
+        {
+            newTilt = origTilt + tiltAmount;
+        }
+    }
+
+    void checkVertical()
+    {
+        if (Input.GetAxis("Vertical") == 0)
+        {
+            dashFovZoom = origFov;
+        }
+        else if (Input.GetAxis("Vertical") > 0)
+        {
+            dashFovZoom = 50;
+        }
+        else
+        {
+            dashFovZoom = 70;
+        }
     }
 
     public void RespawnPlayer()
@@ -153,11 +198,32 @@ public class Player : MonoBehaviour
 
     }
 
-    IEnumerator StartDash()
+    //IEnumerator dash(Vector3 dir)
+    //{
+    //    isDashing = true;
+
+    //    Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, zoomDir, Time.deltaTime * 100);
+    //    //Camera.main.gameObject.transform.rotation = Quaternion.Lerp(Camera.main.gameObject.transform.rotation, tiltNew, Time.deltaTime * .5f);
+
+    //    dashDir += dir * dashSpeed;
+    //    yield return new WaitForSeconds(.1f);
+    //    dashDir = Vector3.zero;
+    //    isDashing = false;
+    //}
+
+    IEnumerator StartDash(Vector3 dir)
     {
         isDashing = true;
+
+        Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, dashFovZoom, Time.deltaTime * 100);
+        mainCamera.GetComponent<CameraController>().DashCam(newTilt, origTilt - tiltAmount, origTilt + tiltAmount);
+        dashDir += dir * DashSpeed;
+
         yield return new WaitForSeconds(DashDuration);
+
         currentDashes--;
+        dashDir = Vector3.zero;
+
         isDashing = false;
     }
 
@@ -172,7 +238,7 @@ public class Player : MonoBehaviour
     void handleWalk()
     {
         // Move the player at walk speed
-        controller.Move(move * Time.deltaTime * playerSpeed);
+        controller.Move(dashDir + move * Time.deltaTime * playerSpeed);
     }
 
     void handleJump()
@@ -183,12 +249,6 @@ public class Player : MonoBehaviour
             jumpTimes++;
             playerVelocity.y = jumpHeight;
         }
-    }
-
-    void handleDash()
-    {
-        // Move the player at dash speed
-        controller.Move(move * Time.deltaTime * DashSpeed);
     }
 
     void handleCrouch()
