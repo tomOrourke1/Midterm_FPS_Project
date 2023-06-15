@@ -60,6 +60,7 @@ public class InputManager : MonoBehaviour
         if (UIManager.instance.currentState == MenuState.radial)
         {
             UIManager.instance.HideRadialMenu();
+            UIManager.instance.UpdateKinesis();
             isRadialShowing = false;
         }
     }

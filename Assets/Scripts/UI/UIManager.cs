@@ -56,6 +56,7 @@ public class UIManager : MonoBehaviour
         DisableMenus();
         statsUIRef = GetComponent<PlayerStatsUI>();
         flashImageScript = GetComponent<FlashDamage>();
+
     }
 
     /// <summary>
@@ -261,5 +262,10 @@ public class UIManager : MonoBehaviour
     public KeyUI GetKeyUI()
     {
         return keyScriptRef;
+    }
+
+    public void UpdateKinesis()
+    {
+        radialScript.SelectKinesis();
     }
 }
