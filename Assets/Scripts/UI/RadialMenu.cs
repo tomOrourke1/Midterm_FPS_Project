@@ -127,7 +127,7 @@ public class RadialMenu : MonoBehaviour
     /// <summary>
     /// Uses the last selected kinesis to confirm the selection.
     /// </summary>
-    int confirmedKinesis;
+    int confirmedKinesis = 2;
     #endregion
 
     private void Start()
@@ -170,7 +170,7 @@ public class RadialMenu : MonoBehaviour
     /// <summary>
     /// Updates the position of the mouse to where the mouse is on the canvas.
     /// </summary>
-    void UpdateMousePosition()
+    private void UpdateMousePosition()
     {
         var screenPos = new Vector3(Screen.width / 2, Screen.height / 2);
         mousePos = Input.mousePosition - screenPos;
@@ -190,7 +190,7 @@ public class RadialMenu : MonoBehaviour
     /// Updates the selector wheel icon to position and rotate itself on top of the currently
     /// highlighted item that can be enabled.
     /// </summary>
-    void UpdateSelectedItem()
+    private void UpdateSelectedItem()
     {
         UpdateSlices();
         for (int sliceIndex = 0; sliceIndex < _slices.Length; ++sliceIndex)
@@ -222,7 +222,7 @@ public class RadialMenu : MonoBehaviour
     /// Not for getting the gun type.
     /// </summary>
     /// <param name="idx">The index of the kinesis type to use.</param>
-    void DisplayKinesisInRadialMenu(int idx)
+    private void DisplayKinesisInRadialMenu(int idx)
     {
         infoBox.SetText(_slices[idx].GetName());
         // Updates the tracked kinesis only when it can be displayed so we don't update it when its being hovered over.
@@ -232,7 +232,7 @@ public class RadialMenu : MonoBehaviour
         selector.transform.rotation = Quaternion.Euler(0, 0, idx * sliceAng + (sliceAng * 1) - offsetAngle);
     }
 
-    void UpdateSlices()
+    private void UpdateSlices()
     {
         for (int sliceIndex = 0; sliceIndex < _slices.Length; ++sliceIndex)
         {
@@ -240,7 +240,6 @@ public class RadialMenu : MonoBehaviour
                 _slices[sliceIndex].GetSlice().GetComponent<Image>().material = enabledColor;
             else
                 _slices[sliceIndex].GetSlice().GetComponent<Image>().material = disabledColor;
-
         }
     }
 
