@@ -48,6 +48,8 @@ public class RadialMenu : MonoBehaviour
     [SerializeField] GameObject radialUI;
     [Tooltip("The reticle prefab can be found in the \"Prefabs\" Folder and should be placed under the \"UI\" Game Object.")]
     [SerializeField] GameObject reticleUI;
+    [Tooltip("The arrows game object to turn off when the start function is called.")]
+    [SerializeField] GameObject arrowObj;
     [Tooltip("The Translucent Background to tint the screen. This a Game Object prefab that should be placed under the \"UI\".")]
     [SerializeField] public GameObject translucentBackground;
 
@@ -151,6 +153,7 @@ public class RadialMenu : MonoBehaviour
     {
         UpdateSlices();
         selector.gameObject.SetActive(true);
+        arrowObj.SetActive(false);
         reticleUI.SetActive(false);
         translucentBackground.SetActive(true);
         radialUI.SetActive(true);
@@ -193,6 +196,7 @@ public class RadialMenu : MonoBehaviour
     private void UpdateSelectedItem()
     {
         UpdateSlices();
+
         for (int sliceIndex = 0; sliceIndex < _slices.Length; ++sliceIndex)
         {
             withinRadialMin = rotateAngle > sliceIndex * sliceAng;
@@ -225,6 +229,8 @@ public class RadialMenu : MonoBehaviour
     private void DisplayKinesisInRadialMenu(int idx)
     {
         infoBox.SetText(_slices[idx].GetName());
+        arrowObj.SetActive(true);
+
         // Updates the tracked kinesis only when it can be displayed so we don't update it when its being hovered over.
         // Meaning we need to reach this function (which can only happen if the slice is also enabled) to even get
         // into the slices and update what radial option slice we chose.

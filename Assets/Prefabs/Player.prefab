@@ -167,9 +167,10 @@ MonoBehaviour:
   jumpHeight: 8
   jumpMax: 2
   maxDashes: 2
-  DashSpeed: 50
+  DashSpeed: 0.57
   DashDuration: 0.1
   DashCooldown: 1
+  tiltAmount: 0
   CrouchSpeed: 0
   unCrouchSpeed: 10
 --- !u!114 &164878508403180583
@@ -1479,6 +1480,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1560916409472194610}
+  - component: {fileID: 3024223572730897211}
   m_Layer: 0
   m_Name: LeftHand
   m_TagString: Untagged
@@ -1503,6 +1505,27 @@ Transform:
   m_Father: {fileID: 1560916409957980909}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &3024223572730897211
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560916409472194613}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e91649a7c686ffb4dbd7a4d3bb9742b8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1560916409484632476
 GameObject:
   m_ObjectHideFlags: 0
