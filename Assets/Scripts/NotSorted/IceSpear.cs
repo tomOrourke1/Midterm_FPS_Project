@@ -15,7 +15,7 @@ public class IceSpear : MonoBehaviour
     void Start()
     {
         Destroy(gameObject, destroyTimer);
-        rb.velocity = transform.forward * speed;
+     
 
     }
     private void OnTriggerEnter(Collider other)
@@ -25,7 +25,7 @@ public class IceSpear : MonoBehaviour
         {
             damagable.TakeDamage(damage);
         }
-        Destroy(gameObject);
+    
     }
     
 }
