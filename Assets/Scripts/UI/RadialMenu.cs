@@ -12,6 +12,7 @@ struct SlicesStruct
     [Tooltip("If the slice is enabled or disabled.")]
     [SerializeField] bool sliceEnabled;
     [SerializeField] string sliceName;
+    [SerializeField] Image kinesisIcon;
 
     public GameObject GetSlice()
     {
@@ -115,8 +116,7 @@ public class RadialMenu : MonoBehaviour
     private void Start()
     {
         sliceAng = 360 / _slices.Length;
-        offsetAngle = sliceAng + sliceAng / 2;
-        //GenerateSlices();
+        offsetAngle = sliceAng * 3;
         UpdateSlices();
         // On the first frame if the radial menu is left on
         // in the inspector, turn it off no matter what. So it doesn't show.
@@ -148,6 +148,9 @@ public class RadialMenu : MonoBehaviour
         UpdateSlices();
     }
 
+    /// <summary>
+    /// Updates the position of the mouse to where the mouse is on the canvas.
+    /// </summary>
     void UpdateMousePosition()
     {
         var screenPos = new Vector3(Screen.width / 2, Screen.height / 2);
@@ -164,26 +167,24 @@ public class RadialMenu : MonoBehaviour
         arrow.localScale = new Vector3(1, arrowScale, 1);
     }
 
+    /// <summary>
+    /// Updates the selector wheel icon to position and rotate itself on top of the currently
+    /// highlighted item that can be enabled.
+    /// </summary>
     void UpdateSelectedItem()
     {
+        UpdateSlices();
         for (int sliceIndex = 0; sliceIndex < _slices.Length; ++sliceIndex)
         {
-            // Checks to see if the current slice is within the minimum or maximum angles
-            // of the slice. 
-            float minAngle = sliceIndex * sliceAng + offsetAngle;
-            float maxAngle = (sliceIndex + 1) * sliceAng + offsetAngle;
+            withinRadialMin = rotateAngle > sliceIndex * sliceAng;
+            withinRadialMax = rotateAngle < (sliceIndex + 1) * sliceAng;
 
-            if (minAngle >= 360)
-                minAngle -= 360;
-
-            if (maxAngle >= 360)
-                maxAngle -= 360;
-
-            bool withinBounds = minAngle > rotateAngle && rotateAngle < maxAngle;
-
-            if (withinBounds && _slices[sliceIndex].GetBool())
+            if (withinRadialMin && withinRadialMax)
+            {
+                selector.transform.rotation = Quaternion.Euler(0, 0, sliceIndex * sliceAng + (72/2));
+                trackedKinesis = sliceIndex;
                 DisplayKinesisInRadialMenu(sliceIndex);
-
+            }
         }
     }
 
@@ -197,19 +198,19 @@ public class RadialMenu : MonoBehaviour
         switch (sliceIndx)
         {
             case 0:
-                // Functionality To Select the Kinesis Type will be put in here. For now this is temporary.
+
                 break;
             case 1:
-                // Functionality To Select the Kinesis Type will be put in here. For now this is temporary.
+
                 break;
             case 2:
-                // Functionality To Select the Kinesis Type will be put in here. For now this is temporary.
+
                 break;
             case 3:
-                // Functionality To Select the Kinesis Type will be put in here. For now this is temporary.
+
                 break;
             case 4:
-                // Functionality To Select the Kinesis Type will be put in here. For now this is temporary.
+
                 break;
 
             default:
