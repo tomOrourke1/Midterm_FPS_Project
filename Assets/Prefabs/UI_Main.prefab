@@ -1923,7 +1923,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4369244784242326076}
-  - {fileID: 8181287101299987532}
   m_Father: {fileID: 7213646295399266878}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4978,6 +4977,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 399216480794887167}
+  - {fileID: 8181287101299987532}
   m_Father: {fileID: 8532682606955054939}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6051,12 +6051,9 @@ MonoBehaviour:
   focusSlider: {fileID: 7643778325046847714}
   shieldSlider: {fileID: 2663285281598398897}
   healthSlider: {fileID: 6159627331978512613}
-  fauxFocusSlider: {fileID: 4997491493996707900}
-  fauxShieldSlider: {fileID: 4367615958306839225}
-  fauxHealthSlider: {fileID: 4394908161398061291}
   healthIcon: {fileID: 8532258815942963032}
   shieldIcon: {fileID: 1597216258180345971}
-  reducingSpeed: 0.1
+  sliderScript: {fileID: 776298868}
 --- !u!114 &198655326078740097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8189,6 +8186,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5622529535799514428}
+  - component: {fileID: 776298868}
   m_Layer: 5
   m_Name: PlayerStatsUI
   m_TagString: Untagged
@@ -8220,6 +8218,26 @@ RectTransform:
   m_AnchoredPosition: {x: 174.59961, y: -216}
   m_SizeDelta: {x: 105.5025, y: 49.3998}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &776298868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7165290681494119844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78ddf189d2143f745a3227115db362e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reducingTime: 0.1
+  waitTime: 1
+  fauxFocusSlider: {fileID: 4997491493996707900}
+  fauxShieldSlider: {fileID: 4367615958306839225}
+  fauxHealthSlider: {fileID: 4394908161398061291}
+  realFocusSlider: {fileID: 7643778325046847714}
+  realHealthSlider: {fileID: 6159627331978512613}
+  realShieldSlider: {fileID: 2663285281598398897}
 --- !u!1 &7166145087705152599
 GameObject:
   m_ObjectHideFlags: 0
@@ -9099,11 +9117,11 @@ RectTransform:
   m_GameObject: {fileID: 8371976749949125044}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.98, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7235150582696961241}
-  m_Father: {fileID: 399216480794887167}
+  m_Father: {fileID: 7213646295399266878}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

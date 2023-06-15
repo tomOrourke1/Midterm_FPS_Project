@@ -13,38 +13,18 @@ public class PlayerStatsUI : MonoBehaviour
     [Tooltip("Health image to alter.")]
     [SerializeField] Image healthSlider;
 
-    [Header("Faux Sliders")]
-    [Tooltip("Faux Focus image to alter.")]
-    [SerializeField] Image fauxFocusSlider;
-    [Tooltip("Faux Shield image to alter.")]
-    [SerializeField] Image fauxShieldSlider;
-    [Tooltip("Faux Health image to alter.")]
-    [SerializeField] Image fauxHealthSlider;
-
     [Header("Icons")]
     [Tooltip("The health icon to enable when the shield is empty.")]
     [SerializeField] Image healthIcon;
     [Tooltip("The shield icon to enable when the shield is empty.")]
     [SerializeField] Image shieldIcon;
-
-    [Header("Timers")]
-    [SerializeField] float reducingSpeed;
-    private float targetHealth, targetFocus, targetShield;
-
-
+    [SerializeField] StatVisualizer sliderScript;
     // C# has inherent private protection but defining it just to be safe
     PlayerResources instance;
 
     void Start()
     {
         instance = GameManager.instance.GetPlayerResources();
-        UpdateValues();
-    }
-
-    // Updates the sliders constantly. There can be a different way to check this. LMK - Kev
-    private void Update()
-    {
-        UpdateSliders();
     }
 
     // When the damage and HP refilling are added introduce these into those functions. 
@@ -55,14 +35,11 @@ public class PlayerStatsUI : MonoBehaviour
             instance = GameManager.instance.GetPlayerResources();
         }
 
-        targetFocus = instance.Focus.GetPercent();
-        targetShield = instance.Shield.GetPercent();
-        targetHealth = instance.Health.GetPercent();
-
         focusSlider.fillAmount = instance.Focus.GetPercent();
         shieldSlider.fillAmount = instance.Shield.GetPercent();
         healthSlider.fillAmount = instance.Health.GetPercent();
 
+        sliderScript.UpdateSliderBools();
         UpdateIcons();
     }
 
@@ -116,12 +93,29 @@ public class PlayerStatsUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Updates the faux sliders to match them with the real sliders.
+    /// Returns the health slider that updates for the current hp amount;
     /// </summary>
-    private void UpdateSliders()
+    /// <returns></returns>
+    public Image GetRealHealthSlider()
     {
-        fauxFocusSlider.fillAmount = Mathf.MoveTowards(fauxFocusSlider.fillAmount, targetFocus, reducingSpeed * Time.deltaTime);
-        fauxHealthSlider.fillAmount = Mathf.MoveTowards(fauxHealthSlider.fillAmount, targetHealth, reducingSpeed * Time.deltaTime);
-        fauxShieldSlider.fillAmount = Mathf.MoveTowards(fauxShieldSlider.fillAmount, targetShield, reducingSpeed * Time.deltaTime);
+        return healthSlider;
+    }
+
+    /// <summary>
+    /// Returns the shield slider that updates for the current shield amount;
+    /// </summary>
+    /// <returns></returns>
+    public Image GetRealShieldSlider()
+    {
+        return shieldSlider;
+    }
+
+    /// <summary>
+    /// Returns the focus slider that updates for the current focus amount;
+    /// </summary>
+    /// <returns></returns>
+    public Image GetRealFocusSlider()
+    {
+        return focusSlider;
     }
 }
