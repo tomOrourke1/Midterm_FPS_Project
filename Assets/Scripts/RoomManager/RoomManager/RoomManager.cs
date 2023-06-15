@@ -20,12 +20,22 @@ public class RoomManager : MonoBehaviour
     // read the room function
 
     [SerializeField] List<GameObject> Entities = new List<GameObject>();
+    // Just the IEntity of each entity that is currently alive
+    List<IEntity> entities;
+    List<IEnvironment> environment;
     List<IEntitySpawner> Spawners;
 
     private void Start()
     {
         ReadTheRoom();
         SpawnEntities();
+        //StartCoroutine(kill());
+    }
+
+    IEnumerator kill()
+    {
+        yield return new WaitForSeconds(3);
+        ClearRoom();
     }
 
     void ReadTheRoom()
@@ -39,23 +49,32 @@ public class RoomManager : MonoBehaviour
         {
             // Stores the entity that is spawned at each of the spawners.
             Entities.Add(obj.GetObject());
-
-            // Stores the Locations of each of the spawners
-            //Spawners.Add(obj.collider.transform);
         }
-
-        //Debug.Log(objs.Count());
     }
 
     void SpawnEntities()
     {
         for (int i = 0; i < Entities.Count; i++)
         {
-            Instantiate(Entities[i], Spawners[i].GetTransform().position, Spawners[i].GetTransform().rotation);
+            Instantiate(Entities[i], Spawners[i].GetTransform().position, Spawners[i].GetTransform().rotation, gameObject.transform);
         }
     }
 
+    void ClearRoom()
+    {
+        entities = new List<IEntity>(gameObject.GetComponentsInChildren<IEntity>());
+        environment = new List<IEnvironment>(gameObject.GetComponentsInChildren<IEnvironment>());
 
+        for (int i = 0; i < entities.Count; i++)
+        {
+            entities[i].Respawn();
+        }
+
+        for (int i = 0;i < environment.Count; i++)
+        {
+            environment[i].ResetObject();
+        }
+    }
 
 
 }

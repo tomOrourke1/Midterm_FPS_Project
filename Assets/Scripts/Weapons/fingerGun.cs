@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class fingerGun : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class fingerGun : MonoBehaviour
     [SerializeField] int shootDist;
 
     private bool isShooting;
+
+    [SerializeField] UnityEvent shootEvent;
 
     // Update is called once per frame
     void Update()
@@ -26,6 +29,8 @@ public class fingerGun : MonoBehaviour
     {
         isShooting = true;
         RaycastHit hit;
+
+        shootEvent?.Invoke();
 
         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
         {

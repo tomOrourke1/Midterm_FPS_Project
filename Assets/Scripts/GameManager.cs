@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject PlayerSpawnPOS;
     [SerializeField] Player playerscript;
     [SerializeField] PlayerResources playerResources;
+    [SerializeField] KeyChain keyChain;
 
     [Header("Objective Items")]
     [SerializeField] int KeyCounter;
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
         playerscript = player.GetComponent<Player>();
         playerResources = player.GetComponent<PlayerResources>();
         PlayerSpawnPOS = GameObject.FindGameObjectWithTag("Player Spawn Pos");
+        keyChain = player.GetComponent<KeyChain>();
     }
 
     private void Start()
@@ -132,6 +134,15 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Returns the keychain. Should be used for adding or removing keys.
+    /// </summary>
+    /// <returns></returns>
+    public KeyChain GetKeyChain()
+    {
+        return keyChain;
+    }
+
+    /// <summary>
     /// Returns the players current position.
     /// </summary>
     /// <returns></returns>
@@ -147,5 +158,18 @@ public class GameManager : MonoBehaviour
     public PlayerResources GetPlayerResources()
     {
         return playerResources;
+    }
+
+    /// <summary>
+    /// Respawn the player, reset the current room. 
+    /// </summary>
+    public void RespawnCaller()
+    {
+
+    }
+
+    public KeyChain ReturnKeyScript()
+    {
+        return player.GetComponent<KeyChain>();
     }
 }

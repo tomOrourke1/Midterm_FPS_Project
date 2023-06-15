@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class MovingPlatform : MonoBehaviour
+public class MovingPlatform : MonoBehaviour, IEnvironment
 {
     [SerializeField] Transform startPos;
     [SerializeField] Transform endPos;
@@ -16,9 +16,17 @@ public class MovingPlatform : MonoBehaviour
     float currentDistance;
     bool moving;
 
+    // Added these to store initial moving platform stats
+    Transform initialStartPos;
+    Transform initialEndPos;
+
     // Start is called before the first frame update
     void Start()
     {
+        // I am storing the initial starting an end positions because I swap them to move the platform backwards
+        initialStartPos = startPos;
+        initialEndPos = endPos;
+
         moving = true;
         transform.localPosition = startPos.localPosition;
     }
@@ -52,5 +60,15 @@ public class MovingPlatform : MonoBehaviour
         yield return new WaitForSeconds(2);
 
         moving = true;
+    }
+
+    // This is a function tied to IEnvironment meant to be used to reset a room
+    public void ResetObject()
+    {
+        // This needs to be done because I swap the start and end positions when the platform is heading backwards.
+        startPos = initialStartPos;
+        endPos = initialEndPos;
+
+        currentDistance = 0;
     }
 }

@@ -6,12 +6,12 @@ using System.Xml.Schema;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class Laser : MonoBehaviour
+public class Laser : MonoBehaviour, IEnvironment
 {
     [Header("----- Laser Stats -----")]
     [SerializeField] float maxDistance;
     [SerializeField] float Damage;
-    [SerializeField] float HitRate;
+    //[SerializeField] float HitRate;
     [SerializeField] bool LaserOn;
 
     [Header("----- Timed Lasers -----")]
@@ -19,14 +19,16 @@ public class Laser : MonoBehaviour
     [SerializeField] float LaserUpTime;
     [SerializeField] float LaserDownTime;
 
-
-
     LineRenderer laser;
-    float startTime;
+    float startTime;    
+    
+    // Added these to store initial laser stats
+    bool initialLaserOn;
 
     // Start is called before the first frame update
     void Start()
     {
+        initialLaserOn = LaserOn;
         laser = GetComponent<LineRenderer>();
 
         ResetLaser();
@@ -97,7 +99,7 @@ public class Laser : MonoBehaviour
         Vector3 endPoint;
         endPoint = transform.position;
 
-        Vector3 maxDistPoint = new Vector3(0, maxDistance, 0);
+        Vector3 maxDistPoint = transform.up * maxDistance;
         endPoint += maxDistPoint;
 
         laser.SetPosition(0, transform.position);
@@ -113,4 +115,12 @@ public class Laser : MonoBehaviour
     public bool GetLaserEnabled() { return LaserOn; }
 
     public void SetLaserEnabled(bool enabled) {  LaserOn = enabled; }
+
+    // This is a function tied to IEnvironment meant to be used to reset a room
+    public void ResetObject()
+    {
+        LaserOn = initialLaserOn;
+        startTime = Time.time;
+        GameManager.instance.GetPlayerScript().RespawnPlayer();
+    }
 }

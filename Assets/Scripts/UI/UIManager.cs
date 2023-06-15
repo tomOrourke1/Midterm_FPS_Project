@@ -21,8 +21,10 @@ public class UIManager : MonoBehaviour
     public MenuState currentState;
     private FlashDamage flashImageScript;
 
-    [Header("Radial Menu Script")]
+    [Header("Script Reference")]
     [SerializeField] RadialMenu radialScript;
+    [SerializeField] PlayerStatsUI statsUIRef;
+    [SerializeField] KeyUI keyScriptRef;
 
     [Header("Menu States")]
     [SerializeField] GameObject activeMenu;
@@ -33,7 +35,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject radialMenu;
 
     [Header("Stats UI")]
-    [SerializeField] PlayerStatsUI statsUIRef;
     [SerializeField] GameObject playerStatsObj;
 
     [Header("Animator Components")]
@@ -257,21 +258,8 @@ public class UIManager : MonoBehaviour
         StartCoroutine(flashImageScript.FlashShieldDisplay());
     }
 
-    /// <summary>
-    /// Returns the pause animator controller so we can manipulate bools.
-    /// </summary>
-    /// <returns></returns>
-    public Animator ReturnPauseAnimator()
+    public KeyUI GetKeyUI()
     {
-        return pauseAnimController;
-    }
-    
-    /// <summary>
-    /// Returns the lose animator controller so we can manipulate bools.
-    /// </summary>
-    /// <returns></returns>
-    public Animator ReturnLoseAnimator()
-    {
-        return loseAnimController;
+        return keyScriptRef;
     }
 }

@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
-public class DoorDetectPlayerInProximity : MonoBehaviour
+public class DoorDetectPlayerInProximity : MonoBehaviour, IEnvironment
 {
     [SerializeField] IDoorActivator door;
 
@@ -24,7 +25,7 @@ public class DoorDetectPlayerInProximity : MonoBehaviour
                 if (GameManager.instance.GetKeyCounter() > 0)
                 {
                     door.SetLockStatus(false);
-                    GameManager.instance.SetKeyCounter(GameManager.instance.GetKeyCounter() - 1);
+                    GameManager.instance.GetKeyChain().removeKeys(1);
                 }
             }
         }
@@ -47,5 +48,11 @@ public class DoorDetectPlayerInProximity : MonoBehaviour
         {
             door.Activate();
         }
+    }
+
+    // This is a function tied to IEnvironment meant to be used to reset a room
+    public void ResetObject()
+    {
+        count = 0;
     }
 }
