@@ -133,7 +133,6 @@ public class UIManager : MonoBehaviour
     public void SettingsShown()
     {
         activeMenu.SetActive(false);
-
         activeMenu = settingsMenu;
         activeMenu.SetActive(true);
     }
@@ -145,6 +144,16 @@ public class UIManager : MonoBehaviour
     {
         activeMenu.SetActive(false);
         activeMenu = pauseMenu;
+        GameManager.instance.GetSettingsManager().SaveToSettingsObj();
+        GameManager.instance.GetSettingsManager().UpdateObjectsToValues();
+        activeMenu.SetActive(true);
+    }
+
+    public void CancelSettings()
+    {
+        activeMenu.SetActive(false);
+        activeMenu = pauseMenu;
+        GameManager.instance.GetSettingsManager().CancelSettingsObj();
         activeMenu.SetActive(true);
     }
 

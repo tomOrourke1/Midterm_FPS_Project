@@ -1,10 +1,14 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using Palmmedia.ReportGenerator.Core;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+
+    [Header("Settings Manager")]
+    [SerializeField] SettingsManager settings;
 
     [Header("-----Player Stuff-----")]
     [SerializeField] GameObject player;
@@ -29,6 +33,7 @@ public class GameManager : MonoBehaviour
         playerResources = player.GetComponent<PlayerResources>();
         PlayerSpawnPOS = GameObject.FindGameObjectWithTag("Player Spawn Pos");
         keyChain = player.GetComponent<KeyChain>();
+        settings.UpdateObjectsToValues();
     }
 
     private void Start()
@@ -171,5 +176,10 @@ public class GameManager : MonoBehaviour
     public KeyChain ReturnKeyScript()
     {
         return player.GetComponent<KeyChain>();
+    }
+
+    public SettingsManager GetSettingsManager()
+    {
+        return settings;
     }
 }
