@@ -261,4 +261,9 @@ public class RadialMenu : MonoBehaviour
         UpdateMousePosition();
         UpdateSelectedItem();
     }
+
+    public int GetConfirmedKinesis()
+    {
+        return confirmedKinesis;
+    }
 }

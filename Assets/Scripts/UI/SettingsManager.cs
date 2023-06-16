@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class SettingsManager : MonoBehaviour
 {
     [Header("Settings Scriptable Object")]
-    [SerializeField] SettingsObject settings;
+    public SettingsObject settings;
 
     [Header("Sliders")]
     [SerializeField] AudioMixer masterMix;
@@ -47,9 +47,9 @@ public class SettingsManager : MonoBehaviour
     public void UpdateObjectsToValues()
     {
         masterMix.SetFloat("MasterVolume", tempVol);
-        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().fieldOfView = tempFOV;
-        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>().SetSensitivity(tempSens);
-        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>().SetInvert(tempInvY);
+        Camera.main.fieldOfView = tempFOV;
+        Camera.main.GetComponent<CameraController>().SetSensitivity(tempSens);
+        Camera.main.GetComponent<CameraController>().SetInvert(tempInvY);
     }
 
     public void CancelSettingsObj()

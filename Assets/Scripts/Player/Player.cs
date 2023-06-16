@@ -44,10 +44,10 @@ public class Player : MonoBehaviour
     private bool isDashing;
     private bool DashRecharging;
     Vector3 dashDir;
-    float newTilt;
-    float origTilt;
-    float origFov;
-    float dashFovZoom;
+    public float newTilt;
+    public float origTilt;
+    public float origFov;
+    public float dashFovZoom;
 
     // Crouch
     private bool isCrouching;
@@ -64,11 +64,13 @@ public class Player : MonoBehaviour
         isDashing = false;
         isCrouching = false;
         DashRecharging = false;
-        origCamPos = mainCamera.transform.localPosition;
+        
         crouchCameraPos = new Vector3(0,0,0);
-        origHeight = controller.height;
         currentDashes = maxDashes;
-        origFov = Camera.main.fieldOfView;
+        
+        origHeight = controller.height;
+        origCamPos = mainCamera.transform.localPosition;
+        origFov = GameManager.instance.GetSettingsManager().settings.fieldOfView;
 
         //controller = gameObject.AddComponent<CharacterController>();
         RespawnPlayer();
@@ -290,8 +292,8 @@ public class Player : MonoBehaviour
     {
         currentDashes = maxDashes;
         jumpTimes = 0;
-        GameManager.instance.GetPlayerResources().FillAllStats();
 
+        GameManager.instance.GetPlayerResources().FillAllStats();
         UIManager.instance.GetPlayerStats().UpdateValues();
     }
 }

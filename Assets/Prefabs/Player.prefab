@@ -123,7 +123,6 @@ GameObject:
   - component: {fileID: 642081505}
   - component: {fileID: 847320448734065886}
   - component: {fileID: 847320448734065885}
-  - component: {fileID: 626545468}
   - component: {fileID: 9048350793091951337}
   m_Layer: 0
   m_Name: Player
@@ -173,6 +172,10 @@ MonoBehaviour:
   tiltAmount: 0
   CrouchSpeed: 0
   unCrouchSpeed: 10
+  newTilt: 0
+  origTilt: 0
+  origFov: 0
+  dashFovZoom: 0
 --- !u!114 &164878508403180583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -305,6 +308,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inTransition: 0
+  showDistance: 3
 --- !u!114 &1522680994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -385,19 +389,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 847320448734065881}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &626545468
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 847320448734065881}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ba290d56aa3d274380c86592f2466a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inTransition: 0
 --- !u!114 &9048350793091951337
 MonoBehaviour:
   m_ObjectHideFlags: 0

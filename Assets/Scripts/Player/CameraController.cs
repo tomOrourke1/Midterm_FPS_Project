@@ -23,6 +23,7 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        sensitivity = GameManager.instance.GetSettingsManager().settings.sensitivity;
         tilting = false;
         zTiltCurrent = 0;
         zTiltOrig = transform.localRotation.z;
