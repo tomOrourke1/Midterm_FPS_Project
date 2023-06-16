@@ -24,10 +24,22 @@ public class fireBall : MonoBehaviour
         var colliders = Physics.OverlapSphere(transform.position, explosionRange);
         foreach (var collider in colliders)
         {
-            IDamagable damageable = collider.GetComponent<IDamagable>();
-            if (damageable != null)
+            if (collider.GetComponent<IDamagable>() != null)
             {
-                damageable.TakeDamage(damage);
+                RaycastHit hit;
+
+                // Gets the direction of the collider from the barrel.
+                var dir = collider.transform.position - transform.position;
+                //Debug.DrawRay(transform.position, dir);
+
+                // Casts from the barrel to the collider
+                Physics.Raycast(transform.position, dir, out hit);
+
+                // Damages the collider if the raycast connected with it.
+                if (hit.collider == collider)
+                {
+                    collider.GetComponent<IDamagable>().TakeDamage(damage);
+                }
             }
         }
         Destroy(gameObject);

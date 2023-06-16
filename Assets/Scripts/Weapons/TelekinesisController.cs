@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class TelekinesisController : MonoBehaviour
+public class TelekinesisController : KinesisBase
 {
 
     [Header("----- Components -----")]
@@ -44,14 +44,10 @@ public class TelekinesisController : MonoBehaviour
     void Update()
     {
 
+        Fire();
 
 
-
-        TelekinesisStart();
-
-        PullObject();
-
-        ReleaseObject();       
+         
 
     }
 
@@ -206,7 +202,14 @@ public class TelekinesisController : MonoBehaviour
 
     }
 
+    public override void Fire()
+    {
+        TelekinesisStart();
 
+        PullObject();
+
+        ReleaseObject();
+    }
 
 
     Vector3 lerp2(Vector3 p0, Vector3 p1, Vector3 p2, float t)

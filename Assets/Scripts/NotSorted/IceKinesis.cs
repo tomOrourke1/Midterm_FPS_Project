@@ -13,6 +13,9 @@ public class IceKinesis : KinesisBase
     [SerializeField] float ThrowForce;
     [SerializeField] float ThrowUpwardForce;
 
+    float totalCharge;
+    [SerializeField] float totalChargeNeeded;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,30 +31,37 @@ public class IceKinesis : KinesisBase
     {
         if (Input.GetKeyDown(KeyCode.Mouse1) && readyToFire == true && GameManager.instance.GetPlayerResources().Focus.CurrentValue > focusCost)
         {
-           
-            currentSpear = Instantiate(iceSpear, attackPoint.position, Quaternion.identity);
-           
-            
+            currentSpear = Instantiate(iceSpear, attackPoint.position, Quaternion.identity);        
+        }
+        if (Input.GetKey(KeyCode.Mouse1) && readyToFire == true && GameManager.instance.GetPlayerResources().Focus.CurrentValue > focusCost)
+        {
+            totalCharge += Time.deltaTime;
         }
         if (Input.GetKeyUp(KeyCode.Mouse1) && currentSpear != null && readyToFire == true)
         {
-            StartCoroutine(cooldown());
-            GameManager.instance.GetPlayerResources().SpendFocus(focusCost);
-       
-            readyToFire = false;
-            //   fireballRadius.enabled = true;
 
-            Vector3 forceDirection = Camera.main.transform.forward;
-
-            RaycastHit hit;
-            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 100f))
+            if (totalCharge >= totalChargeNeeded)
             {
-                forceDirection = (hit.point - attackPoint.position).normalized;
+                StartCoroutine(cooldown());
+                GameManager.instance.GetPlayerResources().SpendFocus(focusCost);
+
+                readyToFire = false;
+
+
+                Vector3 forceDirection = Camera.main.transform.forward;
+
+                RaycastHit hit;
+                if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 100f))
+                {
+                    forceDirection = (hit.point - attackPoint.position).normalized;
+                }
+
+
+                Vector3 forceApplied = forceDirection * ThrowForce + transform.up * ThrowUpwardForce;
+                currentSpear.GetComponent<Rigidbody>().AddForce(forceApplied, ForceMode.Impulse);
+                totalCharge = 0;
             }
-
-
-            Vector3 forceApplied = forceDirection * ThrowForce + transform.up * ThrowUpwardForce;
-            currentSpear.GetComponent<Rigidbody>().AddForce(forceApplied, ForceMode.Impulse);
+            else { Destroy(currentSpear); }           
 
         }
     }
