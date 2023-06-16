@@ -7,7 +7,7 @@ public class HandAnimatorScript : MonoBehaviour
 
 
     [SerializeField] Animator rightHandAnimator;
-
+    [SerializeField] Animator leftHandAnimator;
 
 
 
@@ -15,6 +15,9 @@ public class HandAnimatorScript : MonoBehaviour
     {
         rightHandAnimator.SetTrigger("OnShoot");
     }
+
+
+
 
 
 }
