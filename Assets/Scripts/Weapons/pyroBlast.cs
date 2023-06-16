@@ -40,7 +40,11 @@ public class pyroBlast : KinesisBase
             //rb.useGravity = false;
             currentBall.GetComponent<Rigidbody>().useGravity = false;
         }
-        if (Input.GetKeyUp(KeyCode.Mouse1) && currentBall != null && readyToFire == true )
+        if (Input.GetKey(KeyCode.Mouse1) && currentBall != null && readyToFire == true)
+        {
+            currentBall.transform.position = attackPoint.position;
+        }
+            if (Input.GetKeyUp(KeyCode.Mouse1) && currentBall != null && readyToFire == true )
         {
             StartCoroutine(cooldown());
             GameManager.instance.GetPlayerResources().SpendFocus(focusCost);

@@ -35,6 +35,7 @@ public class IceKinesis : KinesisBase
         if (Input.GetKey(KeyCode.Mouse1) && readyToFire == true && GameManager.instance.GetPlayerResources().Focus.CurrentValue > focusCost)
         {
             totalCharge += Time.deltaTime;
+            currentSpear.transform.position = attackPoint.position;
         }
         if (Input.GetKeyUp(KeyCode.Mouse1) && currentSpear != null && readyToFire == true)
         {
