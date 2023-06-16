@@ -1,5 +1,280 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &78457325
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 78457327}
+  - component: {fileID: 78457330}
+  - component: {fileID: 78457329}
+  - component: {fileID: 78457328}
+  - component: {fileID: 78457326}
+  m_Layer: 0
+  m_Name: KinesisHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &78457327
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 78457325}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 847320448734065884}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &78457330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 78457325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d4083126121695418bf3b0e8bc648d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireRate: 1
+  focusCost: 1
+  attackPoint: {fileID: 152961158}
+  rb: {fileID: 1562629938496981040, guid: 943267a741c0ba746a1f9d522151bfd9, type: 3}
+  fireball: {fileID: 1562629938496981055, guid: 943267a741c0ba746a1f9d522151bfd9, type: 3}
+  ThrowForce: 7
+  ThrowUpwardForce: 3
+--- !u!114 &78457329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 78457325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe581c096c9fae041bc774e9c55bde2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireRate: 1
+  focusCost: 1
+  attackPoint: {fileID: 152961158}
+  iceSpear: {fileID: 5306842554997940416, guid: 6ad1ef57acf2b0846af6f2a97bb4b5e0, type: 3}
+  ThrowForce: 30
+  ThrowUpwardForce: 0
+  totalChargeNeeded: 1
+--- !u!114 &78457328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 78457325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec9764a2a01a37b42ac4aaed05d04488, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireRate: 0
+  focusCost: 1
+  maxDistance: 5
+  Damage: 1
+  attackPoint: {fileID: 152961157}
+--- !u!114 &78457326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 78457325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c688910ff9d57b458ca476ae7eac0f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireRate: 0
+  focusCost: 3.73
+  cam: {fileID: 847320448619245781}
+  desiredPos: {fileID: 5410451277757737795}
+  range: 25
+  pullForce: 20
+  pushForce: 20
+  releaseForce: 10
+  rotationSpeed: 0
+  yOffset: 0
+  timeSpeed: 1.68
+  allowedDistanceToThrow: 0.804
+  OnTeleStart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1560916409302215681}
+        m_TargetAssemblyTypeName: HandAnimatorScript, Assembly-CSharp
+        m_MethodName: PlayTelePull
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnTelePush:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1560916409302215681}
+        m_TargetAssemblyTypeName: HandAnimatorScript, Assembly-CSharp
+        m_MethodName: PlayTelePush
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!1 &152961157
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 152961158}
+  - component: {fileID: 152961159}
+  m_Layer: 0
+  m_Name: attackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &152961158
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152961157}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.521, y: 0, z: 1.579}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 847320448734065884}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!120 &152961159
+LineRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152961157}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 0
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Positions:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 1}
+  m_Parameters:
+    serializedVersion: 3
+    widthMultiplier: 1
+    widthCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0.01777649
+        value: 0.3219509
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorGradient:
+      serializedVersion: 2
+      key0: {r: 1, g: 1, b: 1, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 1}
+      key2: {r: 0, g: 0, b: 0, a: 0}
+      key3: {r: 0, g: 0, b: 0, a: 0}
+      key4: {r: 0, g: 0, b: 0, a: 0}
+      key5: {r: 0, g: 0, b: 0, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 65535
+      ctime2: 0
+      ctime3: 0
+      ctime4: 0
+      ctime5: 0
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 0
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_NumColorKeys: 2
+      m_NumAlphaKeys: 2
+    numCornerVertices: 0
+    numCapVertices: 0
+    alignment: 0
+    textureMode: 0
+    shadowBias: 0.5
+    generateLightingData: 0
+  m_UseWorldSpace: 1
+  m_Loop: 0
 --- !u!1 &847320448619245783
 GameObject:
   m_ObjectHideFlags: 0
@@ -115,7 +390,6 @@ GameObject:
   - component: {fileID: 847320448734065880}
   - component: {fileID: 164878508403180583}
   - component: {fileID: 6896435042382046022}
-  - component: {fileID: 8837992345269671648}
   - component: {fileID: 1522680995}
   - component: {fileID: 1769448000}
   - component: {fileID: 29618596}
@@ -124,6 +398,7 @@ GameObject:
   - component: {fileID: 847320448734065886}
   - component: {fileID: 847320448734065885}
   - component: {fileID: 9048350793091951337}
+  - component: {fileID: 363877806}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -144,6 +419,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 847320448619245780}
+  - {fileID: 78457327}
+  - {fileID: 152961158}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -237,60 +514,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &8837992345269671648
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 847320448734065881}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c688910ff9d57b458ca476ae7eac0f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fireRate: 0
-  focusCost: 3.73
-  cam: {fileID: 847320448619245781}
-  desiredPos: {fileID: 5410451277757737795}
-  range: 25
-  pullForce: 20
-  pushForce: 20
-  releaseForce: 10
-  rotationSpeed: 0
-  yOffset: 0
-  timeSpeed: 1.68
-  allowedDistanceToThrow: 0.804
-  OnTeleStart:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1560916409302215681}
-        m_TargetAssemblyTypeName: HandAnimatorScript, Assembly-CSharp
-        m_MethodName: PlayTelePull
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnTelePush:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1560916409302215681}
-        m_TargetAssemblyTypeName: HandAnimatorScript, Assembly-CSharp
-        m_MethodName: PlayTelePush
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1522680995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,7 +544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c7b67d8ee3d6b54b823146cff62eaab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tele: {fileID: 8837992345269671648}
+  tele: {fileID: 0}
   gun: {fileID: 6896435042382046022}
   playerResources: {fileID: 164878508403180583}
   timeToRegen: 3
@@ -434,6 +657,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   keys: 0
   maxKeys: 3
+--- !u!114 &363877806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847320448734065881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 311a6755a0c43a040ba48205c0e39745, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aero: {fileID: 0}
+  pyro: {fileID: 78457330}
+  ice: {fileID: 78457329}
+  lightning: {fileID: 78457328}
+  telekinesis: {fileID: 78457326}
 --- !u!1 &1560916408177564744
 GameObject:
   m_ObjectHideFlags: 0
