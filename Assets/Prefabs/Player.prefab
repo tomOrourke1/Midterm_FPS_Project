@@ -249,6 +249,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c688910ff9d57b458ca476ae7eac0f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireRate: 0
+  focusCost: 3.73
   cam: {fileID: 847320448619245781}
   desiredPos: {fileID: 5410451277757737795}
   range: 25
@@ -257,9 +259,38 @@ MonoBehaviour:
   releaseForce: 10
   rotationSpeed: 0
   yOffset: 0
-  focusCost: 3.73
   timeSpeed: 1.68
   allowedDistanceToThrow: 0.804
+  OnTeleStart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1560916409302215681}
+        m_TargetAssemblyTypeName: HandAnimatorScript, Assembly-CSharp
+        m_MethodName: PlayTelePull
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnTelePush:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1560916409302215681}
+        m_TargetAssemblyTypeName: HandAnimatorScript, Assembly-CSharp
+        m_MethodName: PlayTelePush
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1522680995
 MonoBehaviour:
   m_ObjectHideFlags: 0

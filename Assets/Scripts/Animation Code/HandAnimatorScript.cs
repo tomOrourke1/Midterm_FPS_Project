@@ -17,6 +17,15 @@ public class HandAnimatorScript : MonoBehaviour
     }
 
 
+    public void PlayTelePull()
+    {
+        leftHandAnimator.SetBool("Telekinesis", true);
+    }
+    public void PlayTelePush()
+    {
+        leftHandAnimator.SetBool("Telekinesis", false);
+
+    }
 
 
 
