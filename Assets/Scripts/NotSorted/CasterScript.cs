@@ -4,44 +4,73 @@ using UnityEngine;
 
 public class CasterScript : MonoBehaviour
 {
-    WindKinesis aero;
-    pyroBlast pyro;
-    IceKinesis ice;
-    LightningKinesis lightning;
-    TelekinesisController telekinesis;
-   
-    
+    [Header("Script References")]
+    [SerializeField] WindKinesis aero;
+    [SerializeField] pyroBlast pyro;
+    [SerializeField] IceKinesis ice;
+    [SerializeField] LightningKinesis lightning;
+    [SerializeField] TelekinesisController telekinesis;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    KinesisBase currentKenisis;
 
     // Update is called once per frame
     void Update()
     {
-        switch (UIManager.instance)
+        currentKenisis?.Fire();
+    }
+
+    public void SetCurrentKinesis(int opt)
+    {
+        switch (opt)
         {
+            case 0:
+                SetAero();
+                break;
             case 1:
-                //telekinesis.Fire();
+                SetLightning();
+
                 break;
             case 2:
-            pyro.Fire();
+                SetTelekinesis();
+
                 break;
             case 3:
-                ice.Fire();
+                SetPyro();
+
                 break;
             case 4:
-                lightning.Fire();
+                SetIce();
+
                 break;
-       /*     case 5:
-                aero.Fire();
-                break*/;
-
-
-
-
+            default:
+                Debug.Log("ERROR YOU DID SOMETHING WRONG!");
+                break;
         }
     }
+
+    private void SetAero()
+    {
+        currentKenisis = aero;
+    }
+
+    private void SetPyro()
+    {
+        currentKenisis = pyro;
+    }
+
+    private void SetIce()
+    {
+        currentKenisis = ice;
+    }
+
+    private void SetLightning()
+    {
+        currentKenisis = lightning;
+    }
+
+    private void SetTelekinesis()
+    {
+        currentKenisis = telekinesis;
+    }
+
 }

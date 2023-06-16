@@ -45,16 +45,6 @@ public class TelekinesisController : KinesisBase
     }
 
 
-    void Update()
-    {
-
-        Fire();
-
-
-         
-
-    }
-
 
 
     private void FixedUpdate()

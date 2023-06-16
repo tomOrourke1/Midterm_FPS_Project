@@ -28,11 +28,6 @@ public class pyroBlast : KinesisBase
     {
         readyToFire = true;
     }
-    void Update()
-    {
-        Fire();
-    }
-
 
     
    public override void Fire()

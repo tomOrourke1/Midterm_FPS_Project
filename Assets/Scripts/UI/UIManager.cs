@@ -277,4 +277,8 @@ public class UIManager : MonoBehaviour
     {
         radialScript.SelectKinesis();
     }
+    public RadialMenu GetRadialScript()
+    {
+        return radialScript;
+    }
 }

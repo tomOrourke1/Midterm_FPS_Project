@@ -10,6 +10,8 @@ public class IceKinesis : KinesisBase
 
     bool readyToFire;
 
+
+
     [SerializeField] float ThrowForce;
     [SerializeField] float ThrowUpwardForce;
 
@@ -23,10 +25,7 @@ public class IceKinesis : KinesisBase
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        Fire();
-    }
+    
     public override void Fire()
     {
         if (Input.GetKeyDown(KeyCode.Mouse1) && readyToFire == true && GameManager.instance.GetPlayerResources().Focus.CurrentValue > focusCost)

@@ -13,18 +13,11 @@ public class LightningKinesis : KinesisBase
     void Start()
     {
         lightning = attackPoint.GetComponent<LineRenderer>();
-       
-        lightning.enabled = false;
-
-
+        UpdateLightningNoLook();
+        lightning.enabled = true;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        Fire();
    
-    }
     public override void Fire()
     {
         if (Input.GetKey(KeyCode.Mouse1) && GameManager.instance.GetPlayerResources().SpendFocus(focusCost * Time.deltaTime))
