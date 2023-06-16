@@ -38,4 +38,8 @@ public class MenuButtonFunctions : MonoBehaviour
         GameManager.instance.GetPlayerScript().RespawnPlayer();
     }
 
+    public void ShowKeybindsMenu()
+    {
+        UIManager.instance.ShowKeybinds();
+    }
 }

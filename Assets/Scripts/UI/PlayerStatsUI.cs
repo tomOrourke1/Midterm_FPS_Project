@@ -18,7 +18,7 @@ public class PlayerStatsUI : MonoBehaviour
     [SerializeField] Image healthIcon;
     [Tooltip("The shield icon to enable when the shield is empty.")]
     [SerializeField] Image shieldIcon;
-    [SerializeField] StatVisualizer sliderScript;
+    [SerializeField] public StatVisualizer sliderScript;
 
     [Header("Kinesis Icon")]
     [SerializeField] Image kinesisIcon;

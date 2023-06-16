@@ -256,7 +256,6 @@ public class Player : MonoBehaviour
     void handleCrouch()
     {
         // Here we will crouch
-        Debug.Log("Crouch");
         isCrouching = true;
         controller.height = origHeight * .5f;
         unCrouching = false;
@@ -264,9 +263,6 @@ public class Player : MonoBehaviour
 
     void handleCrouchEnd()
     {
-        // Here we will uncrouch
-        Debug.Log("Uncrouch");
-
         RaycastHit Hit;
 
         if (!Physics.SphereCast(transform.position, controller.radius, transform.up, out Hit, controller.height * 2))

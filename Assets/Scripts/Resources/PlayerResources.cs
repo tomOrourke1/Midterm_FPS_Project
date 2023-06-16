@@ -24,6 +24,9 @@ public class PlayerResources : MonoBehaviour, IDamagable, IHealReciever, IFocusR
 
         shield.OnResourceDepleted += BreakShield;
         shield.OnResourceDecrease += FlashShield;
+
+        shield.OnResourceDepleted += UpdateShieldDepletionRate;
+
     }
     private void OnDisable()
     {
@@ -32,6 +35,8 @@ public class PlayerResources : MonoBehaviour, IDamagable, IHealReciever, IFocusR
 
         shield.OnResourceDepleted -= BreakShield;
         shield.OnResourceDecrease -= FlashShield;
+
+        shield.OnResourceDepleted -= UpdateShieldDepletionRate;
     }
 
     public void TakeDamage(float dmg)
@@ -97,4 +102,11 @@ public class PlayerResources : MonoBehaviour, IDamagable, IHealReciever, IFocusR
     {
         UIManager.instance.FlashBreakShield();
     }
+
+    void UpdateShieldDepletionRate()
+    {
+        UIManager.instance.GetPlayerStats().sliderScript.UpdtateShieldDepleationTimer();
+    }
+
+
 }

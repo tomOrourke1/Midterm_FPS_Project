@@ -263,8 +263,21 @@ public class RadialMenu : MonoBehaviour
         UpdateSelectedItem();
     }
 
+    /// <summary>
+    /// Returns the confirmed kinesis type.
+    /// </summary>
+    /// <returns></returns>
     public int GetConfirmedKinesis()
     {
         return confirmedKinesis;
+    }
+
+    /// <summary>
+    /// Returns the Reticle UI game object so we can disable/enable this when pause/death happens
+    /// </summary>
+    /// <returns></returns>
+    public GameObject GetReticle()
+    {
+        return reticleUI;
     }
 }

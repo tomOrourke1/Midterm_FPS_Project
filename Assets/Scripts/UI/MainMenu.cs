@@ -13,13 +13,15 @@ public class MainMenu : MonoBehaviour
 
     [Header("Settings Components")]
     [SerializeField] SettingsManager sett;
-    [SerializeField] GameObject settMenuObj;
+    [SerializeField] GameObject settingsMenuObj;
+    [SerializeField] GameObject keybinds;
 
     // Start is called before the first frame update
     void Start()
     {
         baseMenu.SetActive(true);
-        settMenuObj.SetActive(false);
+        settingsMenuObj.SetActive(false);
+        keybinds.SetActive(false);
 
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
@@ -38,20 +40,32 @@ public class MainMenu : MonoBehaviour
     public void SettingsMM()
     {
         baseMenu.SetActive(false);
-        settMenuObj.SetActive(true);
+        settingsMenuObj.SetActive(true);
     }
 
     public void ApplySettingsMM()
     {
         sett.SaveToSettingsObj();
-        settMenuObj.SetActive(false);
+        settingsMenuObj.SetActive(false);
         baseMenu.SetActive(true);
     }
 
     public void CancelSettignsMM()
     {
         sett.CancelSettingsObj();
-        settMenuObj.SetActive(false);
+        settingsMenuObj.SetActive(false);
         baseMenu.SetActive(true);
+    }
+
+    public void OpenKeybinds()
+    {
+        baseMenu.SetActive(false);
+        keybinds.SetActive(true);
+    }
+
+    public void HideKeybinds()
+    {
+        baseMenu.SetActive(true);
+        keybinds.SetActive(false);
     }
 }
