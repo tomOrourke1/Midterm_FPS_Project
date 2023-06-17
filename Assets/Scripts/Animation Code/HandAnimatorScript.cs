@@ -40,4 +40,15 @@ public class HandAnimatorScript : MonoBehaviour
 
 
 
+    public void StartElectro()
+    {
+        leftHandAnimator.SetBool("Electro", true);
+    }
+    public void StopElectro()
+    {
+        leftHandAnimator.SetBool("Electro", false);
+    }
+
+
+
 }

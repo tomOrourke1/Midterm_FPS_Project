@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class LightningKinesis : KinesisBase
 {
@@ -9,6 +10,14 @@ public class LightningKinesis : KinesisBase
     [SerializeField] float Damage;
     [SerializeField] GameObject attackPoint;
     LineRenderer lightning;
+
+
+    public UnityEvent OnElectroStart;
+    public UnityEvent OnElectroStop;
+
+
+    bool doesLightning;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,19 +29,32 @@ public class LightningKinesis : KinesisBase
    
     public override void Fire()
     {
+        
         if (Input.GetKey(KeyCode.Mouse1) && GameManager.instance.GetPlayerResources().SpendFocus(focusCost * Time.deltaTime))
         {
-            lightning.enabled = true;
-            LookCast();
+            if(Input.GetKeyDown(KeyCode.Mouse1))
+            {
+                OnElectroStart?.Invoke();
+            }
+
+            if(doesLightning)
+            {
+                LookCast();
+                lightning.enabled = true;
+
+            }
 
         }
         else if(lightning.enabled && Input.GetKey(KeyCode.Mouse1) && !GameManager.instance.GetPlayerResources().SpendFocus(focusCost * Time.deltaTime))
         {
             lightning.enabled = false;
+
         }
         else if (Input.GetKeyUp(KeyCode.Mouse1)) 
         {
             lightning.enabled = false; 
+            OnElectroStop?.Invoke();
+            doesLightning = false;
         }
     }
     void LookCast()
@@ -97,4 +119,12 @@ public class LightningKinesis : KinesisBase
         lightning.SetPosition(1, hitPoint);
     }
     
+
+
+
+    public void StartLightning()
+    {
+        doesLightning = true;
+    }
+
 }
