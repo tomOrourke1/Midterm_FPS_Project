@@ -43,6 +43,11 @@ public class RoomManager : MonoBehaviour
         // Stores the spawns
         //var objs = Physics.BoxCastAll(boxTrans.position, box.size / 2, Vector3.zero, boxTrans.rotation, 0, mask);
 
+        if (Spawners != null)
+        {
+            Spawners.Clear();
+            Entities.Clear();
+        }
         Spawners = new List<IEntitySpawner>(gameObject.GetComponentsInChildren<IEntitySpawner>());
 
         foreach (var obj in Spawners)
