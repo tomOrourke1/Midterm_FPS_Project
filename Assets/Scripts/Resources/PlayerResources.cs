@@ -58,6 +58,7 @@ public class PlayerResources : MonoBehaviour, IDamagable, IHealReciever, IFocusR
 
     void PlayerDied()
     {
+        GameManager.instance.GetPlayerScript().ResetVelocity();
         // trigger lose game if the player dies
         UIManager.instance.LoseGame();
     }

@@ -42,7 +42,6 @@ public class CameraController : MonoBehaviour
             zTiltCurrent = Mathf.Lerp(zTiltCurrent, zTilt, Time.deltaTime * 100);
             if (zTiltCurrent == zTilt)
             {
-                //StartCoroutine(tiltWait());
                 tilting = false;
             }
         }
@@ -73,12 +72,6 @@ public class CameraController : MonoBehaviour
 
     }
 
-    IEnumerator tiltWait()
-    {
-        yield return new WaitForSeconds(.05f);
-        tilting = false;
-    }
-
     public void DashCam(float tiltDir, float min, float max)
     {
         lockZMin = min;
@@ -106,5 +99,11 @@ public class CameraController : MonoBehaviour
     public bool GetInvert()
     {
         return invertY;
+    }
+
+    public void ResetCamera()
+    {
+        tilting = false;
+        zTiltCurrent = zTiltOrig;
     }
 }

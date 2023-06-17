@@ -293,4 +293,14 @@ public class Player : MonoBehaviour
         GameManager.instance.GetPlayerResources().FillAllStats();
         UIManager.instance.GetPlayerStats().UpdateValues();
     }
+
+    public void ResetVelocity()
+    {
+        playerVelocity = Vector3.zero;
+        move = Vector3.zero;
+        dashDir = Vector3.zero;
+        dashFovZoom = origFov;
+        handleWalk();
+        controller.Move(playerVelocity * Time.deltaTime);
+    }
 }
