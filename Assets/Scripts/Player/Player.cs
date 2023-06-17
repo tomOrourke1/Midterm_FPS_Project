@@ -294,7 +294,7 @@ public class Player : MonoBehaviour
         UIManager.instance.GetPlayerStats().UpdateValues();
     }
 
-    public void ResetVelocity()
+    public void DeathHandler()
     {
         playerVelocity = Vector3.zero;
         move = Vector3.zero;
@@ -302,5 +302,6 @@ public class Player : MonoBehaviour
         dashFovZoom = origFov;
         handleWalk();
         controller.Move(playerVelocity * Time.deltaTime);
+        gameObject.transform.SetParent(null);
     }
 }
