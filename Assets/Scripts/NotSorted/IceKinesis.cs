@@ -23,7 +23,6 @@ public class IceKinesis : KinesisBase
 
 
     bool canFire;
-
     bool throwIce;
 
     public override void Fire()

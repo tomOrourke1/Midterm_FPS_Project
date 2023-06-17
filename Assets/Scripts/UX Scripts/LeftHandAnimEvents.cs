@@ -7,6 +7,7 @@ public class LeftHandAnimEvents : MonoBehaviour
 
     [SerializeField] IceKinesis ice;
     [SerializeField] LightningKinesis lightning;
+    [SerializeField] pyroBlast pyro;
 
     public void ThrowIce()
     {
@@ -23,5 +24,14 @@ public class LeftHandAnimEvents : MonoBehaviour
         lightning.StartLightning();
     }
 
+
+    public void FireHold()
+    {
+        pyro.SetIsReady(true);
+    }
+    public void FIreThrow()
+    {
+        pyro.SetCanActive(true);
+    }
 
 }

@@ -54,6 +54,36 @@ MonoBehaviour:
   fireball: {fileID: 1562629938496981055, guid: 943267a741c0ba746a1f9d522151bfd9, type: 3}
   ThrowForce: 7
   ThrowUpwardForce: 3
+  OnFireHold:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2283150852366316829}
+        m_TargetAssemblyTypeName: HandAnimatorScript, Assembly-CSharp
+        m_MethodName: StartPyro
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnFireThrow:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2283150852366316829}
+        m_TargetAssemblyTypeName: HandAnimatorScript, Assembly-CSharp
+        m_MethodName: StopPyro
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &78457329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -824,6 +854,10 @@ PrefabInstance:
       propertyPath: ice
       value: 
       objectReference: {fileID: 78457329}
+    - target: {fileID: 6589712104973318808, guid: afe13f3e498187b4b8147cc0dd44ab8a, type: 3}
+      propertyPath: pyro
+      value: 
+      objectReference: {fileID: 78457330}
     - target: {fileID: 6589712104973318808, guid: afe13f3e498187b4b8147cc0dd44ab8a, type: 3}
       propertyPath: lightning
       value: 

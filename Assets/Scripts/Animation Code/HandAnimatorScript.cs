@@ -50,5 +50,15 @@ public class HandAnimatorScript : MonoBehaviour
     }
 
 
+    public void StartPyro()
+    {
+        leftHandAnimator.SetBool("Fire", true);
+    }
+
+    public void StopPyro()
+    {
+        leftHandAnimator.SetBool("Fire", false);
+
+    }
 
 }
