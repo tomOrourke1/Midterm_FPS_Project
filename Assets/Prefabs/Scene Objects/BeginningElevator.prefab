@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[E]'
+  m_text: X
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 19551ab46700e3243b3bbdeb7bb3097d, type: 2}
   m_sharedMaterial: {fileID: -6624472400170989425, guid: 19551ab46700e3243b3bbdeb7bb3097d, type: 2}
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0.7372549, g: 0.18431373, b: 0.18431373, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -93,13 +93,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0.5
-  m_fontSizeBase: 0.5
+  m_fontSize: 0.15
+  m_fontSizeBase: 0.15
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -3626,6 +3626,7 @@ GameObject:
   - component: {fileID: 9054769236526450831}
   - component: {fileID: 9054769236526450830}
   - component: {fileID: 9054769236526450829}
+  - component: {fileID: 1709555660}
   m_Layer: 0
   m_Name: ElevatorPanel
   m_TagString: Untagged
@@ -3712,6 +3713,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1709555660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9054769236526450818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee18c0fb3b49c964fbce0d0aa133ba6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayObj: {fileID: 4651893703438220852}
 --- !u!1001 &1504124027640761286
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3778,3 +3792,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2814723236822065334, guid: 3048424601af839449b00f456673126f, type: 3}
   m_PrefabInstance: {fileID: 1504124027640761286}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7455545543676040889 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8334144201615138175, guid: 3048424601af839449b00f456673126f, type: 3}
+  m_PrefabInstance: {fileID: 1504124027640761286}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1886482062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7455545543676040889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bff5c2987950c834c8e48a50d24c6c69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DoorToLock: {fileID: 0}
+  NextRoom: {fileID: 0}
