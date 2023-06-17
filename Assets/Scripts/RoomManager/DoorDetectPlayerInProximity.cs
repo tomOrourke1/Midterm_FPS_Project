@@ -17,10 +17,10 @@ public class DoorDetectPlayerInProximity : MonoBehaviour, IEnvironment
     private void OnTriggerEnter(Collider other)
     {
 
-        if(door.GetLockedStatus())
+        if (door.GetLockedStatus())
         {
             bool player = other.CompareTag("Player");
-            if(player)
+            if (player)
             {
                 if (GameManager.instance.GetKeyCounter() > 0)
                 {
@@ -30,7 +30,7 @@ public class DoorDetectPlayerInProximity : MonoBehaviour, IEnvironment
             }
         }
 
-        if(count == 0)
+        if (count == 0)
         {
             door.Activate();
         }
@@ -44,7 +44,7 @@ public class DoorDetectPlayerInProximity : MonoBehaviour, IEnvironment
     private void OnTriggerExit(Collider other)
     {
         count--;
-        if(count == 0)
+        if (count == 0)
         {
             door.Activate();
         }
@@ -54,5 +54,15 @@ public class DoorDetectPlayerInProximity : MonoBehaviour, IEnvironment
     public void ResetObject()
     {
         count = 0;
+    }
+
+    public void StartObject()
+    {
+        // Nothing needs to happen here
+    }
+
+    public void StopObject()
+    {
+        // Nothing needs to happen here
     }
 }

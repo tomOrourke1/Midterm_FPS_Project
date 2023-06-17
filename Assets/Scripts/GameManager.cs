@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] int KeyCounter;
 
     private float timescaleOrig;
+    private RoomManager currentRoomManager;
 
     void Awake()
     {
@@ -197,6 +198,23 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void RespawnCaller()
     {
+        playerscript.RespawnPlayer();
+        currentRoomManager.Respawn();
+    }
 
+    /// <summary>
+    /// Sets the current room manager to the one that is passed in. 
+    /// </summary>
+    public void SetCurrentRoomManager(RoomManager roomManager)
+    {
+        currentRoomManager = roomManager;
+    }
+
+    /// <summary>
+    /// Gets the current room manager. 
+    /// </summary>
+    public RoomManager GetCurrentRoomManager()
+    {
+        return currentRoomManager;
     }
 }

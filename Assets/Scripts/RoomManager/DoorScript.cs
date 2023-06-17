@@ -100,4 +100,14 @@ public class DoorScript : MonoBehaviour, IDoorActivator, IEnvironment
 
         SetLockStatus(initialLock);
     }
+
+    public void StartObject()
+    {
+        // Nothing needs to happen here
+    }
+
+    public void StopObject()
+    {
+        // Nothing needs to happen here
+    }
 }

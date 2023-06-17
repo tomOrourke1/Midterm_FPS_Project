@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RotatingBlock : MonoBehaviour
+public class RotatingBlock : MonoBehaviour, IEnvironment
 {
     [Header("----- Rotation -----")]
     [SerializeField] float rotationSpeed;
@@ -31,5 +31,20 @@ public class RotatingBlock : MonoBehaviour
         var rotation = Quaternion.AngleAxis(rotationAngle * Time.deltaTime, Vector3.up);
 
         transform.localRotation = Quaternion.Lerp(transform.localRotation, transform.localRotation * rotation, Time.deltaTime * rotationSpeed);
+    }
+
+    public void ResetObject()
+    {
+        // Come back to this
+    }
+
+    public void StartObject()
+    {
+        gameObject.SetActive(true);
+    }
+
+    public void StopObject()
+    {
+        gameObject.SetActive(false);
     }
 }
