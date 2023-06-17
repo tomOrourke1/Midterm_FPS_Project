@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     [SerializeField, Range(.01f, 1)] float DashDuration;
     [SerializeField] float DashCooldown;
     [SerializeField, Range(.01f, 20)] float tiltAmount;
+    [SerializeField, Range(0, 30)] float dashFovZoomAmount;
 
     [Header("----- Crouch Stats -----")]
     [SerializeField] float CrouchSpeed;
@@ -44,10 +45,10 @@ public class Player : MonoBehaviour
     private bool isDashing;
     private bool DashRecharging;
     Vector3 dashDir;
-    public float newTilt;
-    public float origTilt;
-    public float origFov;
-    public float dashFovZoom;
+    private float newTilt;
+    private float origTilt;
+    private float origFov;
+    private float dashFovZoom;
 
     // Crouch
     private bool isCrouching;
@@ -171,11 +172,11 @@ public class Player : MonoBehaviour
         }
         else if (Input.GetAxis("Vertical") > 0)
         {
-            dashFovZoom = 50;
+            dashFovZoom = origFov - dashFovZoomAmount;
         }
         else
         {
-            dashFovZoom = 70;
+            dashFovZoom = origFov + dashFovZoomAmount;
         }
     }
 

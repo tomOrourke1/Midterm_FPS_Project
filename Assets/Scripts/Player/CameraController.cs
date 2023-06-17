@@ -39,10 +39,11 @@ public class CameraController : MonoBehaviour
             zTiltCurrent = Mathf.MoveTowards(zTiltCurrent, zTiltOrig, Time.deltaTime * 20);
         } else
         {
-            zTiltCurrent = Mathf.Lerp(zTiltCurrent, zTilt, Time.deltaTime * 60);
+            zTiltCurrent = Mathf.Lerp(zTiltCurrent, zTilt, Time.deltaTime * 100);
             if (zTiltCurrent == zTilt)
             {
-                StartCoroutine(tiltWait());
+                //StartCoroutine(tiltWait());
+                tilting = false;
             }
         }
         
