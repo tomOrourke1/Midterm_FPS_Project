@@ -20,7 +20,7 @@ public class fireBall : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
 
-        
+
         var colliders = Physics.OverlapSphere(transform.position, explosionRange);
         foreach (var collider in colliders)
         {
@@ -28,17 +28,17 @@ public class fireBall : MonoBehaviour
             {
 
             }
-          else if (collider.GetComponent<IDamagable>() != null)
+            else if (collider.GetComponent<IDamagable>() != null)
             {
                 RaycastHit hit;
 
-               
+
                 var dir = collider.transform.position - transform.position;
                 //Debug.DrawRay(transform.position, dir);
 
                 Physics.Raycast(transform.position, dir, out hit);
 
-               
+
                 if (hit.collider == collider)
                 {
                     collider.GetComponent<IDamagable>().TakeDamage(damage);

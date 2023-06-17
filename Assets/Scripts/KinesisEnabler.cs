@@ -17,19 +17,14 @@ public class KinesisEnabler : MonoBehaviour
         switch (idx)
         {
             case 0:
-                Debug.Log(aeroEnabled);
                 return aeroEnabled;
             case 1:
-                Debug.Log(electroEnabled);
                 return electroEnabled;
             case 2:
-                Debug.Log(teleEnabled);
                 return teleEnabled;
             case 3:
-                Debug.Log(pyroEnabled);
                 return pyroEnabled;
             case 4:
-                Debug.Log(cryoEnabled);
                 return cryoEnabled;
             default:
                 return false;
