@@ -84,6 +84,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  fireFocusParticles: {fileID: 6229319264460631047}
 --- !u!114 &78457329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -776,6 +777,10 @@ PrefabInstance:
       propertyPath: melee
       value: 
       objectReference: {fileID: 1522680995}
+    - target: {fileID: 6081877541946632751, guid: afe13f3e498187b4b8147cc0dd44ab8a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6589712104973318808, guid: afe13f3e498187b4b8147cc0dd44ab8a, type: 3}
       propertyPath: ice
       value: 
@@ -930,6 +935,11 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!1 &6229319264460631047 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6081877541946632751, guid: afe13f3e498187b4b8147cc0dd44ab8a, type: 3}
+  m_PrefabInstance: {fileID: 150263362516403752}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8062945925250756997 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7921973731537909677, guid: afe13f3e498187b4b8147cc0dd44ab8a, type: 3}

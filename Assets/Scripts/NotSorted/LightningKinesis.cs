@@ -38,7 +38,7 @@ public class LightningKinesis : KinesisBase
     public override void Fire()
     {
         
-        if (Input.GetKey(KeyCode.Mouse1) && GameManager.instance.GetPlayerResources().SpendFocus(focusCost * Time.deltaTime))
+        if (Input.GetKey(KeyCode.Mouse1) && HasFocus())
         {
             if(Input.GetKeyDown(KeyCode.Mouse1))
             {
@@ -46,7 +46,7 @@ public class LightningKinesis : KinesisBase
                 focusParticles.SetActive(true); 
             }
 
-            if(doesLightning)
+            if(doesLightning && GameManager.instance.GetPlayerResources().SpendFocus(focusCost * Time.deltaTime))
             {
                 LookCast();
                 //lightning.enabled = true;
@@ -55,7 +55,7 @@ public class LightningKinesis : KinesisBase
             }
 
         }
-        else if(/*lightning.enabled*/ lightningParticles.activeInHierarchy && Input.GetKey(KeyCode.Mouse1) && !GameManager.instance.GetPlayerResources().SpendFocus(focusCost * Time.deltaTime))
+        else if(/*lightning.enabled*/ lightningParticles.activeInHierarchy && Input.GetKey(KeyCode.Mouse1) && !HasFocus())
         {
             //lightning.enabled = false;
             lightningParticles.SetActive(false);
@@ -157,6 +157,13 @@ public class LightningKinesis : KinesisBase
     public void StartLightning()
     {
         doesLightning = true;
+    }
+
+
+
+    bool HasFocus()
+    {
+        return GameManager.instance.GetPlayerResources().Focus.CurrentValue >= (focusCost * Time.deltaTime);
     }
 
 }

@@ -26,6 +26,7 @@ public class pyroBlast : KinesisBase
 
     public UnityEvent OnFireHold;
     public UnityEvent OnFireThrow;
+    [SerializeField] GameObject fireFocusParticles;
 
 
     bool isReady;
@@ -38,6 +39,7 @@ public class pyroBlast : KinesisBase
         if (Input.GetKeyDown(KeyCode.Mouse1) && HasFocus())
         {
             OnFireHold?.Invoke();
+            fireFocusParticles.SetActive(true);
             //    fireballRadius.enabled = false;
             //rb.useGravity = false;
         }
@@ -45,6 +47,7 @@ public class pyroBlast : KinesisBase
         {
             OnFireThrow?.Invoke();
             isReady = false;
+            fireFocusParticles.SetActive(false);
         }
         if (canActivate)
         {
@@ -66,6 +69,7 @@ public class pyroBlast : KinesisBase
             Vector3 forceApplied = forceDirection * ThrowForce + transform.up * ThrowUpwardForce;
             currentBall.GetComponent<Rigidbody>().AddForce(forceApplied, ForceMode.Impulse);
 
+            fireFocusParticles.SetActive(false);
         }
 
     }
