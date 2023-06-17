@@ -20,7 +20,6 @@ public class IceKinesis : KinesisBase
 
     public UnityEvent OnCryoHold;
     public UnityEvent OnCryoThrow;
-    public UnityEvent OnCryoStop;
 
 
     bool canFire;
@@ -52,7 +51,7 @@ public class IceKinesis : KinesisBase
                 forceDirection = (hit.point - attackPoint.position).normalized;
             }
 
-            currentSpear = Instantiate(iceSpear, attackPoint.position, Quaternion.identity);
+            currentSpear = Instantiate(iceSpear, attackPoint.position, Camera.main.transform.rotation);
             Vector3 forceApplied = forceDirection * ThrowForce + transform.up * ThrowUpwardForce;
             currentSpear.GetComponent<Rigidbody>().AddForce(forceApplied, ForceMode.Impulse);
             totalCharge = 0;
