@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MeleeScript : MonoBehaviour
 {
@@ -22,6 +23,12 @@ public class MeleeScript : MonoBehaviour
     private bool isKnifing;
 
 
+    public UnityEvent OnKnife;
+
+
+    bool canKnife;
+
+
 
     void Start()
     {
@@ -31,10 +38,17 @@ public class MeleeScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.F) && !isKnifing)
+        if (Input.GetKeyDown(KeyCode.F))
         {
-            StartCoroutine(Knife());
+            OnKnife?.Invoke();
+            //StartCoroutine(Knife());
             //Instantiate(fingerBullet, shootPos.position, shootPos.rotation);
+        }
+
+        if(canKnife)
+        {
+            canKnife = false;
+            AnimationKnife();
         }
     }
 
@@ -47,6 +61,26 @@ public class MeleeScript : MonoBehaviour
     //    Gizmos.DrawWireSphere(ray.GetPoint(knifeRange), knifeRadius);
 
     //}
+
+
+    void AnimationKnife()
+    {
+        RaycastHit hit;
+
+        if (Physics.SphereCast(Camera.main.transform.position, smallCastRadius, Camera.main.transform.forward, out hit, smallCastRange))
+        {
+            IDamagable damageable = hit.collider.GetComponent<IDamagable>();
+            DamageCollider(damageable);
+        }
+        else if (Physics.SphereCast(Camera.main.transform.position, knifeRadius, Camera.main.transform.forward, out hit, knifeRange))
+        {
+            IDamagable damageable = hit.collider.GetComponent<IDamagable>();
+            DamageCollider(damageable);
+        }
+
+    }
+
+
 
     IEnumerator Knife()
     {
@@ -85,4 +119,11 @@ public class MeleeScript : MonoBehaviour
             damageable.TakeDamage(knifeDamage);
         }
     }
+
+
+    public void SetCanknife()
+    {
+        canKnife = true;
+    }
+
 }

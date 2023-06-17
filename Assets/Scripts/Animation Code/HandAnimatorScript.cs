@@ -61,4 +61,9 @@ public class HandAnimatorScript : MonoBehaviour
 
     }
 
+    public void Melee()
+    {
+        rightHandAnimator.SetTrigger("OnKnife");
+    }
+
 }
