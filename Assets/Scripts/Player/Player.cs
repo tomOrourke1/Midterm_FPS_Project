@@ -132,8 +132,12 @@ public class Player : MonoBehaviour
         handleWalk();
         handleJump();
 
-        // Return field of view to normal
-        Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, origFov, Time.deltaTime * 5);
+        if (Camera.main.fieldOfView != origFov)
+        {
+            Debug.Log(origFov);
+            // Return field of view to normal
+            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, origFov, Time.deltaTime * 5);
+        }
 
         // Gravity
         playerVelocity.y -= gravityValue * Time.deltaTime;
@@ -303,5 +307,10 @@ public class Player : MonoBehaviour
         handleWalk();
         controller.Move(playerVelocity * Time.deltaTime);
         gameObject.transform.SetParent(null);
+    }
+
+    public void SetOrigFov(float newFov)
+    {
+        origFov = newFov;
     }
 }

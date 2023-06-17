@@ -16,7 +16,7 @@ public class TransitionTrigger : MonoBehaviour
             UnloadRoom();
             SetCurrentRoom();
             StartCurrentRoom();
-            gameObject.SetActive(false);
+            enabled = false;
         }
     }
 

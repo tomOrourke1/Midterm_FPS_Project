@@ -42,6 +42,8 @@ public class SettingsManager : MonoBehaviour
         settings.fieldOfView = tempFOV;
         settings.sensitivity = tempSens;
         settings.invertY = tempInvY;
+
+        GameManager.instance.GetPlayerScript().SetOrigFov(tempFOV);
     }
 
     public void UpdateObjectsToValues()
