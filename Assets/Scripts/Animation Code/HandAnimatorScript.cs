@@ -29,4 +29,15 @@ public class HandAnimatorScript : MonoBehaviour
 
 
 
+    public void PlayCryoHold()
+    {
+        leftHandAnimator.SetBool("Cryo", true);
+    }
+    public void PLayCryoThrow()
+    {
+        leftHandAnimator.SetBool("Cryo", false) ;
+    }
+
+
+
 }

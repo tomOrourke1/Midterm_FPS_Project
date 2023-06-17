@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class IceKinesis : KinesisBase
 {
     [SerializeField] Transform attackPoint;
     [SerializeField] GameObject iceSpear;
     GameObject currentSpear;
-
-    bool readyToFire;
 
 
 
@@ -18,56 +17,65 @@ public class IceKinesis : KinesisBase
     float totalCharge;
     [SerializeField] float totalChargeNeeded;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        readyToFire = true;
-    }
 
-    // Update is called once per frame
-    
+    public UnityEvent OnCryoHold;
+    public UnityEvent OnCryoThrow;
+    public UnityEvent OnCryoStop;
+
+
+    bool canFire;
+
+    bool throwIce;
+
     public override void Fire()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse1) && readyToFire == true && GameManager.instance.GetPlayerResources().Focus.CurrentValue > focusCost)
+        if (Input.GetKeyDown(KeyCode.Mouse1) && HasFocus())
         {
-            currentSpear = Instantiate(iceSpear, attackPoint.position, Quaternion.identity);        
+         //currentSpear = Instantiate(iceSpear, attackPoint.position, Quaternion.identity);
+            OnCryoHold?.Invoke();
         }
-        if (Input.GetKey(KeyCode.Mouse1) && readyToFire == true && GameManager.instance.GetPlayerResources().Focus.CurrentValue > focusCost)
+        if (!Input.GetKey(KeyCode.Mouse1) && canFire)
         {
-            totalCharge += Time.deltaTime;
-            currentSpear.transform.position = attackPoint.position;
+            OnCryoThrow?.Invoke();
+            canFire = false;
         }
-        if (Input.GetKeyUp(KeyCode.Mouse1) && currentSpear != null && readyToFire == true)
-        {
 
-            if (totalCharge >= totalChargeNeeded)
+        if(throwIce)
+        {
+            GameManager.instance.GetPlayerResources().SpendFocus(focusCost);
+
+            Vector3 forceDirection = Camera.main.transform.forward;
+
+            RaycastHit hit;
+            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 100f))
             {
-                StartCoroutine(cooldown());
-                GameManager.instance.GetPlayerResources().SpendFocus(focusCost);
-
-                readyToFire = false;
-
-
-                Vector3 forceDirection = Camera.main.transform.forward;
-
-                RaycastHit hit;
-                if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 100f))
-                {
-                    forceDirection = (hit.point - attackPoint.position).normalized;
-                }
-
-
-                Vector3 forceApplied = forceDirection * ThrowForce + transform.up * ThrowUpwardForce;
-                currentSpear.GetComponent<Rigidbody>().AddForce(forceApplied, ForceMode.Impulse);
-                totalCharge = 0;
+                forceDirection = (hit.point - attackPoint.position).normalized;
             }
-            else { Destroy(currentSpear); }           
 
+            currentSpear = Instantiate(iceSpear, attackPoint.position, Quaternion.identity);
+            Vector3 forceApplied = forceDirection * ThrowForce + transform.up * ThrowUpwardForce;
+            currentSpear.GetComponent<Rigidbody>().AddForce(forceApplied, ForceMode.Impulse);
+            totalCharge = 0;
+            throwIce = false;
         }
+
+
     }
-    IEnumerator cooldown()
+
+    bool HasFocus()
     {
-        yield return new WaitForSeconds(fireRate);
-        readyToFire = true;
+        return GameManager.instance.GetPlayerResources().Focus.CurrentValue >= focusCost;
     }
+
+
+    public void SetCanFire(bool canFire)
+    {
+        this.canFire = canFire;
+    }
+
+    public void ThrowIce()
+    {
+        throwIce = true;
+    }
+
 }
