@@ -15,6 +15,7 @@ public class fingerGun : MonoBehaviour
     private bool isShooting;
 
     [SerializeField] UnityEvent shootEvent;
+    [SerializeField] GameObject hitParticles;
 
     // Update is called once per frame
     void Update()
@@ -34,6 +35,8 @@ public class fingerGun : MonoBehaviour
 
         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
         {
+            Instantiate(hitParticles, hit.point, Quaternion.identity);
+
             if (UIManager.instance.currentState == MenuState.none)
             {
                 IDamagable damageable = hit.collider.GetComponent<IDamagable>();

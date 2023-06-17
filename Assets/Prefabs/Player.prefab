@@ -180,6 +180,11 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  lightningParticles: {fileID: 8062945925250756997}
+  focusParticles: {fileID: 1777217396261345539}
+  lightningHit1: {fileID: 7785719358637422212, guid: 6fb68d0750477b647a9e4e626c4d0628, type: 3}
+  lightningHit2: {fileID: 2021179936477787659, guid: fbb4ddfacda9b9d4d9259775c351628a, type: 3}
+  spawnDelay: 0.05
 --- !u!114 &78457326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -501,6 +506,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  hitParticles: {fileID: 4834739904458211102, guid: 649204e1cc6fdec4db495f652109703d, type: 3}
 --- !u!114 &1522680995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -714,6 +720,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 847320448619245780}
     m_Modifications:
+    - target: {fileID: 1926457025119035179, guid: afe13f3e498187b4b8147cc0dd44ab8a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2142224829550916406, guid: afe13f3e498187b4b8147cc0dd44ab8a, type: 3}
       propertyPath: m_Name
       value: PlayerHandsBase (1)
@@ -778,8 +788,17 @@ PrefabInstance:
       propertyPath: lightning
       value: 
       objectReference: {fileID: 78457328}
+    - target: {fileID: 7921973731537909677, guid: afe13f3e498187b4b8147cc0dd44ab8a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: afe13f3e498187b4b8147cc0dd44ab8a, type: 3}
+--- !u!1 &1777217396261345539 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1926457025119035179, guid: afe13f3e498187b4b8147cc0dd44ab8a, type: 3}
+  m_PrefabInstance: {fileID: 150263362516403752}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2283150852366316828 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2142224829550916404, guid: afe13f3e498187b4b8147cc0dd44ab8a, type: 3}
@@ -819,7 +838,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6192255726120559743}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -911,3 +930,8 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!1 &8062945925250756997 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7921973731537909677, guid: afe13f3e498187b4b8147cc0dd44ab8a, type: 3}
+  m_PrefabInstance: {fileID: 150263362516403752}
+  m_PrefabAsset: {fileID: 0}
