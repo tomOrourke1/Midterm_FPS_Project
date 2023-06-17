@@ -10,19 +10,12 @@ struct SlicesStruct
 {
     [Tooltip("The Radial Slices of each Kinesis Type. This is found under the \"RadialMenu\" Game Object prefab.")]
     [SerializeField] GameObject slice;
-    [Tooltip("If the slice is enabled or disabled.")]
-    [SerializeField] bool sliceEnabled;
     [SerializeField] string sliceName;
     [SerializeField] Sprite kinesisIcon;
 
     public GameObject GetSlice()
     {
         return slice;
-    }
-
-    public bool GetBool()
-    {
-        return sliceEnabled;
     }
 
     public void SetSliceMaterial(Material material)
@@ -202,7 +195,7 @@ public class RadialMenu : MonoBehaviour
             withinRadialMin = rotateAngle > sliceIndex * sliceAng;
             withinRadialMax = rotateAngle < (sliceIndex + 1) * sliceAng;
 
-            if (withinRadialMin && withinRadialMax && _slices[sliceIndex].GetBool())
+            if (withinRadialMin && withinRadialMax && GameManager.instance.GetEnabledList().RetrieveLoop(sliceIndex))
             {
                 selector.transform.rotation = Quaternion.Euler(0, 0, sliceIndex * sliceAng + (72/2));
                 trackedKinesis = sliceIndex;
@@ -243,7 +236,7 @@ public class RadialMenu : MonoBehaviour
     {
         for (int sliceIndex = 0; sliceIndex < _slices.Length; ++sliceIndex)
         {
-            if (_slices[sliceIndex].GetBool())
+            if (GameManager.instance.GetEnabledList().RetrieveLoop(sliceIndex))
                 _slices[sliceIndex].GetSlice().GetComponent<Image>().material = enabledColor;
             else
                 _slices[sliceIndex].GetSlice().GetComponent<Image>().material = disabledColor;

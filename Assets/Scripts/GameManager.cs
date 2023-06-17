@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
-using Palmmedia.ReportGenerator.Core;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +8,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Settings Manager")]
     [SerializeField] SettingsManager settings;
+    [SerializeField] KinesisEnabler isEnabledScript;
 
     [Header("-----Player Stuff-----")]
     [SerializeField] GameObject player;
@@ -166,20 +166,37 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Respawn the player, reset the current room. 
+    /// Gets the key script.
     /// </summary>
-    public void RespawnCaller()
-    {
-
-    }
-
+    /// <returns></returns>
     public KeyChain ReturnKeyScript()
     {
         return player.GetComponent<KeyChain>();
     }
 
+    /// <summary>
+    /// Returns the settings manager script.
+    /// </summary>
+    /// <returns></returns>
     public SettingsManager GetSettingsManager()
     {
         return settings;
+    }
+    
+    /// <summary>
+    /// Returns the Kinesis Enabler script.
+    /// </summary>
+    /// <returns></returns>
+    public KinesisEnabler GetEnabledList()
+    {
+        return isEnabledScript;
+    }
+
+    /// <summary>
+    /// Respawn the player, reset the current room. 
+    /// </summary>
+    public void RespawnCaller()
+    {
+
     }
 }
