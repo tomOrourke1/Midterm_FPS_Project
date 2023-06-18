@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class TargetDamageableScript : MonoBehaviour, IDamagable
+public class TargetDamageableScript : MonoBehaviour, IDamagable, IEnvironment
 {
 
     [SerializeField] float maxTargetHp;
@@ -13,6 +13,8 @@ public class TargetDamageableScript : MonoBehaviour, IDamagable
     [SerializeField] Material targeCheckedMaterial;
     float currentTargetHp;
     bool activated;
+
+    Material initMaterial;
 
     private void Start()
     {
@@ -33,5 +35,23 @@ public class TargetDamageableScript : MonoBehaviour, IDamagable
     public float GetCurrentHealth()
     {
         return currentTargetHp;
+    }
+
+    public void StartObject()
+    {
+        initMaterial = targetRenderer.material;
+    }
+
+    public void StopObject()
+    {
+        targetDeathEvent?.Invoke();
+        activated = false;
+    }
+
+    public void ResetObject()
+    {
+        targetDeathEvent?.Invoke();
+        targetRenderer.material = initMaterial;
+        activated = false;
     }
 }
