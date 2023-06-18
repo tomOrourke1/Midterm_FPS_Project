@@ -15,6 +15,9 @@ public class SM_Scientist : EnemyBase, IDamagable
     private bool doesSeePlayer;
     private bool hasBeenHit;
 
+    [Header("Keys")]
+    [SerializeField] GameObject key;
+
     private void Start()
     {
         health.FillToMax();
@@ -74,6 +77,7 @@ public class SM_Scientist : EnemyBase, IDamagable
     }
     void OnDeath()
     {
+        Instantiate(key, transform.position + Vector3.up, Quaternion.identity);
         Destroy(gameObject); // destroy enemy
     }
 
