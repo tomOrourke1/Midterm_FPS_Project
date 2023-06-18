@@ -25,7 +25,7 @@ public class TransitionTrigger : MonoBehaviour
     {
         if (DoorToLock != null)
         {
-            DoorToLock.GetComponent<DoorDetectPlayerInProximity>().enabled = false;
+            DoorToLock.GetComponentInChildren<DoorDetectPlayerInProximity>().enabled = false;
 
             if (DoorToLock.GetOpenStatus())
             {
