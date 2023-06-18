@@ -29,4 +29,9 @@ public class TargetDamageableScript : MonoBehaviour, IDamagable
             activated = true;
         }
     }
+
+    public float GetCurrentHealth()
+    {
+        return currentTargetHp;
+    }
 }

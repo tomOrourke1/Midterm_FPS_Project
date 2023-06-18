@@ -150,4 +150,9 @@ public class EnemyAI : MonoBehaviour, IDamagable
             Destroy(gameObject);
         }
     }
+
+    public float GetCurrentHealth()
+    {
+        return enemyHP;
+    }
 }

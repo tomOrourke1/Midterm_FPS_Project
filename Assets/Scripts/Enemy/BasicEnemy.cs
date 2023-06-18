@@ -136,6 +136,8 @@ public class BasicEnemy : EnemyBase, IDamagable
             enemyEnabled = false;
     }
 
-
-
+    public float GetCurrentHealth()
+    {
+        return health.CurrentValue;
+    }
 }
