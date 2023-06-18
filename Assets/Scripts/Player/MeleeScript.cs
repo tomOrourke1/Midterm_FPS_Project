@@ -117,6 +117,16 @@ public class MeleeScript : MonoBehaviour
             //}
 
 
+            var curr = damageable.GetCurrentHealth();
+
+            curr -= knifeDamage;
+
+            if(curr <= 0)
+            {
+                GameManager.instance.GetPlayerResources().MaxOutFocus();
+            }
+
+
             Instantiate(hitParticles, hit.point, Quaternion.identity);
             damageable.TakeDamage(knifeDamage);
         }

@@ -9,6 +9,11 @@ public class TestScriptableObject : ScriptableObject, IDamagable
     public float speed;
     public float tirdness;
 
+    public float GetCurrentHealth()
+    {
+        return health;
+    }
+
     public void TakeDamage(float dmg)
     {
         health -= dmg;

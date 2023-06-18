@@ -59,4 +59,9 @@ public class Scientist : MonoBehaviour, IDamagable
         yield return new WaitForSeconds(0.2f);
         model.material.color = scientistColor;
     }
+
+    public float GetCurrentHealth()
+    {
+        return scientistHP;
+    }
 }
