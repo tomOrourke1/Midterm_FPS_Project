@@ -80,6 +80,6 @@ public class MovingPlatform : MonoBehaviour, IEnvironment
 
     public void StopObject()
     {
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 }
