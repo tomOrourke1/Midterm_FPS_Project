@@ -28,7 +28,7 @@ public class MeleeScript : MonoBehaviour
 
     bool canKnife;
 
-
+    [SerializeField] GameObject hitParticles;
 
     void Start()
     {
@@ -70,12 +70,12 @@ public class MeleeScript : MonoBehaviour
         if (Physics.SphereCast(Camera.main.transform.position, smallCastRadius, Camera.main.transform.forward, out hit, smallCastRange))
         {
             IDamagable damageable = hit.collider.GetComponent<IDamagable>();
-            DamageCollider(damageable);
+            DamageCollider(damageable, hit);
         }
         else if (Physics.SphereCast(Camera.main.transform.position, knifeRadius, Camera.main.transform.forward, out hit, knifeRange))
         {
             IDamagable damageable = hit.collider.GetComponent<IDamagable>();
-            DamageCollider(damageable);
+            DamageCollider(damageable, hit);
         }
 
     }
@@ -91,19 +91,19 @@ public class MeleeScript : MonoBehaviour
         if (Physics.SphereCast(Camera.main.transform.position, smallCastRadius, Camera.main.transform.forward, out hit, smallCastRange))
         {
             IDamagable damageable = hit.collider.GetComponent<IDamagable>();
-            DamageCollider(damageable);
+            DamageCollider(damageable, hit); 
         }
         else if (Physics.SphereCast(Camera.main.transform.position, knifeRadius, Camera.main.transform.forward, out hit, knifeRange))
         {
             IDamagable damageable = hit.collider.GetComponent<IDamagable>();
-            DamageCollider(damageable);
+            DamageCollider(damageable, hit);
         }
 
         yield return new WaitForSeconds(attackRate);
         isKnifing = false;
     }
 
-    void DamageCollider(IDamagable damageable)
+    void DamageCollider(IDamagable damageable, RaycastHit hit)
     {
         if (damageable != null)
         {
@@ -116,6 +116,8 @@ public class MeleeScript : MonoBehaviour
             //    gameManager.instance.pStatsUI.UpdateValues();
             //}
 
+
+            Instantiate(hitParticles, hit.point, Quaternion.identity);
             damageable.TakeDamage(knifeDamage);
         }
     }
