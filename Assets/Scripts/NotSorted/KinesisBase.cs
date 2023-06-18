@@ -7,5 +7,6 @@ public abstract class KinesisBase : MonoBehaviour
     public float fireRate;
     public float focusCost;
     public abstract void Fire();
-  
+
+    public bool isCasting;
 }

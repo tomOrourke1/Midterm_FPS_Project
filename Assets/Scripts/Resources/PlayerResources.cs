@@ -120,6 +120,7 @@ public class PlayerResources : MonoBehaviour, IDamagable, IHealReciever, IFocusR
     public void MaxOutFocus()
     {
         focus.FillToMax();
+        UIManager.instance.GetPlayerStats().UpdateValues();
     }
 
     public float GetCurrentHealth()

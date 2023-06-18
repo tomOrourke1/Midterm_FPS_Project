@@ -21,6 +21,9 @@ public class CasterScript : MonoBehaviour
 
     public void SetCurrentKinesis(int opt)
     {
+        if (currentKenisis != null && currentKenisis.isCasting)
+            return;
+
         switch (opt)
         {
             case 0:
