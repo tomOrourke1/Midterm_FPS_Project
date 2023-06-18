@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireRate: 1
   focusCost: 1
+  isCasting: 0
   attackPoint: {fileID: 152961158}
   rb: {fileID: 1562629938496981040, guid: 943267a741c0ba746a1f9d522151bfd9, type: 3}
   fireball: {fileID: 1562629938496981055, guid: 943267a741c0ba746a1f9d522151bfd9, type: 3}
@@ -99,6 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireRate: 1
   focusCost: 1
+  isCasting: 0
   attackPoint: {fileID: 152961158}
   iceSpear: {fileID: 5306842554997940416, guid: 6ad1ef57acf2b0846af6f2a97bb4b5e0, type: 3}
   ThrowForce: 30
@@ -148,6 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireRate: 0
   focusCost: 4
+  isCasting: 0
   maxDistance: 15
   Damage: 10
   attackPoint: {fileID: 6192255726120559743}
@@ -200,6 +203,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireRate: 0
   focusCost: 1.3
+  isCasting: 0
   cam: {fileID: 847320448619245781}
   desiredPos: {fileID: 5410451277757737795}
   range: 25
@@ -317,8 +321,8 @@ Camera:
   m_GameObject: {fileID: 847320448619245783}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.8962264, g: 0.75624627, b: 0.2494215, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
