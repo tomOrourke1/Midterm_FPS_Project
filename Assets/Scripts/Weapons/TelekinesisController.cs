@@ -66,6 +66,7 @@ public class TelekinesisController : KinesisBase
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             // suck item
+            isCasting = true;
 
             Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f));
             RaycastHit hit;
@@ -148,7 +149,7 @@ public class TelekinesisController : KinesisBase
     {
         if ((Input.GetKeyUp(KeyCode.Mouse1) || !Input.GetKey(KeyCode.Mouse1)) && stachedObject != null && !IsObjectNull())
         {
-
+            isCasting = false;
             OnTelePush?.Invoke();
 
             stachedObject.GetRigidbody().useGravity = true;

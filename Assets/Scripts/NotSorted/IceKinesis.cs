@@ -31,6 +31,7 @@ public class IceKinesis : KinesisBase
         {
          //currentSpear = Instantiate(iceSpear, attackPoint.position, Quaternion.identity);
             OnCryoHold?.Invoke();
+            isCasting = true;
         }
         if (!Input.GetKey(KeyCode.Mouse1) && canFire)
         {
@@ -55,6 +56,7 @@ public class IceKinesis : KinesisBase
             currentSpear.GetComponent<Rigidbody>().AddForce(forceApplied, ForceMode.Impulse);
             totalCharge = 0;
             throwIce = false;
+            isCasting = false;
         }
 
 

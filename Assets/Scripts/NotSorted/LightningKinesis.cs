@@ -44,6 +44,7 @@ public class LightningKinesis : KinesisBase
             {
                 OnElectroStart?.Invoke();
                 focusParticles.SetActive(true); 
+                isCasting = true;
             }
 
             if(doesLightning && GameManager.instance.GetPlayerResources().SpendFocus(focusCost * Time.deltaTime))
@@ -60,6 +61,7 @@ public class LightningKinesis : KinesisBase
             //lightning.enabled = false;
             lightningParticles.SetActive(false);
             focusParticles.SetActive(false);
+            isCasting = false;
         }
         else if (Input.GetKeyUp(KeyCode.Mouse1)) 
         {
@@ -68,7 +70,7 @@ public class LightningKinesis : KinesisBase
             OnElectroStop?.Invoke();
             doesLightning = false;
             focusParticles.SetActive(false);
-
+            isCasting = false;
         }
     }
     void LookCast()

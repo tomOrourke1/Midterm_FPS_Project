@@ -42,6 +42,7 @@ public class pyroBlast : KinesisBase
             fireFocusParticles.SetActive(true);
             //    fireballRadius.enabled = false;
             //rb.useGravity = false;
+            isCasting = true;
         }
         if (!Input.GetKey(KeyCode.Mouse1) && isReady)
         {
@@ -70,6 +71,8 @@ public class pyroBlast : KinesisBase
             currentBall.GetComponent<Rigidbody>().AddForce(forceApplied, ForceMode.Impulse);
 
             fireFocusParticles.SetActive(false);
+
+            isCasting = false;
         }
 
     }
