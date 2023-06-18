@@ -69,6 +69,12 @@ public class PlayerResources : MonoBehaviour, IDamagable, IHealReciever, IFocusR
         UIManager.instance.GetPlayerStats().UpdateValues();
     }
 
+    public void AddShield(float shieldAmount)
+    {
+        shield.Increase(shieldAmount);
+        UIManager.instance.GetPlayerStats().UpdateValues();
+    }
+
     public bool SpendFocus(float amt)
     {
         var b = focus.SpendResource(amt);

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TransitionTrigger : MonoBehaviour
@@ -24,6 +25,13 @@ public class TransitionTrigger : MonoBehaviour
     {
         if (DoorToLock != null)
         {
+            DoorToLock.GetComponent<DoorDetectPlayerInProximity>().enabled = false;
+
+            if (DoorToLock.GetOpenStatus())
+            {
+                DoorToLock.Activate();
+            }
+
             DoorToLock.SetLockStatus(true);
         }
     }

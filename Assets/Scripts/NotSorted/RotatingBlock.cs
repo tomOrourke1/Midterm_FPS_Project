@@ -6,31 +6,68 @@ public class RotatingBlock : MonoBehaviour, IEnvironment
 {
     [Header("----- Rotation -----")]
     [SerializeField] float rotationSpeed;
-    [SerializeField] bool clockwise;
-    [SerializeField] float rotationAngle;
+    [SerializeField, Range(-360, 360)] float rotationAngle;
 
     [Header("----- Intermittant Rotation -----")]
     [SerializeField] bool intermittantRotation;
     [SerializeField] float stopDuration;
-    [SerializeField] float stopRate;
 
+    bool rotating;
+    bool waiting;
+    Quaternion rotation;
 
-    Quaternion currentRotation;
-    
-    float timeCount;
-    Quaternion newRotation;
+    private void Start()
+    {
+        rotating = false;
+        waiting = false;
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if (clockwise)
+        if (intermittantRotation)
         {
-            rotationAngle *= -1;
+            IntermittantRotation();
+        }
+        else
+        {
+            SmoothRotation();
         }
 
-        var rotation = Quaternion.AngleAxis(rotationAngle * Time.deltaTime, Vector3.up);
 
-        transform.localRotation = Quaternion.Lerp(transform.localRotation, transform.localRotation * rotation, Time.deltaTime * rotationSpeed);
+    }
+
+    void IntermittantRotation()
+    {
+        if (!rotating)
+        {
+            rotation = transform.localRotation * Quaternion.AngleAxis(rotationAngle, Vector3.up);
+            rotating = true;
+        }
+        else
+        {
+            transform.localRotation = Quaternion.RotateTowards(transform.localRotation, rotation, Time.deltaTime * rotationSpeed);
+
+            if (transform.localRotation != rotation && !waiting)
+            {
+                StartCoroutine(wait());
+            }
+        }
+    }
+
+    IEnumerator wait()
+    {
+        waiting = true;
+        yield return new WaitForSeconds(stopDuration);
+        rotating = false;
+        waiting = false;
+    }
+
+    void SmoothRotation()
+    {
+        rotation = Quaternion.AngleAxis(90, Vector3.up);
+
+        transform.localRotation = Quaternion.RotateTowards(transform.localRotation, transform.localRotation * rotation, Time.deltaTime * rotationSpeed);
     }
 
     public void ResetObject()
