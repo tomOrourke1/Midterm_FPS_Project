@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SM_Turret : EnemyBase, IDamagable
+public class SM_Turret : EnemyBase, IDamagable, IEntity
 {
     [Header("----- States -----")]
     [SerializeField] EnemyIdleState turretIdle;
@@ -123,5 +123,10 @@ public class SM_Turret : EnemyBase, IDamagable
     public float GetCurrentHealth()
     {
         return health.CurrentValue;
+    }
+
+    public void Respawn()
+    {
+        Destroy(gameObject);
     }
 }

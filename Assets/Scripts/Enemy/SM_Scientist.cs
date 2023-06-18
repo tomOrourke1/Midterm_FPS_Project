@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SM_Scientist : EnemyBase, IDamagable
+public class SM_Scientist : EnemyBase, IDamagable, IEntity
 {
     [Header("----- States -----")]
     [SerializeField] EnemyIdleState scientistIdle; // creates Idle state
@@ -117,5 +117,10 @@ public class SM_Scientist : EnemyBase, IDamagable
     public float GetCurrentHealth()
     {
         return health.CurrentValue;
+    }
+
+    public void Respawn()
+    {
+        Destroy(gameObject);
     }
 }

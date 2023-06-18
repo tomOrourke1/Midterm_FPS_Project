@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class SM_SecurityGuard : EnemyBase, IDamagable
+public class SM_SecurityGuard : EnemyBase, IDamagable, IEntity
 {
     [Header("----- States ----- ")]
     [SerializeField] EnemyIdleState securityIdle; // creates Idle state
@@ -151,5 +151,10 @@ public class SM_SecurityGuard : EnemyBase, IDamagable
     public float GetCurrentHealth()
     {
         return health.CurrentValue;
+    }
+
+    public void Respawn()
+    {
+        Destroy(gameObject);
     }
 }
