@@ -134,7 +134,7 @@ public class Player : MonoBehaviour
 
         if (Camera.main.fieldOfView != origFov)
         {
-            Debug.Log(origFov);
+            // Debug.Log(origFov);
             // Return field of view to normal
             Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, origFov, Time.deltaTime * 5);
         }

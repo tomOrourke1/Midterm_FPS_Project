@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class TargetTriggerScript : MonoBehaviour
+public class TargetTriggerScript : MonoBehaviour, IEnvironment
 {
 
     [SerializeField] UnityEvent targetEvent;
@@ -11,7 +11,7 @@ public class TargetTriggerScript : MonoBehaviour
     [SerializeField] Renderer targetRenderer;
     [SerializeField] Material targeCheckedMaterial;
 
-
+    Material initMaterials;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -19,4 +19,19 @@ public class TargetTriggerScript : MonoBehaviour
         targetRenderer.material = targeCheckedMaterial;
     }
 
+    public void StartObject()
+    {
+        initMaterials = targetRenderer.material;
+    }
+
+    public void StopObject()
+    {
+        targetEvent?.Invoke();
+    }
+
+    public void ResetObject()
+    {
+        targetEvent?.Invoke();
+        targetRenderer.material = initMaterials;
+    }
 }
