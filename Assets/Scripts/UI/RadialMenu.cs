@@ -144,6 +144,7 @@ public class RadialMenu : MonoBehaviour
     /// </summary>
     public void ShowRadialMenu()
     {
+        ChangeConfirmedWhenOpeningWheel();
         UpdateSlices();
         selector.gameObject.SetActive(true);
         arrowObj.SetActive(false);
@@ -272,5 +273,16 @@ public class RadialMenu : MonoBehaviour
     public GameObject GetReticle()
     {
         return reticleUI;
+    }
+
+    private void ChangeConfirmedWhenOpeningWheel()
+    {
+        for (int i = 0; i < _slices.Length; i++)
+        {
+            if (GameManager.instance.GetEnabledList().RetrieveLoop(i))
+            {
+                confirmedKinesis = i;
+            }
+        }
     }
 }

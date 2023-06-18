@@ -218,4 +218,15 @@ public class GameManager : MonoBehaviour
     {
         return currentRoomManager;
     }
+
+    /// <summary>
+    /// Nobody should touch this. Please don't.
+    /// </summary>
+    /// <returns></returns>
+    public bool AllKinesisDisabled()
+    {
+        if (!isEnabledScript.CryoEnabled() && !isEnabledScript.AeroEnabled() && !isEnabledScript.TeleEnabled() && !isEnabledScript.PyroEnabled() && !isEnabledScript.ElectroEnabled())
+            return true;
+        else return false;
+    }
 }

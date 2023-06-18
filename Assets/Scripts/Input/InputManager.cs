@@ -48,7 +48,7 @@ public class InputManager : MonoBehaviour
 
     private void OnRadShow(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        if (UIManager.instance.currentState == MenuState.none)
+        if (UIManager.instance.currentState == MenuState.none && !GameManager.instance.AllKinesisDisabled())
         {
             UIManager.instance.ShowRadialMenu();
             isRadialShowing = true;
