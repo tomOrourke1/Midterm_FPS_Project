@@ -42,7 +42,8 @@ public class ButtonScript : MonoBehaviour, IEnvironment
 
     public void StartObject()
     {
-        
+        count = 0;
+        buttonRenderer.material = releasedColor;
     }
 
     public void StopObject()

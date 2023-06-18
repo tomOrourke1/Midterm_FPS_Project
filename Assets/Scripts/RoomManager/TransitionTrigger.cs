@@ -25,7 +25,10 @@ public class TransitionTrigger : MonoBehaviour
     {
         if (DoorToLock != null)
         {
-            //DoorToLock.GetComponent<DoorDetectPlayerInProximity>().enabled = false;
+            if (DoorToLock.gameObject.GetComponentInChildren<DoorDetectPlayerInProximity>() != null)
+            {
+                DoorToLock.gameObject.GetComponentInChildren<DoorDetectPlayerInProximity>().enabled = false;
+            }
 
             DoorToLock.SetLockStatus(true);
 
@@ -51,7 +54,7 @@ public class TransitionTrigger : MonoBehaviour
 
     private void StartCurrentRoom()
     {
-        GameManager.instance.GetCurrentRoomManager().StartRoom();
+        NextRoom.StartRoom();
     }
 
 
