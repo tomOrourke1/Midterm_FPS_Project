@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.Timeline.Actions;
@@ -10,12 +11,13 @@ using UnityEngine.UI;
 
 public enum MenuState
 {
+    none,
     radial,
     paused,
     death,
     keybinds,
     settings,
-    none
+    infographic
 }
 
 public class UIManager : MonoBehaviour
@@ -47,7 +49,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] Animator pauseAnimController;
     [SerializeField] Animator winAnimController;
     [SerializeField] Animator loseAnimController;
-    
+
+    [Header("Infographics")]
+    [SerializeField] GameObject objToShow;
+    [SerializeField] Image displayedImage;
+    [SerializeField] TextMeshProUGUI textToReplace;
+
     [Header("Misc Images")]
     [SerializeField] GameObject hitmarker;
     [SerializeField] Image sceneFader;
@@ -71,7 +78,7 @@ public class UIManager : MonoBehaviour
     {
         currentState = MenuState.paused;
         activeMenu = pauseMenu;
-        
+
         activeMenu.SetActive(true);
         playerStatsObj.SetActive(false);
         keyMenu.SetActive(false);
@@ -149,7 +156,7 @@ public class UIManager : MonoBehaviour
         currentState = MenuState.settings;
         activeMenu.SetActive(true);
     }
-    
+
     /// <summary>
     /// Closes the settings menu and shows the pause menu. Also sets the ActiveMenu to the pause menu.
     /// </summary>
@@ -235,8 +242,9 @@ public class UIManager : MonoBehaviour
         settingsMenu.SetActive(false);
         radialMenu.SetActive(false);
         hitmarker.SetActive(false);
+        objToShow.SetActive(false);
     }
-    
+
     /// <summary>
     /// Returns the player stats script reference.
     /// </summary>
@@ -281,7 +289,7 @@ public class UIManager : MonoBehaviour
     {
         StartCoroutine(flashImageScript.FlashDamageDisplay());
     }
-    
+
     /// <summary>
     /// Flashes the screen with the shield damage image.
     /// Should only be used in the PlayerResource script.
@@ -337,5 +345,23 @@ public class UIManager : MonoBehaviour
         activeMenu = pauseMenu;
         currentState = MenuState.paused;
         activeMenu.SetActive(true);
+    }
+
+    public void ShowInfoUI(Sprite img, string name)
+    {
+        GameManager.instance.TimePause();
+        currentState = MenuState.infographic;
+        objToShow.SetActive(true);
+        textToReplace.text = name;
+        displayedImage.sprite = img;
+    }
+
+    public void CloseInfoUI()
+    {
+        GameManager.instance.TimeUnpause();
+        currentState = MenuState.none;
+        objToShow.SetActive(false);
+        textToReplace.text = "You did something wrong?";
+        displayedImage.sprite = null;
     }
 }

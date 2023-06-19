@@ -7,14 +7,17 @@ public class SilhouetteBobber : MonoBehaviour, IDamagable
 
 
     [SerializeField] float speed;
-    [SerializeField] float offSet;
+    [SerializeField][Range(0.5f, 2.0f)] float offSetMax;
+    [SerializeField][Range(0.1f, 0.5f)] float offSetMin;
 
 
     float yCurr;
     float time;
     bool isJumping;
-
     int frames;
+
+    float jumpOffset;
+
 
     public float GetCurrentHealth()
     {
@@ -26,6 +29,7 @@ public class SilhouetteBobber : MonoBehaviour, IDamagable
         isJumping = true;
         time = 0;
         frames = 0;
+        jumpOffset = Random.Range(offSetMin, offSetMax);
     }
 
     private void Start()
@@ -38,7 +42,7 @@ public class SilhouetteBobber : MonoBehaviour, IDamagable
     {
         if(isJumping)
         {
-            var newPos = (Mathf.Sin(time * speed) * offSet) + yCurr;
+            var newPos = (Mathf.Sin(time * speed) * jumpOffset) + yCurr;
             var pos = transform.position;
             pos.y = newPos;
 

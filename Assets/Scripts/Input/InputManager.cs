@@ -29,6 +29,7 @@ public class InputManager : MonoBehaviour
         input.Player.Escape.performed += OnEscape;
         input.Player.OpenRadialWheel.started += OnRadShow;
         input.Player.OpenRadialWheel.canceled += OnRadClose;
+        input.Player.Interact.performed += OnInteract;
 
 
         isRadialShowing = false;
@@ -43,6 +44,7 @@ public class InputManager : MonoBehaviour
         input.Player.Escape.performed -= OnEscape;
         input.Player.OpenRadialWheel.started -= OnRadShow;
         input.Player.OpenRadialWheel.canceled -= OnRadClose;
+        input.Player.Interact.performed -= OnInteract;
 
     }
 
@@ -74,6 +76,14 @@ public class InputManager : MonoBehaviour
         else if (UIManager.instance.currentState == MenuState.paused)
         {
             UIManager.instance.Unpaused();
+        }
+    }
+
+    private void OnInteract(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        if (UIManager.instance.currentState == MenuState.infographic)
+        {
+            UIManager.instance.CloseInfoUI();
         }
     }
 

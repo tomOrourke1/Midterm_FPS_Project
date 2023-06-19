@@ -146,6 +146,9 @@ public class RadialMenu : MonoBehaviour
     {
         ChangeConfirmedWhenOpeningWheel();
         UpdateSlices();
+
+        Cursor.visible = false;
+
         selector.gameObject.SetActive(true);
         arrowObj.SetActive(false);
         reticleUI.SetActive(false);
