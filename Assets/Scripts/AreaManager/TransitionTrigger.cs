@@ -7,7 +7,7 @@ using UnityEngine;
 public class TransitionTrigger : MonoBehaviour
 {
     [SerializeField] DoorScript DoorToLock;
-    [SerializeField] RoomManager NextRoom;
+    [SerializeField] AreaManager NextRoom;
 
     private void OnTriggerEnter(Collider other)
     {
