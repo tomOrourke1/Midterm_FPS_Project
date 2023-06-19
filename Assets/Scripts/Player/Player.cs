@@ -65,10 +65,10 @@ public class Player : MonoBehaviour
         isDashing = false;
         isCrouching = false;
         DashRecharging = false;
-        
-        crouchCameraPos = new Vector3(0,0,0);
+
+        crouchCameraPos = new Vector3(0, 0, 0);
         currentDashes = maxDashes;
-        
+
         origHeight = controller.height;
         origCamPos = mainCamera.transform.localPosition;
         origFov = GameManager.instance.GetSettingsManager().settings.fieldOfView;
@@ -83,7 +83,10 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Movement();
+        if (UIManager.instance.currentState == MenuState.none)
+        {
+            Movement();
+        }
     }
 
     void Movement()
@@ -100,7 +103,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             handleCrouch();
-        } 
+        }
         else if (isCrouching && !Input.GetKey(KeyCode.LeftControl))
         {
             handleCrouchEnd();
@@ -144,8 +147,8 @@ public class Player : MonoBehaviour
 
         // Move
         controller.Move(playerVelocity * Time.deltaTime);
-        
-       
+
+
     }
 
     void checkHorizontal()
@@ -187,7 +190,7 @@ public class Player : MonoBehaviour
     public void RespawnPlayer()
     {
         controller.enabled = false;
-        if(GameManager.instance != null && GameManager.instance.GetPlayerSpawnPOS() != null)
+        if (GameManager.instance != null && GameManager.instance.GetPlayerSpawnPOS() != null)
         {
             var tra = GameManager.instance.GetPlayerSpawnPOS().transform;
             transform.position = tra.position;
@@ -272,7 +275,7 @@ public class Player : MonoBehaviour
 
         if (!Physics.SphereCast(transform.position, controller.radius, transform.up, out Hit, controller.height * 2))
         {
-            if(!unCrouching)
+            if (!unCrouching)
             {
                 mainCamera.transform.localPosition = crouchCameraPos;
                 unCrouching = true;
@@ -281,7 +284,7 @@ public class Player : MonoBehaviour
             mainCamera.transform.localPosition = Vector3.Lerp(mainCamera.transform.localPosition, origCamPos, Time.deltaTime * unCrouchSpeed);
             controller.height = origHeight;
 
-            if(Vector3.Distance(mainCamera.transform.localPosition, origCamPos) <= 0.001f)
+            if (Vector3.Distance(mainCamera.transform.localPosition, origCamPos) <= 0.001f)
             {
                 isCrouching = false;
                 unCrouching = false;
