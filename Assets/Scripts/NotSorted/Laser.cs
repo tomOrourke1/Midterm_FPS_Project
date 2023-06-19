@@ -28,11 +28,9 @@ public class Laser : MonoBehaviour, IEnvironment
     // Start is called before the first frame update
     void Start()
     {
-        initialLaserOn = LaserOn;
         laser = GetComponent<LineRenderer>();
-
-        ResetLaser();
-        startTime = Time.time;
+        initialLaserOn = LaserOn;
+        StopObject();
     }
 
     // Update is called once per frame
@@ -71,15 +69,13 @@ public class Laser : MonoBehaviour, IEnvironment
         // swap bool
     }
 
-
-
     void RayCast()
     {
         RaycastHit hit;
 
         if (Physics.Raycast(transform.position, transform.up, out hit, maxDistance))
         {
-            UpdateLaser(hit.point);
+            UpdateLaserCast(hit.point);
 
             IDamagable damageable = hit.collider.GetComponent<IDamagable>();
 
@@ -90,11 +86,11 @@ public class Laser : MonoBehaviour, IEnvironment
         }
         else
         {
-            ResetLaser();
+            DefaultLaserCast();
         }
     }
 
-    void ResetLaser()
+    void DefaultLaserCast()
     {
         Vector3 endPoint;
         endPoint = transform.position;
@@ -106,7 +102,7 @@ public class Laser : MonoBehaviour, IEnvironment
         laser.SetPosition(1, endPoint);
     }
 
-    void UpdateLaser(Vector3 hitPoint = new Vector3())
+    void UpdateLaserCast(Vector3 hitPoint = new Vector3())
     {
         laser.SetPosition(0, transform.position);
         laser.SetPosition(1, hitPoint);
@@ -121,6 +117,19 @@ public class Laser : MonoBehaviour, IEnvironment
     {
         LaserOn = initialLaserOn;
         startTime = Time.time;
-        GameManager.instance.GetPlayerScript().RespawnPlayer();
+    }
+
+    public void StartObject()
+    {
+        gameObject.SetActive(true);
+        ResetObject();
+
+        DefaultLaserCast();
+    }
+
+    public void StopObject()
+    {
+        gameObject.SetActive(false);
+        ResetObject();
     }
 }

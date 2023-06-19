@@ -1,67 +1,89 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class SettingsManager : MonoBehaviour
 {
+    [Header("Settings Scriptable Object")]
+    public SettingsObject settings;
+
+    [Header("Sliders")]
     [SerializeField] AudioMixer masterMix;
     [SerializeField] Slider volumeSlider;
     [SerializeField] Slider fovSlider;
     [SerializeField] Slider sensitivitySlider;
     [SerializeField] Toggle invertYToggle;
 
+    float tempVol;
+    float tempFOV;
+    float tempSens;
+    bool tempInvY;
+
     private void Awake()
     {
-        volumeSlider.value = GetCurrenAudio();
-        fovSlider.value = GetCurrentFOV();
-        sensitivitySlider.value = GetCurrentSens();
-        invertYToggle.isOn = GetCurrentInvY();
+        tempVol = settings.volume;
+        tempFOV = settings.fieldOfView;
+        tempSens = settings.sensitivity;
+        tempInvY = settings.invertY;
+
+        volumeSlider.value = tempVol;
+        fovSlider.value = tempFOV;
+        sensitivitySlider.value = tempSens;
+        invertYToggle.isOn = tempInvY;
+    }
+
+    public void SaveToSettingsObj()
+    {
+        settings.volume = tempVol;
+        settings.fieldOfView = tempFOV;
+        settings.sensitivity = tempSens;
+        settings.invertY = tempInvY;
+
+        GameManager.instance.GetPlayerScript().SetOrigFov(tempFOV);
+    }
+
+    public void UpdateObjectsToValues()
+    {
+        masterMix.SetFloat("MasterVolume", tempVol);
+        Camera.main.fieldOfView = tempFOV;
+        Camera.main.GetComponent<CameraController>().SetSensitivity(tempSens);
+        Camera.main.GetComponent<CameraController>().SetInvert(tempInvY);
+    }
+
+    public void CancelSettingsObj()
+    {
+        tempVol = settings.volume;
+        tempFOV = settings.fieldOfView;
+        tempSens = settings.sensitivity;
+        tempInvY = settings.invertY;
+        
+        volumeSlider.value = tempVol;
+        fovSlider.value = tempFOV;
+        sensitivitySlider.value = tempSens;
+        invertYToggle.isOn = tempInvY;
     }
 
     public void SetVolume(float vol)
     {
-        masterMix.SetFloat("MasterVolume", vol);
+        tempVol = vol;
     }
 
     public void SetCameraFOV(float fov)
     {
-        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().fieldOfView = fov;
+        tempFOV = fov;
     }
 
     public void SetMouseSens(float sens)
     {
-        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>().SetSensitivity(sens);
+        tempSens = sens;
     }
 
-    public void SetCameraInvertY(bool invert)
+    public void SetCameraInvertY(bool invY)
     {
-        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>().SetInvert(invert);
-    }
-
-    public AudioMixer ReturnAudioMixer()
-    {
-        return masterMix;
-    }
-
-    private float GetCurrentFOV()
-    {
-        return GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().fieldOfView;
-    }
-
-    private float GetCurrenAudio()
-    {
-        masterMix.GetFloat("MasterVolume", out float audioVol);
-        return audioVol;
-    }
-
-    private float GetCurrentSens()
-    {
-        return GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>().GetSensitivity();
-    }
-    private bool GetCurrentInvY()
-    {
-        return GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>().GetInvert();
+        tempInvY = invY;
     }
 }

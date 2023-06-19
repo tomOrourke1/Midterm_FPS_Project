@@ -23,12 +23,9 @@ public class MovingPlatform : MonoBehaviour, IEnvironment
     // Start is called before the first frame update
     void Start()
     {
-        // I am storing the initial starting an end positions because I swap them to move the platform backwards
         initialStartPos = startPos;
         initialEndPos = endPos;
-
-        moving = true;
-        transform.localPosition = startPos.localPosition;
+        StopObject();
     }
 
     // Update is called once per frame
@@ -70,5 +67,19 @@ public class MovingPlatform : MonoBehaviour, IEnvironment
         endPos = initialEndPos;
 
         currentDistance = 0;
+    }
+
+    public void StartObject()
+    {
+        gameObject.SetActive(true);
+        ResetObject();
+
+        moving = true;
+        transform.localPosition = startPos.localPosition;
+    }
+
+    public void StopObject()
+    {
+        //gameObject.SetActive(false);
     }
 }

@@ -19,6 +19,7 @@ public class DoorScript : MonoBehaviour, IDoorActivator, IEnvironment
     bool initialDoorOpen;
     bool initialLock;
 
+    bool LockClose;
 
     private void Start()
     {
@@ -28,6 +29,8 @@ public class DoorScript : MonoBehaviour, IDoorActivator, IEnvironment
 
         isOpen = doorPivot.localScale.x == 0;
         doorValue = isOpen ? minDoorValue : 1;
+
+        LockClose = false;
     }
 
     public void Activate()
@@ -43,6 +46,8 @@ public class DoorScript : MonoBehaviour, IDoorActivator, IEnvironment
         }
     }
 
+    public void CloseLockedDoor() { LockClose = true; }
+
     public void SetLockStatus(bool locked)
     {
         this.locked = locked;
@@ -52,20 +57,32 @@ public class DoorScript : MonoBehaviour, IDoorActivator, IEnvironment
     {
         if(activation && !locked)
         {
-            // If door is open, endVal = 1 else endVal = minDoorValue
-            var endVal = isOpen ? 1 : minDoorValue;
+            InvertDoorState();
+        } else if (LockClose)
+        {
+            InvertDoorState();
+        }
+    }
 
-            // Moves the door towards endVal
-            doorValue = Mathf.MoveTowards(doorValue, endVal, Time.deltaTime * doorSpeed);
-            doorPivot.localScale = new Vector3(doorValue, 1, 1);
+    void InvertDoorState()
+    {
+        // If door is open, endVal = 1 else endVal = minDoorValue
+        var endVal = isOpen ? 1 : minDoorValue;
 
-            // Inverts door's state
-            if(doorValue == endVal)
+        // Moves the door towards endVal
+        doorValue = Mathf.MoveTowards(doorValue, endVal, Time.deltaTime * doorSpeed);
+        doorPivot.localScale = new Vector3(doorValue, 1, 1);
+
+        // Inverts door's state
+        if (doorValue == endVal)
+        {
+            isOpen = !isOpen;
+            activation = false;
+
+            if (LockClose)
             {
-                isOpen = !isOpen;
-                activation = false;
+                LockClose = false;
             }
-
         }
     }
 
@@ -99,5 +116,15 @@ public class DoorScript : MonoBehaviour, IDoorActivator, IEnvironment
         }
 
         SetLockStatus(initialLock);
+    }
+
+    public void StartObject()
+    {
+        // Nothing needs to happen here
+    }
+
+    public void StopObject()
+    {
+        // Nothing needs to happen here
     }
 }

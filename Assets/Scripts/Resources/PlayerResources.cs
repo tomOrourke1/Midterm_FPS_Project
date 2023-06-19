@@ -24,6 +24,9 @@ public class PlayerResources : MonoBehaviour, IDamagable, IHealReciever, IFocusR
 
         shield.OnResourceDepleted += BreakShield;
         shield.OnResourceDecrease += FlashShield;
+
+        shield.OnResourceDepleted += UpdateShieldDepletionRate;
+
     }
     private void OnDisable()
     {
@@ -32,6 +35,8 @@ public class PlayerResources : MonoBehaviour, IDamagable, IHealReciever, IFocusR
 
         shield.OnResourceDepleted -= BreakShield;
         shield.OnResourceDecrease -= FlashShield;
+
+        shield.OnResourceDepleted -= UpdateShieldDepletionRate;
     }
 
     public void TakeDamage(float dmg)
@@ -53,6 +58,7 @@ public class PlayerResources : MonoBehaviour, IDamagable, IHealReciever, IFocusR
 
     void PlayerDied()
     {
+        GameManager.instance.GetPlayerScript().DeathHandler();
         // trigger lose game if the player dies
         UIManager.instance.LoseGame();
     }
@@ -60,6 +66,12 @@ public class PlayerResources : MonoBehaviour, IDamagable, IHealReciever, IFocusR
     public void AddHealing(float healAmount)
     {
         health.Increase(healAmount);
+        UIManager.instance.GetPlayerStats().UpdateValues();
+    }
+
+    public void AddShield(float shieldAmount)
+    {
+        shield.Increase(shieldAmount);
         UIManager.instance.GetPlayerStats().UpdateValues();
     }
 
@@ -96,5 +108,23 @@ public class PlayerResources : MonoBehaviour, IDamagable, IHealReciever, IFocusR
     private void BreakShield()
     {
         UIManager.instance.FlashBreakShield();
+    }
+
+    void UpdateShieldDepletionRate()
+    {
+        UIManager.instance.GetPlayerStats().sliderScript.UpdtateShieldDepleationTimer();
+    }
+
+
+
+    public void MaxOutFocus()
+    {
+        focus.FillToMax();
+        UIManager.instance.GetPlayerStats().UpdateValues();
+    }
+
+    public float GetCurrentHealth()
+    {
+        return health.CurrentValue;
     }
 }

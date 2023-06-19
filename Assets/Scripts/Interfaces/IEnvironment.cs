@@ -15,4 +15,8 @@ public interface IEnvironment
     */
 
     public void ResetObject();
+
+    public void StopObject();
+
+    public void StartObject();
 }

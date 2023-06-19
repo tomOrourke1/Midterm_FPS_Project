@@ -6,6 +6,10 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    [Header("Settings Manager")]
+    [SerializeField] SettingsManager settings;
+    [SerializeField] KinesisEnabler isEnabledScript;
+
     [Header("-----Player Stuff-----")]
     [SerializeField] GameObject player;
     [SerializeField] GameObject PlayerSpawnPOS;
@@ -17,6 +21,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] int KeyCounter;
 
     private float timescaleOrig;
+    private RoomManager currentRoomManager;
 
     void Awake()
     {
@@ -29,6 +34,7 @@ public class GameManager : MonoBehaviour
         playerResources = player.GetComponent<PlayerResources>();
         PlayerSpawnPOS = GameObject.FindGameObjectWithTag("Player Spawn Pos");
         keyChain = player.GetComponent<KeyChain>();
+        settings.UpdateObjectsToValues();
     }
 
     private void Start()
@@ -161,15 +167,66 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Gets the key script.
+    /// </summary>
+    /// <returns></returns>
+    public KeyChain ReturnKeyScript()
+    {
+        return player.GetComponent<KeyChain>();
+    }
+
+    /// <summary>
+    /// Returns the settings manager script.
+    /// </summary>
+    /// <returns></returns>
+    public SettingsManager GetSettingsManager()
+    {
+        return settings;
+    }
+    
+    /// <summary>
+    /// Returns the Kinesis Enabler script.
+    /// </summary>
+    /// <returns></returns>
+    public KinesisEnabler GetEnabledList()
+    {
+        return isEnabledScript;
+    }
+
+    /// <summary>
     /// Respawn the player, reset the current room. 
     /// </summary>
     public void RespawnCaller()
     {
-
+        playerscript.RespawnPlayer();
+        player.GetComponentInChildren<CameraController>().ResetCamera();
+        currentRoomManager.Respawn();
     }
 
-    public KeyChain ReturnKeyScript()
+    /// <summary>
+    /// Sets the current room manager to the one that is passed in. 
+    /// </summary>
+    public void SetCurrentRoomManager(RoomManager roomManager)
     {
-        return player.GetComponent<KeyChain>();
+        currentRoomManager = roomManager;
+    }
+
+    /// <summary>
+    /// Gets the current room manager. 
+    /// </summary>
+    public RoomManager GetCurrentRoomManager()
+    {
+        return currentRoomManager;
+    }
+
+    /// <summary>
+    /// Nobody should touch this. Please don't.
+    /// </summary>
+    /// <returns></returns>
+    public bool AllKinesisDisabled()
+    {
+        if (!isEnabledScript.CryoEnabled() && !isEnabledScript.AeroEnabled() && !isEnabledScript.TeleEnabled() && !isEnabledScript.PyroEnabled() && !isEnabledScript.ElectroEnabled())
+            return true;
+        else return false;
     }
 }

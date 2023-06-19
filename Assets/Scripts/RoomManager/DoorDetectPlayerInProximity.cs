@@ -16,13 +16,17 @@ public class DoorDetectPlayerInProximity : MonoBehaviour, IEnvironment
 
     private void OnTriggerEnter(Collider other)
     {
+        if (blackList(other))
+        {
+            return;
+        }
 
-        if(door.GetLockedStatus())
+        if (door.GetLockedStatus())
         {
             bool player = other.CompareTag("Player");
-            if(player)
+            if (player)
             {
-                if (GameManager.instance.GetKeyCounter() > 0)
+                if (GameManager.instance.GetKeyChain().GetKeys() > 0)
                 {
                     door.SetLockStatus(false);
                     GameManager.instance.GetKeyChain().removeKeys(1);
@@ -30,21 +34,23 @@ public class DoorDetectPlayerInProximity : MonoBehaviour, IEnvironment
             }
         }
 
-        if(count == 0)
+        if (count == 0)
         {
             door.Activate();
         }
 
-        if (!other.CompareTag("Enemy Bullet"))
-        {
-            count++;
-        }
+        count++;
     }
 
     private void OnTriggerExit(Collider other)
     {
+        if (blackList(other))
+        {
+            return;
+        }
+
         count--;
-        if(count == 0)
+        if (count == 0)
         {
             door.Activate();
         }
@@ -54,5 +60,20 @@ public class DoorDetectPlayerInProximity : MonoBehaviour, IEnvironment
     public void ResetObject()
     {
         count = 0;
+    }
+
+    public void StartObject()
+    {
+        // Nothing needs to happen here
+    }
+
+    public void StopObject()
+    {
+        // Nothing needs to happen here
+    }
+
+    bool blackList(Collider other)
+    {
+        return other.CompareTag("Enemy Bullet") || other.CompareTag("PlayerSpecial") || other.CompareTag("Enemy");
     }
 }

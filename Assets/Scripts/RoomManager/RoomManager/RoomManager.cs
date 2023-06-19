@@ -27,15 +27,15 @@ public class RoomManager : MonoBehaviour
 
     private void Start()
     {
-        ReadTheRoom();
-        SpawnEntities();
+        //ReadTheRoom();
+        //SpawnEntities();
         //StartCoroutine(kill());
     }
 
     IEnumerator kill()
     {
         yield return new WaitForSeconds(3);
-        ClearRoom();
+        KillEntities();
     }
 
     void ReadTheRoom()
@@ -43,6 +43,11 @@ public class RoomManager : MonoBehaviour
         // Stores the spawns
         //var objs = Physics.BoxCastAll(boxTrans.position, box.size / 2, Vector3.zero, boxTrans.rotation, 0, mask);
 
+        if (Spawners != null)
+        {
+            Spawners.Clear();
+            Entities.Clear();
+        }
         Spawners = new List<IEntitySpawner>(gameObject.GetComponentsInChildren<IEntitySpawner>());
 
         foreach (var obj in Spawners)
@@ -54,27 +59,64 @@ public class RoomManager : MonoBehaviour
 
     void SpawnEntities()
     {
+        ReadTheRoom();
+
         for (int i = 0; i < Entities.Count; i++)
         {
             Instantiate(Entities[i], Spawners[i].GetTransform().position, Spawners[i].GetTransform().rotation, gameObject.transform);
         }
     }
 
-    void ClearRoom()
+    void KillEntities()
     {
         entities = new List<IEntity>(gameObject.GetComponentsInChildren<IEntity>());
-        environment = new List<IEnvironment>(gameObject.GetComponentsInChildren<IEnvironment>());
-
+        
         for (int i = 0; i < entities.Count; i++)
         {
             entities[i].Respawn();
         }
+    }
 
-        for (int i = 0;i < environment.Count; i++)
+    void StopEnvironments()
+    {
+        environment = new List<IEnvironment>(gameObject.GetComponentsInChildren<IEnvironment>());
+
+        for (int i = 0; i < environment.Count; i++)
         {
-            environment[i].ResetObject();
+            environment[i].StopObject();
         }
     }
 
+    void StartEnvironments()
+    {
+        environment = new List<IEnvironment>(gameObject.GetComponentsInChildren<IEnvironment>(true));
 
+        //Debug.Log(environment.Count);
+
+        for (int i = 0; i < environment.Count; i++)
+        {
+            environment[i].StartObject();
+        }
+    }
+
+    public void UnloadRoom()
+    {
+        KillEntities();
+        StopEnvironments();
+    }
+
+    public void StartRoom()
+    {
+        SpawnEntities();
+        StartEnvironments();
+    }
+
+    public void Respawn()
+    {
+        KillEntities();
+        StopEnvironments();
+
+        SpawnEntities();
+        StartEnvironments();
+    }
 }

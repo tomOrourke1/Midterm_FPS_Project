@@ -8,6 +8,7 @@ public class StatVisualizer : MonoBehaviour
 {
     [Header("Timers")]
     [SerializeField] float reducingTime = 0.1f;
+    [SerializeField] float speedUpRate = 0.2f;
     [SerializeField] float waitTime = 2f;
 
     [Header("Faux Sliders")]
@@ -28,11 +29,13 @@ public class StatVisualizer : MonoBehaviour
 
     bool runFocusUpdate, runHealthUpdate, runShieldUpdate;
     float currentFocusTimer, currentShieldTimer, currentHealthTimer;
+    float breakShieldTimer;
 
     private void Start()
     {
         runFocusUpdate = runHealthUpdate = runShieldUpdate = false;
         currentFocusTimer = currentShieldTimer = currentHealthTimer = waitTime;
+        breakShieldTimer = reducingTime;
     }
 
     // Updates the sliders constantly. There can be a different way to check this. LMK - Kev
@@ -74,6 +77,7 @@ public class StatVisualizer : MonoBehaviour
         {
             fauxShieldSlider.fillAmount = realShieldSlider.fillAmount;
             currentShieldTimer = waitTime;
+            breakShieldTimer = reducingTime;
         }
     }
 
@@ -104,7 +108,6 @@ public class StatVisualizer : MonoBehaviour
             }
             else
             {
-                Debug.Log("Updating Health Amount");
                 currentHealthTimer = 0;
                 runHealthUpdate = false;
                 fauxHealthSlider.fillAmount = Mathf.MoveTowards(fauxHealthSlider.fillAmount, realHealthSlider.fillAmount, reducingTime * Time.deltaTime);
@@ -122,11 +125,21 @@ public class StatVisualizer : MonoBehaviour
             }
             else
             {
-                Debug.Log("Updating Shield Amount");
                 currentShieldTimer = 0;
                 runShieldUpdate = false;
-                fauxShieldSlider.fillAmount = Mathf.MoveTowards(fauxShieldSlider.fillAmount, realShieldSlider.fillAmount, reducingTime * Time.deltaTime);
+                fauxShieldSlider.fillAmount = Mathf.MoveTowards(fauxShieldSlider.fillAmount, realShieldSlider.fillAmount, breakShieldTimer * Time.deltaTime);
             }
         }
     }
+
+    
+
+    public void UpdtateShieldDepleationTimer()
+    {
+        breakShieldTimer = speedUpRate;
+    }
+
+
+
+
 }

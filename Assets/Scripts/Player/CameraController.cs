@@ -11,11 +11,22 @@ public class CameraController : MonoBehaviour
 
     [SerializeField] bool invertY;
 
+    float zTiltOrig;
+    float lockZMin;
+    float lockZMax;
+    float zTilt;
+    float zTiltCurrent;
+    bool tilting;
+
     float xRotation;
 
     // Start is called before the first frame update
     void Start()
     {
+        sensitivity = GameManager.instance.GetSettingsManager().settings.sensitivity;
+        tilting = false;
+        zTiltCurrent = 0;
+        zTiltOrig = transform.localRotation.z;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -23,6 +34,19 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if ( !tilting )
+        {
+            zTiltCurrent = Mathf.MoveTowards(zTiltCurrent, zTiltOrig, Time.deltaTime * 20);
+        } else
+        {
+            zTiltCurrent = Mathf.Lerp(zTiltCurrent, zTilt, Time.deltaTime * 100);
+            if (zTiltCurrent == zTilt)
+            {
+                tilting = false;
+            }
+        }
+        
+
         float mouseY = Input.GetAxis("Mouse Y") * Time.deltaTime * sensitivity;
         float mouseX = Input.GetAxis("Mouse X") * Time.deltaTime * sensitivity;
 
@@ -38,12 +62,23 @@ public class CameraController : MonoBehaviour
 
         // Limit up and down
         xRotation = Mathf.Clamp(xRotation, lockVerMin, lockVerMax);
+        zTiltCurrent = Mathf.Clamp(zTiltCurrent, lockZMin, lockZMax);
 
         // Rotates up and down (X-axis)
-        transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
+        transform.localRotation = Quaternion.Euler(xRotation, 0, zTiltCurrent);
 
         // Rotates left and right (Y-axis)
         transform.parent.Rotate(Vector3.up * mouseX);
+
+    }
+
+    public void DashCam(float tiltDir, float min, float max)
+    {
+        lockZMin = min;
+        lockZMax = max;
+        zTilt = tiltDir;
+        transform.Rotate(Vector3.forward, tiltDir);
+        tilting = true;
     }
 
     public void SetSensitivity(float s)
@@ -64,5 +99,11 @@ public class CameraController : MonoBehaviour
     public bool GetInvert()
     {
         return invertY;
+    }
+
+    public void ResetCamera()
+    {
+        tilting = false;
+        zTiltCurrent = zTiltOrig;
     }
 }

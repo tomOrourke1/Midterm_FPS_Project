@@ -12,6 +12,8 @@ public class EnemyShootState : EnemyState
     [SerializeField] Transform gunPos;
     bool exit;
     bool fired;
+    float timeInState;
+
 
     [SerializeField] float timeToShoot;
     [SerializeField] float totalTime;
@@ -22,7 +24,6 @@ public class EnemyShootState : EnemyState
         timeToShoot = Mathf.Clamp(timeToShoot, 0, totalTime);
     }
 
-    float timeInState;
 
 
     public override void OnEnter()
@@ -37,20 +38,28 @@ public class EnemyShootState : EnemyState
 
     public override void Tick()
     {
-    //    var g = agent.gameObject;
-    //    var dirToPlayer = GameManager.instance.GetPlayerObj().transform.position - gunPos.position;
-    //    dirToPlayer.Normalize();
-    //    g.transform.rotation = Quaternion.Slerp(g.transform.rotation, Quaternion.LookRotation(dirToPlayer), Time.deltaTime * rotSpeed);
-
+        FacePlayer();
 
         if (!fired && (Time.time - timeInState) >= timeToShoot)
         {
             fired = true;
-            Instantiate(bullet, gunPos.position, gunPos.rotation);
+            var dir = GameManager.instance.GetPlayerPOS() - gunPos.position;
+            Instantiate(bullet, gunPos.position, Quaternion.LookRotation(dir));
         }
 
-        exit = (Time.time - timeInState) >= totalTime;
+        exit = ((Time.time - timeInState) >= totalTime);
     }
+
+    void FacePlayer()
+    {
+        var g = agent.gameObject;
+        var dirToPlayer = GameManager.instance.GetPlayerObj().transform.position - transform.position;
+        dirToPlayer.y = 0;
+        dirToPlayer.Normalize();
+        g.transform.rotation = Quaternion.Slerp(g.transform.rotation, Quaternion.LookRotation(dirToPlayer, Vector3.up), Time.deltaTime * rotSpeed);
+
+    }
+
 
     public override bool ExitCondition()
     {

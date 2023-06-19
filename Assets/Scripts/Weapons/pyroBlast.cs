@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class pyroBlast : KinesisBase
 {
@@ -12,8 +13,8 @@ public class pyroBlast : KinesisBase
     [Header("------ Fireball Components ------")]
     [SerializeField] Transform attackPoint;
     [SerializeField] Rigidbody rb;
-    
-   // [SerializeField] SphereCollider fireballRadius;
+
+    // [SerializeField] SphereCollider fireballRadius;
     [SerializeField] GameObject fireball;
 
     [Header("------ Force Components ------")]
@@ -22,36 +23,40 @@ public class pyroBlast : KinesisBase
     [SerializeField] float ThrowUpwardForce;
 
 
-    GameObject currentBall;
 
-      void Start()
-    {
-        readyToFire = true;
-    }
-    void Update()
-    {
-        Fire();
-    }
+    public UnityEvent OnFireHold;
+    public UnityEvent OnFireThrow;
+    [SerializeField] GameObject fireFocusParticles;
 
 
-    
-   public override void Fire()
+    bool isReady;
+    bool canActivate;
+
+
+    public override void Fire()
     {
 
-        if (Input.GetKeyDown(KeyCode.Mouse1) && readyToFire == true && GameManager.instance.GetPlayerResources().Focus.CurrentValue > focusCost)
+        if (Input.GetKeyDown(KeyCode.Mouse1) && HasFocus())
         {
-        //    fireballRadius.enabled = false;
-            currentBall = Instantiate(fireball, attackPoint.position, Quaternion.identity);
+            OnFireHold?.Invoke();
+            fireFocusParticles.SetActive(true);
+            //    fireballRadius.enabled = false;
             //rb.useGravity = false;
-            currentBall.GetComponent<Rigidbody>().useGravity = false;
+            isCasting = true;
         }
-        if (Input.GetKeyUp(KeyCode.Mouse1) && currentBall != null && readyToFire == true )
+        if (!Input.GetKey(KeyCode.Mouse1) && isReady)
         {
-            StartCoroutine(cooldown());
+            OnFireThrow?.Invoke();
+            isReady = false;
+            fireFocusParticles.SetActive(false);
+        }
+        if (canActivate)
+        {
+            canActivate = false;
+            var currentBall = Instantiate(fireball, attackPoint.position, Quaternion.identity);
             GameManager.instance.GetPlayerResources().SpendFocus(focusCost);
-            currentBall.GetComponent<Rigidbody>().useGravity = true;
             readyToFire = false;
-         //   fireballRadius.enabled = true;
+            //   fireballRadius.enabled = true;
 
             Vector3 forceDirection = Camera.main.transform.forward;
 
@@ -64,15 +69,31 @@ public class pyroBlast : KinesisBase
 
             Vector3 forceApplied = forceDirection * ThrowForce + transform.up * ThrowUpwardForce;
             currentBall.GetComponent<Rigidbody>().AddForce(forceApplied, ForceMode.Impulse);
-           
+
+            fireFocusParticles.SetActive(false);
+
+            isCasting = false;
         }
-        
+
     }
 
-    IEnumerator cooldown()
+
+    bool HasFocus()
     {
-        yield return new WaitForSeconds(fireRate);
-        readyToFire = true;
+        return GameManager.instance.GetPlayerResources().Focus.CurrentValue >= focusCost;
     }
+
+
+    public void SetIsReady(bool red)
+    {
+        isReady = red;
+    }
+
+    public void SetCanActive(bool act)
+    {
+        canActivate = act;
+    }
+
+
 
 }

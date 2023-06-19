@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
+using UnityEngine.InputSystem.HID;
 
 public class ElevatorScript : MonoBehaviour, IInteractable
 {
@@ -15,9 +16,9 @@ public class ElevatorScript : MonoBehaviour, IInteractable
     [Tooltip("The next scene to load. SPELL THE NAME RIGHT!")]
     [SerializeField] string sceneName = "Tom_Tutorial_Shooting_Range";
 
-    // This is serialized because of main menu.
-    // Main menu doesn't have a game manager so we need to have the option
-    // of getting it via inspector.
+
+    [Header("Don't Touch")]
+    [Tooltip("This is serialized because of main menu. Main menu doesn't have a game manager so we need to have the option of getting it via inspector.")]
     [SerializeField] Image image;
 
     private void Start()
@@ -95,6 +96,5 @@ public class ElevatorScript : MonoBehaviour, IInteractable
         }
         // After fading the scene out transition to the scene we want to load
         SceneManager.LoadScene(scene);
-
     }
 }

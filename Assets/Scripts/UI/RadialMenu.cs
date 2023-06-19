@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Xml.Schema;
 using TMPro;
 using Unity.VisualScripting;
@@ -9,19 +10,12 @@ struct SlicesStruct
 {
     [Tooltip("The Radial Slices of each Kinesis Type. This is found under the \"RadialMenu\" Game Object prefab.")]
     [SerializeField] GameObject slice;
-    [Tooltip("If the slice is enabled or disabled.")]
-    [SerializeField] bool sliceEnabled;
     [SerializeField] string sliceName;
-    [SerializeField] Image kinesisIcon;
+    [SerializeField] Sprite kinesisIcon;
 
     public GameObject GetSlice()
     {
         return slice;
-    }
-
-    public bool GetBool()
-    {
-        return sliceEnabled;
     }
 
     public void SetSliceMaterial(Material material)
@@ -33,33 +27,44 @@ struct SlicesStruct
     {
         return sliceName;
     }
+
+    public Sprite GetIcon()
+    {
+        return kinesisIcon;
+    }
 }
 
 public class RadialMenu : MonoBehaviour
 {
-    [Header("Components")]
+    [Header("UI Toggles")]
     [Tooltip("The Radial Weapon Wheel UI to toggle. This is the \"RadialMenu\" Game Object prefab and should be under the \"UI\" Game Object.")]
     [SerializeField] GameObject radialUI;
     [Tooltip("The reticle prefab can be found in the \"Prefabs\" Folder and should be placed under the \"UI\" Game Object.")]
     [SerializeField] GameObject reticleUI;
+    [Tooltip("The arrows game object to turn off when the start function is called.")]
+    [SerializeField] GameObject arrowObj;
     [Tooltip("The Translucent Background to tint the screen. This a Game Object prefab that should be placed under the \"UI\".")]
     [SerializeField] public GameObject translucentBackground;
+
+    [Header("Text Display")]
     [Tooltip("Displays the current hovered Kinesis in the Radial Menu. The Info Box is found under the \"RadialMenu\" Game Object prefab.")]
     [SerializeField] TextMeshProUGUI infoBox;
+    
+    [Header("Transforms")]
     [Tooltip("The arrow rotating around to face the mouse's position. This is found under the \"RadialMenu\" Game Object prefab.")]
     [SerializeField] Transform arrow;
     [Tooltip("A transparent selector to higlight which item is being hovered on. This is found under the \"RadialMenu\" Game Object prefab.")]
     [SerializeField] Transform selector;
     [Tooltip("A list of each radial option, and if they are enabled or not.")]
+
+    [Header("Slices Struct")]
     [SerializeField] SlicesStruct[] _slices;
     [Tooltip("Disabled color that the slice will be set to. The slice meaning the radial slice in the radial menu.")]
+    
+    [Header("Color Settings")]
     [SerializeField] Material disabledColor;
     [Tooltip("Enabled color that the slice will be set to. The slice meaning the radial slice in the radial menu.")]
     [SerializeField] Material enabledColor;
-    [Tooltip("Distance the slice is from the middle of the screen.")]
-    [SerializeField, Range(75, 500)] int sliceDistanceFromCenter;
-    [Tooltip("The parent object the slices will spawn under.")]
-    [SerializeField] Transform sliceParentTransform;
 
     #region ScriptVariables
     /// <summary>
@@ -109,12 +114,20 @@ public class RadialMenu : MonoBehaviour
     /// </summary>
     float arrowScale;
 
-    #endregion
-
+    /// <summary>
+    /// How much to offset the selector icon.
+    /// </summary>
     float offsetAngle;
+
+    /// <summary>
+    /// Uses the last selected kinesis to confirm the selection.
+    /// </summary>
+    int confirmedKinesis = 2;
+    #endregion
 
     private void Start()
     {
+        selector.gameObject.SetActive(false);
         sliceAng = 360 / _slices.Length;
         offsetAngle = sliceAng * 3;
         UpdateSlices();
@@ -131,7 +144,10 @@ public class RadialMenu : MonoBehaviour
     /// </summary>
     public void ShowRadialMenu()
     {
+        ChangeConfirmedWhenOpeningWheel();
         UpdateSlices();
+        selector.gameObject.SetActive(true);
+        arrowObj.SetActive(false);
         reticleUI.SetActive(false);
         translucentBackground.SetActive(true);
         radialUI.SetActive(true);
@@ -151,7 +167,7 @@ public class RadialMenu : MonoBehaviour
     /// <summary>
     /// Updates the position of the mouse to where the mouse is on the canvas.
     /// </summary>
-    void UpdateMousePosition()
+    private void UpdateMousePosition()
     {
         var screenPos = new Vector3(Screen.width / 2, Screen.height / 2);
         mousePos = Input.mousePosition - screenPos;
@@ -171,15 +187,16 @@ public class RadialMenu : MonoBehaviour
     /// Updates the selector wheel icon to position and rotate itself on top of the currently
     /// highlighted item that can be enabled.
     /// </summary>
-    void UpdateSelectedItem()
+    private void UpdateSelectedItem()
     {
         UpdateSlices();
+
         for (int sliceIndex = 0; sliceIndex < _slices.Length; ++sliceIndex)
         {
             withinRadialMin = rotateAngle > sliceIndex * sliceAng;
             withinRadialMax = rotateAngle < (sliceIndex + 1) * sliceAng;
 
-            if (withinRadialMin && withinRadialMax)
+            if (withinRadialMin && withinRadialMax && GameManager.instance.GetEnabledList().RetrieveLoop(sliceIndex))
             {
                 selector.transform.rotation = Quaternion.Euler(0, 0, sliceIndex * sliceAng + (72/2));
                 trackedKinesis = sliceIndex;
@@ -193,29 +210,10 @@ public class RadialMenu : MonoBehaviour
     /// Pass in the selected slice and it will set the current gun to that type of kinesis.
     /// </summary>
     /// <param name="sliceIndx">The indexed slice to use.</param>
-    void SelectKinesis(int sliceIndx)
+    public void SelectKinesis()
     {
-        switch (sliceIndx)
-        {
-            case 0:
-
-                break;
-            case 1:
-
-                break;
-            case 2:
-
-                break;
-            case 3:
-
-                break;
-            case 4:
-
-                break;
-
-            default:
-                break;
-        }
+        UIManager.instance.GetPlayerStats().SetKinesisIcon(_slices[confirmedKinesis].GetIcon());
+        GameManager.instance.GetPlayerObj().GetComponent<CasterScript>().SetCurrentKinesis(confirmedKinesis);
     }
 
     /// <summary>
@@ -223,25 +221,26 @@ public class RadialMenu : MonoBehaviour
     /// Not for getting the gun type.
     /// </summary>
     /// <param name="idx">The index of the kinesis type to use.</param>
-    void DisplayKinesisInRadialMenu(int idx)
+    private void DisplayKinesisInRadialMenu(int idx)
     {
         infoBox.SetText(_slices[idx].GetName());
+        arrowObj.SetActive(true);
+
         // Updates the tracked kinesis only when it can be displayed so we don't update it when its being hovered over.
         // Meaning we need to reach this function (which can only happen if the slice is also enabled) to even get
         // into the slices and update what radial option slice we chose.
-        trackedKinesis = idx;
+        confirmedKinesis = idx;
         selector.transform.rotation = Quaternion.Euler(0, 0, idx * sliceAng + (sliceAng * 1) - offsetAngle);
     }
 
-    void UpdateSlices()
+    private void UpdateSlices()
     {
         for (int sliceIndex = 0; sliceIndex < _slices.Length; ++sliceIndex)
         {
-            if (_slices[sliceIndex].GetBool())
+            if (GameManager.instance.GetEnabledList().RetrieveLoop(sliceIndex))
                 _slices[sliceIndex].GetSlice().GetComponent<Image>().material = enabledColor;
             else
                 _slices[sliceIndex].GetSlice().GetComponent<Image>().material = disabledColor;
-
         }
     }
 
@@ -256,5 +255,34 @@ public class RadialMenu : MonoBehaviour
         UpdateSlices();
         UpdateMousePosition();
         UpdateSelectedItem();
+    }
+
+    /// <summary>
+    /// Returns the confirmed kinesis type.
+    /// </summary>
+    /// <returns></returns>
+    public int GetConfirmedKinesis()
+    {
+        return confirmedKinesis;
+    }
+
+    /// <summary>
+    /// Returns the Reticle UI game object so we can disable/enable this when pause/death happens
+    /// </summary>
+    /// <returns></returns>
+    public GameObject GetReticle()
+    {
+        return reticleUI;
+    }
+
+    private void ChangeConfirmedWhenOpeningWheel()
+    {
+        for (int i = 0; i < _slices.Length; i++)
+        {
+            if (GameManager.instance.GetEnabledList().RetrieveLoop(i))
+            {
+                confirmedKinesis = i;
+            }
+        }
     }
 }

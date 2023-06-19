@@ -35,7 +35,11 @@ public class MenuButtonFunctions : MonoBehaviour
     public void Respawn()
     {
         UIManager.instance.Unpaused();
-        GameManager.instance.GetPlayerScript().RespawnPlayer();
+        GameManager.instance.RespawnCaller();
     }
 
+    public void ShowKeybindsMenu()
+    {
+        UIManager.instance.ShowKeybinds();
+    }
 }

@@ -113,7 +113,6 @@ public class BasicEnemy : EnemyBase, IDamagable
     public void TakeDamage(float dmg)
     {
         health.Decrease(dmg);
-        Debug.Log("health: " + health.CurrentValue);
 
         StartCoroutine(FlashDamage());        
     }
@@ -137,6 +136,8 @@ public class BasicEnemy : EnemyBase, IDamagable
             enemyEnabled = false;
     }
 
-
-
+    public float GetCurrentHealth()
+    {
+        return health.CurrentValue;
+    }
 }

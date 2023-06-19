@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEditor;
+using UnityEditor.Timeline.Actions;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -12,6 +13,8 @@ public enum MenuState
     radial,
     paused,
     death,
+    keybinds,
+    settings,
     none
 }
 
@@ -25,6 +28,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] RadialMenu radialScript;
     [SerializeField] PlayerStatsUI statsUIRef;
     [SerializeField] KeyUI keyScriptRef;
+    [SerializeField] KeybindsMenu keybinds;
 
     [Header("Menu States")]
     [SerializeField] GameObject activeMenu;
@@ -32,6 +36,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject winMenu;
     [SerializeField] GameObject loseMenu;
     [SerializeField] GameObject settingsMenu;
+    [SerializeField] GameObject keybindMenu;
+    [SerializeField] GameObject keyMenu;
     [SerializeField] GameObject radialMenu;
 
     [Header("Stats UI")]
@@ -65,10 +71,14 @@ public class UIManager : MonoBehaviour
     {
         currentState = MenuState.paused;
         activeMenu = pauseMenu;
+        
         activeMenu.SetActive(true);
+        playerStatsObj.SetActive(false);
+        keyMenu.SetActive(false);
+
         GameManager.instance.TimePause();
         GameManager.instance.MouseUnlockShow();
-        playerStatsObj.SetActive(false);
+        radialScript.GetReticle().SetActive(false);
         pauseAnimController.SetBool("ExitPause", false);
     }
 
@@ -88,7 +98,10 @@ public class UIManager : MonoBehaviour
         }
         GameManager.instance.TimeUnpause();
         GameManager.instance.MouseLockHide();
+
         playerStatsObj.SetActive(true);
+        radialScript.GetReticle().SetActive(true);
+        keyMenu.SetActive(true);
 
         currentState = MenuState.none;
     }
@@ -132,8 +145,8 @@ public class UIManager : MonoBehaviour
     public void SettingsShown()
     {
         activeMenu.SetActive(false);
-
         activeMenu = settingsMenu;
+        currentState = MenuState.settings;
         activeMenu.SetActive(true);
     }
     
@@ -144,6 +157,22 @@ public class UIManager : MonoBehaviour
     {
         activeMenu.SetActive(false);
         activeMenu = pauseMenu;
+        GameManager.instance.GetSettingsManager().SaveToSettingsObj();
+        GameManager.instance.GetSettingsManager().UpdateObjectsToValues();
+        currentState = MenuState.paused;
+        activeMenu.SetActive(true);
+    }
+
+    /// <summary>
+    /// Cancels the users settings and closes the settings menu without saving them to the scriptable object.
+    /// </summary>
+    public void CancelSettings()
+    {
+        activeMenu.SetActive(false);
+        activeMenu = pauseMenu;
+        GameManager.instance.GetSettingsManager().CancelSettingsObj();
+        GameManager.instance.GetSettingsManager().CancelSettingsObj();
+        currentState = MenuState.paused;
         activeMenu.SetActive(true);
     }
 
@@ -185,7 +214,11 @@ public class UIManager : MonoBehaviour
     {
         activeMenu = loseMenu;
         currentState = MenuState.death;
+
         activeMenu.SetActive(true);
+        radialScript.GetReticle().SetActive(false);
+        playerStatsObj.SetActive(false);
+
         GameManager.instance.TimePause();
         GameManager.instance.MouseUnlockShow();
     }
@@ -258,8 +291,51 @@ public class UIManager : MonoBehaviour
         StartCoroutine(flashImageScript.FlashShieldDisplay());
     }
 
+    /// <summary>
+    /// Gets the Key UI Script.
+    /// </summary>
+    /// <returns></returns>
     public KeyUI GetKeyUI()
     {
         return keyScriptRef;
+    }
+
+    /// <summary>
+    /// Runs the function to update which kinesis is being held.
+    /// </summary>
+    public void UpdateKinesis()
+    {
+        radialScript.SelectKinesis();
+    }
+
+    /// <summary>
+    /// Returns the radial menu script.
+    /// </summary>
+    /// <returns></returns>
+    public RadialMenu GetRadialScript()
+    {
+        return radialScript;
+    }
+
+    /// <summary>
+    /// Turns on the keybinds menu to display to the player.
+    /// </summary>
+    public void ShowKeybinds()
+    {
+        activeMenu.SetActive(false);
+        activeMenu = keybindMenu;
+        currentState = MenuState.keybinds;
+        activeMenu.SetActive(true);
+    }
+
+    /// <summary>
+    /// Closes the keybinds menu. Returns to the pause menu.
+    /// </summary>
+    public void CloseKeybinds()
+    {
+        activeMenu.SetActive(false);
+        activeMenu = pauseMenu;
+        currentState = MenuState.paused;
+        activeMenu.SetActive(true);
     }
 }

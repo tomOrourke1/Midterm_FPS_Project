@@ -71,4 +71,9 @@ public class ExplodingBarrel : MonoBehaviour, IDamagable, IEntity
     {
 
     }
+
+    public float GetCurrentHealth()
+    {
+        return Durability;
+    }
 }

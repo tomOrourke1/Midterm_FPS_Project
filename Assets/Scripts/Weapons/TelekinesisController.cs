@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class TelekinesisController : MonoBehaviour
+public class TelekinesisController : KinesisBase
 {
 
     [Header("----- Components -----")]
@@ -20,12 +21,15 @@ public class TelekinesisController : MonoBehaviour
 
     [SerializeField] float yOffset;
 
-    [Space]
-    [SerializeField] float focusCost;
 
     [Space]
     [SerializeField][Range(0, 5)] float timeSpeed;
     [SerializeField][Range(0, 1)] float allowedDistanceToThrow;
+
+
+    [Header("--- Events ----")]
+    public UnityEvent OnTeleStart;
+    public UnityEvent OnTelePush;
 
     bool isHoldingObject;
     float timePressed;
@@ -40,20 +44,6 @@ public class TelekinesisController : MonoBehaviour
         
     }
 
-
-    void Update()
-    {
-
-
-
-
-        TelekinesisStart();
-
-        PullObject();
-
-        ReleaseObject();       
-
-    }
 
 
 
@@ -76,7 +66,7 @@ public class TelekinesisController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             // suck item
-
+            isCasting = true;
 
             Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f));
             RaycastHit hit;
@@ -88,6 +78,8 @@ public class TelekinesisController : MonoBehaviour
                 timePressed = 0;
                 if(stachedObject != null && GameManager.instance.GetPlayerResources().SpendFocus(focusCost))
                 {
+
+                    OnTeleStart?.Invoke();
                     originalPos = stachedObject.GetPosition();
                     stachedObject.GetRigidbody().useGravity = false;
                 }
@@ -157,6 +149,8 @@ public class TelekinesisController : MonoBehaviour
     {
         if ((Input.GetKeyUp(KeyCode.Mouse1) || !Input.GetKey(KeyCode.Mouse1)) && stachedObject != null && !IsObjectNull())
         {
+            isCasting = false;
+            OnTelePush?.Invoke();
 
             stachedObject.GetRigidbody().useGravity = true;
 
@@ -206,7 +200,14 @@ public class TelekinesisController : MonoBehaviour
 
     }
 
+    public override void Fire()
+    {
+        TelekinesisStart();
 
+        PullObject();
+
+        ReleaseObject();
+    }
 
 
     Vector3 lerp2(Vector3 p0, Vector3 p1, Vector3 p2, float t)

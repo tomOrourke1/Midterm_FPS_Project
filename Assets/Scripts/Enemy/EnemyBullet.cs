@@ -11,11 +11,16 @@ public class EnemyBullet : MonoBehaviour
 
     [SerializeField] Rigidbody rb;
 
+
     void Start()
     {
         Destroy(gameObject, destroyBulletTimer);
         rb.velocity = transform.forward * bulletSpeed;
     }
+
+
+
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -30,4 +35,8 @@ public class EnemyBullet : MonoBehaviour
 
         Destroy(gameObject);
     }
+
+
+
+
 }

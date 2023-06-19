@@ -18,13 +18,19 @@ public class PlayerStatsUI : MonoBehaviour
     [SerializeField] Image healthIcon;
     [Tooltip("The shield icon to enable when the shield is empty.")]
     [SerializeField] Image shieldIcon;
-    [SerializeField] StatVisualizer sliderScript;
+    [SerializeField] public StatVisualizer sliderScript;
+
+    [Header("Kinesis Icon")]
+    [SerializeField] Image kinesisIcon;
+
     // C# has inherent private protection but defining it just to be safe
     PlayerResources instance;
 
     void Start()
     {
         instance = GameManager.instance.GetPlayerResources();
+        if (kinesisIcon.sprite == null)
+            kinesisIcon.enabled = false;
     }
 
     // When the damage and HP refilling are added introduce these into those functions. 
@@ -117,5 +123,11 @@ public class PlayerStatsUI : MonoBehaviour
     public Image GetRealFocusSlider()
     {
         return focusSlider;
+    }
+
+    public void SetKinesisIcon(Sprite refImage)
+    {
+        kinesisIcon.sprite = refImage;
+        kinesisIcon.enabled = true;
     }
 }

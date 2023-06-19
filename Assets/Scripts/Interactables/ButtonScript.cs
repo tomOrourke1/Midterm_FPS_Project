@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class ButtonScript : MonoBehaviour
+public class ButtonScript : MonoBehaviour, IEnvironment
 {
 
     [SerializeField] UnityEvent buttonPress;
@@ -40,4 +40,23 @@ public class ButtonScript : MonoBehaviour
 
     }
 
+    public void StartObject()
+    {
+        count = 0;
+        buttonRenderer.material = releasedColor;
+    }
+
+    public void StopObject()
+    {
+        count = 0;
+        //buttonRenderer.material = releasedColor;
+        buttonRelease?.Invoke();
+    }
+
+    public void ResetObject()
+    {
+        count = 0;
+        buttonRenderer.material = releasedColor;
+        buttonRelease?.Invoke();
+    }
 }
