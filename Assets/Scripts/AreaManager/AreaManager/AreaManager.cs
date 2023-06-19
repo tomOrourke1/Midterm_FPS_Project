@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using static UnityEngine.EventSystems.EventTrigger;
 
-public class RoomManager : MonoBehaviour
+public class AreaManager : MonoBehaviour
 {
 
 
