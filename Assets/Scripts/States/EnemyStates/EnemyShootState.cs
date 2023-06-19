@@ -12,6 +12,8 @@ public class EnemyShootState : EnemyState
     [SerializeField] Transform gunPos;
     bool exit;
     bool fired;
+    float timeInState;
+
 
     [SerializeField] float timeToShoot;
     [SerializeField] float totalTime;
@@ -22,7 +24,6 @@ public class EnemyShootState : EnemyState
         timeToShoot = Mathf.Clamp(timeToShoot, 0, totalTime);
     }
 
-    float timeInState;
 
 
     public override void OnEnter()
@@ -46,7 +47,7 @@ public class EnemyShootState : EnemyState
             Instantiate(bullet, gunPos.position, Quaternion.LookRotation(dir));
         }
 
-        exit = (Time.time - timeInState) >= totalTime;
+        exit = ((Time.time - timeInState) >= totalTime);
     }
 
     void FacePlayer()

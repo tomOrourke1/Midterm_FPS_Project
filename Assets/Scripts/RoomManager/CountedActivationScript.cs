@@ -18,6 +18,7 @@ public class CountedActivationScript : MonoBehaviour
     private void Start()
     {
         activated = false;
+        count = 0;
     }
 
     public void Increment()
