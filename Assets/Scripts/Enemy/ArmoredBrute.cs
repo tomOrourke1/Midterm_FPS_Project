@@ -1,25 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class testEnemy_Adam : EnemyBase, IDamagable
+public class ArmoredBrute : EnemyBase,IDamagable
 {
     [Header("-----States-----")]
     [SerializeField] EnemyIdleState idleState;
-    [SerializeField] enemyTest_Adam testMoveState;
+    [SerializeField] EnemyChasePlayerState chasePlayerState;
+    [SerializeField] EnemyShootState enemyShootState;
 
-    private void Start()
+    [Header("-----Brute Stats-----")]
+    [SerializeField] int damage;
+    [SerializeField] int attackRate;
+    [SerializeField] int playerFaceSpeed;
+    [SerializeField] int viewConeAngle;
+
+    bool isAttacking;
+
+    void Start()
     {
         health.FillToMax();
 
         stateMachine = new StateMachine();
         stateMachine.SetState(idleState);
 
-        stateMachine.AddTransition(idleState, testMoveState, OnMove);
-        stateMachine.AddTransition(testMoveState, idleState, OnIdle);
+        stateMachine.AddTransition(idleState, chasePlayerState, OnMove);
+        //stateMachine.AddTransition(chasePlayerState, enemyShootState, OnAttack);
+        stateMachine.AddTransition(chasePlayerState, idleState, OnIdle);
     }
 
-    bool OnIdle()
+     bool OnIdle()
     {
         float distance = Vector3.Distance(GameManager.instance.GetPlayerObj().transform.position, gameObject.transform.position);
         bool inDistance = distance > 10;
@@ -34,8 +45,22 @@ public class testEnemy_Adam : EnemyBase, IDamagable
         return inDistance;
     }
 
-    private void Update()
+    //bool OnAttack()
+    //{
+    //    bool toAttack = doesSeePlayer;
+    //    if (!isAttacking) 
+    //    {
+
+    //        isAttacking = true;
+    //        yield return new WaitForSeconds(attackRate);
+    //    }
+       
+    //}
+
+
+    void Update()
     {
+
         if (enemyEnabled)
         {
             stateMachine.Tick();
@@ -74,7 +99,7 @@ public class testEnemy_Adam : EnemyBase, IDamagable
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
-        { 
+        {
             enemyEnabled = true;
         }
     }
@@ -88,6 +113,6 @@ public class testEnemy_Adam : EnemyBase, IDamagable
 
     public float GetCurrentHealth()
     {
-        throw new System.NotImplementedException();
+        return health.CurrentValue;
     }
 }
