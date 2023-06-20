@@ -17,6 +17,11 @@ public class RotatingBlock : MonoBehaviour, IEnvironment
     bool waiting;
     Quaternion rotation;
 
+
+    float time;
+    float timeWating;
+
+
     private void Start()
     {
         initRotation = transform.localRotation;
@@ -36,32 +41,69 @@ public class RotatingBlock : MonoBehaviour, IEnvironment
         {
             SmoothRotation();
         }
-
-
     }
 
     void IntermittantRotation()
     {
+
+
+        timeWating += Time.deltaTime;
+
+
+        if (timeWating >= stopDuration)
+        {
+            timeWating = 0;
+            rotating = false;
+        }
+
+
+
         if (!rotating)
         {
             rotation = transform.localRotation * Quaternion.AngleAxis(rotationAngle, Vector3.up);
             rotating = true;
+
+
+
+
+
+
+
+
+
+
+
+
+            if (transform.localRotation != rotation && !waiting)
+            {
+
+
+                // hey rotation = false after stop duration seconds??
+
+
+
+
+
+
+
+
+
+            //    StartCoroutine(wait());
+            }
         }
         else
         {
             transform.localRotation = Quaternion.RotateTowards(transform.localRotation, rotation, Time.deltaTime * rotationSpeed);
-
-            if (transform.localRotation != rotation && !waiting)
-            {
-                StartCoroutine(wait());
-            }
         }
     }
 
     IEnumerator wait()
     {
+        Debug.Log("WAITING before the wait");
         waiting = true;
         yield return new WaitForSeconds(stopDuration);
+        Debug.Log("WAITING AFTER the wait");
+
         rotating = false;
         waiting = false;
     }
@@ -75,7 +117,13 @@ public class RotatingBlock : MonoBehaviour, IEnvironment
 
     public void ResetObject()
     {
+        StopAllCoroutines();
+        gameObject.SetActive(true);
         transform.localRotation = initRotation;
+        rotating = false;
+        waiting = false;
+
+        timeWating = 0;
     }
 
     public void StartObject()
@@ -87,5 +135,6 @@ public class RotatingBlock : MonoBehaviour, IEnvironment
     public void StopObject()
     {
         gameObject.SetActive(false);
+        StopAllCoroutines();
     }
 }

@@ -14,11 +14,11 @@ public class KinesisEnabler : MonoBehaviour
 
     private void Start()
     {
-        aeroEnabled = GameManager.instance.GetSettingsManager().settings.aeroOn;
-        electroEnabled = GameManager.instance.GetSettingsManager().settings.electroOn;
-        teleEnabled = GameManager.instance.GetSettingsManager().settings.teleOn;
-        pyroEnabled = GameManager.instance.GetSettingsManager().settings.pyroOn;
-        cryoEnabled = GameManager.instance.GetSettingsManager().settings.cryoOn;
+        GameManager.instance.GetSettingsManager().settings.aeroOn = aeroEnabled;
+        GameManager.instance.GetSettingsManager().settings.electroOn = electroEnabled;
+        GameManager.instance.GetSettingsManager().settings.teleOn = teleEnabled;
+        GameManager.instance.GetSettingsManager().settings.pyroOn = pyroEnabled;
+        GameManager.instance.GetSettingsManager().settings.cryoOn = cryoEnabled;
     }
 
     public bool RetrieveLoop(int idx)

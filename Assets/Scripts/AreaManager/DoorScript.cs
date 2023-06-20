@@ -23,17 +23,35 @@ public class DoorScript : MonoBehaviour, IDoorActivator, IEnvironment
     // Added these to store initial door stats
     bool initialDoorOpen;
     bool initialLock;
+    float initialDoorValue;
 
     bool LockClose;
 
+    enum doorState
+    {
+        opening,
+        closing,
+        open,
+        closed
+    }
+
+    doorState d;
+
+
     private void Start()
     {
+        isOpen = doorPivot.localScale.x == minDoorValue;
+        doorValue = isOpen ? minDoorValue : 1;
+        initialDoorValue = doorValue;
+
+        
+
         // Saves the intial values of the door for reset
         initialDoorOpen = isOpen;
         initialLock = locked;
 
-        isOpen = doorPivot.localScale.x == 0;
-        doorValue = isOpen ? minDoorValue : 1;
+        d = initialDoorOpen ? doorState.open : doorState.closed;
+
 
         // Added by Kevin for changing door material color depending on lock status
         renderer.material = locked ? doorDisabled : doorEnabled;
@@ -85,16 +103,37 @@ public class DoorScript : MonoBehaviour, IDoorActivator, IEnvironment
         doorValue = Mathf.MoveTowards(doorValue, endVal, Time.deltaTime * doorSpeed);
         doorPivot.localScale = new Vector3(doorValue, 1, 1);
 
+        d = endVal == 1 ? doorState.closing : doorState.opening;
+
         // Inverts door's state
         if (doorValue == endVal)
         {
             isOpen = !isOpen;
             activation = false;
 
+            d = isOpen ? doorState.open : doorState.closed;
+
             if (LockClose)
             {
                 LockClose = false;
             }
+        }
+    }
+
+    public void CloseDoor()
+    {
+
+        if (isOpen || d == doorState.opening)
+        {
+            Activate();
+        }
+    }
+
+    public void openDoor()
+    {
+        if (!isOpen || d == doorState.closing)
+        {
+            Activate();
         }
     }
 
@@ -113,10 +152,12 @@ public class DoorScript : MonoBehaviour, IDoorActivator, IEnvironment
         var originalPos = initialDoorOpen ? minDoorValue : 1;
 
         doorValue = originalPos;
-        doorPivot.localScale = new Vector3(doorValue, 1, 1);
+        doorPivot.localScale = new Vector3(initialDoorValue, 1, 1);
 
         isOpen = initialDoorOpen;
         activation = false;
+
+
     }
 
     // This is a function tied to IEnvironment meant to be used to reset a room
