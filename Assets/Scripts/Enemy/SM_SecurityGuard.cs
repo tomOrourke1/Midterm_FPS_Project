@@ -50,9 +50,16 @@ public class SM_SecurityGuard : EnemyBase, IDamagable, IEntity
         {
             stateMachine.Tick();
 
-            var angle = Vector3.Angle(GameManager.instance.GetPlayerPOS() - transform.position, gameObject.transform.forward);
-
-            doesSeePlayer = (angle <= viewConeAngle);
+            var dir = (GameManager.instance.GetPlayerPOS() - transform.position).normalized;
+            var angle = Vector3.Angle(dir, gameObject.transform.forward);
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, dir, out hit) && (angle <= viewConeAngle))
+            {
+                if (hit.collider.CompareTag("Player"))
+                {
+                    doesSeePlayer = true;
+                }
+            }
         }
     }
 

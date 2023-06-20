@@ -19,6 +19,8 @@ public class EnemyShootState : EnemyState
     [SerializeField] float totalTime;
     [SerializeField] float rotationSpeed;
 
+    Vector3 playerPos;
+
     private void OnValidate()
     {
         timeToShoot = Mathf.Clamp(timeToShoot, 0, totalTime);
@@ -34,6 +36,8 @@ public class EnemyShootState : EnemyState
         timeInState = Time.time;
 
         agent.SetDestination(agent.transform.position);
+
+        playerPos = GameManager.instance.GetPlayerPOS();
     }
 
     public override void Tick()
@@ -43,7 +47,7 @@ public class EnemyShootState : EnemyState
         if (!fired && (Time.time - timeInState) >= timeToShoot)
         {
             fired = true;
-            var dir = GameManager.instance.GetPlayerPOS() - gunPos.position;
+            var dir = playerPos - gunPos.position;
             Instantiate(bullet, gunPos.position, Quaternion.LookRotation(dir));
         }
 

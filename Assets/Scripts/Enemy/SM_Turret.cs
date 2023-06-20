@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SM_Turret : EnemyBase, IDamagable, IEntity
@@ -8,6 +9,8 @@ public class SM_Turret : EnemyBase, IDamagable, IEntity
     [SerializeField] EnemyIdleState turretIdle;
     [SerializeField] EnemyShootState turretShoot;
 
+    [Header("--- Other Components ----")]
+    [SerializeField] Transform shootPos;
     [Header("----- Other Vars -----")]
     [SerializeField] float attackRange;
     [SerializeField] float viewConeAngle;
@@ -33,11 +36,21 @@ public class SM_Turret : EnemyBase, IDamagable, IEntity
     {
         if (enemyEnabled)
         {
+            var dir = (GameManager.instance.GetPlayerPOS() - transform.position).normalized;
+            var angle = Vector3.Angle(dir, gameObject.transform.forward);
+            RaycastHit hit;
+            if(Physics.Raycast(transform.position, dir, out hit) && (angle <= viewConeAngle))
+            {
+                if(hit.collider.CompareTag("Player"))
+                {
+                    doesSeePlayer = true;
+                }
+            }
+
+
+
             stateMachine.Tick();
 
-            var angle = Vector3.Angle((GameManager.instance.GetPlayerPOS() - transform.position).normalized, gameObject.transform.forward);
-            Debug.Log(angle);
-            doesSeePlayer = (angle <= viewConeAngle);
         }
     }
 
