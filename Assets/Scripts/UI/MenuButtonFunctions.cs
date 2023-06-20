@@ -42,4 +42,9 @@ public class MenuButtonFunctions : MonoBehaviour
     {
         UIManager.instance.ShowKeybinds();
     }
+
+    public void ShowCheatMenu()
+    {
+        UIManager.instance.RunCheatMenu();
+    }
 }

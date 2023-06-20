@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 [System.Serializable]
-enum KinesisSelect
+public enum KinesisSelect
 {
     aerokinesis,
     electrokinesis,
@@ -49,6 +49,7 @@ public class KinesisPickup : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             EnableKinesis(pickupSelect, active);
+
             Destroy(gameObject);
         }
     }
@@ -104,5 +105,4 @@ public class KinesisPickup : MonoBehaviour
                 break;
         }
     }
-
 }

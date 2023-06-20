@@ -12,6 +12,15 @@ public class KinesisEnabler : MonoBehaviour
     [SerializeField] bool pyroEnabled;
     [SerializeField] bool cryoEnabled;
 
+    private void Start()
+    {
+        aeroEnabled = GameManager.instance.GetSettingsManager().settings.aeroOn;
+        electroEnabled = GameManager.instance.GetSettingsManager().settings.electroOn;
+        teleEnabled = GameManager.instance.GetSettingsManager().settings.teleOn;
+        pyroEnabled = GameManager.instance.GetSettingsManager().settings.pyroOn;
+        cryoEnabled = GameManager.instance.GetSettingsManager().settings.cryoOn;
+    }
+
     public bool RetrieveLoop(int idx)
     {
         switch (idx)
@@ -30,7 +39,6 @@ public class KinesisEnabler : MonoBehaviour
                 return false;
         }
     }
-
 
     public bool AeroEnabled()
     {
@@ -58,47 +66,52 @@ public class KinesisEnabler : MonoBehaviour
     }
 
     /// <summary>
-    /// Gets if the Aerokinesis is active or not.
+    /// Sets if the Aerokinesis is active or not.
     /// </summary>
     /// <param name="active"></param>
     public void AeroSetActive(bool active)
     {
         aeroEnabled = active;
+        GameManager.instance.GetSettingsManager().settings.aeroOn = active;
     }
 
     /// <summary>
-    /// Gets if the Electrokinesis is active or not.
+    /// Sets if the Electrokinesis is active or not.
     /// </summary>
     /// <param name="active"></param>
     public void ElectroSetActive(bool active)
     {
         electroEnabled = active;
+        GameManager.instance.GetSettingsManager().settings.electroOn = active;
     }
 
     /// <summary>
-    /// Gets if the Telekinesis is active or not.
+    /// Sets if the Telekinesis is active or not.
     /// </summary>
     /// <param name="active"></param>
     public void TeleSetActive(bool active)
     {
         teleEnabled = active;
+        GameManager.instance.GetSettingsManager().settings.teleOn = active;
     }
 
     /// <summary>
-    /// Gets if the Pyrokinesis is active or not.
+    /// Sets if the Pyrokinesis is active or not.
     /// </summary>
     /// <param name="active"></param>
     public void PyroSetActive(bool active)
     {
         pyroEnabled = active;
+        GameManager.instance.GetSettingsManager().settings.pyroOn = active;
     }
 
     /// <summary>
-    /// Gets if the Cryokinesis is active or not.
+    /// Sets if the Cryokinesis is active or not.
     /// </summary>
     /// <param name="active"></param>
     public void CryoSetActive(bool active)
     {
         cryoEnabled = active;
+        GameManager.instance.GetSettingsManager().settings.cryoOn = active;
     }
 }

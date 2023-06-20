@@ -124,7 +124,7 @@ public class RadialMenu : MonoBehaviour
     /// </summary>
     int confirmedKinesis = 2;
     #endregion
-
+     
     private void Start()
     {
         selector.gameObject.SetActive(false);
@@ -236,7 +236,7 @@ public class RadialMenu : MonoBehaviour
         selector.transform.rotation = Quaternion.Euler(0, 0, idx * sliceAng + (sliceAng * 1) - offsetAngle);
     }
 
-    private void UpdateSlices()
+    public void UpdateSlices()
     {
         for (int sliceIndex = 0; sliceIndex < _slices.Length; ++sliceIndex)
         {
@@ -278,6 +278,9 @@ public class RadialMenu : MonoBehaviour
         return reticleUI;
     }
 
+    /// <summary>
+    /// Gets the last available slice in the radial wheel. If there are none then the wheel will not open.
+    /// </summary>
     private void ChangeConfirmedWhenOpeningWheel()
     {
         for (int i = 0; i < _slices.Length; i++)

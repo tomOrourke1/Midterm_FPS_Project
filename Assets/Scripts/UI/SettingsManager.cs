@@ -36,6 +36,11 @@ public class SettingsManager : MonoBehaviour
         invertYToggle.isOn = tempInvY;
     }
 
+    public SettingsObject GetObject()
+    {
+        return settings;
+    }
+
     public void SaveToSettingsObj()
     {
         settings.volume = tempVol;

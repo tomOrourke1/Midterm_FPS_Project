@@ -17,7 +17,8 @@ public enum MenuState
     death,
     keybinds,
     settings,
-    infographic
+    infographic,
+    cheats
 }
 
 public class UIManager : MonoBehaviour
@@ -41,6 +42,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject keybindMenu;
     [SerializeField] GameObject keyMenu;
     [SerializeField] GameObject radialMenu;
+    [SerializeField] GameObject cheatMenu;
 
     [Header("Stats UI")]
     [SerializeField] GameObject playerStatsObj;
@@ -347,6 +349,11 @@ public class UIManager : MonoBehaviour
         activeMenu.SetActive(true);
     }
 
+    /// <summary>
+    /// Shows the info menu for item pickups.
+    /// </summary>
+    /// <param name="img">The image of the item.</param>
+    /// <param name="name">The name of the item.</param>
     public void ShowInfoUI(Sprite img, string name)
     {
         GameManager.instance.TimePause();
@@ -356,6 +363,9 @@ public class UIManager : MonoBehaviour
         displayedImage.sprite = img;
     }
 
+    /// <summary>
+    /// Closes the menu for item pickups.
+    /// </summary>
     public void CloseInfoUI()
     {
         GameManager.instance.TimeUnpause();
@@ -363,5 +373,26 @@ public class UIManager : MonoBehaviour
         objToShow.SetActive(false);
         textToReplace.text = "You did something wrong?";
         displayedImage.sprite = null;
+    }
+
+    /// <summary>
+    /// Opens the cheat menu.
+    /// </summary>
+    public void RunCheatMenu()
+    {
+        currentState = MenuState.cheats;
+        pauseMenu.SetActive(false);        
+        cheatMenu.SetActive(true);
+
+    }
+
+    /// <summary>
+    /// Closes the cheat menu.
+    /// </summary>
+    public void CloseCheatMenu()
+    {
+        currentState = MenuState.paused;
+        pauseMenu.SetActive(true);
+        cheatMenu.SetActive(false);
     }
 }

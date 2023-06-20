@@ -380,9 +380,9 @@ MonoBehaviour:
   stoppingDist: 0
   bullet: {fileID: 1559532429399098320, guid: e7e568bd4d9f6a645b6e797968c1f4f7, type: 3}
   gunPos: {fileID: 2101662841}
-  timeToShoot: 1
-  totalTime: 10
-  rotationSpeed: 45
+  timeToShoot: 0.25
+  totalTime: 1.1
+  rotationSpeed: 15.7
 --- !u!4 &126706951
 Transform:
   m_ObjectHideFlags: 0
@@ -390,7 +390,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 126706949}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -888,14 +888,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 960292676}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf7ed92194107b541978e00072d76898, type: 3}
+  m_Script: {fileID: 11500000, guid: e674d0ec7f07d9f43bd894202e5ed52d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 2032096393}
   moveSpeed: 3
   acceleration: 5
   rotSpeed: 3
-  stoppingDist: 3
+  stoppingDist: 0
+  dist: 0
 --- !u!1 &1008262820
 GameObject:
   m_ObjectHideFlags: 0
@@ -956,7 +957,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1076027317}
   m_LocalRotation: {x: -0, y: 0.022045614, z: -0, w: 0.999757}
-  m_LocalPosition: {x: 0.325, y: 1.008, z: 0.537}
+  m_LocalPosition: {x: 0.533, y: 1.868, z: 0.125}
   m_LocalScale: {x: 0.15908, y: 0.13663, z: 1.3904}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1827,7 +1828,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 15
+  m_Radius: 22
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &2032096395
 CapsuleCollider:
@@ -1840,9 +1841,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 1
+  m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &2032096396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1859,13 +1860,13 @@ MonoBehaviour:
     maxValue: 2
   enemyMeshRenderer: {fileID: 2080245435}
   idleState: {fileID: 344936715}
-  enemyMoveState: {fileID: 960292678}
+  enemyFlankState: {fileID: 960292678}
   shootState: {fileID: 126706950}
   shootPos: {fileID: 2101662841}
-  attackRate: 1
-  playerFaceSpeed: 5
+  playerFaceSpeed: 10
   viewConeAngle: 90
   agent: {fileID: 2032096393}
+  distToChase: 25.94
 --- !u!4 &2032096397
 Transform:
   m_ObjectHideFlags: 0
@@ -1873,7 +1874,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2032096392}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: 0.10046473, z: -0, w: 0.99494064}
   m_LocalPosition: {x: 24, y: 0, z: 62.639584}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1882,7 +1883,7 @@ Transform:
   - {fileID: 397929477}
   m_Father: {fileID: 0}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 11.532, z: 0}
 --- !u!1 &2060335640
 GameObject:
   m_ObjectHideFlags: 0
