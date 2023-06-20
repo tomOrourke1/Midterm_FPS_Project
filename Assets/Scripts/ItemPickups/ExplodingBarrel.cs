@@ -13,17 +13,21 @@ public class ExplodingBarrel : MonoBehaviour, IDamagable, IEntity
 
     public void TakeDamage(float dmg)
     {
-        Durability--;
-
-        if (Durability <= 0 )
+        if (dmg > 0)
         {
-            StartCoroutine(Timer());
+            Durability--;
+
+            if (Durability <= 0 )
+            {
+                StartCoroutine(Timer());
+            }
         }
     }
 
     public void chainBlast()
     {
-        TakeDamage(Durability);
+        Durability = 0;
+        TakeDamage(1);
     }
 
     public void contactExplosion()
@@ -61,7 +65,9 @@ public class ExplodingBarrel : MonoBehaviour, IDamagable, IEntity
                 // Damages the collider if the raycast connected with it.
                 if (hit.collider == collider)
                 {
-                    collider.GetComponent<IDamagable>().TakeDamage(ExplosionDamage);
+                    collider.GetComponent<IDamagable>().TakeDamage(ExplosionDamage); 
+
+                    collider.gameObject.GetComponent<ExplodingBarrel>()?.chainBlast();
                 }
             }
         }

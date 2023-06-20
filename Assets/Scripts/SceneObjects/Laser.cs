@@ -140,6 +140,7 @@ public class Laser : MonoBehaviour, IEnvironment
 
         initialDelay = initDelayAmount;
         LaserOn = initialLaserOn;
+        laser = GetComponent<LineRenderer>();
         laser.enabled = false;
         started = false;
 
