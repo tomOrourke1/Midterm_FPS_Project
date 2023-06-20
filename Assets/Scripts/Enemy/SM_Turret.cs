@@ -36,7 +36,7 @@ public class SM_Turret : EnemyBase, IDamagable, IEntity
             stateMachine.Tick();
 
             var angle = Vector3.Angle((GameManager.instance.GetPlayerPOS() - transform.position).normalized, gameObject.transform.forward);
-
+            Debug.Log(angle);
             doesSeePlayer = (angle <= viewConeAngle);
         }
     }
