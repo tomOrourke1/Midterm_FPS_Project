@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyAI : MonoBehaviour, IDamagable
+public class EnemyAI : MonoBehaviour, IDamagable, IEntity
 {
     [Header("Enemy Stats")]
     [SerializeField] float enemyHP;
@@ -154,5 +154,10 @@ public class EnemyAI : MonoBehaviour, IDamagable
     public float GetCurrentHealth()
     {
         return enemyHP;
+    }
+
+    public void Respawn()
+    {
+        Destroy(gameObject);
     }
 }
