@@ -20,6 +20,16 @@ public class ExplodingBarrel : MonoBehaviour, IDamagable, IEntity
         }
     }
 
+    public void chainBlast()
+    {
+        StartCoroutine(Timer());
+    }
+
+    public void contactExplosion()
+    {
+        Explode();
+    }
+
     IEnumerator Timer()
     {
         Fuse.Play();
