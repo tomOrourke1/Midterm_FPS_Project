@@ -32,9 +32,10 @@ public class Flanker : EnemyBase, IDamagable
 
         stateMachine.AddTransition(idleState, enemyFlankState, OnMove);
         stateMachine.AddTransition(enemyFlankState, shootState, OnAttack);
-        stateMachine.AddTransition(shootState, idleState, shootState.ExitCondition);
-        stateMachine.AddTransition(shootState, idleState, OnIdle);
-        stateMachine.AddTransition(idleState, enemyFlankState, OnMove);
+        stateMachine.AddTransition(shootState, enemyFlankState, shootState.ExitCondition);
+
+        stateMachine.AddTransition(enemyFlankState, idleState, OnIdle);
+
     }
 
     bool OnAttack()
@@ -55,6 +56,8 @@ public class Flanker : EnemyBase, IDamagable
         bool inDistance = distance < distToChase;
         return inDistance;
     }
+
+    
 
     void facePlayer()
     {
@@ -80,6 +83,7 @@ public class Flanker : EnemyBase, IDamagable
             {
                 facePlayer();
             }
+
         }
     }
 

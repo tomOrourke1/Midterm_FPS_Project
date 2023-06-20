@@ -380,9 +380,9 @@ MonoBehaviour:
   stoppingDist: 0
   bullet: {fileID: 1559532429399098320, guid: e7e568bd4d9f6a645b6e797968c1f4f7, type: 3}
   gunPos: {fileID: 2101662841}
-  timeToShoot: 1.5
-  totalTime: 5
-  rotationSpeed: 45
+  timeToShoot: 0.25
+  totalTime: 1.1
+  rotationSpeed: 15.7
 --- !u!4 &126706951
 Transform:
   m_ObjectHideFlags: 0
@@ -1863,8 +1863,7 @@ MonoBehaviour:
   enemyFlankState: {fileID: 960292678}
   shootState: {fileID: 126706950}
   shootPos: {fileID: 2101662841}
-  attackRate: 1
-  playerFaceSpeed: 5
+  playerFaceSpeed: 10
   viewConeAngle: 90
   agent: {fileID: 2032096393}
   distToChase: 25.94
@@ -1875,7 +1874,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2032096392}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: 0.10046473, z: -0, w: 0.99494064}
   m_LocalPosition: {x: 24, y: 0, z: 62.639584}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1884,7 +1883,7 @@ Transform:
   - {fileID: 397929477}
   m_Father: {fileID: 0}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 11.532, z: 0}
 --- !u!1 &2060335640
 GameObject:
   m_ObjectHideFlags: 0
