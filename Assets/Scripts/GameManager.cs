@@ -1,13 +1,14 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
     [Header("Settings Manager")]
-    [SerializeField] SettingsManager settings;
+    [SerializeField] SettingsManager settingsManager;
     [SerializeField] KinesisEnabler isEnabledScript;
 
     [Header("-----Player Stuff-----")]
@@ -34,12 +35,27 @@ public class GameManager : MonoBehaviour
         playerResources = player.GetComponent<PlayerResources>();
         PlayerSpawnPOS = GameObject.FindGameObjectWithTag("Player Spawn Pos");
         keyChain = player.GetComponent<KeyChain>();
-        settings.UpdateObjectsToValues();
+        settingsManager.UpdateObjectsToValues();
     }
 
     private void Start()
     {
         timescaleOrig = Time.timeScale;
+
+        WakeUpKinesis();
+    }
+
+    /// <summary>
+    /// When the game starts, kinesis are set to the enabled list of which types are on and off.
+    /// When a kinesis gets obtained they are updated to the settings manager.
+    /// </summary>
+    private void WakeUpKinesis()
+    {
+        isEnabledScript.AeroSetActive(isEnabledScript.AeroEnabled());
+        isEnabledScript.ElectroSetActive(isEnabledScript.ElectroEnabled());
+        isEnabledScript.CryoSetActive(isEnabledScript.CryoEnabled());
+        isEnabledScript.TeleSetActive(isEnabledScript.TeleEnabled());
+        isEnabledScript.PyroSetActive(isEnabledScript.PyroEnabled());
     }
 
     /// <summary>
@@ -181,7 +197,7 @@ public class GameManager : MonoBehaviour
     /// <returns></returns>
     public SettingsManager GetSettingsManager()
     {
-        return settings;
+        return settingsManager;
     }
     
     /// <summary>

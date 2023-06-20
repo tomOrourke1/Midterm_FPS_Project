@@ -77,6 +77,10 @@ public class InputManager : MonoBehaviour
         {
             UIManager.instance.Unpaused();
         }
+        else if (UIManager.instance.currentState == MenuState.cheats)
+        {
+            UIManager.instance.CloseCheatMenu();
+        }
     }
 
     private void OnInteract(UnityEngine.InputSystem.InputAction.CallbackContext context)
