@@ -29,7 +29,6 @@ public class testEnemy_Adam : EnemyBase, IDamagable
     bool OnMove()
     {
         float distance = Vector3.Distance(GameManager.instance.GetPlayerObj().transform.position, gameObject.transform.position);
-
         bool inDistance = distance < 10;
         return inDistance;
     }

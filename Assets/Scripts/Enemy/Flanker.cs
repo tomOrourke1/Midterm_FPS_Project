@@ -3,19 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Flanker : EnemyBase
+public class Flanker : EnemyBase, IDamagable
 {
     [Header("----- Flanker States -----")]
     [SerializeField] EnemyIdleState idleState;
-    [SerializeField] EnemyMoveState enemyMoveState;
+    [SerializeField] EnemyFlankState enemyFlankState;
     [SerializeField] EnemyShootState shootState;
     [SerializeField] Transform shootPos;
 
     [Header("----- Flanker Stats -----")]
-    [Range(1,10)][SerializeField] int attackRate;
-   [Range(1,10)][SerializeField] int playerFaceSpeed;
-   [Range(1,360)][SerializeField] float viewConeAngle;
+    [Range(1, 10)][SerializeField] int playerFaceSpeed;
+    [Range(1, 360)][SerializeField] float viewConeAngle;
     [SerializeField] NavMeshAgent agent;
+
+    [SerializeField] float distToChase;
+
 
     bool isAttacking;
     bool doesSeePlayer;
@@ -27,33 +29,30 @@ public class Flanker : EnemyBase
 
         stateMachine = new StateMachine();
         stateMachine.SetState(idleState);
-        stateMachine.SetState(enemyMoveState);
-        stateMachine.SetState(shootState);
 
-        stateMachine.AddTransition(idleState, enemyMoveState, OnChase);
-        stateMachine.AddTransition(enemyMoveState, shootState, OnAttack);
+        stateMachine.AddTransition(idleState, enemyFlankState, OnMove);
+        stateMachine.AddTransition(enemyFlankState, shootState, OnAttack);
+        stateMachine.AddTransition(shootState, idleState, shootState.ExitCondition);
         stateMachine.AddTransition(shootState, idleState, OnIdle);
+        stateMachine.AddTransition(idleState, enemyFlankState, OnMove);
     }
 
     bool OnAttack()
     {
         bool toAttack = doesSeePlayer;
-
-        return true;
+        return doesSeePlayer;
     }
-
-    bool OnChase()
-    {    
-       float distance = Vector3.Distance(GameManager.instance.GetPlayerObj().transform.position, gameObject.transform.position);
-
-        bool inDistance = distance < 10;
-        return inDistance;
-    }
-
     bool OnIdle()
     {
         float distance = Vector3.Distance(GameManager.instance.GetPlayerObj().transform.position, gameObject.transform.position);
-        bool inDistance = distance > 10;
+        bool inDistance = distance > distToChase;
+        return inDistance;
+    }
+
+    bool OnMove()
+    {
+        float distance = Vector3.Distance(GameManager.instance.GetPlayerObj().transform.position, gameObject.transform.position);
+        bool inDistance = distance < distToChase;
         return inDistance;
     }
 
@@ -76,7 +75,6 @@ public class Flanker : EnemyBase
             var angle = Vector3.Angle(dirToPlayer, gameObject.transform.forward);
 
             doesSeePlayer = (angle <= viewConeAngle);
-
 
             if (agent.remainingDistance <= agent.stoppingDistance)
             {
