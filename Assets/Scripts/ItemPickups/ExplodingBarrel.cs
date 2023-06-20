@@ -5,6 +5,7 @@ using UnityEngine;
 public class ExplodingBarrel : MonoBehaviour, IDamagable, IEntity
 {
     [SerializeField] ParticleSystem Fuse;
+    [SerializeField] GameObject explosionParticles;
     [SerializeField] int Durability;
     [SerializeField] float ExplosionTimer;
     [SerializeField] float ExplosionRange;
@@ -79,7 +80,7 @@ public class ExplodingBarrel : MonoBehaviour, IDamagable, IEntity
 
     void Effects()
     {
-
+        Instantiate(explosionParticles, transform.position, Quaternion.identity);
     }
 
     public float GetCurrentHealth()
