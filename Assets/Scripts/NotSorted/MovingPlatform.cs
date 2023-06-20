@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
 public class MovingPlatform : MonoBehaviour, IEnvironment
@@ -9,12 +10,12 @@ public class MovingPlatform : MonoBehaviour, IEnvironment
     [SerializeField] Transform startPos;
     [SerializeField] Transform endPos;
     [SerializeField] float waitTime;
-    [Range(1, 100)][SerializeField] float speed;
+    /*[Range(1, 100)]*/
+    [SerializeField] float speed;
 
-    Transform placeholder;
-    float totalDistance;
-    float currentDistance;
-    bool moving;
+    float currentTime;
+    bool toEnd;
+    bool waiting;
 
     // Added these to store initial moving platform stats
     Transform initialStartPos;
@@ -25,38 +26,54 @@ public class MovingPlatform : MonoBehaviour, IEnvironment
     {
         initialStartPos = startPos;
         initialEndPos = endPos;
+
+        waiting = false;
+
         StopObject();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        totalDistance = Vector3.Distance(startPos.position, endPos.position);
-
-        if (currentDistance >= totalDistance)
+        if (!waiting)
         {
-            moving = false;
-            StartCoroutine(Wait());
+            move();
         }
-        else if (moving)
+        else
         {
-            // moving
-            currentDistance = Math.Clamp(currentDistance + speed * Time.deltaTime, 0, totalDistance);
-            transform.localPosition = Vector3.MoveTowards(startPos.localPosition, endPos.localPosition, currentDistance);
+            wait();
         }
     }
-    
-    IEnumerator Wait()
+
+    void move()
     {
-        currentDistance = 0;
+        currentTime += Time.deltaTime * speed;
+        float t = currentTime;
 
-        placeholder = startPos;
-        startPos = endPos;
-        endPos = placeholder;
+        var currStart = toEnd ? endPos : startPos;
+        var currEnd = toEnd ? startPos : endPos;
 
-        yield return new WaitForSeconds(2);
+        var currPos = Vector3.MoveTowards(currStart.localPosition, currEnd.localPosition, t);
 
-        moving = true;
+        transform.localPosition = currPos;
+
+        if (t >= Vector3.Distance(currStart.localPosition, currEnd.localPosition))
+        {
+            toEnd = !toEnd;
+            currentTime = 0;
+            waiting = true;
+        }
+    }
+
+    void wait()
+    {
+        currentTime += Time.deltaTime;
+
+        if (currentTime >= waitTime)
+        {
+            currentTime = 0;
+            waiting = false;
+        }
     }
 
     // This is a function tied to IEnvironment meant to be used to reset a room
@@ -66,7 +83,7 @@ public class MovingPlatform : MonoBehaviour, IEnvironment
         startPos = initialStartPos;
         endPos = initialEndPos;
 
-        currentDistance = 0;
+        currentTime = 0;
     }
 
     public void StartObject()
@@ -74,7 +91,7 @@ public class MovingPlatform : MonoBehaviour, IEnvironment
         gameObject.SetActive(true);
         ResetObject();
 
-        moving = true;
+        toEnd = false;
         transform.localPosition = startPos.localPosition;
     }
 

@@ -12,14 +12,17 @@ public class RotatingBlock : MonoBehaviour, IEnvironment
     [SerializeField] bool intermittantRotation;
     [SerializeField] float stopDuration;
 
+    Quaternion initRotation;
     bool rotating;
     bool waiting;
     Quaternion rotation;
 
     private void Start()
     {
+        initRotation = transform.localRotation;
         rotating = false;
         waiting = false;
+        StopObject();
     }
 
     // Update is called once per frame
@@ -72,12 +75,13 @@ public class RotatingBlock : MonoBehaviour, IEnvironment
 
     public void ResetObject()
     {
-        // Come back to this
+        transform.localRotation = initRotation;
     }
 
     public void StartObject()
     {
         gameObject.SetActive(true);
+        transform.localRotation = initRotation;
     }
 
     public void StopObject()
