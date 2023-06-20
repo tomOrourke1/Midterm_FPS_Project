@@ -43,6 +43,8 @@ public class MoveableObject : MonoBehaviour, ITelekinesis, IEntity
             var iDamage = collision.collider.GetComponent<IDamagable>();
             if(iDamage != null)
             {
+                gameObject.GetComponent<ExplodingBarrel>()?.contactExplosion();
+
                 iDamage.TakeDamage(damage);
             }
         }

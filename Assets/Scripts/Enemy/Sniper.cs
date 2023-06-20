@@ -19,7 +19,6 @@ public class Sniper : EnemyBase, IDamagable
     [SerializeField] LineRenderer sightLine;
     [SerializeField] NavMeshAgent agent;
 
-    bool isAttacking;
     bool doesSeePlayer;
     
 
