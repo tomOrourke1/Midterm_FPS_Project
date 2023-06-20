@@ -16,9 +16,12 @@ public class TargetDamageableScript : MonoBehaviour, IDamagable, IEnvironment
 
     Material initMaterial;
 
+    float initalHP;
+
     private void Start()
     {
         currentTargetHp = maxTargetHp;
+        initalHP = currentTargetHp;
         activated = false;
     }
     public void TakeDamage(float dmg)
@@ -44,13 +47,12 @@ public class TargetDamageableScript : MonoBehaviour, IDamagable, IEnvironment
 
     public void StopObject()
     {
-        targetDeathEvent?.Invoke();
         activated = false;
     }
 
     public void ResetObject()
     {
-        targetDeathEvent?.Invoke();
+        currentTargetHp = initalHP;
         targetRenderer.material = initMaterial;
         activated = false;
     }

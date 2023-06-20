@@ -22,8 +22,10 @@ public class Laser : MonoBehaviour, IEnvironment
     [SerializeField] float LaserDownTime;
 
     LineRenderer laser;
-    [SerializeField] float startTime;    
-    
+    float startTime;
+
+    float initDelayAmount;
+
     // Added these to store initial laser stats
     bool initialLaserOn;
 
@@ -32,6 +34,7 @@ public class Laser : MonoBehaviour, IEnvironment
     // Start is called before the first frame update
     void Start()
     {
+        initDelayAmount = initialDelay;
         laser = GetComponent<LineRenderer>();
         initialLaserOn = LaserOn;
         StopObject();
@@ -133,10 +136,14 @@ public class Laser : MonoBehaviour, IEnvironment
     // This is a function tied to IEnvironment meant to be used to reset a room
     public void ResetObject()
     {
-        laser = GetComponent<LineRenderer>();
-        laser.enabled = false;
+        gameObject.SetActive(true);
+
+        initialDelay = initDelayAmount;
         LaserOn = initialLaserOn;
-        //startTime = Time.time;
+        laser.enabled = false;
+        started = false;
+
+        DefaultLaserCast();
     }
 
     public void StartObject()
