@@ -8,16 +8,17 @@ public class TransitionTrigger : MonoBehaviour
 {
     [SerializeField] DoorScript DoorToLock;
     [SerializeField] AreaManager NextRoom;
-
+    bool didActivate;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !didActivate)
         {
             LockDoor();
             UnloadRoom();
             SetCurrentRoom();
             StartCurrentRoom();
-            enabled = false;
+            this.enabled = false;
+            didActivate = true;
         }
     }
 
