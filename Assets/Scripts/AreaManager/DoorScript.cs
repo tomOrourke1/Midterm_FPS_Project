@@ -57,6 +57,10 @@ public class DoorScript : MonoBehaviour, IDoorActivator, IEnvironment
     public void SetLockStatus(bool locked)
     {
         this.locked = locked;
+
+        // Added to set the color of the door depending on lock status
+        renderer.material = locked ? doorDisabled : doorEnabled;
+
     }
 
     private void Update()
