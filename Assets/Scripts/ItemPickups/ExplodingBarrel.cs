@@ -22,7 +22,7 @@ public class ExplodingBarrel : MonoBehaviour, IDamagable, IEntity
 
     public void chainBlast()
     {
-        StartCoroutine(Timer());
+        TakeDamage(Durability);
     }
 
     public void contactExplosion()
