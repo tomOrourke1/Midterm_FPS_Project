@@ -57,6 +57,10 @@ public class ButtonScript : MonoBehaviour, IEnvironment
     {
         count = 0;
         buttonRenderer.material = releasedColor;
-        buttonRelease?.Invoke();
+
+        // If door !closed
+        //  Close door
+
+      //  buttonRelease?.Invoke();
     }
 }

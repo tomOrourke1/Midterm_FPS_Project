@@ -79,7 +79,7 @@ public class AreaManager : MonoBehaviour
 
     void StopEnvironments()
     {
-        environment = new List<IEnvironment>(gameObject.GetComponentsInChildren<IEnvironment>());
+        environment = new List<IEnvironment>(gameObject.GetComponentsInChildren<IEnvironment>(true));
 
         for (int i = 0; i < environment.Count; i++)
         {
@@ -96,6 +96,18 @@ public class AreaManager : MonoBehaviour
         for (int i = 0; i < environment.Count; i++)
         {
             environment[i].StartObject();
+        }
+    }
+
+    void ResetEnvironments()
+    {
+        environment = new List<IEnvironment>(gameObject.GetComponentsInChildren<IEnvironment>(true));
+
+        //Debug.Log(environment.Count);
+
+        for (int i = 0; i < environment.Count; i++)
+        {
+            environment[i].ResetObject();
         }
     }
 
@@ -117,6 +129,6 @@ public class AreaManager : MonoBehaviour
         StopEnvironments();
 
         SpawnEntities();
-        StartEnvironments();
+        ResetEnvironments();
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class CountedActivationScript : MonoBehaviour
+public class CountedActivationScript : MonoBehaviour, IEnvironment 
 {
 
 
@@ -42,8 +42,19 @@ public class CountedActivationScript : MonoBehaviour
         }
     }
 
+    public void ResetObject()
+    {
+        count = 0;
+        activated = false;
+    }
 
+    public void StopObject()
+    {
 
+    }
 
+    public void StartObject()
+    {
 
+    }
 }
