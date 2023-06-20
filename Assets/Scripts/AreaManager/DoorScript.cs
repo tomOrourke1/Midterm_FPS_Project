@@ -8,6 +8,9 @@ public class DoorScript : MonoBehaviour, IDoorActivator, IEnvironment
 
     [SerializeField] bool locked;
     [SerializeField] float doorSpeed;
+    [SerializeField] MeshRenderer renderer;
+    [SerializeField] Material doorEnabled;
+    [SerializeField] Material doorDisabled;
 
     bool isOpen = false;
     [SerializeField] bool activation;
@@ -29,6 +32,9 @@ public class DoorScript : MonoBehaviour, IDoorActivator, IEnvironment
 
         isOpen = doorPivot.localScale.x == 0;
         doorValue = isOpen ? minDoorValue : 1;
+
+        // Added by Kevin for changing door material color depending on lock status
+        renderer.material = locked ? doorDisabled : doorEnabled;
 
         LockClose = false;
     }
@@ -116,6 +122,9 @@ public class DoorScript : MonoBehaviour, IDoorActivator, IEnvironment
         }
 
         SetLockStatus(initialLock);
+
+        // Added to reset the original color back
+        renderer.material = locked ? doorDisabled : doorEnabled;
     }
 
     public void StartObject()
