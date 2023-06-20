@@ -13,6 +13,8 @@ public class Laser : MonoBehaviour, IEnvironment
     [SerializeField] float Damage;
     //[SerializeField] float HitRate;
     [SerializeField] bool LaserOn;
+    [SerializeField] float initialDelay;
+
 
     [Header("----- Timed Lasers -----")]
     [SerializeField] bool TimedLasers;
@@ -20,10 +22,12 @@ public class Laser : MonoBehaviour, IEnvironment
     [SerializeField] float LaserDownTime;
 
     LineRenderer laser;
-    float startTime;    
+    [SerializeField] float startTime;    
     
     // Added these to store initial laser stats
     bool initialLaserOn;
+
+    bool started = false;
 
     // Start is called before the first frame update
     void Start()
@@ -36,23 +40,37 @@ public class Laser : MonoBehaviour, IEnvironment
     // Update is called once per frame
     void Update()
     {
-        if (LaserOn)
+        if (initialDelay <= 0)
         {
-            laser.enabled = true;
-            RayCast();
+            if (!started)
+            {
+                started = true;
+                startTime = Time.time;
+            }
 
-            HandleLaser(LaserUpTime);
-        } 
+            if (LaserOn)
+            {
+                laser.enabled = true;
+                RayCast();
+
+                HandleLaserTimer(LaserUpTime);
+            } 
+            else
+            {
+                laser.enabled = false;
+                HandleLaserTimer(LaserDownTime);
+            }
+        }
         else
         {
-            laser.enabled = false;
-            HandleLaser(LaserDownTime);
-        }
+            //laser.enabled = false;
+            initialDelay -= Time.deltaTime;
 
+        }
     }
 
 
-    void HandleLaser(float time)
+    void HandleLaserTimer(float time)
     {
         if (TimedLasers)
         {
@@ -115,8 +133,10 @@ public class Laser : MonoBehaviour, IEnvironment
     // This is a function tied to IEnvironment meant to be used to reset a room
     public void ResetObject()
     {
+        laser = GetComponent<LineRenderer>();
+        laser.enabled = false;
         LaserOn = initialLaserOn;
-        startTime = Time.time;
+        //startTime = Time.time;
     }
 
     public void StartObject()
@@ -130,6 +150,5 @@ public class Laser : MonoBehaviour, IEnvironment
     public void StopObject()
     {
         gameObject.SetActive(false);
-        ResetObject();
     }
 }
