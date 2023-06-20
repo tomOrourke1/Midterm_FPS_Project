@@ -8,6 +8,8 @@ public class DoorScript : MonoBehaviour, IDoorActivator, IEnvironment
 
     [SerializeField] bool locked;
     [SerializeField] float doorSpeed;
+
+    [Header("Lock Color Changing")]
     [SerializeField] MeshRenderer renderer;
     [SerializeField] Material doorEnabled;
     [SerializeField] Material doorDisabled;
