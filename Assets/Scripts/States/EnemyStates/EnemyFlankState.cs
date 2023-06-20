@@ -17,6 +17,5 @@ public class EnemyFlankState : EnemyState
 
         agent.SetDestination(pos);
 
-
     }
 }

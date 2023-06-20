@@ -35,7 +35,6 @@ public class Flanker : EnemyBase, IDamagable
         stateMachine.AddTransition(shootState, enemyFlankState, shootState.ExitCondition);
 
         stateMachine.AddTransition(enemyFlankState, idleState, OnIdle);
-
     }
 
     bool OnAttack()
@@ -54,6 +53,7 @@ public class Flanker : EnemyBase, IDamagable
     {
         float distance = Vector3.Distance(GameManager.instance.GetPlayerObj().transform.position, gameObject.transform.position);
         bool inDistance = distance < distToChase;
+
         return inDistance;
     }
 
