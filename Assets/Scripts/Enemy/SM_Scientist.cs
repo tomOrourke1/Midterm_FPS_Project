@@ -73,7 +73,7 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity
     }
     void OnDeath()
     {
-        Instantiate(key, transform.position + Vector3.up, Quaternion.identity);
+        Instantiate(key, transform.position, Quaternion.identity);
         Destroy(gameObject); // destroy enemy
     }
 
