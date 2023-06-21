@@ -216,7 +216,7 @@ public class GameManager : MonoBehaviour
     {
         playerscript.RespawnPlayer();
         player.GetComponentInChildren<CameraController>().ResetCamera();
-        currentRoomManager.Respawn();
+        currentRoomManager?.Respawn();
     }
 
     /// <summary>

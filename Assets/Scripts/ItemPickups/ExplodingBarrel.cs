@@ -4,20 +4,21 @@ using UnityEngine;
 
 public class ExplodingBarrel : MonoBehaviour, IDamagable, IEntity
 {
-    [SerializeField] ParticleSystem Fuse;
+    [SerializeField] ParticleSystem ignitionFX;
+    [SerializeField] ParticleSystem explosionFX;
     [SerializeField] GameObject explosionParticles;
-    [SerializeField] int Durability;
-    [SerializeField] float ExplosionTimer;
-    [SerializeField] float ExplosionRange;
-    [SerializeField] float ExplosionDamage;
+    [SerializeField] int durability;
+    [SerializeField] float timer;
+    [SerializeField] float range;
+    [SerializeField] float damage;
 
     public void TakeDamage(float dmg)
     {
         if (dmg > 0)
         {
-            Durability--;
+            durability--;
 
-            if (Durability <= 0 )
+            if (durability <= 0 )
             {
                 StartCoroutine(Timer());
             }
@@ -26,7 +27,7 @@ public class ExplodingBarrel : MonoBehaviour, IDamagable, IEntity
 
     public void chainBlast()
     {
-        Durability = 0;
+        durability = 0;
         TakeDamage(1);
     }
 
@@ -37,17 +38,17 @@ public class ExplodingBarrel : MonoBehaviour, IDamagable, IEntity
 
     IEnumerator Timer()
     {
-        Fuse.Play();
+        ignitionFX.Play();
         // Wait for timer
-        yield return new WaitForSeconds(ExplosionTimer);
+        yield return new WaitForSeconds(timer);
         Explode();
     }
 
     void Explode()
     {
         // Gets everything within range
-        Collider[] colliders = Physics.OverlapSphere(transform.position, ExplosionRange);
-
+        Collider[] colliders = Physics.OverlapSphere(transform.position, range);
+        explosionFX.Play();
         // Grabs everything that was hit and checks if they are damagable
         foreach (Collider collider in colliders)
         {
@@ -65,7 +66,7 @@ public class ExplodingBarrel : MonoBehaviour, IDamagable, IEntity
                 // Damages the collider if the raycast connected with it.
                 if (hit.collider == collider)
                 {
-                    collider.GetComponent<IDamagable>().TakeDamage(ExplosionDamage); 
+                    collider.GetComponent<IDamagable>().TakeDamage(damage); 
 
                     collider.gameObject.GetComponent<ExplodingBarrel>()?.chainBlast();
                 }
@@ -91,6 +92,6 @@ public class ExplodingBarrel : MonoBehaviour, IDamagable, IEntity
 
     public float GetCurrentHealth()
     {
-        return Durability;
+        return durability;
     }
 }
