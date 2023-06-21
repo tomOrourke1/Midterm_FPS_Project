@@ -107,6 +107,9 @@ public class Sniper : EnemyBase, IDamagable, IEntity
     public void TakeDamage(float dmg)
     {
         health.Decrease(dmg);
+
+        SetFacePlayer();
+
         StartCoroutine(FlashDamage());
 
     }
