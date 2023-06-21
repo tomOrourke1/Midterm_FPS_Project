@@ -144,6 +144,8 @@ public class AreaManager : MonoBehaviour
     public void Respawn()
     {
         KillEntities();
+        KillEntities();
+
         StopEnvironments();
 
         SpawnEntities();
