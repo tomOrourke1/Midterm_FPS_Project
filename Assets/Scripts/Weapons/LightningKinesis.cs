@@ -15,6 +15,7 @@ public class LightningKinesis : KinesisBase
 
     public UnityEvent OnElectroStart;
     public UnityEvent OnElectroStop;
+    public UnityEvent OnElectroForceStop;
 
     [SerializeField] GameObject lightningParticles;
     [SerializeField] GameObject focusParticles;
@@ -168,4 +169,12 @@ public class LightningKinesis : KinesisBase
         return GameManager.instance.GetPlayerResources().Focus.CurrentValue >= (focusCost * Time.deltaTime);
     }
 
+    public override void StopFire()
+    {
+        isCasting = false;
+        spawningHits = false;
+        doesLightning = false;
+
+        OnElectroForceStop?.Invoke();
+    }
 }

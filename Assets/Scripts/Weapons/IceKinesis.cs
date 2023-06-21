@@ -20,6 +20,7 @@ public class IceKinesis : KinesisBase
 
     public UnityEvent OnCryoHold;
     public UnityEvent OnCryoThrow;
+    public UnityEvent OnCryoStop;
 
 
     bool canFire;
@@ -78,4 +79,14 @@ public class IceKinesis : KinesisBase
         throwIce = true;
     }
 
+    public override void StopFire()
+    {
+
+        throwIce = false;
+        isCasting = false;
+        canFire = false;
+
+
+        OnCryoStop?.Invoke();
+    }
 }

@@ -66,4 +66,20 @@ public class HandAnimatorScript : MonoBehaviour
         rightHandAnimator.SetTrigger("OnKnife");
     }
 
+
+
+
+    public void StopAll()
+    {
+        leftHandAnimator.SetBool("Fire", false);
+        leftHandAnimator.SetBool("Electro", false);
+        leftHandAnimator.SetBool("Cryo", false);
+        leftHandAnimator.SetBool("Telekinesis", false);
+
+
+        leftHandAnimator.Play("LeftHandIdle");
+        rightHandAnimator.Play("RightHandIdle");
+    }
+
+
 }

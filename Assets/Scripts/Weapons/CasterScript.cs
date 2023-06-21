@@ -13,6 +13,8 @@ public class CasterScript : MonoBehaviour
 
     KinesisBase currentKenisis;
 
+    public KinesisBase Current => currentKenisis;
+
     // Update is called once per frame
     void Update()
     {

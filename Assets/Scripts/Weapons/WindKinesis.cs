@@ -26,5 +26,9 @@ public class WindKinesis : KinesisBase
             }
         }*/
     }
-    
+
+    public override void StopFire()
+    {
+
+    }
 }

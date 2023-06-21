@@ -59,6 +59,8 @@ public class PlayerResources : MonoBehaviour, IDamagable, IHealReciever, IFocusR
     void PlayerDied()
     {
         GameManager.instance.GetPlayerScript().DeathHandler();
+        GameManager.instance.GetPlayerObj().GetComponent<CasterScript>()?.Current.StopFire();
+
         // trigger lose game if the player dies
         UIManager.instance.LoseGame();
     }

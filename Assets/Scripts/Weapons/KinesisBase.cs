@@ -9,4 +9,8 @@ public abstract class KinesisBase : MonoBehaviour
     public abstract void Fire();
 
     public bool isCasting;
+
+
+
+    public abstract void StopFire();
 }

@@ -30,6 +30,7 @@ public class TelekinesisController : KinesisBase
     [Header("--- Events ----")]
     public UnityEvent OnTeleStart;
     public UnityEvent OnTelePush;
+    public UnityEvent OnTeleStopped;
 
     bool isHoldingObject;
     float timePressed;
@@ -195,7 +196,9 @@ public class TelekinesisController : KinesisBase
         {
             stachedObject.TakeVelocity(stachedObject.GetVelocity() * 0.02f);
             stachedObject.GetRigidbody().useGravity = true;
-            stachedObject = null;            
+            stachedObject = null;
+
+            StopFire();
         }
 
     }
@@ -220,6 +223,12 @@ public class TelekinesisController : KinesisBase
         return pppp;
     }
 
+    public override void StopFire()
+    {
+        isCasting = false;
 
+        stachedObject = null;
 
+        OnTeleStopped?.Invoke();
+    }
 }

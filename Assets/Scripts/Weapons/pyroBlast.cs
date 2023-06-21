@@ -26,6 +26,7 @@ public class pyroBlast : KinesisBase
 
     public UnityEvent OnFireHold;
     public UnityEvent OnFireThrow;
+    public UnityEvent OnFireStop;
     [SerializeField] GameObject fireFocusParticles;
 
 
@@ -94,6 +95,12 @@ public class pyroBlast : KinesisBase
         canActivate = act;
     }
 
+    public override void StopFire()
+    {
+        isReady = false;
+        isCasting = false;
+        canActivate = false;
 
-
+        OnFireStop?.Invoke();
+    }
 }
