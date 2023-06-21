@@ -1,5 +1,54 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &553514749700212797
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3117346465394124668}
+  - component: {fileID: 7803024029503446086}
+  m_Layer: 0
+  m_Name: GoBackState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3117346465394124668
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 553514749700212797}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3075039029186078443}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7803024029503446086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 553514749700212797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2ae504aee446b24a85179805daafbba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 3075039027876862972}
+  moveSpeed: 10
+  acceleration: 15
+  rotSpeed: 88.36
+  stoppingDist: 0
 --- !u!1 &3075039027419656894
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,12 +195,14 @@ MonoBehaviour:
   health:
     maxValue: 6
   enemyMeshRenderer: {fileID: 3075039028852708061}
-  securityIdle: {fileID: 3075039028234517519}
-  securityChasePlayer: {fileID: 3075039028102584964}
-  securityShoot: {fileID: 3075039028784994338}
-  securitySpotPlayer: {fileID: 3075039028471205217}
-  attackRange: 10
   viewConeAngle: 90
+  eyeOffset: 1
+  idleState: {fileID: 3075039028234517519}
+  followState: {fileID: 3075039028102584964}
+  attackState: {fileID: 3075039028784994338}
+  findPlayerState: {fileID: 3075039028471205217}
+  backToPointState: {fileID: 7803024029503446086}
+  attackRange: 7.86
   closeToPlayer: 6
   agent: {fileID: 3075039027876862972}
 --- !u!195 &3075039027876862972
@@ -590,6 +641,7 @@ Transform:
   - {fileID: 3075039028102584967}
   - {fileID: 3075039028784994349}
   - {fileID: 3075039028471205222}
+  - {fileID: 3117346465394124668}
   m_Father: {fileID: 3075039027876862975}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

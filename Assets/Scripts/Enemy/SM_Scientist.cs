@@ -1,18 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SM_Scientist : EnemyBase, IDamagable, IEntity
 {
     [Header("----- States -----")]
-    [SerializeField] EnemyIdleState scientistIdle; // creates Idle state
-    [SerializeField] EnemyMoveAwayState scientistMoveAway; // creates Move Away state
+    [SerializeField] EnemyIdleState idleState; // creates Idle state
+    [SerializeField] EnemyMoveAwayState runState; // creates Move Away state
     [SerializeField] EnemySpottedPlayer scientistSpotPlayer;
 
     [Header("----- Other Vars -----")]
-    [SerializeField] float scientistRange;
-    private bool doesSeePlayer;
-    private bool hasBeenHit;
+    [SerializeField] float idleRange;
+
 
     [Header("Keys")]
     [SerializeField] GameObject key;
@@ -22,45 +22,45 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity
         health.FillToMax();
 
         stateMachine = new StateMachine();
-        stateMachine.SetState(scientistIdle);
+        stateMachine.SetState(idleState);
 
-        stateMachine.AddTransition(scientistIdle, scientistMoveAway, SeePlayer);
 
-        stateMachine.AddTransition(scientistMoveAway, scientistIdle, OnIdle);
 
-        stateMachine.AddTransition(scientistIdle, scientistMoveAway, ScientistTakeDamage);
+        stateMachine.AddTransition(idleState, runState, OnRun);
+        stateMachine.AddTransition(runState, idleState, OnIdle);
+
+
+
     }
+
+    bool OnIdle()
+    {
+        return GetDistToPlayer() >= idleRange;
+    }
+
+    bool OnRun()
+    {
+        return GetDoesSeePlayer();
+    }
+
+
 
     private void Update()
     {
         if (enemyEnabled)
         {
             stateMachine.Tick();
-
+            
+            if(GetDoesSeePlayer())
+            {
+                RotToPlayer();
+            }
         }
 
     }
 
-    bool ScientistTakeDamage()
-    {
-        var temp = hasBeenHit;
-        hasBeenHit = false;
-        return temp;
-    }
 
-    bool SeePlayer()
-    {
-        return doesSeePlayer;
-    }
 
-    bool OnIdle()
-    {
-        float distance = Vector3.Distance(GameManager.instance.GetPlayerPOS(), gameObject.transform.position);
-
-        bool notInDistance = distance > scientistRange;
-
-        return notInDistance;
-    }
 
     private void OnEnable()
     {
@@ -81,7 +81,7 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity
     {
         health.Decrease(dmg); // decrease the enemies hp with the weapon's damage
 
-        hasBeenHit = true;
+        SetFacePlayer();
 
         StartCoroutine(FlashDamage()); // has the enemy flash red when taking damage
     }

@@ -6,41 +6,78 @@ using UnityEngine.AI;
 public class SM_SecurityGuard : EnemyBase, IDamagable, IEntity
 {
     [Header("----- States ----- ")]
-    [SerializeField] EnemyIdleState securityIdle; // creates Idle state
-    [SerializeField] EnemyChasePlayerState securityChasePlayer; // creates Chase Player state
-    [SerializeField] EnemyShootState securityShoot; // creates shoot state
-    [SerializeField] EnemySpottedPlayer securitySpotPlayer;
+    [SerializeField] EnemyIdleState idleState; // creates Idle state
+    [SerializeField] EnemyChasePlayerState followState; // creates Chase Player state
+    [SerializeField] EnemyShootState attackState; // creates shoot state
+    [SerializeField] EnemySpottedPlayer findPlayerState;
+    [SerializeField] EnemyBackToPointState backToPointState;
+
 
     [Header("----- Other Vars -----")]
     [SerializeField] float attackRange;
     [SerializeField] float closeToPlayer;
-    private bool doesSeePlayer;
-    private bool hasBeenHit;
+
+
     [SerializeField] NavMeshAgent agent;
+
+
+
+    bool wasHit;
+
 
     private void Start()
     {
         health.FillToMax(); // Makes Security Guards have full health
 
         stateMachine = new StateMachine(); // creates new instance of state machine
-        stateMachine.SetState(securityIdle); // sets state machine to idle state
+        stateMachine.SetState(idleState); // sets state machine to idle state
+        backToPointState.SetDestination(transform.position);
 
-        // adds transition from Idle state to Chase State
-        stateMachine.AddTransition(securityIdle, securityChasePlayer, OnChasePlayer);
-        // adds transition from Chase state to Idle State
-        stateMachine.AddTransition(securityChasePlayer, securityIdle, OnIdle);
+        stateMachine.AddTransition(idleState, followState, OnSeePlayer);
 
-        stateMachine.AddTransition(securityIdle, securityShoot, SeePlayer);
+        stateMachine.AddTransition(followState, attackState, OnAttackPlayer);
+        stateMachine.AddTransition(attackState, followState, OnAttackEnd);
 
-        stateMachine.AddTransition(securityChasePlayer, securityShoot, ToAttackPlayer);
 
-        stateMachine.AddTransition(securityShoot, securityIdle, securityShoot.ExitCondition);
+        stateMachine.AddTransition(backToPointState, followState, OnSeePlayer);
+        stateMachine.AddTransition(findPlayerState, followState, OnSeePlayer);
 
-        stateMachine.AddTransition(securityIdle, securitySpotPlayer, SecurityTakeDam);
 
-        stateMachine.AddTransition(securitySpotPlayer, securityIdle, ReachedDestination);
+        // find player and such
+        stateMachine.AddTransition(idleState, findPlayerState, OnFindPlayer);
+        stateMachine.AddTransition(findPlayerState, backToPointState, OnReachedDestination);
 
-        stateMachine.AddTransition(securitySpotPlayer, securityChasePlayer, SeePlayer);
+        stateMachine.AddTransition(backToPointState, idleState, OnReachedDestination);
+    }
+    
+
+    bool OnAttackEnd()
+    {
+        return attackState.ExitCondition();
+    }
+
+    bool OnAttackPlayer()
+    {
+        return GetDistToPlayer() <= attackRange;
+    }
+
+
+    bool OnSeePlayer()
+    {
+        return GetDoesSeePlayer();
+    }
+
+    bool OnReachedDestination()
+    {
+        return agent.remainingDistance <= 0.1f;
+    }
+
+    bool OnFindPlayer()
+    {
+        var b = wasHit;
+        wasHit = false;
+
+        return b;
     }
 
     public void Update()
@@ -49,52 +86,15 @@ public class SM_SecurityGuard : EnemyBase, IDamagable, IEntity
         {
             stateMachine.Tick();
 
+            if(GetDoesSeePlayer())
+            {
+                RotToPlayer();
+            }
         }
     }
 
-    bool ReachedDestination()
-    {
-        return agent.remainingDistance <= 0.1f;
-    }
 
-    bool SecurityTakeDam()
-    {
-        var temp = hasBeenHit;
-        hasBeenHit = false;
-        return temp;
-    }
 
-    bool SeePlayer()
-    {
-        return doesSeePlayer;
-    }
-
-    bool OnIdle()
-    {
-        // creates float variable that measure the distance between enemy and player
-        float distance = Vector3.Distance(GameManager.instance.GetPlayerPOS(), gameObject.transform.position);
-
-        bool notInDistance = distance > attackRange; // checks if enemy is not in distance of player
-
-        return notInDistance || !doesSeePlayer; // returns true or false depending on notInDistance
-    }
-
-    bool ToAttackPlayer()
-    {
-        float distance = Vector3.Distance(GameManager.instance.GetPlayerPOS(), gameObject.transform.position);
-
-        bool isCloseToPlayer = distance < closeToPlayer;
-
-        return isCloseToPlayer && doesSeePlayer;
-    }
-
-    bool OnChasePlayer()
-    {
-        bool enabled = enemyEnabled;
-        bool inDistance = Vector3.Distance(GameManager.instance.GetPlayerPOS(), transform.position) > attackRange;
-
-        return enabled && inDistance && doesSeePlayer;
-    }
 
     void OnDeath()
     {
@@ -115,8 +115,11 @@ public class SM_SecurityGuard : EnemyBase, IDamagable, IEntity
     {
         health.Decrease(dmg); // decrease the enemies hp with the weapon's damage
 
-        hasBeenHit = true;
-        
+        //SetFacePlayer();
+
+        // change to state for finding the player
+        wasHit = true;
+
         StartCoroutine(FlashDamage()); // has the enemy flash red when taking damage
     }
 

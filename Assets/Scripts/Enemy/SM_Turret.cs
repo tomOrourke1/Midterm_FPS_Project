@@ -6,72 +6,60 @@ using UnityEngine;
 public class SM_Turret : EnemyBase, IDamagable, IEntity
 {
     [Header("----- States -----")]
-    [SerializeField] EnemyIdleState turretIdle;
-    [SerializeField] EnemyShootState turretShoot;
+    [SerializeField] EnemyIdleState idleState;
+    [SerializeField] EnemyShootState shootState;
 
     [Header("--- Other Components ----")]
     [SerializeField] Transform shootPos;
     [Header("----- Other Vars -----")]
     [SerializeField] float attackRange;
     [SerializeField] float closeToPlayer;
-    private bool doesSeePlayer;
-    private bool hasBeenHit;
+
 
     private void Start()
     {
         health.FillToMax();
 
         stateMachine = new StateMachine();
-        stateMachine.SetState(turretIdle);
+        stateMachine.SetState(idleState);
 
-        stateMachine.AddTransition(turretIdle, turretShoot, SeePlayer);
+        stateMachine.AddTransition(idleState, shootState, OnShoot);
+        stateMachine.AddTransition(shootState, idleState, OnIdle);
 
-        stateMachine.AddTransition(turretIdle, turretShoot, TurretTakeDamage);
 
-        stateMachine.AddTransition(turretShoot, turretIdle, turretShoot.ExitCondition);
     }
+
+    bool OnIdle()
+    {
+        bool v = shootState.ExitCondition();
+
+        return v || !GetDoesSeePlayer();
+    }
+
+    bool OnShoot()
+    {
+        return GetDoesSeePlayer();
+    }
+
+
+
+
 
     private void Update()
     {
         if (enemyEnabled)
         {
-
-
             stateMachine.Tick();
+
+            if(GetDoesSeePlayer())
+            {
+                RotToPlayer();
+            }
 
         }
     }
 
-    bool TurretTakeDamage()
-    {
-        var temp = hasBeenHit;
-        hasBeenHit = false;
-        return temp;
-    }
 
-    bool SeePlayer()
-    {
-        return doesSeePlayer;
-    }
-
-    bool OnIdle()
-    {
-        // creates float variable that measure the distance between enemy and player
-        float distance = Vector3.Distance(GameManager.instance.GetPlayerPOS(), gameObject.transform.position);
-
-        bool notInDistance = distance > attackRange; // checks if enemy is not in distance of player
-
-        return notInDistance || !doesSeePlayer; // returns true or false depending on notInDistance
-    }
-
-    bool ToAttackPlayer()
-    {
-        float distance = Vector3.Distance(GameManager.instance.GetPlayerPOS(), gameObject.transform.position);
-
-        bool isCloseToPlayer = distance < closeToPlayer;
-
-        return isCloseToPlayer && doesSeePlayer;
-    }
 
     void OnDeath()
     {
@@ -92,7 +80,8 @@ public class SM_Turret : EnemyBase, IDamagable, IEntity
     {
         health.Decrease(dmg); // decrease the enemies hp with the weapon's damage
 
-        hasBeenHit = true;
+
+        SetFacePlayer();
 
         StartCoroutine(FlashDamage()); // has the enemy flash red when taking damage
     }
