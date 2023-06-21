@@ -14,7 +14,7 @@ public class ElevatorScript : MonoBehaviour, IInteractable
     [Tooltip("The animation curve component to use.")]
     [SerializeField] AnimationCurve curve;
     [Tooltip("The next scene to load. SPELL THE NAME RIGHT!")]
-    [SerializeField] string sceneName = "Tom_Tutorial_Shooting_Range";
+    [SerializeField] string sceneName;// = "Tom_Tutorial_Shooting_Range";
 
 
     [Header("Don't Touch")]

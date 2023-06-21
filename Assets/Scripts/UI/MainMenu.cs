@@ -16,6 +16,8 @@ public class MainMenu : MonoBehaviour
     [SerializeField] GameObject settingsMenuObj;
     [SerializeField] GameObject keybinds;
 
+    [SerializeField] string sceneToLoad;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +31,7 @@ public class MainMenu : MonoBehaviour
 
     public void NewGame()
     {
-        eScript.FadeTo("Tom_Tutorial_Shooting_Range");
+        eScript.FadeTo(sceneToLoad);
     }
 
     public void ExitGame()
