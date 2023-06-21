@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -58,10 +59,21 @@ public class KinesisPickup : MonoBehaviour
 
     Vector3 startingPos;
 
+    [System.Obsolete]
     private void Start()
     {
         startingPos = transform.position;
         SetMatColor(pickupSelect);
+    }
+
+    private void OnBecameVisible()
+    {
+        gameObject.SetActive(true);
+    }
+
+    private void OnBecameInvisible()
+    {
+        gameObject.SetActive(false);
     }
 
     // Update is called once per frame
