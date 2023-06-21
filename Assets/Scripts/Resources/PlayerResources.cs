@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerResources : MonoBehaviour, IDamagable, IHealReciever, IFocusReciever
+public class PlayerResources : MonoBehaviour, IDamagable, IHealReciever, IFocusReciever, IShieldReceiver
 {
     [SerializeField] HealthPool health;
     [SerializeField] ShieldPool shield;

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicEnemy : EnemyBase, IDamagable
+public class BasicEnemy : EnemyBase, IDamagable, IEntity
 {
     [Header("---- States ----")]
     [SerializeField] EnemyIdleState idleState;
@@ -139,5 +139,10 @@ public class BasicEnemy : EnemyBase, IDamagable
     public float GetCurrentHealth()
     {
         return health.CurrentValue;
+    }
+
+    public void Respawn()
+    {
+        Destroy(gameObject); ;
     }
 }

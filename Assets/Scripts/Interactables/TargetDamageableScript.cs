@@ -14,9 +14,13 @@ public class TargetDamageableScript : MonoBehaviour, IDamagable, IEnvironment
     float currentTargetHp;
     bool activated;
 
+    [SerializeField] bool multiPress;
+
     Material initMaterial;
 
     float initalHP;
+
+
 
     private void Start()
     {
@@ -32,6 +36,11 @@ public class TargetDamageableScript : MonoBehaviour, IDamagable, IEnvironment
             targetDeathEvent?.Invoke();
             targetRenderer.material = targeCheckedMaterial;
             activated = true;
+        }
+        if(multiPress)
+        {
+            currentTargetHp = initalHP;
+            activated = false;
         }
     }
 
