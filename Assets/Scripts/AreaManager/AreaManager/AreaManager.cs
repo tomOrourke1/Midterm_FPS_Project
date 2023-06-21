@@ -7,10 +7,7 @@ using static UnityEngine.EventSystems.EventTrigger;
 
 public class AreaManager : MonoBehaviour
 {
-
-
     // list of objects to spawn by tpype and position and rotation
-
 
     // reset room
     // spawn room
@@ -28,13 +25,8 @@ public class AreaManager : MonoBehaviour
 
     private void Start()
     {
-        //ReadTheRoom();
-        //SpawnEntities();
-        //StartCoroutine(kill());
-
         KillEntities();
         StopEnvironments();
-
     }
 
     IEnumerator kill()
@@ -46,8 +38,6 @@ public class AreaManager : MonoBehaviour
     void ReadTheRoom()
     {
         // Stores the spawns
-        //var objs = Physics.BoxCastAll(boxTrans.position, box.size / 2, Vector3.zero, boxTrans.rotation, 0, mask);
-
         if (Spawners != null)
         {
             Spawners.Clear();
@@ -85,7 +75,7 @@ public class AreaManager : MonoBehaviour
     void StopEnvironments()
     {
         environment = new List<IEnvironment>(gameObject.GetComponentsInChildren<IEnvironment>(true));
-
+        
         for (int i = 0; i < environment.Count; i++)
         {
             environment[i].StopObject();
@@ -96,33 +86,15 @@ public class AreaManager : MonoBehaviour
     {
         environment = new List<IEnvironment>(gameObject.GetComponentsInChildren<IEnvironment>(true));
 
-        //List<IEnvironment> list = new();
-        //gameObject.GetComponentsInChildren(true, list);
-
-
-        //foreach(var e in list)
-        //{
-        //    e.StartObject();
-        //}
-
-
-
-        Debug.Log(environment.Count);
-
         for (int i = 0; i < environment.Count; i++)
         {
-            Debug.Log("Object " + i + " Enabled: ");
             environment[i].StartObject();
         }
-
     }
 
     void ResetEnvironments()
     {
         environment = new List<IEnvironment>(gameObject.GetComponentsInChildren<IEnvironment>(true));
-
-        //Debug.Log(environment.Count);
-
         for (int i = 0; i < environment.Count; i++)
         {
             environment[i].ResetObject();
