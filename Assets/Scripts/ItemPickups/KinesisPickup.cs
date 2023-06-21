@@ -19,16 +19,42 @@ public class KinesisPickup : MonoBehaviour
     [SerializeField] private KinesisSelect pickupSelect;
     [SerializeField] bool active = true;
 
+    [Header("Renderers")]
+    [SerializeField] MeshRenderer core;
+    [SerializeField] MeshRenderer inner;
+    [SerializeField] MeshRenderer outer;
+    [SerializeField] ParticleSystem rings;
+    [SerializeField] ParticleSystem trails;
+    [SerializeField] ParticleSystem beam;
+
     [Header("Bobbing Stats")]
     [SerializeField] float freq;
     [SerializeField] float amp;
 
-    [Header("Colors")]
-    [SerializeField] Material aeroMat;
-    [SerializeField] Material electroMat;
-    [SerializeField] Material teleMat;
-    [SerializeField] Material pyroMat;
-    [SerializeField] Material cryoMat;
+    [Header("Aero Colors")]
+    [SerializeField] Material aeroCore;
+    [SerializeField] Material aeroInner;
+    [SerializeField] Material aeroOuter;
+
+    [Header("Electro Colors")]
+    [SerializeField] Material electroCore;
+    [SerializeField] Material electroInner;
+    [SerializeField] Material electroOuter;
+
+    [Header("Tele Colors")]
+    [SerializeField] Material teleCore;
+    [SerializeField] Material teleInner;
+    [SerializeField] Material teleOuter;
+
+    [Header("Pyro Colors")]
+    [SerializeField] Material pyroCore;
+    [SerializeField] Material pyroInner;
+    [SerializeField] Material pyroOuter;
+
+    [Header("Cryo Colors")]
+    [SerializeField] Material cryoCore;
+    [SerializeField] Material cryoInner;
+    [SerializeField] Material cryoOuter;
 
     Vector3 startingPos;
 
@@ -61,47 +87,78 @@ public class KinesisPickup : MonoBehaviour
             case KinesisSelect.aerokinesis:
                 GameManager.instance.GetEnabledList().AeroSetActive(b);
                 break;
-            
+
             case KinesisSelect.electrokinesis:
                 GameManager.instance.GetEnabledList().ElectroSetActive(b);
                 break;
-            
+
             case KinesisSelect.telekinesis:
                 GameManager.instance.GetEnabledList().TeleSetActive(b);
                 break;
-            
+
             case KinesisSelect.pyrokinesis:
                 GameManager.instance.GetEnabledList().PyroSetActive(b);
                 break;
-            
+
             case KinesisSelect.cryokinesis:
                 GameManager.instance.GetEnabledList().CryoSetActive(b);
                 break;
         }
     }
 
+    [System.Obsolete]
     private void SetMatColor(KinesisSelect picked)
     {
         switch (picked)
         {
             case KinesisSelect.aerokinesis:
-                gameObject.GetComponent<MeshRenderer>().material = aeroMat;
+                core.material = aeroCore;
+                inner.material = aeroInner;
+                outer.material = aeroOuter;
+
+                rings.startColor = aeroCore.color;
+                trails.startColor = aeroCore.color;
+                beam.startColor = aeroCore.color;
                 break;
 
             case KinesisSelect.electrokinesis:
-                gameObject.GetComponent<MeshRenderer>().material = electroMat;
+                core.material = electroCore;
+                inner.material = electroInner;
+                outer.material = electroOuter;
+
+                rings.startColor = electroCore.color;
+                trails.startColor = electroCore.color;
+                beam.startColor = electroCore.color;
                 break;
 
             case KinesisSelect.telekinesis:
-                gameObject.GetComponent<MeshRenderer>().material = teleMat;
+                core.material = teleCore;
+                inner.material = teleInner;
+                outer.material = teleOuter;
+
+                rings.startColor = teleCore.color;
+                trails.startColor = teleCore.color;
+                beam.startColor = teleCore.color;
                 break;
 
             case KinesisSelect.pyrokinesis:
-                gameObject.GetComponent<MeshRenderer>().material = pyroMat;
+                core.material = pyroCore;
+                inner.material = pyroInner;
+                outer.material = pyroOuter;
+
+                rings.startColor = pyroCore.color;
+                trails.startColor = pyroCore.color;
+                beam.startColor = pyroCore.color;
                 break;
 
             case KinesisSelect.cryokinesis:
-                gameObject.GetComponent<MeshRenderer>().material = cryoMat;
+                core.material = cryoCore;
+                inner.material = cryoInner;
+                outer.material = cryoOuter;
+
+                rings.startColor = cryoCore.color;
+                trails.startColor = cryoCore.color;
+                beam.startColor = cryoCore.color;
                 break;
         }
     }
