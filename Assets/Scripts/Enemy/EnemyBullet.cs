@@ -26,10 +26,13 @@ public class EnemyBullet : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (frames == 0)
+        frames++;
+        if (frames <= 1)
             return;
+
         RaycastHit hit;
-        bool doesHit = Physics.Raycast(lastPos, transform.forward, out hit);
+        var dist = (transform.position - lastPos).magnitude;
+        bool doesHit = Physics.Raycast(lastPos, transform.forward, out hit, dist);
         if(doesHit)
         {
             if(hit.collider.gameObject != gameObject)
@@ -43,7 +46,6 @@ public class EnemyBullet : MonoBehaviour
             }
         }
 
-        frames++;
         lastPos = transform.position;
     }
 
