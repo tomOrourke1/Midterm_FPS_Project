@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -32,6 +33,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] PlayerStatsUI statsUIRef;
     [SerializeField] KeyUI keyScriptRef;
     [SerializeField] KeybindsMenu keybinds;
+    [SerializeField] LoadingIcon loadingIconScript;
 
     [Header("Menu States")]
     [SerializeField] GameObject activeMenu;
@@ -60,6 +62,7 @@ public class UIManager : MonoBehaviour
     [Header("Misc Images")]
     [SerializeField] GameObject hitmarker;
     [SerializeField] Image sceneFader;
+    [SerializeField] GameObject savingIcon;
 
     private void Awake()
     {
@@ -245,6 +248,7 @@ public class UIManager : MonoBehaviour
         radialMenu.SetActive(false);
         hitmarker.SetActive(false);
         objToShow.SetActive(false);
+        savingIcon.SetActive(false);
     }
 
     /// <summary>
@@ -394,5 +398,15 @@ public class UIManager : MonoBehaviour
         currentState = MenuState.paused;
         pauseMenu.SetActive(true);
         cheatMenu.SetActive(false);
+    }
+
+    /// <summary>
+    /// Runs the saving icon at the bottom right of the screen
+    /// </summary>
+    public void SaveIcon()
+    {
+        Debug.Log("Called");
+        savingIcon.SetActive(true);
+        loadingIconScript.WakeUp();
     }
 }

@@ -28,10 +28,6 @@ public class KinesisPickup : MonoBehaviour
     [SerializeField] ParticleSystem trails;
     [SerializeField] ParticleSystem beam;
 
-    [Header("Bobbing Stats")]
-    [SerializeField] float freq;
-    [SerializeField] float amp;
-
     [Header("Aero Colors")]
     [SerializeField] Material aeroCore;
     [SerializeField] Material aeroInner;
@@ -57,12 +53,10 @@ public class KinesisPickup : MonoBehaviour
     [SerializeField] Material cryoInner;
     [SerializeField] Material cryoOuter;
 
-    Vector3 startingPos;
 
     [System.Obsolete]
     private void Start()
     {
-        startingPos = transform.position;
         SetMatColor(pickupSelect);
     }
 
@@ -74,12 +68,6 @@ public class KinesisPickup : MonoBehaviour
     private void OnBecameInvisible()
     {
         gameObject.SetActive(false);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        transform.position = new Vector3(transform.position.x, startingPos.y + Mathf.Sin(Time.time * freq) * amp, transform.position.z);
     }
 
     private void OnTriggerEnter(Collider other)

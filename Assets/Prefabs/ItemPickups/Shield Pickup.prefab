@@ -222,6 +222,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bobRate: 1
   amplitude: 0.25
+  rotateSpeed: 0.75
 --- !u!135 &4213834665870244500
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -230,7 +231,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2775969196625280733}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 1
@@ -5424,7 +5425,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9504e6419c013864bafac279734feffa, type: 2}
+  - {fileID: 2100000, guid: dd42a471c106259449733810db56401d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

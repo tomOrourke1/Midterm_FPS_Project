@@ -7,15 +7,17 @@ public class CheckPointSetter : MonoBehaviour
     private GameObject CheckPoint;
     [SerializeField] GameObject CheckPointPos;
 
- 
-   
-  
     private void OnTriggerEnter(Collider other)
     {
         //checks if player enters the collider
         if (other.CompareTag("Player"))
         {
-            SetCheckPoint();
+            if (CheckPointPos != GameManager.instance.GetPlayerSpawnPOS() || GameManager.instance.GetPlayerSpawnPOS() == null)
+            {
+                Debug.Log("Point Set");
+                SetCheckPoint();
+                UIManager.instance.SaveIcon();
+            }
         }
     }
 
