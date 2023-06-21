@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.EventSystems.EventTrigger;
 
@@ -30,6 +31,10 @@ public class AreaManager : MonoBehaviour
         //ReadTheRoom();
         //SpawnEntities();
         //StartCoroutine(kill());
+
+        KillEntities();
+        StopEnvironments();
+
     }
 
     IEnumerator kill()
@@ -91,12 +96,25 @@ public class AreaManager : MonoBehaviour
     {
         environment = new List<IEnvironment>(gameObject.GetComponentsInChildren<IEnvironment>(true));
 
-        //Debug.Log(environment.Count);
+        //List<IEnvironment> list = new();
+        //gameObject.GetComponentsInChildren(true, list);
+
+
+        //foreach(var e in list)
+        //{
+        //    e.StartObject();
+        //}
+
+
+
+        Debug.Log(environment.Count);
 
         for (int i = 0; i < environment.Count; i++)
         {
+            Debug.Log("Object " + i + " Enabled: ");
             environment[i].StartObject();
         }
+
     }
 
     void ResetEnvironments()

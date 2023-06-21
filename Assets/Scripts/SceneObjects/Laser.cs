@@ -37,7 +37,7 @@ public class Laser : MonoBehaviour, IEnvironment
         initDelayAmount = initialDelay;
         laser = GetComponent<LineRenderer>();
         initialLaserOn = LaserOn;
-        StopObject();
+ //       StopObject();
     }
 
     // Update is called once per frame
@@ -136,8 +136,8 @@ public class Laser : MonoBehaviour, IEnvironment
     // This is a function tied to IEnvironment meant to be used to reset a room
     public void ResetObject()
     {
-        gameObject.SetActive(true);
-
+        // gameObject.SetActive(true);
+        this.enabled = true;
         initialDelay = initDelayAmount;
         LaserOn = initialLaserOn;
         laser = GetComponent<LineRenderer>();
@@ -149,14 +149,24 @@ public class Laser : MonoBehaviour, IEnvironment
 
     public void StartObject()
     {
-        gameObject.SetActive(true);
-        ResetObject();
+        //Debug.Log("Laser Start");
+       // gameObject.SetActive(true);
+        this.enabled = true;
+        laser = GetComponent<LineRenderer>();
+        laser.enabled = false;
+        started = false;
 
         DefaultLaserCast();
+        
+        //if (gameObject != null)
+        //{
+        //    Debug.Log("Laser Enabled: " + gameObject.activeSelf);
+        //}
     }
 
     public void StopObject()
     {
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
+        this.enabled = false;
     }
 }
