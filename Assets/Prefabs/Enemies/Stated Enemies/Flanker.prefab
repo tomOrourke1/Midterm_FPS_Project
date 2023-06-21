@@ -1,5 +1,56 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &944593565
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 944593566}
+  - component: {fileID: 944593567}
+  m_Layer: 0
+  m_Name: ToFlankState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &944593566
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 944593565}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2021841618405641387}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &944593567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 944593565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 968936a41aaa8754483b69636f59f626, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 2021841617035719719}
+  moveSpeed: 8.73
+  acceleration: 90.3
+  rotSpeed: 156.66
+  stoppingDist: 0
+  dist: 6.47
+  allowedDot: 0
 --- !u!1 &2021841616974148822
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,7 +192,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2021841617035719718}
-  m_LocalRotation: {x: -0, y: 0.10046473, z: -0, w: 0.99494064}
+  m_LocalRotation: {x: 0, y: 0.10046587, z: 0, w: 0.9949405}
   m_LocalPosition: {x: 24, y: 0, z: 62.639584}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -164,16 +215,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health:
-    maxValue: 2
+    maxValue: 13.01
   enemyMeshRenderer: {fileID: 2021841616999982613}
-  idleState: {fileID: 2021841618420887973}
-  enemyFlankState: {fileID: 2021841618111317992}
-  shootState: {fileID: 2021841618672403880}
-  shootPos: {fileID: 2021841616974148823}
-  playerFaceSpeed: 10
   viewConeAngle: 90
+  eyeOffset: 1
+  idleState: {fileID: 2021841618420887973}
+  flankState: {fileID: 2021841618111317992}
+  toFlankState: {fileID: 944593567}
+  shootState: {fileID: 2021841618672403880}
+  playerFaceSpeed: 10
+  distToChase: 20
+  distToFlank: 7.62
+  distToIdle: 21
   agent: {fileID: 2021841617035719719}
-  distToChase: 25.94
+  shootPos: {fileID: 2021841616974148823}
+  timeBetweenShots: 1.82
 --- !u!136 &2021841617035719717
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -318,7 +374,7 @@ GameObject:
   - component: {fileID: 2021841618111317995}
   - component: {fileID: 2021841618111317992}
   m_Layer: 0
-  m_Name: Move
+  m_Name: flank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -352,11 +408,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 2021841617035719719}
-  moveSpeed: 3
-  acceleration: 5
+  moveSpeed: 8.74
+  acceleration: 128.2
   rotSpeed: 3
   stoppingDist: 0
-  dist: 0
+  dist: 6.8
 --- !u!1 &2021841618405641386
 GameObject:
   m_ObjectHideFlags: 0
@@ -388,6 +444,7 @@ Transform:
   - {fileID: 2021841618420887972}
   - {fileID: 2021841618111317995}
   - {fileID: 2021841618672403881}
+  - {fileID: 944593566}
   m_Father: {fileID: 2021841617035719715}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -491,9 +548,9 @@ MonoBehaviour:
   stoppingDist: 0
   bullet: {fileID: 1559532429399098320, guid: e7e568bd4d9f6a645b6e797968c1f4f7, type: 3}
   gunPos: {fileID: 2021841616974148823}
-  timeToShoot: 0.25
-  totalTime: 1.1
-  rotationSpeed: 4.24
+  timeToShoot: 2.1
+  totalTime: 3
+  rotationSpeed: 0
 --- !u!1 &2021841618692699894
 GameObject:
   m_ObjectHideFlags: 0

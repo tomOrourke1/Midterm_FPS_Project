@@ -4,18 +4,30 @@ using UnityEngine;
 
 public class EnemyFlankState : EnemyState
 {
+    [Header("vals")]
     [SerializeField] float dist;
 
     public override void Tick()
     {
-        var dir = Camera.main.transform.forward;
+
+        agent.SetDestination(GetBehindPlayer());
+
+
+    }
+
+
+    public Vector3 GetBehindPlayer()
+    {
+
+        var dir = -Camera.main.transform.forward;
         dir.y = 0;
         dir.Normalize();
 
-        var pos = GameManager.instance.GetPlayerPOS() + (-dir * dist);
 
-
-        agent.SetDestination(pos);
+        return (dist * dir) + GameManager.instance.GetPlayerPOS();
 
     }
+
+
+
 }

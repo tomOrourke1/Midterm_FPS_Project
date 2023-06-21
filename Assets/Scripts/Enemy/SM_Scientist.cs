@@ -11,7 +11,6 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity
 
     [Header("----- Other Vars -----")]
     [SerializeField] float scientistRange;
-    [SerializeField] float viewConeAngle;
     private bool doesSeePlayer;
     private bool hasBeenHit;
 
@@ -38,9 +37,6 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity
         {
             stateMachine.Tick();
 
-            var angle = Vector3.Angle(GameManager.instance.GetPlayerPOS() - transform.position, gameObject.transform.forward);
-
-            doesSeePlayer = (angle <= viewConeAngle);
         }
 
     }

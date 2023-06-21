@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyMoveAwayState : EnemyState
 {
+    [Header("Values")]
     [SerializeField] float pointDistance;
 
 

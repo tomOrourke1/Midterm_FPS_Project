@@ -19,7 +19,7 @@ public class EnemyIdleState : EnemyState
     public override void OnEnter()
     {
         base.OnEnter(); // this has to be here
-        
+        agent.SetDestination(transform.position);
 
     }
 

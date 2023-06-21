@@ -7,20 +7,27 @@ public class Flanker : EnemyBase, IDamagable
 {
     [Header("----- Flanker States -----")]
     [SerializeField] EnemyIdleState idleState;
-    [SerializeField] EnemyFlankState enemyFlankState;
+    [SerializeField] EnemyFlankState flankState;
+    [SerializeField] EnemyToFlankState toFlankState;
     [SerializeField] EnemyShootState shootState;
-    [SerializeField] Transform shootPos;
+
+
 
     [Header("----- Flanker Stats -----")]
     [Range(1, 10)][SerializeField] int playerFaceSpeed;
-    [Range(1, 360)][SerializeField] float viewConeAngle;
-    [SerializeField] NavMeshAgent agent;
-
     [SerializeField] float distToChase;
+    [SerializeField] float distToFlank;
+    [SerializeField] float distToIdle;
+
+    [Header("--- componenets ---")]
+    [SerializeField] NavMeshAgent agent;
+    [SerializeField] Transform shootPos;
 
 
-    bool isAttacking;
-    bool doesSeePlayer;
+    [Header("- timers -")]
+    [SerializeField] float timeBetweenShots;
+
+    float time;
 
     void Start()
     {
@@ -30,41 +37,69 @@ public class Flanker : EnemyBase, IDamagable
         stateMachine = new StateMachine();
         stateMachine.SetState(idleState);
 
-        stateMachine.AddTransition(idleState, enemyFlankState, OnMove);
-        stateMachine.AddTransition(enemyFlankState, shootState, OnAttack);
-        stateMachine.AddTransition(shootState, enemyFlankState, shootState.ExitCondition);
 
-        stateMachine.AddTransition(enemyFlankState, idleState, OnIdle);
+        // idle to Half to flank )
+        stateMachine.AddTransition(idleState, toFlankState, OnToFlank);
+
+        stateMachine.AddTransition(toFlankState, flankState, OnFlank);
+        stateMachine.AddTransition(flankState, toFlankState, OnToFlankFromFlank);
+
+        stateMachine.AddTransition(flankState, shootState, OnAttack);
+        stateMachine.AddTransition(shootState, flankState, shootState.ExitCondition);
+        //  half flank to flank
+        // flank to half flank
+
+
+        // flank to attack
+
+
+        stateMachine.AddAnyTransition(idleState, OnIdle);
+
+
+
+    }
+
+    bool OnToFlank()
+    {
+        return GetDoesSeePlayer() && GetDistToPlayer() <= distToChase;
+    }
+    bool OnToFlankFromFlank()
+    {
+
+        var point = flankState.GetBehindPlayer();
+
+        var dist = Vector3.Distance(point, transform.position);
+
+
+        return dist >= distToFlank;
+    }
+    bool OnFlank()
+    {
+        bool val = toFlankState.ExitCondition();
+
+
+
+        return val;
     }
 
     bool OnAttack()
     {
-        bool toAttack = doesSeePlayer;
-        return doesSeePlayer;
+        time += Time.deltaTime;
+
+        if(time >=  timeBetweenShots)
+        {
+            time = 0;
+            return true;
+        }
+
+        return false;
     }
+
     bool OnIdle()
     {
-        float distance = Vector3.Distance(GameManager.instance.GetPlayerObj().transform.position, gameObject.transform.position);
-        bool inDistance = distance > distToChase;
-        return inDistance;
+        return GetDistToPlayer() >= distToIdle;
     }
 
-    bool OnMove()
-    {
-        float distance = Vector3.Distance(GameManager.instance.GetPlayerObj().transform.position, gameObject.transform.position);
-        bool inDistance = distance < distToChase;
-
-        return inDistance;
-    }
-
-    
-
-    void facePlayer()
-    {
-        var dirToPlayer = GameManager.instance.GetPlayerPOS() - transform.position;
-        Quaternion rot = Quaternion.LookRotation(new Vector3(dirToPlayer.x, 0, dirToPlayer.z));
-        transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * playerFaceSpeed);
-    }
 
 
     void Update()
@@ -74,14 +109,9 @@ public class Flanker : EnemyBase, IDamagable
         {
             stateMachine.Tick();
 
-            var dirToPlayer = GameManager.instance.GetPlayerPOS() - transform.position;
-            var angle = Vector3.Angle(dirToPlayer, gameObject.transform.forward);
-
-            doesSeePlayer = (angle <= viewConeAngle);
-
-            if (agent.remainingDistance <= agent.stoppingDistance)
+            if (GetDoesSeePlayer())
             {
-                facePlayer();
+                RotToPlayer();
             }
 
         }
@@ -105,6 +135,7 @@ public class Flanker : EnemyBase, IDamagable
     public void TakeDamage(float dmg)
     {
         health.Decrease(dmg);
+        SetFacePlayer();
         StartCoroutine(FlashDamage());
     }
 

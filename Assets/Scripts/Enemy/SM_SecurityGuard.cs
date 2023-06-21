@@ -13,7 +13,6 @@ public class SM_SecurityGuard : EnemyBase, IDamagable, IEntity
 
     [Header("----- Other Vars -----")]
     [SerializeField] float attackRange;
-    [SerializeField] float viewConeAngle;
     [SerializeField] float closeToPlayer;
     private bool doesSeePlayer;
     private bool hasBeenHit;
@@ -50,16 +49,6 @@ public class SM_SecurityGuard : EnemyBase, IDamagable, IEntity
         {
             stateMachine.Tick();
 
-            var dir = (GameManager.instance.GetPlayerPOS() - transform.position).normalized;
-            var angle = Vector3.Angle(dir, gameObject.transform.forward);
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position, dir, out hit) && (angle <= viewConeAngle))
-            {
-                if (hit.collider.CompareTag("Player"))
-                {
-                    doesSeePlayer = true;
-                }
-            }
         }
     }
 
