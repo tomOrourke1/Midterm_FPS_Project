@@ -90,5 +90,7 @@ public class EnemySniperShootState : EnemyState
 
     public override void OnExit()
     {
+        lineRenderer.enabled = false;
+        timeInState = Time.time;
     }
 }

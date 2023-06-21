@@ -311,7 +311,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 8
+  m_Radius: 50
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &2634847783003102582
 NavMeshAgent:
@@ -350,6 +350,8 @@ MonoBehaviour:
   health:
     maxValue: 10
   enemyMeshRenderer: {fileID: 2634847782661771825}
+  viewConeAngle: 0
+  eyeOffset: 1
   shieldIdle: {fileID: 3965463815748896430}
   shieldMoveToPosition: {fileID: 873287014185419540}
   shieldHoldPosition: {fileID: 6523961767067129787}

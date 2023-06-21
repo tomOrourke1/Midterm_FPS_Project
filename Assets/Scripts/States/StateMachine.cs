@@ -50,7 +50,7 @@ public class StateMachine
             SetState(transition.To);
         }
         currentState.Tick();
-        Debug.Log("CurrentSTate: " + currentState);
+        //Debug.Log("CurrentSTate: " + currentState);
     }
 
     private StateTransition CheckForTransition()
