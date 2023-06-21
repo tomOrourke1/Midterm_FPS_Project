@@ -14,7 +14,6 @@ public class CheckPointSetter : MonoBehaviour
         {
             if (CheckPointPos != GameManager.instance.GetPlayerSpawnPOS() || GameManager.instance.GetPlayerSpawnPOS() == null)
             {
-                Debug.Log("Point Set");
                 SetCheckPoint();
                 UIManager.instance.SaveIcon();
             }

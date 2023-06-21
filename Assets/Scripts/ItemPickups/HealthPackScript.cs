@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class HealthPackScript : MonoBehaviour, IEntity
 {
-    [Header("-----Healing Stuff-----")]
+    [Header("Values")]
     [Range(0, 100)][SerializeField] int healingAmount;
 
     private void OnTriggerEnter(Collider other)
     {
         var heal = other.GetComponent<IHealReciever>();
 
-        if(heal != null)
+        if(heal != null && !GameManager.instance.GetPlayerResources().Health.AtMax())
         {
             heal.AddHealing(healingAmount);
             Destroy(gameObject);
         }
-
     }
 
     public void Respawn()

@@ -405,7 +405,6 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void SaveIcon()
     {
-        Debug.Log("Called");
         savingIcon.SetActive(true);
         loadingIconScript.WakeUp();
     }
