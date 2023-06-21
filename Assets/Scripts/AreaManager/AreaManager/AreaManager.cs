@@ -131,24 +131,24 @@ public class AreaManager : MonoBehaviour
 
     public void UnloadRoom()
     {
-        KillEntities();
         StopEnvironments();
+        KillEntities();
     }
 
     public void StartRoom()
     {
-        SpawnEntities();
         StartEnvironments();
+        SpawnEntities();
     }
 
     public void Respawn()
     {
-        KillEntities();
-        KillEntities();
-
         StopEnvironments();
 
-        SpawnEntities();
+        KillEntities();
+        KillEntities();
+
         ResetEnvironments();
+        SpawnEntities();
     }
 }
