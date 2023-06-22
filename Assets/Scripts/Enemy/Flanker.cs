@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Flanker : EnemyBase, IDamagable
+public class Flanker : EnemyBase, IDamagable, IEntity
 {
     [Header("----- Flanker States -----")]
     [SerializeField] EnemyIdleState idleState;
@@ -166,5 +166,10 @@ public class Flanker : EnemyBase, IDamagable
     public float GetCurrentHealth()
     {
         return health.CurrentValue;
+    }
+
+    public void Respawn()
+    {
+        Destroy(gameObject);
     }
 }
