@@ -1,13 +1,7 @@
-using System;
+
 using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using TMPro;
-using Unity.VisualScripting;
-using UnityEditor;
-using UnityEditor.Timeline.Actions;
 using UnityEngine;
-using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public enum MenuState

@@ -1,9 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Search;
 using UnityEngine;
-using UnityEngine.InputSystem.HID;
-using UnityEngine.UIElements;
 
 public class PlayerInteractions : MonoBehaviour
 {

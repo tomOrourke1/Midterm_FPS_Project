@@ -50,7 +50,7 @@ public class ButtonScript : MonoBehaviour, IEnvironment
     {
         count = 0;
         //buttonRenderer.material = releasedColor;
-        buttonRelease?.Invoke();
+        //buttonRelease?.Invoke();
     }
 
     public void ResetObject()
