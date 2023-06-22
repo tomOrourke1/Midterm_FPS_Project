@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 1272882866489034899}
   - component: {fileID: 8766814951803083748}
   - component: {fileID: 4936498862079768378}
+  - component: {fileID: -6684961605861623297}
   m_Layer: 0
   m_Name: KinesisPickup
   m_TagString: Untagged
@@ -131,7 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c8b0d3c0f145b94381b878ccfc1da77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupSelect: 1
+  pickupSelect: 2
   active: 1
   core: {fileID: 360594198758703271}
   inner: {fileID: 5850918964138412282}
@@ -182,6 +183,20 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-6684961605861623297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272882866489034896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b762e63102fea404ab19664576cb3d69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayImage: {fileID: 21300000, guid: 95998a9f7acb7504ea2d6c8243b9b9a1, type: 3}
+  kinesisName: Telekinesis
 --- !u!1 &1309295828370960674
 GameObject:
   m_ObjectHideFlags: 0
