@@ -26,7 +26,7 @@ public class SM_Turret : EnemyBase, IDamagable, IEntity
         stateMachine.AddTransition(idleState, shootState, OnShoot);
         stateMachine.AddTransition(shootState, idleState, OnIdle);
 
-
+        enemyColor = enemyMeshRenderer.material.color;
     }
 
     bool OnIdle()
@@ -88,7 +88,7 @@ public class SM_Turret : EnemyBase, IDamagable, IEntity
 
     IEnumerator FlashDamage()
     {
-        enemyColor = enemyMeshRenderer.material.color; // saves enemy's color
+       // enemyColor = enemyMeshRenderer.material.color; // saves enemy's color
         enemyMeshRenderer.material.color = Color.red; // sets enemy's color to red to show damage
         yield return new WaitForSeconds(0.15f); // waits for a few seconds for the player to notice
         enemyMeshRenderer.material.color = enemyColor; // changes enemy's color back to their previous color

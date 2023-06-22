@@ -56,7 +56,7 @@ public class Flanker : EnemyBase, IDamagable, IEntity
         stateMachine.AddAnyTransition(idleState, OnIdle);
 
 
-
+        enemyColor = enemyMeshRenderer.material.color;
     }
 
     bool OnToFlank()
