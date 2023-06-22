@@ -26,12 +26,10 @@ public class TargetTriggerScript : MonoBehaviour, IEnvironment
 
     public void StopObject()
     {
-        targetEvent?.Invoke();
     }
 
     public void ResetObject()
     {
-        targetEvent?.Invoke();
         targetRenderer.material = initMaterials;
     }
 }
