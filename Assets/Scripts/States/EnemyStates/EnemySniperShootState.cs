@@ -65,8 +65,17 @@ public class EnemySniperShootState : EnemyState
 
     void DrawLine()
     {
-        lineRenderer.SetPosition(0, gunPos.position);
-        lineRenderer.SetPosition(1, GameManager.instance.GetPlayerPOS());
+        RaycastHit hit;
+        bool doesHit = Physics.Raycast(gunPos.position, (GameManager.instance.GetPlayerPOS() - gunPos.position).normalized, out hit);
+
+        if(doesHit)
+        {
+
+            lineRenderer.SetPosition(0, gunPos.position);
+            lineRenderer.SetPosition(1, hit.point);
+        }
+
+
     }
 
 
