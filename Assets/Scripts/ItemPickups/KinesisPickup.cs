@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 [System.Serializable]
 public enum KinesisSelect
@@ -14,10 +10,34 @@ public enum KinesisSelect
     cryokinesis
 }
 
+[System.Serializable]
+struct OrbMaterials
+{
+    [Header("Material Properties")]
+    [SerializeField] Material Core;
+    [SerializeField] Material Inner;
+    [SerializeField] Material Outer;
+
+    public Material GetCore()
+    {
+        return Core;
+    }
+
+    public Material GetInner()
+    {
+        return Inner;
+    }
+
+    public Material GetOuter()
+    {
+        return Outer;
+    }
+}
+
 public class KinesisPickup : MonoBehaviour
 {
     [Header("Kinesis")]
-    [SerializeField] private KinesisSelect pickupSelect;
+    public KinesisSelect pickupSelect;
     [SerializeField] bool active = true;
 
     [Header("Renderers")]
@@ -29,29 +49,19 @@ public class KinesisPickup : MonoBehaviour
     [SerializeField] ParticleSystem beam;
 
     [Header("Aero Colors")]
-    [SerializeField] Material aeroCore;
-    [SerializeField] Material aeroInner;
-    [SerializeField] Material aeroOuter;
+    [SerializeField] OrbMaterials aerokinesisMaterials;
 
     [Header("Electro Colors")]
-    [SerializeField] Material electroCore;
-    [SerializeField] Material electroInner;
-    [SerializeField] Material electroOuter;
+    [SerializeField] OrbMaterials electrokinesisMaterials;
 
     [Header("Tele Colors")]
-    [SerializeField] Material teleCore;
-    [SerializeField] Material teleInner;
-    [SerializeField] Material teleOuter;
+    [SerializeField] OrbMaterials telekinesisMaterials;
 
     [Header("Pyro Colors")]
-    [SerializeField] Material pyroCore;
-    [SerializeField] Material pyroInner;
-    [SerializeField] Material pyroOuter;
+    [SerializeField] OrbMaterials pyrokinesisMaterials;
 
     [Header("Cryo Colors")]
-    [SerializeField] Material cryoCore;
-    [SerializeField] Material cryoInner;
-    [SerializeField] Material cryoOuter;
+    [SerializeField] OrbMaterials cryokinesisMaterials;
 
 
     [System.Obsolete]
@@ -112,54 +122,52 @@ public class KinesisPickup : MonoBehaviour
         switch (picked)
         {
             case KinesisSelect.aerokinesis:
-                core.material = aeroCore;
-                inner.material = aeroInner;
-                outer.material = aeroOuter;
+                core.material = aerokinesisMaterials.GetCore();
+                inner.material = aerokinesisMaterials.GetInner();
+                outer.material = aerokinesisMaterials.GetOuter();
 
-                rings.startColor = aeroCore.color;
-                trails.startColor = aeroCore.color;
-                beam.startColor = aeroCore.color;
+                ChangeParticleColors();
                 break;
 
             case KinesisSelect.electrokinesis:
-                core.material = electroCore;
-                inner.material = electroInner;
-                outer.material = electroOuter;
+                core.material = electrokinesisMaterials.GetCore();
+                inner.material = electrokinesisMaterials.GetInner();
+                outer.material = electrokinesisMaterials.GetOuter();
 
-                rings.startColor = electroCore.color;
-                trails.startColor = electroCore.color;
-                beam.startColor = electroCore.color;
+                ChangeParticleColors();
                 break;
 
             case KinesisSelect.telekinesis:
-                core.material = teleCore;
-                inner.material = teleInner;
-                outer.material = teleOuter;
+                core.material = telekinesisMaterials.GetCore();
+                inner.material = telekinesisMaterials.GetInner();
+                outer.material = telekinesisMaterials.GetOuter();
 
-                rings.startColor = teleCore.color;
-                trails.startColor = teleCore.color;
-                beam.startColor = teleCore.color;
+                ChangeParticleColors();
                 break;
 
             case KinesisSelect.pyrokinesis:
-                core.material = pyroCore;
-                inner.material = pyroInner;
-                outer.material = pyroOuter;
+                core.material = pyrokinesisMaterials.GetCore();
+                inner.material = pyrokinesisMaterials.GetInner();
+                outer.material = pyrokinesisMaterials.GetOuter();
 
-                rings.startColor = pyroCore.color;
-                trails.startColor = pyroCore.color;
-                beam.startColor = pyroCore.color;
+                ChangeParticleColors();
                 break;
 
             case KinesisSelect.cryokinesis:
-                core.material = cryoCore;
-                inner.material = cryoInner;
-                outer.material = cryoOuter;
+                core.material = cryokinesisMaterials.GetCore();
+                inner.material = cryokinesisMaterials.GetInner();
+                outer.material = cryokinesisMaterials.GetOuter();
 
-                rings.startColor = cryoCore.color;
-                trails.startColor = cryoCore.color;
-                beam.startColor = cryoCore.color;
+                ChangeParticleColors();
                 break;
         }
+    }
+
+    [System.Obsolete]
+    private void ChangeParticleColors()
+    {
+        rings.startColor = core.material.color;
+        trails.startColor = core.material.color;
+        beam.startColor = core.material.color;
     }
 }
