@@ -115,21 +115,15 @@ public class RotatingBlock : MonoBehaviour, IEnvironment
         transform.localRotation = Quaternion.RotateTowards(transform.localRotation, transform.localRotation * rotation, Time.deltaTime * rotationSpeed);
     }
 
-    public void ResetObject()
-    {
-        StopAllCoroutines();
-        gameObject.SetActive(true);
-        transform.localRotation = initRotation;
-        rotating = false;
-        waiting = false;
-
-        timeWating = 0;
-    }
-
     public void StartObject()
     {
         gameObject.SetActive(true);
         transform.localRotation = initRotation;
+
+        rotating = false;
+        waiting = false;
+
+        timeWating = 0;
     }
 
     public void StopObject()

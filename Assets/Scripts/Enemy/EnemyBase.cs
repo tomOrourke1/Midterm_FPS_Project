@@ -27,7 +27,7 @@ public abstract class EnemyBase : MonoBehaviour
 
 
 
-
+    public HealthPool HealthPool => health;
 
 
     protected float GetDistToPlayer()

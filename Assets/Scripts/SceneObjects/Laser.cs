@@ -144,10 +144,8 @@ public class Laser : MonoBehaviour, IEnvironment
 
     public void SetLaserEnabled(bool enabled) {  LaserOn = enabled; }
 
-    // This is a function tied to IEnvironment meant to be used to reset a room
-    public void ResetObject()
+    public void StartObject()
     {
-        // gameObject.SetActive(true);
         this.enabled = true;
         initialDelay = initDelayAmount;
         LaserOn = initialLaserOn;
@@ -158,26 +156,9 @@ public class Laser : MonoBehaviour, IEnvironment
         DefaultLaserCast();
     }
 
-    public void StartObject()
-    {
-        //Debug.Log("Laser Start");
-       // gameObject.SetActive(true);
-        this.enabled = true;
-        laser = GetComponent<LineRenderer>();
-        laser.enabled = false;
-        started = false;
-
-        DefaultLaserCast();
-        
-        //if (gameObject != null)
-        //{
-        //    Debug.Log("Laser Enabled: " + gameObject.activeSelf);
-        //}
-    }
-
     public void StopObject()
     {
-        //gameObject.SetActive(false);
+        
         this.enabled = false;
     }
 }

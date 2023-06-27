@@ -21,7 +21,7 @@ public class AreaManager : MonoBehaviour
     // Just the IEntity of each entity that is currently alive
     List<IEntity> entities;
     List<IEnvironment> environment;
-    List<IEntitySpawner> Spawners;
+    List<EntitySpawners> Spawners;
 
     private void Start()
     {
@@ -29,10 +29,9 @@ public class AreaManager : MonoBehaviour
         StopEnvironments();
     }
 
-    IEnumerator kill()
+    public List<EntitySpawners> GetEntitySpawners()
     {
-        yield return new WaitForSeconds(3);
-        KillEntities();
+        return Spawners;
     }
 
     void ReadTheRoom()
@@ -43,7 +42,7 @@ public class AreaManager : MonoBehaviour
             Spawners.Clear();
             Entities.Clear();
         }
-        Spawners = new List<IEntitySpawner>(gameObject.GetComponentsInChildren<IEntitySpawner>());
+        Spawners = new List<EntitySpawners>(gameObject.GetComponentsInChildren<EntitySpawners>());
 
         foreach (var obj in Spawners)
         {
@@ -58,7 +57,22 @@ public class AreaManager : MonoBehaviour
 
         for (int i = 0; i < Entities.Count; i++)
         {
-            Instantiate(Entities[i], Spawners[i].GetTransform().position, Spawners[i].GetTransform().rotation, gameObject.transform);
+            Spawners[i].ResetEnemyDeath();
+
+            if (Entities[i].GetComponent<EnemyBase>() != null)
+            {
+                // Store enemy in spawner if entity is an enemy
+                var eBase = Instantiate(Entities[i], Spawners[i].GetTransform().position, Spawners[i].GetTransform().rotation, gameObject.transform).GetComponent<EnemyBase>();
+
+                // this needs to be able to assign it's death to do something.
+                // but I don't like how it is currently connected.
+
+                eBase.HealthPool.OnResourceDepleted += Spawners[i].MyEnemyDied;
+            }
+            else
+            {
+                Instantiate(Entities[i], Spawners[i].GetTransform().position, Spawners[i].GetTransform().rotation, gameObject.transform);
+            }
         }
     }
 
@@ -92,15 +106,6 @@ public class AreaManager : MonoBehaviour
         }
     }
 
-    void ResetEnvironments()
-    {
-        environment = new List<IEnvironment>(gameObject.GetComponentsInChildren<IEnvironment>(true));
-        for (int i = 0; i < environment.Count; i++)
-        {
-            environment[i].ResetObject();
-        }
-    }
-
     public void UnloadRoom()
     {
         StopEnvironments();
@@ -120,7 +125,7 @@ public class AreaManager : MonoBehaviour
         KillEntities();
         KillEntities();
 
-        ResetEnvironments();
+        StartEnvironments();
         SpawnEntities();
     }
 }

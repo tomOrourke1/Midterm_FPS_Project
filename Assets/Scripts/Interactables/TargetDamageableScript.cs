@@ -24,6 +24,7 @@ public class TargetDamageableScript : MonoBehaviour, IDamagable, IEnvironment
 
     private void Start()
     {
+        initMaterial = targetRenderer.material;
         currentTargetHp = maxTargetHp;
         initalHP = currentTargetHp;
         activated = false;
@@ -51,18 +52,14 @@ public class TargetDamageableScript : MonoBehaviour, IDamagable, IEnvironment
 
     public void StartObject()
     {
-        initMaterial = targetRenderer.material;
-    }
-
-    public void StopObject()
-    {
-        activated = false;
-    }
-
-    public void ResetObject()
-    {
         currentTargetHp = initalHP;
         targetRenderer.material = initMaterial;
         activated = false;
     }
+
+    public void StopObject()
+    {
+
+    }
+
 }

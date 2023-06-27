@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class DoorDetectPlayerInProximity : MonoBehaviour, IEnvironment
 {
-    [SerializeField] IDoorActivator door;
+    [SerializeField] DoorScript door;
 
     int count;
 
     private void Start()
     {
-        door = transform.parent.GetComponent<IDoorActivator>();
+        door = transform.parent.GetComponent<DoorScript>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -36,7 +36,7 @@ public class DoorDetectPlayerInProximity : MonoBehaviour, IEnvironment
 
         if (count == 0)
         {
-            door.Activate();
+            door.OpenDoor();
         }
 
         count++;
@@ -52,24 +52,18 @@ public class DoorDetectPlayerInProximity : MonoBehaviour, IEnvironment
         count--;
         if (count == 0)
         {
-            door.Activate();
+            door.CloseDoor();
         }
-    }
-
-    // This is a function tied to IEnvironment meant to be used to reset a room
-    public void ResetObject()
-    {
-        count = 0;
     }
 
     public void StartObject()
     {
-        // Nothing needs to happen here
+        count = 0;
     }
 
     public void StopObject()
     {
-        // Nothing needs to happen here
+
     }
 
     bool blackList(Collider other)
