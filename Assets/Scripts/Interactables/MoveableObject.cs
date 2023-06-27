@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class MoveableObject : MonoBehaviour, ITelekinesis, IEntity
+public class MoveableObject : MonoBehaviour, ITelekinesis, IEntity, IApplyVelocity
 {
 
     [SerializeField] Rigidbody rb;
     [SerializeField] int damage;
     bool thrown;
-
+   
 
 
     public Vector3 GetPosition()
@@ -60,5 +60,9 @@ public class MoveableObject : MonoBehaviour, ITelekinesis, IEntity
     public void Respawn()
     {
         Destroy(gameObject);
+    }
+    public void ApplyVelocity(Vector3 velocity) 
+    {
+        rb.AddForce(velocity, ForceMode.Impulse);
     }
 }
