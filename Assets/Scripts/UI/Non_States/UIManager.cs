@@ -47,7 +47,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject playerStatsObj;
 
     [Header("Animator Components")]
-    [SerializeField] Animator pauseAnimController;
     [SerializeField] Animator winAnimController;
     [SerializeField] Animator loseAnimController;
 
@@ -88,7 +87,6 @@ public class UIManager : MonoBehaviour
         GameManager.instance.TimePause();
         GameManager.instance.MouseUnlockShow();
         radialScript.GetReticle().SetActive(false);
-        pauseAnimController.SetBool("ExitPause", false);
     }
 
     /// <summary>
@@ -98,7 +96,6 @@ public class UIManager : MonoBehaviour
     {
         if (currentState == MenuState.paused)
         {
-            pauseAnimController.SetBool("ExitPause", true);
         }
         else if (currentState == MenuState.death)
         {

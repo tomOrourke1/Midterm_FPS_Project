@@ -48,7 +48,7 @@ public class UIBaseMachine : MonoBehaviour
 
         // this is where you set up state transitions
         statemachine.AddTransition(playState, pausedState, () => onEscape.GetInput());
-        statemachine.AddTransition(pausedState, playState, () => onEscape.GetInput());
+        statemachine.AddTransition(pausedState, playState, () => playBool.GetInput());
 
 
 

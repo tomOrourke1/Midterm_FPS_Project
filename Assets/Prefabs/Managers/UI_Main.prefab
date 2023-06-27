@@ -3229,6 +3229,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6560096437903994032}
   - component: {fileID: 3290722216172501485}
+  - component: {fileID: 6630592284576281825}
   m_Layer: 5
   m_Name: PauseState
   m_TagString: Untagged
@@ -3249,7 +3250,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2562392913670903248}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3269,7 +3270,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UIObject: {fileID: 7135949735108110942}
-  activateMenu: {fileID: 0}
+  activateMenu: {fileID: 6630592284576281825}
+  doesActivateHere: 1
+  doesDeactivateHere: 0
+--- !u!114 &6630592284576281825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 613566811993115564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2df5a32db9fd2e4b9e1ac26298db4e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseAnimController: {fileID: 622493518000779111}
+  waitTime: 0.25
 --- !u!1 &637312877229202596
 GameObject:
   m_ObjectHideFlags: 0
@@ -4362,6 +4379,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIObject: {fileID: 6258659710695957990}
   activateMenu: {fileID: 0}
+  doesActivateHere: 1
+  doesDeactivateHere: 1
 --- !u!1 &1438012858965378481
 GameObject:
   m_ObjectHideFlags: 0
@@ -4632,7 +4651,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2562392913670903248}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4653,6 +4672,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIObject: {fileID: 8463448629903420530}
   activateMenu: {fileID: 0}
+  doesActivateHere: 1
+  doesDeactivateHere: 1
 --- !u!1 &1639575725745098530
 GameObject:
   m_ObjectHideFlags: 0
@@ -8950,6 +8971,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIObject: {fileID: 1886728016542074930}
   activateMenu: {fileID: 0}
+  doesActivateHere: 1
+  doesDeactivateHere: 1
 --- !u!1 &3640030915143629995
 GameObject:
   m_ObjectHideFlags: 0
@@ -9705,6 +9728,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIObject: {fileID: 0}
   activateMenu: {fileID: 0}
+  doesActivateHere: 1
+  doesDeactivateHere: 1
 --- !u!1 &4007174607966741722
 GameObject:
   m_ObjectHideFlags: 0
@@ -11324,6 +11349,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIObject: {fileID: 0}
   activateMenu: {fileID: 0}
+  doesActivateHere: 1
+  doesDeactivateHere: 1
 --- !u!1 &4892951845686266661
 GameObject:
   m_ObjectHideFlags: 0
@@ -12548,7 +12575,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
-  uiStateMachine: {fileID: 0}
+  uiStateMachine: {fileID: 636357373037390307}
   radialScript: {fileID: 198655326078740097}
   statsUIRef: {fileID: 866238320461390695}
   keyScriptRef: {fileID: 535610316}
@@ -12564,7 +12591,6 @@ MonoBehaviour:
   radialMenu: {fileID: 1886728016542074930}
   cheatMenu: {fileID: 916822419519330938}
   playerStatsObj: {fileID: 7165290681494119844}
-  pauseAnimController: {fileID: 622493518000779111}
   winAnimController: {fileID: 3221958684515828137}
   loseAnimController: {fileID: 1763678697942226988}
   objToShow: {fileID: 1970838912654609865}
@@ -14274,8 +14300,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6560096437903994032}
   - {fileID: 2555563112492359694}
+  - {fileID: 6560096437903994032}
   - {fileID: 7207300981955889994}
   - {fileID: 6565537943643401289}
   - {fileID: 1275810246273518682}
@@ -17589,6 +17615,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIObject: {fileID: 1970838912654609865}
   activateMenu: {fileID: 0}
+  doesActivateHere: 1
+  doesDeactivateHere: 1
 --- !u!1 &7575004612305767516
 GameObject:
   m_ObjectHideFlags: 0
@@ -19134,6 +19162,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIObject: {fileID: 2166454361482264409}
   activateMenu: {fileID: 0}
+  doesActivateHere: 1
+  doesDeactivateHere: 1
 --- !u!1 &8152793537435899874
 GameObject:
   m_ObjectHideFlags: 0
@@ -19337,6 +19367,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIObject: {fileID: 4946717797418961804}
   activateMenu: {fileID: 0}
+  doesActivateHere: 1
+  doesDeactivateHere: 1
 --- !u!1 &8299034245360408901
 GameObject:
   m_ObjectHideFlags: 0
