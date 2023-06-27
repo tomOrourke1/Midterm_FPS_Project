@@ -37,19 +37,18 @@ public class fingerGun : MonoBehaviour
         {
             Instantiate(hitParticles, hit.point, Quaternion.identity);
 
-            if (UIManager.instance.currentState == MenuState.none)
-            {
-                IDamagable damageable = hit.collider.GetComponent<IDamagable>();
 
-                if (damageable != null)
-                {
-                    damageable.TakeDamage(bulletDamage);
-                    UIManager.instance.GetHitmarker().SetActive(true);
-                    yield return new WaitForSeconds(0.05f);
-                    UIManager.instance.GetHitmarker().SetActive(false);
-                    GameManager.instance.GetPlayerResources().AddFocus(focusPerShot);
-                }
+            IDamagable damageable = hit.collider.GetComponent<IDamagable>();
+
+            if (damageable != null)
+            {
+                damageable.TakeDamage(bulletDamage);
+                UIManager.instance.GetHitmarker().SetActive(true);
+                yield return new WaitForSeconds(0.05f);
+                UIManager.instance.GetHitmarker().SetActive(false);
+                GameManager.instance.GetPlayerResources().AddFocus(focusPerShot);
             }
+
         }
 
         yield return new WaitForSeconds(fireRate);

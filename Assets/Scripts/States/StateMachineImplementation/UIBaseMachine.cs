@@ -46,12 +46,32 @@ public class UIBaseMachine : MonoBehaviour
         pauseBool = new AsyncInput();
         playBool = new AsyncInput();
         onEscape = new AsyncInput();
+        deathBool = new AsyncInput();
 
         // this is where you set up state transitions
+        
+        // Play <- (Pause Transition out) -> Pause
         statemachine.AddTransition(playState, pausedState, () => onEscape.GetInput());
         statemachine.AddTransition(pausedState, waitForPauseToStop, () => onEscape.GetInput());
         statemachine.AddTransition(waitForPauseToStop, playState, () => waitForPauseToStop.ExitCondition());
 
+        // Play <-> Death
+        statemachine.AddTransition(playState, deathState, () => deathBool.GetInput());
+        statemachine.AddTransition(deathState, playState, () => playBool.GetInput());
+
+        // Play <-> Radial Menu
+
+        // Play <-> Infographic
+
+        // Paused <-> Main Menu
+
+        // Paused <-> Settings
+
+        // Settings <-> Options
+
+        // Settings <-> Controls
+
+        // Options <-> Controls
     }
 
 
@@ -76,6 +96,12 @@ public class UIBaseMachine : MonoBehaviour
         //Tick(); //                  <<<< require a tick here so when a value is updated you it check the transitions
     }
 
+    // set functions for bool values
+    public void SetDeath(bool value)
+    {
+        deathBool.SetInput(value);
+        //Tick(); //                  <<<< require a tick here so when a value is updated you it check the transitions
+    }
 
 
 
@@ -83,8 +109,6 @@ public class UIBaseMachine : MonoBehaviour
     {
         Tick();
     }
-
-
 
     // shouldn't need to touch
     private void Tick()

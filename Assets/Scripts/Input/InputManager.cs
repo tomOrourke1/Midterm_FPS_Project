@@ -50,21 +50,21 @@ public class InputManager : MonoBehaviour
 
     private void OnRadShow(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        if (UIManager.instance.currentState == MenuState.none && !GameManager.instance.AllKinesisDisabled())
-        {
-            UIManager.instance.ShowRadialMenu();
-            isRadialShowing = true;
-        }
+        //if (UIManager.instance.currentState == MenuState.none && !GameManager.instance.AllKinesisDisabled())
+        //{
+        //    UIManager.instance.ShowRadialMenu();
+        //    isRadialShowing = true;
+        //}
     }
 
     private void OnRadClose(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        if (UIManager.instance.currentState == MenuState.radial)
-        {
-            UIManager.instance.HideRadialMenu();
-            UIManager.instance.UpdateKinesis();
-            isRadialShowing = false;
-        }
+        //if (UIManager.instance.currentState == MenuState.radial)
+        //{
+        //    UIManager.instance.HideRadialMenu();
+        //    UIManager.instance.UpdateKinesis();
+        //    isRadialShowing = false;
+        //}
     }
 
     private void OnEscape(UnityEngine.InputSystem.InputAction.CallbackContext context)
@@ -87,18 +87,18 @@ public class InputManager : MonoBehaviour
 
     private void OnInteract(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        if (UIManager.instance.currentState == MenuState.infographic)
-        {
-            UIManager.instance.CloseInfoUI();
-        }
+        //if (UIManager.instance.currentState == MenuState.infographic)
+        //{
+        //    UIManager.instance.CloseInfoUI();
+        //}
     }
 
     private void Update()
     {
-        if (UIManager.instance.currentState == MenuState.radial && isRadialShowing)
-        {
-            UIManager.instance.UpdateRadialWheel();
-        }
+        //if (UIManager.instance.currentState == MenuState.radial && isRadialShowing)
+        //{
+        //    UIManager.instance.UpdateRadialWheel();
+        //}
     }
 
 

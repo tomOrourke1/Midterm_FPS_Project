@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class UIWaitingScript : UIState
 {
-
-
-
     [SerializeField] float waitTime;
 
     bool exit;

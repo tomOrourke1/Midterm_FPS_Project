@@ -3287,7 +3287,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseAnimController: {fileID: 622493518000779111}
-  waitTime: 0.25
 --- !u!114 &4939294358832132766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4352,6 +4351,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7780744466744006960}
   - component: {fileID: 3598202331246411276}
+  - component: {fileID: 1185853984038467959}
+  - component: {fileID: 5179869153248660962}
   m_Layer: 5
   m_Name: DeathState
   m_TagString: Untagged
@@ -4372,7 +4373,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2562392913670903248}
-  m_RootOrder: 5
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4395,6 +4396,32 @@ MonoBehaviour:
   activateMenu: {fileID: 0}
   doesActivateHere: 1
   doesDeactivateHere: 1
+--- !u!114 &1185853984038467959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399811456669497576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2df5a32db9fd2e4b9e1ac26298db4e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseAnimController: {fileID: 1763678697942226988}
+--- !u!114 &5179869153248660962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399811456669497576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebb7a151ed9fc99418bdf3ca0b316107, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waitTime: 0.5
 --- !u!1 &1438012858965378481
 GameObject:
   m_ObjectHideFlags: 0
@@ -8964,7 +8991,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2562392913670903248}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -12794,7 +12821,7 @@ MonoBehaviour:
   controlsState: {fileID: 0}
   optionsState: {fileID: 0}
   winState: {fileID: 0}
-  deathState: {fileID: 0}
+  deathState: {fileID: 3598202331246411276}
   cheatState: {fileID: 0}
   infographicState: {fileID: 0}
 --- !u!1 &5711908158798053966
@@ -14317,10 +14344,10 @@ RectTransform:
   m_Children:
   - {fileID: 2555563112492359694}
   - {fileID: 6560096437903994032}
+  - {fileID: 7780744466744006960}
   - {fileID: 7207300981955889994}
   - {fileID: 6565537943643401289}
   - {fileID: 1275810246273518682}
-  - {fileID: 7780744466744006960}
   - {fileID: 6766255155712893446}
   - {fileID: 5526602004375820396}
   - {fileID: 4164109821124825422}
@@ -17609,7 +17636,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2562392913670903248}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -19361,7 +19388,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2562392913670903248}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

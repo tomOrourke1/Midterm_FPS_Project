@@ -34,17 +34,20 @@ public class MenuButtonFunctions : MonoBehaviour
     }
     public void Respawn()
     {
+        UIManager.instance.CloseDeathUI();
+        UIManager.instance.uiStateMachine.SetPlay(true);
         UIManager.instance.Unpaused();
         GameManager.instance.RespawnCaller();
+
     }
 
     public void ShowKeybindsMenu()
     {
-        UIManager.instance.ShowKeybinds();
+        //UIManager.instance.ShowKeybinds();
     }
 
     public void ShowCheatMenu()
     {
-        UIManager.instance.RunCheatMenu();
+        //UIManager.instance.RunCheatMenu();
     }
 }
