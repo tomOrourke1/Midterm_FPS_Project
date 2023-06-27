@@ -10,6 +10,7 @@ public class UIBaseMachine : MonoBehaviour
 
     [Header("--- States ---")]
     [SerializeField] UIMenuState playState;
+    [SerializeField] UIWaitingScript waitForPauseToStop;
     [SerializeField] UIMenuState pausedState;
     [SerializeField] UIMenuState radialState;
     [SerializeField] UIMenuState settingState;
@@ -48,11 +49,9 @@ public class UIBaseMachine : MonoBehaviour
 
         // this is where you set up state transitions
         statemachine.AddTransition(playState, pausedState, () => onEscape.GetInput());
-        statemachine.AddTransition(pausedState, playState, () => playBool.GetInput());
+        statemachine.AddTransition(pausedState, waitForPauseToStop, () => onEscape.GetInput());
+        statemachine.AddTransition(waitForPauseToStop, playState, () => waitForPauseToStop.ExitCondition());
 
-
-
-        
     }
 
 
@@ -60,25 +59,30 @@ public class UIBaseMachine : MonoBehaviour
     public void SetPause(bool value)
     {
         pauseBool.SetInput(value);
-        Tick(); //                  <<<< require a tick here so when a value is updated you it check the transitions
+        //Tick(); //                  <<<< require a tick here so when a value is updated you it check the transitions
     }
 
     // set functions for bool values
     public void SetPlay(bool value)
     {
         playBool.SetInput(value);
-        Tick(); //                  <<<< require a tick here so when a value is updated you it check the transitions
+        //Tick(); //                  <<<< require a tick here so when a value is updated you it check the transitions
     }
 
     // set functions for bool values
     public void SetOnEscape(bool value)
     {
         onEscape.SetInput(value);
-        Tick(); //                  <<<< require a tick here so when a value is updated you it check the transitions
+        //Tick(); //                  <<<< require a tick here so when a value is updated you it check the transitions
     }
 
 
 
+
+    private void Update()
+    {
+        Tick();
+    }
 
 
 

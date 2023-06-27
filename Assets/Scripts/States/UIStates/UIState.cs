@@ -16,5 +16,10 @@ public class UIState : MonoBehaviour, IState
     {
     }
 
+    public virtual bool ExitCondition()
+    {
+        return false;
+    }
+
 
 }
