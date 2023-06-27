@@ -4,19 +4,25 @@ using UnityEngine;
 
 public class UIMenuState : UIState
 {
-
+    [Header("Menu Objects")]
     [SerializeField] GameObject UIObject;
     [SerializeField] MenuActivation activateMenu;
 
+    [Header("Enable Menu Here")]
+    [SerializeField] bool doesActivateHere = true;
+    [SerializeField] bool doesDeactivateHere = true;
     public override void OnEnter()
     {
-        UIObject.SetActive(true);
+        if(doesActivateHere)
+            UIObject.SetActive(true);
         activateMenu?.Activate();
     }
 
 
     public override void OnExit()
     {
-        UIObject.SetActive(false);
+        if(doesDeactivateHere)
+            UIObject.SetActive(false);
+        activateMenu?.Deactivate();
     }
 }

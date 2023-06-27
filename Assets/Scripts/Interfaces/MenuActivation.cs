@@ -8,4 +8,5 @@ public abstract class MenuActivation : MonoBehaviour
     /// Needs to be included ~ Tom
     /// </summary>
     public abstract void Activate();
+    public abstract void Deactivate();
 }
