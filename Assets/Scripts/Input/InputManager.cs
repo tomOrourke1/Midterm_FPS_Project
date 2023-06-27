@@ -69,18 +69,20 @@ public class InputManager : MonoBehaviour
 
     private void OnEscape(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        if (UIManager.instance.currentState == MenuState.none)
-        {
-            UIManager.instance.PauseGame();
-        }
-        else if (UIManager.instance.currentState == MenuState.paused)
-        {
-            UIManager.instance.Unpaused();
-        }
-        else if (UIManager.instance.currentState == MenuState.cheats)
-        {
-            UIManager.instance.CloseCheatMenu();
-        }
+        UIManager.instance.uiStateMachine.SetOnEscape(true);
+
+        //if (UIManager.instance.currentState == MenuState.none)
+        //{
+        //    UIManager.instance.PauseGame();
+        //}
+        //else if (UIManager.instance.currentState == MenuState.paused)
+        //{
+        //    UIManager.instance.Unpaused();
+        //}
+        //else if (UIManager.instance.currentState == MenuState.cheats)
+        //{
+        //    UIManager.instance.CloseCheatMenu();
+        //}
     }
 
     private void OnInteract(UnityEngine.InputSystem.InputAction.CallbackContext context)

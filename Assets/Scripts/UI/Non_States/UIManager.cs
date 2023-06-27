@@ -22,6 +22,9 @@ public class UIManager : MonoBehaviour
     public MenuState currentState;
     private FlashDamage flashImageScript;
 
+    [Header("State Machine Reference")]
+    [SerializeField] public UIBaseMachine uiStateMachine;
+
     [Header("Script Reference")]
     [SerializeField] RadialMenu radialScript;
     [SerializeField] PlayerStatsUI statsUIRef;
