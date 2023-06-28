@@ -5,11 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class MenuButtonFunctions : MonoBehaviour
 {
-
-    // Start is called before the first frame update
     public void Resume()
     {
-        UIManager.instance.Unpaused();
+        UIManager.instance.uiStateMachine.SetOnEscape(true);
     }
     public void Restart()
     {

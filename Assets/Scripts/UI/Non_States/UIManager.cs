@@ -52,11 +52,7 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void PauseGame()
     {
-        playerStatsObj.SetActive(false);
-
-        GameManager.instance.TimePause();
-        GameManager.instance.MouseUnlockShow();
-        radialScript.GetReticle().SetActive(false);
+        GameManager.instance.PauseMenuState();
     }
 
     /// <summary>
@@ -64,12 +60,7 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void Unpaused()
     {
-        GameManager.instance.TimeUnpause();
-        GameManager.instance.MouseLockHide();
-
-        playerStatsObj.SetActive(true);
-        radialScript.GetReticle().SetActive(true);
-
+        GameManager.instance.PlayMenuState();
     }
 
     /// <summary>

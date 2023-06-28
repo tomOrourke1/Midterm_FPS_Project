@@ -6,7 +6,7 @@ public class UIMenuState : UIState
 {
     [Header("Menu Objects")]
     [SerializeField] GameObject UIObject;
-    [SerializeField] MenuActivation activateMenu;
+    [SerializeField] List<MenuActivation> activeMenues;
 
     [Header("Enable Menu Here")]
     [SerializeField] bool doesActivateHere = true;
@@ -15,7 +15,11 @@ public class UIMenuState : UIState
     {
         if(doesActivateHere)
             UIObject.SetActive(true);
-        activateMenu?.Activate();
+        foreach(var menu in activeMenues)
+        {
+            if(menu.doesActivate)
+                menu?.Activate();
+        }
     }
 
 
@@ -23,6 +27,10 @@ public class UIMenuState : UIState
     {
         if(doesDeactivateHere)
             UIObject.SetActive(false);
-        activateMenu?.Deactivate();
+        foreach (var menu in activeMenues)
+        {
+            if(menu.doesDeactivate)
+                menu?.Deactivate();
+        }
     }
 }

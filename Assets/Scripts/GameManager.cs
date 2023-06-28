@@ -75,6 +75,24 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Runs the Time Pause and Mouse Unlock Functions.
+    /// </summary>
+    public void PauseMenuState()
+    {
+        TimePause();
+        MouseUnlockShow();
+    }
+
+    /// <summary>
+    /// Runs the Time Unpause and Mouse Lock and Hide Functions.
+    /// </summary>
+    public void PlayMenuState()
+    {
+        TimeUnpause();
+        MouseLockHide();
+    }
+
+    /// <summary>
     /// Sets the mouse to visible and sets the cursors lock state to confined.
     /// </summary>
     public void MouseUnlockShow()

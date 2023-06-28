@@ -5,10 +5,19 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Settings Object", menuName = "Settings")]
 public class SettingsObject : ScriptableObject
 {
-    public float volume;
+    // Audios
+    public float masterVol;
+    public float sfxVol;
+    public float musicVol;
+    
     public float fieldOfView;
-    public float sensitivity;
+    public float mouseSensitivity;
+    public float controllerSensitivty;
     public bool invertY;
+
+    // Graphics
+    public Sprite currentRetical;
+    public bool hitmarkerEnabled;
 
     public bool pyroOn;
     public bool aeroOn;
