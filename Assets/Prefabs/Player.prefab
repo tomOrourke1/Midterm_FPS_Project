@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 78457329}
   - component: {fileID: 78457328}
   - component: {fileID: 78457326}
+  - component: {fileID: 2111078341}
   m_Layer: 0
   m_Name: KinesisHolder
   m_TagString: Untagged
@@ -304,6 +305,70 @@ MonoBehaviour:
           m_StringArgument: LeftHandIdle
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2111078341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 78457325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf4ea2533c7b7564eae6e73d5d33db77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireRate: 0
+  focusCost: 1
+  isCasting: 0
+  windRange: 5
+  windRadius: 5
+  force: 15
+  upwardForce: 10
+  OnAeroStart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2283150852366316829}
+        m_TargetAssemblyTypeName: HandAnimatorScript, Assembly-CSharp
+        m_MethodName: PlayTelePull
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnAeroPush:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2283150852366316829}
+        m_TargetAssemblyTypeName: HandAnimatorScript, Assembly-CSharp
+        m_MethodName: PlayTelePush
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnAeroStopped:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2283150852366316829}
+        m_TargetAssemblyTypeName: HandAnimatorScript, Assembly-CSharp
+        m_MethodName: StopAll
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &152961157
 GameObject:
   m_ObjectHideFlags: 0
@@ -499,7 +564,7 @@ MonoBehaviour:
   controller: {fileID: 642081505}
   mainCamera: {fileID: 847320448619245781}
   playerSpeed: 6
-  gravityValue: 20
+  gravityValue: 20.3
   jumpHeight: 8
   jumpMax: 2
   maxDashes: 2
@@ -743,7 +808,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 311a6755a0c43a040ba48205c0e39745, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aero: {fileID: 0}
+  aero: {fileID: 2111078341}
   pyro: {fileID: 78457330}
   ice: {fileID: 78457329}
   lightning: {fileID: 78457328}
