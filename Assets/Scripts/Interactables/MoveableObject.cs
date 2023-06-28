@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class MoveableObject : MonoBehaviour, ITelekinesis, IEntity, IApplyVelocity
+public class MoveableObject : MonoBehaviour, /*ITelekinesis,*/ IEntity, IApplyVelocity
 {
 
     [SerializeField] Rigidbody rb;
     [SerializeField] int damage;
-    bool thrown;
-   
 
+    // Volitile represents whether or not the object deals damage when touched
+    bool volitile = false;
+    bool initialEnable;
 
     public Vector3 GetPosition()
     {
@@ -25,7 +26,7 @@ public class MoveableObject : MonoBehaviour, ITelekinesis, IEntity, IApplyVeloci
     public void TakeVelocity(Vector3 velocity)
     {
         rb.velocity = velocity;
-        thrown = true;
+        //volitile = true;
     }
 
     private void OnValidate()
@@ -34,11 +35,20 @@ public class MoveableObject : MonoBehaviour, ITelekinesis, IEntity, IApplyVeloci
             rb = GetComponent<Rigidbody>();
     }
 
-
+    //private void Update()
+    //{
+    //    if (volitile)
+    //    {
+    //        if (rb.velocity.magnitude <= 0)
+    //        {
+    //            //volitile = false;
+    //        }
+    //    }
+    //}
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(thrown && !collision.collider.CompareTag("Player"))
+        if(!collision.collider.CompareTag("Player") && volitile)
         {
             var iDamage = collision.collider.GetComponent<IDamagable>();
             if(iDamage != null)
@@ -46,10 +56,9 @@ public class MoveableObject : MonoBehaviour, ITelekinesis, IEntity, IApplyVeloci
                 // Explode the thrown barrels
                 rb.gameObject.GetComponent<ExplodingBarrel>()?.contactExplosion();
                 iDamage.TakeDamage(damage);
+                volitile = false;
             }
         }
-
-        thrown = false;
     }
 
     public Vector3 GetVelocity()
@@ -64,5 +73,16 @@ public class MoveableObject : MonoBehaviour, ITelekinesis, IEntity, IApplyVeloci
     public void ApplyVelocity(Vector3 velocity) 
     {
         rb.AddForce(velocity, ForceMode.Impulse);
+        volitile = true;
+    }
+
+    public void SetVolitile(bool newVolitile)
+    {
+        volitile = newVolitile;
+    }
+
+    public bool GetVolitile()
+    {
+        return volitile;
     }
 }
