@@ -1,5 +1,54 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &95782003
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 95782005}
+  - component: {fileID: 95782004}
+  m_Layer: 0
+  m_Name: 'Pushed '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &95782005
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 95782003}
+  m_LocalRotation: {x: -0, y: -0.10046587, z: -0, w: 0.9949405}
+  m_LocalPosition: {x: 0.1245656, y: -5.99, z: -17.496212}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2021841618405641387}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &95782004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 95782003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 442393c235ccb2645b3927401518a46b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 0}
+  moveSpeed: 0
+  acceleration: 0
+  rotSpeed: 0
+  stoppingDist: 0
 --- !u!1 &944593565
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,6 +227,7 @@ GameObject:
   - component: {fileID: 2021841617035719717}
   - component: {fileID: 2021841617035719716}
   - component: {fileID: 2021841617035719719}
+  - component: {fileID: 304417590}
   m_Layer: 0
   m_Name: Flanker
   m_TagString: Enemy
@@ -223,12 +273,14 @@ MonoBehaviour:
   flankState: {fileID: 2021841618111317992}
   toFlankState: {fileID: 944593567}
   shootState: {fileID: 2021841618672403880}
+  pushedState: {fileID: 95782004}
   playerFaceSpeed: 10
   distToChase: 20
   distToFlank: 7.62
   distToIdle: 21
   agent: {fileID: 2021841617035719719}
   shootPos: {fileID: 2021841616974148823}
+  rb: {fileID: 304417590}
   timeBetweenShots: 0.33
 --- !u!136 &2021841617035719717
 CapsuleCollider:
@@ -279,6 +331,22 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!54 &304417590
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2021841617035719718}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1 &2021841617693867803
 GameObject:
   m_ObjectHideFlags: 0
@@ -445,6 +513,7 @@ Transform:
   - {fileID: 2021841618111317995}
   - {fileID: 2021841618672403881}
   - {fileID: 944593566}
+  - {fileID: 95782005}
   m_Father: {fileID: 2021841617035719715}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -4,21 +4,27 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UIElements;
 
-public class Sniper : EnemyBase, IDamagable, IEntity
+public class Sniper : EnemyBase, IDamagable, IEntity, IApplyVelocity
 {
     [Header("-----Sniper States-----")]
     [SerializeField] EnemyIdleState idleState;
     [SerializeField] EnemySniperShootState enemyShootState;
     [SerializeField] EnemyMoveAwayState runAway;
+    [SerializeField] EnemyPushedState pushedState;
 
     [Header("-----Sniper Stats------")]
     [SerializeField] float betweenShotTime;
     [SerializeField] float runDistance;
     [SerializeField] float rotSpeed;
 
+    [SerializeField] NavMeshAgent agent;
+    [SerializeField] Rigidbody rb;
     // values for the timer
     float timeBetweenShots;
 
+
+    bool wasPushed;
+    bool hasLanded;
 
     void Start()
     {
@@ -36,6 +42,10 @@ public class Sniper : EnemyBase, IDamagable, IEntity
         stateMachine.AddTransition(idleState, runAway, OnRunAway);
         stateMachine.AddTransition(runAway, idleState, OnStopRunning);
 
+        stateMachine.AddAnyTransition(pushedState, OnPushed);
+        stateMachine.AddTransition(pushedState, idleState, OnPushLanding);
+
+        rb.isKinematic = false;
 
     }
 
@@ -71,9 +81,28 @@ public class Sniper : EnemyBase, IDamagable, IEntity
         return toAttack;
     }
 
+    bool OnPushLanding()
+    {
+        var temp = hasLanded;
+        hasLanded = false;
+
+        if (temp)
+        {
+            agent.enabled = true;
+            rb.isKinematic = true;
+            wasPushed = false;
+        }
+
+        return temp;
+    }
+    bool OnPushed()
+    {
+        var temp = wasPushed;
+        wasPushed = false;
+        return temp;
+    }
 
 
-  
     void Update()
     {
         if (enemyEnabled)
@@ -113,7 +142,16 @@ public class Sniper : EnemyBase, IDamagable, IEntity
         StartCoroutine(FlashDamage());
 
     }
+    public void ApplyVelocity(Vector3 velocity)
+    {
+        wasPushed = true;
+        agent.enabled = false;
+        rb.isKinematic = false;
 
+        rb.AddForce(velocity, ForceMode.Impulse);
+
+
+    }
 
     IEnumerator FlashDamage()
     {
@@ -148,4 +186,19 @@ public class Sniper : EnemyBase, IDamagable, IEntity
     {
         Destroy(gameObject);
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+
+        foreach (var cont in collision.contacts)
+        {
+            var norm = cont.normal;
+            if (Vector3.Dot(norm, Vector3.up) > 0.8f)
+            {
+                hasLanded = true;
+                return;
+            }
+        }
+
+    }
+
 }

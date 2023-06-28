@@ -32,6 +32,7 @@ public class WindKinesis : KinesisBase
         if (Input.GetKeyUp(KeyCode.Mouse1))
         {
             OnAeroPush?.Invoke();
+               GameManager.instance.GetPlayerResources().SpendFocus(focusCost);
             forceDirection = Camera.main.transform.forward;
             Vector3 velocity = forceDirection * force + transform.up * upwardForce;
             RaycastHit hit;

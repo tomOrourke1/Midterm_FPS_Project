@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class BasicEnemy : EnemyBase, IDamagable, IEntity
+public class BasicEnemy : EnemyBase, IDamagable, IEntity, IApplyVelocity
 {
     [Header("---- States ----")]
     [SerializeField] EnemyIdleState idleState;
@@ -10,6 +11,7 @@ public class BasicEnemy : EnemyBase, IDamagable, IEntity
     [SerializeField] EnemyMoveAwayState moveAway;
     [SerializeField] EnemyStrafeState strafeState;
     [SerializeField] EnemyShootState shootState;
+    [SerializeField] EnemyPushedState pushedState;
 
     [Header("--- other values ---")]
     [SerializeField] float attackRange;
@@ -17,6 +19,11 @@ public class BasicEnemy : EnemyBase, IDamagable, IEntity
 
     [SerializeField] float strafeTime;
      float timeInStrafe;
+    [SerializeField] NavMeshAgent agent;
+    [SerializeField] Rigidbody rb;
+
+    bool wasPushed;
+    bool hasLanded;
 
 
     private void Start()
@@ -39,6 +46,10 @@ public class BasicEnemy : EnemyBase, IDamagable, IEntity
         stateMachine.AddTransition(strafeState, shootState, OnShoot);
         stateMachine.AddTransition(shootState, strafeState, shootState.ExitCondition);
 
+        stateMachine.AddAnyTransition(pushedState, OnPushed);
+        stateMachine.AddTransition(pushedState, idleState, OnPushLanding);
+
+        rb.isKinematic = false;
 
         enemyColor = enemyMeshRenderer.material.color;
     }
@@ -84,7 +95,26 @@ public class BasicEnemy : EnemyBase, IDamagable, IEntity
     }
 
 
+    bool OnPushLanding()
+    {
+        var temp = hasLanded;
+        hasLanded = false;
 
+        if (temp)
+        {
+            agent.enabled = true;
+            rb.isKinematic = true;
+            wasPushed = false;
+        }
+
+        return temp;
+    }
+    bool OnPushed()
+    {
+        var temp = wasPushed;
+        wasPushed = false;
+        return temp;
+    }
 
     private void Update()
     {
@@ -116,6 +146,16 @@ public class BasicEnemy : EnemyBase, IDamagable, IEntity
 
         StartCoroutine(FlashDamage());        
     }
+    public void ApplyVelocity(Vector3 velocity)
+    {
+        wasPushed = true;
+        agent.enabled = false;
+        rb.isKinematic = false;
+
+        rb.AddForce(velocity, ForceMode.Impulse);
+
+
+    }
 
     IEnumerator FlashDamage()
     {
@@ -144,5 +184,19 @@ public class BasicEnemy : EnemyBase, IDamagable, IEntity
     public void Respawn()
     {
         Destroy(gameObject); ;
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+
+        foreach (var cont in collision.contacts)
+        {
+            var norm = cont.normal;
+            if (Vector3.Dot(norm, Vector3.up) > 0.8f)
+            {
+                hasLanded = true;
+                return;
+            }
+        }
+
     }
 }

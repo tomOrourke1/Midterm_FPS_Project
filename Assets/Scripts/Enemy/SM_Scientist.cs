@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class SM_Scientist : EnemyBase, IDamagable, IEntity
+public class SM_Scientist : EnemyBase, IDamagable, IEntity, IApplyVelocity 
 {
     [Header("----- States -----")]
     [SerializeField] EnemyIdleState idleState; // creates Idle state
     [SerializeField] EnemyMoveAwayState runState; // creates Move Away state
     [SerializeField] EnemySpottedPlayer scientistSpotPlayer;
+    [SerializeField] EnemyPushedState pushedState;
 
     [Header("----- Other Vars -----")]
     [SerializeField] float idleRange;
@@ -16,6 +18,11 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity
 
     [Header("Keys")]
     [SerializeField] GameObject key;
+
+    bool wasPushed;
+    bool hasLanded;
+    [SerializeField] Rigidbody rb;
+    [SerializeField] NavMeshAgent agent;
 
     private void Start()
     {
@@ -29,6 +36,10 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity
         stateMachine.AddTransition(idleState, runState, OnRun);
         stateMachine.AddTransition(runState, idleState, OnIdle);
 
+        stateMachine.AddAnyTransition(pushedState, OnPushed);
+        stateMachine.AddTransition(pushedState, idleState, OnPushLanding);
+
+        rb.isKinematic = false;
 
 
     }
@@ -59,7 +70,26 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity
 
     }
 
+    bool OnPushLanding()
+    {
+        var temp = hasLanded;
+        hasLanded = false;
 
+        if (temp)
+        {
+            agent.enabled = true;
+            rb.isKinematic = true;
+            wasPushed = false;
+        }
+
+        return temp;
+    }
+    bool OnPushed()
+    {
+        var temp = wasPushed;
+        wasPushed = false;
+        return temp;
+    }
 
 
     private void OnEnable()
@@ -76,7 +106,16 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity
         Instantiate(key, transform.position, Quaternion.identity);
         Destroy(gameObject); // destroy enemy
     }
+    public void ApplyVelocity(Vector3 velocity)
+    {
+        wasPushed = true;
+        agent.enabled = false;
+        rb.isKinematic = false;
 
+        rb.AddForce(velocity, ForceMode.Impulse);
+
+
+    }
     public void TakeDamage(float dmg)
     {
         health.Decrease(dmg); // decrease the enemies hp with the weapon's damage
@@ -118,5 +157,19 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity
     public void Respawn()
     {
         Destroy(gameObject);
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+
+        foreach (var cont in collision.contacts)
+        {
+            var norm = cont.normal;
+            if (Vector3.Dot(norm, Vector3.up) > 0.8f)
+            {
+                hasLanded = true;
+                return;
+            }
+        }
+
     }
 }
