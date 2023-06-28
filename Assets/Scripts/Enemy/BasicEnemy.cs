@@ -148,6 +148,7 @@ public class BasicEnemy : EnemyBase, IDamagable, IEntity, IApplyVelocity
     }
     public void ApplyVelocity(Vector3 velocity)
     {
+
         wasPushed = true;
         agent.enabled = false;
         rb.isKinematic = false;
@@ -187,7 +188,22 @@ public class BasicEnemy : EnemyBase, IDamagable, IEntity, IApplyVelocity
     }
     private void OnCollisionEnter(Collision collision)
     {
+        if (stateMachine.CurrentState is EnemyPushedState)
+        {
+            CheckHasLanded(collision);
+        }
+    }
 
+    private void OnCollisionStay(Collision collision)
+    {
+        if (stateMachine.CurrentState is EnemyPushedState)
+        {
+            CheckHasLanded(collision);   
+        }
+    }
+
+    private void CheckHasLanded(Collision collision)
+    {
         foreach (var cont in collision.contacts)
         {
             var norm = cont.normal;
@@ -197,6 +213,6 @@ public class BasicEnemy : EnemyBase, IDamagable, IEntity, IApplyVelocity
                 return;
             }
         }
-
     }
+
 }
