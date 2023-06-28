@@ -6,7 +6,8 @@ using UnityEngine;
 
 public class Disrupter : EnemyBase, IDamagable, IEntity
 {
-    
+    public KinesisSelect select;
+
     private void Start()
     {
         health.FillToMax();
@@ -27,11 +28,21 @@ public class Disrupter : EnemyBase, IDamagable, IEntity
         enemyMeshRenderer.material.color = enemyColor;
     }
 
+    private void TurnOffKinesis(KinesisSelect _k)
+    {
+        switch (_k)
+        {
+            case KinesisSelect.cryokinesis: GameManager.instance.GetEnabledList().CryoSetActive(false); break;
+            case KinesisSelect.aerokinesis: GameManager.instance.GetEnabledList().AeroSetActive(false); break;
+            case KinesisSelect.electrokinesis: GameManager.instance.GetEnabledList().ElectroSetActive(false); break;
+            case KinesisSelect.pyrokinesis: GameManager.instance.GetEnabledList().PyroSetActive(false); break;
+        }
+           
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        IceKinesis ice = new IceKinesis();
-        LightningKinesis light = new LightningKinesis();
-        pyroBlast fire = new pyroBlast();
+       
 
         if (other.CompareTag("Player"))
         {
@@ -39,9 +50,7 @@ public class Disrupter : EnemyBase, IDamagable, IEntity
 
             if (enemyEnabled)
             {
-                ice.enabled = false;
-                light.enabled = false;
-                fire.enabled = false;
+                TurnOffKinesis(select);
             }
         }
     }
