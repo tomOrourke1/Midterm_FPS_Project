@@ -217,14 +217,6 @@ public class UIManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Runs the function to update which kinesis is being held.
-    /// </summary>
-    public void UpdateKinesis()
-    {
-        radialScript.SelectKinesis();
-    }
-
-    /// <summary>
     /// Returns the radial menu script.
     /// </summary>
     /// <returns></returns>
