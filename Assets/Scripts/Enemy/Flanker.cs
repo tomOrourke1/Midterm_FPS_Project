@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Flanker : EnemyBase, IDamagable, IEntity
+public class Flanker : EnemyBase, IDamagable, IEntity, IApplyVelocity
 {
     [Header("----- Flanker States -----")]
     [SerializeField] EnemyIdleState idleState;
     [SerializeField] EnemyFlankState flankState;
     [SerializeField] EnemyToFlankState toFlankState;
     [SerializeField] EnemyShootState shootState;
-
+    [SerializeField] EnemyPushedState pushedState;
 
 
     [Header("----- Flanker Stats -----")]
@@ -22,11 +22,15 @@ public class Flanker : EnemyBase, IDamagable, IEntity
     [Header("--- componenets ---")]
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Transform shootPos;
+    [SerializeField] Rigidbody rb;
 
 
     [Header("- timers -")]
     [SerializeField] float timeBetweenShots;
 
+    
+    bool wasPushed;
+    bool hasLanded;
     float time;
 
     void Start()
@@ -57,6 +61,11 @@ public class Flanker : EnemyBase, IDamagable, IEntity
 
 
         enemyColor = enemyMeshRenderer.material.color;
+
+        stateMachine.AddAnyTransition(pushedState, OnPushed);
+        stateMachine.AddTransition(pushedState, idleState, OnPushLanding);
+
+        rb.isKinematic = false;
     }
 
     bool OnToFlank()
@@ -100,7 +109,26 @@ public class Flanker : EnemyBase, IDamagable, IEntity
         return GetDistToPlayer() >= distToIdle;
     }
 
+    bool OnPushLanding()
+    {
+        var temp = hasLanded;
+        hasLanded = false;
 
+        if (temp)
+        {
+            agent.enabled = true;
+            rb.isKinematic = true;
+            wasPushed = false;
+        }
+
+        return temp;
+    }
+    bool OnPushed()
+    {
+        var temp = wasPushed;
+        wasPushed = false;
+        return temp;
+    }
 
     void Update()
     {
@@ -138,6 +166,16 @@ public class Flanker : EnemyBase, IDamagable, IEntity
         SetFacePlayer();
         StartCoroutine(FlashDamage());
     }
+    public void ApplyVelocity(Vector3 velocity)
+    {
+        wasPushed = true;
+        agent.enabled = false;
+        rb.isKinematic = false;
+
+        rb.AddForce(velocity, ForceMode.Impulse);
+
+
+    }
 
     IEnumerator FlashDamage()
     {
@@ -171,5 +209,19 @@ public class Flanker : EnemyBase, IDamagable, IEntity
     public void Respawn()
     {
         Destroy(gameObject);
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+
+        foreach (var cont in collision.contacts)
+        {
+            var norm = cont.normal;
+            if (Vector3.Dot(norm, Vector3.up) > 0.8f)
+            {
+                hasLanded = true;
+                return;
+            }
+        }
+
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorScript : MonoBehaviour, IDoorActivator, IEnvironment
+public class DoorScript : MonoBehaviour, IEnvironment
 {
     [SerializeField] Transform doorPivot;
 
@@ -44,14 +44,11 @@ public class DoorScript : MonoBehaviour, IDoorActivator, IEnvironment
         doorValue = isOpen ? minDoorValue : 1;
         initialDoorValue = doorValue;
 
-        
-
         // Saves the intial values of the door for reset
         initialDoorOpen = isOpen;
         initialLock = locked;
 
         d = initialDoorOpen ? doorState.open : doorState.closed;
-
 
         // Added by Kevin for changing door material color depending on lock status
         renderer.material = locked ? doorDisabled : doorEnabled;
@@ -59,7 +56,7 @@ public class DoorScript : MonoBehaviour, IDoorActivator, IEnvironment
         LockClose = false;
     }
 
-    public void Activate()
+    private void Activate()
     {
         if(!locked)
         {
@@ -129,7 +126,7 @@ public class DoorScript : MonoBehaviour, IDoorActivator, IEnvironment
         }
     }
 
-    public void openDoor()
+    public void OpenDoor()
     {
         if (!isOpen || d == doorState.closing)
         {
@@ -160,8 +157,7 @@ public class DoorScript : MonoBehaviour, IDoorActivator, IEnvironment
 
     }
 
-    // This is a function tied to IEnvironment meant to be used to reset a room
-    public void ResetObject()
+    public void StartObject()
     {
         if (isOpen != initialDoorOpen)
         {
@@ -172,11 +168,6 @@ public class DoorScript : MonoBehaviour, IDoorActivator, IEnvironment
 
         // Added to reset the original color back
         renderer.material = locked ? doorDisabled : doorEnabled;
-    }
-
-    public void StartObject()
-    {
-        // Nothing needs to happen here
     }
 
     public void StopObject()

@@ -35,14 +35,14 @@ public class TelekinesisController : KinesisBase
     bool isHoldingObject;
     float timePressed;
 
-    ITelekinesis stachedObject;
+    //ITelekinesis stachedObject;
+    MoveableObject stachedObject;
 
     Vector3 originalPos;
 
-
     void Start()
     {
-        
+
     }
 
 
@@ -74,7 +74,8 @@ public class TelekinesisController : KinesisBase
 
             if (doesHit)
             {
-                stachedObject = hit.collider.GetComponent<ITelekinesis>();
+                // Changed this from an interface to a script
+                stachedObject = hit.collider.GetComponent<MoveableObject>();
                 timePressed = 0;
                 if(stachedObject != null && GameManager.instance.GetPlayerResources().SpendFocus(focusCost))
                 {
@@ -83,6 +84,8 @@ public class TelekinesisController : KinesisBase
                     OnTeleStart?.Invoke();
                     originalPos = stachedObject.GetPosition();
                     stachedObject.GetRigidbody().useGravity = false;
+                    //Debug.Log("Here");
+                    stachedObject.SetVolitile(true);
                 }
                 else
                 {
@@ -97,6 +100,15 @@ public class TelekinesisController : KinesisBase
     {
         if (stachedObject != null && !IsObjectNull())
         {
+            float distToPos = Vector3.Distance(stachedObject.transform.position, desiredPos.position);
+            Debug.Log(stachedObject.GetVolitile());
+            if (distToPos <= 1)
+            {
+                stachedObject.SetVolitile(false); 
+                Debug.Log("Check");
+            }
+
+
             var pos = stachedObject.GetPosition();
 
             var dir = desiredPos.position - pos;
@@ -150,6 +162,10 @@ public class TelekinesisController : KinesisBase
     {
         if ((Input.GetKeyUp(KeyCode.Mouse1) || !Input.GetKey(KeyCode.Mouse1)) && stachedObject != null && !IsObjectNull())
         {
+            // Causes the object to become volitile when throw begins
+            stachedObject.SetVolitile(true);
+
+
             isCasting = false;
             OnTelePush?.Invoke();
 

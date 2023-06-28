@@ -82,11 +82,8 @@ public class Player : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        if (UIManager.instance.currentState == MenuState.none)
-        {
-            Movement();
-        }
+    {        
+        Movement();
     }
 
     void Movement()

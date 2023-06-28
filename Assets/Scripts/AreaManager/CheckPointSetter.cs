@@ -15,6 +15,7 @@ public class CheckPointSetter : MonoBehaviour
             if (CheckPointPos != GameManager.instance.GetPlayerSpawnPOS() || GameManager.instance.GetPlayerSpawnPOS() == null)
             {
                 SetCheckPoint();
+                RemoveEnemySpawns();
                 UIManager.instance.SaveIcon();
             }
         }
@@ -24,5 +25,18 @@ public class CheckPointSetter : MonoBehaviour
     void SetCheckPoint() 
     {
         GameManager.instance.SetPlayerSpawnPos(CheckPointPos); 
+    }
+
+    private void RemoveEnemySpawns()
+    {
+        List<EntitySpawners> spawners = GameManager.instance.GetCurrentRoomManager().GetEntitySpawners();
+
+        for (int i = 0; i < spawners.Count; i++)
+        {
+            if (spawners[i].IsMyEnemyDead())
+            {
+                spawners[i].DisableSpawner();
+            }
+        }
     }
 }

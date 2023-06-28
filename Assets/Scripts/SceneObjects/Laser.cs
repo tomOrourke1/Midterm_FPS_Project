@@ -11,17 +11,19 @@ public class Laser : MonoBehaviour, IEnvironment
     [Header("----- Laser Stats -----")]
     [SerializeField] float maxDistance;
     [SerializeField] float Damage;
-    //[SerializeField] float HitRate;
     [SerializeField] bool LaserOn;
     [SerializeField] float initialDelay;
-
 
     [Header("----- Timed Lasers -----")]
     [SerializeField] bool TimedLasers;
     [SerializeField] float LaserUpTime;
     [SerializeField] float LaserDownTime;
 
-    LineRenderer laser;
+    [Header("FX")]
+    [SerializeField] LineRenderer laser;
+    [SerializeField] ParticleSystem impactFX;
+    [SerializeField] Light impactLight;
+
     float startTime;
 
     float initDelayAmount;
@@ -66,9 +68,7 @@ public class Laser : MonoBehaviour, IEnvironment
         }
         else
         {
-            //laser.enabled = false;
             initialDelay -= Time.deltaTime;
-
         }
     }
 
@@ -121,22 +121,31 @@ public class Laser : MonoBehaviour, IEnvironment
 
         laser.SetPosition(0, transform.position);
         laser.SetPosition(1, endPoint);
+
+        // FX Playing
+        Vector3 dir = transform.position - endPoint;
+        impactFX.Play();
+        impactFX.transform.position = endPoint;
+        impactFX.transform.rotation = Quaternion.LookRotation(dir);
     }
 
     void UpdateLaserCast(Vector3 hitPoint = new Vector3())
     {
         laser.SetPosition(0, transform.position);
         laser.SetPosition(1, hitPoint);
+
+        Vector3 dir = transform.position - hitPoint;
+        impactFX.Play();
+        impactFX.transform.position = hitPoint;
+        impactFX.transform.rotation = Quaternion.LookRotation(dir);
     }
 
     public bool GetLaserEnabled() { return LaserOn; }
 
     public void SetLaserEnabled(bool enabled) {  LaserOn = enabled; }
 
-    // This is a function tied to IEnvironment meant to be used to reset a room
-    public void ResetObject()
+    public void StartObject()
     {
-        // gameObject.SetActive(true);
         this.enabled = true;
         initialDelay = initDelayAmount;
         LaserOn = initialLaserOn;
@@ -147,26 +156,9 @@ public class Laser : MonoBehaviour, IEnvironment
         DefaultLaserCast();
     }
 
-    public void StartObject()
-    {
-        //Debug.Log("Laser Start");
-       // gameObject.SetActive(true);
-        this.enabled = true;
-        laser = GetComponent<LineRenderer>();
-        laser.enabled = false;
-        started = false;
-
-        DefaultLaserCast();
-        
-        //if (gameObject != null)
-        //{
-        //    Debug.Log("Laser Enabled: " + gameObject.activeSelf);
-        //}
-    }
-
     public void StopObject()
     {
-        //gameObject.SetActive(false);
+        
         this.enabled = false;
     }
 }

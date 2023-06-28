@@ -15,6 +15,7 @@ public class StateMachine
 
     IState currentState;
 
+    public IState CurrentState => currentState;
 
     public void AddTransition(IState from, IState to, Func<bool> condition)
     {

@@ -127,7 +127,6 @@ public class RadialMenu : MonoBehaviour
      
     private void Start()
     {
-        selector.gameObject.SetActive(false);
         sliceAng = 360 / _slices.Length;
         offsetAngle = sliceAng * 3;
         UpdateSlices();
@@ -210,9 +209,7 @@ public class RadialMenu : MonoBehaviour
 
     /// <summary>
     /// Provides functionality to run functions to set which gun is in use.
-    /// Pass in the selected slice and it will set the current gun to that type of kinesis.
     /// </summary>
-    /// <param name="sliceIndx">The indexed slice to use.</param>
     public void SelectKinesis()
     {
         UIManager.instance.GetPlayerStats().SetKinesisIcon(_slices[confirmedKinesis].GetIcon());

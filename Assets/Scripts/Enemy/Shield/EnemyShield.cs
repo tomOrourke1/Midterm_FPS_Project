@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class EnemyShield : EnemyBase, IEntity, IDamagable
+public class EnemyShield : EnemyBase, IEntity, IDamagable, IApplyVelocity
 {
     [Header("----- States -----")]
     [SerializeField] Shield_Idle shieldIdle;
     [SerializeField] Shield_ToPosition shieldMoveToPosition;
     [SerializeField] Shield_HoldPosition shieldHoldPosition;
     [SerializeField] Shield_TooClose shieldPunch;
+    [SerializeField] EnemyPushedState pushedState;
 
     [Header("----- Stats -----")]
     [SerializeField] Transform Home;
@@ -18,10 +21,12 @@ public class EnemyShield : EnemyBase, IEntity, IDamagable
     [SerializeField] float ShieldingDistance_RangeMax;
     [SerializeField] float Far_RangeMax;
 
-
+    [SerializeField] NavMeshAgent agent;
+    [SerializeField] Rigidbody rb;
     // Might need a search function for when line of sight is broken
 
-
+    bool wasPushed;
+    bool hasLanded;
     private void Start()
     {
         health.FillToMax();
@@ -49,6 +54,12 @@ public class EnemyShield : EnemyBase, IEntity, IDamagable
         stateMachine.AddTransition(shieldPunch, shieldHoldPosition, shieldingDistance);
         stateMachine.AddTransition(shieldPunch, shieldMoveToPosition, Far);
         stateMachine.AddTransition(shieldPunch, shieldIdle, outOfRange);
+
+        //When hit with AeroKinesis
+        stateMachine.AddAnyTransition(pushedState, OnPushed);
+        stateMachine.AddTransition(pushedState, shieldIdle, OnPushLanding);
+
+        rb.isKinematic = false;
 
         enemyColor = enemyMeshRenderer.material.color;
     }
@@ -111,7 +122,26 @@ public class EnemyShield : EnemyBase, IEntity, IDamagable
 
         return true;
     }
+    bool OnPushLanding()
+    {
+        var temp = hasLanded;
+        hasLanded = false;
 
+        if (temp)
+        {
+            agent.enabled = true;
+            rb.isKinematic = true;
+            wasPushed = false;
+        }
+
+        return temp;
+    }
+    bool OnPushed()
+    {
+        var temp = wasPushed;
+        wasPushed = false;
+        return temp;
+    }
     private bool outOfRange()
     {
         // After everything else is implemented have the shield enemy return home
@@ -156,9 +186,32 @@ public class EnemyShield : EnemyBase, IEntity, IDamagable
 
         StartCoroutine(FlashDamage());
     }
+    public void ApplyVelocity(Vector3 velocity)
+    {
+        wasPushed = true;
+        agent.enabled = false;
+        rb.isKinematic = false;
 
+        rb.AddForce(velocity/2, ForceMode.Impulse);
+
+
+    }
     public void Respawn()
     {
+
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+
+        foreach (var cont in collision.contacts)
+        {
+            var norm = cont.normal;
+            if (Vector3.Dot(norm, Vector3.up) > 0.8f)
+            {
+                hasLanded = true;
+                return;
+            }
+        }
 
     }
 }

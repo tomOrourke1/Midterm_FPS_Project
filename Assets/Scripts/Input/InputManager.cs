@@ -8,9 +8,8 @@ public class InputManager : MonoBehaviour
 {
     // instance
     public static InputManager Instance;
-
+    private bool radialShowing;
     GameInput input;
-    bool isRadialShowing;
 
     // properties
     public GameInput Input => input;
@@ -31,8 +30,6 @@ public class InputManager : MonoBehaviour
         input.Player.OpenRadialWheel.canceled += OnRadClose;
         input.Player.Interact.performed += OnInteract;
 
-
-        isRadialShowing = false;
     }
 
     private void OnEnable()
@@ -50,55 +47,35 @@ public class InputManager : MonoBehaviour
 
     private void OnRadShow(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        if (UIManager.instance.currentState == MenuState.none && !GameManager.instance.AllKinesisDisabled())
-        {
-            UIManager.instance.ShowRadialMenu();
-            isRadialShowing = true;
-        }
+        UIManager.instance.uiStateMachine.SetRadialAsync(true);
+        radialShowing = true;
     }
 
     private void OnRadClose(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        if (UIManager.instance.currentState == MenuState.radial)
-        {
-            UIManager.instance.HideRadialMenu();
-            UIManager.instance.UpdateKinesis();
-            isRadialShowing = false;
-        }
+        UIManager.instance.uiStateMachine.SetPlay(true);
+        radialShowing = false;
     }
 
     private void OnEscape(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        if (UIManager.instance.currentState == MenuState.none)
-        {
-            UIManager.instance.PauseGame();
-        }
-        else if (UIManager.instance.currentState == MenuState.paused)
-        {
-            UIManager.instance.Unpaused();
-        }
-        else if (UIManager.instance.currentState == MenuState.cheats)
-        {
-            UIManager.instance.CloseCheatMenu();
-        }
+        UIManager.instance.uiStateMachine.SetOnEscape(true);
     }
 
     private void OnInteract(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        if (UIManager.instance.currentState == MenuState.infographic)
-        {
-            UIManager.instance.CloseInfoUI();
-        }
+        UIManager.instance.uiStateMachine.SetPlay(true);
+        //if (UIManager.instance.currentState == MenuState.infographic)
+        //{
+        //    UIManager.instance.CloseInfoUI();
+        //}
     }
 
     private void Update()
     {
-        if (UIManager.instance.currentState == MenuState.radial && isRadialShowing)
+        if (!GameManager.instance.AllKinesisDisabled() && radialShowing)
         {
             UIManager.instance.UpdateRadialWheel();
         }
     }
-
-
-
 }

@@ -4,23 +4,13 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum MenuState
-{
-    none,
-    radial,
-    paused,
-    death,
-    keybinds,
-    settings,
-    infographic,
-    cheats
-}
-
 public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
-    public MenuState currentState;
     private FlashDamage flashImageScript;
+
+    [Header("State Machine Reference")]
+    [SerializeField] public UIBaseMachine uiStateMachine;
 
     [Header("Script Reference")]
     [SerializeField] RadialMenu radialScript;
@@ -29,23 +19,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] KeybindsMenu keybinds;
     [SerializeField] LoadingIcon loadingIconScript;
 
-    [Header("Menu States")]
-    [SerializeField] GameObject activeMenu;
-    [SerializeField] GameObject pauseMenu;
-    [SerializeField] GameObject winMenu;
-    [SerializeField] GameObject loseMenu;
-    [SerializeField] GameObject settingsMenu;
-    [SerializeField] GameObject keybindMenu;
-    [SerializeField] GameObject keyMenu;
-    [SerializeField] GameObject radialMenu;
-    [SerializeField] GameObject cheatMenu;
-
     [Header("Stats UI")]
     [SerializeField] GameObject playerStatsObj;
 
     [Header("Animator Components")]
-    [SerializeField] Animator pauseAnimController;
-    [SerializeField] Animator winAnimController;
     [SerializeField] Animator loseAnimController;
 
     [Header("Infographics")]
@@ -75,17 +52,7 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void PauseGame()
     {
-        currentState = MenuState.paused;
-        activeMenu = pauseMenu;
-
-        activeMenu.SetActive(true);
-        playerStatsObj.SetActive(false);
-        keyMenu.SetActive(false);
-
-        GameManager.instance.TimePause();
-        GameManager.instance.MouseUnlockShow();
-        radialScript.GetReticle().SetActive(false);
-        pauseAnimController.SetBool("ExitPause", false);
+        GameManager.instance.PauseMenuState();
     }
 
     /// <summary>
@@ -93,23 +60,7 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void Unpaused()
     {
-        if (currentState == MenuState.paused)
-        {
-            pauseAnimController.SetBool("ExitPause", true);
-        }
-        else if (currentState == MenuState.death)
-        {
-            loseAnimController.SetTrigger("ExitLose");
-            DisableMenus();
-        }
-        GameManager.instance.TimeUnpause();
-        GameManager.instance.MouseLockHide();
-
-        playerStatsObj.SetActive(true);
-        radialScript.GetReticle().SetActive(true);
-        keyMenu.SetActive(true);
-
-        currentState = MenuState.none;
+        GameManager.instance.PlayMenuState();
     }
 
     /// <summary>
@@ -117,7 +68,6 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void ShowRadialMenu()
     {
-        currentState = MenuState.radial;
         Cursor.lockState = CursorLockMode.Confined;
         GameManager.instance.TimePause();
         TurnOffCameraScript();
@@ -133,7 +83,6 @@ public class UIManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         GameManager.instance.TimeUnpause();
         TurnOnCameraScript();
-        currentState = MenuState.none;
     }
 
     /// <summary>
@@ -145,28 +94,12 @@ public class UIManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Shows the settings menu. Should not be called anywhere in code. 
-    /// Should only be used in the settings button under the pause menu settings option button.
-    /// </summary>
-    public void SettingsShown()
-    {
-        activeMenu.SetActive(false);
-        activeMenu = settingsMenu;
-        currentState = MenuState.settings;
-        activeMenu.SetActive(true);
-    }
-
-    /// <summary>
     /// Closes the settings menu and shows the pause menu. Also sets the ActiveMenu to the pause menu.
     /// </summary>
     public void ApplySettings()
     {
-        activeMenu.SetActive(false);
-        activeMenu = pauseMenu;
         GameManager.instance.GetSettingsManager().SaveToSettingsObj();
         GameManager.instance.GetSettingsManager().UpdateObjectsToValues();
-        currentState = MenuState.paused;
-        activeMenu.SetActive(true);
     }
 
     /// <summary>
@@ -174,12 +107,8 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void CancelSettings()
     {
-        activeMenu.SetActive(false);
-        activeMenu = pauseMenu;
         GameManager.instance.GetSettingsManager().CancelSettingsObj();
         GameManager.instance.GetSettingsManager().CancelSettingsObj();
-        currentState = MenuState.paused;
-        activeMenu.SetActive(true);
     }
 
     /// <summary>
@@ -201,27 +130,11 @@ public class UIManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Displays the win game UI. Don't totally need this but we can repurpose this for the end credits later.
-    /// </summary>
-    /// <returns></returns>
-    IEnumerator WinGame()
-    {
-        yield return new WaitForSeconds(3);
-        activeMenu = winMenu;
-        activeMenu.SetActive(true);
-        PauseGame();
-    }
-
-    /// <summary>
     /// Runs the lose game logic, also sets the active menu to the lose menu.
     /// Also pauses the game.
     /// </summary>
     public void LoseGame()
     {
-        activeMenu = loseMenu;
-        currentState = MenuState.death;
-
-        activeMenu.SetActive(true);
         radialScript.GetReticle().SetActive(false);
         playerStatsObj.SetActive(false);
 
@@ -235,11 +148,6 @@ public class UIManager : MonoBehaviour
     /// </summary>
     private void DisableMenus()
     {
-        pauseMenu.SetActive(false);
-        winMenu.SetActive(false);
-        loseMenu.SetActive(false);
-        settingsMenu.SetActive(false);
-        radialMenu.SetActive(false);
         hitmarker.SetActive(false);
         objToShow.SetActive(false);
         savingIcon.SetActive(false);
@@ -309,42 +217,12 @@ public class UIManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Runs the function to update which kinesis is being held.
-    /// </summary>
-    public void UpdateKinesis()
-    {
-        radialScript.SelectKinesis();
-    }
-
-    /// <summary>
     /// Returns the radial menu script.
     /// </summary>
     /// <returns></returns>
     public RadialMenu GetRadialScript()
     {
         return radialScript;
-    }
-
-    /// <summary>
-    /// Turns on the keybinds menu to display to the player.
-    /// </summary>
-    public void ShowKeybinds()
-    {
-        activeMenu.SetActive(false);
-        activeMenu = keybindMenu;
-        currentState = MenuState.keybinds;
-        activeMenu.SetActive(true);
-    }
-
-    /// <summary>
-    /// Closes the keybinds menu. Returns to the pause menu.
-    /// </summary>
-    public void CloseKeybinds()
-    {
-        activeMenu.SetActive(false);
-        activeMenu = pauseMenu;
-        currentState = MenuState.paused;
-        activeMenu.SetActive(true);
     }
 
     /// <summary>
@@ -355,7 +233,6 @@ public class UIManager : MonoBehaviour
     public void ShowInfoUI(Sprite img, string name)
     {
         GameManager.instance.TimePause();
-        currentState = MenuState.infographic;
         objToShow.SetActive(true);
         textToReplace.text = name;
         displayedImage.sprite = img;
@@ -367,31 +244,9 @@ public class UIManager : MonoBehaviour
     public void CloseInfoUI()
     {
         GameManager.instance.TimeUnpause();
-        currentState = MenuState.none;
         objToShow.SetActive(false);
         textToReplace.text = "You did something wrong?";
         displayedImage.sprite = null;
-    }
-
-    /// <summary>
-    /// Opens the cheat menu.
-    /// </summary>
-    public void RunCheatMenu()
-    {
-        currentState = MenuState.cheats;
-        pauseMenu.SetActive(false);        
-        cheatMenu.SetActive(true);
-
-    }
-
-    /// <summary>
-    /// Closes the cheat menu.
-    /// </summary>
-    public void CloseCheatMenu()
-    {
-        currentState = MenuState.paused;
-        pauseMenu.SetActive(true);
-        cheatMenu.SetActive(false);
     }
 
     /// <summary>
@@ -401,5 +256,14 @@ public class UIManager : MonoBehaviour
     {
         savingIcon.SetActive(true);
         loadingIconScript.WakeUp();
+    }
+
+    /// <summary>
+    /// Closes the death menu UI when the player respawns.
+    /// </summary>
+    public void CloseDeathUI()
+    {
+        loseAnimController.SetTrigger("ExitLose");
+        //Debug.LogError("Running Exit Lose Menu Close");
     }
 }

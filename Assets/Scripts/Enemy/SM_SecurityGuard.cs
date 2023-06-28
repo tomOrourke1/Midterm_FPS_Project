@@ -1,9 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class SM_SecurityGuard : EnemyBase, IDamagable, IEntity
+public class SM_SecurityGuard : EnemyBase, IDamagable, IEntity, IApplyVelocity
 {
     [Header("----- States ----- ")]
     [SerializeField] EnemyIdleState idleState; // creates Idle state
@@ -11,6 +12,7 @@ public class SM_SecurityGuard : EnemyBase, IDamagable, IEntity
     [SerializeField] EnemyShootState attackState; // creates shoot state
     [SerializeField] EnemySpottedPlayer findPlayerState;
     [SerializeField] EnemyBackToPointState backToPointState;
+    [SerializeField] EnemyPushedState pushedState;
 
 
     [Header("----- Other Vars -----")]
@@ -19,12 +21,13 @@ public class SM_SecurityGuard : EnemyBase, IDamagable, IEntity
 
 
     [SerializeField] NavMeshAgent agent;
+    [SerializeField] Rigidbody rb;
 
 
 
     bool wasHit;
-
-
+    bool wasPushed;
+    bool hasLanded;
     private void Start()
     {
         health.FillToMax(); // Makes Security Guards have full health
@@ -48,8 +51,12 @@ public class SM_SecurityGuard : EnemyBase, IDamagable, IEntity
         stateMachine.AddTransition(findPlayerState, backToPointState, OnReachedDestination);
 
         stateMachine.AddTransition(backToPointState, idleState, OnReachedDestination);
+
+        stateMachine.AddAnyTransition(pushedState, OnPushed);
+        stateMachine.AddTransition(pushedState, idleState, OnPushLanding);
+
+        rb.isKinematic = false;
     }
-    
 
     bool OnAttackEnd()
     {
@@ -71,7 +78,27 @@ public class SM_SecurityGuard : EnemyBase, IDamagable, IEntity
     {
         return agent.remainingDistance <= 0.1f;
     }
+    bool OnPushLanding()
+    {
+        var temp = hasLanded;
+        hasLanded = false;
 
+        if(temp)
+        {
+            agent.enabled = true;
+            rb.isKinematic = true;
+            wasPushed = false;
+        }
+
+        return temp;
+    }
+    bool OnPushed()
+    {
+        var temp = wasPushed;
+        wasPushed = false;
+        return temp;
+    }
+    
     bool OnFindPlayer()
     {
         var b = wasHit;
@@ -122,6 +149,16 @@ public class SM_SecurityGuard : EnemyBase, IDamagable, IEntity
 
         StartCoroutine(FlashDamage()); // has the enemy flash red when taking damage
     }
+    public void ApplyVelocity(Vector3 velocity)
+    {
+        wasPushed = true;
+        agent.enabled = false;
+        rb.isKinematic = false;
+    
+        rb.AddForce(velocity, ForceMode.Impulse);
+
+
+    }
 
     IEnumerator FlashDamage()
     {
@@ -131,6 +168,7 @@ public class SM_SecurityGuard : EnemyBase, IDamagable, IEntity
         enemyMeshRenderer.material.color = enemyColor; // changes enemy's color back to their previous color
     }
 
+    
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player")) // checks if the "Player" tag has entered the enemie's range
@@ -156,4 +194,26 @@ public class SM_SecurityGuard : EnemyBase, IDamagable, IEntity
     {
         Destroy(gameObject);
     }
+    IEnumerator PushedDelay()
+    {
+        yield return new WaitForSeconds(.5f);
+    }
+
+
+
+    private void OnCollisionEnter(Collision collision)
+    {
+
+        foreach(var cont in collision.contacts)
+        {
+            var norm = cont.normal;
+            if(Vector3.Dot(norm, Vector3.up) > 0.8f)
+            {
+                hasLanded = true;
+                return;
+            }
+        }
+
+    }
+
 }

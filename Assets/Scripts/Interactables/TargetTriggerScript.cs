@@ -21,15 +21,16 @@ public class TargetTriggerScript : MonoBehaviour, IEnvironment
 
     public void StartObject()
     {
-        initMaterials = targetRenderer.material;
+        //initMaterials = targetRenderer.material;
     }
 
     public void StopObject()
     {
+
     }
 
     public void ResetObject()
     {
-        targetRenderer.material = initMaterials;
+        //targetRenderer.material = initMaterials;
     }
 }

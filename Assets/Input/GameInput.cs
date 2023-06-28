@@ -46,6 +46,15 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""lookVector"",
+                    ""type"": ""Value"",
+                    ""id"": ""f549cdf3-2ac0-481a-bef3-37be67fbaff4"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
                     ""name"": ""MousePos"",
                     ""type"": ""Value"",
                     ""id"": ""cf9dce35-33a4-4fba-81bd-67d4462e5cd8"",
@@ -85,6 +94,15 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""name"": ""Crouch"",
                     ""type"": ""Button"",
                     ""id"": ""d244b3d6-83ce-405c-8a1a-8f66f8b3e4f8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CrouchToggle"",
+                    ""type"": ""Button"",
+                    ""id"": ""3e6f86d9-5c9b-4621-96ae-ee1e89b24c79"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -194,6 +212,17 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""35c46701-d2b6-418b-a66a-d3a242dba24a"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""def668fa-8d16-4870-9810-4135b9119b12"",
                     ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
@@ -227,6 +256,17 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""8034fd99-6193-4169-b328-73372ce714fd"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""b82a65eb-4572-4c43-b9ca-baa7429d2ed3"",
                     ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
@@ -238,8 +278,30 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""1daa1cb9-537c-49d1-b06f-d5a1f8bc4a51"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Kinesis"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""11f4c414-5fc1-489e-bd2a-c9ca027c38c2"",
                     ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9b83cec6-d424-493e-878a-0baf41cccb67"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -271,8 +333,30 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""70d89263-4523-41f2-afd8-851f2aee4e01"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""35426ac9-f777-46d7-8cb1-649049535378"",
                     ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Melee"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dba0782f-9965-4736-bf0b-2909def3251f"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -293,8 +377,30 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""8846172d-684b-4532-b174-f24f7005cff4"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenRadialWheel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""87eedfdd-b07b-4ffc-bb2a-d3beb84c11e7"",
                     ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Escape"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""af90686e-ecef-4f4f-8075-61a4cb7dacb5"",
+                    ""path"": ""<Gamepad>/start"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -312,6 +418,50 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2be5a09d-a36f-475d-9e06-802f474b2f0c"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9aa7cd78-8e15-43bb-a877-ccf840699df6"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""lookVector"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cc59a251-f361-434b-a05d-00e26432a45e"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CrouchToggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1d04af40-d5a8-4430-ad89-6f91e8dac81a"",
+                    ""path"": ""<Gamepad>/leftStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CrouchToggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -322,11 +472,13 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_LookDelta = m_Player.FindAction("LookDelta", throwIfNotFound: true);
+        m_Player_lookVector = m_Player.FindAction("lookVector", throwIfNotFound: true);
         m_Player_MousePos = m_Player.FindAction("MousePos", throwIfNotFound: true);
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_Kinesis = m_Player.FindAction("Kinesis", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
+        m_Player_CrouchToggle = m_Player.FindAction("CrouchToggle", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Melee = m_Player.FindAction("Melee", throwIfNotFound: true);
         m_Player_OpenRadialWheel = m_Player.FindAction("OpenRadialWheel", throwIfNotFound: true);
@@ -395,11 +547,13 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_LookDelta;
+    private readonly InputAction m_Player_lookVector;
     private readonly InputAction m_Player_MousePos;
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_Kinesis;
     private readonly InputAction m_Player_Dash;
     private readonly InputAction m_Player_Crouch;
+    private readonly InputAction m_Player_CrouchToggle;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Melee;
     private readonly InputAction m_Player_OpenRadialWheel;
@@ -411,11 +565,13 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         public PlayerActions(@GameInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @LookDelta => m_Wrapper.m_Player_LookDelta;
+        public InputAction @lookVector => m_Wrapper.m_Player_lookVector;
         public InputAction @MousePos => m_Wrapper.m_Player_MousePos;
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @Kinesis => m_Wrapper.m_Player_Kinesis;
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
         public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
+        public InputAction @CrouchToggle => m_Wrapper.m_Player_CrouchToggle;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Melee => m_Wrapper.m_Player_Melee;
         public InputAction @OpenRadialWheel => m_Wrapper.m_Player_OpenRadialWheel;
@@ -436,6 +592,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @LookDelta.started += instance.OnLookDelta;
             @LookDelta.performed += instance.OnLookDelta;
             @LookDelta.canceled += instance.OnLookDelta;
+            @lookVector.started += instance.OnLookVector;
+            @lookVector.performed += instance.OnLookVector;
+            @lookVector.canceled += instance.OnLookVector;
             @MousePos.started += instance.OnMousePos;
             @MousePos.performed += instance.OnMousePos;
             @MousePos.canceled += instance.OnMousePos;
@@ -451,6 +610,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @Crouch.started += instance.OnCrouch;
             @Crouch.performed += instance.OnCrouch;
             @Crouch.canceled += instance.OnCrouch;
+            @CrouchToggle.started += instance.OnCrouchToggle;
+            @CrouchToggle.performed += instance.OnCrouchToggle;
+            @CrouchToggle.canceled += instance.OnCrouchToggle;
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
@@ -476,6 +638,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @LookDelta.started -= instance.OnLookDelta;
             @LookDelta.performed -= instance.OnLookDelta;
             @LookDelta.canceled -= instance.OnLookDelta;
+            @lookVector.started -= instance.OnLookVector;
+            @lookVector.performed -= instance.OnLookVector;
+            @lookVector.canceled -= instance.OnLookVector;
             @MousePos.started -= instance.OnMousePos;
             @MousePos.performed -= instance.OnMousePos;
             @MousePos.canceled -= instance.OnMousePos;
@@ -491,6 +656,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @Crouch.started -= instance.OnCrouch;
             @Crouch.performed -= instance.OnCrouch;
             @Crouch.canceled -= instance.OnCrouch;
+            @CrouchToggle.started -= instance.OnCrouchToggle;
+            @CrouchToggle.performed -= instance.OnCrouchToggle;
+            @CrouchToggle.canceled -= instance.OnCrouchToggle;
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
@@ -527,11 +695,13 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnLookDelta(InputAction.CallbackContext context);
+        void OnLookVector(InputAction.CallbackContext context);
         void OnMousePos(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
         void OnKinesis(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
+        void OnCrouchToggle(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnMelee(InputAction.CallbackContext context);
         void OnOpenRadialWheel(InputAction.CallbackContext context);

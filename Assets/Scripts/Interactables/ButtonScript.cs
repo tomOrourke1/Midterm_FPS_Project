@@ -49,18 +49,5 @@ public class ButtonScript : MonoBehaviour, IEnvironment
     public void StopObject()
     {
         count = 0;
-        //buttonRenderer.material = releasedColor;
-        //buttonRelease?.Invoke();
-    }
-
-    public void ResetObject()
-    {
-        count = 0;
-        buttonRenderer.material = releasedColor;
-
-        // If door !closed
-        //  Close door
-
-      //  buttonRelease?.Invoke();
     }
 }

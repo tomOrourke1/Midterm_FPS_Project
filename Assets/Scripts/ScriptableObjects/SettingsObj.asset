@@ -12,12 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5ddad8b7362bcd409245a707b70a205, type: 3}
   m_Name: SettingsObj
   m_EditorClassIdentifier: 
-  volume: -60
+  masterVol: 0
+  sfxVol: 0
+  musicVol: 0
   fieldOfView: 60
-  sensitivity: 325
+  mouseSensitivity: 100
+  controllerSensitivty: 100
   invertY: 0
-  pyroOn: 0
+  currentRetical: {fileID: 0}
+  hitmarkerEnabled: 0
+  pyroOn: 1
   aeroOn: 0
-  cryoOn: 0
-  electroOn: 0
-  teleOn: 0
+  cryoOn: 1
+  electroOn: 1
+  teleOn: 1
