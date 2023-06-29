@@ -65,7 +65,7 @@ public class KinesisUI : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !pickupComponents.DoesPlayerHaveKinesis(pickupComponents.pickupSelect))
         {
             UIManager.instance.ShowInfoUI(_sprite, _name);
             UIManager.instance.uiStateMachine.SetInfo(true);
