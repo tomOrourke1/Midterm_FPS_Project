@@ -95,19 +95,30 @@ public class TelekinesisController : KinesisBase
         }
     }
 
+    // Helper function so that I don't muck up your code
+    void SetRotation()
+    {
+        Vector3 desiredRotation = Camera.main.transform.forward;
+
+//        stachedObject.transform.forward = Vector3.Lerp(desiredRotation, stachedObject.transform.forward, Mathf.Clamp01(timePressed * timeSpeed));
+        var desRot = Quaternion.LookRotation(desiredRotation);
+        stachedObject.transform.rotation = Quaternion.Lerp(stachedObject.transform.rotation, desRot, Time.deltaTime * 10);
+
+    }
 
     void PullObject()
     {
         if (stachedObject != null && !IsObjectNull())
         {
             float distToPos = Vector3.Distance(stachedObject.transform.position, desiredPos.position);
-            Debug.Log(stachedObject.GetVolitile());
+            //Debug.Log(stachedObject.GetVolitile());
             if (distToPos <= 1)
             {
                 stachedObject.SetVolitile(false); 
-                Debug.Log("Check");
+                //Debug.Log("Check");
             }
 
+            SetRotation();
 
             var pos = stachedObject.GetPosition();
 
@@ -120,7 +131,7 @@ public class TelekinesisController : KinesisBase
 
             midPoint += Vector3.up * yOffset;
 
-
+     
 
             Vector3 desPos = lerp2(originalPos, midPoint, desiredPos.position, Mathf.Clamp01(timePressed * timeSpeed));
 
