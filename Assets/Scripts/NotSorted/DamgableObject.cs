@@ -17,6 +17,7 @@ public class DamgableObject : MonoBehaviour, IEnvironment, IDamagable
     {
         durabilityPool.FillToMax();
         durabilityPool.OnResourceDepleted += Die;
+        durabilityPool.OnResourceDecrease += CheckDurability;
 
         wallMeshRenderer = GetComponent<MeshRenderer>();
         wallMeshRenderer.sharedMaterial = Dur3;
@@ -25,6 +26,7 @@ public class DamgableObject : MonoBehaviour, IEnvironment, IDamagable
     private void OnDisable()
     {
         durabilityPool.OnResourceDepleted -= Die;
+        durabilityPool.OnResourceDecrease -= CheckDurability;
     }
 
     public void TakeDamage(float dmg)
@@ -32,14 +34,7 @@ public class DamgableObject : MonoBehaviour, IEnvironment, IDamagable
         if (dmg > 0)
         {
             durabilityPool.Decrease(dmg);
-            if( durabilityPool.CurrentValue <= durabilityPool.MaxValue * (2/3))
-            {
-                wallMeshRenderer.sharedMaterial = Dur2;
-            }
-            if (durabilityPool.CurrentValue <= durabilityPool.MaxValue * (1 / 3))
-            {
-                wallMeshRenderer.sharedMaterial = Dur1;
-            }
+         
          
             
         }
@@ -75,5 +70,16 @@ public class DamgableObject : MonoBehaviour, IEnvironment, IDamagable
     {
         wallMeshRenderer.enabled = false;
         collider.enabled = false;
+    }
+    void CheckDurability() 
+    {
+        if (durabilityPool.CurrentValue <= durabilityPool.MaxValue * (2 / 3))
+        {
+            wallMeshRenderer.sharedMaterial = Dur2;
+        }
+        if (durabilityPool.CurrentValue <= (durabilityPool.MaxValue * (1 / 3)))
+        {
+            wallMeshRenderer.sharedMaterial = Dur1;
+        }
     }
 }
