@@ -5,6 +5,9 @@ using UnityEngine;
 public class EnemyShootState : EnemyState
 {
 
+    [Header("Required Components")]
+    [SerializeField] EnemyAnimaterScript animScript;
+
     [Header("--- state values ---")]
 
     [SerializeField] GameObject bullet;
@@ -38,6 +41,7 @@ public class EnemyShootState : EnemyState
         agent.SetDestination(agent.transform.position);
 
         playerPos = GameManager.instance.GetPlayerPOS();
+
     }
 
     public override void Tick()
@@ -49,6 +53,8 @@ public class EnemyShootState : EnemyState
             fired = true;
             var dir = playerPos - gunPos.position;
             Instantiate(bullet, gunPos.position, Quaternion.LookRotation(dir));
+
+            animScript?.PlayShoot();
         }
 
         exit = ((Time.time - timeInState) >= totalTime);
@@ -64,6 +70,12 @@ public class EnemyShootState : EnemyState
 
     }
 
+
+    public override void OnExit()
+    {
+
+        animScript?.StopShoot();
+    }
 
     public override bool ExitCondition()
     {
