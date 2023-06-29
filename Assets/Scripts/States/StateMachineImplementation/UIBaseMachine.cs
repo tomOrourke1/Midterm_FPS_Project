@@ -13,12 +13,12 @@ public class UIBaseMachine : MonoBehaviour
     #region States and Asyncs
     [Header("--- States ---")]
     [SerializeField] UIMenuState playState;
-    [SerializeField] UIWaitingScript waitForPauseToStop;
     [SerializeField] UIMenuState pausedState;
     [SerializeField] UIMenuState radialState;
     [SerializeField] UIMenuState settingState;
     [SerializeField] UIMenuState deathState;
     [SerializeField] UIMenuState infographicState;
+    [SerializeField] UIWaitingScript waitForPauseToStop;
 
 
     // async bools
@@ -40,7 +40,6 @@ public class UIBaseMachine : MonoBehaviour
         statemachine.SetState(playState);
 
         // set up the inputs
-        pauseBool = new AsyncInput();
         playBool = new AsyncInput();
         onEscape = new AsyncInput();
         deathBool = new AsyncInput();
@@ -68,12 +67,10 @@ public class UIBaseMachine : MonoBehaviour
         statemachine.AddTransition(playState, infographicState, () => infographicBool.GetInput());
         statemachine.AddTransition(infographicState, playState, () => interactBool.GetInput());
 
-        // Paused <-> Main Menu
-        // Not Done yet...
-
         // Paused <-> Settings
         statemachine.AddTransition(pausedState, settingState, () => settingBool.GetInput());
         statemachine.AddTransition(settingState, pausedState, () => onEscape.GetInput());
+
         #endregion
     }
 
@@ -139,7 +136,6 @@ public class UIBaseMachine : MonoBehaviour
         interactBool.SetInput(value);
         //Tick(); //                  <<<< require a tick here so when a value is updated you it check the transitions
     }
-
 
 
     private void Update()

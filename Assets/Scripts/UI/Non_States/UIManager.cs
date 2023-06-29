@@ -34,6 +34,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject hitmarker;
     [SerializeField] Image sceneFader;
     [SerializeField] GameObject savingIcon;
+    [SerializeField] FocusDepleteBarUpdate depleteScript;
 
     private void Awake()
     {
@@ -61,28 +62,6 @@ public class UIManager : MonoBehaviour
     public void Unpaused()
     {
         GameManager.instance.PlayMenuState();
-    }
-
-    /// <summary>
-    /// Runs the ShowRadialMenu function from the radial menu script.
-    /// </summary>
-    public void ShowRadialMenu()
-    {
-        Cursor.lockState = CursorLockMode.Confined;
-        GameManager.instance.TimePause();
-        TurnOffCameraScript();
-        radialScript.ShowRadialMenu();
-    }
-
-    /// <summary>
-    /// Runs the HideRadialMenu function from the radial menu script.
-    /// </summary>
-    public void HideRadialMenu()
-    {
-        radialScript.HideRadialMenu();
-        Cursor.lockState = CursorLockMode.Locked;
-        GameManager.instance.TimeUnpause();
-        TurnOnCameraScript();
     }
 
     /// <summary>
@@ -236,17 +215,6 @@ public class UIManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Closes the menu for item pickups.
-    /// </summary>
-    public void CloseInfoUI()
-    {
-        GameManager.instance.TimeUnpause();
-        objToShow.SetActive(false);
-        textToReplace.text = "You did something wrong?";
-        displayedImage.sprite = null;
-    }
-
-    /// <summary>
     /// Runs the saving icon at the bottom right of the screen
     /// </summary>
     public void SaveIcon()
@@ -262,5 +230,13 @@ public class UIManager : MonoBehaviour
     {
         loseAnimController.SetTrigger("ExitLose");
         //Debug.LogError("Running Exit Lose Menu Close");
+    }
+
+    /// <summary>
+    /// Flashs the depleted focus bar.
+    /// </summary>
+    public void FocusDepleted()
+    {
+        depleteScript.ShowDeplete();
     }
 }

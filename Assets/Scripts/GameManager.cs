@@ -56,6 +56,12 @@ public class GameManager : MonoBehaviour
         isEnabledScript.CryoSetActive(isEnabledScript.CryoEnabled());
         isEnabledScript.TeleSetActive(isEnabledScript.TeleEnabled());
         isEnabledScript.PyroSetActive(isEnabledScript.PyroEnabled());
+
+        settingsManager.settings.aeroOn = isEnabledScript.AeroEnabled();
+        settingsManager.settings.cryoOn = isEnabledScript.CryoEnabled();
+        settingsManager.settings.teleOn = isEnabledScript.TeleEnabled();
+        settingsManager.settings.electroOn = isEnabledScript.ElectroEnabled();
+        settingsManager.settings.pyroOn = isEnabledScript.PyroEnabled();
     }
 
     /// <summary>
@@ -259,7 +265,11 @@ public class GameManager : MonoBehaviour
     /// <returns></returns>
     public bool AllKinesisDisabled()
     {
-        if (!isEnabledScript.CryoEnabled() && !isEnabledScript.AeroEnabled() && !isEnabledScript.TeleEnabled() && !isEnabledScript.PyroEnabled() && !isEnabledScript.ElectroEnabled())
+        if (!isEnabledScript.CryoEnabled() && 
+            !isEnabledScript.AeroEnabled() && 
+            !isEnabledScript.TeleEnabled() && 
+            !isEnabledScript.PyroEnabled() && 
+            !isEnabledScript.ElectroEnabled())
             return true;
         else return false;
     }
