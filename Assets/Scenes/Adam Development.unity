@@ -762,6 +762,11 @@ Transform:
   m_Father: {fileID: 1157260356}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &361330092 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2301590632284632688, guid: df8a1cd0d7040c94885f3d85023955c4, type: 3}
+  m_PrefabInstance: {fileID: 2301590631924384732}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &379889169
 GameObject:
   m_ObjectHideFlags: 0
@@ -2042,6 +2047,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2021841617035719714, guid: cc861c0b84650224584568f18e1fc322, type: 3}
+      propertyPath: enemyMeshRenderer
+      value: 
+      objectReference: {fileID: 13700002, guid: 317a56890b5c8e74ab1d492a2c7fb608, type: 3}
     - target: {fileID: 2021841617035719715, guid: cc861c0b84650224584568f18e1fc322, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -2103,6 +2112,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2301590632320243724, guid: df8a1cd0d7040c94885f3d85023955c4, type: 3}
+      propertyPath: select
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2301590632320243724, guid: df8a1cd0d7040c94885f3d85023955c4, type: 3}
+      propertyPath: enemyMeshRenderer
+      value: 
+      objectReference: {fileID: 361330092}
     - target: {fileID: 2301590632320243731, guid: df8a1cd0d7040c94885f3d85023955c4, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -2168,6 +2185,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2316556541207348246, guid: c8f82076b188e3749864139e21c028bb, type: 3}
+      propertyPath: enemyMeshRenderer
+      value: 
+      objectReference: {fileID: 13700002, guid: 317a56890b5c8e74ab1d492a2c7fb608, type: 3}
     - target: {fileID: 2316556541207348247, guid: c8f82076b188e3749864139e21c028bb, type: 3}
       propertyPath: m_RootOrder
       value: 6
