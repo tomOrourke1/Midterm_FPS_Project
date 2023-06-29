@@ -7,7 +7,7 @@ using UnityEngine;
 public class Disrupter : EnemyBase, IDamagable, IEntity
 {
     public KinesisSelect select;
-
+    
     private void Start()
     {
         health.FillToMax();
@@ -39,19 +39,29 @@ public class Disrupter : EnemyBase, IDamagable, IEntity
         }
            
     }
+    private void TurnOnKinesis(KinesisSelect _k)
+    {
+        switch (_k)
+        {
+            case KinesisSelect.cryokinesis: GameManager.instance.GetEnabledList().CryoSetActive(true); break;
+            case KinesisSelect.aerokinesis: GameManager.instance.GetEnabledList().AeroSetActive(true); break;
+            case KinesisSelect.electrokinesis: GameManager.instance.GetEnabledList().ElectroSetActive(true); break;
+            case KinesisSelect.pyrokinesis: GameManager.instance.GetEnabledList().PyroSetActive(true); break;
+        }
+
+    }
+
+
 
     private void OnTriggerEnter(Collider other)
     {
        
-
         if (other.CompareTag("Player"))
         {
             enemyEnabled = true;
-
-            if (enemyEnabled)
-            {
-                TurnOffKinesis(select);
-            }
+ 
+            TurnOffKinesis(select);
+            
         }
     }
     private void OnTriggerExit(Collider other)
@@ -59,6 +69,8 @@ public class Disrupter : EnemyBase, IDamagable, IEntity
         if (other.CompareTag("Player"))
         {
             enemyEnabled = false;
+
+            TurnOnKinesis(select);
         }
     }
 

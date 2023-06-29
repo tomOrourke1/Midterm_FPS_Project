@@ -11,7 +11,7 @@ public enum KinesisSelect
 }
 
 [System.Serializable]
-struct OrbMaterials
+public struct OrbMaterials
 {
     [Header("Material Properties")]
     [SerializeField] Material Core;
