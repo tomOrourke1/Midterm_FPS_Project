@@ -41,6 +41,8 @@ public class BasicEnemy : EnemyBase, IDamagable, IEntity, IApplyVelocity
         stateMachine.AddTransition(strafeState, moveAway, OnMoveAway);
 
         stateMachine.AddTransition(idleState, chasePlayer, OnChasePlayer);
+        stateMachine.AddTransition(idleState, strafeState, OnStrafe);
+        stateMachine.AddTransition(idleState, moveAway, OnMoveAway);
 
 
         stateMachine.AddTransition(strafeState, shootState, OnShoot);
@@ -99,7 +101,6 @@ public class BasicEnemy : EnemyBase, IDamagable, IEntity, IApplyVelocity
     {
         var temp = hasLanded;
         hasLanded = false;
-
         if (temp)
         {
             agent.enabled = true;
@@ -118,6 +119,7 @@ public class BasicEnemy : EnemyBase, IDamagable, IEntity, IApplyVelocity
 
     private void Update()
     {
+       // Debug.LogError("Current state: " + stateMachine.CurrentState.ToString());
         if(enemyEnabled)
         {
             stateMachine.Tick();
@@ -128,7 +130,8 @@ public class BasicEnemy : EnemyBase, IDamagable, IEntity, IApplyVelocity
 
     private void OnEnable()
     {
-        health.OnResourceDepleted += Die;    }
+        health.OnResourceDepleted += Die;    
+    }
 
     private void OnDisable()
     {
@@ -177,6 +180,8 @@ public class BasicEnemy : EnemyBase, IDamagable, IEntity, IApplyVelocity
             enemyEnabled = false;
     }
 
+
+
     public float GetCurrentHealth()
     {
         return health.CurrentValue;
@@ -198,7 +203,7 @@ public class BasicEnemy : EnemyBase, IDamagable, IEntity, IApplyVelocity
     {
         if (stateMachine.CurrentState is EnemyPushedState)
         {
-            CheckHasLanded(collision);   
+            CheckHasLanded(collision);
         }
     }
 
@@ -209,6 +214,7 @@ public class BasicEnemy : EnemyBase, IDamagable, IEntity, IApplyVelocity
             var norm = cont.normal;
             if (Vector3.Dot(norm, Vector3.up) > 0.8f)
             {
+                Debug.LogError("Landed");
                 hasLanded = true;
                 return;
             }

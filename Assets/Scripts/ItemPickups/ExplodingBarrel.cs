@@ -11,30 +11,10 @@ public class ExplodingBarrel : MonoBehaviour, IDamagable, IEntity
     [SerializeField] float timer;
     [SerializeField] float range;
     [SerializeField] float damage;
+    [SerializeField] float pushStrength;
+    [SerializeField] float upwardForce;
 
-    public void TakeDamage(float dmg)
-    {
-        if (dmg > 0)
-        {
-            durability--;
 
-            if (durability <= 0 )
-            {
-                StartCoroutine(Timer());
-            }
-        }
-    }
-
-    public void chainBlast()
-    {
-        durability = 0;
-        TakeDamage(1);
-    }
-
-    public void contactExplosion()
-    {
-        Explode();
-    }
 
     IEnumerator Timer()
     {
@@ -69,6 +49,27 @@ public class ExplodingBarrel : MonoBehaviour, IDamagable, IEntity
                     collider.GetComponent<IDamagable>().TakeDamage(damage); 
 
                     collider.gameObject.GetComponent<ExplodingBarrel>()?.chainBlast();
+
+                }
+
+            }
+            
+            if (collider.GetComponent<IApplyVelocity>() != null)
+            {
+                RaycastHit hit;
+
+                // Gets the direction of the collider from the barrel.
+                var dir = collider.transform.position - transform.position;
+                //Debug.DrawRay(transform.position, dir);
+
+                // Casts from the barrel to the collider
+                Physics.Raycast(transform.position, dir, out hit);
+
+                // Damages the collider if the raycast connected with it.
+                if (hit.collider == collider)
+                {
+                    KnockBack(collider);
+
                 }
             }
         }
@@ -80,14 +81,55 @@ public class ExplodingBarrel : MonoBehaviour, IDamagable, IEntity
         Destroy(gameObject);
     }
 
-    public void Respawn()
-    {
-        Destroy(gameObject);
-    }
-
     void Effects()
     {
         Instantiate(explosionParticles, transform.position, Quaternion.identity);
+    }
+
+    void KnockBack(Collider victim)
+    {
+        IApplyVelocity velocityHandler = victim.GetComponent<IApplyVelocity>();
+
+        Vector3 pushDir = Vector3.zero;
+
+        pushDir = victim.transform.position - transform.position;
+
+        pushDir = pushDir.normalized;
+
+        pushDir *= pushStrength;
+
+        pushDir += Vector3.up * upwardForce;
+
+        velocityHandler.ApplyVelocity(pushDir);
+    }
+
+    public void TakeDamage(float dmg)
+    {
+        if (dmg > 0)
+        {
+            durability--;
+
+            if (durability <= 0 )
+            {
+                StartCoroutine(Timer());
+            }
+        }
+    }
+
+    public void chainBlast()
+    {
+        durability = 0;
+        TakeDamage(1);
+    }
+
+    public void contactExplosion()
+    {
+        Explode();
+    }
+
+    public void Respawn()
+    {
+        Destroy(gameObject);
     }
 
     public float GetCurrentHealth()

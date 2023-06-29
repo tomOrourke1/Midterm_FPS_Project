@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -18,7 +19,7 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] Slider masterSlider;
     [SerializeField] Slider sfxSlider;
     [SerializeField] Slider musicSlider;
-    
+
     [Header("Game Sliders")]
     [SerializeField] Slider fovSlider;
     [SerializeField] Slider mouseSensSlider;
@@ -26,9 +27,10 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] Toggle invertYToggle;
 
     [Header("Graphics")]
-    [SerializeField] GameObject hitmarkerObj;
+    [SerializeField] GameObject hitmarkerParentObj;
     [SerializeField] Toggle hitmarkerToggle;
     [SerializeField] Image reticleImage;
+    [SerializeField] RectTransform highlighterOutline;
 
     // Temp data containers
     float tempMaster;
@@ -41,9 +43,13 @@ public class SettingsManager : MonoBehaviour
     bool tempHitmarkerEnabled;
     Sprite tempSprite;
 
+    [SerializeField] Transform hlStorePos;
+
     private void Awake()
     {
-        UpdateSlidersToTempValues();
+        highlighterOutline.position = hlStorePos.position;
+        SetOriginalValues();
+        UpdateSliders();
     }
 
     public void SaveToSettingsObj()
@@ -60,34 +66,19 @@ public class SettingsManager : MonoBehaviour
         settings.invertY = tempInvY;
 
         // Graphics
-        hitmarkerObj.SetActive(tempHitmarkerEnabled);
+        hitmarkerParentObj.SetActive(tempHitmarkerEnabled);
         reticleImage.sprite = tempSprite;
 
+        KeepKinesis();
+        
         GameManager.instance.GetPlayerScript().SetOrigFov(tempFOV);
-    }
-
-    public void UpdateObjectsToValues()
-    {
-        // Audio
-        masterMix.SetFloat("MasterVolume", tempMaster);
-        sfxMix.SetFloat("SFXVolume", tempSFX);
-        musicMix.SetFloat("MusicVolume", tempMusic);
-
-        // Gameplay
-        Camera.main.fieldOfView = tempFOV;
-        Camera.main.GetComponent<CameraController>().SetSensitivity(tempMouseSens);
-        // change controller sensitivty here
-        Camera.main.GetComponent<CameraController>().SetInvert(tempInvY);
-
-        // Graphics
-        reticleImage.sprite = tempSprite;
-        hitmarkerObj.SetActive(tempHitmarkerEnabled);
     }
 
     public void CancelSettingsObj()
     {
-        RevertTempValuesToPrevious();
-        UpdateSlidersToTempValues();
+        SetOriginalValues();
+        UpdateSliders();
+        KeepKinesis();
     }
 
     public void SetMasterVolume()
@@ -130,7 +121,7 @@ public class SettingsManager : MonoBehaviour
         tempHitmarkerEnabled = hitmarkerToggle.isOn;
     }
 
-    private void RevertTempValuesToPrevious()
+    private void SetOriginalValues()
     {
         // Temp Audio Values
         tempMaster = settings.masterVol;
@@ -145,10 +136,13 @@ public class SettingsManager : MonoBehaviour
 
         // Graphics
         tempHitmarkerEnabled = settings.hitmarkerEnabled;
+        Debug.Log(settings.currentRetical);
         tempSprite = settings.currentRetical;
+
+        KeepKinesis();
     }
 
-    private void UpdateSlidersToTempValues()
+    private void UpdateSliders()
     {
         // Audio Slider updates
         masterSlider.value = tempMaster;
@@ -162,7 +156,42 @@ public class SettingsManager : MonoBehaviour
         invertYToggle.isOn = tempInvY;
 
         // Graphics
-        hitmarkerObj.SetActive(tempHitmarkerEnabled);
+        hitmarkerParentObj.SetActive(tempHitmarkerEnabled);
         reticleImage.sprite = tempSprite;
+    }
+    
+    public void UpdateObjectsToValues()
+    {
+        // Audio
+        masterMix.SetFloat("MasterVolume", tempMaster);
+        masterMix.SetFloat("SFXVolume", tempSFX);
+        masterMix.SetFloat("MusicVolume", tempMusic);
+
+        // Gameplay
+        Camera.main.fieldOfView = tempFOV;
+        Camera.main.GetComponent<CameraController>().SetSensitivity(tempMouseSens);
+        // change controller sensitivty here
+        Camera.main.GetComponent<CameraController>().SetInvert(tempInvY);
+
+        // Graphics
+        reticleImage.sprite = tempSprite;
+        hitmarkerParentObj.SetActive(tempHitmarkerEnabled);
+    }
+
+    public void SetReticleImage(Image img)
+    {
+        highlighterOutline.position = img.gameObject.transform.position;
+        hlStorePos.position = highlighterOutline.position;
+        tempSprite = img.sprite;
+    }
+
+    private void KeepKinesis()
+    {
+        // Kinesis Bools
+        settings.aeroOn = GameManager.instance.GetEnabledList().AeroEnabled();
+        settings.pyroOn = GameManager.instance.GetEnabledList().PyroEnabled();
+        settings.cryoOn = GameManager.instance.GetEnabledList().CryoEnabled();
+        settings.electroOn = GameManager.instance.GetEnabledList().ElectroEnabled();
+        settings.teleOn = GameManager.instance.GetEnabledList().TeleEnabled();
     }
 }

@@ -20,6 +20,7 @@ public class ReticleHover : MonoBehaviour
     {
         reticle = GetComponentInChildren<Image>();
         reticle.GetComponent<Image>().color = defaultColor;
+        reticle.sprite = GameManager.instance.GetSettingsManager().settings.currentRetical;
     }
 
     // Update is called once per frame

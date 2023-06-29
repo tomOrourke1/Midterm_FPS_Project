@@ -64,11 +64,7 @@ public class InputManager : MonoBehaviour
 
     private void OnInteract(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        UIManager.instance.uiStateMachine.SetPlay(true);
-        //if (UIManager.instance.currentState == MenuState.infographic)
-        //{
-        //    UIManager.instance.CloseInfoUI();
-        //}
+        UIManager.instance.uiStateMachine.SetInteract(true);
     }
 
     private void Update()

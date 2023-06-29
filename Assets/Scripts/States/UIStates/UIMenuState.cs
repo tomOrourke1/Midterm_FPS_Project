@@ -11,6 +11,7 @@ public class UIMenuState : UIState
     [Header("Enable Menu Here")]
     [SerializeField] bool doesActivateHere = true;
     [SerializeField] bool doesDeactivateHere = true;
+    
     public override void OnEnter()
     {
         if(doesActivateHere)
@@ -21,7 +22,6 @@ public class UIMenuState : UIState
                 menu?.Activate();
         }
     }
-
 
     public override void OnExit()
     {

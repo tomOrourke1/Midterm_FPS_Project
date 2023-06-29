@@ -130,12 +130,6 @@ public class RadialMenu : MonoBehaviour
         sliceAng = 360 / _slices.Length;
         offsetAngle = sliceAng * 3;
         UpdateSlices();
-        // On the first frame if the radial menu is left on
-        // in the inspector, turn it off no matter what. So it doesn't show.
-        // then when the player presses Q it will show up again in the update funciton.
-        isMenuBeingShown = false;
-        radialUI.SetActive(isMenuBeingShown);
-        translucentBackground.SetActive(isMenuBeingShown);
     }
 
     /// <summary>

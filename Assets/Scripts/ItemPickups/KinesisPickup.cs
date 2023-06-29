@@ -1,3 +1,4 @@
+using UnityEditor.Sprites;
 using UnityEngine;
 
 [System.Serializable]
@@ -82,7 +83,7 @@ public class KinesisPickup : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !DoesPlayerHaveKinesis(pickupSelect))
         {
             EnableKinesis(pickupSelect, active);
 
@@ -169,5 +170,27 @@ public class KinesisPickup : MonoBehaviour
         rings.startColor = core.material.color;
         trails.startColor = core.material.color;
         beam.startColor = core.material.color;
+    }
+
+    public bool DoesPlayerHaveKinesis(KinesisSelect selected)
+    {
+        switch (selected)
+        {
+            case KinesisSelect.aerokinesis:
+                return GameManager.instance.GetEnabledList().AeroEnabled();
+         
+            case KinesisSelect.electrokinesis:
+                return GameManager.instance.GetEnabledList().ElectroEnabled();
+
+            case KinesisSelect.telekinesis:
+                return GameManager.instance.GetEnabledList().TeleEnabled();
+
+            case KinesisSelect.pyrokinesis:
+                return GameManager.instance.GetEnabledList().PyroEnabled();
+
+            case KinesisSelect.cryokinesis:
+                return GameManager.instance.GetEnabledList().CryoEnabled();
+        }
+        return false;
     }
 }

@@ -59,6 +59,8 @@ public class Player : MonoBehaviour
 
 
 
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -86,7 +88,7 @@ public class Player : MonoBehaviour
         Movement();
     }
 
-    void Movement()
+    void Movement() 
     {
         // If dash is not recharging and there are less dashes than the max
         // then start recharging dashes
