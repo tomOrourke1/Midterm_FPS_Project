@@ -44,6 +44,18 @@ public class TargetDamageableScript : MonoBehaviour, IDamagable, IEnvironment
             activated = false;
         }
     }
+    public void TakeIceDamage(float dmg)
+    {
+        TakeDamage(dmg);
+    }
+    public void TakeElectroDamage(float dmg)
+    {
+        TakeDamage(dmg);
+    }
+    public void TakeFireDamage(float dmg)
+    {
+        TakeDamage(dmg);
+    }
 
     public float GetCurrentHealth()
     {

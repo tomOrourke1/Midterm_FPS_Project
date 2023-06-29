@@ -166,6 +166,18 @@ public class Flanker : EnemyBase, IDamagable, IEntity, IApplyVelocity
         SetFacePlayer();
         StartCoroutine(FlashDamage());
     }
+    public void TakeIceDamage(float dmg)
+    {
+        TakeDamage(dmg);
+    }
+    public void TakeElectroDamage(float dmg)
+    {
+        TakeDamage(dmg);
+    }
+    public void TakeFireDamage(float dmg)
+    {
+        TakeDamage(dmg);
+    }
     public void ApplyVelocity(Vector3 velocity)
     {
         wasPushed = true;

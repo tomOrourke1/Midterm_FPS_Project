@@ -88,7 +88,18 @@ public class Disrupter : EnemyBase, IDamagable, IEntity
     {
         health.Decrease(dmg);
     }
-
+    public void TakeIceDamage(float dmg)
+    {
+        TakeDamage(dmg);
+    }
+    public void TakeElectroDamage(float dmg)
+    {
+        TakeDamage(dmg);
+    }
+    public void TakeFireDamage(float dmg)
+    {
+        TakeDamage(dmg);
+    }
     void OnDeath()
     {
         Destroy(gameObject);

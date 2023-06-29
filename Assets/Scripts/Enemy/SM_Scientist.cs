@@ -124,7 +124,18 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity, IApplyVelocity
 
         StartCoroutine(FlashDamage()); // has the enemy flash red when taking damage
     }
-
+    public void TakeIceDamage(float dmg)
+    {
+        TakeDamage(dmg);
+    }
+    public void TakeElectroDamage(float dmg)
+    {
+        TakeDamage(dmg);
+    }
+    public void TakeFireDamage(float dmg)
+    {
+        TakeDamage(dmg);
+    }
     IEnumerator FlashDamage()
     {
         enemyColor = enemyMeshRenderer.material.color; // saves enemy's color

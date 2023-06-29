@@ -31,6 +31,18 @@ public class SilhouetteBobber : MonoBehaviour, IDamagable
         frames = 0;
         jumpOffset = Random.Range(offSetMin, offSetMax);
     }
+    public void TakeIceDamage(float dmg)
+    {
+        TakeDamage(dmg);
+    }
+    public void TakeElectroDamage(float dmg)
+    {
+        TakeDamage(dmg);
+    }
+    public void TakeFireDamage(float dmg)
+    {
+        TakeDamage(dmg);
+    }
 
     private void Start()
     {

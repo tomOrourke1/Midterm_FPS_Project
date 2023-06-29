@@ -37,7 +37,7 @@ public class Scientist : MonoBehaviour, IDamagable
         }
     }
 
-    void IDamagable.TakeDamage(float playerDmg)
+    public void TakeDamage(float playerDmg)
     {
         scientistHP -= playerDmg;
 
@@ -52,7 +52,18 @@ public class Scientist : MonoBehaviour, IDamagable
             Destroy(gameObject);
         }
     }
-
+    public void TakeIceDamage(float dmg)
+    {
+        TakeDamage(dmg);
+    }
+    public void TakeElectroDamage(float dmg)
+    {
+        TakeDamage(dmg);
+    }
+    public void TakeFireDamage(float dmg)
+    {
+        TakeDamage(dmg);
+    }
     IEnumerator EnemyDamageFlash()
     {
         model.material.color = Color.red;

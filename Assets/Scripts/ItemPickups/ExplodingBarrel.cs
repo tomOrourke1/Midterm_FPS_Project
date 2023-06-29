@@ -115,7 +115,18 @@ public class ExplodingBarrel : MonoBehaviour, IDamagable, IEntity
             }
         }
     }
-
+    public void TakeIceDamage(float dmg)
+    {
+        TakeDamage(dmg);
+    }
+    public void TakeElectroDamage(float dmg)
+    {
+        TakeDamage(dmg);
+    }
+    public void TakeFireDamage(float dmg)
+    {
+        TakeDamage(dmg);
+    }
     public void chainBlast()
     {
         durability = 0;

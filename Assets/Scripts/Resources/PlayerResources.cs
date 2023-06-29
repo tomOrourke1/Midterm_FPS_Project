@@ -55,7 +55,18 @@ public class PlayerResources : MonoBehaviour, IDamagable, IHealReciever, IFocusR
         }
         UIManager.instance.GetPlayerStats().UpdateValues();
     }
-
+    public void TakeIceDamage(float dmg)
+    {
+        TakeDamage(dmg);
+    }
+    public void TakeElectroDamage(float dmg)
+    {
+        TakeDamage(dmg);
+    }
+    public void TakeFireDamage(float dmg)
+    {
+        TakeDamage(dmg);
+    }
     void PlayerDied()
     {
         GameManager.instance.GetPlayerScript().DeathHandler();

@@ -18,4 +18,16 @@ public class TestScriptableObject : ScriptableObject, IDamagable
     {
         health -= dmg;
     }
+    public void TakeIceDamage(float dmg)
+    {
+        TakeDamage(dmg);
+    }
+    public void TakeElectroDamage(float dmg)
+    {
+        TakeDamage(dmg);
+    }
+    public void TakeFireDamage(float dmg)
+    {
+        TakeDamage(dmg);
+    }
 }

@@ -149,6 +149,18 @@ public class BasicEnemy : EnemyBase, IDamagable, IEntity, IApplyVelocity
 
         StartCoroutine(FlashDamage());        
     }
+    public void TakeIceDamage(float dmg)
+    {
+        TakeDamage(dmg);
+    }
+    public void TakeElectroDamage(float dmg)
+    {
+        TakeDamage(dmg);
+    }
+    public void TakeFireDamage(float dmg)
+    {
+        TakeDamage(dmg);
+    }
     public void ApplyVelocity(Vector3 velocity)
     {
 
@@ -214,7 +226,7 @@ public class BasicEnemy : EnemyBase, IDamagable, IEntity, IApplyVelocity
             var norm = cont.normal;
             if (Vector3.Dot(norm, Vector3.up) > 0.8f)
             {
-                Debug.LogError("Landed");
+        
                 hasLanded = true;
                 return;
             }

@@ -26,7 +26,7 @@ public class IceSpear : MonoBehaviour
         IDamagable damagable = collision.gameObject.GetComponent<IDamagable>();
         if (damagable != null)
         {
-            damagable.TakeDamage(damage);
+            damagable.TakeIceDamage(damage);
         }
         Destroy(gameObject);
     }

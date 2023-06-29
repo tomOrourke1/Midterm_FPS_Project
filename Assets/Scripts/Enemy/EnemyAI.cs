@@ -138,7 +138,7 @@ public class EnemyAI : MonoBehaviour, IDamagable, IEntity
         enemyShooting = false;
     }
 
-    void IDamagable.TakeDamage(float playerDmg)
+    public void TakeDamage(float playerDmg)
     {
         enemyHP -= playerDmg;
 
@@ -150,7 +150,18 @@ public class EnemyAI : MonoBehaviour, IDamagable, IEntity
             Destroy(gameObject);
         }
     }
-
+    public void TakeIceDamage(float dmg)
+    {
+        TakeDamage(dmg);
+    }
+    public void TakeElectroDamage(float dmg)
+    {
+        TakeDamage(dmg);
+    }
+    public void TakeFireDamage(float dmg)
+    {
+        TakeDamage(dmg);
+    }
     public float GetCurrentHealth()
     {
         return enemyHP;
