@@ -145,7 +145,6 @@ public class UIBaseMachine : MonoBehaviour
     private void Update()
     {
         Tick();
-        Debug.Log(statemachine.CurrentState);
     }
 
     // shouldn't need to touch
