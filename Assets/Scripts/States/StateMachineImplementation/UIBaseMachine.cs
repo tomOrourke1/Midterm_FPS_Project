@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.ProBuilder.MeshOperations;
 
@@ -29,6 +30,7 @@ public class UIBaseMachine : MonoBehaviour
     AsyncInput infographicBool;
     AsyncInput onEscape;
     AsyncInput deathContinueBool;
+    AsyncInput interactBool;
     #endregion
 
     private void Start()
@@ -46,6 +48,7 @@ public class UIBaseMachine : MonoBehaviour
         settingBool = new AsyncInput();
         radialBool = new AsyncInput();
         deathContinueBool = new AsyncInput();
+        interactBool = new AsyncInput();
 
         #region State Transitions
         // Play <- (Pause Transition out) -> Pause
@@ -63,7 +66,7 @@ public class UIBaseMachine : MonoBehaviour
 
         // Play <-> Infographic
         statemachine.AddTransition(playState, infographicState, () => infographicBool.GetInput());
-        statemachine.AddTransition(infographicState, playState, () => playBool.GetInput());
+        statemachine.AddTransition(infographicState, playState, () => interactBool.GetInput());
 
         // Paused <-> Main Menu
         // Not Done yet...
@@ -73,7 +76,6 @@ public class UIBaseMachine : MonoBehaviour
         statemachine.AddTransition(settingState, pausedState, () => onEscape.GetInput());
         #endregion
     }
-
 
     // set functions for bool values
     public void SetPause(bool value)
@@ -124,7 +126,6 @@ public class UIBaseMachine : MonoBehaviour
         //Tick(); //                  <<<< require a tick here so when a value is updated you it check the transitions
     }
 
-
     // set functions for bool values
     public void SetDeathContinueBool(bool value)
     {
@@ -132,12 +133,19 @@ public class UIBaseMachine : MonoBehaviour
         //Tick(); //                  <<<< require a tick here so when a value is updated you it check the transitions
     }
 
+    // set functions for bool values
+    public void SetInteract(bool value)
+    {
+        interactBool.SetInput(value);
+        //Tick(); //                  <<<< require a tick here so when a value is updated you it check the transitions
+    }
 
 
 
     private void Update()
     {
         Tick();
+        Debug.Log(statemachine.CurrentState);
     }
 
     // shouldn't need to touch

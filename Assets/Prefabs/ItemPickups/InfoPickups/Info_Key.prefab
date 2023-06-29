@@ -44,9 +44,10 @@ GameObject:
   - component: {fileID: 3832747886250208292}
   - component: {fileID: 3832747886250208290}
   - component: {fileID: 3669166037010330571}
+  - component: {fileID: -6236096366069715660}
   - component: {fileID: 3832747886250208293}
   m_Layer: 0
-  m_Name: Key2
+  m_Name: Info_Key
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -95,6 +96,21 @@ MonoBehaviour:
   bobRate: 1
   amplitude: 0.25
   rotateSpeed: 0.75
+--- !u!114 &-6236096366069715660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3832747886250208295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b40303327b9a2df47afa9b07dd283b31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info:
+    displayImage: {fileID: 21300000, guid: f00cfa4c654077842a8b15b567364c18, type: 3}
+    pickupName: Key
 --- !u!135 &3832747886250208293
 SphereCollider:
   m_ObjectHideFlags: 0

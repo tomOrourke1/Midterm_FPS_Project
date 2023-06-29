@@ -4833,6 +4833,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2555563112492359694}
   - component: {fileID: 968888678429982510}
+  - component: {fileID: 3310193884697746120}
   m_Layer: 5
   m_Name: PlayState
   m_TagString: Untagged
@@ -4873,9 +4874,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UIObject: {fileID: 8463448629903420530}
-  activeMenues: []
+  activeMenues:
+  - {fileID: 3310193884697746120}
   doesActivateHere: 1
   doesDeactivateHere: 1
+--- !u!114 &3310193884697746120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1627340805802317802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37fb8ce5f07bd1d46b617d3a0131ccdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doesActivate: 1
+  doesDeactivate: 1
 --- !u!1 &1647741443871854164
 GameObject:
   m_ObjectHideFlags: 0

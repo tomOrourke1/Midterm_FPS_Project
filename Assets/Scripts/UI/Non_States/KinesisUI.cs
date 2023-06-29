@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [System.Serializable]
-struct PickupImages
+public struct PickupInfo
 {
     [SerializeField] Sprite displayImage;
-    [SerializeField] string kinesisName;
+    [SerializeField] string pickupName;
 
     public Sprite GetSprite()
     {
@@ -16,18 +16,18 @@ struct PickupImages
 
     public string GetName()
     {
-        return kinesisName;
+        return pickupName;
     }
 }
 
 public class KinesisUI : MonoBehaviour
 {
     [SerializeField] KinesisPickup pickupComponents;
-    [SerializeField] PickupImages aero;
-    [SerializeField] PickupImages electro;
-    [SerializeField] PickupImages tele;
-    [SerializeField] PickupImages pyro;
-    [SerializeField] PickupImages cryo;
+    [SerializeField] PickupInfo aero;
+    [SerializeField] PickupInfo electro;
+    [SerializeField] PickupInfo tele;
+    [SerializeField] PickupInfo pyro;
+    [SerializeField] PickupInfo cryo;
 
     private Sprite _sprite;
     private string _name;
@@ -68,6 +68,7 @@ public class KinesisUI : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             UIManager.instance.ShowInfoUI(_sprite, _name);
+            UIManager.instance.uiStateMachine.SetInfo(true);
         }
     }
 }
