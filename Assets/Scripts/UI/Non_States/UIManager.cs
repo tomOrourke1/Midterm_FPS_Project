@@ -135,9 +135,6 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void LoseGame()
     {
-        radialScript.GetReticle().SetActive(false);
-        playerStatsObj.SetActive(false);
-
         GameManager.instance.TimePause();
         GameManager.instance.MouseUnlockShow();
     }

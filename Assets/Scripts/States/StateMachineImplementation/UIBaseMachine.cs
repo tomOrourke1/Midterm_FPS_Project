@@ -28,6 +28,7 @@ public class UIBaseMachine : MonoBehaviour
     AsyncInput deathBool;
     AsyncInput infographicBool;
     AsyncInput onEscape;
+    AsyncInput deathContinueBool;
     #endregion
 
     private void Start()
@@ -44,6 +45,7 @@ public class UIBaseMachine : MonoBehaviour
         infographicBool = new AsyncInput();
         settingBool = new AsyncInput();
         radialBool = new AsyncInput();
+        deathContinueBool = new AsyncInput();
 
         #region State Transitions
         // Play <- (Pause Transition out) -> Pause
@@ -53,7 +55,7 @@ public class UIBaseMachine : MonoBehaviour
 
         // Play <-> Death
         statemachine.AddTransition(playState, deathState, () => deathBool.GetInput());
-        statemachine.AddTransition(deathState, playState, () => playBool.GetInput());
+        statemachine.AddTransition(deathState, playState, () => deathContinueBool.GetInput());
 
         // Play <-> Radial Menu
         statemachine.AddTransition(playState, radialState, () => radialBool.GetInput());
@@ -68,7 +70,7 @@ public class UIBaseMachine : MonoBehaviour
 
         // Paused <-> Settings
         statemachine.AddTransition(pausedState, settingState, () => settingBool.GetInput());
-        statemachine.AddTransition(settingState, pausedState, () => pauseBool.GetInput());
+        statemachine.AddTransition(settingState, pausedState, () => onEscape.GetInput());
         #endregion
     }
 
@@ -122,6 +124,13 @@ public class UIBaseMachine : MonoBehaviour
         //Tick(); //                  <<<< require a tick here so when a value is updated you it check the transitions
     }
 
+
+    // set functions for bool values
+    public void SetDeathContinueBool(bool value)
+    {
+        deathContinueBool.SetInput(value);
+        //Tick(); //                  <<<< require a tick here so when a value is updated you it check the transitions
+    }
 
 
 
