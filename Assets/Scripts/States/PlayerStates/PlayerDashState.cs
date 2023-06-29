@@ -12,7 +12,6 @@ public class PlayerDashState : PlayerState
     [Header("----- Dash Stats -----")]
     [SerializeField, Range(0, 1)] float DashSpeed;
     [SerializeField, Range(.01f, 1)] float DashDuration;
-    [SerializeField] float DashCooldown;
     [SerializeField, Range(.01f, 20)] float tiltAmount;
     [SerializeField, Range(0, 30)] float dashFovZoomAmount;
 

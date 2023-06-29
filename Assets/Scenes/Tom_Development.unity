@@ -1837,6 +1837,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 847320447793828263}
   returnSpeed: 5
+  origFov: 0
 --- !u!114 &1871093944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1849,6 +1850,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab26cc5b5aedf0f4397c7963bc079968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: {fileID: 0}
+  playerTransform: {fileID: 0}
+  fovController: {fileID: 0}
+  DashSpeed: 0
+  DashDuration: 0
+  tiltAmount: 0
+  dashFovZoomAmount: 0
 --- !u!143 &1966572435
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2108,6 +2116,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2102247112}
   - component: {fileID: 2102247113}
+  - component: {fileID: 2102247115}
+  - component: {fileID: 2102247114}
   m_Layer: 0
   m_Name: Dash
   m_TagString: Untagged
@@ -2142,6 +2152,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab26cc5b5aedf0f4397c7963bc079968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: {fileID: 1966572435}
+  playerTransform: {fileID: 847320447409526190}
+  fovController: {fileID: 2102247114}
+  DashSpeed: 1
+  DashDuration: 0.025
+  tiltAmount: 2
+  dashFovZoomAmount: 4
+--- !u!114 &2102247114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102247111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bc4aafe573e12a4e91901a0d0526fa2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 847320447793828263}
+  returnSpeed: 5
+  origFov: 60
+--- !u!114 &2102247115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102247111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7cb88b4a730a4240901cd99e7af7391, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 847320447793828263}
+  rotSpeed: 0
 --- !u!1001 &150263361735042906
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2975,4 +3021,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMoveState: {fileID: 1557044387}
-  dashState: {fileID: 0}
+  dashState: {fileID: 2102247113}

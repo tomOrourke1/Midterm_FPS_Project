@@ -138,7 +138,7 @@ public class Player : MonoBehaviour
         {
             // Debug.Log(origFov);
             // Return field of view to normal
-            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, origFov, Time.deltaTime * 5);
+           // Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, origFov, Time.deltaTime * 5);
         }
 
         // Gravity

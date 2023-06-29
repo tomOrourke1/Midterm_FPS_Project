@@ -15,11 +15,14 @@ public class FOVController : MonoBehaviour
 
 
 
-    float origFov;
+    [SerializeField] float origFov = 60;
 
     private void Start()
     {
-        origFov = cam.fieldOfView;
+        // for some reason it doesn't like this not being here..
+        // I have no idea why.
+        // ask Jerry tomorrow.
+        origFov = GameManager.instance.GetSettingsManager().settings.fieldOfView;
     }
 
 
@@ -28,6 +31,7 @@ public class FOVController : MonoBehaviour
         if (cam.fieldOfView != origFov)
         {
             cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, origFov, returnSpeed * Time.deltaTime);
+            Debug.LogError("FOV: " + cam.fieldOfView);
         }
 
     }
