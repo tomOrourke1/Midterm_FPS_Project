@@ -47,14 +47,20 @@ public class InputManager : MonoBehaviour
 
     private void OnRadShow(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        UIManager.instance.uiStateMachine.SetRadialAsync(true);
-        radialShowing = true;
+        if (!GameManager.instance.AllKinesisDisabled())
+        {
+            UIManager.instance.uiStateMachine.SetRadialAsync(true);
+            radialShowing = true;
+        }
     }
 
     private void OnRadClose(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        UIManager.instance.uiStateMachine.SetPlay(true);
-        radialShowing = false;
+        if (radialShowing)
+        {
+            UIManager.instance.uiStateMachine.SetPlay(true);
+            radialShowing = false;
+        }
     }
 
     private void OnEscape(UnityEngine.InputSystem.InputAction.CallbackContext context)
@@ -69,7 +75,7 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
-        if (!GameManager.instance.AllKinesisDisabled() && radialShowing)
+        if (radialShowing)
         {
             UIManager.instance.UpdateRadialWheel();
         }

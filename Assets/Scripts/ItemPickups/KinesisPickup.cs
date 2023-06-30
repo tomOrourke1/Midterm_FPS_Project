@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEditor.Sprites;
 using UnityEngine;
 
@@ -85,9 +86,7 @@ public class KinesisPickup : MonoBehaviour
     {
         if (other.CompareTag("Player") && !DoesPlayerHaveKinesis(pickupSelect))
         {
-            EnableKinesis(pickupSelect, active);
-
-            Destroy(gameObject);
+            StartCoroutine(WaitToEnable());
         }
     }
 
@@ -192,5 +191,12 @@ public class KinesisPickup : MonoBehaviour
                 return GameManager.instance.GetEnabledList().CryoEnabled();
         }
         return false;
+    }
+
+    private IEnumerator WaitToEnable()
+    {
+        yield return new WaitForEndOfFrame();
+        EnableKinesis(pickupSelect, active);
+        Destroy(gameObject);
     }
 }
