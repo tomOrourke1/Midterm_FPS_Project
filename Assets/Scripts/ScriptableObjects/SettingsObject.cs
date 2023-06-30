@@ -19,9 +19,13 @@ public class SettingsObject : ScriptableObject
     public Sprite currentRetical;
     public bool hitmarkerEnabled;
 
+    // Kinesis Trackers
     public bool pyroOn;
     public bool aeroOn;
     public bool cryoOn;
     public bool electroOn;
     public bool teleOn;
+
+    // Scene tracker
+    public string currentScene;
 }

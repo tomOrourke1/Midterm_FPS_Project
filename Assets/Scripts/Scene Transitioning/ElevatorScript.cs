@@ -11,11 +11,9 @@ public class ElevatorScript : MonoBehaviour, IInteractable
     [Header("Components")]
     [SerializeField, Range(.01f, 5)] float loadingTime = 1.5f;
     [SerializeField, Range(.01f, 5)] float exitingTime = 3.5f;
+
     [Tooltip("The animation curve component to use.")]
     [SerializeField] AnimationCurve curve;
-    [Tooltip("The next scene to load. SPELL THE NAME RIGHT!")]
-    [SerializeField] string sceneName;// = "Tom_Tutorial_Shooting_Range";
-
 
     [Header("Don't Touch")]
     [Tooltip("This is serialized because of main menu. Main menu doesn't have a game manager so we need to have the option of getting it via inspector.")]
@@ -31,7 +29,7 @@ public class ElevatorScript : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        FadeTo(sceneName);
+        FadeTo(GameManager.instance.GetNextLevel());
     }
 
     /// <summary>
@@ -70,6 +68,7 @@ public class ElevatorScript : MonoBehaviour, IInteractable
 
         image.GameObject().SetActive(false);
     }
+
     /// <summary>
     /// The FadeOut() function will create a timer, as time moves along the
     /// 'image' component provided earlier will transition to being fully colored
@@ -95,6 +94,16 @@ public class ElevatorScript : MonoBehaviour, IInteractable
             yield return 0;
         }
         // After fading the scene out transition to the scene we want to load
-        SceneManager.LoadScene(scene);
+
+        if (scene == "")
+        {
+            Debug.Log("YOU DIDN'T PUT A NEXT SCENE NAME IN THE GAME MANAGER!");
+            Debug.Log("YOU DIDN'T PUT A NEXT SCENE NAME IN THE GAME MANAGER!");
+            SceneManager.LoadScene("MainMenu");
+        }
+        else
+        {
+            SceneManager.LoadScene(scene);
+        }
     }
 }

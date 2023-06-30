@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 using System;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -24,6 +25,11 @@ public class GameManager : MonoBehaviour
     private float timescaleOrig;
     private AreaManager currentRoomManager;
 
+    // level info
+    [Header("Next Level")]
+    [SerializeField] string nextLevel;
+    string currentLevel;
+
     void Awake()
     {
         instance = this;
@@ -31,16 +37,22 @@ public class GameManager : MonoBehaviour
 
         // Sets both the player and player script
         player = GameObject.FindGameObjectWithTag("Player");
-        playerscript = player.GetComponent<Player>();
-        playerResources = player.GetComponent<PlayerResources>();
+        playerscript = player?.GetComponent<Player>();
+        playerResources = player?.GetComponent<PlayerResources>();
         PlayerSpawnPOS = GameObject.FindGameObjectWithTag("Player Spawn Pos");
-        keyChain = player.GetComponent<KeyChain>();
-        settingsManager.UpdateObjectsToValues();
+        keyChain = player?.GetComponent<KeyChain>();
     }
 
     private void Start()
     {
         timescaleOrig = Time.timeScale;
+
+        currentLevel = SceneManager.GetActiveScene().name;
+
+        if (currentLevel != "MainMenu")
+        {
+            settingsManager.settings.currentScene = currentLevel;
+        }
 
         WakeUpKinesis();
     }
@@ -272,5 +284,19 @@ public class GameManager : MonoBehaviour
             !isEnabledScript.ElectroEnabled())
             return true;
         else return false;
+    }
+
+    /// <summary>
+    /// For use in the elevator script.
+    /// </summary>
+    /// <returns></returns>
+    public string GetNextLevel()
+    {
+        return nextLevel;
+    }
+
+    public string GetCurrentLevel()
+    {
+        return currentLevel;
     }
 }

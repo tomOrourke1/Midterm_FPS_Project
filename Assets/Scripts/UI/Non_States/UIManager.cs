@@ -224,15 +224,6 @@ public class UIManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Closes the death menu UI when the player respawns.
-    /// </summary>
-    public void CloseDeathUI()
-    {
-        loseAnimController.SetTrigger("ExitLose");
-        //Debug.LogError("Running Exit Lose Menu Close");
-    }
-
-    /// <summary>
     /// Flashs the depleted focus bar.
     /// </summary>
     public void FocusDepleted()

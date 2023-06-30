@@ -14,8 +14,6 @@ public class SettingsManager : MonoBehaviour
 
     [Header("Audio Sliders")]
     [SerializeField] AudioMixer masterMix;
-    [SerializeField] AudioMixer sfxMix;
-    [SerializeField] AudioMixer musicMix;
     [SerializeField] Slider masterSlider;
     [SerializeField] Slider sfxSlider;
     [SerializeField] Slider musicSlider;
