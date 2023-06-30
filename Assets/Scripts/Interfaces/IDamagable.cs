@@ -11,6 +11,8 @@ public interface IDamagable
     void TakeIceDamage(float dmg);
     void TakeElectroDamage(float dmg);
     void TakeFireDamage(float dmg);
+
+    void TakeLaserDamage(float dmg);
     
 
 

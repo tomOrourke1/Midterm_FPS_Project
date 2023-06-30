@@ -97,14 +97,15 @@ public class LightningKinesis : KinesisBase
             IDamagable damageable = hit.collider.GetComponent<IDamagable>();
 
 
-            if(!spawningHits)
+            if (!spawningHits)
             {
                 StartCoroutine(spawnHit(hit.point));
             }
-
-            if (damageable != null)
+            
+            if (damageable != null && !hit.collider.CompareTag("Player"))
             {
-                damageable.TakeDamage(Damage * Time.deltaTime);
+                Debug.Log("reached inside of null check");
+                damageable.TakeElectroDamage(/*Damage * Time.deltaTime*/0);
             }
            
             if(hit.point != null)

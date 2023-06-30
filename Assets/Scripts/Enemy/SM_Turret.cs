@@ -97,6 +97,10 @@ public class SM_Turret : EnemyBase, IDamagable, IEntity
     {
         TakeDamage(dmg);
     }
+    public void TakeLaserDamage(float dmg)
+    {
+        TakeDamage(dmg);
+    }
     IEnumerator FlashDamage()
     {
        // enemyColor = enemyMeshRenderer.material.color; // saves enemy's color

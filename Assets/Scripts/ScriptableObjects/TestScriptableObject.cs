@@ -30,4 +30,8 @@ public class TestScriptableObject : ScriptableObject, IDamagable
     {
         TakeDamage(dmg);
     }
+    public void TakeLaserDamage(float dmg)
+    {
+        TakeDamage(dmg);
+    }
 }

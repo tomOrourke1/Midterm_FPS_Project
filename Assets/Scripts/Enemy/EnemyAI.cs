@@ -162,6 +162,10 @@ public class EnemyAI : MonoBehaviour, IDamagable, IEntity
     {
         TakeDamage(dmg);
     }
+    public void TakeLaserDamage(float dmg)
+    {
+        TakeDamage(dmg);
+    }
     public float GetCurrentHealth()
     {
         return enemyHP;

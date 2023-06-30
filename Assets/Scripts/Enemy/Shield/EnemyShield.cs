@@ -198,6 +198,10 @@ public class EnemyShield : EnemyBase, IEntity, IDamagable, IApplyVelocity
     {
         TakeDamage(dmg);
     }
+    public void TakeLaserDamage(float dmg)
+    {
+        TakeDamage(dmg);
+    }
     public void ApplyVelocity(Vector3 velocity)
     {
         wasPushed = true;

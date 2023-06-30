@@ -64,6 +64,10 @@ public class Scientist : MonoBehaviour, IDamagable
     {
         TakeDamage(dmg);
     }
+    public void TakeLaserDamage(float dmg)
+    {
+        TakeDamage(dmg);
+    }
     IEnumerator EnemyDamageFlash()
     {
         model.material.color = Color.red;

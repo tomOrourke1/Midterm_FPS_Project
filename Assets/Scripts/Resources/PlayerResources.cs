@@ -67,6 +67,10 @@ public class PlayerResources : MonoBehaviour, IDamagable, IHealReciever, IFocusR
     {
         TakeDamage(dmg);
     }
+    public void TakeLaserDamage(float dmg)
+    {
+        TakeDamage(dmg);
+    }
     void PlayerDied()
     {
         GameManager.instance.GetPlayerScript().DeathHandler();

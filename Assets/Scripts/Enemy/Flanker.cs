@@ -178,6 +178,10 @@ public class Flanker : EnemyBase, IDamagable, IEntity, IApplyVelocity
     {
         TakeDamage(dmg);
     }
+    public void TakeLaserDamage(float dmg)
+    {
+        TakeDamage(dmg);
+    }
     public void ApplyVelocity(Vector3 velocity)
     {
         wasPushed = true;

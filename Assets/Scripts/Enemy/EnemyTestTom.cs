@@ -72,6 +72,10 @@ public class EnemyTestTom : EnemyBase, IDamagable
     {
         TakeDamage(dmg);
     }
+    public void TakeLaserDamage(float dmg)
+    {
+        TakeDamage(dmg);
+    }
     IEnumerator FlashDamage()
     {
         enemyMeshRenderer.material.color = Color.red;

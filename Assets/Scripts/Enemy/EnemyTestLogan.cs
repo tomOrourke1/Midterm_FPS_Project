@@ -77,6 +77,10 @@ public class EnemyTestLogan : EnemyBase, IDamagable
     {
         TakeDamage(dmg);
     }
+    public void TakeLaserDamage(float dmg)
+    {
+        TakeDamage(dmg);
+    }
     IEnumerator FlashDamage()
     {
         enemyColor = Color.white;

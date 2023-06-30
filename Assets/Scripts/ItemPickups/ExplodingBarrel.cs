@@ -121,11 +121,15 @@ public class ExplodingBarrel : MonoBehaviour, IDamagable, IEntity
     }
     public void TakeElectroDamage(float dmg)
     {
-        TakeDamage(dmg);
+      
     }
     public void TakeFireDamage(float dmg)
     {
         TakeDamage(dmg);
+    }
+    public void TakeLaserDamage(float dmg)
+    {
+        
     }
     public void chainBlast()
     {

@@ -56,7 +56,10 @@ public class TargetDamageableScript : MonoBehaviour, IDamagable, IEnvironment
     {
         TakeDamage(dmg);
     }
-
+    public void TakeLaserDamage(float dmg)
+    {
+        TakeDamage(dmg);
+    }
     public float GetCurrentHealth()
     {
         return currentTargetHp;

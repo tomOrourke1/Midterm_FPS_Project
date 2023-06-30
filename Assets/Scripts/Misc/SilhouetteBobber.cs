@@ -43,7 +43,10 @@ public class SilhouetteBobber : MonoBehaviour, IDamagable
     {
         TakeDamage(dmg);
     }
-
+    public void TakeLaserDamage(float dmg)
+    {
+        TakeDamage(dmg);
+    }
     private void Start()
     {
         yCurr = transform.position.y;

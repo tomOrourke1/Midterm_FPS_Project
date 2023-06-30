@@ -7,7 +7,7 @@ public class EnemyStunState : EnemyState
     public override void OnEnter()
     {
         base.OnEnter();
-
+        agent.SetDestination(transform.position);
     }
 
 

@@ -28,7 +28,6 @@ public class DamgableObject : MonoBehaviour, IEnvironment, IDamagable
         durabilityPool.OnResourceDepleted -= Die;
         durabilityPool.OnResourceDecrease -= CheckDurability;
     }
-
     public void TakeDamage(float dmg)
     {
         if (dmg > 0)
@@ -45,11 +44,15 @@ public class DamgableObject : MonoBehaviour, IEnvironment, IDamagable
     }
     public void TakeElectroDamage(float dmg)
     {
-        TakeDamage(dmg);
+       
     }
     public void TakeFireDamage(float dmg)
     {
         TakeDamage(dmg);
+    }
+    public void TakeLaserDamage(float dmg)
+    {
+      
     }
     public void StopObject()
     {

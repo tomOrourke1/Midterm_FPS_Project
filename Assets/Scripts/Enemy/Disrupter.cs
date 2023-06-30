@@ -100,6 +100,10 @@ public class Disrupter : EnemyBase, IDamagable, IEntity
     {
         TakeDamage(dmg);
     }
+    public void TakeLaserDamage(float dmg)
+    {
+        TakeDamage(dmg);
+    }
     void OnDeath()
     {
         Destroy(gameObject);

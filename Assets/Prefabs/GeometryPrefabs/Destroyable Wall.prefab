@@ -55,12 +55,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e3b60f8598de6a47bd1979b6271b49c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  durability: 0
+  durabilityPool:
+    maxValue: 3
   wallMeshRenderer: {fileID: 1375674641693791907}
   collider: {fileID: 1375674641693791908}
-  Dur3: {fileID: 0}
-  Dur2: {fileID: 0}
-  Dur1: {fileID: 0}
+  Dur3: {fileID: 2100000, guid: 3c2da0967fbc755478916e27addbc003, type: 2}
+  Dur2: {fileID: 2100000, guid: 560870d1325bfe94bb9c6271ae90902a, type: 2}
+  Dur1: {fileID: 2100000, guid: 7bfcb5ddfc81b4b489dd8890ba4cb9cd, type: 2}
 --- !u!23 &1375674641693791907
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -83,7 +84,7 @@ MeshRenderer:
   m_Materials:
   - {fileID: 2100000, guid: 3c2da0967fbc755478916e27addbc003, type: 2}
   - {fileID: 2100000, guid: 560870d1325bfe94bb9c6271ae90902a, type: 2}
-  - {fileID: 2100000, guid: 3c2da0967fbc755478916e27addbc003, type: 2}
+  - {fileID: 2100000, guid: 7bfcb5ddfc81b4b489dd8890ba4cb9cd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

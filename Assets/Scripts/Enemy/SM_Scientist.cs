@@ -11,9 +11,11 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity, IApplyVelocity
     [SerializeField] EnemyMoveAwayState runState; // creates Move Away state
     [SerializeField] EnemySpottedPlayer scientistSpotPlayer;
     [SerializeField] EnemyPushedState pushedState;
+    [SerializeField] EnemyStunState stunState;
 
     [Header("----- Other Vars -----")]
     [SerializeField] float idleRange;
+    [SerializeField] float stunTime;
 
 
     [Header("Keys")]
@@ -21,6 +23,8 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity, IApplyVelocity
 
     bool wasPushed;
     bool hasLanded;
+    bool isStunned;
+    bool isUnstunned;
     [SerializeField] Rigidbody rb;
     [SerializeField] NavMeshAgent agent;
 
@@ -38,6 +42,9 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity, IApplyVelocity
 
         stateMachine.AddAnyTransition(pushedState, OnPushed);
         stateMachine.AddTransition(pushedState, idleState, OnPushLanding);
+
+        stateMachine.AddAnyTransition(stunState, OnStunned);
+        stateMachine.AddTransition(stunState, idleState, OnUnstunned);
 
         rb.isKinematic = false;
 
@@ -90,10 +97,26 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity, IApplyVelocity
         wasPushed = false;
         return temp;
     }
-
-
-    private void OnEnable()
+    bool OnStunned() 
     {
+     
+        var temp = isStunned;
+        isStunned = false;
+        return temp;
+    }
+    bool OnUnstunned() 
+    {
+        
+        var temp = isUnstunned;
+        isUnstunned = false;
+        if (temp) 
+        {
+            isStunned = false;
+        }
+        return temp;
+    }
+    private void OnEnable()
+    { 
         health.OnResourceDepleted += OnDeath;
     }
 
@@ -130,9 +153,17 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity, IApplyVelocity
     }
     public void TakeElectroDamage(float dmg)
     {
+        Debug.Log("boo");
+        isStunned = true;
         TakeDamage(dmg);
+
+        StartCoroutine(StunTimer());
     }
     public void TakeFireDamage(float dmg)
+    {
+        TakeDamage(dmg);
+    }
+    public void TakeLaserDamage(float dmg)
     {
         TakeDamage(dmg);
     }
@@ -142,6 +173,13 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity, IApplyVelocity
         enemyMeshRenderer.material.color = Color.red; // sets enemy's color to red to show damage
         yield return new WaitForSeconds(0.15f); // waits for a few seconds for the player to notice
         enemyMeshRenderer.material.color = enemyColor; // changes enemy's color back to their previous color
+    }
+    IEnumerator StunTimer()
+    {
+        yield return new WaitForSeconds(stunTime);
+        isUnstunned = true;
+        isStunned = false;
+
     }
 
     private void OnTriggerEnter(Collider other)
