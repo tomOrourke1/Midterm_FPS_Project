@@ -1,0 +1,3220 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!29 &1
+OcclusionCullingSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_OcclusionBakeSettings:
+    smallestOccluder: 5
+    smallestHole: 0.25
+    backfaceThreshold: 100
+  m_SceneGUID: 00000000000000000000000000000000
+  m_OcclusionCullingData: {fileID: 0}
+--- !u!104 &2
+RenderSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 9
+  m_Fog: 0
+  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_FogMode: 3
+  m_FogDensity: 0.01
+  m_LinearFogStart: 0
+  m_LinearFogEnd: 300
+  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
+  m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
+  m_AmbientIntensity: 1
+  m_AmbientMode: 0
+  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
+  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_HaloStrength: 0.5
+  m_FlareStrength: 1
+  m_FlareFadeSpeed: 3
+  m_HaloTexture: {fileID: 0}
+  m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
+  m_DefaultReflectionMode: 0
+  m_DefaultReflectionResolution: 128
+  m_ReflectionBounces: 1
+  m_ReflectionIntensity: 1
+  m_CustomReflection: {fileID: 0}
+  m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_UseRadianceAmbientProbe: 0
+--- !u!157 &3
+LightmapSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 12
+  m_GIWorkflowMode: 1
+  m_GISettings:
+    serializedVersion: 2
+    m_BounceScale: 1
+    m_IndirectOutputScale: 1
+    m_AlbedoBoost: 1
+    m_EnvironmentLightingMode: 0
+    m_EnableBakedLightmaps: 1
+    m_EnableRealtimeLightmaps: 0
+  m_LightmapEditorSettings:
+    serializedVersion: 12
+    m_Resolution: 2
+    m_BakeResolution: 40
+    m_AtlasSize: 1024
+    m_AO: 0
+    m_AOMaxDistance: 1
+    m_CompAOExponent: 1
+    m_CompAOExponentDirect: 0
+    m_ExtractAmbientOcclusion: 0
+    m_Padding: 2
+    m_LightmapParameters: {fileID: 0}
+    m_LightmapsBakeMode: 1
+    m_TextureCompression: 1
+    m_FinalGather: 0
+    m_FinalGatherFiltering: 1
+    m_FinalGatherRayCount: 256
+    m_ReflectionCompression: 2
+    m_MixedBakeMode: 2
+    m_BakeBackend: 1
+    m_PVRSampling: 1
+    m_PVRDirectSampleCount: 32
+    m_PVRSampleCount: 512
+    m_PVRBounces: 2
+    m_PVREnvironmentSampleCount: 256
+    m_PVREnvironmentReferencePointCount: 2048
+    m_PVRFilteringMode: 1
+    m_PVRDenoiserTypeDirect: 1
+    m_PVRDenoiserTypeIndirect: 1
+    m_PVRDenoiserTypeAO: 1
+    m_PVRFilterTypeDirect: 0
+    m_PVRFilterTypeIndirect: 0
+    m_PVRFilterTypeAO: 0
+    m_PVREnvironmentMIS: 1
+    m_PVRCulling: 1
+    m_PVRFilteringGaussRadiusDirect: 1
+    m_PVRFilteringGaussRadiusIndirect: 5
+    m_PVRFilteringGaussRadiusAO: 2
+    m_PVRFilteringAtrousPositionSigmaDirect: 0.5
+    m_PVRFilteringAtrousPositionSigmaIndirect: 2
+    m_PVRFilteringAtrousPositionSigmaAO: 1
+    m_ExportTrainingData: 0
+    m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
+  m_LightingDataAsset: {fileID: 0}
+  m_LightingSettings: {fileID: 0}
+--- !u!196 &4
+NavMeshSettings:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_BuildSettings:
+    serializedVersion: 2
+    agentTypeID: 0
+    agentRadius: 0.5
+    agentHeight: 2
+    agentSlope: 45
+    agentClimb: 0.4
+    ledgeDropHeight: 0
+    maxJumpAcrossDistance: 0
+    minRegionArea: 2
+    manualCellSize: 0
+    cellSize: 0.16666667
+    manualTileSize: 0
+    tileSize: 256
+    accuratePlacement: 0
+    maxJobWorkers: 0
+    preserveTilesOutsideBounds: 0
+    debug:
+      m_Flags: 0
+  m_NavMeshData: {fileID: 0}
+--- !u!1 &148923609
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 148923610}
+  - component: {fileID: 148923612}
+  - component: {fileID: 148923611}
+  m_Layer: 5
+  m_Name: TItle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &148923610
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148923609}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1755349891}
+  m_Father: {fileID: 392830817}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 960, y: -39.70117}
+  m_SizeDelta: {x: 1920, y: 79.402985}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &148923611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148923609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Commit History
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 19551ab46700e3243b3bbdeb7bb3097d, type: 2}
+  m_sharedMaterial: {fileID: -6624472400170989425, guid: 19551ab46700e3243b3bbdeb7bb3097d, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 66.15
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &148923612
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148923609}
+  m_CullTransparentMesh: 1
+--- !u!1 &205073286
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 205073287}
+  - component: {fileID: 205073289}
+  - component: {fileID: 205073288}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &205073287
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205073286}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 334928790}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -42.715195, y: 0}
+  m_SizeDelta: {x: 85.4304, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &205073288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205073286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 68c68a204d46a4946be404668cefbce3, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &205073289
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205073286}
+  m_CullTransparentMesh: 1
+--- !u!1 &302620341
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 302620343}
+  - component: {fileID: 302620342}
+  m_Layer: 0
+  m_Name: Directional Light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!108 &302620342
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 302620341}
+  m_Enabled: 1
+  serializedVersion: 10
+  m_Type: 1
+  m_Shape: 0
+  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Intensity: 1
+  m_Range: 10
+  m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 2
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+--- !u!4 &302620343
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 302620341}
+  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &334928789
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 334928790}
+  m_Layer: 5
+  m_Name: Close
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &334928790
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 334928789}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 205073287}
+  - {fileID: 721797909}
+  m_Father: {fileID: 1143426483}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -142.5, y: 57.899414}
+  m_SizeDelta: {x: 226.7222, y: 85.0419}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &359678090
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 359678091}
+  - component: {fileID: 359678093}
+  - component: {fileID: 359678092}
+  m_Layer: 5
+  m_Name: Body
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &359678091
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359678090}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1191005001}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 735.98676, y: -2215.6382}
+  m_SizeDelta: {x: 1471.9735, y: 3874.0588}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &359678092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359678090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Quisque non tellus orci ac.
+    Nunc lobortis mattis aliquam faucibus purus in massa. Id semper risus in hendrerit
+    gravida. Varius morbi enim nunc faucibus a pellentesque sit. Sed sed risus pretium
+    quam vulputate dignissim suspendisse in est. Aliquam purus sit amet luctus venenatis
+    lectus magna fringilla urna. Arcu non sodales neque sodales ut etiam sit amet
+    nisl. Pulvinar neque laoreet suspendisse interdum consectetur libero id. Tellus
+    pellentesque eu tincidunt tortor aliquam nulla facilisi. Vitae congue eu consequat
+    ac felis donec. Sapien faucibus et molestie ac feugiat sed. Cursus mattis molestie
+    a iaculis. Aenean euismod elementum nisi quis eleifend quam. Elit duis tristique
+    sollicitudin nibh sit. Fringilla urna porttitor rhoncus dolor purus non enim
+    praesent. Tellus mauris a diam maecenas. Lorem ipsum dolor sit amet consectetur.\r\n\r\nDiam
+    maecenas sed enim ut sem viverra aliquet eget sit. Nunc lobortis mattis aliquam
+    faucibus purus in massa. Tempus iaculis urna id volutpat lacus. Dignissim suspendisse
+    in est ante in nibh. Eros donec ac odio tempor orci dapibus ultrices in. Viverra
+    nibh cras pulvinar mattis nunc sed blandit libero. Est lorem ipsum dolor sit
+    amet consectetur adipiscing elit pellentesque. Sodales ut eu sem integer vitae
+    justo. Massa eget egestas purus viverra accumsan in nisl. Luctus venenatis lectus
+    magna fringilla. Urna cursus eget nunc scelerisque viverra. Feugiat scelerisque
+    varius morbi enim nunc faucibus a pellentesque. Quisque egestas diam in arcu
+    cursus euismod quis viverra nibh. Hendrerit dolor magna eget est lorem ipsum
+    dolor sit. Viverra aliquet eget sit amet tellus. Pellentesque id nibh tortor
+    id.\r\n\r\nMauris in aliquam sem fringilla ut. Varius morbi enim nunc faucibus
+    a pellentesque sit amet. Et netus et malesuada fames ac turpis egestas. In nulla
+    posuere sollicitudin aliquam. Sagittis vitae et leo duis ut. Pharetra sit amet
+    aliquam id diam maecenas ultricies. Facilisis volutpat est velit egestas dui.
+    Volutpat sed cras ornare arcu dui vivamus arcu. Aliquet nibh praesent tristique
+    magna sit amet purus gravida quis. Risus quis varius quam quisque id diam. Quis
+    vel eros donec ac odio. Arcu odio ut sem nulla pharetra diam. Cursus euismod
+    quis viverra nibh cras pulvinar mattis. Amet consectetur adipiscing elit pellentesque.
+    Tempus urna et pharetra pharetra massa massa ultricies mi.\r\n\r\nTellus integer
+    feugiat scelerisque varius morbi. Ut faucibus pulvinar elementum integer enim
+    neque volutpat ac. Aliquet sagittis id consectetur purus ut. Ultrices mi tempus
+    imperdiet nulla malesuada pellentesque. Pellentesque dignissim enim sit amet.
+    Condimentum id venenatis a condimentum vitae. Amet justo donec enim diam vulputate
+    ut pharetra sit amet. Sed elementum tempus egestas sed sed risus. Metus vulputate
+    eu scelerisque felis imperdiet proin fermentum leo. Turpis cursus in hac habitasse
+    platea. Velit sed ullamcorper morbi tincidunt ornare massa eget egestas. Turpis
+    massa tincidunt dui ut ornare lectus. Eget felis eget nunc lobortis mattis aliquam
+    faucibus purus. Facilisi morbi tempus iaculis urna id volutpat lacus laoreet.
+    Morbi tristique senectus et netus et. Nullam ac tortor vitae purus faucibus ornare
+    suspendisse.\r\n\r\nInteger feugiat scelerisque varius morbi enim nunc. Sed libero
+    enim sed faucibus. Ultrices eros in cursus turpis. Eu sem integer vitae justo
+    eget magna fermentum iaculis. Integer quis auctor elit sed. Varius vel pharetra
+    vel turpis. Risus pretium quam vulputate dignissim. Leo duis ut diam quam nulla
+    porttitor massa. Nisl purus in mollis nunc sed. Eros in cursus turpis massa.
+    In mollis nunc sed id semper. Tincidunt vitae semper quis lectus nulla at. In
+    aliquam sem fringilla ut morbi tincidunt augue interdum velit. Nisl pretium fusce
+    id velit ut tortor pretium. A diam maecenas sed enim. Interdum posuere lorem
+    ipsum dolor sit amet consectetur adipiscing. Enim nunc faucibus a pellentesque
+    sit amet porttitor eget. Adipiscing diam donec adipiscing tristique risus. Suspendisse
+    in est ante in nibh mauris. Non sodales neque sodales ut etiam sit.\r\n\r\nBibendum
+    ut tristique et egestas quis ipsum suspendisse ultrices. Sed lectus vestibulum
+    mattis ullamcorper velit sed ullamcorper morbi tincidunt. Adipiscing elit ut
+    aliquam purus sit. In vitae turpis massa sed elementum. Ultricies mi quis hendrerit
+    dolor magna. Viverra vitae congue eu consequat ac felis donec et. Fermentum iaculis
+    eu non diam phasellus. Id porta nibh venenatis cras sed felis eget velit aliquet.
+    Nulla at volutpat diam ut. At lectus urna duis convallis.\r\n\r\nEgestas dui
+    id ornare arcu odio ut sem. Urna condimentum mattis pellentesque id nibh tortor
+    id. Ullamcorper velit sed ullamcorper morbi. Vitae suscipit tellus mauris a diam
+    maecenas sed. Elit ut aliquam purus sit amet luctus venenatis lectus magna. Cursus
+    euismod quis viverra nibh cras. Cras pulvinar mattis nunc sed blandit libero.
+    Tellus pellentesque eu tincidunt tortor aliquam nulla facilisi. Quis lectus nulla
+    at volutpat diam. Ut sem nulla pharetra diam sit amet nisl.\r\n\r\nVel orci porta
+    non pulvinar. Enim praesent elementum facilisis leo vel fringilla est ullamcorper.
+    Vulputate eu scelerisque felis imperdiet proin fermentum leo vel orci. Sit amet
+    cursus sit amet dictum sit amet justo. Mi eget mauris pharetra et ultrices neque
+    ornare. Augue ut lectus arcu bibendum. Blandit cursus risus at ultrices mi tempus
+    imperdiet nulla. Volutpat consequat mauris nunc congue nisi vitae suscipit. Dictumst
+    quisque sagittis purus sit amet volutpat consequat mauris nunc. Eu mi bibendum
+    neque egestas congue. Scelerisque varius morbi enim nunc faucibus a. Tellus in
+    hac habitasse platea dictumst. Eget egestas purus viverra accumsan in. Maecenas
+    sed enim ut sem viverra aliquet eget sit. Sit amet nulla facilisi morbi tempus
+    iaculis urna id. Vulputate ut pharetra sit amet aliquam id diam. Elit ullamcorper
+    dignissim cras tincidunt lobortis feugiat vivamus at augue. Sed viverra tellus
+    in hac habitasse platea dictumst vestibulum. Neque laoreet suspendisse interdum
+    consectetur libero id faucibus nisl tincidunt. Nisi quis eleifend quam adipiscing
+    vitae proin sagittis nisl.\r\n\r\nSemper viverra nam libero justo laoreet sit
+    amet cursus. Sit amet luctus venenatis lectus magna fringilla urna porttitor.
+    Tristique risus nec feugiat in fermentum posuere urna nec tincidunt. Turpis egestas
+    integer eget aliquet nibh praesent. Sit amet massa vitae tortor. At auctor urna
+    nunc id cursus metus. Gravida dictum fusce ut placerat orci nulla pellentesque
+    dignissim enim. Semper quis lectus nulla at volutpat diam ut venenatis. Nibh
+    nisl condimentum id venenatis a condimentum vitae sapien. Faucibus a pellentesque
+    sit amet porttitor. Ac tortor dignissim convallis aenean et tortor at risus.
+    Risus in hendrerit gravida rutrum quisque non.\r\n\r\nSit amet massa vitae tortor
+    condimentum lacinia quis vel eros. Mauris rhoncus aenean vel elit scelerisque
+    mauris. Sit amet nisl purus in mollis nunc sed. Ipsum faucibus vitae aliquet
+    nec ullamcorper sit amet risus. Sed adipiscing diam donec adipiscing tristique
+    risus nec feugiat. Pellentesque elit eget gravida cum sociis. A pellentesque
+    sit amet porttitor eget dolor morbi. Enim eu turpis egestas pretium. In nulla
+    posuere sollicitudin aliquam. Ac orci phasellus egestas tellus rutrum tellus.
+    Enim nec dui nunc mattis enim ut tellus elementum.\r\n\r\nPurus sit amet luctus
+    venenatis. Nulla pellentesque dignissim enim sit amet venenatis. Risus quis varius
+    quam quisque id diam vel quam. Faucibus purus in massa tempor nec feugiat nisl
+    pretium. Pulvinar neque laoreet suspendisse interdum consectetur libero id faucibus
+    nisl. Pretium fusce id velit ut tortor pretium viverra suspendisse. Eget dolor
+    morbi non arcu. Scelerisque varius morbi enim nunc faucibus a pellentesque sit.
+    Ut sem nulla pharetra diam. Id semper risus in hendrerit gravida rutrum. Vestibulum
+    lorem sed risus ultricies tristique nulla aliquet enim tortor. Id diam maecenas
+    ultricies mi. Placerat vestibulum lectus mauris ultrices eros in cursus turpis.
+    Egestas sed sed risus pretium quam vulputate dignissim suspendisse. Neque vitae
+    tempus quam pellentesque nec nam aliquam sem. Consectetur lorem donec massa sapien
+    faucibus. Turpis nunc eget lorem dolor sed viverra. Eget lorem dolor sed viverra
+    ipsum. Erat imperdiet sed euismod nisi porta lorem.\r\n\r\nTempor orci eu lobortis
+    elementum. Sodales ut etiam sit amet. Scelerisque eu ultrices vitae auctor eu.
+    Feugiat scelerisque varius morbi enim nunc faucibus a. In pellentesque massa
+    placerat duis ultricies lacus sed. Donec pretium vulputate sapien nec sagittis
+    aliquam. Sit amet risus nullam eget felis eget nunc. Non sodales neque sodales
+    ut. Vitae aliquet nec ullamcorper sit amet risus nullam. Urna duis convallis
+    convallis tellus id interdum velit laoreet id. Suspendisse sed nisi lacus sed
+    viverra tellus in hac habitasse. Sed blandit libero volutpat sed cras ornare
+    arcu. In mollis nunc sed id semper. Quam elementum pulvinar etiam non quam lacus
+    suspendisse faucibus interdum. Volutpat maecenas volutpat blandit aliquam etiam
+    erat. Consectetur a erat nam at. Nunc sed augue lacus viverra vitae. Facilisis
+    mauris sit amet massa vitae tortor. Interdum velit euismod in pellentesque. Id
+    aliquet lectus proin nibh nisl condimentum id venenatis.\r"
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 7dfbf6c9be10f2a4f859b7ab0e8bb00e, type: 2}
+  m_sharedMaterial: {fileID: 3334241885000890528, guid: 7dfbf6c9be10f2a4f859b7ab0e8bb00e, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 30
+  m_fontSizeBase: 30
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &359678093
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359678090}
+  m_CullTransparentMesh: 1
+--- !u!1 &392830816
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 392830817}
+  - component: {fileID: 392830818}
+  m_Layer: 5
+  m_Name: TextObjs (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &392830817
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 392830816}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 148923610}
+  - {fileID: 1969781402}
+  m_Father: {fileID: 1209694729}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &392830818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 392830816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_Spacing: 10
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 1
+  m_ChildControlHeight: 1
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
+--- !u!1 &411099004
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 411099007}
+  - component: {fileID: 411099006}
+  - component: {fileID: 411099005}
+  m_Layer: 0
+  m_Name: EventSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &411099005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 411099004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: 0.5
+  m_ForceModuleActive: 0
+--- !u!114 &411099006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 411099004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
+--- !u!4 &411099007
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 411099004}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &559944614
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 559944615}
+  - component: {fileID: 559944617}
+  - component: {fileID: 559944616}
+  m_Layer: 5
+  m_Name: Divider1 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &559944615
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 559944614}
+  m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1295001756}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 80}
+  m_SizeDelta: {x: 1146.9695, y: 11.4476}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &559944616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 559944614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.764151, g: 0.764151, b: 0.764151, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: f08d423fb83eb9f4fb3ba82f6e892503, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 30
+--- !u!222 &559944617
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 559944614}
+  m_CullTransparentMesh: 1
+--- !u!1 &563072206
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 563072207}
+  - component: {fileID: 563072209}
+  - component: {fileID: 563072208}
+  m_Layer: 5
+  m_Name: TeamMembers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &563072207
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 563072206}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2025892554}
+  m_Father: {fileID: 1143426483}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -877}
+  m_SizeDelta: {x: 1920, y: 604.0737}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &563072208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 563072206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1af411871fb93d249a4a0982e58f8119, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextObj: {fileID: 1665554302}
+  runner: {fileID: 1143426484}
+--- !u!114 &563072209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 563072206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15011f0b738a8764295e24ec8f4cd25b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollTime: 4
+  endPosY: 540
+  script: {fileID: 563072208}
+  image: {fileID: 707214793}
+  fadeTime: 3
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!1 &609714212
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 609714215}
+  - component: {fileID: 609714214}
+  - component: {fileID: 609714213}
+  m_Layer: 0
+  m_Name: Main Camera
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!81 &609714213
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609714212}
+  m_Enabled: 1
+--- !u!20 &609714214
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609714212}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: -1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!4 &609714215
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609714212}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &707214792
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 707214795}
+  - component: {fileID: 707214794}
+  - component: {fileID: 707214793}
+  m_Layer: 5
+  m_Name: MiniFadeOut
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &707214793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 707214792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: f08d423fb83eb9f4fb3ba82f6e892503, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &707214794
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 707214792}
+  m_CullTransparentMesh: 1
+--- !u!224 &707214795
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 707214792}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1143426483}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1750, y: 700}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &721797908
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 721797909}
+  - component: {fileID: 721797911}
+  - component: {fileID: 721797910}
+  m_Layer: 5
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &721797909
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 721797908}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 334928790}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 63.361, y: 0}
+  m_SizeDelta: {x: 126.72, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &721797910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 721797908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Close
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 19551ab46700e3243b3bbdeb7bb3097d, type: 2}
+  m_sharedMaterial: {fileID: -6624472400170989425, guid: 19551ab46700e3243b3bbdeb7bb3097d, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4287203721
+  m_fontColor: {r: 0.5377358, g: 0.5377358, b: 0.5377358, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 30.9
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &721797911
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 721797908}
+  m_CullTransparentMesh: 1
+--- !u!1 &792237109
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 792237110}
+  - component: {fileID: 792237112}
+  - component: {fileID: 792237111}
+  m_Layer: 5
+  m_Name: FadeOutBackground
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &792237110
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 792237109}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1143426483}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &792237111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 792237109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: f08d423fb83eb9f4fb3ba82f6e892503, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &792237112
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 792237109}
+  m_CullTransparentMesh: 1
+--- !u!1 &931931403
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 931931406}
+  - component: {fileID: 931931405}
+  - component: {fileID: 931931404}
+  m_Layer: 5
+  m_Name: Members
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &931931404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931931403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 'Thomas O''Rourke
+
+    Kevin Wall
+
+    Jerry Banagg
+
+    Zachary Barritell
+
+    Adam
+    Woodford
+
+    Logan Smith'
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: f6211296110dbbc49b516380cf7f3cd5, type: 2}
+  m_sharedMaterial: {fileID: -4588018644096357883, guid: f6211296110dbbc49b516380cf7f3cd5, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 50
+  m_fontSizeBase: 50
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &931931405
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931931403}
+  m_CullTransparentMesh: 1
+--- !u!224 &931931406
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931931403}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2025892554}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 960, y: -387.1528}
+  m_SizeDelta: {x: 1920, y: 433.84186}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &945550664
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 945550665}
+  - component: {fileID: 945550667}
+  - component: {fileID: 945550666}
+  m_Layer: 5
+  m_Name: Background
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &945550665
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945550664}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1143426483}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &945550666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945550664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: f08d423fb83eb9f4fb3ba82f6e892503, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &945550667
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945550664}
+  m_CullTransparentMesh: 1
+--- !u!1 &1143426478
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1143426483}
+  - component: {fileID: 1143426482}
+  - component: {fileID: 1143426481}
+  - component: {fileID: 1143426480}
+  - component: {fileID: 1143426485}
+  - component: {fileID: 1143426484}
+  m_Layer: 5
+  m_Name: CreditsCanvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1143426480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143426478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &1143426481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143426478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
+--- !u!223 &1143426482
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143426478}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 0
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!224 &1143426483
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143426478}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 945550665}
+  - {fileID: 563072207}
+  - {fileID: 1665554303}
+  - {fileID: 1209694729}
+  - {fileID: 334928790}
+  - {fileID: 792237110}
+  - {fileID: 707214795}
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
+--- !u!114 &1143426484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143426478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 708b1a96eb6668241ba27c4d612b2a37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadingTime: 1.5
+  exitingTime: 1.5
+  image: {fileID: 792237111}
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  teamObj: {fileID: 563072206}
+--- !u!114 &1143426485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143426478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f5e3863f2b79d744941d7687c88311b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1191005000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1191005001}
+  - component: {fileID: 1191005002}
+  m_Layer: 5
+  m_Name: TextObjs
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1191005001
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1191005000}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1295001756}
+  - {fileID: 359678091}
+  m_Father: {fileID: 1665554303}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1191005002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1191005000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_Spacing: 10
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 1
+  m_ChildControlHeight: 1
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
+--- !u!1 &1209694728
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1209694729}
+  - component: {fileID: 1209694731}
+  - component: {fileID: 1209694730}
+  m_Layer: 5
+  m_Name: GitCommitHistory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1209694729
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1209694728}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 392830817}
+  m_Father: {fileID: 1143426483}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -32367}
+  m_SizeDelta: {x: 1920, y: 62733.273}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1209694730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1209694728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1af411871fb93d249a4a0982e58f8119, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextObj: {fileID: 0}
+  runner: {fileID: 1143426484}
+--- !u!114 &1209694731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1209694728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97364c9506b67e448b47f89c623af7e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollTime: 50
+  script: {fileID: 1209694730}
+--- !u!1 &1266481317
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1266481318}
+  - component: {fileID: 1266481320}
+  - component: {fileID: 1266481319}
+  m_Layer: 5
+  m_Name: Title
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1266481318
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1266481317}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1988912300}
+  m_Father: {fileID: 2025892554}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 960, y: -80.11594}
+  m_SizeDelta: {x: 1920, y: 160.23187}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1266481319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1266481317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Project Members
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 19551ab46700e3243b3bbdeb7bb3097d, type: 2}
+  m_sharedMaterial: {fileID: -6624472400170989425, guid: 19551ab46700e3243b3bbdeb7bb3097d, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 72
+  m_fontSizeBase: 50
+  m_fontWeight: 400
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1266481320
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1266481317}
+  m_CullTransparentMesh: 1
+--- !u!1 &1295001755
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1295001756}
+  - component: {fileID: 1295001758}
+  - component: {fileID: 1295001757}
+  m_Layer: 5
+  m_Name: TItle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1295001756
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1295001755}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 559944615}
+  m_Father: {fileID: 1191005001}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 735.98676, y: -134.30437}
+  m_SizeDelta: {x: 1471.9736, y: 268.60873}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1295001757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1295001755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Assets
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 19551ab46700e3243b3bbdeb7bb3097d, type: 2}
+  m_sharedMaterial: {fileID: -6624472400170989425, guid: 19551ab46700e3243b3bbdeb7bb3097d, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 72
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1295001758
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1295001755}
+  m_CullTransparentMesh: 1
+--- !u!1 &1665554302
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1665554303}
+  - component: {fileID: 1665554305}
+  - component: {fileID: 1665554304}
+  m_Layer: 5
+  m_Name: Assets
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1665554303
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1665554302}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1191005001}
+  m_Father: {fileID: 1143426483}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.000015259, y: -3076.3337}
+  m_SizeDelta: {x: 1471.9735, y: 4152.6675}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1665554304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1665554302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1af411871fb93d249a4a0982e58f8119, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextObj: {fileID: 1209694728}
+  runner: {fileID: 1143426484}
+--- !u!114 &1665554305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1665554302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 512093666fd623940ae2791780a94c2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollTime: 25
+  script: {fileID: 1665554304}
+  image: {fileID: 707214793}
+--- !u!1 &1755349890
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1755349891}
+  - component: {fileID: 1755349893}
+  - component: {fileID: 1755349892}
+  m_Layer: 5
+  m_Name: Divider1 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1755349891
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1755349890}
+  m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 148923610}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 5.7246094}
+  m_SizeDelta: {x: 1146.9695, y: 11.4476}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1755349892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1755349890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.764151, g: 0.764151, b: 0.764151, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: f08d423fb83eb9f4fb3ba82f6e892503, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 30
+--- !u!222 &1755349893
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1755349890}
+  m_CullTransparentMesh: 1
+--- !u!1 &1969781401
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1969781402}
+  - component: {fileID: 1969781404}
+  - component: {fileID: 1969781403}
+  m_Layer: 5
+  m_Name: Body
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1969781402
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1969781401}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 392830817}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 960, y: -31411.338}
+  m_SizeDelta: {x: 1920, y: 62643.87}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1969781403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1969781401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: "Uploading Main Menu changes Swift-Kevin committed 2 hours ago \r\n\r\n
+    Enemy Animations applied\r\n\r\n@Aethilwulf Aethilwulf committed 5 hours ago
+    \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@Aethilwulf Aethilwulf committed 5 hours ago \r\n\r\n Added animations
+    to flanker and sniper\r\n\r\n@Aethilwulf Aethilwulf committed 5 hours ago \r\n\r\n
+    Reflectable Lasers \r\n\r\n@Ikatlo3 Ikatlo3 committed 5 hours ago \r\n\r\n Added
+    rigidbody's to all enemies which need them\r\n\r\n@ZachBaritell ZachBaritell
+    committed 7 hours ago \r\n\r\n Updated sniper assets\r\n\r\n@Aethilwulf Aethilwulf
+    committed 8 hours ago \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@ZachBaritell ZachBaritell committed 8 hours ago \r\n\r\n Idamagable
+    applied to a lot of enemies and player, damagable walls no\u2026 \r\n\r\n@ZachBaritell
+    ZachBaritell committed 8 hours ago \r\n\r\n Updated Disruptor and Turret cosmetics\r\n\r\n@Aethilwulf
+    Aethilwulf committed 8 hours ago \r\n\r\n Updated Mesh skins for The basic enemy,
+    scientist and security guard\r\n\r\n@Aethilwulf Aethilwulf committed 8 hours
+    ago \r\n\r\n Applied new mesh to sniper and flanker\r\n\r\n@Aethilwulf Aethilwulf
+    committed 8 hours ago \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@Aethilwulf Aethilwulf committed 9 hours ago \r\n\r\n Updated Assets\r\n\r\n@Aethilwulf
+    Aethilwulf committed 9 hours ago \r\n\r\n Focus Bar Depletion Effect \r\n\r\n@Swift-Kevin
+    Swift-Kevin committed yesterday \r\n\r\n Commits on Jun 28, 2023 Update Player.cs\r\n\r\n@tomOrourke1
+    tomOrourke1 committed yesterday \r\n\r\n Continuation of the work on the character
+    refactoring.\r\n\r\n@tomOrourke1 tomOrourke1 committed yesterday \r\n\r\n Merge
+    branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026 \r\n\r\n@tomOrourke1
+    tomOrourke1 committed yesterday \r\n\r\n Fireballs now do knockback to applicable
+    entities within range\r\n\r\n@Ikatlo3 Ikatlo3 committed yesterday \r\n\r\n Added
+    duplicate orb pickup to Kinesis Orbs \r\n\r\n@Swift-Kevin Swift-Kevin committed
+    yesterday \r\n\r\n working on the player refactor\r\n\r\n@tomOrourke1 tomOrourke1
+    committed yesterday \r\n\r\n UI Update for Play <-> Info \r\n\r\n@Swift-Kevin
+    Swift-Kevin committed yesterday \r\n\r\n Barrels will now apply knockback to
+    everything within range when it e\u2026 \r\n\r\n@Ikatlo3 Ikatlo3 committed yesterday
+    \r\n\r\n Enemy Changes\r\n\r\n@Ikatlo3 Ikatlo3 committed yesterday \r\n\r\n Updated
+    to the UI \r\n\r\n@Swift-Kevin Swift-Kevin committed yesterday \r\n\r\n Disruptor
+    Disrupting script created\r\n\r\n@Aethilwulf Aethilwulf committed yesterday \r\n\r\n
+    Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026 \r\n\r\n@Aethilwulf
+    Aethilwulf committed yesterday \r\n\r\n Updating Prefab\r\n\r\n@Aethilwulf Aethilwulf
+    committed yesterday \r\n\r\n added new character model\r\n\r\n@Aethilwulf Aethilwulf
+    committed yesterday \r\n\r\n Added new character model\r\n\r\n@Aethilwulf Aethilwulf
+    committed yesterday \r\n\r\n added new riot shield\r\n\r\n@Aethilwulf Aethilwulf
+    committed yesterday \r\n\r\n Updating materials added\r\n\r\n@Aethilwulf Aethilwulf
+    committed yesterday \r\n\r\n added new animations continued\r\n\r\n@Aethilwulf
+    Aethilwulf committed yesterday \r\n\r\n Added new materials to sniper, security,
+    flanker\r\n\r\n@Aethilwulf Aethilwulf committed yesterday \r\n\r\n added new
+    materials to basic enemy\r\n\r\n@Aethilwulf Aethilwulf committed yesterday \r\n\r\n\r\n\r\nAdded
+    new animations continued\r\n\r\n@Aethilwulf Aethilwulf committed yesterday \r\n\r\n
+    Added animations to new folders\r\n\r\n@Aethilwulf Aethilwulf committed yesterday
+    \r\n\r\n Updating commit\r\n\r\n@Aethilwulf Aethilwulf committed yesterday \r\n\r\n
+    Updating commit\r\n\r\n@Aethilwulf Aethilwulf committed yesterday \r\n\r\n tried
+    to fix the aero bug\r\n\r\n@Ikatlo3 Ikatlo3 committed yesterday \r\n\r\n Update
+    state machine to have get the current state\r\n\r\n@tomOrourke1 tomOrourke1 committed
+    yesterday \r\n\r\n Added aero to player prefab\r\n\r\n@ZachBaritell ZachBaritell
+    committed yesterday \r\n\r\n Added Name and Company logo in build\r\n\r\n@Swift-Kevin
+    Swift-Kevin committed 2 days ago \r\n\r\n Aerokinesis is now works on all enemies\r\n\r\n@ZachBaritell
+    ZachBaritell committed 2 days ago \r\n\r\n Commits on Jun 27, 2023 Update UIManager.cs\r\n\r\n@Swift-Kevin
+    Swift-Kevin committed 2 days ago \r\n\r\n UI Menu States work \r\n\r\n@Swift-Kevin
+    Swift-Kevin committed 2 days ago \r\n\r\n Moveable objects have been changed
+    to function after hitting walls\r\n\r\n@Ikatlo3 Ikatlo3 committed 2 days ago
+    \r\n\r\n Reworked IEnvironment and added Enemy Death saving on checkpoints. \r\n\r\n@Ikatlo3
+    Ikatlo3 committed 2 days ago \r\n\r\n Aero works on moveable objects\r\n\r\n@ZachBaritell
+    ZachBaritell committed 2 days ago \r\n\r\n UI State Machine Working for Specific
+    States \r\n\r\n@Swift-Kevin Swift-Kevin committed 3 days ago \r\n\r\n Fixed up
+    the animator to wait for animations\r\n\r\n@tomOrourke1 tomOrourke1 committed
+    3 days ago \r\n\r\n Commits on Jun 26, 2023 Pushing for tom to add a small fix\r\n\r\n@Swift-Kevin
+    Swift-Kevin committed 3 days ago \r\n\r\n small fix to the UIMenuSTate\r\n\r\n@tomOrourke1
+    tomOrourke1 committed 3 days ago \r\n\r\n Update UI_Main.prefab\r\n\r\n@Swift-Kevin
+    Swift-Kevin committed 3 days ago \r\n\r\n Getting the UI state machine set up
+    for the new system and use. Addin\u2026 \r\n\r\n@tomOrourke1 tomOrourke1 committed
+    3 days ago \r\n\r\n Commits on Jun 25, 2023 Preparing for UI State Machine\r\n\r\n@Swift-Kevin
+    Swift-Kevin committed 4 days ago \r\n\r\n Update README.md\r\n\r\n@Swift-Kevin
+    Swift-Kevin committed 4 days ago \r\n\r\n Commits on Jun 24, 2023 Update UI_Main.prefab\r\n\r\n@Swift-Kevin
+    Swift-Kevin committed 5 days ago \r\n\r\n Reworked Kinesis Pickups - Easier to
+    use.\r\n\r\n@Swift-Kevin Swift-Kevin committed 5 days ago \r\n\r\n Commits on
+    Jun 22, 2023 Updated UI After testings \r\n\r\n@Swift-Kevin Swift-Kevin committed
+    last week \r\n\r\n Laser FX\r\n\r\n@Swift-Kevin Swift-Kevin committed last week
+    \r\n\r\n Build one or so more times plus kenissiiss eddits\r\n\r\n@tomOrourke1
+    tomOrourke1 committed last week \r\n\r\n Adam level complete \r\n\r\n@Aethilwulf
+    Aethilwulf committed last week \r\n\r\n Fixing up two small things for the build???>
+    .zsvd,fgvssafe\r\n\r\n@tomOrourke1 tomOrourke1 committed last week \r\n\r\n Commits
+    on Jun 21, 2023 Fixing enemy color\r\n\r\n@tomOrourke1 tomOrourke1 committed
+    last week \r\n\r\n Making Build 2 work MK 1\r\n\r\n@tomOrourke1 tomOrourke1 committed
+    last week \r\n\r\n Updated prefabs and navmesh\r\n\r\n@Swift-Kevin Swift-Kevin
+    committed last week \r\n\r\n Level Finish\r\n\r\n@ZachBaritell ZachBaritell committed
+    last week \r\n\r\n Level update\r\n\r\n@Ikatlo3 Ikatlo3 committed last week \r\n\r\n
+    Pushed fix to the Logan level with the buttons beingwrong.\r\n\r\n@RumbleWreck
+    RumbleWreck committed last week\r\n\r\nFixed enemy damage\r\n\r\n@tomOrourke1
+    tomOrourke1 committed last week \r\n\r\n Level Complete\r\n\r\n@Ikatlo3 Ikatlo3
+    committed last week \r\n\r\n Update Flanker.cs\r\n\r\n@tomOrourke1 tomOrourke1
+    committed last week \r\n\r\n Update EnemySniperShootState.cs\r\n\r\n@tomOrourke1
+    tomOrourke1 committed last week \r\n\r\n Update Sniper.cs\r\n\r\n@tomOrourke1
+    tomOrourke1 committed last week \r\n\r\n Fixed keys\r\n\r\n@tomOrourke1 tomOrourke1
+    committed last week \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@tomOrourke1 tomOrourke1 committed last week \r\n\r\n Updated range for
+    enemies\r\n\r\n@tomOrourke1 tomOrourke1 committed last week \r\n\r\n Update Kevin_Level.unity\r\n\r\n@Swift-Kevin
+    Swift-Kevin committed last week \r\n\r\n Fixed Level / Item Pickups \r\n\r\n@Swift-Kevin
+    Swift-Kevin committed last week \r\n\r\n Fixed no death without power\r\n\r\n@ZachBaritell
+    ZachBaritell committed last week \r\n\r\n Jerry Level Update\r\n\r\n@Ikatlo3
+    Ikatlo3 committed last week \r\n\r\n Fixed kinesis from not restarting when you
+    die.,\r\n\r\n@tomOrourke1 tomOrourke1 committed last week \r\n\r\n Update SecurityGuard.prefab\r\n\r\n@tomOrourke1
+    tomOrourke1 committed last week \r\n\r\n Updated prefabs\r\n\r\n@tomOrourke1
+    tomOrourke1 committed last week \r\n\r\n Keys now die on respawn\r\n\r\n@Ikatlo3
+    Ikatlo3 committed last week \r\n\r\n Fixed lighting in the the two starter rooms
+    for the game to work.\r\n\r\n@tomOrourke1 tomOrourke1 committed last week \r\n\r\n
+    Lasers now load properly.\r\n\r\n@Ikatlo3 Ikatlo3 committed last week \r\n\r\n
+    Fixed bullets(hopefully) + exploding barrel prefab edits.\r\n\r\n@tomOrourke1
+    tomOrourke1 committed last week \r\n\r\n Moving files and balancing enemeis\r\n\r\n@tomOrourke1
+    tomOrourke1 committed last week \r\n\r\n Updated UI Prefab\r\n\r\n@Swift-Kevin
+    Swift-Kevin committed last week \r\n\r\n Added FX to barrel explosions\r\n\r\n@Swift-Kevin
+    Swift-Kevin committed last week \r\n\r\n Added Checkpoint icon on UI \r\n\r\n@Swift-Kevin
+    Swift-Kevin committed last week \r\n\r\n Fixed up the other enemies\r\n\r\n@tomOrourke1
+    tomOrourke1 committed last week \r\n\r\n Changed Prefabs of the Health and Shield
+    pickups \r\n\r\n@Swift-Kevin Swift-Kevin committed last week \r\n\r\n Fixed ice
+    +++++ a lot of work on enemies.\r\n\r\n@tomOrourke1 tomOrourke1 committed last
+    week \r\n\r\n Updated Materials PT2\r\n\r\n@Swift-Kevin Swift-Kevin committed
+    last week \r\n\r\n Changed All Materials to be of GPU Instancing \r\n\r\n@Swift-Kevin
+    Swift-Kevin committed last week \r\n\r\n Level Pushed\r\n\r\n@Ikatlo3 Ikatlo3
+    committed last week \r\n\r\n Kinesis Pickup VFX Update\r\n\r\n@Swift-Kevin Swift-Kevin
+    committed last week \r\n\r\n Commits on Jun 20, 2023 Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@Aethilwulf Aethilwulf committed last week \r\n\r\n Sniper fixed, Flanker
+    added to prefab\r\n\r\n@Aethilwulf Aethilwulf committed last week \r\n\r\n upppdated
+    prpefab\r\n\r\n@tomOrourke1 tomOrourke1 committed last week \r\n\r\n InvertedCUbe
+    2\r\n\r\n@tomOrourke1 tomOrourke1 committed last week \r\n\r\n Merge branch 'main'
+    of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026 \r\n\r\n@ZachBaritell
+    ZachBaritell committed last week Shield Pickup Added\r\n\r\n@ZachBaritell ZachBaritell
+    committed last week \r\n\r\n Saved kevins level and that is the fix there in
+    side of the moving pl\u2026 \r\n\r\n@tomOrourke1 tomOrourke1 committed last week
+    \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@tomOrourke1 tomOrourke1 committed last week \r\n\r\n Merge branch 'main'
+    of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026 \r\n\r\n@Swift-Kevin
+    Swift-Kevin committed last week \r\n\r\n Update Kevin_Level.unity\r\n\r\n@Swift-Kevin
+    Swift-Kevin committed last week \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@tomOrourke1 tomOrourke1 committed last week \r\n\r\n Barrels work for
+    real now.\r\n\r\n@Ikatlo3 Ikatlo3 committed last week \r\n\r\n Kevin's Level
+    Finished (Ready for test playing)\r\n\r\n@Swift-Kevin Swift-Kevin committed last
+    week \r\n\r\n Fixed spawning for nav meshing agenst wahhh\r\n\r\n@tomOrourke1
+    tomOrourke1 committed last week \r\n\r\n THE BARRELS WORK NOW\r\n\r\n@Ikatlo3
+    Ikatlo3 committed last week \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@ZachBaritell ZachBaritell committed last week \r\n\r\n My level has
+    leveled up!\r\n\r\n@ZachBaritell ZachBaritell committed last week \r\n\r\n Working
+    on the test room + added particles to barrel explosion.\r\n\r\n@tomOrourke1 tomOrourke1
+    committed last week \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@ZachBaritell ZachBaritell committed last week \r\n\r\n Update Zach_Tutorial.unity\r\n\r\n@ZachBaritell
+    ZachBaritell committed last week \r\n\r\n Barrels don't work... WHY?????\r\n\r\n@Ikatlo3
+    Ikatlo3 committed last week \r\n\r\n Barrel change\r\n\r\n@Ikatlo3 Ikatlo3 committed
+    last week \r\n\r\n Update Zach_Tutorial.unity\r\n\r\n@ZachBaritell ZachBaritell
+    committed last week \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@ZachBaritell ZachBaritell committed last week \r\n\r\n Level completo\r\n\r\n@ZachBaritell
+    ZachBaritell committed last week \r\n\r\n Barrels \r\n\r\n@Ikatlo3 Ikatlo3 committed
+    last week \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@Aethilwulf Aethilwulf committed last week \r\n\r\n Sniper in stated
+    enemies\r\n\r\n@Aethilwulf Aethilwulf committed last week \r\n\r\n Added roof
+    to Logan Level \r\n\r\n@RumbleWreck RumbleWreck committed last week \r\n\r\n
+    Fixed checkpoint \r\n\r\n@RumbleWreck RumbleWreck committed last week \r\n\r\n
+    Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026 \r\n\r\n@ZachBaritell
+    ZachBaritell committed last week \r\n\r\n Buttons added to level 1 Logan \r\n\r\n@RumbleWreck
+    RumbleWreck committed last week \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@ZachBaritell ZachBaritell committed last week \r\n\r\n Fixed Cheat Menu\r\n\r\n@Swift-Kevin
+    Swift-Kevin committed last week \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@Swift-Kevin Swift-Kevin committed last week \r\n\r\n Default Telekinesis\r\n\r\n@Swift-Kevin
+    Swift-Kevin committed last week \r\n\r\n Many-a-bugs been squished. \r\n\r\n@Ikatlo3
+    Ikatlo3 committed last week \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@ZachBaritell ZachBaritell committed last week \r\n\r\n Pushing the cube
+    and my level and some of those changes to enemeis.\r\n\r\n@tomOrourke1 tomOrourke1
+    committed last week \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@ZachBaritell ZachBaritell committed last week Progress Check on Kevin's
+    level. (Soon to be done)\r\n\r\n@Swift-Kevin Swift-Kevin committed last week
+    \r\n\r\n Cheat Menu Implemented \r\n\r\n@Swift-Kevin Swift-Kevin committed last
+    week \r\n\r\n First level completed - Logan \r\n\r\n@RumbleWreck RumbleWreck
+    committed last week \r\n\r\n Zach's Level\r\n\r\n@ZachBaritell ZachBaritell committed
+    last week \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@Aethilwulf Aethilwulf committed last week \r\n\r\n Flanker \r\n\r\n@Aethilwulf
+    Aethilwulf committed last week \r\n\r\n Small bandaid on enemyai && transition
+    trigger.\r\n\r\n@RumbleWreck RumbleWreck committed last week \r\n\r\n Flanker
+    Movement \r\n\r\n@Aethilwulf Aethilwulf committed last week \r\n\r\n Edited player
+    prefab and the telekinesis controller\r\n\r\n@tomOrourke1 tomOrourke1 committed
+    last week \r\n\r\n Fixed main menu levle\r\n\r\n@Swift-Kevin Swift-Kevin committed
+    last week \r\n\r\n Update DoorScript.cs\r\n\r\n@Swift-Kevin Swift-Kevin committed
+    last week \r\n\r\n Door Script update \r\n\r\n@Swift-Kevin Swift-Kevin committed
+    last week \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@Swift-Kevin Swift-Kevin committed last week \r\n\r\n Door Locked Color
+    (Initial State)\r\n\r\n@Swift-Kevin Swift-Kevin committed last week \r\n\r\n
+    Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026 \r\n\r\n@Aethilwulf
+    Aethilwulf committed last week \r\n\r\n Commits on Jun 19, 2023 Progress made
+    on kevins level\r\n\r\n@Swift-Kevin Swift-Kevin committed last week \r\n\r\n
+    Rotating block now reset on load, Lasers now have an initial delay th\u2026 \r\n\r\n@Ikatlo3
+    Ikatlo3 committed last week \r\n\r\n Saving Level + Saving Materials for vat\r\n\r\n@Swift-Kevin
+    Swift-Kevin committed last week \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@Aethilwulf Aethilwulf committed last week \r\n\r\n Push to the platform
+    script in the folder.\r\n\r\n@tomOrourke1 tomOrourke1 committed last week \r\n\r\n
+    Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026 \r\n\r\n@Aethilwulf
+    Aethilwulf committed last week \r\n\r\n Sniper functional \r\n\r\n@Aethilwulf
+    Aethilwulf committed last week \r\n\r\n Moving platform changes + saving level\r\n\r\n@Swift-Kevin
+    Swift-Kevin committed last week \r\n\r\n Pushing arrow prefab\r\n\r\n@tomOrourke1
+    tomOrourke1 committed last week \r\n\r\n Pushing Prefabs of the kinesis pickups
+    that show the UI.\r\n\r\n@Swift-Kevin Swift-Kevin committed last week \r\n\r\n
+    Tutorial level MK 2 working in order.\r\n\r\n@tomOrourke1 tomOrourke1 committed
+    last week \r\n\r\n Implemented momentum pausing\r\n\r\n@Ikatlo3 Ikatlo3 committed
+    last week \r\n\r\n Changed the moving platform to make it more user friendly.\r\n\r\n@Ikatlo3
+    Ikatlo3 committed last week \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@Aethilwulf Aethilwulf committed last week \r\n\r\n Changed the name
+    of roomManager to areaManager \r\n\r\n@Ikatlo3 Ikatlo3 committed last week \r\n\r\n
+    Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026 \r\n\r\n@Aethilwulf
+    Aethilwulf committed last week \r\n\r\n Working on tutorial Part one - some attempts
+    to fixe up some things w\u2026 \r\n\r\n@tomOrourke1 tomOrourke1 committed 2 weeks
+    ago \r\n\r\n Commits on Jun 18, 2023 Finished with Level and checkpoints\r\n\r\n@Swift-Kevin
+    Swift-Kevin committed 2 weeks ago \r\n\r\n Committing progress on current level.\r\n\r\n@Swift-Kevin
+    Swift-Kevin committed 2 weeks ago \r\n\r\n Moving platforms no longer unload\r\n\r\n@Ikatlo3
+    Ikatlo3 committed 2 weeks ago Added Kinesis Pickup\r\n\r\n@Swift-Kevin Swift-Kevin
+    committed 2 weeks ago \r\n\r\n Doors will closd noe\r\n\r\n@Ikatlo3 Ikatlo3 committed
+    2 weeks ago \r\n\r\n Fixed enemies to now die for the motherland... (IEntity)\r\n\r\n@RumbleWreck
+    RumbleWreck committed 2 weeks ago \r\n\r\n Scientist drops keys now \r\n\r\n@RumbleWreck
+    RumbleWreck committed 2 weeks ago \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@RumbleWreck RumbleWreck committed 2 weeks ago \r\n\r\n Enemy with States
+    are completed \r\n\r\n@RumbleWreck RumbleWreck committed 2 weeks ago \r\n\r\n
+    Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026 \r\n\r\n@Swift-Kevin
+    Swift-Kevin committed 2 weeks ago \r\n\r\n Forgot to fix elevators (they're fixed
+    now)\r\n\r\n@Swift-Kevin Swift-Kevin committed 2 weeks ago \r\n\r\n Bug Fixes\r\n\r\n@Ikatlo3
+    Ikatlo3 committed 2 weeks ago \r\n\r\n Saving Level + More \r\n\r\n@Swift-Kevin
+    Swift-Kevin committed 2 weeks ago \r\n\r\n Committing before the storm\r\n\r\n@Swift-Kevin
+    Swift-Kevin committed 2 weeks ago \r\n\r\n Pushed little silly guys in the windows.\r\n\r\n@tomOrourke1
+    tomOrourke1 committed 2 weeks ago \r\n\r\n Commits on Jun 17, 2023 Updated the
+    player prefab ++ added funny dude\r\n\r\n@tomOrourke1 tomOrourke1 committed 2
+    weeks ago \r\n\r\n updated the prefabs shadows\r\n\r\n@tomOrourke1 tomOrourke1
+    committed 2 weeks ago \r\n\r\n Room 3 Done, Updated Player Stats to be a bit
+    smaller (less cluttery)\r\n\r\n@Swift-Kevin Swift-Kevin committed 2 weeks ago
+    \r\n\r\n Making a push to prefab stuff\r\n\r\n@tomOrourke1 tomOrourke1 committed
+    2 weeks ago \r\n\r\n Room 2 Floor plan done, pushing prefabs.\r\n\r\n@Swift-Kevin
+    Swift-Kevin committed 2 weeks ago \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@Swift-Kevin Swift-Kevin committed 2 weeks ago \r\n\r\n Fixed minor issue
+    with casting and weapon switching\r\n\r\n@tomOrourke1 tomOrourke1 committed 2
+    weeks ago \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@Swift-Kevin Swift-Kevin committed 2 weeks ago \r\n\r\n Progress update
+    for Kevins Level\r\n\r\n@Swift-Kevin Swift-Kevin committed 2 weeks ago \r\n\r\n
+    Expanding and refactoring the IDamageable so you can get current heal\u2026 \r\n\r\n@tomOrourke1
+    tomOrourke1 committed 2 weeks ago \r\n\r\n Pushing\r\n\r\n@Ikatlo3 Ikatlo3 committed
+    2 weeks ago \r\n\r\n Committing level.\r\n\r\n@Swift-Kevin Swift-Kevin committed
+    2 weeks ago \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@Swift-Kevin Swift-Kevin committed 2 weeks ago \r\n\r\n Update player
+    prefab // added more effects onto the attacks. Making m\u2026 \r\n\r\n@tomOrourke1
+    tomOrourke1 committed 2 weeks ago \r\n\r\n Kevin's Level Progress Commit \r\n\r\n@Swift-Kevin
+    Swift-Kevin committed 2 weeks ago \r\n\r\n Added fire particles / focus, fire
+    ball, explosion / / fixed lightnin\u2026 \r\n\r\n@tomOrourke1 tomOrourke1 committed
+    2 weeks ago \r\n\r\n Base Scene template added in \r\n\r\n@Swift-Kevin Swift-Kevin
+    committed 2 weeks ago \r\n\r\n Updated player prefab as well as Room prefab\r\n\r\n@Ikatlo3
+    Ikatlo3 committed 2 weeks ago \r\n\r\n Fov bug fixes\r\n\r\n@Ikatlo3 Ikatlo3
+    committed 2 weeks ago \r\n\r\n Updated the prefabs and added some new ones for
+    tiles\r\n\r\n@tomOrourke1 tomOrourke1 committed 2 weeks ago \r\n\r\n Unpacked
+    tiles from first two levels.\r\n\r\n@Swift-Kevin Swift-Kevin committed 2 weeks
+    ago \r\n\r\n Parent is reset on death.\r\n\r\n@Ikatlo3 Ikatlo3 committed 2 weeks
+    ago \r\n\r\n Dying will now reset the FOV, Z-axis camera tilt, and velocity.\r\n\r\n@Ikatlo3
+    Ikatlo3 committed 2 weeks ago Font Changes and updating, making sure it's flush
+    across the board.\r\n\r\n@Swift-Kevin Swift-Kevin committed 2 weeks ago \r\n\r\n
+    made Electrokenisis pop! // with particles //\r\n\r\n@tomOrourke1 tomOrourke1
+    committed 2 weeks ago \r\n\r\n Integrated the gameManager's RespawnCaller into
+    the death screen's re\u2026 \r\n\r\n@Ikatlo3 Ikatlo3 committed 2 weeks ago \r\n\r\n
+    Commits on Jun 16, 2023 Fix to doors + edits to fire and ice prefab\r\n\r\n@tomOrourke1
+    tomOrourke1 committed 2 weeks ago \r\n\r\n Started integrating room manager\r\n\r\n@Ikatlo3
+    Ikatlo3 committed 2 weeks ago \r\n\r\n Fully Fixed up the melee attack && aimations.\r\n\r\n@tomOrourke1
+    tomOrourke1 committed 2 weeks ago \r\n\r\n Made knife animation.\r\n\r\n@tomOrourke1
+    tomOrourke1 committed 2 weeks ago \r\n\r\n Updated player prefab \r\n\r\n@Ikatlo3
+    Ikatlo3 committed 2 weeks ago \r\n\r\n Kinesis Active is set to be in the game
+    manager object now. \r\n\r\n@Swift-Kevin Swift-Kevin committed 2 weeks ago \r\n\r\n
+    Made the pyro animations and made them work with the pyro fire script\r\n\r\n@tomOrourke1
+    tomOrourke1 committed 2 weeks ago \r\n\r\n Fixed the lightning to work with the
+    animations\r\n\r\n@tomOrourke1 tomOrourke1 committed 2 weeks ago \r\n\r\n Cryo
+    Prefab to make it a spike\r\n\r\n@tomOrourke1 tomOrourke1 committed 2 weeks ago
+    \r\n\r\n Finished up getting the basics of cryo working\r\n\r\n@tomOrourke1 tomOrourke1
+    committed 2 weeks ago \r\n\r\n Player Controls added in the pause menu. \r\n\r\n@Swift-Kevin
+    Swift-Kevin committed 2 weeks ago \r\n\r\n Fireball and ice updated\r\n\r\n@ZachBaritell
+    ZachBaritell committed 2 weeks ago \r\n\r\n Player prefab update\r\n\r\n@ZachBaritell
+    ZachBaritell committed 2 weeks ago \r\n\r\n Caster Script implemented\r\n\r\n@ZachBaritell
+    ZachBaritell committed 2 weeks ago \r\n\r\n Pushing player prefab again. Telekinesis
+    controller to include events\u2026 \r\n\r\n@tomOrourke1 tomOrourke1 committed
+    2 weeks ago \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@ZachBaritell ZachBaritell committed 2 weeks ago \r\n\r\n Added lightning
+    kinesis, rearranged telekinesis\r\n\r\n@ZachBaritell ZachBaritell committed 2
+    weeks ago \r\n\r\n Working on left hand stuff. Pushed player prefab edit.\r\n\r\n@tomOrourke1
+    tomOrourke1 committed 2 weeks ago \r\n\r\n Added popup display on interactable
+    objects\r\n\r\n@Swift-Kevin Swift-Kevin committed 2 weeks ago \r\n\r\n Included
+    persistent settings! \r\n\r\n@Swift-Kevin Swift-Kevin committed 2 weeks ago \r\n\r\n
+    Commits on Jun 15, 2023 Updated for telekinesis icon.\r\n\r\n@Swift-Kevin Swift-Kevin
+    committed 2 weeks ago \r\n\r\n Kevin fixing an issue on my end for the Radial
+    UI. WIP left hand anim\u2026 \r\n\r\n@tomOrourke1 tomOrourke1 committed 2 weeks
+    ago \r\n\r\n Radial's bug when not moving the mouse using a non defaulted kinesis.\r\n\r\n@Swift-Kevin
+    Swift-Kevin committed 2 weeks ago \r\n\r\n Radial Wheel updates to selected icon.
+    \r\n\r\n@Swift-Kevin Swift-Kevin committed 2 weeks ago \r\n\r\n Added camera
+    response when dashing. \r\n\r\n@Ikatlo3 Ikatlo3 committed 2 weeks ago \r\n\r\n
+    Updating UI prefab\r\n\r\n@Swift-Kevin Swift-Kevin committed 2 weeks ago \r\n\r\n
+    Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026 \r\n\r\n@Aethilwulf
+    Aethilwulf committed 2 weeks ago \r\n\r\n Reorganized UI Folder / Radial Wheel
+    orientation \r\n\r\n@Swift-Kevin Swift-Kevin committed 2 weeks ago \r\n\r\n Added
+    secondary particle for the finger gun shoot\r\n\r\n@tomOrourke1 tomOrourke1 committed
+    2 weeks ago \r\n\r\n Fixed the player prefab\r\n\r\n@tomOrourke1 tomOrourke1
+    committed 2 weeks ago \r\n\r\n Adding ux stuff to the player. Including the hands
+    and other scripts \u2026 \r\n\r\n@tomOrourke1 tomOrourke1 committed 2 weeks ago
+    \r\n\r\n Player can only dash while moving\r\n\r\n@Ikatlo3 Ikatlo3 committed
+    2 weeks ago Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@Aethilwulf Aethilwulf committed 2 weeks ago \r\n\r\n Commits on Jun
+    14, 2023 Key UI updated. \r\n\r\n@Swift-Kevin Swift-Kevin committed 2 weeks ago
+    \r\n\r\n UI Updated Again. A lot of UI Updates apparently.! \r\n\r\n@Swift-Kevin
+    Swift-Kevin committed 2 weeks ago \r\n\r\n Ice Kinesis Prefab works\r\n\r\n@ZachBaritell
+    ZachBaritell committed 2 weeks ago \r\n\r\n Fire Kinesis prefab is working\r\n\r\n@ZachBaritell
+    ZachBaritell committed 2 weeks ago \r\n\r\n Rotating blocks\r\n\r\n@Ikatlo3 Ikatlo3
+    committed 2 weeks ago \r\n\r\n Exploding barrels work\r\n\r\n@Ikatlo3 Ikatlo3
+    committed 2 weeks ago \r\n\r\n GameManager will now grab keychain from the player\r\n\r\n@Ikatlo3
+    Ikatlo3 committed 2 weeks ago \r\n\r\n Keys are now managed by the keychain\r\n\r\n@Ikatlo3
+    Ikatlo3 committed 2 weeks ago \r\n\r\n Added getKeyChain to gameManager\r\n\r\n@Ikatlo3
+    Ikatlo3 committed 2 weeks ago \r\n\r\n Implemented IEntity onto health packs\r\n\r\n@Ikatlo3
+    Ikatlo3 committed 2 weeks ago \r\n\r\n Added a keychain script for the player
+    \r\n\r\n@Ikatlo3 Ikatlo3 committed 2 weeks ago \r\n\r\n Removed debug code in
+    roomManager\r\n\r\n@Ikatlo3 Ikatlo3 committed 2 weeks ago \r\n\r\n Implemented
+    IEnvironment into all environment prefabs.\r\n\r\n@Ikatlo3 Ikatlo3 committed
+    2 weeks ago \r\n\r\n Added a clear room function to the room manager\r\n\r\n@Ikatlo3
+    Ikatlo3 committed 2 weeks ago \r\n\r\n Stat bars slide on resource being used
+    \r\n\r\n@Swift-Kevin Swift-Kevin committed 2 weeks ago \r\n\r\n Commits on Jun
+    13, 2023 Added simple particles to the finger gun so that it looks like you fire\r\n\r\n@tomOrourke1
+    tomOrourke1 committed 2 weeks ago \r\n\r\n Player Stats updating \r\n\r\n@Swift-Kevin
+    Swift-Kevin committed 2 weeks ago \r\n\r\n Added hand to the project and updated
+    the player\r\n\r\n@tomOrourke1 tomOrourke1 committed 2 weeks ago \r\n\r\n Basis
+    Created for Sniper and Level 2\r\n\r\n@Aethilwulf Aethilwulf committed 2 weeks
+    ago \r\n\r\n Added a room Manager script \r\n\r\n@Ikatlo3 Ikatlo3 committed 2
+    weeks ago \r\n\r\n Death Screen Fix\r\n\r\n@Swift-Kevin Swift-Kevin committed
+    2 weeks ago \r\n\r\n Removed wait time in elevator script\r\n\r\n@Ikatlo3 Ikatlo3
+    committed 2 weeks ago \r\n\r\n Test state stuff from tom\r\n\r\n@tomOrourke1
+    tomOrourke1 committed 2 weeks ago \r\n\r\n Update GameManager.cs\r\n\r\n@Swift-Kevin
+    Swift-Kevin committed 2 weeks ago \r\n\r\n Started Work on Room Manager \r\n\r\n@Ikatlo3
+    Ikatlo3 committed 2 weeks ago \r\n\r\n small edits on the enemy prefab\r\n\r\n@tomOrourke1
+    tomOrourke1 committed 2 weeks ago \r\n\r\n Radial Menu and Pause Menu good to
+    go\r\n\r\n@Swift-Kevin Swift-Kevin committed 2 weeks ago \r\n\r\n Fixed the game!
+    - Learned a lesson along the way.\r\n\r\n@Swift-Kevin Swift-Kevin committed 2
+    weeks ago \r\n\r\n Killed the project ( deleted game manager )\r\n\r\n@tomOrourke1
+    tomOrourke1 committed 2 weeks ago \r\n\r\n Input Handling WIP\r\n\r\n@Swift-Kevin
+    Swift-Kevin committed 2 weeks ago \r\n\r\n Commits on Jun 12, 2023 Initial version
+    of Input System with functioning keybinds \r\n\r\n@Swift-Kevin Swift-Kevin committed
+    2 weeks ago \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@Swift-Kevin Swift-Kevin committed 2 weeks ago \r\n\r\n Game manager
+    Update\r\n\r\n@Swift-Kevin Swift-Kevin committed 2 weeks ago \r\n\r\n Small Fix\r\n\r\n@Swift-Kevin
+    Swift-Kevin committed 2 weeks ago Fixed input manager\r\n\r\n@tomOrourke1 tomOrourke1
+    committed 2 weeks ago \r\n\r\n Update InputManager.cs\r\n\r\n@tomOrourke1 tomOrourke1
+    committed 2 weeks ago \r\n\r\n Created a class for the InputManager. Given base
+    functionality for in\u2026 \r\n\r\n@tomOrourke1 tomOrourke1 committed 2 weeks
+    ago \r\n\r\n Seperated Game Manager from UI Main \r\n\r\n@Swift-Kevin Swift-Kevin
+    committed 2 weeks ago \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@Swift-Kevin Swift-Kevin committed 2 weeks ago \r\n\r\n New State driven
+    basic enemy is basically complete\r\n\r\n@tomOrourke1 tomOrourke1 committed 2
+    weeks ago \r\n\r\n Settings Options now persist in SAME SCENE \r\n\r\n@Swift-Kevin
+    Swift-Kevin committed 2 weeks ago \r\n\r\n Settings/Font Overload/Hitmarker added
+    \r\n\r\n@Swift-Kevin Swift-Kevin committed 2 weeks ago \r\n\r\n Moving platforms
+    will now move at a set speed regardless of travel di\u2026 \r\n\r\n@Ikatlo3 Ikatlo3
+    committed 2 weeks ago \r\n\r\n Lasers can now run on a timer and can be place
+    onto moving objects.\r\n\r\n@Ikatlo3 Ikatlo3 committed 2 weeks ago \r\n\r\n Did
+    it again, but correctly.\r\n\r\n@Ikatlo3 Ikatlo3 committed 2 weeks ago \r\n\r\n
+    Fixed a few laser bugs\r\n\r\n@Ikatlo3 Ikatlo3 committed 2 weeks ago \r\n\r\n
+    Fixed Death Animation Selection options to display better \r\n\r\n@Swift-Kevin
+    Swift-Kevin committed 2 weeks ago \r\n\r\n Death and Pause Animations updated
+    \r\n\r\n@Swift-Kevin Swift-Kevin committed 3 weeks ago \r\n\r\n Merge branch
+    'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026 \r\n\r\n@Swift-Kevin
+    Swift-Kevin committed 3 weeks ago \r\n\r\n Commits on Jun 11, 2023 Making of
+    basic enemies. Just added strafing most basic form.\r\n\r\n@tomOrourke1 tomOrourke1
+    committed 3 weeks ago \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@Swift-Kevin Swift-Kevin committed 3 weeks ago \r\n\r\n Death screen
+    updated graphics and functionality.\r\n\r\n@Swift-Kevin Swift-Kevin committed
+    3 weeks ago \r\n\r\n Fixed issue with UI and taking damage\r\n\r\n@tomOrourke1
+    tomOrourke1 committed 3 weeks ago \r\n\r\n Camera Invert Y and Mouse Sens/FOV
+    (fixed)\r\n\r\n@Swift-Kevin Swift-Kevin committed 3 weeks ago \r\n\r\n Merge
+    branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026 \r\n\r\n@Swift-Kevin
+    Swift-Kevin committed 3 weeks ago \r\n\r\n Changing FOV now works and is implemented\r\n\r\n@Swift-Kevin
+    Swift-Kevin committed 3 weeks ago \r\n\r\n Working on the new enemy ai system
+    with enemy states\r\n\r\n@tomOrourke1 tomOrourke1 committed 3 weeks ago \r\n\r\n
+    Audio settings option now works.\r\n\r\n@Swift-Kevin Swift-Kevin committed 3
+    weeks ago \r\n\r\n Initial Setup for Settings menMenu \r\n\r\n@Swift-Kevin Swift-Kevin
+    committed 3 weeks ago \r\n\r\n Update UI_Main.prefab\r\n\r\n@Swift-Kevin Swift-Kevin
+    committed 3 weeks ago \r\n\r\n Update UI_Main.prefab\r\n\r\n@Swift-Kevin Swift-Kevin
+    committed 3 weeks ago \r\n\r\n Fix push for player\r\n\r\n@Swift-Kevin Swift-Kevin
+    committed 3 weeks ago \r\n\r\n Starting Object Pooling\r\n\r\n@Swift-Kevin Swift-Kevin
+    committed 3 weeks ago \r\n\r\n Updated Player Resource Script to have less coupled
+    functionality\r\n\r\n@Swift-Kevin Swift-Kevin committed 3 weeks ago \r\n\r\n
+    Commits on Jun 10, 2023 Separated Flashing Screen Script \r\n\r\n@Swift-Kevin
+    Swift-Kevin committed 3 weeks ago \r\n\r\n Removed UI functionality from Game
+    Manager \r\n\r\n@Swift-Kevin Swift-Kevin committed 3 weeks ago \r\n\r\n Small
+    fix to playerStats_UI script so that it doesn't throw an error.\r\n\r\n@tomOrourke1
+    tomOrourke1 committed 3 weeks ago \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@Ikatlo3 Ikatlo3 committed 3 weeks ago \r\n\r\n Moving platforms and
+    lasers\r\n\r\n@Ikatlo3 Ikatlo3 committed 3 weeks ago Enemy prefab stats fixing\r\n\r\n@Swift-Kevin
+    Swift-Kevin committed 3 weeks ago \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@Swift-Kevin Swift-Kevin committed 3 weeks ago \r\n\r\n Added scriptable
+    object folder\r\n\r\n@tomOrourke1 tomOrourke1 committed 3 weeks ago \r\n\r\n
+    Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026 \r\n\r\n@Swift-Kevin
+    Swift-Kevin committed 3 weeks ago \r\n\r\n Took Objectives out of the game manager\r\n\r\n@tomOrourke1
+    tomOrourke1 committed 3 weeks ago \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@Swift-Kevin Swift-Kevin committed 3 weeks ago \r\n\r\n Created the Input
+    Action map for player inputs\r\n\r\n@tomOrourke1 tomOrourke1 committed 3 weeks
+    ago \r\n\r\n Commits on Jun 9, 2023 Refactoring the stats out of the player script.
+    (Into Player Resource\u2026 \r\n\r\n@tomOrourke1 tomOrourke1 committed 3 weeks
+    ago \r\n\r\n Transitioning between scenes now works fluidly. \r\n\r\n@Swift-Kevin
+    Swift-Kevin committed 3 weeks ago \r\n\r\n Elevator Scene Transitioning now works
+    when loading a scene. \r\n\r\n@Swift-Kevin Swift-Kevin committed 3 weeks ago
+    \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@Swift-Kevin Swift-Kevin committed 3 weeks ago \r\n\r\n Created the resource
+    abstract class and specific implementations for \u2026 \r\n\r\n@tomOrourke1 tomOrourke1
+    committed 3 weeks ago \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@Swift-Kevin Swift-Kevin committed 3 weeks ago \r\n\r\n Removed Draw
+    Sphere from melee script\r\n\r\n@Ikatlo3 Ikatlo3 committed 3 weeks ago \r\n\r\n
+    PREFAB \r\n\r\n@Ikatlo3 Ikatlo3 committed 3 weeks ago \r\n\r\n Added Melee \r\n\r\n@Ikatlo3
+    Ikatlo3 committed 3 weeks ago \r\n\r\n Updated Location of different components
+    to be in the\r\n\r\n@Swift-Kevin Swift-Kevin committed 3 weeks ago \r\n\r\n Enemy
+    Bullet prefab: damage changed from 0 to 1\r\n\r\n@Ikatlo3 Ikatlo3 committed 3
+    weeks ago \r\n\r\n Added Melee and fixed enemy bullet prefab\r\n\r\n@Ikatlo3
+    Ikatlo3 committed 3 weeks ago \r\n\r\n Small fix to a script\r\n\r\n@tomOrourke1
+    tomOrourke1 committed 3 weeks ago \r\n\r\n Started getting a state machine in
+    order so we can organize enemeis a\u2026 \r\n\r\n@tomOrourke1 tomOrourke1 committed
+    3 weeks ago \r\n\r\n Updating IDamagable \r\n\r\n@Swift-Kevin Swift-Kevin committed
+    3 weeks ago \r\n\r\n Health Pack Prefab\r\n\r\n@ZachBaritell ZachBaritell committed
+    3 weeks ago \r\n\r\n Minor fix to the door opener sensor\r\n\r\n@tomOrourke1
+    tomOrourke1 committed 3 weeks ago \r\n\r\n Sorted Scripts \r\n\r\n@Swift-Kevin
+    Swift-Kevin committed 3 weeks ago \r\n\r\n Working On Scripts folder for members
+    to use \r\n\r\n@Swift-Kevin Swift-Kevin committed 3 weeks ago \r\n\r\n Post Prototype
+    Fixes V1 \r\n\r\n@Swift-Kevin Swift-Kevin committed 3 weeks ago \r\n\r\n Commits
+    on Jun 8, 2023 Fixed player void damage script\r\n\r\n@Ikatlo3 Ikatlo3 committed
+    3 weeks ago \r\n\r\n Added void Damage interface \r\n\r\n@Ikatlo3 Ikatlo3 committed
+    3 weeks ago \r\n\r\n Killzone\r\n\r\n@Ikatlo3 Ikatlo3 committed 3 weeks ago \r\n\r\n
+    Added HarmZones as prefabs\r\n\r\n@Ikatlo3 Ikatlo3 committed 3 weeks ago \r\n\r\n
+    Fixed respawn player's stat update\r\n\r\n@Ikatlo3 Ikatlo3 committed 3 weeks
+    ago \r\n\r\n Fixing the game. Please believe me.....\r\n\r\n@tomOrourke1 tomOrourke1
+    committed 3 weeks ago \r\n\r\n Commits on Jun 7, 2023 Merge branch 'main' of
+    https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026 \r\n\r\n@Ikatlo3 Ikatlo3
+    committed 3 weeks ago \r\n\r\n Main Menu and Organization Overload \r\n\r\n@Swift-Kevin
+    Swift-Kevin committed 3 weeks ago This might be bad, this is lighting generation.\r\n\r\n@tomOrourke1
+    tomOrourke1 committed 3 weeks ago \r\n\r\n Fixed the interaction on the player\r\n\r\n@tomOrourke1
+    tomOrourke1 committed 3 weeks ago \r\n\r\n Edits to tutorial and player prefab
+    and moveable cube prefab.\r\n\r\n@tomOrourke1 tomOrourke1 committed 3 weeks ago
+    \r\n\r\n FIixing the telekinesis so it doesn't break if the object you are hol\u2026
+    \r\n\r\n@tomOrourke1 tomOrourke1 committed 3 weeks ago \r\n\r\n Small fix to
+    Adam's level, fix to player, adding focus cost to teleki\u2026 \r\n\r\n@tomOrourke1
+    tomOrourke1 committed 3 weeks ago \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@Ikatlo3 Ikatlo3 committed 3 weeks ago \r\n\r\n Merge branch 'main' of
+    https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026 \r\n\r\n@tomOrourke1 tomOrourke1
+    committed 3 weeks ago \r\n\r\n Updating Game Manager for broader scale \r\n\r\n@Swift-Kevin
+    Swift-Kevin committed 3 weeks ago \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@tomOrourke1 tomOrourke1 committed 3 weeks ago \r\n\r\n UI Player Stats
+    completed \r\n\r\n@Swift-Kevin Swift-Kevin committed 3 weeks ago \r\n\r\n Merge
+    branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026 \r\n\r\n@tomOrourke1
+    tomOrourke1 committed 3 weeks ago \r\n\r\n Made physical key object\r\n\r\n@ZachBaritell
+    ZachBaritell committed 3 weeks ago \r\n\r\n New Level created and functional\r\n\r\n@Aethilwulf
+    Aethilwulf committed 3 weeks ago \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@Aethilwulf Aethilwulf committed 3 weeks ago \r\n\r\n Fixed Enemy Color
+    issue \r\n\r\n@RumbleWreck RumbleWreck committed 3 weeks ago \r\n\r\n Dash is
+    now on key down\r\n\r\n@Ikatlo3 Ikatlo3 committed 3 weeks ago \r\n\r\n Merge
+    branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026 \r\n\r\n@tomOrourke1
+    tomOrourke1 committed 3 weeks ago \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@Aethilwulf Aethilwulf committed 3 weeks ago \r\n\r\n Elevator for scene
+    transitioning \r\n\r\n@Swift-Kevin Swift-Kevin committed 3 weeks ago \r\n\r\n
+    \"\"Fixed\"\" / disabled the radial menu. It is way too glitchy. Fixed en\u2026
+    \r\n\r\n@ZachBaritell ZachBaritell committed 3 weeks ago \r\n\r\n Merge branch
+    'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026 \r\n\r\n@Aethilwulf
+    Aethilwulf committed 3 weeks ago \r\n\r\n Shield is now prioritized over Health\r\n\r\n@Ikatlo3
+    Ikatlo3 committed 3 weeks ago \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@tomOrourke1 tomOrourke1 committed 3 weeks ago \r\n\r\n Update Player.prefab\r\n\r\n@Ikatlo3
+    Ikatlo3 committed 3 weeks ago \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@tomOrourke1 tomOrourke1 committed 3 weeks ago \r\n\r\n Player Script
+    \r\n\r\n@Ikatlo3 Ikatlo3 committed 3 weeks ago \r\n\r\n Adding to the tutorial
+    level. Fixing the tile prefabs to work with na\u2026 \r\n\r\n@tomOrourke1 tomOrourke1
+    committed 3 weeks ago \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@RumbleWreck RumbleWreck committed 3 weeks ago \r\n\r\n Fixed Machine
+    Gunner Collider \r\n\r\n@RumbleWreck RumbleWreck committed 3 weeks ago \r\n\r\n
+    DISABLE MENU FUNCTION\r\n\r\n@ZachBaritell ZachBaritell committed 3 weeks ago
+    \r\n\r\n Radial menu is done. Part one of suffering complete.\r\n\r\n@Swift-Kevin
+    Swift-Kevin committed 3 weeks ago \r\n\r\n FIxed Dor Detection\r\n\r\n@tomOrourke1
+    tomOrourke1 committed 3 weeks ago \r\n\r\n working on the tutorial // made the
+    door senser detect if it's locked\u2026 \r\n\r\n@tomOrourke1 tomOrourke1 committed
+    3 weeks ago \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@RumbleWreck RumbleWreck committed 3 weeks ago \r\n\r\n Sniper Added
+    \r\n\r\n@RumbleWreck RumbleWreck committed 3 weeks ago Setter and Getter for
+    key counter\r\n\r\n@ZachBaritell ZachBaritell committed 3 weeks ago \r\n\r\n
+    UI fixes\r\n\r\n@ZachBaritell ZachBaritell committed 3 weeks ago \r\n\r\n Merge
+    branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026 \r\n\r\n@Aethilwulf
+    Aethilwulf committed 3 weeks ago \r\n\r\n UI fixes\r\n\r\n@ZachBaritell ZachBaritell
+    committed 3 weeks ago \r\n\r\n Added the enemy tags to the enemy prefabs \r\n\r\n@RumbleWreck
+    RumbleWreck committed 3 weeks ago \r\n\r\n Tags were added to enemies \r\n\r\n@RumbleWreck
+    RumbleWreck committed 3 weeks ago \r\n\r\n Work on level 1 in adam_test_scene\r\n\r\n@Aethilwulf
+    Aethilwulf committed 3 weeks ago \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@tomOrourke1 tomOrourke1 committed 3 weeks ago \r\n\r\n Fixed issues
+    with targets and door for activation\r\n\r\n@tomOrourke1 tomOrourke1 committed
+    3 weeks ago \r\n\r\n Radial Menu reorganized. \r\n\r\n@Swift-Kevin Swift-Kevin
+    committed 3 weeks ago \r\n\r\n Scientists now drop keys \r\n\r\n@ZachBaritell
+    ZachBaritell committed 3 weeks ago \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@RumbleWreck RumbleWreck committed 3 weeks ago \r\n\r\n Scientist is
+    created \r\n\r\n@RumbleWreck RumbleWreck committed 3 weeks ago \r\n\r\n Update
+    Radial P1 \r\n\r\n@Swift-Kevin Swift-Kevin committed 3 weeks ago \r\n\r\n Up
+    to \"room 5\" This is the second test room. There are three left(inc\u2026 \r\n\r\n@tomOrourke1
+    tomOrourke1 committed 3 weeks ago \r\n\r\n fixed issue with doors. They will
+    now not swap states if they don't f\u2026 \r\n\r\n@tomOrourke1 tomOrourke1 committed
+    3 weeks ago \r\n\r\n Working a lot in the tutorial level. 2 out of 6 rooms done\r\n\r\n@tomOrourke1
+    tomOrourke1 committed 3 weeks ago \r\n\r\n Updated Prefab for Radial Menu\r\n\r\n@Swift-Kevin
+    Swift-Kevin committed 3 weeks ago \r\n\r\n Radial Menu is down for mantienence.
+    \r\n\r\n@Swift-Kevin Swift-Kevin committed 3 weeks ago \r\n\r\n Commits on Jun
+    6, 2023 Added a kill box prefab \r\n\r\n@Ikatlo3 Ikatlo3 committed 3 weeks ago
+    \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@tomOrourke1 tomOrourke1 committed 3 weeks ago \r\n\r\n Worked on the
+    targets for interactions. This includes the version for\u2026 \r\n\r\n@tomOrourke1
+    tomOrourke1 committed 3 weeks ago \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@Swift-Kevin Swift-Kevin committed 3 weeks ago \r\n\r\n Limiting user
+    selection on radial slice \r\n\r\n@Swift-Kevin Swift-Kevin committed 3 weeks
+    ago \r\n\r\n Update PressurePlate.prefab\r\n\r\n@tomOrourke1 tomOrourke1 committed
+    3 weeks ago \r\n\r\n Created more grid materials. Created the button prefab.
+    This includes\u2026 \r\n\r\n@tomOrourke1 tomOrourke1 committed 3 weeks ago \r\n\r\n
+    Checkpoint prefab created\r\n\r\n@ZachBaritell ZachBaritell committed 3 weeks
+    ago \r\n\r\n Updated the door prefab to allow for other things not to trigger
+    the \u2026 \r\n\r\n@tomOrourke1 tomOrourke1 committed 3 weeks ago \r\n\r\n Updated
+    Settings Object so that it doesn't use raycasts and triggers.\r\n\r\n@tomOrourke1
+    tomOrourke1 committed 3 weeks ago \r\n\r\n Fixed Turret issue where it wouldn't
+    attack the player \r\n\r\n@RumbleWreck RumbleWreck committed 3 weeks ago \r\n\r\n
+    Fixed small error with the execution of getting player stats. Fixed m\u2026 \r\n\r\n@RumbleWreck
+    RumbleWreck committed 3 weeks ago \r\n\r\n Updated the door so it detects the
+    player proximity\r\n\r\n@tomOrourke1 tomOrourke1 committed 3 weeks ago \r\n\r\n
+    Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026 \r\n\r\n@tomOrourke1
+    tomOrourke1 committed 3 weeks ago \r\n\r\n Changed Player Interface \r\n\r\n@Swift-Kevin
+    Swift-Kevin committed 3 weeks ago \r\n\r\n Creation of the door prefab. And IActivateDoor
+    interace\r\n\r\n@tomOrourke1 tomOrourke1 committed 3 weeks ago Added checkpoint
+    script ( not functional)\r\n\r\n@ZachBaritell ZachBaritell committed 3 weeks
+    ago \r\n\r\n Made more changes for Kevin\r\n\r\n@ZachBaritell ZachBaritell committed
+    3 weeks ago \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@ZachBaritell ZachBaritell committed 3 weeks ago \r\n\r\n Made changes
+    for Kevin\r\n\r\n@ZachBaritell ZachBaritell committed 3 weeks ago \r\n\r\n fixed
+    the player script with the issue with it not working if there i\u2026 \r\n\r\n@RumbleWreck
+    RumbleWreck committed 3 weeks ago \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@RumbleWreck RumbleWreck committed 3 weeks ago \r\n\r\n FIxed the player
+    issue when there isn't a respawn point in the scene \u2026 \r\n\r\n@Ikatlo3 Ikatlo3
+    committed 3 weeks ago \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@RumbleWreck RumbleWreck committed 3 weeks ago \r\n\r\n \\basic enemies
+    viewing the player and attacking the player. With path\u2026 \r\n\r\n@RumbleWreck
+    RumbleWreck committed 3 weeks ago \r\n\r\n Pushed a bunch of prefab stuff. Including
+    the addition of the of a te\u2026 \r\n\r\n@tomOrourke1 tomOrourke1 committed
+    3 weeks ago \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@tomOrourke1 tomOrourke1 committed 3 weeks ago \r\n\r\n Updated UI prefab\r\n\r\n@ZachBaritell
+    ZachBaritell committed 3 weeks ago \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@tomOrourke1 tomOrourke1 committed 3 weeks ago \r\n\r\n Fixed Spawn Point
+    on load in \r\n\r\n@ZachBaritell ZachBaritell committed 3 weeks ago \r\n\r\n
+    Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026 \r\n\r\n@tomOrourke1
+    tomOrourke1 committed 3 weeks ago \r\n\r\n Initial set up of Tom_Tutoirail_scene\r\n\r\n@tomOrourke1
+    tomOrourke1 committed 3 weeks ago \r\n\r\n Spawn Point \r\n\r\n@ZachBaritell
+    ZachBaritell committed 3 weeks ago \r\n\r\n Small update to the gitIgnore.\r\n\r\n@tomOrourke1
+    tomOrourke1 committed 3 weeks ago \r\n\r\n Respawn function implemented \r\n\r\n@ZachBaritell
+    ZachBaritell committed 3 weeks ago \r\n\r\n unity changing settings for probuilder
+    like it usually does... .\r\n\r\n@tomOrourke1 tomOrourke1 committed 3 weeks ago
+    \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@tomOrourke1 tomOrourke1 committed 3 weeks ago \r\n\r\n Adding pro builder
+    to the project.\r\n\r\n@tomOrourke1 tomOrourke1 committed 3 weeks ago \r\n\r\n
+    Radial Menu Arrow Selector finished. \r\n\r\n@Swift-Kevin Swift-Kevin committed
+    3 weeks ago \r\n\r\n Assembled the player prefab so it includes the telekinesis
+    and the sh\u2026 \r\n\r\n@tomOrourke1 tomOrourke1 committed 3 weeks ago \r\n\r\n
+    Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026 \r\n\r\n@Aethilwulf
+    Aethilwulf committed 3 weeks ago \r\n\r\n Fixed a few bugs with duplicated scripts
+    and folders. Shooting now wo\u2026 \r\n\r\n@Aethilwulf Aethilwulf committed 3
+    weeks ago \r\n\r\n Added Shields to player script\r\n\r\n@Ikatlo3 Ikatlo3 committed
+    3 weeks ago \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@Aethilwulf Aethilwulf committed 3 weeks ago \r\n\r\n deleted prefab
+    folder on local end\r\n\r\n@Aethilwulf Aethilwulf committed 3 weeks ago \r\n\r\n
+    removed prefabs and put in locals\r\n\r\n@Aethilwulf Aethilwulf committed 3 weeks
+    ago \r\n\r\n Working on basic finger gun weapon.\r\n\r\n@Aethilwulf Aethilwulf
+    committed 3 weeks ago \r\n\r\n UI Radial Fixed rotation based on Cursor Confinement
+    \r\n\r\n@Swift-Kevin Swift-Kevin committed 3 weeks ago \r\n\r\n Commits on Jun
+    5, 2023 Combining Radial Menu with Player and Menu's \r\n\r\n@Swift-Kevin Swift-Kevin
+    committed 3 weeks ago \r\n\r\n Created UI prefab \r\n\r\n@ZachBaritell ZachBaritell
+    committed 3 weeks ago \r\n\r\n Commits on Jun 4, 2023 Player Movement Updated
+    \r\n\r\n@Ikatlo3 Ikatlo3 committed last month Polishing Scripts/Radial Menu \r\n\r\n@Swift-Kevin
+    Swift-Kevin committed last month \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@Swift-Kevin Swift-Kevin committed last month \r\n\r\n Updated Radial
+    Menu \r\n\r\n@Swift-Kevin Swift-Kevin committed last month \r\n\r\n Basic UI
+    complete \r\n\r\n@ZachBaritell ZachBaritell committed last month \r\n\r\n Updated
+    Components on Radial Menu \r\n\r\n@Swift-Kevin Swift-Kevin committed last month
+    \r\n\r\n Commits on Jun 3, 2023 Player Movement \r\n\r\n@Ikatlo3 Ikatlo3 committed
+    last month \r\n\r\n Radial menu now is setup for funcitons. \r\n\r\n@Swift-Kevin
+    Swift-Kevin committed last month \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@Swift-Kevin Swift-Kevin committed last month \r\n\r\n Merge branch 'main'
+    of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026 \r\n\r\n@tomOrourke1
+    tomOrourke1 committed last month \r\n\r\n Pause Menu now slides in and out without
+    error\r\n\r\n@ZachBaritell ZachBaritell committed last month \r\n\r\n Merge branch
+    'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026 \r\n\r\n@tomOrourke1
+    tomOrourke1 committed last month \r\n\r\n Fixed the first error with the animation\r\n\r\n@ZachBaritell
+    ZachBaritell committed last month \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@tomOrourke1 tomOrourke1 committed last month \r\n\r\n Merge branch 'main'
+    of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026 \r\n\r\n@Swift-Kevin
+    Swift-Kevin committed last month \r\n\r\n Still trying to fix broken pause panel
+    with Tom\r\n\r\n@ZachBaritell ZachBaritell committed last month \r\n\r\n Merge
+    branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026 \r\n\r\n@Swift-Kevin
+    Swift-Kevin committed last month \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@tomOrourke1 tomOrourke1 committed last month \r\n\r\n Slight update
+    on the Telekinesis controller\r\n\r\n@tomOrourke1 tomOrourke1 committed last
+    month \r\n\r\n Working on UI and it is not done\r\n\r\n@ZachBaritell ZachBaritell
+    committed last month \r\n\r\n Radial Menu V2 Rotation \r\n\r\n@Swift-Kevin Swift-Kevin
+    committed last month \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@tomOrourke1 tomOrourke1 committed last month \r\n\r\n Changed the button
+    input to be the correct mouse button\r\n\r\n@tomOrourke1 tomOrourke1 committed
+    last month \r\n\r\n Continued Work on the Telekinesis Controller \r\n\r\n@tomOrourke1
+    tomOrourke1 committed last month \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@ZachBaritell ZachBaritell committed last month \r\n\r\n Radial Menu
+    Update \r\n\r\n@Swift-Kevin Swift-Kevin committed last month \r\n\r\n Radial
+    Menu V2 Implementation \r\n\r\n@Swift-Kevin Swift-Kevin committed last month
+    \r\n\r\n Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026
+    \r\n\r\n@tomOrourke1 tomOrourke1 committed last month \r\n\r\n basic implementation
+    of the telekinesis implemented in script.\r\n\r\n@tomOrourke1 tomOrourke1 committed
+    last month \r\n\r\n In the process of trying to make the cube not stutter when
+    it is movi\u2026 \r\n\r\n@tomOrourke1 tomOrourke1 committed last month \r\n\r\n
+    Merge branch 'main' of https://github.com/tomOrourke1/Midterm_FPS_Pro\u2026 \r\n\r\n@ZachBaritell
+    ZachBaritell committed last month \r\n\r\n UI Setup \r\n\r\n@ZachBaritell ZachBaritell
+    committed last month \r\n\r\n Update working on the pulling of objects.\r\n\r\n@tomOrourke1
+    tomOrourke1 committed last month \r\n\r\n Player Stats UI partially done. Dependent
+    on other functions to be co\u2026 \r\n\r\n@Swift-Kevin Swift-Kevin committed
+    last month \r\n\r\n Commits on Jun 2, 2023 Started the creation of the telekinesis
+    controller. This will be the \u2026 \r\n\r\n@tomOrourke1 tomOrourke1 committed
+    last month \r\n\r\n Added Radial Weapon UI \r\n\r\n@Swift-Kevin Swift-Kevin committed
+    last month TextMeshPro Added \r\n\r\n@Swift-Kevin Swift-Kevin committed last
+    month \r\n\r\n Commits on Jun 1, 2023 Creation of IDamagable interface\r\n\r\n@tomOrourke1
+    tomOrourke1 committed last month \r\n\r\n Kevin Scene creation \r\n\r\n@Swift-Kevin
+    Swift-Kevin committed last month \r\n\r\n A ground meant for playing in\r\n\r\n@Ikatlo3
+    Ikatlo3 committed last month \r\n\r\n Zach Development Creation\r\n\r\n@ZachBaritell
+    ZachBaritell committed last month \r\n\r\n Logan_Development Scene Made\r\n\r\n@RumbleWreck
+    RumbleWreck committed last month \r\n\r\n Created Adam Development Scene\r\n\r\n@Aethilwulf
+    Aethilwulf committed last month \r\n\r\n Tome Develment scene creation\r\n\r\n@tomOrourke1
+    tomOrourke1 committed last month \r\n\r\n Commits on May 30, 2023 Updated the
+    gitignore\r\n\r\n@tomOrourke1 tomOrourke1 committed on May 30 \r\n\r\n Initial
+    commit\r\n\r\n@tomOrourke1 tomOrourke1 committed on May 30\r\n\r\n"
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 30
+  m_fontSizeBase: 30
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 1
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1969781404
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1969781401}
+  m_CullTransparentMesh: 1
+--- !u!1 &1988912299
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1988912300}
+  - component: {fileID: 1988912302}
+  - component: {fileID: 1988912301}
+  m_Layer: 5
+  m_Name: Divider1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1988912300
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1988912299}
+  m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1266481318}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 5.7237854}
+  m_SizeDelta: {x: 1146.9695, y: 11.4476}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1988912301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1988912299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.764151, g: 0.764151, b: 0.764151, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: f08d423fb83eb9f4fb3ba82f6e892503, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 30
+--- !u!222 &1988912302
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1988912299}
+  m_CullTransparentMesh: 1
+--- !u!1 &2025892553
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2025892554}
+  - component: {fileID: 2025892555}
+  m_Layer: 5
+  m_Name: TextObjs
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2025892554
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025892553}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1266481318}
+  - {fileID: 931931406}
+  m_Father: {fileID: 563072207}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2025892555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025892553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_Spacing: 10
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 1
+  m_ChildControlHeight: 1
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
