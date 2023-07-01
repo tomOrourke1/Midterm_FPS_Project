@@ -23,7 +23,7 @@ public class ElevatorScript : MonoBehaviour, IInteractable
     {
         if (image == null)
             image = UIManager.instance.GetSceneFader();
-
+        Debug.Log("FADE IN");
         StartCoroutine(FadeIn());
     }
 

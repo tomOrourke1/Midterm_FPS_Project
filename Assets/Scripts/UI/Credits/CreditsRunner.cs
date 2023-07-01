@@ -31,11 +31,16 @@ public class CreditsRunner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((Input.GetKeyDown(KeyCode.E) && !notDoublePerformingCheck) || forceEnd)
+        if ((RunKey() && !notDoublePerformingCheck) || forceEnd)
         {
             notDoublePerformingCheck = true;
             StartCoroutine(FadeOut("MainMenu"));
         }
+    }
+
+    private bool RunKey()
+    {
+        return Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Escape) || Input.anyKey;
     }
 
     /// <summary>
