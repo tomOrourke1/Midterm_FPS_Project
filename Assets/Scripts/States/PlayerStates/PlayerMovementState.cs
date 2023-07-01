@@ -134,4 +134,13 @@ public class PlayerMovementState : PlayerState
     }
 
 
+
+
+    public void StopAllMovement()
+    {
+        playerVelocity = Vector3.zero;
+        move = Vector3.zero;
+        controller.Move(Vector3.zero);
+    }
+
 }

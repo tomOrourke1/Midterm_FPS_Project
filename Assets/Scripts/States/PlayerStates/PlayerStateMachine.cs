@@ -65,5 +65,8 @@ public class PlayerStateMachine : MonoBehaviour
 
 
 
-
+    public void ResetState()
+    {
+        stateMachine.SetState(playerMoveState);
+    }
 }

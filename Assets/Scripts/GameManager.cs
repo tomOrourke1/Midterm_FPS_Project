@@ -254,6 +254,8 @@ public class GameManager : MonoBehaviour
         playerscript.RespawnPlayer();
         player.GetComponentInChildren<CameraController>().ResetCamera();
         currentRoomManager?.Respawn();
+
+        // this will have to go through the new player script
     }
 
     /// <summary>

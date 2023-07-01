@@ -19,7 +19,10 @@ public class PlayerCooldownBehaviour : MonoBehaviour
 
     float time;
 
-
+    private void Start()
+    {
+        time = chargeTime;
+    }
 
     private void Update()
     {
@@ -47,7 +50,10 @@ public class PlayerCooldownBehaviour : MonoBehaviour
     }
 
 
-
+    public void ResetCooldown()
+    {
+        time = chargeTime;
+    }
 
 
 

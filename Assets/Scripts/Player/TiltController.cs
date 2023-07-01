@@ -80,5 +80,18 @@ public class TiltController : MonoBehaviour
 
     }
 
+    public void ResetTilt()
+    {
+        // set members back
+        angle = 0;
+        angleDestination = 0;
+        rotating = false;
+
+        // set rotation back
+        var e = cam.transform.localRotation.eulerAngles;
+        e.z = 0;
+        cam.transform.localRotation = Quaternion.Euler(e);
+    }
+
 
 }

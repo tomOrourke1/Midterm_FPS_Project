@@ -55,4 +55,9 @@ public class FOVController : MonoBehaviour
         return origFov;
     }
 
+
+    public void ResetFOV()
+    {
+        cam.fieldOfView = origFov;
+    }
 }

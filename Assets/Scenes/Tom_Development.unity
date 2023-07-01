@@ -562,7 +562,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5391758983671669465, guid: 3a4a3b859dd277348b1d9ee8e0152de1, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5391758983671669469, guid: 3a4a3b859dd277348b1d9ee8e0152de1, type: 3}
       propertyPath: m_RootOrder
@@ -2326,32 +2326,6 @@ MonoBehaviour:
     maxValue: 10
   focus:
     maxValue: 10
---- !u!114 &847320447409526186
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 847320447409526187}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03e9afcc00cf0bb40bf1572f0ad225d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 1966572435}
-  mainCamera: {fileID: 847320447793828263}
-  playerSpeed: 6
-  gravityValue: 20.3
-  jumpHeight: 8
-  jumpMax: 2
-  maxDashes: 2
-  DashSpeed: 1
-  DashDuration: 0.025
-  DashCooldown: 1
-  tiltAmount: 2
-  dashFovZoomAmount: 4
-  CrouchSpeed: 0
-  unCrouchSpeed: 10
 --- !u!1 &847320447409526187
 GameObject:
   m_ObjectHideFlags: 0
@@ -2362,7 +2336,6 @@ GameObject:
   m_Component:
   - component: {fileID: 847320447409526190}
   - component: {fileID: 9048350794447604636}
-  - component: {fileID: 847320447409526186}
   - component: {fileID: 164878509251306837}
   - component: {fileID: 6896435041057767988}
   - component: {fileID: 162571729}
@@ -2374,6 +2347,7 @@ GameObject:
   - component: {fileID: 847320447409526191}
   - component: {fileID: 9048350794447604635}
   - component: {fileID: 1187165404}
+  - component: {fileID: 9048350794447604637}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -3013,3 +2987,24 @@ MonoBehaviour:
   betweenDashCoolDown: {fileID: 2102247118}
   playerMoveState: {fileID: 1557044387}
   dashState: {fileID: 2102247113}
+--- !u!114 &9048350794447604637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847320447409526187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70c7ea3ccef6fb14a812ee11d68006bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statemachine: {fileID: 0}
+  cam: {fileID: 0}
+  controller: {fileID: 0}
+  tiltController: {fileID: 0}
+  fovController: {fileID: 0}
+  moveState: {fileID: 0}
+  dash1: {fileID: 0}
+  dash2: {fileID: 0}
+  dashCooldown: {fileID: 0}
