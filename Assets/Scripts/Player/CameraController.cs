@@ -62,10 +62,10 @@ public class CameraController : MonoBehaviour
 
         // Limit up and down
         xRotation = Mathf.Clamp(xRotation, lockVerMin, lockVerMax);
-        zTiltCurrent = Mathf.Clamp(zTiltCurrent, lockZMin, lockZMax);
+        //zTiltCurrent = Mathf.Clamp(zTiltCurrent, lockZMin, lockZMax);
 
         // Rotates up and down (X-axis)
-        transform.localRotation = Quaternion.Euler(xRotation, 0, zTiltCurrent);
+        transform.localRotation = Quaternion.Euler(xRotation, 0, transform.localRotation.eulerAngles.z);
 
         // Rotates left and right (Y-axis)
         transform.parent.Rotate(Vector3.up * mouseX);

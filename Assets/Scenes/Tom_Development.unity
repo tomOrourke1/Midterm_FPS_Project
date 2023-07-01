@@ -1797,8 +1797,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1871093942}
-  - component: {fileID: 1871093944}
-  - component: {fileID: 1871093943}
   m_Layer: 0
   m_Name: States
   m_TagString: Untagged
@@ -1823,40 +1821,6 @@ Transform:
   m_Father: {fileID: 847320447409526190}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1871093943
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1871093941}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bc4aafe573e12a4e91901a0d0526fa2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cam: {fileID: 847320447793828263}
-  returnSpeed: 5
-  origFov: 0
---- !u!114 &1871093944
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1871093941}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab26cc5b5aedf0f4397c7963bc079968, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 0}
-  playerTransform: {fileID: 0}
-  fovController: {fileID: 0}
-  DashSpeed: 0
-  DashDuration: 0
-  tiltAmount: 0
-  dashFovZoomAmount: 0
 --- !u!143 &1966572435
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1882,18 +1846,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1099584835170708285, guid: 916cb5608757bad448010bcf6b799f8d, type: 3}
-      propertyPath: cryoEnabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1099584835170708285, guid: 916cb5608757bad448010bcf6b799f8d, type: 3}
-      propertyPath: pyroEnabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1099584835170708285, guid: 916cb5608757bad448010bcf6b799f8d, type: 3}
-      propertyPath: electroEnabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2451634594581813860, guid: 916cb5608757bad448010bcf6b799f8d, type: 3}
       propertyPath: m_RootOrder
       value: 14
@@ -1965,14 +1917,6 @@ PrefabInstance:
     - target: {fileID: 3520341285919657480, guid: 916cb5608757bad448010bcf6b799f8d, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4019006224583789148, guid: 916cb5608757bad448010bcf6b799f8d, type: 3}
-      propertyPath: doesActivateHere
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4019006224583789148, guid: 916cb5608757bad448010bcf6b799f8d, type: 3}
-      propertyPath: doesDeactivateHere
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9110953173765441935, guid: 916cb5608757bad448010bcf6b799f8d, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2118,6 +2062,9 @@ GameObject:
   - component: {fileID: 2102247113}
   - component: {fileID: 2102247115}
   - component: {fileID: 2102247114}
+  - component: {fileID: 2102247117}
+  - component: {fileID: 2102247116}
+  - component: {fileID: 2102247118}
   m_Layer: 0
   m_Name: Dash
   m_TagString: Untagged
@@ -2155,10 +2102,11 @@ MonoBehaviour:
   controller: {fileID: 1966572435}
   playerTransform: {fileID: 847320447409526190}
   fovController: {fileID: 2102247114}
+  tiltController: {fileID: 2102247115}
   DashSpeed: 1
   DashDuration: 0.025
-  tiltAmount: 2
-  dashFovZoomAmount: 4
+  tiltAmount: 9.6
+  dashFovZoomAmount: 9.7
 --- !u!114 &2102247114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2172,7 +2120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 847320447793828263}
-  returnSpeed: 5
+  returnSpeed: 3.41
   origFov: 60
 --- !u!114 &2102247115
 MonoBehaviour:
@@ -2187,7 +2135,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 847320447793828263}
-  rotSpeed: 0
+  rotInSpeed: 20
+  rotOutSpeed: 100
+--- !u!114 &2102247116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102247111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbac9437bb649a94295b9983ec0b1c6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chargeTime: 1
+--- !u!114 &2102247117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102247111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbac9437bb649a94295b9983ec0b1c6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chargeTime: 1
+--- !u!114 &2102247118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102247111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbac9437bb649a94295b9983ec0b1c6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chargeTime: 0.15
 --- !u!1001 &150263361735042906
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3020,5 +3008,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f08743f707565e546ab378e045f3cd72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dashCoolDown1: {fileID: 2102247117}
+  dashCoolDown2: {fileID: 2102247116}
+  betweenDashCoolDown: {fileID: 2102247118}
   playerMoveState: {fileID: 1557044387}
   dashState: {fileID: 2102247113}
