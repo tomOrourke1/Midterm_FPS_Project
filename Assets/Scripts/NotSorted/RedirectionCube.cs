@@ -28,7 +28,7 @@ public class RedirectionCube : MonoBehaviour, IReflector
         if (isReflecting)
         {
             laser.enabled = true;
-            RayCast();
+            HitHandlers(CastLaser());
         }
         else
         {
@@ -36,103 +36,90 @@ public class RedirectionCube : MonoBehaviour, IReflector
         }
     }
 
-    void RayCast()
+    void HitHandlers(RaycastHit hit)
     {
-        RaycastHit hit;
-
-        if (Physics.Raycast(transform.position, transform.forward, out hit, laserRange))
+        if (hit.collider != null)
         {
-            UpdateLaserCast(hit.point);
-
-            IDamagable damageable = hit.collider.GetComponent<IDamagable>();
-
-            if (damageable != null)
-            {
-                damageable.TakeDamage(laserDamage * Time.deltaTime);
-            }
-
-            IReflector reflector = hit.collider.GetComponent<IReflector>();
-
-            //Debug.Log("Collider: " + hit.collider + "\nReflecor: " + StoredReflector + "\nC = R: " + (hit.collider == StoredReflector));
-
-            if (hit.collider.gameObject == StoredReflector)
-            {
-                //Debug.Log("Box");
-                // Get Remaining distance
-                float reflectDist = laserRange - hit.distance;
-
-                // call reflect
-                reflector.Reflect(reflectDist, laserDamage, impactFX, impactLight, hit, (hit.point - laser.GetPosition(0)).normalized);
-            }
-            else if (reflector != null && !reflector.AlreadyReflecting())
-            {
-
-                // Stop the old reflector
-                StoredReflector?.GetComponent<IReflector>().StopReflection();
-
-                // store the collider
-                StoredReflector = hit.collider.gameObject;
-
-                Debug.Log(StoredReflector);
-                // Get Remaining distance
-                float reflectDist = laserRange - hit.distance;
-
-                // call reflect
-                reflector.Reflect(reflectDist, laserDamage, impactFX, impactLight, hit, (hit.point - laser.GetPosition(0)).normalized);
-
-            }
-            else if (reflector == null)
-            {
-                StopReflections();
-            }
+            HandleDamage(hit);
+            HandleReflect(hit);
         }
         else
         {
-            DefaultLaserCast();
+            StopReflections();
         }
     }
 
-    void DefaultLaserCast()
+    RaycastHit CastLaser()
     {
-        // Stop reflections because there are no colliders
-        StopReflections();
-
-        Vector3 endPoint;
-        endPoint = transform.position;
-
-        Vector3 maxDistPoint = transform.forward * laserRange;
-        endPoint += maxDistPoint;
-
-        laser.SetPosition(0, transform.position);
-        laser.SetPosition(1, endPoint);
-
-        // FX Playing
-        Vector3 dir = transform.position - endPoint;
-
-        if (impactFX != null)
-        {
-            impactFX.Play();
-            impactFX.transform.position = endPoint;
-            impactFX.transform.rotation = Quaternion.LookRotation(dir);
-        }
+        return gameObject.GetComponent<LaserCast>().RecieveLaser(laser, transform.position, transform.forward, laserDamage, laserRange, impactFX, impactLight);
     }
 
-    void UpdateLaserCast(Vector3 hitPoint = new Vector3())
+    void StopReflections()
     {
-        laser.SetPosition(0, transform.position);
-        laser.SetPosition(1, hitPoint);
+        StoredReflector?.GetComponent<IReflector>().StopReflection(laser);
+        StoredReflector = null;
+    }
 
-        Vector3 dir = transform.position - hitPoint;
 
-        if (impactFX != null)
+    void HandleReflect(RaycastHit hit)
+    {
+        IReflector reflector = hit.collider.GetComponent<IReflector>();
+
+        
+
+        if (CompareWithStoredReflector(hit))
         {
-            impactFX.Play();
-            impactFX.transform.position = hitPoint;
-            impactFX.transform.rotation = Quaternion.LookRotation(dir);
+            //Debug.LogError("Mirror");
+
+            // Get Remaining distance
+            float reflectDist = laserRange - hit.distance;
+
+            // call reflect
+            reflector.Reflect(reflectDist, laserDamage, impactFX, impactLight, hit, hit.point - transform.position, laser);
+        }
+        else if (reflector != null && !reflector.AlreadyReflecting() && !CompareWithStoredReflector(hit))
+        {
+            // Stop the old reflector
+            StoredReflector?.GetComponent<IReflector>().StopReflection(laser);
+
+            // store the collider
+            StoredReflector = hit.collider.gameObject;
+
+            //Debug.Log((StoredReflector != null) + " " + (hit.collider.gameObject == StoredReflector.gameObject));
+
+            // Get Remaining distance
+            float reflectDist = laserRange - hit.distance;
+
+            // call reflect
+            reflector.Reflect(reflectDist, laserDamage, impactFX, impactLight, hit, hit.point - transform.position, laser);
+        }
+        else if (reflector == null && StoredReflector != null)
+        {
+            StopReflections();
         }
     }
 
-    public void Reflect(float remainingDistance, float damage, ParticleSystem ImpactFX, Light ImpactLight, RaycastHit Hit, Vector3 LaserDir)
+    bool CompareWithStoredReflector(RaycastHit hit)
+    {
+        if (StoredReflector != null && hit.collider.gameObject == StoredReflector.gameObject)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    void HandleDamage(RaycastHit hit)
+    {
+        IDamagable damageable = hit.collider.GetComponent<IDamagable>();
+
+        if (damageable != null)
+        {
+            damageable.TakeDamage(laserDamage * Time.deltaTime);
+        }
+    }
+
+    public void Reflect(float remainingDistance, float damage, ParticleSystem ImpactFX, Light ImpactLight, RaycastHit Hit, Vector3 LaserDir, LineRenderer OriginalLaser)
     {
         laserRange = remainingDistance;
         laserDamage = damage;
@@ -142,7 +129,7 @@ public class RedirectionCube : MonoBehaviour, IReflector
         isReflecting = true;
     }
 
-    public void StopReflection()
+    public void StopReflection(LineRenderer laserToStop)
     {
         laserRange = 0;
         laserDamage = 0;
@@ -152,12 +139,6 @@ public class RedirectionCube : MonoBehaviour, IReflector
         StopReflections();
 
         isReflecting = false;
-    }
-
-    void StopReflections()
-    {
-        StoredReflector?.GetComponent<IReflector>().StopReflection();
-        StoredReflector = null;
     }
 
     public bool AlreadyReflecting()
