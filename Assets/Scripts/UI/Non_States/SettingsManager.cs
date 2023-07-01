@@ -45,6 +45,7 @@ public class SettingsManager : MonoBehaviour
 
     private void Awake()
     {
+        Subscriber();
         highlighterOutline.position = hlStorePos.position;
         SetOriginalValues();
         UpdateSliders();
@@ -79,46 +80,6 @@ public class SettingsManager : MonoBehaviour
         KeepKinesis();
     }
 
-    public void SetMasterVolume()
-    {
-        tempMaster = masterSlider.value;
-    }
-
-    public void SetSFXVolume()
-    {
-        tempSFX = sfxSlider.value;
-    }
-
-    public void SetMusicVolume()
-    {
-        tempMusic = musicSlider.value;
-    }
-
-    public void SetCameraFOV()
-    {
-        tempFOV = fovSlider.value;
-    }
-
-    public void SetMouseSens()
-    {
-        tempMouseSens = mouseSensSlider.value;
-    }
-
-    public void SetControllerSens()
-    {
-        tempControllerSens = controllerSensSlider.value;
-    }
-
-    public void SetCameraInvertY()
-    {
-        tempInvY = invertYToggle.isOn;
-    }
-
-    public void SetHitmarkerEnabled()
-    {
-        tempHitmarkerEnabled = hitmarkerToggle.isOn;
-    }
-
     private void SetOriginalValues()
     {
         // Temp Audio Values
@@ -134,7 +95,6 @@ public class SettingsManager : MonoBehaviour
 
         // Graphics
         tempHitmarkerEnabled = settings.hitmarkerEnabled;
-        Debug.Log(settings.currentRetical);
         tempSprite = settings.currentRetical;
 
         KeepKinesis();
@@ -161,9 +121,9 @@ public class SettingsManager : MonoBehaviour
     public void UpdateObjectsToValues()
     {
         // Audio
-        masterMix.SetFloat("MasterVolume", tempMaster);
-        masterMix.SetFloat("SFXVolume", tempSFX);
-        masterMix.SetFloat("MusicVolume", tempMusic);
+        masterMix.SetFloat("MasterVolume", Mathf.Log10(tempMaster) * 20f);
+        masterMix.SetFloat("SFXVolume", Mathf.Log10(tempSFX) * 20f);
+        masterMix.SetFloat("MusicVolume", Mathf.Log10(tempMusic) * 20f);
 
         // Gameplay
         Camera.main.fieldOfView = tempFOV;
@@ -192,4 +152,62 @@ public class SettingsManager : MonoBehaviour
         settings.electroOn = GameManager.instance.GetEnabledList().ElectroEnabled();
         settings.teleOn = GameManager.instance.GetEnabledList().TeleEnabled();
     }
+
+    // ================================================================================
+    //         SUBSCRIPTION BASED EVENTS BELOW - DON'T TOUCH PLEASE AND THANK YOU
+    // ================================================================================
+
+    private void Subscriber()
+    {
+        masterSlider.onValueChanged.AddListener(SetMasterVolume);
+        sfxSlider.onValueChanged.AddListener(SetSFXVolume);
+        musicSlider.onValueChanged.AddListener(SetMusicVolume);
+        controllerSensSlider.onValueChanged.AddListener(SetControllerSens);
+        mouseSensSlider.onValueChanged.AddListener(SetMouseSens);
+        fovSlider.onValueChanged.AddListener(SetCameraFOV);
+
+        hitmarkerToggle.onValueChanged.AddListener(SetHitmarkerEnabled);
+        invertYToggle.onValueChanged.AddListener(SetCameraInvertY);
+    }
+
+    public void SetMasterVolume(float value)
+    {
+        tempMaster = value;
+    }
+
+    public void SetSFXVolume(float value)
+    {
+        tempSFX = value;
+    }
+
+    public void SetMusicVolume(float value)
+    {
+        tempMusic = value;
+    }
+
+    public void SetCameraFOV(float value)
+    {
+        tempFOV = value;
+    }
+
+    public void SetMouseSens(float value)
+    {
+        tempMouseSens = value;
+    }
+
+    public void SetControllerSens(float value)
+    {
+        tempControllerSens = value;
+    }
+
+    public void SetCameraInvertY(bool value)
+    {
+        tempInvY = value;
+    }
+
+    public void SetHitmarkerEnabled(bool value)
+    {
+        tempHitmarkerEnabled = value;
+    }
+
 }
