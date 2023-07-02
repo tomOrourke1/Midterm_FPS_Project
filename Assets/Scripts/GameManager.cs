@@ -263,7 +263,20 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void SetCurrentRoomManager(AreaManager roomManager)
     {
+        if (currentRoomManager != null)
+        {
+            // Lock Door
+            currentRoomManager.HandleAreaSwap();
+
+            // Unload Room
+            currentRoomManager.UnloadRoom();
+        }
+
+        // Switch current room
         currentRoomManager = roomManager;
+
+        // Load next room
+        currentRoomManager.StartRoom();
     }
 
     /// <summary>

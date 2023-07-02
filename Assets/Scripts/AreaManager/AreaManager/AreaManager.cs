@@ -7,7 +7,7 @@ using static UnityEngine.EventSystems.EventTrigger;
 
 public class AreaManager : MonoBehaviour
 {
-    // list of objects to spawn by tpype and position and rotation
+    // list of objects to spawn by type, position and rotation
 
     // reset room
     // spawn room
@@ -17,16 +17,183 @@ public class AreaManager : MonoBehaviour
     // doors locked status
     // read the room function
 
-    [SerializeField] List<GameObject> Entities = new List<GameObject>();
-    // Just the IEntity of each entity that is currently alive
+    enum RoomType
+    {
+        Default = 0,
+        Key,
+        Encounter,
+        Elite,
+        Puzzle
+    }
+
+    [Header("Place the start and end doors to your area")]
+    [SerializeField] DoorScript EntryDoor;
+    [SerializeField] DoorScript ExitDoor;
+
+
+    [Header("Select the type of area this is")]
+    [SerializeField] RoomType roomType;
+
+
+    [Header("Place objective to track below")]
+    [SerializeField] GameObject TrackedObject;
+
+
+    List<GameObject> Entities = new List<GameObject>();
     List<IEntity> entities;
     List<IEnvironment> environment;
     List<EntitySpawners> Spawners;
 
+    int KillCounter = 0;
+    bool EliteIsDead = false;
+    bool PuzzleIsComplete = false;
+
+    bool ObjectiveComplete = false;
+
     private void Start()
     {
+        EntryDoor.GetComponentInChildren<DoorDetectPlayerInProximity>().EnterTransitionMode();
+
         KillEntities();
         StopEnvironments();
+
+        SetObjective();
+    }
+
+    private void Update()
+    {
+        if (ObjectiveComplete)
+        {
+            UnlockExit();
+        }
+        else
+        {
+            CheckObjective();
+        }
+    }
+
+    void UnlockExit()
+    {
+        ExitDoor.SetLockStatus(false);
+    }
+
+    void LockExit()
+    {
+        ExitDoor.CloseDoor();
+        ExitDoor.SetLockStatus(true);
+    }
+
+    void CheckObjective()
+    {
+        switch (roomType)
+        {
+            case RoomType.Encounter:
+
+                if (KillCounter == 0)
+                {
+                    ObjectiveComplete = true;
+                }
+
+                break;
+
+            case RoomType.Elite:
+
+                CheckObjectiveElite();
+
+                if (EliteIsDead)
+                {
+                    ObjectiveComplete = true;
+                }
+
+                break;
+
+            case RoomType.Puzzle:
+
+                CheckObjectivePuzzle();
+
+                if (PuzzleIsComplete)
+                {
+                    ObjectiveComplete = true;
+                }
+
+                break;
+        }
+    }
+
+    void SetObjective()
+    {
+        KillCounter = 0;
+        EliteIsDead = false;
+        PuzzleIsComplete = false;
+
+        ObjectiveComplete = false;
+
+        LockExit();
+
+        switch (roomType)
+        {
+            case RoomType.Default:
+
+                ObjectiveComplete = true;
+                break;
+
+            case RoomType.Key:
+                // Keys need no tracking
+                break;
+
+            case RoomType.Encounter:
+                SetObjectiveEncounter();
+                break;
+
+            case RoomType.Elite:
+                SetObjectiveElite();
+                break;
+
+            case RoomType.Puzzle:
+                SetObjectivePuzzle();
+                break;
+
+            default:
+
+                ObjectiveComplete = true;
+                break;
+        }
+    }
+
+    void SetObjectiveEncounter()
+    {
+        // Set a kill counter
+        ReadTheRoom();
+        foreach (var entity in Entities)
+        {
+            if (entity.GetComponent<EnemyBase>() != null)
+            {
+                KillCounter++;
+            }
+        }
+    }
+
+    void SetObjectiveElite()
+    {
+        // Set an enemy to watch
+        if (TrackedObject.GetComponent<EntitySpawners>() == null)
+        {
+            Debug.LogError("Objective Error: Elite enemy objective requires an enemy's spawner to be tracked.\n\tMake sure that the tracked object is an enemy spawner\n\tMake sure you have the correct objective selected\n\n");
+        }
+    }
+    void CheckObjectiveElite()
+    {
+        ObjectiveComplete = TrackedObject.GetComponent<EntitySpawners>().IsMyEnemyDead();
+    }
+
+    void SetObjectivePuzzle()
+    {
+        // Set a puzzle tracker to watch
+
+    }
+    void CheckObjectivePuzzle()
+    {
+        // IPuzzle.IsComplete()
     }
 
     public List<EntitySpawners> GetEntitySpawners()
@@ -61,8 +228,10 @@ public class AreaManager : MonoBehaviour
 
             if (Entities[i].GetComponent<EnemyBase>() != null)
             {
+                EnemyBase eBase;
+
                 // Store enemy in spawner if entity is an enemy
-                var eBase = Instantiate(Entities[i], Spawners[i].GetTransform().position, Spawners[i].GetTransform().rotation, gameObject.transform).GetComponent<EnemyBase>();
+                eBase = Instantiate(Entities[i], Spawners[i].GetTransform().position, Spawners[i].GetTransform().rotation, gameObject.transform).GetComponent<EnemyBase>();
 
                 // this needs to be able to assign it's death to do something.
                 // but I don't like how it is currently connected.
@@ -79,7 +248,7 @@ public class AreaManager : MonoBehaviour
     void KillEntities()
     {
         entities = new List<IEntity>(gameObject.GetComponentsInChildren<IEntity>());
-        
+
         for (int i = 0; i < entities.Count; i++)
         {
             entities[i].Respawn();
@@ -89,7 +258,7 @@ public class AreaManager : MonoBehaviour
     void StopEnvironments()
     {
         environment = new List<IEnvironment>(gameObject.GetComponentsInChildren<IEnvironment>(true));
-        
+
         for (int i = 0; i < environment.Count; i++)
         {
             environment[i].StopObject();
@@ -120,6 +289,8 @@ public class AreaManager : MonoBehaviour
 
     public void Respawn()
     {
+        SetObjective();
+
         StopEnvironments();
 
         KillEntities();
@@ -127,5 +298,10 @@ public class AreaManager : MonoBehaviour
 
         StartEnvironments();
         SpawnEntities();
+    }
+
+    public void HandleAreaSwap()
+    {
+        LockExit();
     }
 }

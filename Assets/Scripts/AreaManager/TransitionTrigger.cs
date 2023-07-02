@@ -21,7 +21,7 @@ public class TransitionTrigger : MonoBehaviour
             didActivate = true;
         }
     }
-
+   
     private void LockDoor()
     {
         if (DoorToLock != null)
