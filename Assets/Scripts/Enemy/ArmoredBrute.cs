@@ -13,19 +13,30 @@ public class ArmoredBrute : EnemyBase,IDamagable
 
     [Header("-----Brute Stats-----")]
     [SerializeField] int damage;
+    [SerializeField] int chargeDamage;
     [SerializeField] int attackRate;
     [SerializeField] int playerFaceSpeed;
     [SerializeField] int viewConeAngle;
     [SerializeField] float chargeTime;
+    [SerializeField] float stunTime;
+    [SerializeField] float force;
+    [SerializeField] float upwardForce;
+    [SerializeField] float chargeSpeed;
     [Range(1,10)][SerializeField] int Armor;
 
 
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Rigidbody rb;
 
+    Vector3 forceDirection;
+
+
     bool isAttacking;
     bool isCharging;
-    void Start()
+    bool isUnstunned;
+
+   bool isStunned;
+  void Start()
     {
         health.FillToMax();
 
@@ -72,7 +83,10 @@ public class ArmoredBrute : EnemyBase,IDamagable
         if(inDistance == true)
         {
             isCharging = true;
+            StartCoroutine(ChargeTimer());
+           
         }
+        return isCharging;
     }
 
     void Update()
@@ -131,6 +145,16 @@ public class ArmoredBrute : EnemyBase,IDamagable
         yield return new WaitForSeconds(chargeTime);
         agent.enabled = false;
         rb.isKinematic = false;
+        forceDirection = gameObject.transform.forward;
+        Vector3 speed = forceDirection * chargeSpeed;
+        rb.AddForce(speed, ForceMode.Force);
+    }
+    IEnumerator StunTimer()
+    {
+        yield return new WaitForSeconds(stunTime);
+        isUnstunned = true;
+        isStunned = false;
+
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -150,5 +174,32 @@ public class ArmoredBrute : EnemyBase,IDamagable
     public float GetCurrentHealth()
     {
         return health.CurrentValue;
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(isCharging == true)
+        {
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                IDamagable damagable = collision.gameObject.GetComponent<IDamagable>();
+                damagable.TakeDamage(chargeDamage);
+                var applyVel = collision.gameObject.GetComponent<IApplyVelocity>();
+                forceDirection = gameObject.transform.forward;
+                Vector3 velocity = forceDirection * force + transform.up * upwardForce;
+                applyVel.ApplyVelocity(velocity);
+            }
+            else if (collision.gameObject.CompareTag("Enemy"))
+            {
+
+            }
+            else
+            {
+              
+                StartCoroutine(StunTimer());
+                agent.enabled = true;
+                rb.isKinematic = true;
+            }
+        }
+      
     }
 }
