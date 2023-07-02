@@ -70,7 +70,7 @@ public class TiltController : MonoBehaviour
 
     public void StartTilt(float tiltAmount)
     {
-        if (tiltAmount == cam.transform.localRotation.eulerAngles.z)    // might need to be == 0 instead?
+        if (tiltAmount == 0)    // might need to be == 0 instead?
             return;
 
 
