@@ -11,6 +11,7 @@ public class Flanker : EnemyBase, IDamagable, IEntity, IApplyVelocity
     [SerializeField] EnemyToFlankState toFlankState;
     [SerializeField] EnemyShootState shootState;
     [SerializeField] EnemyPushedState pushedState;
+    [SerializeField] EnemyStunState stunState;
 
 
     [Header("----- Flanker Stats -----")]
@@ -27,10 +28,12 @@ public class Flanker : EnemyBase, IDamagable, IEntity, IApplyVelocity
 
     [Header("- timers -")]
     [SerializeField] float timeBetweenShots;
+    [SerializeField] float stunTime;
 
-    
     bool wasPushed;
     bool hasLanded;
+    bool isStunned;
+    bool isUnstunned;
     float time;
 
     void Start()
@@ -64,6 +67,9 @@ public class Flanker : EnemyBase, IDamagable, IEntity, IApplyVelocity
 
         stateMachine.AddAnyTransition(pushedState, OnPushed);
         stateMachine.AddTransition(pushedState, idleState, OnPushLanding);
+
+        stateMachine.AddAnyTransition(stunState, OnStunned);
+        stateMachine.AddTransition(stunState, idleState, OnUnstunned);
 
         rb.isKinematic = false;
     }
@@ -129,7 +135,24 @@ public class Flanker : EnemyBase, IDamagable, IEntity, IApplyVelocity
         wasPushed = false;
         return temp;
     }
+    bool OnStunned()
+    {
 
+        var temp = isStunned;
+        isStunned = false;
+        return temp;
+    }
+    bool OnUnstunned()
+    {
+
+        var temp = isUnstunned;
+        isUnstunned = false;
+        if (temp)
+        {
+            isStunned = false;
+        }
+        return temp;
+    }
     void Update()
     {
 
@@ -172,7 +195,10 @@ public class Flanker : EnemyBase, IDamagable, IEntity, IApplyVelocity
     }
     public void TakeElectroDamage(float dmg)
     {
+        isStunned = true;
         TakeDamage(dmg);
+
+        StartCoroutine(StunTimer());
     }
     public void TakeFireDamage(float dmg)
     {
@@ -200,7 +226,13 @@ public class Flanker : EnemyBase, IDamagable, IEntity, IApplyVelocity
         enemyMeshRenderer.material.color = enemyColor;
     }
 
+    IEnumerator StunTimer()
+    {
+        yield return new WaitForSeconds(stunTime);
+        isUnstunned = true;
+        isStunned = false;
 
+    }
 
     private void OnTriggerEnter(Collider other)
     {

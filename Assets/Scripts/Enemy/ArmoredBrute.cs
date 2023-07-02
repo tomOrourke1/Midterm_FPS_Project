@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ArmoredBrute : EnemyBase,IDamagable
 {
@@ -15,9 +16,15 @@ public class ArmoredBrute : EnemyBase,IDamagable
     [SerializeField] int attackRate;
     [SerializeField] int playerFaceSpeed;
     [SerializeField] int viewConeAngle;
+    [SerializeField] float chargeTime;
+    [Range(1,10)][SerializeField] int Armor;
+
+
+    [SerializeField] NavMeshAgent agent;
+    [SerializeField] Rigidbody rb;
 
     bool isAttacking;
-
+    bool isCharging;
     void Start()
     {
         health.FillToMax();
@@ -56,7 +63,17 @@ public class ArmoredBrute : EnemyBase,IDamagable
     //    }
        
     //}
+    bool OnCharge()
+    {
+        float distance = Vector3.Distance(GameManager.instance.GetPlayerObj().transform.position, gameObject.transform.position);
 
+        bool inDistance = distance > 5;
+
+        if(inDistance == true)
+        {
+            isCharging = true;
+        }
+    }
 
     void Update()
     {
@@ -84,7 +101,7 @@ public class ArmoredBrute : EnemyBase,IDamagable
 
     public void TakeDamage(float dmg)
     {
-        health.Decrease(dmg);
+        health.Decrease(dmg/Armor);
         StartCoroutine(FlashDamage());
     }
     public void TakeIceDamage(float dmg)
@@ -93,11 +110,11 @@ public class ArmoredBrute : EnemyBase,IDamagable
     }
     public void TakeElectroDamage(float dmg)
     {
-        TakeDamage(dmg);
+        TakeDamage(dmg/Armor);
     }
     public void TakeFireDamage(float dmg)
     {
-        TakeDamage(dmg);
+        TakeDamage(dmg/Armor);
     }
     public void TakeLaserDamage(float dmg)
     {
@@ -109,7 +126,12 @@ public class ArmoredBrute : EnemyBase,IDamagable
         yield return new WaitForSeconds(0.15f);
         enemyMeshRenderer.material.color = enemyColor;
     }
-
+    IEnumerator ChargeTimer()
+    {
+        yield return new WaitForSeconds(chargeTime);
+        agent.enabled = false;
+        rb.isKinematic = false;
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))

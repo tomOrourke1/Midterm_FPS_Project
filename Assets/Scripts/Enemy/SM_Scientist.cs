@@ -69,7 +69,7 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity, IApplyVelocity
         {
             stateMachine.Tick();
             
-            if(GetDoesSeePlayer())
+            if(GetDoesSeePlayer() && isUnstunned == true)
             {
                 RotToPlayer();
             }
@@ -156,7 +156,7 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity, IApplyVelocity
         Debug.Log("boo");
         isStunned = true;
         TakeDamage(dmg);
-
+      
         StartCoroutine(StunTimer());
     }
     public void TakeFireDamage(float dmg)
