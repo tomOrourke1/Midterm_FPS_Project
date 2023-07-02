@@ -9,6 +9,8 @@ public class DisruptorField : MonoBehaviour
     [SerializeField] MeshRenderer core;
     [SerializeField] MeshRenderer inner;
     [SerializeField] MeshRenderer outer;
+    [SerializeField] ParticleSystem orbs;
+    
 
     [Header("Aero Colors")]
     [SerializeField] OrbMaterials aerokinesisMaterials;
