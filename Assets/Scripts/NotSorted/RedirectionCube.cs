@@ -81,6 +81,7 @@ public class RedirectionCube : MonoBehaviour, IReflector
         {
             // Stop the old reflector
             StoredReflector?.GetComponent<IReflector>().StopReflection(laser);
+            //StopReflections();
 
             // store the collider
             StoredReflector = hit.collider.gameObject;

@@ -145,6 +145,43 @@ public class Laser : MonoBehaviour, IEnvironment
     void HandleReflect(RaycastHit hit)
     {
         IReflector reflector = hit.collider.GetComponent<IReflector>();
+
+        //if (reflector == null && StoredReflector != null)
+        //{
+        //    // Laser hit nothing, Laser was Hitting something
+        //    StopReflections();
+        //}
+        //else if (reflector == null && StoredReflector == null)
+        //{
+        //    // laser hit nothing and laser was hitting nothing
+        //    StopReflections();
+        //}
+        //else if (reflector != null && StoredReflector != null)
+        //{
+        //    // Laser hit something and Laser was Hitting something
+
+        //    // Stop the old reflector
+        //    StoredReflector?.GetComponent<IReflector>().StopReflection(laser);
+        //    // store the collider
+        //    StoredReflector = hit.collider.gameObject;
+        //    // Get Remaining distance
+        //    float reflectDist = maxDistance - hit.distance;
+        //    // call reflect
+        //    reflector.Reflect(reflectDist, Damage, impactFX, impactLight, hit, hit.point - transform.position, laser);
+        //}
+        //else if (reflector != null && StoredReflector == null)
+        //{
+        //    // Laser hit something and laser wasn't hitting something
+
+        //    // store the collider
+        //    StoredReflector = hit.collider.gameObject;
+        //    // Get Remaining distance
+        //    float reflectDist = maxDistance - hit.distance;
+        //    // call reflect
+        //    reflector.Reflect(reflectDist, Damage, impactFX, impactLight, hit, hit.point - transform.position, laser);
+        //}
+
+
         if (CompareWithStoredReflector(hit))
         {
             //Debug.Log("Laser");

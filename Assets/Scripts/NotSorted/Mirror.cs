@@ -69,7 +69,10 @@ public class Mirror : MonoBehaviour, IReflector
         }
         else
         {
-            StopReflections(indexCounter.IndexOf(laserID));
+            if (StoredReflector.Count == lasers.Count)
+            {
+                StopReflections(indexCounter.IndexOf(laserID));
+            }
         }
     }
 
@@ -97,9 +100,10 @@ public class Mirror : MonoBehaviour, IReflector
                 int index = indexCounter.IndexOf(laserID);
 
                 // Stop the old reflector
-                StoredReflector[index]?.GetComponent<IReflector>().StopReflection(lasers[laserID]);
+                StopReflections(indexCounter.IndexOf(laserID));
+                //StoredReflector[index]?.GetComponent<IReflector>().StopReflection(lasers[laserID]);
             }
-            
+
             // store the collider
             StoredReflector.Add(hit.collider.gameObject);
 
@@ -190,6 +194,8 @@ public class Mirror : MonoBehaviour, IReflector
     {
         int id = originalLasers.IndexOf(laserToStop);
 
+        //laserID++;
+
         laserRange.RemoveAt(id);
         laserDamage.RemoveAt(id);
 
@@ -222,7 +228,7 @@ public class Mirror : MonoBehaviour, IReflector
     bool CompareWithStoredReflector(RaycastHit hit)
     {
 
-        if (indexCounter.Contains(laserID) && hit.collider.gameObject == StoredReflector[indexCounter.IndexOf(laserID)].gameObject)
+        if (indexCounter.Contains(laserID) && hit.collider.gameObject == StoredReflector[indexCounter.IndexOf(laserID)])
         {
             return true;
         }
@@ -232,7 +238,7 @@ public class Mirror : MonoBehaviour, IReflector
 
     public bool AlreadyReflecting()
     {
-        if (lasers.Count > 1)
+        if (lasers.Count > 8)
         {
             return true;
         }
