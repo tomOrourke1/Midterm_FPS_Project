@@ -53,7 +53,7 @@ public class MachineGunner : EnemyBase , IDamagable, IEntity
             {
                 RotToPlayer();
             }
-
+            
         }
     }
 
@@ -134,7 +134,7 @@ public class MachineGunner : EnemyBase , IDamagable, IEntity
     }
     public void TakeElectroDamage(float dmg)
     {
-        isStunned = true;
+        
         TakeDamage(dmg);
 
         StartCoroutine(StunTimer());
@@ -162,6 +162,10 @@ public class MachineGunner : EnemyBase , IDamagable, IEntity
 
     }
 
+    IEnumerator OnWait()
+    {
+        yield return new WaitForSeconds(2);
+    }
 
     private void OnTriggerEnter(Collider other)
     {

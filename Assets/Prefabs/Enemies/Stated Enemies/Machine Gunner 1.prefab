@@ -50,11 +50,11 @@ MonoBehaviour:
   rotSpeed: 0
   stoppingDist: 0
   animScript: {fileID: 0}
-  bullet: {fileID: 0}
-  gunPos: {fileID: 0}
+  bullet: {fileID: 5779099364001243127, guid: 1907d588480e97948a8cd1d1c3d48f28, type: 3}
+  gunPos: {fileID: 8764916151832651380}
   timeToShoot: 0
   totalTime: 0
-  rotationSpeed: 0
+  rotationSpeed: 1
 --- !u!1 &2216758027037765183
 GameObject:
   m_ObjectHideFlags: 0
@@ -113,6 +113,7 @@ MonoBehaviour:
   idleState: {fileID: 6325691572323693653}
   chasePlayerState: {fileID: 1323486239995065766}
   enemyShootState: {fileID: 7970115250072957341}
+  shootPos: {fileID: 0}
   stunState: {fileID: 2386761423687543735}
   attackRange: 0
   stunTime: 0
@@ -294,10 +295,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 2216758027037765177}
-  moveSpeed: 0
-  acceleration: 0
-  rotSpeed: 0
-  stoppingDist: 0
+  moveSpeed: 5
+  acceleration: 50
+  rotSpeed: 600
+  stoppingDist: 5
 --- !u!1 &6698962227702644765
 GameObject:
   m_ObjectHideFlags: 0
@@ -378,10 +379,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 2216758027037765177}
-  moveSpeed: 0
-  acceleration: 0
-  rotSpeed: 0
-  stoppingDist: 0
+  moveSpeed: 5
+  acceleration: 50
+  rotSpeed: 600
+  stoppingDist: 7
 --- !u!1 &9078960850900289015
 GameObject:
   m_ObjectHideFlags: 0
