@@ -25,6 +25,8 @@ public class Mirror : MonoBehaviour, IReflector
     ParticleSystem impactFX;
     Light impactLight;
 
+    int numRemoved = 0;
+
     List<GameObject> StoredReflector = new List<GameObject>();
 
     // This will store the index that each Reflector ties to
@@ -49,6 +51,8 @@ public class Mirror : MonoBehaviour, IReflector
 
         if (isReflecting)
         {
+            numRemoved = 0;
+
             for (laserID = 0; laserID < lasers.Count; laserID++)
             {
                 lasers[laserID].enabled = true;
@@ -192,7 +196,9 @@ public class Mirror : MonoBehaviour, IReflector
 
     public void StopReflection(LineRenderer laserToStop)
     {
-        int id = originalLasers.IndexOf(laserToStop);
+        int id = originalLasers.IndexOf(laserToStop) - numRemoved;
+
+        Debug.Log("Index: " + originalLasers.IndexOf(laserToStop) + "\nRemoved: " + numRemoved + "\nID: " + id);
 
         //laserID++;
 
@@ -213,6 +219,8 @@ public class Mirror : MonoBehaviour, IReflector
 
         lasers.RemoveAt(id);
         originalLasers.RemoveAt(id);
+
+        numRemoved += 1;
     }
 
     void StopReflections(int id)
