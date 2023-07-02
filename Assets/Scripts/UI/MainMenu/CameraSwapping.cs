@@ -12,6 +12,7 @@ public class CameraSwapping : MonoBehaviour
     private bool waiter;
     private float currentWaitingTime;
     private int picked;
+    private int previousPicked;
     private Camera currentCamera;
     private float changed;
     private bool canChange;
@@ -19,7 +20,7 @@ public class CameraSwapping : MonoBehaviour
 
     private void Start()
     {
-        ChangeCam();
+        StartChangeCam();
     }
 
     private void Update()
@@ -35,7 +36,7 @@ public class CameraSwapping : MonoBehaviour
         }
         else if (!canChange)
         {
-            StartCoroutine(please());
+            StartCoroutine(FOVChange());
         }
 
     }
@@ -58,14 +59,34 @@ public class CameraSwapping : MonoBehaviour
             cam.enabled = false;
         }
 
+        while (picked == previousPicked)
+        {
+            picked = Random.Range(0, cameras.Length);
+        }
+
+        previousPicked = picked;
+        cameras[picked].enabled = true;
+        currentCamera = cameras[picked];
+    }
+
+    /// <summary>
+    /// Only for the start function.
+    /// </summary>
+    private void StartChangeCam()
+    {
+        foreach (Camera cam in cameras)
+        {
+            cam.enabled = false;
+        }
+
         picked = Random.Range(0, cameras.Length);
         cameras[picked].enabled = true;
         currentCamera = cameras[picked];
     }
 
-    private IEnumerator please()
+    private IEnumerator FOVChange()
     {
-        rateFOV = Random.Range(0.01f, 0.1f);
+        rateFOV = Random.Range(0.05f, 0.1f);
         changed = 60 + Random.Range(-7f, 7f);
         canChange = true;
         yield return new WaitForSeconds(Random.Range(2.5f, 6f));

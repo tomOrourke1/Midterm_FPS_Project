@@ -97,7 +97,7 @@ public class ElevatorScript : MonoBehaviour, IInteractable
 
         if (scene == "")
         {
-            Debug.Log("YOU DIDN'T PUT A NEXT SCENE NAME IN THE GAME MANAGER!");
+            Debug.Log("No scene specified in Game Manager: Heading to Main Menu -->");
             SceneManager.LoadScene("MainMenu");
         }
         else

@@ -87,7 +87,6 @@ public class UIManager : MonoBehaviour
     public void CancelSettings()
     {
         GameManager.instance.GetSettingsManager().CancelSettingsObj();
-        GameManager.instance.GetSettingsManager().CancelSettingsObj();
     }
 
     /// <summary>

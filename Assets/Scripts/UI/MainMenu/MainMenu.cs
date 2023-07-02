@@ -15,9 +15,6 @@ public class MainMenu : MonoBehaviour
     [Header("Settings Components")]
     [SerializeField] GameObject settingsMenuObj;
 
-    [Header("Settings Components")]
-    [SerializeField] GameObject creditsMenu;
-
     [Header("Scene Loading Info")]
     [SerializeField] string tutorialLevelStart;
     [SerializeField] TextMeshProUGUI gameContinueText;
@@ -56,18 +53,6 @@ public class MainMenu : MonoBehaviour
     public void CloseSettingsMenu()
     {
         settingsMenuObj.SetActive(false);
-        baseMenu.SetActive(true);
-    }
-
-    public void OpenCreditsMenu()
-    {
-        baseMenu.SetActive(false);
-        creditsMenu.SetActive(true);
-    }
-
-    public void CloseCreditsMenu()
-    {
-        creditsMenu.SetActive(false);
         baseMenu.SetActive(true);
     }
 

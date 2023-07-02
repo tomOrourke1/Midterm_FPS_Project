@@ -3,8 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SettingsManager : MonoBehaviour
@@ -70,7 +72,14 @@ public class SettingsManager : MonoBehaviour
 
         KeepKinesis();
 
-        GameManager.instance.GetPlayerScript().GetFov().SetOrigFov(tempFOV);// .SetOrigFov(tempFOV);
+        GameManager.instance.GetPlayerScript()?.GetFov().SetOrigFov(tempFOV);// .SetOrigFov(tempFOV);
+    }
+
+
+    public void ApplySettings()
+    {
+        SaveToSettingsObj();
+        UpdateObjectsToValues();
     }
 
     public void CancelSettingsObj()
@@ -117,7 +126,7 @@ public class SettingsManager : MonoBehaviour
         hitmarkerParentObj.SetActive(tempHitmarkerEnabled);
         reticleImage.sprite = tempSprite;
     }
-    
+
     public void UpdateObjectsToValues()
     {
         // Audio
@@ -125,11 +134,19 @@ public class SettingsManager : MonoBehaviour
         masterMix.SetFloat("SFXVolume", Mathf.Log10(tempSFX) * 20f);
         masterMix.SetFloat("MusicVolume", Mathf.Log10(tempMusic) * 20f);
 
-        // Gameplay
-        Camera.main.fieldOfView = tempFOV;
-        Camera.main.GetComponent<CameraController>().SetSensitivity(tempMouseSens);
-        // change controller sensitivty here
-        Camera.main.GetComponent<CameraController>().SetInvert(tempInvY);
+        masterMix.GetFloat("MasterVolume", out float tmp);
+        Debug.Log(tmp);
+
+        if (SceneManager.GetActiveScene().name != "MainMenu")
+        {
+            // Gameplay
+            Camera.main.fieldOfView = tempFOV;
+            Camera.main.GetComponent<CameraController>().SetSensitivity(tempMouseSens);
+            // change controller sensitivty here
+            Camera.main.GetComponent<CameraController>().SetInvert(tempInvY);
+
+        }
+
 
         // Graphics
         reticleImage.sprite = tempSprite;
@@ -153,6 +170,12 @@ public class SettingsManager : MonoBehaviour
         settings.teleOn = GameManager.instance.GetEnabledList().TeleEnabled();
     }
 
+    private IEnumerator WaitADamnSecond()
+    {
+        yield return new WaitForSeconds(0.5f);
+        UpdateObjectsToValues();
+    }
+
     // ================================================================================
     //         SUBSCRIPTION BASED EVENTS BELOW - DON'T TOUCH PLEASE AND THANK YOU
     // ================================================================================
@@ -168,6 +191,8 @@ public class SettingsManager : MonoBehaviour
 
         hitmarkerToggle.onValueChanged.AddListener(SetHitmarkerEnabled);
         invertYToggle.onValueChanged.AddListener(SetCameraInvertY);
+
+        Debug.Log("Assigned Subscribers");
     }
 
     public void SetMasterVolume(float value)
