@@ -9,7 +9,7 @@ public class DisruptorField : MonoBehaviour
     [SerializeField] MeshRenderer core;
     [SerializeField] MeshRenderer inner;
     [SerializeField] MeshRenderer outer;
-    [SerializeField] ParticleSystem orbs;
+    [SerializeField] ParticleSystem field;
     
 
     [Header("Aero Colors")]
@@ -40,6 +40,7 @@ public class DisruptorField : MonoBehaviour
         switch (picked)
         {
             case KinesisSelect.aerokinesis:
+                field.startColor = aerokinesisMaterials.GetOuter().color;
                 core.material = aerokinesisMaterials.GetCore();
                 inner.material = aerokinesisMaterials.GetInner();
                 outer.material = aerokinesisMaterials.GetOuter();
@@ -58,6 +59,7 @@ public class DisruptorField : MonoBehaviour
                 break;
 
             case KinesisSelect.pyrokinesis:
+                field.startColor = pyrokinesisMaterials.GetOuter().color;
                 core.material = pyrokinesisMaterials.GetCore();
                 inner.material = pyrokinesisMaterials.GetInner();
                 outer.material = pyrokinesisMaterials.GetOuter();
