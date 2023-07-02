@@ -73,7 +73,7 @@ public class PlayerResources : MonoBehaviour, IDamagable, IHealReciever, IFocusR
     }
     void PlayerDied()
     {
-        GameManager.instance.GetPlayerScript().DeathHandler();
+        GameManager.instance.GetPlayerScript().ResetPlayer();
         UIManager.instance.uiStateMachine.SetDeath(true);
 
 

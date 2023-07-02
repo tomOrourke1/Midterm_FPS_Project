@@ -62,4 +62,12 @@ public class PlayerScript : MonoBehaviour
         GameManager.instance.GetPlayerResources().FillAllStats();
         UIManager.instance.GetPlayerStats().UpdateValues();
     }
+
+
+
+    public FOVController GetFov()
+    {
+        return fovController;
+    }
+
 }

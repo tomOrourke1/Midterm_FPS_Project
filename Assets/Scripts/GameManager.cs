@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     [Header("-----Player Stuff-----")]
     [SerializeField] GameObject player;
     [SerializeField] GameObject PlayerSpawnPOS;
-    [SerializeField] Player playerscript;
+    [SerializeField] PlayerScript playerscript;
     [SerializeField] PlayerResources playerResources;
     [SerializeField] KeyChain keyChain;
 
@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
 
         // Sets both the player and player script
         player = GameObject.FindGameObjectWithTag("Player");
-        playerscript = player?.GetComponent<Player>();
+        playerscript = player?.GetComponent<PlayerScript>();
         playerResources = player?.GetComponent<PlayerResources>();
         PlayerSpawnPOS = GameObject.FindGameObjectWithTag("Player Spawn Pos");
         keyChain = player?.GetComponent<KeyChain>();
@@ -187,7 +187,7 @@ public class GameManager : MonoBehaviour
     /// Returns the player script. Should be used in respawning.
     /// </summary>
     /// <returns></returns>
-    public Player GetPlayerScript()
+    public PlayerScript GetPlayerScript()
     {
         return playerscript;
     }
@@ -252,7 +252,7 @@ public class GameManager : MonoBehaviour
     public void RespawnCaller()
     {
         playerscript.RespawnPlayer();
-        player.GetComponentInChildren<CameraController>().ResetCamera();
+        //player.GetComponentInChildren<CameraController>().ResetCamera();
         currentRoomManager?.Respawn();
 
         // this will have to go through the new player script

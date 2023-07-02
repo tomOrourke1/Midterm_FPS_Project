@@ -69,8 +69,8 @@ public class SettingsManager : MonoBehaviour
         reticleImage.sprite = tempSprite;
 
         KeepKinesis();
-        
-        GameManager.instance.GetPlayerScript().SetOrigFov(tempFOV);
+
+        GameManager.instance.GetPlayerScript().GetFov().SetOrigFov(tempFOV);// .SetOrigFov(tempFOV);
     }
 
     public void CancelSettingsObj()
