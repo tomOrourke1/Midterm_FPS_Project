@@ -111,16 +111,16 @@ public class AreaManager : MonoBehaviour
 
                 break;
 
-            case RoomType.Puzzle:
+            //case RoomType.Puzzle:
 
-                CheckObjectivePuzzle();
+            //    CheckObjectivePuzzle();
 
-                if (PuzzleIsComplete)
-                {
-                    ObjectiveComplete = true;
-                }
+            //    if (PuzzleIsComplete)
+            //    {
+            //        ObjectiveComplete = true;
+            //    }
 
-                break;
+            //    break;
         }
     }
 
