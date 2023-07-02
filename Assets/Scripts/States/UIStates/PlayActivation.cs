@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayActivation : MenuActivation
 {
+
     public override void Activate()
     {
         GameManager.instance.PlayMenuState();
