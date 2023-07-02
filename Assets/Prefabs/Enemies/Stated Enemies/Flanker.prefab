@@ -51,6 +51,55 @@ MonoBehaviour:
   stoppingDist: 0
   dist: 6.47
   allowedDot: 0
+--- !u!1 &1590919021
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1590919023}
+  - component: {fileID: 1590919022}
+  m_Layer: 0
+  m_Name: StunState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1590919023
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590919021}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2021841618405641387}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1590919022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590919021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9d280c5fd1df084f9a73b780f0d4401, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 2021841617035719719}
+  moveSpeed: 0
+  acceleration: 0
+  rotSpeed: 0
+  stoppingDist: 0
 --- !u!1 &2021841616974148822
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,6 +191,7 @@ MonoBehaviour:
   toFlankState: {fileID: 944593567}
   shootState: {fileID: 2021841618672403880}
   pushedState: {fileID: 3985592492189878184}
+  stunState: {fileID: 1590919022}
   playerFaceSpeed: 10
   distToChase: 20
   distToFlank: 7.62
@@ -150,6 +200,7 @@ MonoBehaviour:
   shootPos: {fileID: 2021841616974148823}
   rb: {fileID: 4536940295761009002}
   timeBetweenShots: 0.33
+  stunTime: 2
 --- !u!136 &2021841617035719717
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -382,6 +433,7 @@ Transform:
   - {fileID: 2021841618672403881}
   - {fileID: 944593566}
   - {fileID: 188256811785203042}
+  - {fileID: 1590919023}
   m_Father: {fileID: 2021841617035719715}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

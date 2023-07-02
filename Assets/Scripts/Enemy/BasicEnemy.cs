@@ -12,10 +12,12 @@ public class BasicEnemy : EnemyBase, IDamagable, IEntity, IApplyVelocity
     [SerializeField] EnemyStrafeState strafeState;
     [SerializeField] EnemyShootState shootState;
     [SerializeField] EnemyPushedState pushedState;
+    [SerializeField] EnemyStunState stunState;
 
     [Header("--- other values ---")]
     [SerializeField] float attackRange;
     [SerializeField] float moveAwayRange;
+    [SerializeField] float stunTime;
 
     [SerializeField] float strafeTime;
      float timeInStrafe;
@@ -24,7 +26,8 @@ public class BasicEnemy : EnemyBase, IDamagable, IEntity, IApplyVelocity
 
     bool wasPushed;
     bool hasLanded;
-
+    bool isStunned;
+    bool isUnstunned;
 
     private void Start()
     {
@@ -50,6 +53,10 @@ public class BasicEnemy : EnemyBase, IDamagable, IEntity, IApplyVelocity
 
         stateMachine.AddAnyTransition(pushedState, OnPushed);
         stateMachine.AddTransition(pushedState, idleState, OnPushLanding);
+
+
+        stateMachine.AddAnyTransition(stunState, OnStunned);
+        stateMachine.AddTransition(stunState, idleState, OnUnstunned);
 
         rb.isKinematic = false;
 
@@ -116,7 +123,24 @@ public class BasicEnemy : EnemyBase, IDamagable, IEntity, IApplyVelocity
         wasPushed = false;
         return temp;
     }
+    bool OnStunned()
+    {
 
+        var temp = isStunned;
+        isStunned = false;
+        return temp;
+    }
+    bool OnUnstunned()
+    {
+
+        var temp = isUnstunned;
+        isUnstunned = false;
+        if (temp)
+        {
+            isStunned = false;
+        }
+        return temp;
+    }
     private void Update()
     {
        // Debug.LogError("Current state: " + stateMachine.CurrentState.ToString());
@@ -155,7 +179,10 @@ public class BasicEnemy : EnemyBase, IDamagable, IEntity, IApplyVelocity
     }
     public void TakeElectroDamage(float dmg)
     {
+        isStunned = true;
         TakeDamage(dmg);
+
+        StartCoroutine(StunTimer());
     }
     public void TakeFireDamage(float dmg)
     {
@@ -182,6 +209,13 @@ public class BasicEnemy : EnemyBase, IDamagable, IEntity, IApplyVelocity
         enemyMeshRenderer.material.color = Color.red;
         yield return new WaitForSeconds(0.15f);
         enemyMeshRenderer.material.color = enemyColor;
+    }
+    IEnumerator StunTimer()
+    {
+        yield return new WaitForSeconds(stunTime);
+        isUnstunned = true;
+        isStunned = false;
+
     }
 
     private void OnTriggerEnter(Collider other)

@@ -11,11 +11,13 @@ public class Sniper : EnemyBase, IDamagable, IEntity, IApplyVelocity
     [SerializeField] EnemySniperShootState enemyShootState;
     [SerializeField] EnemyMoveAwayState runAway;
     [SerializeField] EnemyPushedState pushedState;
+    [SerializeField] EnemyStunState stunState;
 
     [Header("-----Sniper Stats------")]
     [SerializeField] float betweenShotTime;
     [SerializeField] float runDistance;
     [SerializeField] float rotSpeed;
+    [SerializeField] float stunTime;
 
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Rigidbody rb;
@@ -25,6 +27,8 @@ public class Sniper : EnemyBase, IDamagable, IEntity, IApplyVelocity
 
     bool wasPushed;
     bool hasLanded;
+    bool isStunned;
+    bool isUnstunned;
 
     void Start()
     {
@@ -44,6 +48,9 @@ public class Sniper : EnemyBase, IDamagable, IEntity, IApplyVelocity
 
         stateMachine.AddAnyTransition(pushedState, OnPushed);
         stateMachine.AddTransition(pushedState, idleState, OnPushLanding);
+
+        stateMachine.AddAnyTransition(stunState, OnStunned);
+        stateMachine.AddTransition(stunState, idleState, OnUnstunned);
 
         rb.isKinematic = false;
 
@@ -101,7 +108,24 @@ public class Sniper : EnemyBase, IDamagable, IEntity, IApplyVelocity
         wasPushed = false;
         return temp;
     }
+    bool OnStunned()
+    {
 
+        var temp = isStunned;
+        isStunned = false;
+        return temp;
+    }
+    bool OnUnstunned()
+    {
+
+        var temp = isUnstunned;
+        isUnstunned = false;
+        if (temp)
+        {
+            isStunned = false;
+        }
+        return temp;
+    }
 
     void Update()
     {
@@ -148,7 +172,10 @@ public class Sniper : EnemyBase, IDamagable, IEntity, IApplyVelocity
     }
     public void TakeElectroDamage(float dmg)
     {
+        isStunned = true;
         TakeDamage(dmg);
+
+        StartCoroutine(StunTimer());
     }
     public void TakeFireDamage(float dmg)
     {
@@ -175,7 +202,13 @@ public class Sniper : EnemyBase, IDamagable, IEntity, IApplyVelocity
         yield return new WaitForSeconds(0.15f);
         enemyMeshRenderer.material.color = enemyColor;
     }
+    IEnumerator StunTimer()
+    {
+        yield return new WaitForSeconds(stunTime);
+        isUnstunned = true;
+        isStunned = false;
 
+    }
 
 
     private void OnTriggerEnter(Collider other)

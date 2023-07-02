@@ -13,11 +13,13 @@ public class SM_SecurityGuard : EnemyBase, IDamagable, IEntity, IApplyVelocity
     [SerializeField] EnemySpottedPlayer findPlayerState;
     [SerializeField] EnemyBackToPointState backToPointState;
     [SerializeField] EnemyPushedState pushedState;
+    [SerializeField] EnemyStunState stunState;
 
 
     [Header("----- Other Vars -----")]
     [SerializeField] float attackRange;
     [SerializeField] float closeToPlayer;
+    [SerializeField] float stunTime;
 
 
     [SerializeField] NavMeshAgent agent;
@@ -28,6 +30,8 @@ public class SM_SecurityGuard : EnemyBase, IDamagable, IEntity, IApplyVelocity
     bool wasHit;
     bool wasPushed;
     bool hasLanded;
+    bool isStunned;
+    bool isUnstunned;
     private void Start()
     {
         health.FillToMax(); // Makes Security Guards have full health
@@ -54,6 +58,9 @@ public class SM_SecurityGuard : EnemyBase, IDamagable, IEntity, IApplyVelocity
 
         stateMachine.AddAnyTransition(pushedState, OnPushed);
         stateMachine.AddTransition(pushedState, idleState, OnPushLanding);
+
+        stateMachine.AddAnyTransition(stunState, OnStunned);
+        stateMachine.AddTransition(stunState, idleState, OnUnstunned);
 
         rb.isKinematic = false;
     }
@@ -98,7 +105,24 @@ public class SM_SecurityGuard : EnemyBase, IDamagable, IEntity, IApplyVelocity
         wasPushed = false;
         return temp;
     }
-    
+    bool OnStunned()
+    {
+
+        var temp = isStunned;
+        isStunned = false;
+        return temp;
+    }
+    bool OnUnstunned()
+    {
+
+        var temp = isUnstunned;
+        isUnstunned = false;
+        if (temp)
+        {
+            isStunned = false;
+        }
+        return temp;
+    }
     bool OnFindPlayer()
     {
         var b = wasHit;
@@ -155,7 +179,17 @@ public class SM_SecurityGuard : EnemyBase, IDamagable, IEntity, IApplyVelocity
     }
     public void TakeElectroDamage(float dmg)
     {
+        isStunned = true;
         TakeDamage(dmg);
+
+        StartCoroutine(StunTimer());
+    }
+    IEnumerator StunTimer()
+    {
+        yield return new WaitForSeconds(stunTime);
+        isUnstunned = true;
+        isStunned = false;
+
     }
     public void TakeFireDamage(float dmg)
     {
