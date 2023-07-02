@@ -8,6 +8,7 @@ public class DoorDetectPlayerInProximity : MonoBehaviour, IEnvironment
     [SerializeField] DoorScript door;
 
     int count;
+    bool transitionMode = false;
 
     private void Start()
     {
@@ -16,6 +17,13 @@ public class DoorDetectPlayerInProximity : MonoBehaviour, IEnvironment
 
     private void OnTriggerEnter(Collider other)
     {
+        if (transitionMode)
+        {
+            GameManager.instance.SetCurrentRoomManager(GetComponentInParent<AreaManager>());
+
+            transitionMode = false;
+        }
+
         if (blackList(other))
         {
             return;
@@ -54,6 +62,11 @@ public class DoorDetectPlayerInProximity : MonoBehaviour, IEnvironment
         {
             door.CloseDoor();
         }
+    }
+
+    public void EnterTransitionMode()
+    {
+        transitionMode = true;
     }
 
     public void StartObject()
