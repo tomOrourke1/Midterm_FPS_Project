@@ -35,6 +35,9 @@ public class MovingPlatform : MonoBehaviour, IEnvironment
     // Update is called once per frame
     void FixedUpdate()
     {
+
+        //Debug.Log(GetComponent<Rigidbody>().velocity);
+
         if (!waiting)
         {
             move();

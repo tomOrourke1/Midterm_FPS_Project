@@ -62,14 +62,18 @@ public class AreaManager : MonoBehaviour
 
     private void Update()
     {
-        if (ObjectiveComplete)
+        if (this == GameManager.instance.GetCurrentRoomManager())
         {
-            UnlockExit();
+            if (ObjectiveComplete)
+            {
+                UnlockExit();
+            }
+            else
+            {
+                CheckObjective();
+            }
         }
-        else
-        {
-            CheckObjective();
-        }
+
     }
 
     void UnlockExit()
@@ -128,7 +132,6 @@ public class AreaManager : MonoBehaviour
 
         ObjectiveComplete = false;
 
-        LockExit();
 
         switch (roomType)
         {
@@ -175,11 +178,8 @@ public class AreaManager : MonoBehaviour
 
     void SetObjectiveElite()
     {
-        // Set an enemy to watch
-        if (TrackedObject.GetComponent<EntitySpawners>() == null)
-        {
-            Debug.LogError("Objective Error: Elite enemy objective requires an enemy's spawner to be tracked.\n\tMake sure that the tracked object is an enemy spawner\n\tMake sure you have the correct objective selected\n\n");
-        }
+        // Makes sure that the Tracked object isn't null
+        TrackedObject.GetComponent<EntitySpawners>();
     }
     void CheckObjectiveElite()
     {
@@ -218,6 +218,11 @@ public class AreaManager : MonoBehaviour
         }
     }
 
+    public void DecrementCounter()
+    {
+        KillCounter--;
+    }
+
     void SpawnEntities()
     {
         ReadTheRoom();
@@ -237,6 +242,7 @@ public class AreaManager : MonoBehaviour
                 // but I don't like how it is currently connected.
 
                 eBase.HealthPool.OnResourceDepleted += Spawners[i].MyEnemyDied;
+
             }
             else
             {
@@ -273,6 +279,8 @@ public class AreaManager : MonoBehaviour
         {
             environment[i].StartObject();
         }
+
+        LockExit();
     }
 
     public void UnloadRoom()
@@ -300,7 +308,7 @@ public class AreaManager : MonoBehaviour
         SpawnEntities();
     }
 
-    public void HandleAreaSwap()
+    public void LeaveArea()
     {
         LockExit();
     }

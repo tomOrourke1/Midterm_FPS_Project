@@ -266,7 +266,7 @@ public class GameManager : MonoBehaviour
         if (currentRoomManager != null)
         {
             // Lock Door
-            currentRoomManager.HandleAreaSwap();
+            currentRoomManager.LeaveArea();
 
             // Unload Room
             currentRoomManager.UnloadRoom();

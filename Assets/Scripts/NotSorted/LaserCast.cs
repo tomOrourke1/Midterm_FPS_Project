@@ -13,14 +13,14 @@ public class LaserCast : MonoBehaviour
     Vector3 direction = Vector3.zero;
 
     // Laser Stats
-    float damage = 0;
+    //float damage = 0;
     float range = 0;
 
-    bool laserOn = false;
+    //bool laserOn = false;
 
     // Laser FX
     ParticleSystem impactFX;
-    Light impactLight;
+    //Light impactLight;
 
 
     // This Function should be called every frame by an object's update
@@ -31,11 +31,11 @@ public class LaserCast : MonoBehaviour
         startPos = StartPos;
         direction = Direction;
 
-        damage = Damage;
+        //damage = Damage;
         range = Range;
 
         impactFX = ImpactFX;
-        impactLight = ImpactLight;
+        //impactLight = ImpactLight;
 
         return CastLaser();
     }

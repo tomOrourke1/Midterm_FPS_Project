@@ -14,5 +14,9 @@ public class ParentSwap_MovingPlatform : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         other.transform.SetParent(null);
+
+        //IApplyVelocity applyVelocity = other.GetComponent<IApplyVelocity>();
+
+        //applyVelocity?.ApplyVelocity(parentPlatform.GetComponent<Rigidbody>().velocity);
     }
 }

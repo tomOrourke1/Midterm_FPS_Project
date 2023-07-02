@@ -27,6 +27,7 @@ public class EntitySpawners : MonoBehaviour
     public void MyEnemyDied()
     {
         myEnemyIsDead = true;
+        GameManager.instance.GetCurrentRoomManager().DecrementCounter();
     }
 
     public bool IsMyEnemyDead()
