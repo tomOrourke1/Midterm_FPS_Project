@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovementState : PlayerState
+public class PlayerMovementState : PlayerState, IApplyVelocity
 {
 
     [Header("----- Components -----")]
@@ -26,6 +26,9 @@ public class PlayerMovementState : PlayerState
     [SerializeField] float unCrouchSpeed;
 
 
+    [Header("--- Velocity degregation ----")]
+    [SerializeField] float airDecrese = 3;
+    [SerializeField] float groundDecrese = 5;
 
 
     // Movement
@@ -44,6 +47,9 @@ public class PlayerMovementState : PlayerState
     private Vector3 crouchCameraPos;
     bool unCrouching;
 
+
+    // applied velocity
+    Vector3 appliedVelocity;
 
 
     // getters 
@@ -107,10 +113,18 @@ public class PlayerMovementState : PlayerState
         {
             playerVelocity.y = 0;
             jumpTimes = 0;
+
+            // if hit the ground remove y velocity
+            appliedVelocity = ClampVector3Min(appliedVelocity, 0, -groundDecrese * Time.deltaTime);
         }
 
         move = (playerTransform.right * Input.GetAxis("Horizontal")) + (playerTransform.forward * Input.GetAxis("Vertical"));
-        controller.Move(move * Time.deltaTime * playerSpeed);
+
+        playerVelocity.y += appliedVelocity.y;
+        appliedVelocity.y = 0;
+        move = (move * playerSpeed) + appliedVelocity;
+
+        controller.Move(move * Time.deltaTime);
 
         if(Input.GetKeyDown(KeyCode.Space) && jumpTimes < jumpMax)
         {
@@ -123,7 +137,7 @@ public class PlayerMovementState : PlayerState
         controller.Move(playerVelocity * Time.deltaTime);
 
 
-
+        appliedVelocity = ClampVector3Min(appliedVelocity, 0, -airDecrese * Time.deltaTime);
     }
 
     public override void OnExit()
@@ -141,6 +155,41 @@ public class PlayerMovementState : PlayerState
         playerVelocity = Vector3.zero;
         move = Vector3.zero;
         controller.Move(Vector3.zero);
+        appliedVelocity = Vector3.zero;
     }
 
+    public void ApplyVelocity(Vector3 velocity)
+    {
+
+        appliedVelocity = velocity;
+    }
+
+
+    void DecreseAppliedVelocity(float amt)
+    {
+        appliedVelocity = Vector3.Lerp(appliedVelocity, Vector3.zero, Time.deltaTime * amt);
+    }
+
+    Vector3 ClampVector3Min(Vector3 vector, float min, float change)
+    {
+        var dir = vector.normalized;
+
+        var delta = dir * change;
+
+        Vector3 nextVec = vector + delta;
+
+        var dot = Vector3.Dot(dir, nextVec);
+
+        var initMag = vector.magnitude;
+        var nextMag = nextVec.magnitude;
+
+
+        if (nextMag > initMag || dot < 0 || nextMag < min)
+        {
+            nextVec = dir * min;
+        }
+
+
+        return nextVec;
+    }
 }

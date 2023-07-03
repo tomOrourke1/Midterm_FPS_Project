@@ -5,36 +5,48 @@ using UnityEngine;
 public class PlayerVelocityReciever : MonoBehaviour, IApplyVelocity
 {
 
-    [Header("--- Componenets ---")]
-    [SerializeField] CharacterController controller;
-
-    [Header("---- Values ----")]
-    [SerializeField] float decreaseAmount;
-
-
-    Vector3 velToApply;
-    bool applyVel;
+    [Header("--- States ---")]
+    [SerializeField] PlayerMovementState moveState;
+    IApplyVelocity playerVel;
+    private void Start()
+    {
+        playerVel = moveState.GetComponent<IApplyVelocity>();
+    }
 
     private void Update()
     {
-        if (applyVel)
-        {
-            controller.Move(velToApply * Time.deltaTime);
-
-            velToApply = Vector3.Lerp(velToApply, Vector3.zero, decreaseAmount * Time.deltaTime);
-
-            if(velToApply.magnitude == 0)
-            {
-                applyVel = false;
-            }
-        }
+        
     }
 
     public void ApplyVelocity(Vector3 velocity)
     {
-        applyVel = true;
-        velToApply += velocity;
+        playerVel.ApplyVelocity(velocity);
     }
+
+
+    Vector3 ClampVector3Min(Vector3 vector, float min, float change)
+    {
+        var dir = vector.normalized;
+
+        var delta = dir * change;
+
+        Vector3 nextVec = vector + delta;
+
+        var dot = Vector3.Dot(dir, nextVec);
+
+        var initMag = vector.magnitude;
+        var nextMag = nextVec.magnitude;
+
+
+        if(nextMag > initMag || dot < 0 || nextMag < min)
+        {
+            nextVec = dir * min;
+        }
+
+
+        return nextVec;
+    }
+
 
 
 }
