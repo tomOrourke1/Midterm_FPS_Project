@@ -46,8 +46,17 @@ public class EnemyAnimaterScript : MonoBehaviour
     public void SetDeath()
     {
         enemyAnimator.SetBool("Death", true);
+        enemyAnimator.SetTrigger("OnDeath");
     }
 
-
+    public void StartMelee()
+    {
+        enemyAnimator.SetBool("Melee", true);
+    }
+    
+    public void StopMelee()
+    {
+        enemyAnimator.SetBool("Melee", false);
+    }
 
 }

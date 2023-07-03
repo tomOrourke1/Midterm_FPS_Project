@@ -49,6 +49,8 @@ public class SM_MachineGunner : EnemyBase , IDamagable, IEntity
         stateMachine.AddTransition(stunState, idleState, OnUnstunned);
 
         stateMachine.AddAnyTransition(deathState, () => isDead);
+
+        enemyColor = enemyMeshRenderer.material.color;
     }
 
     
@@ -114,7 +116,9 @@ public class SM_MachineGunner : EnemyBase , IDamagable, IEntity
     {
         isDead = true;
         OnEnemyDeathEvent?.Invoke();
-        Debug.LogError("Machine death");
+        GetComponent<Collider>().enabled = false;
+        // GetComponent<NavMeshAgent>().enabled = false;
+        GetComponent<Rigidbody>().isKinematic = true;
         //Destroy(gameObject);
     }
 

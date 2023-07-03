@@ -530,11 +530,6 @@ Transform:
   m_Father: {fileID: 1157260356}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &755944210 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1570757871512796844, guid: 44705009960c6eb48a72767fcd94a42d, type: 3}
-  m_PrefabInstance: {fileID: 4545775706784456222}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1008262820
 GameObject:
   m_ObjectHideFlags: 0
@@ -1384,55 +1379,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!1 &1635022763
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1635022764}
-  - component: {fileID: 1635022765}
-  m_Layer: 8
-  m_Name: DeathState
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1635022764
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1635022763}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 755944210}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1635022765
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1635022763}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d53041f523e9e5f4ca5eb3bad59dfe47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 1821992026}
-  moveSpeed: 0
-  acceleration: 0
-  rotSpeed: 0
-  stoppingDist: 0
 --- !u!1001 &1780615467
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1494,41 +1440,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7d6990ebe95ecd4f904129d8135c164, type: 3}
---- !u!195 &1821992026 stripped
-NavMeshAgent:
-  m_CorrespondingSourceObject: {fileID: 2216758027037765177, guid: 44705009960c6eb48a72767fcd94a42d, type: 3}
-  m_PrefabInstance: {fileID: 4545775706784456222}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1821992028 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2216758027037765179, guid: 44705009960c6eb48a72767fcd94a42d, type: 3}
-  m_PrefabInstance: {fileID: 4545775706784456222}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1844698510 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 970499662865231461, guid: 44705009960c6eb48a72767fcd94a42d, type: 3}
-  m_PrefabInstance: {fileID: 4545775706784456222}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1844698511
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1844698510}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26909774594542948ad4e43bafb5c8ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyAnimator: {fileID: 1844698512}
-  agent: {fileID: 1821992026}
-  enemyBaseTransform: {fileID: 1821992028}
---- !u!95 &1844698512 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 970499662855707679, guid: 44705009960c6eb48a72767fcd94a42d, type: 3}
-  m_PrefabInstance: {fileID: 4545775706784456222}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1937389541
 GameObject:
   m_ObjectHideFlags: 0
@@ -1700,11 +1611,6 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 2b29cb96ae6f6384b846079e957123e2, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8f82076b188e3749864139e21c028bb, type: 3}
---- !u!137 &3630533134918597827 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 970499662859952861, guid: 44705009960c6eb48a72767fcd94a42d, type: 3}
-  m_PrefabInstance: {fileID: 4545775706784456222}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4545775706784456222
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1712,34 +1618,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 970499662864741253, guid: 44705009960c6eb48a72767fcd94a42d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 973490150299120622, guid: 44705009960c6eb48a72767fcd94a42d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.13
-      objectReference: {fileID: 0}
-    - target: {fileID: 1323486239995065766, guid: 44705009960c6eb48a72767fcd94a42d, type: 3}
-      propertyPath: rotSpeed
-      value: 600
-      objectReference: {fileID: 0}
-    - target: {fileID: 1323486239995065766, guid: 44705009960c6eb48a72767fcd94a42d, type: 3}
-      propertyPath: moveSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1323486239995065766, guid: 44705009960c6eb48a72767fcd94a42d, type: 3}
-      propertyPath: acceleration
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 1323486239995065766, guid: 44705009960c6eb48a72767fcd94a42d, type: 3}
-      propertyPath: stoppingDist
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2146428112088615041, guid: 44705009960c6eb48a72767fcd94a42d, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 501503ff7dd9f0c4caea0d0339308bfa, type: 2}
     - target: {fileID: 2216758027037765179, guid: 44705009960c6eb48a72767fcd94a42d, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -1788,110 +1666,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Machine Gunner
       objectReference: {fileID: 0}
-    - target: {fileID: 5994830998500149985, guid: 44705009960c6eb48a72767fcd94a42d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6294541944374611694, guid: 44705009960c6eb48a72767fcd94a42d, type: 3}
-      propertyPath: m_Radius
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6325691572323693653, guid: 44705009960c6eb48a72767fcd94a42d, type: 3}
-      propertyPath: rotSpeed
-      value: 600
-      objectReference: {fileID: 0}
-    - target: {fileID: 6325691572323693653, guid: 44705009960c6eb48a72767fcd94a42d, type: 3}
-      propertyPath: moveSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6325691572323693653, guid: 44705009960c6eb48a72767fcd94a42d, type: 3}
-      propertyPath: acceleration
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 6325691572323693653, guid: 44705009960c6eb48a72767fcd94a42d, type: 3}
-      propertyPath: stoppingDist
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6989348712175186297, guid: 44705009960c6eb48a72767fcd94a42d, type: 3}
-      propertyPath: shootPos
-      value: 
-      objectReference: {fileID: 4545775706784456223}
-    - target: {fileID: 6989348712175186297, guid: 44705009960c6eb48a72767fcd94a42d, type: 3}
-      propertyPath: stunTime
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6989348712175186297, guid: 44705009960c6eb48a72767fcd94a42d, type: 3}
-      propertyPath: deathState
-      value: 
-      objectReference: {fileID: 1635022765}
-    - target: {fileID: 6989348712175186297, guid: 44705009960c6eb48a72767fcd94a42d, type: 3}
-      propertyPath: attackRange
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6989348712175186297, guid: 44705009960c6eb48a72767fcd94a42d, type: 3}
-      propertyPath: health.maxValue
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6989348712175186297, guid: 44705009960c6eb48a72767fcd94a42d, type: 3}
-      propertyPath: enemyMeshRenderer
-      value: 
-      objectReference: {fileID: 3630533134918597827}
-    - target: {fileID: 6989348712175186297, guid: 44705009960c6eb48a72767fcd94a42d, type: 3}
-      propertyPath: OnEnemyDeathEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6989348712175186297, guid: 44705009960c6eb48a72767fcd94a42d, type: 3}
-      propertyPath: OnEnemyDeathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6989348712175186297, guid: 44705009960c6eb48a72767fcd94a42d, type: 3}
-      propertyPath: OnEnemyDeathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1844698511}
-    - target: {fileID: 6989348712175186297, guid: 44705009960c6eb48a72767fcd94a42d, type: 3}
-      propertyPath: OnEnemyDeathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6989348712175186297, guid: 44705009960c6eb48a72767fcd94a42d, type: 3}
-      propertyPath: OnEnemyDeathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetDeath
-      objectReference: {fileID: 0}
-    - target: {fileID: 6989348712175186297, guid: 44705009960c6eb48a72767fcd94a42d, type: 3}
-      propertyPath: OnEnemyDeathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: EnemyAnimaterScript, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 6989348712175186297, guid: 44705009960c6eb48a72767fcd94a42d, type: 3}
-      propertyPath: OnEnemyDeathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 7970115250072957341, guid: 44705009960c6eb48a72767fcd94a42d, type: 3}
-      propertyPath: bullet
-      value: 
-      objectReference: {fileID: 5779099364001243127, guid: f42c76de0a1a34e43b1bc743ae56a2d6, type: 3}
-    - target: {fileID: 7970115250072957341, guid: 44705009960c6eb48a72767fcd94a42d, type: 3}
-      propertyPath: gunPos
-      value: 
-      objectReference: {fileID: 4545775706784456223}
-    - target: {fileID: 7970115250072957341, guid: 44705009960c6eb48a72767fcd94a42d, type: 3}
-      propertyPath: totalTime
-      value: 0.4
-      objectReference: {fileID: 0}
     - target: {fileID: 7970115250072957341, guid: 44705009960c6eb48a72767fcd94a42d, type: 3}
       propertyPath: animScript
       value: 
       objectReference: {fileID: 1072449227}
-    - target: {fileID: 7970115250072957341, guid: 44705009960c6eb48a72767fcd94a42d, type: 3}
-      propertyPath: timeToShoot
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 7970115250072957341, guid: 44705009960c6eb48a72767fcd94a42d, type: 3}
-      propertyPath: rotationSpeed
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44705009960c6eb48a72767fcd94a42d, type: 3}
---- !u!4 &4545775706784456223 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8764916151832651380, guid: 44705009960c6eb48a72767fcd94a42d, type: 3}
-  m_PrefabInstance: {fileID: 4545775706784456222}
-  m_PrefabAsset: {fileID: 0}

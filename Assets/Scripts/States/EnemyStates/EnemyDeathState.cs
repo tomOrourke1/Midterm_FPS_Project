@@ -7,7 +7,7 @@ public class EnemyDeathState : EnemyState
     public override void OnEnter()
     {
         base.OnEnter();
-        agent.SetDestination(agent.transform.position);
-
+        //agent.SetDestination(agent.transform.position);
+        agent.isStopped = true;
     }
 }
