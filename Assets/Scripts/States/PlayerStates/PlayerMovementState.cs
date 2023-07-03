@@ -18,7 +18,7 @@ public class PlayerMovementState : PlayerState, IApplyVelocity
     [SerializeField, Range(10, 50)] float gravityValue;
     [SerializeField, Range(8, 25)] float jumpHeight;
     [SerializeField] int jumpMax;
-
+    [SerializeField] float jumpPowerDivision = 2.5f;
 
 
     [Header("----- Crouch Stats -----")]
@@ -115,7 +115,7 @@ public class PlayerMovementState : PlayerState, IApplyVelocity
             jumpTimes = 0;
 
             // if hit the ground remove y velocity
-            appliedVelocity = ClampVector3Min(appliedVelocity, 0, -groundDecrese * Time.deltaTime);
+            appliedVelocity = LerpClampMin(appliedVelocity, 0, -groundDecrese * Time.deltaTime);
         }
 
         move = (playerTransform.right * Input.GetAxis("Horizontal")) + (playerTransform.forward * Input.GetAxis("Vertical"));
@@ -131,13 +131,17 @@ public class PlayerMovementState : PlayerState, IApplyVelocity
             jumpTimes++;
             playerVelocity.y = jumpHeight;
         }
+        else if(Input.GetKeyUp(KeyCode.Space) && playerVelocity.y > 0)
+        {
+            playerVelocity.y = playerVelocity.y / jumpPowerDivision;
+        }
 
         playerVelocity.y -= gravityValue * Time.deltaTime;
 
         controller.Move(playerVelocity * Time.deltaTime);
 
 
-        appliedVelocity = ClampVector3Min(appliedVelocity, 0, -airDecrese * Time.deltaTime);
+        appliedVelocity = LerpClampMin(appliedVelocity, 0, -airDecrese * Time.deltaTime);
     }
 
     public override void OnExit()
@@ -165,12 +169,7 @@ public class PlayerMovementState : PlayerState, IApplyVelocity
     }
 
 
-    void DecreseAppliedVelocity(float amt)
-    {
-        appliedVelocity = Vector3.Lerp(appliedVelocity, Vector3.zero, Time.deltaTime * amt);
-    }
-
-    Vector3 ClampVector3Min(Vector3 vector, float min, float change)
+    Vector3 LerpClampMin(Vector3 vector, float min, float change)
     {
         var dir = vector.normalized;
 
