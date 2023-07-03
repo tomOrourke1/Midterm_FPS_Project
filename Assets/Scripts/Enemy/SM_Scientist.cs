@@ -153,10 +153,10 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity, IApplyVelocity
     }
     public void TakeElectroDamage(float dmg)
     {
-        Debug.Log("boo");
         isStunned = true;
         TakeDamage(dmg);
       
+        StopCoroutine(StunTimer());
         StartCoroutine(StunTimer());
     }
     public void TakeFireDamage(float dmg)
@@ -176,6 +176,7 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity, IApplyVelocity
     }
     IEnumerator StunTimer()
     {
+
         yield return new WaitForSeconds(stunTime);
         isUnstunned = true;
         isStunned = false;

@@ -10,13 +10,15 @@ public class ArmoredBrute : EnemyBase,IDamagable
     [SerializeField] EnemyIdleState idleState;
     [SerializeField] EnemyChasePlayerState chasePlayerState;
     [SerializeField] EnemyShootState enemyShootState;
+    [SerializeField] EnemyStunState stunState;
+    [SerializeField] EnemyChargeState chargeState;
 
     [Header("-----Brute Stats-----")]
     [SerializeField] int damage;
     [SerializeField] int chargeDamage;
     [SerializeField] int attackRate;
     [SerializeField] int playerFaceSpeed;
-    [SerializeField] int viewConeAngle;
+   
     [SerializeField] float chargeTime;
     [SerializeField] float stunTime;
     [SerializeField] float force;
@@ -34,7 +36,6 @@ public class ArmoredBrute : EnemyBase,IDamagable
     bool isAttacking;
     bool isCharging;
     bool isUnstunned;
-
    bool isStunned;
   void Start()
     {
@@ -44,8 +45,12 @@ public class ArmoredBrute : EnemyBase,IDamagable
         stateMachine.SetState(idleState);
 
         stateMachine.AddTransition(idleState, chasePlayerState, OnMove);
-        //stateMachine.AddTransition(chasePlayerState, enemyShootState, OnAttack);
+
+       stateMachine.AddTransition(chargeState, stunState, OnStun);
+        stateMachine.AddTransition(chasePlayerState, chargeState, OnCharge);
+       stateMachine.AddTransition(chasePlayerState, enemyShootState, OnAttack);
         stateMachine.AddTransition(chasePlayerState, idleState, OnIdle);
+        stateMachine.AddTransition(stunState, idleState, OnUnstun);
     }
 
      bool OnIdle()
@@ -58,22 +63,21 @@ public class ArmoredBrute : EnemyBase,IDamagable
     bool OnMove()
     {
         float distance = Vector3.Distance(GameManager.instance.GetPlayerObj().transform.position, gameObject.transform.position);
-
         bool inDistance = distance < 10;
         return inDistance;
     }
 
-    //bool OnAttack()
-    //{
-    //    bool toAttack = doesSeePlayer;
-    //    if (!isAttacking) 
-    //    {
+    bool OnAttack()
+    {
+     bool toAttack = GetDoesSeePlayer();
+     if (!isAttacking) 
+       {
 
-    //        isAttacking = true;
-    //        yield return new WaitForSeconds(attackRate);
-    //    }
-       
-    //}
+         isAttacking = true;
+         
+        }
+        return isAttacking;
+    }
     bool OnCharge()
     {
         float distance = Vector3.Distance(GameManager.instance.GetPlayerObj().transform.position, gameObject.transform.position);
@@ -84,7 +88,6 @@ public class ArmoredBrute : EnemyBase,IDamagable
         {
             isCharging = true;
             StartCoroutine(ChargeTimer());
-           
         }
         return isCharging;
     }
@@ -112,7 +115,14 @@ public class ArmoredBrute : EnemyBase,IDamagable
     {
         Destroy(gameObject);
     }
-
+   bool OnStun()
+    {
+        return isStunned;
+    }
+    bool OnUnstun()
+    {
+        return isUnstunned;
+    }
     public void TakeDamage(float dmg)
     {
         health.Decrease(dmg/Armor);
@@ -190,16 +200,18 @@ public class ArmoredBrute : EnemyBase,IDamagable
             }
             else if (collision.gameObject.CompareTag("Enemy"))
             {
-
+                agent.enabled = true;
+                rb.isKinematic = true;
             }
             else
             {
-              
+              isStunned = true;
+                isUnstunned = false;
                 StartCoroutine(StunTimer());
                 agent.enabled = true;
                 rb.isKinematic = true;
             }
         }
-      
+      isCharging = false;
     }
 }

@@ -35,7 +35,7 @@ public class WindKinesis : KinesisBase
                GameManager.instance.GetPlayerResources().SpendFocus(focusCost);
             forceDirection = Camera.main.transform.forward;
             Vector3 velocity = forceDirection * force + transform.up * upwardForce;
-            RaycastHit hit;
+        
             var hits = Physics.SphereCastAll(Camera.main.transform.position, windRadius, Camera.main.transform.forward, windRange);
 
             foreach (var currentHit in hits)
