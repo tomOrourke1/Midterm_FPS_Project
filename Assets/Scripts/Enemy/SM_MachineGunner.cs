@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
-public class MachineGunner : EnemyBase , IDamagable, IEntity
+public class SM_MachineGunner : EnemyBase , IDamagable, IEntity
 {
 
     [Header("----Machine Gunner States----")]
     [SerializeField] EnemyIdleState idleState;
     [SerializeField] EnemyChasePlayerState chasePlayerState;
     [SerializeField] EnemyShootState enemyShootState;
+    [SerializeField] EnemyDeathState deathState;
     [SerializeField] Transform shootPos;
     [SerializeField] EnemyStunState stunState;
 
@@ -21,6 +24,10 @@ public class MachineGunner : EnemyBase , IDamagable, IEntity
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Rigidbody rb;
 
+    [Header("----Events----")]
+    public UnityEvent OnEnemyDeathEvent;
+
+    private bool isDead;
     bool isStunned;
     bool isUnstunned;
     float timeBetweenShots;
@@ -40,6 +47,8 @@ public class MachineGunner : EnemyBase , IDamagable, IEntity
 
         stateMachine.AddAnyTransition(stunState, OnStunned);
         stateMachine.AddTransition(stunState, idleState, OnUnstunned);
+
+        stateMachine.AddAnyTransition(deathState, () => isDead);
     }
 
     
@@ -65,28 +74,15 @@ public class MachineGunner : EnemyBase , IDamagable, IEntity
         return enabled && inDistance;
     }
 
-    bool OnBetweenShots()
-    {
-        timeBetweenShots += Time.deltaTime;
-        if (timeBetweenShots >= betweenShotTime)
-        {
-            timeBetweenShots = 0;
-            return true;
-        }
-
-
-        return false;
-    }
-
+   
     bool OnShoot()
     {
-        bool toAttack = OnBetweenShots() && GetDoesSeePlayer();
+        bool toAttack = GetDoesSeePlayer();
         return toAttack;
     }
 
     bool OnStunned()
     {
-
         var temp = isStunned;
         isStunned = false;
         return temp;
@@ -94,7 +90,7 @@ public class MachineGunner : EnemyBase , IDamagable, IEntity
 
     bool OnUnstunned()
     {
-
+        Debug.Log("kevin");
         var temp = isUnstunned;
         isUnstunned = false;
         if (temp)
@@ -116,7 +112,10 @@ public class MachineGunner : EnemyBase , IDamagable, IEntity
 
     void OnDeath()
     {
-        Destroy(gameObject);
+        isDead = true;
+        OnEnemyDeathEvent?.Invoke();
+        Debug.LogError("Machine death");
+        //Destroy(gameObject);
     }
 
     public void TakeDamage(float dmg)

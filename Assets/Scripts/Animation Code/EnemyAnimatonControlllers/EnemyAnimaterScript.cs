@@ -43,7 +43,10 @@ public class EnemyAnimaterScript : MonoBehaviour
 
     }
 
-
+    public void SetDeath()
+    {
+        enemyAnimator.SetBool("Death", true);
+    }
 
 
 
