@@ -19,7 +19,8 @@ public class PlayerMovementState : PlayerState, IApplyVelocity
     [SerializeField, Range(8, 25)] float jumpHeight;
     [SerializeField] int jumpMax;
     [SerializeField] float jumpPowerDivision = 2.5f;
-
+    [SerializeField] int postGroundingFramesAllowance = 10;
+    
 
     [Header("----- Crouch Stats -----")]
     [SerializeField] float CrouchSpeed;
@@ -38,7 +39,7 @@ public class PlayerMovementState : PlayerState, IApplyVelocity
 
     // Jump
     private int jumpTimes;
-
+    int framesSinceGrounded;
 
     // Crouch
     private bool isCrouching;
@@ -77,7 +78,7 @@ public class PlayerMovementState : PlayerState, IApplyVelocity
 
     public override void Tick()
     {
-        if(Input.GetKeyDown(KeyCode.LeftControl))
+        if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             // crouch
             isCrouching = true;
@@ -88,9 +89,9 @@ public class PlayerMovementState : PlayerState, IApplyVelocity
         {
             // crouch end
             RaycastHit hit;
-            if(!Physics.SphereCast(playerTransform.position, controller.radius, playerTransform.up, out hit, controller.height * 2))
+            if (!Physics.SphereCast(playerTransform.position, controller.radius, playerTransform.up, out hit, controller.height * 2))
             {
-                if(!unCrouching)
+                if (!unCrouching)
                 {
                     mainCamera.transform.localPosition = crouchCameraPos;
                     unCrouching = true;
@@ -109,13 +110,18 @@ public class PlayerMovementState : PlayerState, IApplyVelocity
 
 
         groundedPlayer = controller.isGrounded;
-        if(groundedPlayer && playerVelocity.y < 0)
+        if (groundedPlayer && playerVelocity.y < 0)
         {
             playerVelocity.y = 0;
             jumpTimes = 0;
 
             // if hit the ground remove y velocity
             appliedVelocity = LerpClampMin(appliedVelocity, 0, -groundDecrese * Time.deltaTime);
+            framesSinceGrounded = 0;
+        }
+        else
+        {
+            framesSinceGrounded++;
         }
 
         move = (playerTransform.right * Input.GetAxis("Horizontal")) + (playerTransform.forward * Input.GetAxis("Vertical"));
@@ -126,10 +132,22 @@ public class PlayerMovementState : PlayerState, IApplyVelocity
 
         controller.Move(move * Time.deltaTime);
 
-        if(Input.GetKeyDown(KeyCode.Space) && jumpTimes < jumpMax)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            jumpTimes++;
-            playerVelocity.y = jumpHeight;
+            if(groundedPlayer)
+            {
+                playerVelocity.y = jumpHeight;
+            }
+            else if(jumpTimes < jumpMax)
+            {
+                playerVelocity.y = jumpHeight;
+                jumpTimes++;
+            }
+            else if(framesSinceGrounded <= postGroundingFramesAllowance)
+            {
+                playerVelocity.y = jumpHeight;
+                framesSinceGrounded += postGroundingFramesAllowance;
+            }
         }
         else if(Input.GetKeyUp(KeyCode.Space) && playerVelocity.y > 0)
         {

@@ -501,9 +501,13 @@ MonoBehaviour:
   playerSpeed: 6
   gravityValue: 20.3
   jumpHeight: 8
-  jumpMax: 2
+  jumpMax: 1
+  jumpPowerDivision: 2.5
+  postGroundingFramesAllowance: 10
   CrouchSpeed: 0
   unCrouchSpeed: 10
+  airDecrese: 3
+  groundDecrese: 0
 --- !u!1 &1871093941
 GameObject:
   m_ObjectHideFlags: 0
@@ -790,6 +794,7 @@ GameObject:
   - component: {fileID: 847320448734065885}
   - component: {fileID: 9048350793091951337}
   - component: {fileID: 363877806}
+  - component: {fileID: 4038866448776095607}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -1092,6 +1097,19 @@ MonoBehaviour:
   ice: {fileID: 78457329}
   lightning: {fileID: 78457328}
   telekinesis: {fileID: 78457326}
+--- !u!114 &4038866448776095607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847320448734065881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5af01cfd6d110584aa819c28c1d43f58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveState: {fileID: 1557044387}
 --- !u!1 &6851882470558871928
 GameObject:
   m_ObjectHideFlags: 0
