@@ -6,9 +6,6 @@ using UnityEngine;
 
 public class Disrupter : EnemyBase, IDamagable, IEntity
 {
-    [Header("----Disruptor Stuff----")]
-    [SerializeField] Rigidbody rb;
-
     public KinesisSelect select;
     
     private void Start()

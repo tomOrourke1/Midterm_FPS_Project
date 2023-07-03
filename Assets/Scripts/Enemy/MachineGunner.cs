@@ -36,7 +36,7 @@ public class MachineGunner : EnemyBase , IDamagable, IEntity
 
         stateMachine.AddTransition(chasePlayerState, enemyShootState, OnShoot);
         stateMachine.AddTransition(enemyShootState, idleState, enemyShootState.ExitCondition);
-        stateMachine.AddTransition(idleState, chasePlayerState, OnChasePlayer);
+       
 
         stateMachine.AddAnyTransition(stunState, OnStunned);
         stateMachine.AddTransition(stunState, idleState, OnUnstunned);
