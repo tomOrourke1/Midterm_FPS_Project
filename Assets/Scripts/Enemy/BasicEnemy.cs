@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 public class BasicEnemy : EnemyBase, IDamagable, IEntity, IApplyVelocity
 {
@@ -13,6 +14,7 @@ public class BasicEnemy : EnemyBase, IDamagable, IEntity, IApplyVelocity
     [SerializeField] EnemyShootState shootState;
     [SerializeField] EnemyPushedState pushedState;
     [SerializeField] EnemyStunState stunState;
+    [SerializeField] EnemyDeathState deathState;
 
     [Header("--- other values ---")]
     [SerializeField] float attackRange;
@@ -24,6 +26,10 @@ public class BasicEnemy : EnemyBase, IDamagable, IEntity, IApplyVelocity
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Rigidbody rb;
 
+    [Header("----Events----")]
+    public UnityEvent OnEnemyDeathEvent;
+
+    private bool isDead;
     bool wasPushed;
     bool hasLanded;
     bool isStunned;
@@ -61,6 +67,8 @@ public class BasicEnemy : EnemyBase, IDamagable, IEntity, IApplyVelocity
         rb.isKinematic = false;
 
         enemyColor = enemyMeshRenderer.material.color;
+
+        stateMachine.AddAnyTransition(deathState, () => isDead);
     }
 
     bool OnShoot()
@@ -164,7 +172,12 @@ public class BasicEnemy : EnemyBase, IDamagable, IEntity, IApplyVelocity
 
     void Die()
     {
-        Destroy(gameObject);
+        isDead = true;
+        OnEnemyDeathEvent?.Invoke();
+        GetComponent<Collider>().enabled = false;
+        // GetComponent<NavMeshAgent>().enabled = false;
+        GetComponent<Rigidbody>().isKinematic = true;
+        //Destroy(gameObject);
     }
 
     public void TakeDamage(float dmg)

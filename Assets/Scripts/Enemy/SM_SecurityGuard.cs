@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 public class SM_SecurityGuard : EnemyBase, IDamagable, IEntity, IApplyVelocity
 {
@@ -14,6 +15,7 @@ public class SM_SecurityGuard : EnemyBase, IDamagable, IEntity, IApplyVelocity
     [SerializeField] EnemyBackToPointState backToPointState;
     [SerializeField] EnemyPushedState pushedState;
     [SerializeField] EnemyStunState stunState;
+    [SerializeField] EnemyDeathState deathState;
 
 
     [Header("----- Other Vars -----")]
@@ -25,8 +27,10 @@ public class SM_SecurityGuard : EnemyBase, IDamagable, IEntity, IApplyVelocity
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Rigidbody rb;
 
+    [Header("----Events----")]
+    public UnityEvent OnEnemyDeathEvent;
 
-
+    private bool isDead;
     bool wasHit;
     bool wasPushed;
     bool hasLanded;
@@ -63,6 +67,8 @@ public class SM_SecurityGuard : EnemyBase, IDamagable, IEntity, IApplyVelocity
         stateMachine.AddTransition(stunState, idleState, OnUnstunned);
 
         rb.isKinematic = false;
+
+        stateMachine.AddAnyTransition(deathState, () => isDead);
     }
 
     bool OnAttackEnd()
@@ -149,7 +155,12 @@ public class SM_SecurityGuard : EnemyBase, IDamagable, IEntity, IApplyVelocity
 
     void OnDeath()
     {
-        Destroy(gameObject); // destroy enemy
+        isDead = true;
+        OnEnemyDeathEvent?.Invoke();
+        GetComponent<Collider>().enabled = false;
+        // GetComponent<NavMeshAgent>().enabled = false;
+        GetComponent<Rigidbody>().isKinematic = true;
+        //Destroy(gameObject);
     }
 
     private void OnEnable()

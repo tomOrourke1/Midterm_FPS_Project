@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 public class EnemyShield : EnemyBase, IEntity, IDamagable, IApplyVelocity
 {
@@ -12,6 +13,7 @@ public class EnemyShield : EnemyBase, IEntity, IDamagable, IApplyVelocity
     [SerializeField] Shield_HoldPosition shieldHoldPosition;
     [SerializeField] Shield_TooClose shieldPunch;
     [SerializeField] EnemyPushedState pushedState;
+    [SerializeField] EnemyDeathState deathState;
 
     [Header("----- Stats -----")]
     [SerializeField] Transform Home;
@@ -24,7 +26,10 @@ public class EnemyShield : EnemyBase, IEntity, IDamagable, IApplyVelocity
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Rigidbody rb;
     // Might need a search function for when line of sight is broken
+    [Header("----Events----")]
+    public UnityEvent OnEnemyDeathEvent;
 
+    private bool isDead;
     bool wasPushed;
     bool hasLanded;
     private void Start()
@@ -151,7 +156,12 @@ public class EnemyShield : EnemyBase, IEntity, IDamagable, IApplyVelocity
 
     void Die()
     {
-        Destroy(gameObject);
+        isDead = true;
+        OnEnemyDeathEvent?.Invoke();
+        GetComponent<Collider>().enabled = false;
+        // GetComponent<NavMeshAgent>().enabled = false;
+        GetComponent<Rigidbody>().isKinematic = true;
+        //Destroy(gameObject);
     }
 
     IEnumerator FlashDamage()
