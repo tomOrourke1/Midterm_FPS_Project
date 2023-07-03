@@ -10,6 +10,7 @@ public class DeathActivation : MenuActivation
 
     public override void Activate()
     {
+        EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(selectedGameObject);
     }
 

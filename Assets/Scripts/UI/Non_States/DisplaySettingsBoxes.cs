@@ -27,6 +27,7 @@ public class DisplaySettingsBoxes : MonoBehaviour
     {
         HideAll();
         audioObj.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(audioSelectedObj);
     }
 
@@ -34,6 +35,7 @@ public class DisplaySettingsBoxes : MonoBehaviour
     {
         HideAll();
         graphicsObj.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(graphicsSelectedObj);
     }
 
@@ -41,6 +43,7 @@ public class DisplaySettingsBoxes : MonoBehaviour
     {
         HideAll();
         gameplayObj.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(gameplaySelectedObj);
     }
 
@@ -48,6 +51,7 @@ public class DisplaySettingsBoxes : MonoBehaviour
     {
         HideAll();
         keybindsObj.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(keybindsSelectedObj);
     }
 }

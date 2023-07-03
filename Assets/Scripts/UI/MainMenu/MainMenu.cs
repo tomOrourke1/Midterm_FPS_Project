@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -11,6 +12,9 @@ public class MainMenu : MonoBehaviour
     [SerializeField] Image sceneFader;
     [SerializeField] ElevatorScript eScript;
     [SerializeField] GameObject baseMenu;
+
+    [SerializeField] GameObject settingsSelectedFirst;
+    [SerializeField] GameObject mainMenuFirstSelected;
 
     [Header("Settings Components")]
     [SerializeField] GameObject settingsMenuObj;
@@ -33,6 +37,9 @@ public class MainMenu : MonoBehaviour
         baseMenu.SetActive(true);
         settingsMenuObj?.SetActive(false);
 
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(mainMenuFirstSelected);
+
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
     }
@@ -49,6 +56,9 @@ public class MainMenu : MonoBehaviour
 
     public void ShowSettingsMenu()
     {
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(settingsSelectedFirst);
+
         baseMenu.SetActive(false);
         settingsMenuObj.SetActive(true);
         mainMenusAudio?.RunMuffler();
@@ -56,6 +66,9 @@ public class MainMenu : MonoBehaviour
 
     public void CloseSettingsMenu()
     {
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(mainMenuFirstSelected);
+
         settingsMenuObj.SetActive(false);
         baseMenu.SetActive(true);
         mainMenusAudio?.RunUnMuffler();

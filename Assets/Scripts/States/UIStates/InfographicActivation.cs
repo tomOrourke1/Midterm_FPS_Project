@@ -9,6 +9,7 @@ public class InfographicActivation : MenuActivation
 
     public override void Activate()
     {
+        EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(selectedGameObject);
     }
 
