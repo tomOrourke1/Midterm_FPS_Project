@@ -9,12 +9,16 @@ public class PlayerDashState : PlayerState
     [SerializeField] Transform playerTransform;
     [SerializeField] FOVController fovController;
     [SerializeField] TiltController tiltController;
+    [SerializeField] PlayerResources playerResources;
 
     [Header("----- Dash Stats -----")]
     [SerializeField, Range(0, 50)] float DashSpeed;
     [SerializeField, Range(.01f, 1)] float DashDuration;
     [SerializeField, Range(.01f, 20)] float tiltAmount;
     [SerializeField, Range(0, 30)] float dashFovZoomAmount;
+
+
+
 
 
     // private members
@@ -49,16 +53,19 @@ public class PlayerDashState : PlayerState
 
 
         timeInsideState = 0;
+
+        playerResources.SetVulnerability(false);
     }
 
     public override void Tick()
     {
-        controller.Move(dashDir);
+        controller.Move(dashDir * Time.deltaTime * DashSpeed);
         timeInsideState += Time.deltaTime;
     }
 
     public override void OnExit()
     {
+        playerResources.SetVulnerability(true);
     }
 
     public override bool ExitCondition()

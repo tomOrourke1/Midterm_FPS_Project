@@ -12,6 +12,9 @@ public class PlayerResources : MonoBehaviour, IDamagable, IHealReciever, IFocusR
     public ShieldPool Shield => shield;
     public FocusPool Focus => focus;
 
+
+    bool isVulnerable = true;
+
     private void Start()
     {
         FillAllStats();
@@ -41,6 +44,9 @@ public class PlayerResources : MonoBehaviour, IDamagable, IHealReciever, IFocusR
 
     public void TakeDamage(float dmg)
     {
+        if (!isVulnerable)
+            return;
+
         if(shield.SpendResource(dmg))
         {
             //UIManager.instance.FlashPlayerShieldHit();
@@ -153,4 +159,15 @@ public class PlayerResources : MonoBehaviour, IDamagable, IHealReciever, IFocusR
     {
         return health.CurrentValue;
     }
+
+    /// <summary>
+    /// true = take damage
+    /// false = don't take damage
+    /// </summary>
+    /// <param name="isVulnerable"></param>
+    public void SetVulnerability(bool isVulnerable)
+    {
+        this.isVulnerable = isVulnerable;
+    }
+
 }
