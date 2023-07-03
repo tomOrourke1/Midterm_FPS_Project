@@ -15,6 +15,9 @@ public class MainMenu : MonoBehaviour
     [Header("Settings Components")]
     [SerializeField] GameObject settingsMenuObj;
 
+    [Header("Audio Mixer")]
+    [SerializeField] AudioManagerMainMenu mainMenusAudio;
+
     [Header("Scene Loading Info")]
     [SerializeField] string tutorialLevelStart;
     [SerializeField] TextMeshProUGUI gameContinueText;
@@ -48,12 +51,14 @@ public class MainMenu : MonoBehaviour
     {
         baseMenu.SetActive(false);
         settingsMenuObj.SetActive(true);
+        mainMenusAudio?.RunMuffler();
     }
 
     public void CloseSettingsMenu()
     {
         settingsMenuObj.SetActive(false);
         baseMenu.SetActive(true);
+        mainMenusAudio?.RunUnMuffler();
     }
 
     /// <summary>

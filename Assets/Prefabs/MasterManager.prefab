@@ -32,6 +32,7 @@ Transform:
   - {fileID: 19034296533464899}
   - {fileID: 5930460595583248625}
   - {fileID: 6123918321345983114}
+  - {fileID: 1121716105523380617}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -47,6 +48,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f5e3863f2b79d744941d7687c88311b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &4192228768748292299
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1121716105523380617}
+  - component: {fileID: 3365976981967545455}
+  m_Layer: 0
+  m_Name: Audio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1121716105523380617
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4192228768748292299}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2451634594581813860}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3365976981967545455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4192228768748292299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bd67bc438fcc3046a95b6eb3fa27f4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixer: {fileID: 24100000, guid: 94efd4a4905cf0d4b932e654d29a8da0, type: 2}
+  rateToMuffle: 0.075
 --- !u!1001 &19034296509672144
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -164,6 +211,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1081177284489263723, guid: ba5141d016a417b40a7858958dc98aaf, type: 3}
+      propertyPath: audioManager
+      value: 
+      objectReference: {fileID: 3365976981967545455}
     - target: {fileID: 1081177284489263723, guid: ba5141d016a417b40a7858958dc98aaf, type: 3}
       propertyPath: settingsManager
       value: 

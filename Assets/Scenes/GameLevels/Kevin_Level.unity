@@ -2051,7 +2051,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0985019d4febdd43b86aaaf0ecf35c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Entities: []
+  EntryDoor: {fileID: 1226247272}
+  ExitDoor: {fileID: 1228239207}
+  roomType: 1
+  TrackedObject: {fileID: 0}
 --- !u!1001 &96186298
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23726,6 +23729,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3947600d08e04e41bd2af50c4d06242, type: 3}
+--- !u!114 &988565455 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3168126176269232434, guid: b64843f511663504598329d917e46dba, type: 3}
+  m_PrefabInstance: {fileID: 828923224}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d37206cfd58a44e4db64e8741ac0196d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &989795193
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29568,6 +29582,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4011291467225043512, guid: a3947600d08e04e41bd2af50c4d06242, type: 3}
   m_PrefabInstance: {fileID: 1226365452}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1228239207 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3168126176269232434, guid: b64843f511663504598329d917e46dba, type: 3}
+  m_PrefabInstance: {fileID: 1478761142}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d37206cfd58a44e4db64e8741ac0196d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1228353174
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55559,7 +55584,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0985019d4febdd43b86aaaf0ecf35c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Entities: []
+  EntryDoor: {fileID: 0}
+  ExitDoor: {fileID: 0}
+  roomType: 0
+  TrackedObject: {fileID: 0}
 --- !u!4 &2163187198974840523
 Transform:
   m_ObjectHideFlags: 0
@@ -55878,7 +55906,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0985019d4febdd43b86aaaf0ecf35c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Entities: []
+  EntryDoor: {fileID: 0}
+  ExitDoor: {fileID: 0}
+  roomType: 0
+  TrackedObject: {fileID: 0}
 --- !u!1 &3402311067202573704
 GameObject:
   m_ObjectHideFlags: 0
@@ -57205,7 +57236,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0985019d4febdd43b86aaaf0ecf35c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Entities: []
+  EntryDoor: {fileID: 0}
+  ExitDoor: {fileID: 0}
+  roomType: 0
+  TrackedObject: {fileID: 0}
 --- !u!4 &7775476916088743263
 Transform:
   m_ObjectHideFlags: 0
@@ -57290,7 +57324,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0985019d4febdd43b86aaaf0ecf35c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Entities: []
+  EntryDoor: {fileID: 988565455}
+  ExitDoor: {fileID: 1226247272}
+  roomType: 0
+  TrackedObject: {fileID: 0}
 --- !u!4 &8157240460859057439
 Transform:
   m_ObjectHideFlags: 0
@@ -57374,7 +57411,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0985019d4febdd43b86aaaf0ecf35c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Entities: []
+  EntryDoor: {fileID: 0}
+  ExitDoor: {fileID: 0}
+  roomType: 0
+  TrackedObject: {fileID: 0}
 --- !u!4 &8839193896195652913
 Transform:
   m_ObjectHideFlags: 0

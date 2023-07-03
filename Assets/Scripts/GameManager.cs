@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour
     [Header("Objective Items")]
     [SerializeField] int KeyCounter;
 
+    [Header("Audio Mixer")]
+    [SerializeField] AudioManager audioManager;
+
     private float timescaleOrig;
     private AreaManager currentRoomManager;
 
@@ -30,6 +33,7 @@ public class GameManager : MonoBehaviour
     [Header("Next Level")]
     [SerializeField] string nextLevel;
     string currentLevel;
+
 
     void Awake()
     {
@@ -98,6 +102,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void PauseMenuState()
     {
+        audioManager?.RunMuffler();
         TimePause();
         MouseUnlockShow();
     }
@@ -107,6 +112,8 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void PlayMenuState()
     {
+        audioManager?.RunUnMuffler();
+
         TimeUnpause();
         MouseLockHide();
     }

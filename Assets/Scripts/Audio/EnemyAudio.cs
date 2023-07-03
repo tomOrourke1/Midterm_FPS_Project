@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyAudio : MonoBehaviour
 {
     [Header("Enemy Audio Source")]
-    [SerializeField] AudioSource enemySource;
+    [SerializeField] AudioSource source;
 
     [Header("SFX")]
     [SerializeField] AudioClip enemyWalk;
@@ -13,24 +13,25 @@ public class EnemyAudio : MonoBehaviour
     [SerializeField] AudioClip enemyHurt;
     [SerializeField] AudioClip enemyDeath;
 
+   
     public void PlayEnemy_Walk()
     {
-        enemySource.PlayOneShot(enemyWalk);
+        source.PlayOneShot(enemyWalk);
     }
 
     public void PlayEnemy_Shoot()
     {
-        enemySource.PlayOneShot(enemyShoot);
+        source.PlayOneShot(enemyShoot);
     }
 
     public void PlayEnemy_Hurt()
     {
-        enemySource.PlayOneShot(enemyHurt);
+        source.PlayOneShot(enemyHurt);
     }
 
     public void PlayEnemy_Death()
     {
-        enemySource.PlayOneShot(enemyDeath);
+        source.PlayOneShot(enemyDeath);
     }
 
 }

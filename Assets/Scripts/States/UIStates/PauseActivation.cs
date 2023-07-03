@@ -14,6 +14,8 @@ public class PauseActivation : MenuActivation
         GameManager.instance.PauseMenuState();
 
         EventSystem.current.SetSelectedGameObject(selectedGameObject);
+
+
     }
 
     public override void Deactivate()

@@ -192,7 +192,6 @@ public class SettingsManager : MonoBehaviour
         hitmarkerToggle.onValueChanged.AddListener(SetHitmarkerEnabled);
         invertYToggle.onValueChanged.AddListener(SetCameraInvertY);
 
-        Debug.Log("Assigned Subscribers");
     }
 
     public void SetMasterVolume(float value)
