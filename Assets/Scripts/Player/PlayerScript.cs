@@ -24,7 +24,7 @@ public class PlayerScript : MonoBehaviour
 
     private void Start()
     {
-        
+        RespawnPlayer();
     }
 
     public void ResetPlayer()

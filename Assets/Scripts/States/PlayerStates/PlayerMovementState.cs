@@ -67,6 +67,7 @@ public class PlayerMovementState : PlayerState, IApplyVelocity
 
         unCrouching = false;
 
+        
     }
 
 
@@ -149,7 +150,7 @@ public class PlayerMovementState : PlayerState, IApplyVelocity
                 framesSinceGrounded += postGroundingFramesAllowance;
             }
         }
-        else if(InputManager.Instance.Action.Jump.WasPressedThisFrame() && playerVelocity.y > 0)
+        else if(InputManager.Instance.Action.Jump.WasReleasedThisFrame() && playerVelocity.y > 0)
         {
             playerVelocity.y = playerVelocity.y / jumpPowerDivision;
         }

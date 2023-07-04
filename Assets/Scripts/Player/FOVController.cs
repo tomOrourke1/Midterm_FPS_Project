@@ -7,6 +7,7 @@ public class FOVController : MonoBehaviour
 {
     [Header("Dependencies")]
     [SerializeField] Camera cam;
+    [SerializeField] Camera handCam;
 
 
 
@@ -23,8 +24,13 @@ public class FOVController : MonoBehaviour
     float desiredFov;
     bool fovChanging;
 
+    float handCamFov;
+    float desHandFov;
+    float lastHandFov;
+    bool handChanging;
     private void Start()
     {
+        handCamFov = handCam.fieldOfView;
     }
 
 
@@ -32,39 +38,87 @@ public class FOVController : MonoBehaviour
     {
         if (fovChanging)
         {
-            bool outWard = desiredFov != origFov;
-
-            var speed = outWard ? setSpeed : returnSpeed;
-            var current = cam.fieldOfView;
-
-            var nextFov = Mathf.MoveTowards(current, desiredFov, (speed * Time.deltaTime));
-
-            if(desiredFov < lastFov)
-            {
-                nextFov = Mathf.Clamp(nextFov, desiredFov, lastFov); 
-
-            }
-            else
-            {
-                nextFov = Mathf.Clamp(nextFov, lastFov, desiredFov);
-            }
-            
-            cam.fieldOfView = nextFov;
-
-
-            if(cam.fieldOfView == desiredFov && nextFov != origFov)
-            {
-                lastFov = desiredFov;
-                desiredFov = origFov;
-            }
-            else if(nextFov == origFov)
-            {
-                fovChanging = false;
-            }
-
+            cam.fieldOfView = LerpFov(cam.fieldOfView, ref desiredFov, origFov, ref fovChanging, ref lastFov);
+        }
+        if (handChanging)
+        {
+            handCam.fieldOfView = LerpFov(handCam.fieldOfView, ref desHandFov, handCamFov, ref handChanging, ref lastHandFov);
         }
 
+
     }
+
+
+    public void Remp()
+    {
+        bool outWard = desiredFov != origFov;
+
+        var speed = outWard ? setSpeed : returnSpeed;
+        var current = cam.fieldOfView;
+
+        var nextFov = Mathf.MoveTowards(current, desiredFov, (speed * Time.deltaTime));
+
+
+        if (desiredFov < lastFov)
+        {
+            nextFov = Mathf.Clamp(nextFov, desiredFov, lastFov);
+
+        }
+        else
+        {
+            nextFov = Mathf.Clamp(nextFov, lastFov, desiredFov);
+        }
+
+        cam.fieldOfView = nextFov;
+
+
+        if (cam.fieldOfView == desiredFov && nextFov != origFov)
+        {
+            lastFov = desiredFov;
+            desiredFov = origFov;
+        }
+        else if (nextFov == origFov)
+        {
+            fovChanging = false;
+        }
+    }
+
+    public float LerpFov(float current, ref float desiredFov, float originalFov, ref bool fovChanging, ref float lastFov)
+    {
+        bool outWard = desiredFov != originalFov;
+
+        var speed = outWard ? setSpeed : returnSpeed;
+
+        var nextFov = Mathf.MoveTowards(current, desiredFov, (speed * Time.deltaTime));
+
+
+        if (desiredFov < lastFov)
+        {
+            nextFov = Mathf.Clamp(nextFov, desiredFov, lastFov);
+
+        }
+        else
+        {
+            nextFov = Mathf.Clamp(nextFov, lastFov, desiredFov);
+        }
+
+        //cam.fieldOfView = nextFov;
+
+
+        if (current == desiredFov && nextFov != originalFov)
+        {
+            lastFov = desiredFov;
+            desiredFov = originalFov;
+        }
+        else if (nextFov == originalFov)
+        {
+            fovChanging = false;
+        }
+
+        return nextFov;
+    }
+
+
 
     // needs to lerp to the set value
     // then detect it's there to lerp back to the original value
@@ -80,7 +134,13 @@ public class FOVController : MonoBehaviour
         fovChanging = true;
         desiredFov = fov;
 
-//        cam.fieldOfView = fov;
+        var fovDelta = fov - lastFov;
+
+        lastHandFov = handCam.fieldOfView;
+        desHandFov = handCamFov + fovDelta;
+        handChanging = true;
+
+        //        cam.fieldOfView = fov;
     }
 
     public void AddFOV(float fov)
@@ -92,6 +152,9 @@ public class FOVController : MonoBehaviour
         fovChanging = true;
         desiredFov = cam.fieldOfView + fov;
 
+        lastHandFov = handCam.fieldOfView;
+        desHandFov = handCam.fieldOfView + fov;
+        handChanging = true;
 //        cam.fieldOfView += fov;
     }
 

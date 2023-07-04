@@ -39,8 +39,8 @@ public class PlayerDashState : PlayerState
         }
 
         // x being if it is forward or backward
-        var x = Mathf.Round(inp.x) * -1;
-        var y = Mathf.Round(inp.y) * -1;
+        var x = Mathf.Round(inp.y) * -1;
+        var y = Mathf.Round(inp.x) * -1;
 
         // if the dash is going forward but not right or left
         if (x == 0 && y == 0)

@@ -56,7 +56,7 @@ public class PlayerStateMachine : MonoBehaviour
 
 
 
-    private void Update()
+    private void FixedUpdate()
     {
         stateMachine.Tick();
     }

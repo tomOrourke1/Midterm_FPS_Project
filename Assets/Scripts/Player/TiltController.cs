@@ -8,7 +8,6 @@ public class TiltController : MonoBehaviour
     [Header("---- Components -----")]
     [SerializeField] Camera cam;
 
-
     [Header("stats")]
     [SerializeField] float rotInSpeed;
     [SerializeField] float rotOutSpeed;
