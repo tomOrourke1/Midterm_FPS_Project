@@ -11,12 +11,10 @@ public class PlayerStateMachine : MonoBehaviour
     [SerializeField] PlayerCooldownBehaviour dashCoolDown1;
     [SerializeField] PlayerCooldownBehaviour dashCoolDown2;
     [SerializeField] PlayerCooldownBehaviour betweenDashCoolDown;
-
+    
     [Header("--- states --- ")]
     [SerializeField] PlayerMovementState playerMoveState;
     [SerializeField] PlayerDashState dashState;
-
-
 
 
 

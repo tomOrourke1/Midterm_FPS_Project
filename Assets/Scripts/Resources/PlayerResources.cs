@@ -13,6 +13,15 @@ public class PlayerResources : MonoBehaviour, IDamagable, IHealReciever, IFocusR
     public FocusPool Focus => focus;
 
 
+
+    [Header("--- camera shake values ---")]
+    [SerializeField] float shakeIntensity;
+    [SerializeField] float shakeSpeed;
+    [SerializeField] float shakeTime;
+
+
+
+
     bool isVulnerable = true;
 
     private void Start()
@@ -51,9 +60,11 @@ public class PlayerResources : MonoBehaviour, IDamagable, IHealReciever, IFocusR
         {
             //UIManager.instance.FlashPlayerShieldHit();
             //UIManager.instance.FlashBreakShield();
+            CameraShaker.instance.StartShake(shakeIntensity, shakeSpeed, shakeTime);
         }
         else
         {
+            CameraShaker.instance.StartShake(shakeIntensity, shakeSpeed, shakeTime);
             float diff = dmg - shield.CurrentValue;
             shield.Decrease(shield.CurrentValue);
             health.Decrease(diff);
