@@ -1,5 +1,54 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &527882146
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 527882148}
+  - component: {fileID: 527882147}
+  m_Layer: 0
+  m_Name: Death
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &527882148
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 527882146}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2818649105043999723}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &527882147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 527882146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d53041f523e9e5f4ca5eb3bad59dfe47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 2818649104419558320}
+  moveSpeed: 0
+  acceleration: 0
+  rotSpeed: 0
+  stoppingDist: 0
 --- !u!1 &1530211220
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,7 +389,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health:
     maxValue: 20
-  enemyMeshRenderer: {fileID: 0}
+  enemyMeshRenderer: {fileID: 541750346821684846}
   viewConeAngle: 0
   eyeOffset: 1
   idleState: {fileID: 2818649103621592270}
@@ -350,12 +399,28 @@ MonoBehaviour:
   shootState: {fileID: 6225206788883192265}
   pushedState: {fileID: 163435816826792621}
   stunState: {fileID: 1530211221}
+  deathState: {fileID: 527882147}
   attackRange: 10
   moveAwayRange: 6
   stunTime: 2
   strafeTime: 0.8
   agent: {fileID: 2818649104419558320}
   rb: {fileID: 985107345994495972}
+  OnEnemyDeathEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7279943310949234950}
+        m_TargetAssemblyTypeName: EnemyAnimaterScript, Assembly-CSharp
+        m_MethodName: SetDeath
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!195 &2818649104419558320
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -429,6 +494,7 @@ Transform:
   - {fileID: 4416130858703560410}
   - {fileID: 977701301895394918}
   - {fileID: 1530211222}
+  - {fileID: 527882148}
   m_Father: {fileID: 2818649104419558321}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -729,11 +795,20 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 2b29cb96ae6f6384b846079e957123e2, type: 2}
+    - target: {fileID: 9500000, guid: 317a56890b5c8e74ab1d492a2c7fb608, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 317a56890b5c8e74ab1d492a2c7fb608, type: 3}
 --- !u!95 &541750346817581228 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 9500000, guid: 317a56890b5c8e74ab1d492a2c7fb608, type: 3}
+  m_PrefabInstance: {fileID: 541750346826991052}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &541750346821684846 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 13700002, guid: 317a56890b5c8e74ab1d492a2c7fb608, type: 3}
   m_PrefabInstance: {fileID: 541750346826991052}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &541750346826957526 stripped

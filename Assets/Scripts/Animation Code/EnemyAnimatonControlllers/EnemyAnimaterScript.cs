@@ -47,6 +47,7 @@ public class EnemyAnimaterScript : MonoBehaviour
     {
         enemyAnimator.SetBool("Death", true);
         enemyAnimator.SetTrigger("OnDeath");
+        enemyAnimator.applyRootMotion = true;
     }
 
     public void StartMelee()
@@ -57,6 +58,13 @@ public class EnemyAnimaterScript : MonoBehaviour
     public void StopMelee()
     {
         enemyAnimator.SetBool("Melee", false);
+    }
+
+    public void TransposeBody()
+    {
+        var pos = transform.localPosition;
+        pos.y -= 1;
+        transform.localPosition = pos;
     }
 
 }

@@ -143,7 +143,7 @@ public class SM_SecurityGuard : EnemyBase, IDamagable, IEntity, IApplyVelocity
         {
             stateMachine.Tick();
 
-            if(GetDoesSeePlayer())
+            if(GetDoesSeePlayer() && !isDead)
             {
                 RotToPlayer();
             }
