@@ -193,6 +193,7 @@ public class SM_SecurityGuard : EnemyBase, IDamagable, IEntity, IApplyVelocity
         isStunned = true;
         TakeDamage(dmg);
 
+        StopCoroutine(StunTimer());
         StartCoroutine(StunTimer());
     }
     IEnumerator StunTimer()

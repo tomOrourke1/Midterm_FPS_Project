@@ -105,7 +105,7 @@ public class LightningKinesis : KinesisBase
             if (damageable != null && !hit.collider.CompareTag("Player"))
             {
                 Debug.Log("reached inside of null check");
-                damageable.TakeElectroDamage(/*Damage * Time.deltaTime*/0);
+                damageable.TakeElectroDamage(Damage * Time.deltaTime);
             }
            
             if(hit.point != null)

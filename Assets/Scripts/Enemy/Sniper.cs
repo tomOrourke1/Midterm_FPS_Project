@@ -187,6 +187,7 @@ public class Sniper : EnemyBase, IDamagable, IEntity, IApplyVelocity
         isStunned = true;
         TakeDamage(dmg);
 
+        StopCoroutine(StunTimer());
         StartCoroutine(StunTimer());
     }
     public void TakeFireDamage(float dmg)
