@@ -49,7 +49,7 @@ public class RadialMenu : MonoBehaviour
     [Header("Text Display")]
     [Tooltip("Displays the current hovered Kinesis in the Radial Menu. The Info Box is found under the \"RadialMenu\" Game Object prefab.")]
     [SerializeField] TextMeshProUGUI infoBox;
-    
+
     [Header("Transforms")]
     [Tooltip("The arrow rotating around to face the mouse's position. This is found under the \"RadialMenu\" Game Object prefab.")]
     [SerializeField] Transform arrow;
@@ -60,11 +60,15 @@ public class RadialMenu : MonoBehaviour
     [Header("Slices Struct")]
     [SerializeField] SlicesStruct[] _slices;
     [Tooltip("Disabled color that the slice will be set to. The slice meaning the radial slice in the radial menu.")]
-    
+
     [Header("Color Settings")]
     [SerializeField] Material disabledColor;
     [Tooltip("Enabled color that the slice will be set to. The slice meaning the radial slice in the radial menu.")]
     [SerializeField] Material enabledColor;
+
+    [Header("Audio Source / Tick")]
+    [SerializeField] AudioSource audSource;
+    [SerializeField] AudioClip tickSFX;
 
     #region ScriptVariables
     /// <summary>
@@ -123,8 +127,18 @@ public class RadialMenu : MonoBehaviour
     /// Uses the last selected kinesis to confirm the selection.
     /// </summary>
     int confirmedKinesis = 2;
+
+    /// <summary>
+    /// Plays the sfx for ticking only once.
+    /// </summary>
+    bool playSFX;
+
+    /// <summary>
+    /// Current vs Previous Highlight
+    /// </summary>
+    int prevKinesis;
     #endregion
-     
+
     private void Start()
     {
         sliceAng = 360 / _slices.Length;
@@ -194,7 +208,7 @@ public class RadialMenu : MonoBehaviour
 
             if (withinRadialMin && withinRadialMax && GameManager.instance.GetEnabledList().RetrieveLoop(sliceIndex))
             {
-                selector.transform.rotation = Quaternion.Euler(0, 0, sliceIndex * sliceAng + (72/2));
+                selector.transform.rotation = Quaternion.Euler(0, 0, sliceIndex * sliceAng + (72 / 2));
                 trackedKinesis = sliceIndex;
                 DisplayKinesisInRadialMenu(sliceIndex);
             }
@@ -225,6 +239,22 @@ public class RadialMenu : MonoBehaviour
         // into the slices and update what radial option slice we chose.
         confirmedKinesis = idx;
         selector.transform.rotation = Quaternion.Euler(0, 0, idx * sliceAng + (sliceAng * 1) - offsetAngle);
+
+        // Play the tick SFX as a one shot from the audio source
+        
+        if (playSFX)
+        {
+            audSource.PlayOneShot(tickSFX);
+            playSFX = false;
+            prevKinesis = confirmedKinesis;
+        }
+
+        if (prevKinesis != confirmedKinesis)
+        {
+            playSFX = true;
+        }
+        
+
     }
 
     public void UpdateSlices()
