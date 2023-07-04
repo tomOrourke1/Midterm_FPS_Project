@@ -973,7 +973,7 @@ ParticleSystem:
     m_BurstCount: 1
     m_Bursts:
     - serializedVersion: 2
-      time: 0
+      time: 0.5
       countCurve:
         serializedVersion: 2
         minMaxState: 0
@@ -4819,7 +4819,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1482f31241dd4a646b29a827e25b6f53, type: 2}
+  - {fileID: 2100000, guid: d1dc0ca5e4ca733428743eb1dd37a542, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5176,10 +5176,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 1156867556873060103}
-  enemyWalk: {fileID: 8300000, guid: 619e4196520d76c488748d7436ee5697, type: 3}
-  enemyShoot: {fileID: 8300000, guid: e93f105d98217574aa9308abd8948b8f, type: 3}
-  enemyHurt: {fileID: 8300000, guid: d6682da5d2255c547a83628972b53baf, type: 3}
-  enemyDeath: {fileID: 0}
+  enemyWalk:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  enemyShoot:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  enemyHurt:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  enemyDeath:
+  - {fileID: 0}
 --- !u!1 &2196605286369197185
 GameObject:
   m_ObjectHideFlags: 0

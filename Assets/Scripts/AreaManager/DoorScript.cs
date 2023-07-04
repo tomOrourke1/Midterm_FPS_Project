@@ -14,6 +14,8 @@ public class DoorScript : MonoBehaviour, IEnvironment
     [SerializeField] Material doorEnabled;
     [SerializeField] Material doorDisabled;
 
+    [SerializeField] DoorSFX doorSFX;
+
     bool isOpen = false;
     [SerializeField] bool activation;
     float doorValue;
@@ -26,6 +28,8 @@ public class DoorScript : MonoBehaviour, IEnvironment
     float initialDoorValue;
 
     bool LockClose;
+
+    bool lockSFXPlayed;
 
     enum doorState
     {
@@ -78,6 +82,12 @@ public class DoorScript : MonoBehaviour, IEnvironment
         // Added to set the color of the door depending on lock status
         renderer.material = locked ? doorDisabled : doorEnabled;
 
+        if (!locked & !lockSFXPlayed)
+        {
+            doorSFX.PlayDoor_Unlock();
+            lockSFXPlayed = true;
+        }
+
     }
 
     private void Update()
@@ -123,6 +133,7 @@ public class DoorScript : MonoBehaviour, IEnvironment
         if (isOpen || d == doorState.opening)
         {
             Activate();
+            doorSFX.PlayDoor_Close();
         }
     }
 
@@ -131,6 +142,7 @@ public class DoorScript : MonoBehaviour, IEnvironment
         if (!isOpen || d == doorState.closing)
         {
             Activate();
+            doorSFX.PlayDoor_Open();
         }
     }
 
