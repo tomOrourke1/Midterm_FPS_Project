@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 using UnityEngine.UIElements;
 
 public class Sniper : EnemyBase, IDamagable, IEntity, IApplyVelocity
@@ -12,6 +13,7 @@ public class Sniper : EnemyBase, IDamagable, IEntity, IApplyVelocity
     [SerializeField] EnemyMoveAwayState runAway;
     [SerializeField] EnemyPushedState pushedState;
     [SerializeField] EnemyStunState stunState;
+    [SerializeField] EnemyDeathState deathState;
 
     [Header("-----Sniper Stats------")]
     [SerializeField] float betweenShotTime;
@@ -21,10 +23,14 @@ public class Sniper : EnemyBase, IDamagable, IEntity, IApplyVelocity
 
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Rigidbody rb;
+
+    [Header("----Events----")]
+    public UnityEvent OnEnemyDeathEvent;
+
     // values for the timer
     float timeBetweenShots;
 
-
+    private bool isDead;
     bool wasPushed;
     bool hasLanded;
     bool isStunned;
@@ -54,6 +60,7 @@ public class Sniper : EnemyBase, IDamagable, IEntity, IApplyVelocity
 
         rb.isKinematic = false;
 
+        stateMachine.AddAnyTransition(deathState, () => isDead);
     }
 
 
@@ -154,7 +161,12 @@ public class Sniper : EnemyBase, IDamagable, IEntity, IApplyVelocity
 
     void OnDeath()
     {
-        Destroy(gameObject);
+        isDead = true;
+        OnEnemyDeathEvent?.Invoke();
+        GetComponent<Collider>().enabled = false;
+        // GetComponent<NavMeshAgent>().enabled = false;
+        GetComponent<Rigidbody>().isKinematic = true;
+        //Destroy(gameObject);
     }
 
     public void TakeDamage(float dmg)

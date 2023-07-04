@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 public class SM_Scientist : EnemyBase, IDamagable, IEntity, IApplyVelocity 
 {
@@ -12,6 +13,7 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity, IApplyVelocity
     [SerializeField] EnemySpottedPlayer scientistSpotPlayer;
     [SerializeField] EnemyPushedState pushedState;
     [SerializeField] EnemyStunState stunState;
+    [SerializeField] EnemyDeathState deathState;
 
     [Header("----- Other Vars -----")]
     [SerializeField] float idleRange;
@@ -21,12 +23,18 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity, IApplyVelocity
     [Header("Keys")]
     [SerializeField] GameObject key;
 
+    private bool isDead;
     bool wasPushed;
     bool hasLanded;
     bool isStunned;
     bool isUnstunned;
     [SerializeField] Rigidbody rb;
     [SerializeField] NavMeshAgent agent;
+
+    [Header("----Events----")]
+    public UnityEvent OnEnemyDeathEvent;
+
+
 
     private void Start()
     {
@@ -48,7 +56,7 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity, IApplyVelocity
 
         rb.isKinematic = false;
 
-
+        stateMachine.AddAnyTransition(deathState, () => isDead);
     }
 
     bool OnIdle()
@@ -127,7 +135,12 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity, IApplyVelocity
     void OnDeath()
     {
         Instantiate(key, transform.position, Quaternion.identity);
-        Destroy(gameObject); // destroy enemy
+        isDead = true;
+        OnEnemyDeathEvent?.Invoke();
+        GetComponent<Collider>().enabled = false;
+        // GetComponent<NavMeshAgent>().enabled = false;
+        GetComponent<Rigidbody>().isKinematic = true;
+        //Destroy(gameObject);
     }
     public void ApplyVelocity(Vector3 velocity)
     {

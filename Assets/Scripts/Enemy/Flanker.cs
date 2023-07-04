@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 public class Flanker : EnemyBase, IDamagable, IEntity, IApplyVelocity
 {
@@ -12,7 +13,7 @@ public class Flanker : EnemyBase, IDamagable, IEntity, IApplyVelocity
     [SerializeField] EnemyShootState shootState;
     [SerializeField] EnemyPushedState pushedState;
     [SerializeField] EnemyStunState stunState;
-
+    [SerializeField] EnemyDeathState deathState;
 
     [Header("----- Flanker Stats -----")]
     [Range(1, 10)][SerializeField] int playerFaceSpeed;
@@ -30,6 +31,10 @@ public class Flanker : EnemyBase, IDamagable, IEntity, IApplyVelocity
     [SerializeField] float timeBetweenShots;
     [SerializeField] float stunTime;
 
+    [Header("----Events----")]
+    public UnityEvent OnEnemyDeathEvent;
+
+    private bool isDead;
     bool wasPushed;
     bool hasLanded;
     bool isStunned;
@@ -72,6 +77,8 @@ public class Flanker : EnemyBase, IDamagable, IEntity, IApplyVelocity
         stateMachine.AddTransition(stunState, idleState, OnUnstunned);
 
         rb.isKinematic = false;
+
+        stateMachine.AddAnyTransition(deathState, () => isDead);
     }
 
     bool OnToFlank()
@@ -180,7 +187,12 @@ public class Flanker : EnemyBase, IDamagable, IEntity, IApplyVelocity
 
     void OnDeath()
     {
-        Destroy(gameObject);
+        isDead = true;
+        OnEnemyDeathEvent?.Invoke();
+        GetComponent<Collider>().enabled = false;
+        // GetComponent<NavMeshAgent>().enabled = false;
+        GetComponent<Rigidbody>().isKinematic = true;
+        //Destroy(gameObject);
     }
 
     public void TakeDamage(float dmg)
