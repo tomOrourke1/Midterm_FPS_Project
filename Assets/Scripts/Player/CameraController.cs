@@ -45,19 +45,18 @@ public class CameraController : MonoBehaviour
                 tilting = false;
             }
         }
-        
 
-        float mouseY = Input.GetAxis("Mouse Y") * Time.deltaTime * sensitivity;
-        float mouseX = Input.GetAxis("Mouse X") * Time.deltaTime * sensitivity;
+        var input = InputManager.Instance.Action.LookDelta.ReadValue<Vector2>() * Time.deltaTime * sensitivity;
+        
 
         // mouse's y location will modify the camera's x rotation
         if (invertY)
         {
-            xRotation += mouseY;
+            xRotation += input.y;
         }
         else
         {
-            xRotation -= mouseY;
+            xRotation -= input.y;
         }
 
         // Limit up and down
@@ -68,7 +67,7 @@ public class CameraController : MonoBehaviour
         transform.localRotation = Quaternion.Euler(xRotation, 0, transform.localRotation.eulerAngles.z);
 
         // Rotates left and right (Y-axis)
-        transform.parent.Rotate(Vector3.up * mouseX);
+        transform.parent.Rotate(Vector3.up * input.x);
 
     }
 

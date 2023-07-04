@@ -78,14 +78,14 @@ public class PlayerMovementState : PlayerState, IApplyVelocity
 
     public override void Tick()
     {
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (InputManager.Instance.Action.Crouch.WasPressedThisFrame())
         {
             // crouch
             isCrouching = true;
             controller.height = origHeight * 0.5f;
             unCrouching = false;
         }
-        else if (isCrouching && !Input.GetKey(KeyCode.LeftControl))
+        else if (isCrouching && !InputManager.Instance.Action.Crouch.IsPressed())
         {
             // crouch end
             RaycastHit hit;
@@ -123,8 +123,8 @@ public class PlayerMovementState : PlayerState, IApplyVelocity
         {
             framesSinceGrounded++;
         }
-
-        move = (playerTransform.right * Input.GetAxis("Horizontal")) + (playerTransform.forward * Input.GetAxis("Vertical"));
+        var inp = InputManager.Instance.Action.Move.ReadValue<Vector2>();
+        move = (playerTransform.right * inp.x) + (playerTransform.forward * inp.y);
 
         playerVelocity.y += appliedVelocity.y;
         appliedVelocity.y = 0;
@@ -132,7 +132,7 @@ public class PlayerMovementState : PlayerState, IApplyVelocity
 
         controller.Move(move * Time.deltaTime);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (InputManager.Instance.Action.Jump.WasPressedThisFrame())
         {
             if(groundedPlayer)
             {
@@ -149,7 +149,7 @@ public class PlayerMovementState : PlayerState, IApplyVelocity
                 framesSinceGrounded += postGroundingFramesAllowance;
             }
         }
-        else if(Input.GetKeyUp(KeyCode.Space) && playerVelocity.y > 0)
+        else if(InputManager.Instance.Action.Jump.WasPressedThisFrame() && playerVelocity.y > 0)
         {
             playerVelocity.y = playerVelocity.y / jumpPowerDivision;
         }

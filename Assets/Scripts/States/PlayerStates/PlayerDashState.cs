@@ -30,9 +30,8 @@ public class PlayerDashState : PlayerState
 
     public override void OnEnter()
     {
-        var inpV = Input.GetAxis("Vertical");
-        var inpH = Input.GetAxis("Horizontal");
-        dashDir = (transform.right * inpH + (transform.forward * inpV));
+        var inp = InputManager.Instance.Action.Move.ReadValue<Vector2>();
+        dashDir = (transform.right * inp.x + (transform.forward * inp.y));
 
         if(dashDir.magnitude == 0)
         {
@@ -40,8 +39,8 @@ public class PlayerDashState : PlayerState
         }
 
         // x being if it is forward or backward
-        var x = Mathf.Round(inpV) * -1;
-        var y = Mathf.Round(inpH) * -1;
+        var x = Mathf.Round(inp.x) * -1;
+        var y = Mathf.Round(inp.y) * -1;
 
         // if the dash is going forward but not right or left
         if (x == 0 && y == 0)

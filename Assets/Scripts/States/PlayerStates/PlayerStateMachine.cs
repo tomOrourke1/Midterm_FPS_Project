@@ -35,7 +35,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     bool OnDash()
     {
-        bool inp = Input.GetKeyDown(KeyCode.LeftShift);
+        bool inp = InputManager.Instance.Action.Dash.WasPressedThisFrame();
 
         if (inp && betweenDashCoolDown.CanActivate())
         {

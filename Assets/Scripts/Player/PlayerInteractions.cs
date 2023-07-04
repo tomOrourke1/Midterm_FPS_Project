@@ -19,7 +19,7 @@ public class PlayerInteractions : MonoBehaviour
     {
         ShowPopup();
 
-        if (Input.GetKeyDown(KeyCode.E) && !inTransition)
+        if (InputManager.Instance.Action.Interact.WasPressedThisFrame() && !inTransition)
         {
             StartCoroutine(ElevatorInteract());
         }
