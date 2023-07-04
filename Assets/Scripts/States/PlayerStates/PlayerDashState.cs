@@ -19,7 +19,8 @@ public class PlayerDashState : PlayerState
 
 
 
-
+    [Header("--- sounds ----")]
+    [SerializeField] AudioSource source;
 
     // private members
     Vector3 dashDir;
@@ -55,6 +56,7 @@ public class PlayerDashState : PlayerState
         timeInsideState = 0;
 
         playerResources.SetVulnerability(false);
+        source.Play();
     }
 
     public override void Tick()
