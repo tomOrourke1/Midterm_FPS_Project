@@ -13,6 +13,10 @@ public class MovingPlatform : MonoBehaviour, IEnvironment
     /*[Range(1, 100)]*/
     [SerializeField] float speed;
 
+    Vector3 Velocity;
+    Vector3 newPos;
+    Vector3 oldPos;
+
     float currentTime;
     bool toEnd;
     bool waiting;
@@ -24,6 +28,8 @@ public class MovingPlatform : MonoBehaviour, IEnvironment
     // Start is called before the first frame update
     void Start()
     {
+        oldPos = transform.position;
+        newPos = transform.position;
         initialStartPos = startPos;
         initialEndPos = endPos;
 
@@ -35,8 +41,11 @@ public class MovingPlatform : MonoBehaviour, IEnvironment
     // Update is called once per frame
     void FixedUpdate()
     {
+        newPos = transform.position;
 
-        //Debug.Log(GetComponent<Rigidbody>().velocity);
+        Velocity = (newPos - oldPos) / Time.fixedDeltaTime;
+
+        Debug.Log(Velocity);
 
         if (!waiting)
         {
@@ -46,6 +55,7 @@ public class MovingPlatform : MonoBehaviour, IEnvironment
         {
             wait();
         }
+        oldPos = newPos;
     }
 
     void move()
@@ -109,5 +119,10 @@ public class MovingPlatform : MonoBehaviour, IEnvironment
     public void StopObject()
     {
         gameObject.SetActive(false);
+    }
+
+    public Vector3 GetCurrentVelocity()
+    {
+        return Velocity;
     }
 }

@@ -1,46 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Mirror : MonoBehaviour, IReflector
 {
     [SerializeField] LineRenderer baseLaser;
-
-    bool isReflecting = false;
-
-    List<float> laserDamage = new List<float>();
-    List<float> laserRange = new List<float>();
-
-    int laserID = 0;
-
-    List<Vector3> ReflectedDir = new List<Vector3>();
-
-    List<Vector3> laserInitialPosition = new List<Vector3>();
-    List<Vector3> laserNormal = new List<Vector3>();
-    List<Vector3> laserDir = new List<Vector3>();
-
-    List<LineRenderer> lasers = new List<LineRenderer>();
-    List<LineRenderer> originalLasers = new List<LineRenderer>();
-
     ParticleSystem impactFX;
     Light impactLight;
 
-    int numRemoved = 0;
+    Dictionary<LineRenderer, MirrorElement> mirrorElements = new Dictionary<LineRenderer, MirrorElement>();
 
-    List<GameObject> StoredReflector = new List<GameObject>();
+    bool isReflecting = false;
 
-    // This will store the index that each Reflector ties to
-    List<int> indexCounter = new List<int>();
-    // Start is called before the first frame update
-    void Start()
+    LineRenderer originalLaser;
+
+
+    void startReflection()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (lasers.Count > 0)
+        if (mirrorElements.Count > 0)
         {
             isReflecting = true;
         }
@@ -51,18 +29,10 @@ public class Mirror : MonoBehaviour, IReflector
 
         if (isReflecting)
         {
-            numRemoved = 0;
-
-            for (laserID = 0; laserID < lasers.Count; laserID++)
-            {
-                lasers[laserID].enabled = true;
-
-                //CastLaser();
-                HitHandlers(CastLaser());
-            }
+            //CastLaser();
+            HitHandlers(CastLaser(mirrorElements[originalLaser]));
         }
     }
-
 
     void HitHandlers(RaycastHit hit)
     {
@@ -73,16 +43,16 @@ public class Mirror : MonoBehaviour, IReflector
         }
         else
         {
-            if (StoredReflector.Count == lasers.Count)
+            if (mirrorElements.Count == mirrorElements.Count)
             {
-                StopReflections(indexCounter.IndexOf(laserID));
+                mirrorElements[originalLaser].GetStoredReflector().GetComponent<IReflector>().StopReflection(originalLaser);
             }
         }
     }
 
-    RaycastHit CastLaser()
+    RaycastHit CastLaser(MirrorElement mirrorElement)
     {
-        return gameObject.GetComponent<LaserCast>().RecieveLaser(lasers[laserID], laserInitialPosition[laserID], ReflectedDir[laserID], laserDamage[laserID], laserRange[laserID], impactFX, impactLight);
+        return gameObject.GetComponent<LaserCast>().RecieveLaser(mirrorElements[originalLaser].GetCastedLaser(), mirrorElements[originalLaser].GetLaserInitialPosition(), mirrorElements[originalLaser].GetReflectedDir(), mirrorElements[originalLaser].GetDamage(), mirrorElements[originalLaser].GetRange(), impactFX, impactLight);
     }
 
 
@@ -92,36 +62,31 @@ public class Mirror : MonoBehaviour, IReflector
         if (CompareWithStoredReflector(hit))
         {
             // Get Remaining distance
-            float reflectDist = laserRange[laserID] - hit.distance;
+            float reflectDist = mirrorElements[originalLaser].GetRange() - hit.distance;
 
             // call reflect
-            reflector.Reflect(reflectDist, laserDamage[laserID], impactFX, impactLight, hit, hit.point - transform.position, lasers[laserID]);
+            reflector.Reflect(reflectDist, mirrorElements[originalLaser].GetDamage(), impactFX, impactLight, hit, hit.point - transform.position, mirrorElements[originalLaser].GetCastedLaser());
         }
         else if (reflector != null && !reflector.AlreadyReflecting() && !CompareWithStoredReflector(hit))
         {
-            if (indexCounter.Count > 0 && indexCounter.Contains(laserID))
+            if (mirrorElements[originalLaser].GetStoredReflector() != null)
             {
-                int index = indexCounter.IndexOf(laserID);
-
                 // Stop the old reflector
-                StopReflections(indexCounter.IndexOf(laserID));
-                //StoredReflector[index]?.GetComponent<IReflector>().StopReflection(lasers[laserID]);
+                mirrorElements[originalLaser].GetStoredReflector().GetComponent<IReflector>().StopReflection(originalLaser);
             }
 
             // store the collider
-            StoredReflector.Add(hit.collider.gameObject);
-
-            indexCounter.Add(laserID);
+            mirrorElements[originalLaser].SetStoredReflector(hit.collider.gameObject);
 
             // Get Remaining distance
-            float reflectDist = laserRange[laserID] - hit.distance;
+            float reflectDist = mirrorElements[originalLaser].GetRange() - hit.distance;
 
             // call reflect
-            reflector.Reflect(reflectDist, laserDamage[laserID], impactFX, impactLight, hit, hit.point - transform.position, lasers[laserID]);
+            reflector.Reflect(reflectDist, mirrorElements[originalLaser].GetDamage(), impactFX, impactLight, hit, hit.point - transform.position, mirrorElements[originalLaser].GetCastedLaser());
         }
-        else if (reflector == null && indexCounter.Contains(laserID) && StoredReflector[indexCounter.IndexOf(laserID)] != null)
+        else if (reflector == null && mirrorElements[originalLaser].GetStoredReflector() != null)
         {
-            StopReflections(indexCounter.IndexOf(laserID));
+            StopReflections();
         }
     }
 
@@ -131,112 +96,72 @@ public class Mirror : MonoBehaviour, IReflector
 
         if (damageable != null)
         {
-            damageable.TakeDamage(laserDamage[laserID] * Time.deltaTime);
+            damageable.TakeDamage(mirrorElements[originalLaser].GetDamage() * Time.deltaTime);
         }
     }
 
 
 
-    Vector3 FindNewDirection(int id)
+    Vector3 FindNewDirection(Vector3 laserNormal, Vector3 laserDir)
     {
-        Vector3 Cross = Vector3.Cross(laserNormal[id], -laserDir[id]);
+        Vector3 Cross = Vector3.Cross(laserNormal, -laserDir);
 
-        float Angle = Vector3.SignedAngle(-laserDir[id], laserNormal[id], Cross);// (laserNormal, laserDir);
+        float Angle = Vector3.SignedAngle(-laserDir, laserNormal, Cross);// (laserNormal, laserDir);
 
         Quaternion Q = Quaternion.AngleAxis(Angle, Cross);
 
-        Vector3 newDir = Q * laserNormal[id];
+        Vector3 newDir = Q * laserNormal;
 
         return newDir;
     }
 
-    public void Reflect(float remainingDistance, float damage, ParticleSystem ImpactFX, Light ImpactLight, RaycastHit Hit, Vector3 LaserDir, LineRenderer originalLaser)
+    public void Reflect(float remainingDistance, float damage, ParticleSystem ImpactFX, Light ImpactLight, RaycastHit Hit, Vector3 LaserDir, LineRenderer OriginalLaser)
     {
-        //Debug.Log(Hit.point);
+        originalLaser = OriginalLaser;
 
-        if (!originalLasers.Contains(originalLaser))
+        if (!mirrorElements.ContainsKey(originalLaser))
         {
-            laserRange.Add(remainingDistance);
-            laserDamage.Add(damage);
+            MirrorElement newElement = new MirrorElement(damage, remainingDistance, FindNewDirection(Hit.normal, LaserDir), Hit.point, Instantiate(baseLaser, gameObject.transform), OriginalLaser);
 
             impactFX = ImpactFX;
             impactLight = ImpactLight;
 
-            laserInitialPosition.Add(Hit.point);
-            laserNormal.Add(Hit.normal);
-            laserDir.Add(LaserDir);
-
-
-            originalLasers.Add(originalLaser);
-
-            lasers.Add(Instantiate(baseLaser, gameObject.transform));
-
-            ReflectedDir.Add(FindNewDirection(lasers.Count - 1));
+            mirrorElements.Add(originalLaser, newElement);
         }
         else
         {
-            int id = originalLasers.IndexOf(originalLaser);
-
-            //StoredReflector[id] = null;
-
-            laserRange[id] = remainingDistance;
-            laserDamage[id] = damage;
-
-            laserInitialPosition[id] = Hit.point;
-            laserNormal[id] = Hit.normal;
-            laserDir[id] = LaserDir;
-
-            ReflectedDir[id] = FindNewDirection(id);
+            mirrorElements[originalLaser]?.updateValues(damage, remainingDistance, FindNewDirection(Hit.normal, LaserDir), Hit.point, mirrorElements[originalLaser].GetCastedLaser(), OriginalLaser);
         }
 
-
-        //Debug.Log("Laser Pos: " + laserInitialPosition);
-
+        startReflection();
     }
 
+    // This Function should be called by the object that is causing the reflection whenever it is no longer causing a reflection
     public void StopReflection(LineRenderer laserToStop)
     {
-        int id = originalLasers.IndexOf(laserToStop) - numRemoved;
-
-        Debug.Log("Index: " + originalLasers.IndexOf(laserToStop) + "\nRemoved: " + numRemoved + "\nID: " + id);
-
-        //laserID++;
-
-        laserRange.RemoveAt(id);
-        laserDamage.RemoveAt(id);
-
-        ReflectedDir.RemoveAt(id);
-        laserInitialPosition.RemoveAt(id);
-        laserNormal.RemoveAt(id);
-        laserDir.RemoveAt(id);
-
-        if (indexCounter.Contains(id))
+        if (mirrorElements.ContainsKey(laserToStop))
         {
-            StopReflections(indexCounter.IndexOf(id));
+
+            // If Mirror's laser is hitting something reflectable, tell it to stop
+            StopReflections();
+
+            // Remove the line renderer object
+            Destroy(mirrorElements[laserToStop].GetCastedLaser().gameObject);
+
+            // Remove this index from the dictionary
+            mirrorElements.Remove(laserToStop);
         }
-
-        Destroy(lasers[id].gameObject);
-
-        lasers.RemoveAt(id);
-        originalLasers.RemoveAt(id);
-
-        numRemoved += 1;
     }
 
-    void StopReflections(int id)
+    // This function stops reflectors hit by the mirror's lasers from reflecting
+    void StopReflections()
     {
-        if (StoredReflector.Count > 0)
-        {
-            StoredReflector[id]?.GetComponent<IReflector>()?.StopReflection(lasers[id]);
-            StoredReflector?.RemoveAt(id);
-            indexCounter.RemoveAt(id);
-        }
+        mirrorElements[originalLaser]?.StopActiveReflection();
     }
 
     bool CompareWithStoredReflector(RaycastHit hit)
     {
-
-        if (indexCounter.Contains(laserID) && hit.collider.gameObject == StoredReflector[indexCounter.IndexOf(laserID)])
+        if (mirrorElements[originalLaser].GetStoredReflector() != null && hit.collider.gameObject == mirrorElements[originalLaser].GetStoredReflector())
         {
             return true;
         }
@@ -246,7 +171,7 @@ public class Mirror : MonoBehaviour, IReflector
 
     public bool AlreadyReflecting()
     {
-        if (lasers.Count > 8)
+        if (mirrorElements?.Count > 8)
         {
             return true;
         }

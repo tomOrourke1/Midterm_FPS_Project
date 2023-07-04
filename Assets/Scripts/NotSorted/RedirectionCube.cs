@@ -56,7 +56,7 @@ public class RedirectionCube : MonoBehaviour, IReflector
 
     void StopReflections()
     {
-        StoredReflector?.GetComponent<IReflector>().StopReflection(laser);
+        StoredReflector?.GetComponent<IReflector>()?.StopReflection(laser);
         StoredReflector = null;
     }
 
