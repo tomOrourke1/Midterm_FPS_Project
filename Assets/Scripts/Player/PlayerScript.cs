@@ -21,6 +21,12 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] PlayerCooldownBehaviour dashCooldown;
 
 
+
+    private void Start()
+    {
+        
+    }
+
     public void ResetPlayer()
     {
         // reset movement

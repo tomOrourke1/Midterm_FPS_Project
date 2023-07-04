@@ -11,6 +11,7 @@ public class KeyChain : MonoBehaviour
     void Start()
     {
         keys = 0;
+        addKeys(0);
     }
 
     public int GetKeys()

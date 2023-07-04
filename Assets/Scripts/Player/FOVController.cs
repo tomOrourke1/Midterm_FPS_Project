@@ -105,6 +105,7 @@ public class FOVController : MonoBehaviour
 
         lastFov = cam.fieldOfView;
         fovChanging = true;
+        desiredFov = origFov;
         origFov = newFov;
     }
     public float GetOrigFov()
