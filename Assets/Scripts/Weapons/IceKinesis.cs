@@ -28,13 +28,13 @@ public class IceKinesis : KinesisBase
 
     public override void Fire()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse1) && HasFocus())
+        if (InputManager.Instance.Action.Kinesis.WasPressedThisFrame() && HasFocus())
         {
          //currentSpear = Instantiate(iceSpear, attackPoint.position, Quaternion.identity);
             OnCryoHold?.Invoke();
             isCasting = true;
         }
-        if (!Input.GetKey(KeyCode.Mouse1) && canFire)
+        if (!InputManager.Instance.Action.Kinesis.IsPressed() && canFire)
         {
             OnCryoThrow?.Invoke();
             canFire = false;

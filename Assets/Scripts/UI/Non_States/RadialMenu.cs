@@ -180,7 +180,8 @@ public class RadialMenu : MonoBehaviour
     private void UpdateMousePosition()
     {
         var screenPos = new Vector3(Screen.width / 2, Screen.height / 2);
-        mousePos = Input.mousePosition - screenPos;
+        //mousePos = Input.mousePosition - screenPos;
+        mousePos = (Vector3)InputManager.Instance.Action.MousePos.ReadValue<Vector2>() - screenPos;
 
         arrowScale = mousePos.magnitude / 75;
         if (arrowScale >= maxArrowDist)

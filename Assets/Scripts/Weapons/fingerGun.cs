@@ -21,7 +21,7 @@ public class fingerGun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Mouse0) && !isShooting)
+        if (InputManager.Instance.Action.Fire.IsPressed() && !isShooting)
         {
             StartCoroutine(shoot());
         }

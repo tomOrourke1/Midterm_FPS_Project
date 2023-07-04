@@ -37,7 +37,7 @@ public class pyroBlast : KinesisBase
     public override void Fire()
     {
 
-        if (Input.GetKeyDown(KeyCode.Mouse1) && HasFocus())
+        if (InputManager.Instance.Action.Kinesis.WasPressedThisFrame() && HasFocus())
         {
             OnFireHold?.Invoke();
             fireFocusParticles.SetActive(true);
@@ -45,7 +45,7 @@ public class pyroBlast : KinesisBase
             //rb.useGravity = false;
             isCasting = true;
         }
-        if (!Input.GetKey(KeyCode.Mouse1) && isReady)
+        if (!InputManager.Instance.Action.Kinesis.IsPressed() && isReady)
         {
             OnFireThrow?.Invoke();
             isReady = false;

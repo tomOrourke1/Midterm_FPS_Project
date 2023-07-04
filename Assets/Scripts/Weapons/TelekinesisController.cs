@@ -64,7 +64,7 @@ public class TelekinesisController : KinesisBase
 
     void TelekinesisStart()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (InputManager.Instance.Action.Kinesis.WasPressedThisFrame())
         {
             // suck item
 
@@ -171,7 +171,7 @@ public class TelekinesisController : KinesisBase
 
     void ReleaseObject()
     {
-        if ((Input.GetKeyUp(KeyCode.Mouse1) || !Input.GetKey(KeyCode.Mouse1)) && stachedObject != null && !IsObjectNull())
+        if ((InputManager.Instance.Action.Kinesis.WasReleasedThisFrame() || !InputManager.Instance.Action.Kinesis.IsPressed()) && stachedObject != null && !IsObjectNull())
         {
             // Causes the object to become volitile when throw begins
             stachedObject.SetVolitile(true);
@@ -219,7 +219,7 @@ public class TelekinesisController : KinesisBase
 
             stachedObject = null;
         }
-        else if (Input.GetKeyDown(KeyCode.E) && stachedObject != null)
+        else if (InputManager.Instance.Action.Interact.WasPressedThisFrame() && stachedObject != null)
         {
             stachedObject.TakeVelocity(stachedObject.GetVelocity() * 0.02f);
             stachedObject.GetRigidbody().useGravity = true;

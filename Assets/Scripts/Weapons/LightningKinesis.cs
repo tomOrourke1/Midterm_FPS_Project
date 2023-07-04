@@ -42,9 +42,9 @@ public class LightningKinesis : KinesisBase
     public override void Fire()
     {
         
-        if (Input.GetKey(KeyCode.Mouse1) && HasFocus())
+        if (InputManager.Instance.Action.Kinesis.IsPressed() && HasFocus())
         {
-            if(Input.GetKeyDown(KeyCode.Mouse1))
+            if(InputManager.Instance.Action.Kinesis.WasPressedThisFrame())
             {
                 OnElectroStart?.Invoke();
                 focusParticles.SetActive(true); 
@@ -60,14 +60,14 @@ public class LightningKinesis : KinesisBase
             }
 
         }
-        else if(/*lightning.enabled*/ lightningParticles.activeInHierarchy && Input.GetKey(KeyCode.Mouse1) && !HasFocus())
+        else if(/*lightning.enabled*/ lightningParticles.activeInHierarchy && InputManager.Instance.Action.Kinesis.IsPressed() && !HasFocus())
         {
             //lightning.enabled = false;
             lightningParticles.SetActive(false);
             focusParticles.SetActive(false);
             isCasting = false;
         }
-        else if (Input.GetKeyUp(KeyCode.Mouse1)) 
+        else if (InputManager.Instance.Action.Kinesis.WasReleasedThisFrame()) 
         {
             //lightning.enabled = false; 
             lightningParticles.SetActive(false);

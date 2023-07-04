@@ -152,6 +152,15 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""any"",
+                    ""type"": ""Button"",
+                    ""id"": ""b8558ad5-8523-4314-8f4e-3d33262455f3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -473,6 +482,83 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""action"": ""CrouchToggle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bec4fb43-ebc5-4dd1-864e-bfa094124d95"",
+                    ""path"": ""<Keyboard>/anyKey"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""any"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2bd1afb6-9e54-49df-bdd3-ad10562555ac"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""any"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f659f712-930d-4d6a-9a85-3ca46f26f7e4"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""any"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3ba7e271-c641-445a-b802-dff98c55ce1d"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""any"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b1dd7e1d-767b-43ef-8ccd-29b98f900647"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""any"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c407d8e8-43f9-4f75-9226-98ba690e3ed0"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""any"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ec215ff1-df13-488f-ba0c-6d485ccbc69b"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""any"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -495,6 +581,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         m_Player_OpenRadialWheel = m_Player.FindAction("OpenRadialWheel", throwIfNotFound: true);
         m_Player_Escape = m_Player.FindAction("Escape", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
+        m_Player_any = m_Player.FindAction("any", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -570,6 +657,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_OpenRadialWheel;
     private readonly InputAction m_Player_Escape;
     private readonly InputAction m_Player_Interact;
+    private readonly InputAction m_Player_any;
     public struct PlayerActions
     {
         private @GameInput m_Wrapper;
@@ -588,6 +676,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         public InputAction @OpenRadialWheel => m_Wrapper.m_Player_OpenRadialWheel;
         public InputAction @Escape => m_Wrapper.m_Player_Escape;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
+        public InputAction @any => m_Wrapper.m_Player_any;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -639,6 +728,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
+            @any.started += instance.OnAny;
+            @any.performed += instance.OnAny;
+            @any.canceled += instance.OnAny;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -685,6 +777,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
+            @any.started -= instance.OnAny;
+            @any.performed -= instance.OnAny;
+            @any.canceled -= instance.OnAny;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -718,5 +813,6 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         void OnOpenRadialWheel(InputAction.CallbackContext context);
         void OnEscape(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnAny(InputAction.CallbackContext context);
     }
 }

@@ -24,12 +24,12 @@ public class WindKinesis : KinesisBase
 
 
 
-        if (Input.GetKeyDown(KeyCode.Mouse1) && HasFocus())
+        if (InputManager.Instance.Action.Kinesis.WasPressedThisFrame() && HasFocus())
         {
             OnAeroStart?.Invoke();
             isCasting = true;
         }
-        if (Input.GetKeyUp(KeyCode.Mouse1))
+        if (InputManager.Instance.Action.Kinesis.WasReleasedThisFrame())
         {
             OnAeroPush?.Invoke();
                GameManager.instance.GetPlayerResources().SpendFocus(focusCost);

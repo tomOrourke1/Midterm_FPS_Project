@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -40,7 +41,8 @@ public class CreditsRunner : MonoBehaviour
 
     private bool RunKey()
     {
-        return Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Escape) || Input.anyKey;
+        
+        return InputManager.Instance.Action.any.WasPressedThisFrame();
     }
 
     /// <summary>
