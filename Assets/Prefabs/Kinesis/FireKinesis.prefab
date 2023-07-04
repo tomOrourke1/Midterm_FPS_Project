@@ -4812,7 +4812,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!1 &1562629938496981055
+--- !u!1 &638824760248530242
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4820,107 +4820,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1562629938496981044}
-  - component: {fileID: 1562629938496981047}
-  - component: {fileID: 1562629938496981041}
-  - component: {fileID: 1562629938496981040}
-  - component: {fileID: 5039439945415418580}
-  - component: {fileID: 7528913603552864009}
+  - component: {fileID: 2709540546630184389}
+  - component: {fileID: 9006343970884610144}
   m_Layer: 0
-  m_Name: FireKinesis
-  m_TagString: PlayerSpecial
+  m_Name: SFXSource
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1562629938496981044
+--- !u!4 &2709540546630184389
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1562629938496981055}
+  m_GameObject: {fileID: 638824760248530242}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.79, y: 3.7401152, z: -7.684777}
-  m_LocalScale: {x: -0.19804555, y: -0.19804555, z: -0.19804555}
+  m_LocalPosition: {x: 0, y: -3.7870078, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 3542714535926953528}
-  - {fileID: 1785029133}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_Children: []
+  m_Father: {fileID: 1562629938496981044}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1562629938496981047
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1562629938496981055}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd78cd4820a57d840805f77b800822ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destroyTimer: 7
-  damage: 6
-  explosionRange: 3.4
-  explosion: {fileID: 5944377917015317947, guid: f791a308a7fc658489085b7523216be3, type: 3}
-  pushStrength: 15
-  upwardForce: 5
---- !u!135 &1562629938496981041
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1562629938496981055}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.79
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &1562629938496981040
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1562629938496981055}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &5039439945415418580
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1562629938496981055}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f55bafa6797929b47b0c9425228b7483, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  kinesisSouce: {fileID: 7528913603552864009}
-  pyroForm: {fileID: 0}
-  pyroHold: {fileID: 0}
-  pyroLaunch: {fileID: 0}
-  pyroExplode: {fileID: 8300000, guid: 003a656ab130b174e85e36a2f94724a9, type: 3}
---- !u!82 &7528913603552864009
+--- !u!82 &9006343970884610144
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1562629938496981055}
+  m_GameObject: {fileID: 638824760248530242}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 5298858325094725193, guid: 94efd4a4905cf0d4b932e654d29a8da0, type: 2}
@@ -5010,6 +4940,109 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1562629938496981055
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1562629938496981044}
+  - component: {fileID: 1562629938496981047}
+  - component: {fileID: 1562629938496981041}
+  - component: {fileID: 1562629938496981040}
+  - component: {fileID: 5039439945415418580}
+  m_Layer: 0
+  m_Name: FireKinesis
+  m_TagString: PlayerSpecial
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1562629938496981044
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562629938496981055}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.79, y: 3.7401152, z: -7.684777}
+  m_LocalScale: {x: -0.19804555, y: -0.19804555, z: -0.19804555}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3542714535926953528}
+  - {fileID: 1785029133}
+  - {fileID: 2709540546630184389}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1562629938496981047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562629938496981055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd78cd4820a57d840805f77b800822ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyTimer: 7
+  damage: 6
+  explosionRange: 3.4
+  explosion: {fileID: 5944377917015317947, guid: f791a308a7fc658489085b7523216be3, type: 3}
+  pushStrength: 15
+  upwardForce: 5
+  sfx: {fileID: 5039439945415418580}
+--- !u!135 &1562629938496981041
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562629938496981055}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.79
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &1562629938496981040
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562629938496981055}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &5039439945415418580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562629938496981055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f55bafa6797929b47b0c9425228b7483, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kinesisSouce: {fileID: 9006343970884610144}
+  pyroForm: {fileID: 0}
+  pyroHold: {fileID: 0}
+  pyroLaunch: {fileID: 0}
+  pyroExplode: {fileID: 8300000, guid: 003a656ab130b174e85e36a2f94724a9, type: 3}
 --- !u!1001 &3936420285706965459
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -27,6 +27,9 @@ public class LightningKinesis : KinesisBase
 
     bool doesLightning;
 
+    [Header("SFX")]
+    [SerializeField] ElectroSFX electroSFX;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -161,6 +164,7 @@ public class LightningKinesis : KinesisBase
     public void StartLightning()
     {
         doesLightning = true;
+        electroSFX.PlayElectro_Shoot();
     }
 
 

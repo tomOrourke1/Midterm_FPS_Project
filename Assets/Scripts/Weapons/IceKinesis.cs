@@ -21,7 +21,7 @@ public class IceKinesis : KinesisBase
     public UnityEvent OnCryoHold;
     public UnityEvent OnCryoThrow;
     public UnityEvent OnCryoStop;
-
+    public UnityEvent OnCryoForm;
 
     bool canFire;
     bool throwIce;

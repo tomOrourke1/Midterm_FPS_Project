@@ -9,7 +9,9 @@ public class IceSpear : MonoBehaviour
     [SerializeField] float destroyTimer;
 
     [SerializeField] GameObject breakParticles;
-    
+
+    [SerializeField] CryoSFX sfx;
+
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +29,7 @@ public class IceSpear : MonoBehaviour
         if (damagable != null)
         {
             damagable.TakeIceDamage(damage);
+            sfx.PlayCryo_Hit();
         }
         Destroy(gameObject);
     }

@@ -17,6 +17,7 @@ public class fingerGun : MonoBehaviour
     [SerializeField] UnityEvent shootEvent;
     [SerializeField] GameObject hitParticles;
 
+
     // Update is called once per frame
     void Update()
     {

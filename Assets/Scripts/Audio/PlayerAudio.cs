@@ -8,7 +8,7 @@ public class PlayerAudio : MonoBehaviour
     [SerializeField] AudioSource playerSource;
 
     [Header("Sound Effects")]
-    [SerializeField] AudioClip playerWalk;
+    [SerializeField] AudioClip[] playerWalk;
     [SerializeField] AudioClip playerDash;
     [SerializeField] AudioClip playerJump;
     [SerializeField] AudioClip playerShieldDamaged;
@@ -18,7 +18,7 @@ public class PlayerAudio : MonoBehaviour
     
     public void PlaySound_Walk()
     {
-        playerSource.PlayOneShot(playerWalk);
+        playerSource.PlayOneShot(playerWalk[Random.Range(0, playerWalk.Length)]);
     }
 
     public void PlaySound_Dash()

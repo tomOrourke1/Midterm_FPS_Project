@@ -2,17 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PickupSFX : MonoBehaviour
+public class KnifeSFX : MonoBehaviour
 {
     [Header("Audio Source")]
     [SerializeField] AudioSource source;
 
     [Header("SFX")]
-    [SerializeField] AudioClip pickupSFX;
+    [SerializeField] AudioClip sfx;
 
     public void Play_OneShot()
     {
-        source.PlayOneShot(pickupSFX);
+        source.PlayOneShot(sfx);
     }
-
 }

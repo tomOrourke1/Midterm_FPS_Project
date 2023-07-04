@@ -12,6 +12,8 @@ public class fireBall : MonoBehaviour
     [SerializeField] float pushStrength;
     [SerializeField] float upwardForce;
 
+    [SerializeField] PyroSFX sfx;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +25,8 @@ public class fireBall : MonoBehaviour
         var point = collision.GetContact(0).point;
         var norm = collision.GetContact(0).normal;
         Instantiate(explosion, transform.position, Quaternion.identity);
+        sfx.PlayPyro_Explode();
+        Debug.Log("play sfx");
 
         var colliders = Physics.OverlapSphere(transform.position, explosionRange);
         foreach (var collider in colliders)
