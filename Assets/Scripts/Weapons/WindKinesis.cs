@@ -40,12 +40,16 @@ public class WindKinesis : KinesisBase
 
             foreach (var currentHit in hits)
             {
-                var applyVel = currentHit.collider.GetComponent<IApplyVelocity>();
-
-                if(applyVel != null)
+                if(!currentHit.collider.CompareTag("Player"))
                 {
-                    applyVel.ApplyVelocity(velocity);
+                    var applyVel = currentHit.collider.GetComponent<IApplyVelocity>();
+
+                    if (applyVel != null)
+                    {
+                        applyVel.ApplyVelocity(velocity);
+                    }
                 }
+                
              }
             StopFire();
         }
