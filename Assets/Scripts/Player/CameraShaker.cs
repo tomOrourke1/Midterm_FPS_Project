@@ -57,6 +57,9 @@ public class CameraShaker : MonoBehaviour
 
     public void StartShake(float intensity, float speed, float time)
     {
+        if (doesShake)
+            return;
+
         shakeIntensity = intensity;
         shakeSpeed = speed;
         shakeTime = time;
