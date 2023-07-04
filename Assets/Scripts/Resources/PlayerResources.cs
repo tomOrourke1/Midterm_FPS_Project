@@ -12,7 +12,7 @@ public class PlayerResources : MonoBehaviour, IDamagable, IHealReciever, IFocusR
     public ShieldPool Shield => shield;
     public FocusPool Focus => focus;
 
-    [SerializeField] float ShieldBreakInvulnerabilityDuration = 0.5;
+    [SerializeField] float ShieldBreakInvulnerabilityDuration = 0.5f;
 
     [Header("--- camera shake values ---")]
     [SerializeField] float shakeIntensity;
