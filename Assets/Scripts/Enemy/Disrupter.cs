@@ -7,12 +7,16 @@ using UnityEngine;
 public class Disrupter : EnemyBase, IDamagable, IEntity
 {
     public KinesisSelect select;
-    
+    [SerializeField] SphereCollider ball;
+    [SerializeField] DisruptorField fieldScript;
+
+    [System.Obsolete]
     private void Start()
     {
         health.FillToMax();
 
         enemyColor = enemyMeshRenderer.material.color;
+        fieldScript.GetParticleSystem().startSize = ball.radius * 2f;
     }
 
 

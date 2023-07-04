@@ -27,6 +27,13 @@ public class DisruptorField : MonoBehaviour
     [Header("Cryo Colors")]
     [SerializeField] OrbMaterials cryokinesisMaterials;
 
+    [Header("Particle Field Materials")]
+    [SerializeField] Material aero;
+    [SerializeField] Material cryo;
+    [SerializeField] Material tele;
+    [SerializeField] Material electro;
+    [SerializeField] Material pyro;
+
 
     [System.Obsolete]
     private void Start()
@@ -40,36 +47,44 @@ public class DisruptorField : MonoBehaviour
         switch (picked)
         {
             case KinesisSelect.aerokinesis:
-                field.startColor = aerokinesisMaterials.GetOuter().color;
+                field.startColor = aero.color;
                 core.material = aerokinesisMaterials.GetCore();
                 inner.material = aerokinesisMaterials.GetInner();
                 outer.material = aerokinesisMaterials.GetOuter();
                 break;
 
             case KinesisSelect.electrokinesis:
+                field.startColor = electro.color;
                 core.material = electrokinesisMaterials.GetCore();
                 inner.material = electrokinesisMaterials.GetInner();
                 outer.material = electrokinesisMaterials.GetOuter();
                 break;
 
             case KinesisSelect.telekinesis:
+                field.startColor = tele.color;
                 core.material = telekinesisMaterials.GetCore();
                 inner.material = telekinesisMaterials.GetInner();
                 outer.material = telekinesisMaterials.GetOuter();
                 break;
 
             case KinesisSelect.pyrokinesis:
-                field.startColor = pyrokinesisMaterials.GetOuter().color;
+                field.startColor = pyro.color;
                 core.material = pyrokinesisMaterials.GetCore();
                 inner.material = pyrokinesisMaterials.GetInner();
                 outer.material = pyrokinesisMaterials.GetOuter();
                 break;
 
             case KinesisSelect.cryokinesis:
+                field.startColor = cryo.color;
                 core.material = cryokinesisMaterials.GetCore();
                 inner.material = cryokinesisMaterials.GetInner();
                 outer.material = cryokinesisMaterials.GetOuter();
                 break;
         }
+    }
+
+    public ParticleSystem GetParticleSystem()
+    {
+        return field;
     }
 }

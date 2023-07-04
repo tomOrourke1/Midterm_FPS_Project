@@ -8,30 +8,30 @@ public class EnemyAudio : MonoBehaviour
     [SerializeField] AudioSource source;
 
     [Header("SFX")]
-    [SerializeField] AudioClip enemyWalk;
-    [SerializeField] AudioClip enemyShoot;
-    [SerializeField] AudioClip enemyHurt;
-    [SerializeField] AudioClip enemyDeath;
+    [SerializeField] AudioClip[] enemyWalk;
+    [SerializeField] AudioClip[] enemyShoot;
+    [SerializeField] AudioClip[] enemyHurt;
+    [SerializeField] AudioClip[] enemyDeath;
 
    
     public void PlayEnemy_Walk()
     {
-        source.PlayOneShot(enemyWalk);
+        source.PlayOneShot(enemyWalk[Random.Range(0,enemyWalk.Length)]);
     }
 
     public void PlayEnemy_Shoot()
     {
-        source.PlayOneShot(enemyShoot);
+        source.PlayOneShot(enemyShoot[Random.Range(0, enemyShoot.Length)]);
     }
 
     public void PlayEnemy_Hurt()
     {
-        source.PlayOneShot(enemyHurt);
+        source.PlayOneShot(enemyHurt[Random.Range(0, enemyHurt.Length)]);
     }
 
     public void PlayEnemy_Death()
     {
-        source.PlayOneShot(enemyDeath);
+        source.PlayOneShot(enemyDeath[Random.Range(0, enemyDeath.Length)]);
     }
 
 }

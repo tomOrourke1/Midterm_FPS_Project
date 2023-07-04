@@ -10,6 +10,7 @@ public class DoorSFX : MonoBehaviour
     [Header("SFX")]
     [SerializeField] AudioClip doorOpen;
     [SerializeField] AudioClip doorClose;
+    [SerializeField] AudioClip doorUnlock;
 
     public void PlayDoor_Open()
     {
@@ -19,5 +20,10 @@ public class DoorSFX : MonoBehaviour
     public void PlayDoor_Close()
     {
         source.PlayOneShot(doorClose);
+    }
+
+    public void PlayDoor_Unlock()
+    {
+        source.PlayOneShot(doorUnlock);
     }
 }

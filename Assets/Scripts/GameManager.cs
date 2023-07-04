@@ -4,6 +4,7 @@ using TMPro;
 using System;
 using UnityEngine.SceneManagement;
 using UnityEngine.Timeline;
+using UnityEngine.EventSystems;
 
 public class GameManager : MonoBehaviour
 {
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] string nextLevel;
     string currentLevel;
 
+    private EventSystem eSys;
 
     void Awake()
     {
@@ -51,6 +53,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         timescaleOrig = Time.timeScale;
+
+        eSys = EventSystem.current;
 
         currentLevel = SceneManager.GetActiveScene().name;
 
@@ -321,5 +325,21 @@ public class GameManager : MonoBehaviour
     public string GetCurrentLevel()
     {
         return currentLevel;
+    }
+
+    /// <summary>
+    /// Turns on the event system.
+    /// </summary>
+    public void TurnOnEventSys()
+    {
+        eSys.enabled = true;
+    }
+
+    /// <summary>
+    /// Turns off the event system.
+    /// </summary>
+    public void TurnOffEventSys()
+    {
+        eSys.enabled = false;
     }
 }
