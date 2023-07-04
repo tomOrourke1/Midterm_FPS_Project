@@ -12,7 +12,7 @@ public class PlayerResources : MonoBehaviour, IDamagable, IHealReciever, IFocusR
     public ShieldPool Shield => shield;
     public FocusPool Focus => focus;
 
-
+    [SerializeField] float ShieldBreakInvulnerabilityDuration = 0.5;
 
     [Header("--- camera shake values ---")]
     [SerializeField] float shakeIntensity;
@@ -151,6 +151,16 @@ public class PlayerResources : MonoBehaviour, IDamagable, IHealReciever, IFocusR
     private void BreakShield()
     {
         UIManager.instance.FlashBreakShield();
+        StartCoroutine(ShieldInvulnerability());
+
+    }
+
+    // I know that you hate this, I'll improve it later. For now it works.
+    IEnumerator ShieldInvulnerability()
+    {
+        SetVulnerability(false);
+        yield return new WaitForSeconds(ShieldBreakInvulnerabilityDuration);
+        SetVulnerability(true);
     }
 
     void UpdateShieldDepletionRate()
