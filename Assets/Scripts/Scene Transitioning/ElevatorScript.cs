@@ -1,10 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using Unity.VisualScripting;
-using UnityEngine.InputSystem.HID;
 
 public class ElevatorScript : MonoBehaviour, IInteractable
 {
@@ -23,7 +20,10 @@ public class ElevatorScript : MonoBehaviour, IInteractable
     {
         if (image == null)
             image = UIManager.instance.GetSceneFader();
+
+
         //Debug.Log("FADE IN");
+        StopAllCoroutines();
         StartCoroutine(FadeIn());
     }
 
@@ -59,6 +59,7 @@ public class ElevatorScript : MonoBehaviour, IInteractable
         {
             // Add the Time.deltatime (interval in seconds from last frame to current frame) to the timer
             timerFadeIn -= Time.deltaTime;
+            Debug.Log(image.color.a + " " + timerFadeIn);
             // Evaluate the curve and then set that the alpha's amount
             float alphaColorFadeIn = curve.Evaluate(timerFadeIn);
             // Set the image color component to a new color of an decreased alpha
@@ -66,7 +67,6 @@ public class ElevatorScript : MonoBehaviour, IInteractable
             yield return 0;
         }
 
-        image.GameObject().SetActive(false);
     }
 
     /// <summary>
@@ -78,7 +78,6 @@ public class ElevatorScript : MonoBehaviour, IInteractable
     /// <returns></returns>
     IEnumerator FadeOut(string scene)
     {
-        image.GameObject().SetActive(true);
         // Create a float storing the timer
         float timerFadeOut = 0f;
 

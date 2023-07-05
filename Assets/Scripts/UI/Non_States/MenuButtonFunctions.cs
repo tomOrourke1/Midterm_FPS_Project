@@ -22,6 +22,7 @@ public class MenuButtonFunctions : MonoBehaviour
 
     public void ConfirmToMainMenu()
     {
+        UIManager.instance.Unpaused();
         SceneManager.LoadScene("MainMenu");
     }
 
