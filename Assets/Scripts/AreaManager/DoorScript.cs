@@ -10,7 +10,7 @@ public class DoorScript : MonoBehaviour, IEnvironment
     [SerializeField] float doorSpeed;
 
     [Header("Lock Color Changing")]
-    [SerializeField] MeshRenderer renderer;
+    [SerializeField] MeshRenderer rendererR;
     [SerializeField] Material doorEnabled;
     [SerializeField] Material doorDisabled;
 
@@ -55,7 +55,7 @@ public class DoorScript : MonoBehaviour, IEnvironment
         d = initialDoorOpen ? doorState.open : doorState.closed;
 
         // Added by Kevin for changing door material color depending on lock status
-        renderer.material = locked ? doorDisabled : doorEnabled;
+        rendererR.material = locked ? doorDisabled : doorEnabled;
 
         LockClose = false;
     }
@@ -80,7 +80,7 @@ public class DoorScript : MonoBehaviour, IEnvironment
         this.locked = locked;
 
         // Added to set the color of the door depending on lock status
-        renderer.material = locked ? doorDisabled : doorEnabled;
+        rendererR.material = locked ? doorDisabled : doorEnabled;
 
         if (!locked & !lockSFXPlayed)
         {
@@ -179,7 +179,7 @@ public class DoorScript : MonoBehaviour, IEnvironment
         SetLockStatus(initialLock);
 
         // Added to reset the original color back
-        renderer.material = locked ? doorDisabled : doorEnabled;
+        rendererR.material = locked ? doorDisabled : doorEnabled;
     }
 
     public void StopObject()

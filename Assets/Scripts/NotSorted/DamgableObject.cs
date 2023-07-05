@@ -7,7 +7,7 @@ public class DamgableObject : MonoBehaviour, IEnvironment, IDamagable
     [SerializeField] Resource durabilityPool;
  
     [SerializeField] Renderer wallMeshRenderer;
-    [SerializeField] Collider collider;
+    [SerializeField] Collider colliderC;
     [SerializeField] Material Dur3;
     [SerializeField] Material Dur2;
     [SerializeField] Material Dur1;
@@ -71,10 +71,10 @@ public class DamgableObject : MonoBehaviour, IEnvironment, IDamagable
     }
     public void Die()
     {
-        Destroy(gameObject);
+       // Destroy(gameObject);
 
-        //wallMeshRenderer.enabled = false;
-        //collider.enabled = false;
+        wallMeshRenderer.enabled = false;
+        colliderC.enabled = false;
     }
     void CheckDurability() 
     {

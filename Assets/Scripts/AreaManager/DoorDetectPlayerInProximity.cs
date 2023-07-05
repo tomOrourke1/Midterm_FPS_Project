@@ -7,19 +7,28 @@ public class DoorDetectPlayerInProximity : MonoBehaviour, IEnvironment
 {
     [SerializeField] DoorScript door;
 
+    AreaManager manager;
+
     int count;
     bool transitionMode = false;
 
-    private void Start()
+    private void Awake()
     {
         door = transform.parent.GetComponent<DoorScript>();
+        
+    }
+    private void Start()
+    {
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.isTrigger)
+            return;
+
         if (transitionMode)
         {
-            GameManager.instance.SetCurrentRoomManager(GetComponentInParent<AreaManager>());
+            GameManager.instance.SetCurrentRoomManager(manager);
 
             transitionMode = false;
         }
@@ -64,9 +73,10 @@ public class DoorDetectPlayerInProximity : MonoBehaviour, IEnvironment
         }
     }
 
-    public void EnterTransitionMode()
+    public void EnterTransitionMode(AreaManager manager)
     {
         transitionMode = true;
+        this.manager = manager;
     }
 
     public void StartObject()

@@ -46,13 +46,18 @@ public class AreaManager : MonoBehaviour
 
     int KillCounter = 0;
     bool EliteIsDead = false;
-    bool PuzzleIsComplete = false;
+    //bool PuzzleIsComplete = false;
 
     bool ObjectiveComplete = false;
 
+    private void Awake()
+    {
+        EntryDoor.GetComponentInChildren<DoorDetectPlayerInProximity>().EnterTransitionMode(this);
+        
+    }
+
     private void Start()
     {
-        EntryDoor.GetComponentInChildren<DoorDetectPlayerInProximity>().EnterTransitionMode();
 
         KillEntities();
         StopEnvironments();
@@ -128,7 +133,7 @@ public class AreaManager : MonoBehaviour
     {
         KillCounter = 0;
         EliteIsDead = false;
-        PuzzleIsComplete = false;
+        //PuzzleIsComplete = false;
 
         ObjectiveComplete = false;
 

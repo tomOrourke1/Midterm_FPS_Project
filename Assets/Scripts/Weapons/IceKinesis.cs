@@ -14,7 +14,6 @@ public class IceKinesis : KinesisBase
     [SerializeField] float ThrowForce;
     [SerializeField] float ThrowUpwardForce;
 
-    float totalCharge;
     [SerializeField] float totalChargeNeeded;
 
 
@@ -55,7 +54,6 @@ public class IceKinesis : KinesisBase
             currentSpear = Instantiate(iceSpear, attackPoint.position, Camera.main.transform.rotation);
             Vector3 forceApplied = forceDirection * ThrowForce + transform.up * ThrowUpwardForce;
             currentSpear.GetComponent<Rigidbody>().AddForce(forceApplied, ForceMode.Impulse);
-            totalCharge = 0;
             throwIce = false;
             isCasting = false;
         }

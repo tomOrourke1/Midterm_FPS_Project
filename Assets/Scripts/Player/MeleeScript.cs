@@ -20,7 +20,7 @@ public class MeleeScript : MonoBehaviour
     [SerializeField] float smallCastRadius;
 
 
-    private bool isKnifing;
+   // private bool isKnifing;
 
 
     public UnityEvent OnKnife;
@@ -85,7 +85,7 @@ public class MeleeScript : MonoBehaviour
     IEnumerator Knife()
     {
 
-        isKnifing = true;
+      //  isKnifing = true;
         RaycastHit hit;
 
         if (Physics.SphereCast(Camera.main.transform.position, smallCastRadius, Camera.main.transform.forward, out hit, smallCastRange))
@@ -100,7 +100,7 @@ public class MeleeScript : MonoBehaviour
         }
 
         yield return new WaitForSeconds(attackRate);
-        isKnifing = false;
+     //   isKnifing = false;
     }
 
     void DamageCollider(IDamagable damageable, RaycastHit hit)

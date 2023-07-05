@@ -26,7 +26,7 @@ public class MovingPlatform : MonoBehaviour, IEnvironment
     Transform initialEndPos;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         oldPos = transform.position;
         newPos = transform.position;

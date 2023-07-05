@@ -29,7 +29,7 @@ public class EnemyShield : EnemyBase, IEntity, IDamagable, IApplyVelocity
     [Header("----Events----")]
     public UnityEvent OnEnemyDeathEvent;
 
-    private bool isDead;
+    //private bool isDead;
     bool wasPushed;
     bool hasLanded;
     private void Start()
@@ -156,7 +156,7 @@ public class EnemyShield : EnemyBase, IEntity, IDamagable, IApplyVelocity
 
     void Die()
     {
-        isDead = true;
+        //isDead = true;
         OnEnemyDeathEvent?.Invoke();
         GetComponent<Collider>().enabled = false;
         // GetComponent<NavMeshAgent>().enabled = false;

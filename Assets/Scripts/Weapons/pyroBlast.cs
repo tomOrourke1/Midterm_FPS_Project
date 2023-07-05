@@ -8,8 +8,7 @@ public class pyroBlast : KinesisBase
     [Header("------ Fireball Settings ------")]
     //[SerializeField] public float focusCost;
     //[SerializeField] public float fireRate;
-    bool readyToFire;
-
+    
     [Header("------ Fireball Components ------")]
     [SerializeField] Transform attackPoint;
     [SerializeField] Rigidbody rb;
@@ -56,7 +55,7 @@ public class pyroBlast : KinesisBase
             canActivate = false;
             var currentBall = Instantiate(fireball, attackPoint.position, Quaternion.identity);
             GameManager.instance.GetPlayerResources().SpendFocus(focusCost);
-            readyToFire = false;
+            //readyToFire = false;
             //   fireballRadius.enabled = true;
 
             Vector3 forceDirection = Camera.main.transform.forward;
