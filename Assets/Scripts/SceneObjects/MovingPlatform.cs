@@ -45,7 +45,7 @@ public class MovingPlatform : MonoBehaviour, IEnvironment
 
         Velocity = (newPos - oldPos) / Time.fixedDeltaTime;
 
-        Debug.Log(Velocity);
+        //Debug.Log(Velocity);
 
         if (!waiting)
         {

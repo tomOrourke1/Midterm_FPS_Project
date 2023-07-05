@@ -7,6 +7,11 @@ public class Popup : MonoBehaviour, IPopup
     [Header("Popup Components")]
     [SerializeField] GameObject displayObj;
 
+    private void Start()
+    {
+        displayObj.SetActive(false);
+    }
+
 
     /// <summary>
     /// From the IPopup interface, sets the active game object to display how to interact to being hidden.

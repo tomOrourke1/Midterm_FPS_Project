@@ -45,6 +45,12 @@ public class SettingsManager : MonoBehaviour
 
     [SerializeField] Transform hlStorePos;
 
+    private void Start()
+    {
+        SetOriginalValues();
+        UpdateSliders();
+    }
+
     private void Awake()
     {
         Subscriber();

@@ -19,6 +19,6 @@ public class ParentSwap_MovingPlatform : MonoBehaviour
 
         applyVelocity?.ApplyVelocity(parentPlatform.gameObject.GetComponent<MovingPlatform>().GetCurrentVelocity());
 
-        Debug.LogError(parentPlatform.gameObject.GetComponent<MovingPlatform>().GetCurrentVelocity());
+        //Debug.LogError(parentPlatform.gameObject.GetComponent<MovingPlatform>().GetCurrentVelocity());
     }
 }
