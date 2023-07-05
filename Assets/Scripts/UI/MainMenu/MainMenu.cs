@@ -16,6 +16,8 @@ public class MainMenu : MonoBehaviour
     [SerializeField] GameObject settingsSelectedFirst;
     [SerializeField] GameObject mainMenuFirstSelected;
 
+    [SerializeField] MainMenuConfirmUI mmcu;
+
     [Header("Settings Components")]
     [SerializeField] GameObject settingsMenuObj;
 
@@ -48,11 +50,27 @@ public class MainMenu : MonoBehaviour
     {
         eScript.FadeTo(sceneToLoad);
     }
-
     public void ExitGame()
     {
         Application.Quit();
     }
+
+    /// <summary>
+    /// Runs the Main Menu Confirm UI Script 
+    /// </summary>
+    public void ShowConfirmMainMenu()
+    {
+        mmcu.OpenConfirm();
+    }
+
+    /// <summary>
+    /// Runs the Main Menu UI Close UI
+    /// </summary>
+    public void CloseMainMenu()
+    {
+        mmcu.CloseConfirm();
+    }
+
 
     public void ShowSettingsMenu()
     {
