@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerResources : MonoBehaviour, IDamagable, IHealReciever, IFocusReciever, IShieldReceiver
+public class PlayerResources : MonoBehaviour, IDamagable, IHealReciever, IFocusReciever, IShieldReceiver, IVoidDamage
 {
     [SerializeField] HealthPool health;
     [SerializeField] ShieldPool shield;
@@ -191,4 +191,8 @@ public class PlayerResources : MonoBehaviour, IDamagable, IHealReciever, IFocusR
         this.isVulnerable = isVulnerable;
     }
 
+    public void FallIntoTheVoid()
+    {
+        TakeDamage(float.MaxValue);
+    }
 }
