@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class MenuButtonFunctions : MonoBehaviour
@@ -14,15 +15,26 @@ public class MenuButtonFunctions : MonoBehaviour
         UIManager.instance.Unpaused();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-    public void ExitToMenu()
+    public void ExitToConfirm()
     {
-        UIManager.instance.Unpaused();
+        UIManager.instance.ShowConfirmMainMenu();
+    }
+
+    public void ConfirmToMainMenu()
+    {
         SceneManager.LoadScene("MainMenu");
     }
+
+    public void ConfirmToPause()
+    {
+        UIManager.instance.CloseMainMenu();
+    }
+
     public void ExitGame()
     {
         Application.Quit();
     }
+    
     public void NextLevel()
     {
         UIManager.instance.Unpaused();
@@ -40,4 +52,5 @@ public class MenuButtonFunctions : MonoBehaviour
     {
         UIManager.instance.uiStateMachine.SetSettingsAsync(true);
     }
+
 }

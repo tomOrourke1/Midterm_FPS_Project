@@ -22,6 +22,9 @@ public class UIManager : MonoBehaviour
     [Header("Stats UI")]
     [SerializeField] GameObject playerStatsObj;
 
+    [Header("Confirm Menu")]
+    [SerializeField] MainMenuConfirmUI confirmUIScript;
+
     [Header("Animator Components")]
     [SerializeField] Animator loseAnimController;
 
@@ -228,5 +231,21 @@ public class UIManager : MonoBehaviour
     public void FocusDepleted()
     {
         depleteScript.ShowDeplete();
+    }
+
+    /// <summary>
+    /// Runs the Main Menu Confirm UI Script 
+    /// </summary>
+    public void ShowConfirmMainMenu()
+    {
+        confirmUIScript.OpenConfirm();
+    }
+
+    /// <summary>
+    /// Runs the Main Menu UI Close UI
+    /// </summary>
+    public void CloseMainMenu()
+    {
+        confirmUIScript.CloseConfirm();
     }
 }

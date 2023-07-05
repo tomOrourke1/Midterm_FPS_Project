@@ -12,13 +12,13 @@ public class CallNext : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
 
-        if (nextObj != null )
+        if (nextObj != null)
         {
             nextObj.SetActive(true);
         }
         else
         {
-            runner?.ForceEndCredits();
+            StartCoroutine(runner?.FadeOut("MainMenu"));
         }
 
         gameObject.SetActive(false);

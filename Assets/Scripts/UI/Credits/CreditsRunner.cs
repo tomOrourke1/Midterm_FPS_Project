@@ -100,7 +100,7 @@ public class CreditsRunner : MonoBehaviour
     /// </summary> 
     /// <param name="scene">The scene to load after</param>
     /// <returns></returns>
-    IEnumerator FadeOut(string scene)
+    public IEnumerator FadeOut(string scene)
     {
         image.GameObject().SetActive(true);
         // Create a float storing the timer
