@@ -14,6 +14,11 @@ public class CreditsRunner : MonoBehaviour
     [SerializeField] AnimationCurve curve;
 
     [SerializeField] GameObject teamObj;
+    [SerializeField] GitHistoryCredits gitscript;
+
+    private float gitSpeedupOrig;
+    [SerializeField] private float gitSpedUp;
+
 
     private bool notDoublePerformingCheck = false;
     private bool forceEnd = false;
@@ -27,22 +32,40 @@ public class CreditsRunner : MonoBehaviour
     void Start()
     {
         StartCoroutine(FadeIn());
+
+        gitSpeedupOrig = gitscript.GetSpeed();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if ((RunKey() && !notDoublePerformingCheck) || forceEnd)
+        if ((RunKey() == 2 && !notDoublePerformingCheck) || forceEnd)
         {
             notDoublePerformingCheck = true;
             StartCoroutine(FadeOut("MainMenu"));
         }
+        else if(RunKey() == 1)
+        {
+            gitscript.SetSpeed(gitSpedUp);
+        }
+        else
+        {
+            gitscript.SetSpeed(gitSpeedupOrig);
+        }
     }
 
-    private bool RunKey()
+    private int RunKey()
     {
-        
-        return InputManager.Instance.Action.any.WasPressedThisFrame();
+        if(InputManager.Instance.Action.Jump.IsPressed())
+        {
+            return 1;
+        }
+
+        if(InputManager.Instance.Action.any.WasPressedThisFrame())
+        {
+            return 2;
+        }
+        return 0;
     }
 
     /// <summary>

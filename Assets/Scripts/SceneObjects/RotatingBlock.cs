@@ -99,10 +99,8 @@ public class RotatingBlock : MonoBehaviour, IEnvironment
 
     IEnumerator wait()
     {
-        Debug.Log("WAITING before the wait");
         waiting = true;
         yield return new WaitForSeconds(stopDuration);
-        Debug.Log("WAITING AFTER the wait");
 
         rotating = false;
         waiting = false;

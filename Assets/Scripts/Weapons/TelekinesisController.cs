@@ -137,7 +137,7 @@ public class TelekinesisController : KinesisBase
 
 
             Vector3 dirToDesPos = desPos - pos;
-            Debug.DrawLine(desPos, pos);
+            //Debug.DrawLine(desPos, pos);
 
 
             // account if the force is too strong

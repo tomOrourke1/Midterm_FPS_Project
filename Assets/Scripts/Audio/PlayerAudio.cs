@@ -13,7 +13,7 @@ public class PlayerAudio : MonoBehaviour
     [SerializeField] AudioClip playerJump;
     [SerializeField] AudioClip playerShieldDamaged;
     [SerializeField] AudioClip playerShieldBreak;
-    [SerializeField] AudioClip playerHurt;
+    [SerializeField] AudioClip[] playerHurt;
     [SerializeField] AudioClip playerDeath;
     
     public void PlaySound_Walk()
@@ -43,7 +43,7 @@ public class PlayerAudio : MonoBehaviour
 
     public void PlaySound_Hurt()
     {
-        playerSource.PlayOneShot(playerHurt);
+        playerSource.PlayOneShot(playerHurt[Random.Range(0, playerHurt.Length)]);
     }
 
     public void PlaySound_Death()

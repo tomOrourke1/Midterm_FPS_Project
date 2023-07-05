@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Audio;
 
-public class MainMenuMusic : MonoBehaviour
+public class CreditsMusic : MonoBehaviour
 {
     [Header("Source")]
     [SerializeField] AudioSource source;
@@ -48,5 +47,4 @@ public class MainMenuMusic : MonoBehaviour
 
         PlayTrackRandom();
     }
-
 }

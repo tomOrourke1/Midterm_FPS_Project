@@ -23,7 +23,7 @@ public class ElevatorScript : MonoBehaviour, IInteractable
     {
         if (image == null)
             image = UIManager.instance.GetSceneFader();
-        Debug.Log("FADE IN");
+        //Debug.Log("FADE IN");
         StartCoroutine(FadeIn());
     }
 
@@ -40,7 +40,7 @@ public class ElevatorScript : MonoBehaviour, IInteractable
     /// <param name="scene">The name of the scene to switch to.</param>
     public void FadeTo(string scene)
     {
-        Debug.Log(scene);
+        //Debug.Log(scene);
         StartCoroutine(FadeOut(scene));
     }
 
@@ -97,7 +97,8 @@ public class ElevatorScript : MonoBehaviour, IInteractable
 
         if (scene == "")
         {
-            Debug.Log("No scene specified in Game Manager: Heading to Main Menu -->");
+            //Debug.Log("No scene specified in Game Manager: Heading to Main Menu -->");
+
             SceneManager.LoadScene("MainMenu");
         }
         else

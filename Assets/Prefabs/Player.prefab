@@ -1286,6 +1286,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3009171625201175178}
+        m_TargetAssemblyTypeName: KnifeSFX, Assembly-CSharp
+        m_MethodName: Play_OneShot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   hitParticles: {fileID: 3847021886455464005, guid: 4c2aa85e80ac84847a42f6689dc76ce8, type: 3}
 --- !u!114 &1769448000
 MonoBehaviour:
@@ -1470,8 +1482,12 @@ MonoBehaviour:
   playerJump: {fileID: 8300000, guid: 10ac4c22950b2ff4e93c5c0bcb3bb6b0, type: 3}
   playerShieldDamaged: {fileID: 8300000, guid: 68236412bfbdb044884a69359761abd9, type: 3}
   playerShieldBreak: {fileID: 8300000, guid: 10b5178e15fa0144a9e2137a3c429937, type: 3}
-  playerHurt: {fileID: 8300000, guid: d2fd3a179ae8e744688ddda69eb2b7ea, type: 3}
-  playerDeath: {fileID: 0}
+  playerHurt:
+  - {fileID: 8300000, guid: c488a349f2216b2438c653a1c4b79532, type: 3}
+  - {fileID: 8300000, guid: 79ea0b1bd4c1ad4409c5ccdcedffaf50, type: 3}
+  - {fileID: 8300000, guid: 370d1e9d2c4074946ac52f87551f7978, type: 3}
+  - {fileID: 8300000, guid: 72c5db1781b124e4e9de10587aa85d96, type: 3}
+  playerDeath: {fileID: 8300000, guid: 5048471652e0545478434d0963a9b34c, type: 3}
 --- !u!1 &5876942699525857939
 GameObject:
   m_ObjectHideFlags: 0
@@ -1741,6 +1757,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2142224829550916407, guid: afe13f3e498187b4b8147cc0dd44ab8a, type: 3}
   m_PrefabInstance: {fileID: 150263362516403752}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3009171625201175178 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3159114735359020194, guid: afe13f3e498187b4b8147cc0dd44ab8a, type: 3}
+  m_PrefabInstance: {fileID: 150263362516403752}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37194408d940b344ca84bb45e6c133e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4916946962153604043 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5055667222086796771, guid: afe13f3e498187b4b8147cc0dd44ab8a, type: 3}

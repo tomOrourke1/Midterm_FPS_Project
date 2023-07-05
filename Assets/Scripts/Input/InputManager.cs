@@ -143,7 +143,7 @@ public class InputManager : MonoBehaviour
 
     private void OnInteract(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        UIManager.instance.uiStateMachine.SetInteract(true);
+        UIManager.instance?.uiStateMachine.SetInteract(true);
     }
 
     private void Update()

@@ -48,7 +48,7 @@ public class CasterScript : MonoBehaviour
 
                 break;
             default:
-                Debug.Log("ERROR YOU DID SOMETHING WRONG!");
+                //Debug.Log("ERROR YOU DID SOMETHING WRONG!");
                 break;
         }
     }

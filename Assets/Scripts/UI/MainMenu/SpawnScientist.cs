@@ -6,6 +6,6 @@ public class SpawnScientist : MonoBehaviour
 {
     public void Functionality()
     {
-        Debug.Log("Its alive!");
+        //Debug.Log("Its alive!");
     }
 }

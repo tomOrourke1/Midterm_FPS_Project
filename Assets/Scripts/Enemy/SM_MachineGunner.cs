@@ -92,7 +92,6 @@ public class SM_MachineGunner : EnemyBase , IDamagable, IEntity
 
     bool OnUnstunned()
     {
-        Debug.Log("kevin");
         var temp = isUnstunned;
         isUnstunned = false;
         if (temp)

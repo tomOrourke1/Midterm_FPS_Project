@@ -141,7 +141,6 @@ public class SettingsManager : MonoBehaviour
         masterMix.SetFloat("MusicVolume", Mathf.Log10(tempMusic) * 20f);
 
         masterMix.GetFloat("MasterVolume", out float tmp);
-        Debug.Log(tmp);
 
         if (SceneManager.GetActiveScene().name != "MainMenu")
         {

@@ -26,4 +26,14 @@ public class GitHistoryCredits : MonoBehaviour
             StartCoroutine(script.Next());
         }
     }
+
+    public float GetSpeed()
+    {
+        return scrollTime;
+    }
+
+    public void SetSpeed(float a)
+    {
+        scrollTime = a;
+    }
 }
