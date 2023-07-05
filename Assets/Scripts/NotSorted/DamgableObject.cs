@@ -71,8 +71,10 @@ public class DamgableObject : MonoBehaviour, IEnvironment, IDamagable
     }
     public void Die()
     {
-        wallMeshRenderer.enabled = false;
-        collider.enabled = false;
+        Destroy(gameObject);
+
+        //wallMeshRenderer.enabled = false;
+        //collider.enabled = false;
     }
     void CheckDurability() 
     {
