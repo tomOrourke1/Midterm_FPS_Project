@@ -51,7 +51,6 @@ public class WindKinesis : KinesisBase
                 }
                 
              }
-            StopFire();
         }
        
         

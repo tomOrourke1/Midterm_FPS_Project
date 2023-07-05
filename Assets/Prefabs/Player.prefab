@@ -454,12 +454,36 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1994684802488717687}
+        m_TargetAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   OnAeroStopped:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2283150852366316829}
         m_TargetAssemblyTypeName: HandAnimatorScript, Assembly-CSharp
         m_MethodName: StopAll
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1994684802488717687}
+        m_TargetAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
+        m_MethodName: Stop
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1683,6 +1707,11 @@ PrefabInstance:
 --- !u!1 &1777217396261345539 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1926457025119035179, guid: afe13f3e498187b4b8147cc0dd44ab8a, type: 3}
+  m_PrefabInstance: {fileID: 150263362516403752}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1994684802488717687 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1854177896558368607, guid: afe13f3e498187b4b8147cc0dd44ab8a, type: 3}
   m_PrefabInstance: {fileID: 150263362516403752}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &2283150852366316828 stripped
