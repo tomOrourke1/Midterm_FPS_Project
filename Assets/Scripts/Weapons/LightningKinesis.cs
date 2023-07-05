@@ -121,6 +121,9 @@ public class LightningKinesis : KinesisBase
 
             UpdateLightningNoPoint(target-attackPoint.transform.position); 
         }
+
+
+        electroSFX.PlayElectro_Shoot();
     }
 
     IEnumerator spawnHit(Vector3 point)
@@ -164,7 +167,7 @@ public class LightningKinesis : KinesisBase
     public void StartLightning()
     {
         doesLightning = true;
-        electroSFX.PlayElectro_Shoot();
+        //electroSFX.PlayElectro_Shoot();
     }
 
 
