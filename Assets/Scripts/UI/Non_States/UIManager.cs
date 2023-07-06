@@ -248,4 +248,10 @@ public class UIManager : MonoBehaviour
     {
         confirmUIScript.CloseConfirm();
     }
+
+    public IEnumerator WaitCloseConfirm()
+    {
+        yield return new WaitForSeconds(0.25f);
+        CloseMainMenu();
+    }
 }

@@ -22,6 +22,7 @@ public class PauseActivation : MenuActivation
     {
         pauseAnimController.SetBool("ExitPause", true);
         GameManager.instance.PlayMenuState();
+        StartCoroutine(UIManager.instance.WaitCloseConfirm());
     }
 
 }

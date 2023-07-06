@@ -18,18 +18,21 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] Slider masterSlider;
     [SerializeField] Slider sfxSlider;
     [SerializeField] Slider musicSlider;
+    [SerializeField] GameObject audioApplyButton;
 
     [Header("Game Sliders")]
     [SerializeField] Slider fovSlider;
     [SerializeField] Slider mouseSensSlider;
     [SerializeField] Slider controllerSensSlider;
     [SerializeField] Toggle invertYToggle;
+    [SerializeField] GameObject gameplayApplyButton;
 
     [Header("Graphics")]
     [SerializeField] GameObject hitmarkerParentObj;
     [SerializeField] Toggle hitmarkerToggle;
     [SerializeField] Image reticleImage;
     [SerializeField] RectTransform highlighterOutline;
+    [SerializeField] GameObject graphicsApplyButton;
 
     // Temp data containers
     float tempMaster;
@@ -48,13 +51,12 @@ public class SettingsManager : MonoBehaviour
     {
         SetOriginalValues();
         UpdateSliders();
+        Subscriber();
     }
 
     private void Awake()
     {
-        Subscriber();
         highlighterOutline.position = hlStorePos.position;
-        SetOriginalValues();
         UpdateSliders();
     }
 
@@ -76,8 +78,7 @@ public class SettingsManager : MonoBehaviour
         reticleImage.sprite = tempSprite;
 
         KeepKinesis();
-
-        GameManager.instance.GetPlayerScript()?.GetFov().SetOrigFov(tempFOV);// .SetOrigFov(tempFOV);
+        GetFOVControlScript().SetOrigFov(tempFOV);
     }
 
 
@@ -139,18 +140,14 @@ public class SettingsManager : MonoBehaviour
         masterMix.SetFloat("SFXVolume", Mathf.Log10(tempSFX) * 20f);
         masterMix.SetFloat("MusicVolume", Mathf.Log10(tempMusic) * 20f);
 
-        masterMix.GetFloat("MasterVolume", out float tmp);
-
         if (SceneManager.GetActiveScene().name != "MainMenu")
         {
             // Gameplay
             Camera.main.fieldOfView = tempFOV;
             Camera.main.GetComponent<CameraController>().SetSensitivity(tempMouseSens);
-            // change controller sensitivty here
             Camera.main.GetComponent<CameraController>().SetInvert(tempInvY);
-
+            ChangeControllerSensitivity();
         }
-
 
         // Graphics
         reticleImage.sprite = tempSprite;
@@ -174,11 +171,56 @@ public class SettingsManager : MonoBehaviour
         settings.teleOn = GameManager.instance.GetEnabledList().TeleEnabled();
     }
 
-    private IEnumerator WaitADamnSecond()
+    /// <summary>
+    /// Used in Settings > Audio > Apply
+    /// </summary>
+    public void ApplyAudioButton()
     {
-        yield return new WaitForSeconds(0.5f);
-        UpdateObjectsToValues();
+        settings.masterVol = tempMaster;
+        settings.sfxVol = tempSFX;
+        settings.musicVol = tempMusic;
+
+        masterMix.SetFloat("MasterVolume", Mathf.Log10(tempMaster) * 20f);
+        masterMix.SetFloat("SFXVolume", Mathf.Log10(tempSFX) * 20f);
+        masterMix.SetFloat("MusicVolume", Mathf.Log10(tempMusic) * 20f);
     }
+
+    /// <summary>
+    /// Used in Settings > Graphics > Apply
+    /// </summary>
+    public void ApplyGraphicsButton()
+    {
+        hitmarkerParentObj.SetActive(tempHitmarkerEnabled);
+        reticleImage.sprite = tempSprite;
+
+        reticleImage.sprite = tempSprite;
+        hitmarkerParentObj.SetActive(tempHitmarkerEnabled);
+    }
+
+    /// <summary>
+    /// Used in Settings > Gameplay > Apply
+    /// </summary>
+    public void ApplyGameplayButton()
+    {
+        settings.fieldOfView = tempFOV;
+        settings.mouseSensitivity = tempMouseSens;
+        settings.controllerSensitivty = tempControllerSens;
+        settings.invertY = tempInvY;
+
+        if (SceneManager.GetActiveScene().name != "MainMenu")
+        {
+            Camera.main.fieldOfView = tempFOV;
+            Camera.main.GetComponent<CameraController>().SetSensitivity(tempMouseSens);
+            Camera.main.GetComponent<CameraController>().SetInvert(tempInvY);
+            ChangeControllerSensitivity();
+        }
+    }
+
+    private void ChangeControllerSensitivity()
+    {
+        // change controller sensitivity in here
+    }
+
 
     // ================================================================================
     //         SUBSCRIPTION BASED EVENTS BELOW - DON'T TOUCH PLEASE AND THANK YOU
@@ -238,4 +280,8 @@ public class SettingsManager : MonoBehaviour
         tempHitmarkerEnabled = value;
     }
 
+    private FOVController GetFOVControlScript()
+    {
+        return GameManager.instance.GetPlayerScript()?.GetFov();
+    }
 }
