@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class CountedActivationScript : MonoBehaviour, IEnvironment 
+public class CountedActivationScript : MonoBehaviour, IEnvironment
 {
-
-
     [SerializeField] int desiredCount;
 
     [SerializeField] UnityEvent activationEvent;
+    [SerializeField] UnityEvent deactivationEvent;
+
+    [SerializeField] bool Reverseable;
 
 
     int count;
@@ -25,27 +26,25 @@ public class CountedActivationScript : MonoBehaviour, IEnvironment
     {
         count++;
 
-        if(count >= desiredCount && !activated)
+        if (count >= desiredCount && !activated)
         {
             activationEvent?.Invoke();
             activated = true;
         }
     }
 
-    public void Decrement() 
-    { 
-        count--; 
-
-        if(count < desiredCount)
-        {
-            activated = false;
-        }
-    }
-
-    public void ResetObject()
+    public void Decrement()
     {
-        count = 0;
-        activated = false;
+        count--;
+
+        if (count < desiredCount)
+        {
+            if (Reverseable)
+            {
+                deactivationEvent?.Invoke();
+                activated = false;
+            }
+        }
     }
 
     public void StopObject()
@@ -55,6 +54,7 @@ public class CountedActivationScript : MonoBehaviour, IEnvironment
 
     public void StartObject()
     {
-
+        count = 0;
+        activated = false;
     }
 }
