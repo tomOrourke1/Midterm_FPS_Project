@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -49,8 +50,6 @@ public class SettingsManager : MonoBehaviour
 
     private void Start()
     {
-        SetOriginalValues();
-        UpdateSliders();
         Subscriber();
     }
 
@@ -58,6 +57,30 @@ public class SettingsManager : MonoBehaviour
     {
         highlighterOutline.position = hlStorePos.position;
         UpdateSliders();
+    }
+
+    /// <summary>
+    /// Only called in Game Manager, don't use anywhere else.
+    /// </summary>
+    public void ForceStartValues()
+    {
+        masterMix.SetFloat("MasterVolume", Mathf.Log10(settings.masterVol) * 20f);
+        masterMix.SetFloat("SFXVolume", Mathf.Log10(settings.sfxVol) * 20f);
+        masterMix.SetFloat("MusicVolume", Mathf.Log10(settings.musicVol) * 20f);
+
+        Camera.main.fieldOfView = settings.fieldOfView;
+        Camera.main.GetComponent<CameraController>().SetSensitivity(settings.mouseSensitivity);
+        Camera.main.GetComponent<CameraController>().SetInvert(settings.invertY);
+
+        // Add the code thats in ChangeCameraSensitivty() in here because this is using settings obj values not the other ones
+
+        hitmarkerParentObj.SetActive(settings.hitmarkerEnabled);
+        reticleImage.sprite = settings.currentRetical;
+
+
+        SetOriginalValues();
+        UpdateSliders();
+
     }
 
     public void SaveToSettingsObj()
@@ -183,6 +206,8 @@ public class SettingsManager : MonoBehaviour
         masterMix.SetFloat("MasterVolume", Mathf.Log10(tempMaster) * 20f);
         masterMix.SetFloat("SFXVolume", Mathf.Log10(tempSFX) * 20f);
         masterMix.SetFloat("MusicVolume", Mathf.Log10(tempMusic) * 20f);
+
+        EventSystem.current.SetSelectedGameObject(audioApplyButton);
     }
 
     /// <summary>
@@ -195,6 +220,8 @@ public class SettingsManager : MonoBehaviour
 
         reticleImage.sprite = tempSprite;
         hitmarkerParentObj.SetActive(tempHitmarkerEnabled);
+
+        EventSystem.current.SetSelectedGameObject(graphicsApplyButton);
     }
 
     /// <summary>
@@ -214,9 +241,11 @@ public class SettingsManager : MonoBehaviour
             Camera.main.GetComponent<CameraController>().SetInvert(tempInvY);
             ChangeControllerSensitivity();
         }
+
+        EventSystem.current.SetSelectedGameObject(gameplayApplyButton);
     }
 
-    private void ChangeControllerSensitivity()
+    public void ChangeControllerSensitivity()
     {
         // change controller sensitivity in here
     }

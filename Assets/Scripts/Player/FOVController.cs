@@ -30,6 +30,7 @@ public class FOVController : MonoBehaviour
     bool handChanging;
     private void Start()
     {
+        origFov = GameManager.instance.GOFOV();
         handCamFov = handCam.fieldOfView;
     }
 

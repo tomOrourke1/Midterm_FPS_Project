@@ -57,7 +57,7 @@ public class PlayerScript : MonoBehaviour
 
         GameManager.instance.GetKeyChain().Clear();
 
-        if (GameManager.instance.GetPlayerSpawnPOS().transform.parent?.GetComponent<CheckPointSetter>() != null)
+        if (GameManager.instance.GetPlayerSpawnPOS()?.transform.parent?.GetComponent<CheckPointSetter>() != null)
         {
             GameManager.instance.GetKeyChain().addKeys(GameManager.instance.GetPlayerSpawnPOS().transform.parent.GetComponent<CheckPointSetter>().GetKeysHeld());
         }

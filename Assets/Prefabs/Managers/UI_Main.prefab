@@ -7693,17 +7693,17 @@ MonoBehaviour:
   masterSlider: {fileID: 3093419228991087438}
   sfxSlider: {fileID: 405612126397351466}
   musicSlider: {fileID: 5309292709340700084}
-  audioApplyButton: {fileID: 0}
+  audioApplyButton: {fileID: 4017775168645829822}
   fovSlider: {fileID: 6600408728889081380}
   mouseSensSlider: {fileID: 2527289734760680902}
   controllerSensSlider: {fileID: 942831799510720221}
   invertYToggle: {fileID: 6268633914311831652}
-  gameplayApplyButton: {fileID: 0}
+  gameplayApplyButton: {fileID: 2679647711456343693}
   hitmarkerParentObj: {fileID: 8152793537435899874}
   hitmarkerToggle: {fileID: 4747716665194003806}
   reticleImage: {fileID: 1886728015193708851}
   highlighterOutline: {fileID: 3902260879959687778}
-  graphicsApplyButton: {fileID: 0}
+  graphicsApplyButton: {fileID: 1474987729440582032}
   hlStorePos: {fileID: 3902260879959687778}
 --- !u!1 &2322299764107087010
 GameObject:
@@ -10238,8 +10238,8 @@ RectTransform:
   m_Father: {fileID: 8810957921262332241}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 25, y: 0}
   m_SizeDelta: {x: 50, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -10353,7 +10353,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -0.00012207031, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -11287,7 +11287,7 @@ MonoBehaviour:
   m_MinValue: 200
   m_MaxValue: 500
   m_WholeNumbers: 0
-  m_Value: 200
+  m_Value: 500
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -14836,7 +14836,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -0.00012207031, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -16772,9 +16772,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187b504266619234aa8904b63bab4f93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  a:
-    m_PersistentCalls:
-      m_Calls: []
   uiStateMachine: {fileID: 636357373037390307}
   radialScript: {fileID: 198655326078740097}
   statsUIRef: {fileID: 866238320461390695}
@@ -20857,8 +20854,8 @@ RectTransform:
   m_Father: {fileID: 5084801394672616778}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 25, y: 0}
   m_SizeDelta: {x: 50, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -23160,10 +23157,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 9124718194580243180}
   m_HandleRect: {fileID: 4728600397186584978}
   m_Direction: 0
-  m_MinValue: 1
-  m_MaxValue: 25
+  m_MinValue: 0.001
+  m_MaxValue: 10
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 10
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []

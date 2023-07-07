@@ -63,6 +63,7 @@ public class GameManager : MonoBehaviour
             settingsManager.settings.currentScene = currentLevel;
         }
 
+        settingsManager.ForceStartValues();
         WakeUpKinesis();
     }
 
@@ -341,5 +342,13 @@ public class GameManager : MonoBehaviour
     public void TurnOffEventSys()
     {
         eSys.enabled = false;
+    }
+
+    /// <summary>
+    /// Gets original FOV.
+    /// </summary>
+    public float GOFOV()
+    {
+        return settingsManager.settings.fieldOfView;
     }
 }
