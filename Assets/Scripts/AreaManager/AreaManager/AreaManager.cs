@@ -206,7 +206,7 @@ public class AreaManager : MonoBehaviour
         return Spawners;
     }
 
-    void ReadTheRoom()
+    public void ReadTheRoom()
     {
         // Stores the spawns
         if (Spawners != null)
@@ -251,9 +251,19 @@ public class AreaManager : MonoBehaviour
             }
             else
             {
-                Instantiate(Entities[i], Spawners[i].GetTransform().position, Spawners[i].GetTransform().rotation, gameObject.transform);
+                GameObject spawned = Instantiate(Entities[i], Spawners[i].GetTransform().position, Spawners[i].GetTransform().rotation, gameObject.transform);
+
+                if (spawned.GetComponent<KeyScript>() != null)
+                {
+                    spawned.GetComponent<KeyScript>().SetSpawner(i);
+                }
             }
         }
+    }
+
+    public void CallDeath(int i)
+    {
+        Spawners[i].MyEnemyDied();
     }
 
     void KillEntities()

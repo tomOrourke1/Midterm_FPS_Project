@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class KeyScript : MonoBehaviour, IEntity, IVoidDamage
 {
+    int spawnIndex;
+
     /// <summary>
     /// When the player enters the collider, check to make sure it is the player. 
     /// Then check to make sure the player can pickup the key. They must have one less than the max.
@@ -17,10 +19,17 @@ public class KeyScript : MonoBehaviour, IEntity, IVoidDamage
             if (GameManager.instance.GetKeyChain().GetKeys() < GameManager.instance.GetKeyChain().GetMaxKeys())
             {
                 GameManager.instance.GetKeyChain().addKeys(1);
+                GameManager.instance.GetCurrentRoomManager().CallDeath(spawnIndex);
                 Destroy(gameObject);
             }
         }
     }
+
+    public void SetSpawner(int i)
+    {
+        spawnIndex = i;
+    }
+
 
     /// <summary>
     /// When the room is respawned it will destroy all dropped keys.
@@ -37,6 +46,7 @@ public class KeyScript : MonoBehaviour, IEntity, IVoidDamage
         if (GameManager.instance.GetKeyChain().GetKeys() < GameManager.instance.GetKeyChain().GetMaxKeys())
         {
             GameManager.instance.GetKeyChain().addKeys(1);
+            GameManager.instance.GetCurrentRoomManager().CallDeath(spawnIndex);
             Destroy(gameObject);
         }
     }

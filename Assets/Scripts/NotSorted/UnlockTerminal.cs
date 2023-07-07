@@ -38,11 +38,16 @@ public class UnlockTerminal : MonoBehaviour, IInteractable, IEnvironment
 
     public void StartObject()
     {
+        //Debug.Log("Hello?");
         GetComponent<MeshRenderer>().material = LockedMaterial;
     }
 
     public void StopObject()
     {
+        GetComponent<MeshRenderer>().material = LockedMaterial;
+
+        //Debug.Log("Hello?");
+        //Debug.Log(GetComponent<MeshRenderer>().material == LockedMaterial);
         Deactivate.Invoke();
     }
 }

@@ -7,6 +7,8 @@ public class CheckPointSetter : MonoBehaviour
     private GameObject CheckPoint;
     [SerializeField] GameObject CheckPointPos;
 
+    int KeysHeld = 0;
+
     private void OnTriggerEnter(Collider other)
     {
         //checks if player enters the collider
@@ -16,6 +18,7 @@ public class CheckPointSetter : MonoBehaviour
             {
                 SetCheckPoint();
                 RemoveEnemySpawns();
+                SaveKeys();
                 UIManager.instance.SaveIcon();
             }
         }
@@ -39,4 +42,12 @@ public class CheckPointSetter : MonoBehaviour
             }
         }
     }
+
+    private void SaveKeys()
+    {
+        //Debug.LogError("Save Keys");
+        KeysHeld = GameManager.instance.GetKeyChain().GetKeys();
+    }
+
+    public int GetKeysHeld() { return KeysHeld; }
 }

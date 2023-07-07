@@ -49,7 +49,8 @@ public class CountedActivationScript : MonoBehaviour, IEnvironment
 
     public void StopObject()
     {
-
+        count = 0;
+        activated = false;
     }
 
     public void StartObject()

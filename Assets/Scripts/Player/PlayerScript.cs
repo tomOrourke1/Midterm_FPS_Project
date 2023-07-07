@@ -42,7 +42,7 @@ public class PlayerScript : MonoBehaviour
     public void RespawnPlayer()
     {
         controller.enabled = false;
-        if(GameManager.instance != null && GameManager.instance.GetPlayerSpawnPOS() != null)
+        if (GameManager.instance != null && GameManager.instance.GetPlayerSpawnPOS() != null)
         {
             var tran = GameManager.instance.GetPlayerSpawnPOS().transform;
             transform.position = tran.position;
@@ -50,10 +50,17 @@ public class PlayerScript : MonoBehaviour
             forward.y = 0;
             forward.Normalize();
             transform.rotation = Quaternion.LookRotation(forward);
+
+
         }
         controller.enabled = true;
 
         GameManager.instance.GetKeyChain().Clear();
+
+        if (GameManager.instance.GetPlayerSpawnPOS().transform.parent?.GetComponent<CheckPointSetter>() != null)
+        {
+            GameManager.instance.GetKeyChain().addKeys(GameManager.instance.GetPlayerSpawnPOS().transform.parent.GetComponent<CheckPointSetter>().GetKeysHeld());
+        }
 
         UpdatePlayerStats();
     }
