@@ -41,7 +41,7 @@ public class InputManager : MonoBehaviour
 
         InputSystem.onDeviceChange += ChangeDevice;
         pInput.onControlsChanged += ControlsChanged;
-        
+
     }
 
     private void ControlsChanged(PlayerInput input)
@@ -138,8 +138,14 @@ public class InputManager : MonoBehaviour
 
     private void OnEscape(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        MainMenu.instance?.ToggleSettings();
-        UIManager.instance?.uiStateMachine?.SetOnEscape(true);
+        if (GameManager.instance.GetCurrentLevel() == "MainMenu")
+        {
+            MainMenu.instance?.ToggleSettings();
+        }
+        else
+        {
+            UIManager.instance?.uiStateMachine?.SetOnEscape(true);
+        }
     }
 
     private void OnInteract(UnityEngine.InputSystem.InputAction.CallbackContext context)
@@ -157,6 +163,6 @@ public class InputManager : MonoBehaviour
 
     public void ChangeInput()
     {
-        
+
     }
 }

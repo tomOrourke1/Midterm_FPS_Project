@@ -135,5 +135,8 @@ public class MainMenu : MonoBehaviour
         {
             ShowSettingsMenu();
         }
+
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(mainMenuFirstSelected);
     }
 }
