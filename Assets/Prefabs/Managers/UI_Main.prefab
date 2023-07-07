@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &18075365
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16896,7 +16896,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashDamage: {fileID: 18075366}
   flashShield: {fileID: 8054867426942006758}
-  screenCrack: {fileID: 6630890389141353526}
+  flashCrack: {fileID: 6630890389141353526}
+  flashSpeedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: -0.0062561035
+      inSlope: 0.011916388
+      outSlope: 0.011916388
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 1
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: 0.010416706
+      outSlope: 0.010416706
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 1
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0.0125
+      outSlope: -0.0125
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 1
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  showDuration: 1
 --- !u!114 &866238320461390695
 MonoBehaviour:
   m_ObjectHideFlags: 0

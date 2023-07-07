@@ -356,33 +356,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2451634594581813860}
     m_Modifications:
-    - target: {fileID: 18075364, guid: d3e1397c13fe1c5499ce82a0ff389be3, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3077749696248561081, guid: d3e1397c13fe1c5499ce82a0ff389be3, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3077749696248561081, guid: d3e1397c13fe1c5499ce82a0ff389be3, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3077749696248561081, guid: d3e1397c13fe1c5499ce82a0ff389be3, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3077749696248561081, guid: d3e1397c13fe1c5499ce82a0ff389be3, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3077749696248561081, guid: d3e1397c13fe1c5499ce82a0ff389be3, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3077749696248561081, guid: d3e1397c13fe1c5499ce82a0ff389be3, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
+    - target: {fileID: 1222254770142835281, guid: d3e1397c13fe1c5499ce82a0ff389be3, type: 3}
+      propertyPath: m_Name
+      value: FlashCrack
       objectReference: {fileID: 0}
     - target: {fileID: 5661053257741582640, guid: d3e1397c13fe1c5499ce82a0ff389be3, type: 3}
       propertyPath: m_Name
@@ -474,78 +450,57 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5988196484222682889, guid: d3e1397c13fe1c5499ce82a0ff389be3, type: 3}
       propertyPath: showDuration
-      value: 1
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 5988196484222682889, guid: d3e1397c13fe1c5499ce82a0ff389be3, type: 3}
       propertyPath: flashSpeedCurve.m_Curve.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5988196484222682889, guid: d3e1397c13fe1c5499ce82a0ff389be3, type: 3}
       propertyPath: flashSpeedCurve.m_Curve.Array.data[1].time
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5988196484222682889, guid: d3e1397c13fe1c5499ce82a0ff389be3, type: 3}
-      propertyPath: flashSpeedCurve.m_Curve.Array.data[2].time
-      value: 1
+      propertyPath: flashSpeedCurve.m_Curve.Array.data[0].value
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5988196484222682889, guid: d3e1397c13fe1c5499ce82a0ff389be3, type: 3}
       propertyPath: flashSpeedCurve.m_Curve.Array.data[1].value
-      value: 1
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988196484222682889, guid: d3e1397c13fe1c5499ce82a0ff389be3, type: 3}
+      propertyPath: flashSpeedCurve.m_Curve.Array.data[0].inSlope
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5988196484222682889, guid: d3e1397c13fe1c5499ce82a0ff389be3, type: 3}
       propertyPath: flashSpeedCurve.m_Curve.Array.data[1].inSlope
-      value: -0.016558506
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5988196484222682889, guid: d3e1397c13fe1c5499ce82a0ff389be3, type: 3}
-      propertyPath: flashSpeedCurve.m_Curve.Array.data[2].inSlope
-      value: -0.5836979
-      objectReference: {fileID: 0}
-    - target: {fileID: 5988196484222682889, guid: d3e1397c13fe1c5499ce82a0ff389be3, type: 3}
-      propertyPath: flashSpeedCurve.m_Curve.Array.data[1].inWeight
-      value: 0.33333334
+      propertyPath: flashSpeedCurve.m_Curve.Array.data[0].outSlope
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5988196484222682889, guid: d3e1397c13fe1c5499ce82a0ff389be3, type: 3}
       propertyPath: flashSpeedCurve.m_Curve.Array.data[1].outSlope
-      value: -0.016558506
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5988196484222682889, guid: d3e1397c13fe1c5499ce82a0ff389be3, type: 3}
-      propertyPath: flashSpeedCurve.m_Curve.Array.data[2].inWeight
-      value: 0.7580192
-      objectReference: {fileID: 0}
-    - target: {fileID: 5988196484222682889, guid: d3e1397c13fe1c5499ce82a0ff389be3, type: 3}
-      propertyPath: flashSpeedCurve.m_Curve.Array.data[2].outSlope
-      value: -0.5836979
+      propertyPath: flashSpeedCurve.m_Curve.Array.data[0].outWeight
+      value: 0.33333334
       objectReference: {fileID: 0}
     - target: {fileID: 5988196484222682889, guid: d3e1397c13fe1c5499ce82a0ff389be3, type: 3}
       propertyPath: flashSpeedCurve.m_Curve.Array.data[1].outWeight
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7213646295399266878, guid: d3e1397c13fe1c5499ce82a0ff389be3, type: 3}
-      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7213646295399266878, guid: d3e1397c13fe1c5499ce82a0ff389be3, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
+    - target: {fileID: 5988196484222682889, guid: d3e1397c13fe1c5499ce82a0ff389be3, type: 3}
+      propertyPath: flashSpeedCurve.m_Curve.Array.data[0].tangentMode
+      value: 34
       objectReference: {fileID: 0}
-    - target: {fileID: 7213646295399266878, guid: d3e1397c13fe1c5499ce82a0ff389be3, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
+    - target: {fileID: 5988196484222682889, guid: d3e1397c13fe1c5499ce82a0ff389be3, type: 3}
+      propertyPath: flashSpeedCurve.m_Curve.Array.data[1].tangentMode
+      value: 34
       objectReference: {fileID: 0}
-    - target: {fileID: 7213646295399266878, guid: d3e1397c13fe1c5499ce82a0ff389be3, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7213646295399266878, guid: d3e1397c13fe1c5499ce82a0ff389be3, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7213646295399266878, guid: d3e1397c13fe1c5499ce82a0ff389be3, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3396096032480529634, guid: d3e1397c13fe1c5499ce82a0ff389be3, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3e1397c13fe1c5499ce82a0ff389be3, type: 3}
 --- !u!224 &6123918321345983114 stripped
 RectTransform:
