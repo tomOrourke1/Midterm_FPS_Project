@@ -66,6 +66,7 @@ public class TelekinesisController : KinesisBase
     {
         if (InputManager.Instance.Action.Kinesis.WasPressedThisFrame())
         {
+          
             // suck item
 
             Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f));
@@ -110,6 +111,7 @@ public class TelekinesisController : KinesisBase
     {
         if (stachedObject != null && !IsObjectNull())
         {
+            base.DisableOpenRadial();
             float distToPos = Vector3.Distance(stachedObject.transform.position, desiredPos.position);
             //Debug.Log(stachedObject.GetVolitile());
             if (distToPos <= 1)
@@ -201,6 +203,7 @@ public class TelekinesisController : KinesisBase
                 }
 
                 stachedObject.TakeVelocity(dir.normalized * pushForce);
+                base.EnableOpenRadial();
             }
             else
             {
@@ -212,7 +215,7 @@ public class TelekinesisController : KinesisBase
                     stachedObject.TakeVelocity(releaseForce * (vel.normalized));
                 }
 
-
+                base.EnableOpenRadial();
                 
 
             }

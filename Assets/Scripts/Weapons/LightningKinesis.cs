@@ -56,7 +56,7 @@ public class LightningKinesis : KinesisBase
                 LookCast();
                 //lightning.enabled = true;
                 lightningParticles.SetActive(true);
-
+                base.DisableOpenRadial();
             }
 
         }
@@ -66,6 +66,7 @@ public class LightningKinesis : KinesisBase
             lightningParticles.SetActive(false);
             focusParticles.SetActive(false);
             isCasting = false;
+            base.EnableOpenRadial();
         }
         else if (InputManager.Instance.Action.Kinesis.WasReleasedThisFrame()) 
         {
@@ -75,6 +76,7 @@ public class LightningKinesis : KinesisBase
             doesLightning = false;
             focusParticles.SetActive(false);
             isCasting = false;
+            base.EnableOpenRadial();
         }
     }
     void LookCast()
@@ -184,5 +186,6 @@ public class LightningKinesis : KinesisBase
         doesLightning = false;
 
         OnElectroForceStop?.Invoke();
+        base.EnableOpenRadial();
     }
 }
