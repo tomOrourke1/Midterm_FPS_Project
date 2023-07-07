@@ -32,6 +32,7 @@ public class IceKinesis : KinesisBase
          //currentSpear = Instantiate(iceSpear, attackPoint.position, Quaternion.identity);
             OnCryoHold?.Invoke();
             isCasting = true;
+            base.DisableOpenRadial();
         }
         if (!InputManager.Instance.Action.Kinesis.IsPressed() && canFire)
         {
@@ -54,8 +55,11 @@ public class IceKinesis : KinesisBase
             currentSpear = Instantiate(iceSpear, attackPoint.position, Camera.main.transform.rotation);
             Vector3 forceApplied = forceDirection * ThrowForce + transform.up * ThrowUpwardForce;
             currentSpear.GetComponent<Rigidbody>().AddForce(forceApplied, ForceMode.Impulse);
+            
             throwIce = false;
             isCasting = false;
+            
+            base.EnableOpenRadial();
         }
 
 
@@ -86,5 +90,9 @@ public class IceKinesis : KinesisBase
 
 
         OnCryoStop?.Invoke();
+        base.EnableOpenRadial();
+
     }
+
+
 }

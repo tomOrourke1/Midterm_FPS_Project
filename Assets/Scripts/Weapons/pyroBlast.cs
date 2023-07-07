@@ -38,6 +38,7 @@ public class pyroBlast : KinesisBase
 
         if (InputManager.Instance.Action.Kinesis.WasPressedThisFrame() && HasFocus())
         {
+            base.DisableOpenRadial();
             OnFireHold?.Invoke();
             fireFocusParticles.SetActive(true);
             //    fireballRadius.enabled = false;
@@ -46,6 +47,7 @@ public class pyroBlast : KinesisBase
         }
         if (!InputManager.Instance.Action.Kinesis.IsPressed() && isReady)
         {
+            base.DisableOpenRadial();
             OnFireThrow?.Invoke();
             isReady = false;
             fireFocusParticles.SetActive(false);
@@ -73,6 +75,7 @@ public class pyroBlast : KinesisBase
             fireFocusParticles.SetActive(false);
 
             isCasting = false;
+            base.EnableOpenRadial();
         }
 
     }
@@ -96,6 +99,7 @@ public class pyroBlast : KinesisBase
 
     public override void StopFire()
     {
+        base.EnableOpenRadial();
         isReady = false;
         isCasting = false;
         canActivate = false;

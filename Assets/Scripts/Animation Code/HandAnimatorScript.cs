@@ -67,7 +67,14 @@ public class HandAnimatorScript : MonoBehaviour
     }
 
 
-
+    public void PlayAeroHold()
+    {
+        leftHandAnimator.SetBool("Aero", true);
+    }
+    public void PLayAeroThrow()
+    {
+        leftHandAnimator.SetBool("Aero", false);
+    }
 
     public void StopAll()
     {
@@ -75,7 +82,7 @@ public class HandAnimatorScript : MonoBehaviour
         leftHandAnimator.SetBool("Electro", false);
         leftHandAnimator.SetBool("Cryo", false);
         leftHandAnimator.SetBool("Telekinesis", false);
-
+        leftHandAnimator.SetBool("Aero", false );
 
         leftHandAnimator.Play("LeftHandIdle");
         rightHandAnimator.Play("RightHandIdle");
