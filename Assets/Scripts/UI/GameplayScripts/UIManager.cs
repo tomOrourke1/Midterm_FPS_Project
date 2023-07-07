@@ -1,4 +1,3 @@
-
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -17,8 +16,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] RadialMenu radialScript;
     [SerializeField] PlayerStatsUI statsUIRef;
     [SerializeField] KeyUI keyScriptRef;
-    [SerializeField] KeybindsMenu keybinds;
     [SerializeField] LoadingIcon loadingIconScript;
+    [SerializeField] DamageIndicator damageIndicatorScript;
 
     [Header("Stats UI")]
     [SerializeField] GameObject playerStatsObj;
@@ -53,19 +52,13 @@ public class UIManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Pauses the game. Shows the cursor and unlocks it.
+    /// Runs the lose game logic, also sets the active menu to the lose menu.
+    /// Also pauses the game.
     /// </summary>
-    public void PauseGame()
+    public void LoseGame()
     {
-        GameManager.instance.PauseMenuState();
-    }
-
-    /// <summary>
-    /// Unpauses the game. Resets the cursor back to being invisible and locked.
-    /// </summary>
-    public void Unpaused()
-    {
-        GameManager.instance.PlayMenuState();
+        GameManager.instance.TimePause();
+        GameManager.instance.MouseUnlockShow();
     }
 
     /// <summary>
@@ -76,23 +69,7 @@ public class UIManager : MonoBehaviour
         radialScript.SelectSlice();
     }
 
-    /// <summary>
-    /// Closes the settings menu and shows the pause menu. Also sets the ActiveMenu to the pause menu.
-    /// </summary>
-    public void ApplySettings()
-    {
-        GameManager.instance.GetSettingsManager().SaveToSettingsObj();
-        GameManager.instance.GetSettingsManager().UpdateObjectsToValues();
-    }
-
-    /// <summary>
-    /// Cancels the users settings and closes the settings menu without saving them to the scriptable object.
-    /// </summary>
-    public void CancelSettings()
-    {
-        GameManager.instance.GetSettingsManager().CancelSettingsObj();
-    }
-
+    #region Camera Enable/Disable
     /// <summary>
     /// Turns off the player's camera script so the radial menu can update.
     /// Should only be called in the ShowRadialMenu Script.
@@ -110,16 +87,7 @@ public class UIManager : MonoBehaviour
     {
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>().enabled = true;
     }
-
-    /// <summary>
-    /// Runs the lose game logic, also sets the active menu to the lose menu.
-    /// Also pauses the game.
-    /// </summary>
-    public void LoseGame()
-    {
-        GameManager.instance.TimePause();
-        GameManager.instance.MouseUnlockShow();
-    }
+    #endregion
 
     /// <summary>
     /// Sets the | Pause Menu, Win Menu, Lose Menu, Settings Menu, Radial Menu, and Hitmarker (image) |
@@ -130,6 +98,128 @@ public class UIManager : MonoBehaviour
         hitmarker.SetActive(false);
         objToShow.SetActive(false);
         savingIcon.SetActive(false);
+    }
+
+    #region FlashDamage Image StartCoroutines
+    /// <summary>
+    /// Flashes the screen with the shield breaking image.
+    /// Should only be used in the PlayerResource script.
+    /// </summary>
+    public void FlashBreakShield()
+    {
+        StartCoroutine(flashImageScript.CrackShieldDisplay());
+    }
+
+    /// <summary>
+    /// Flashes the screen when the player takes damage (that is of thier hp). 
+    /// Should only be used in the PlayerResource script.
+    /// </summary>
+    public void FlashPlayerHealthHit()
+    {
+        StartCoroutine(flashImageScript.FlashDamageDisplay());
+    }
+
+    /// <summary>
+    /// Flashes the screen with the shield damage image.
+    /// Should only be used in the PlayerResource script.
+    /// </summary>
+    public void FlashPlayerShieldHit()
+    {
+        StartCoroutine(flashImageScript.FlashShieldDisplay());
+    }
+    #endregion
+    
+    /// <summary>
+    /// Shows the info menu for item pickups.
+    /// </summary>
+    /// <param name="img">The image of the item.</param>
+    /// <param name="name">The name of the item.</param>
+    public void ShowInfoUI(Sprite img, string name)
+    {
+        GameManager.instance.TimePause();
+        objToShow.SetActive(true);
+        textToReplace.text = name;
+        displayedImage.sprite = img;
+    }
+
+    /// <summary>
+    /// Runs the saving icon at the bottom right of the screen
+    /// </summary>
+    public void SaveIcon()
+    {
+        savingIcon.SetActive(true);
+        loadingIconScript.WakeUp();
+    }
+
+    /// <summary>
+    /// Flashs the depleted focus bar.
+    /// </summary>
+    public void FocusDepleted()
+    {
+        depleteScript.ShowDeplete();
+    }
+    
+    /// <summary>
+    /// Flashes the screen on low HP.
+    /// </summary>
+    public void FlashLOWHP()
+    {
+        flashImageScript.RunHPFlash();
+    }
+
+    /// <summary>
+    /// Stops flashing the screen on low HP.
+    /// </summary>
+    public void StopFlashLowHP()
+    {
+        flashImageScript.StopHPFlasher();
+    }
+
+    #region ExitToMainMenu functions
+    /// <summary>
+    /// Runs the Main Menu Confirm UI Script 
+    /// </summary>
+    public void ShowConfirmMainMenu()
+    {
+        confirmUIScript.OpenConfirm();
+    }
+
+    /// <summary>
+    /// Runs the Main Menu UI Close UI
+    /// </summary>
+    public void CloseMainMenu()
+    {
+        confirmUIScript.CloseConfirm();
+    }
+    #endregion
+
+    public IEnumerator WaitCloseConfirm()
+    {
+        yield return new WaitForSeconds(0.25f);
+        CloseMainMenu();
+    }
+
+    #region Script References
+    // ==============================================
+    //      Getters for script references
+    // ==============================================
+
+    /// <summary>
+    /// Returns the radial menu script.
+    /// </summary>
+    /// <returns></returns>
+    public RadialMenu GetRadialScript()
+    {
+        return radialScript;
+    }
+    
+    /// <summary>
+    /// Script that displays the latest hitpoint to the player.
+    /// </summary>
+    /// <returns>DamageIndicator Script</returns>
+    public DamageIndicator GetDamageIndicatorScript()
+    {
+        return damageIndicatorScript;
     }
 
     /// <summary>
@@ -160,33 +250,6 @@ public class UIManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Flashes the screen with the shield breaking image.
-    /// Should only be used in the PlayerResource script.
-    /// </summary>
-    public void FlashBreakShield()
-    {
-        StartCoroutine(flashImageScript.CrackShieldDisplay());
-    }
-
-    /// <summary>
-    /// Flashes the screen when the player takes damage (that is of thier hp). 
-    /// Should only be used in the PlayerResource script.
-    /// </summary>
-    public void FlashPlayerHealthHit()
-    {
-        StartCoroutine(flashImageScript.FlashDamageDisplay());
-    }
-
-    /// <summary>
-    /// Flashes the screen with the shield damage image.
-    /// Should only be used in the PlayerResource script.
-    /// </summary>
-    public void FlashPlayerShieldHit()
-    {
-        StartCoroutine(flashImageScript.FlashShieldDisplay());
-    }
-
-    /// <summary>
     /// Gets the Key UI Script.
     /// </summary>
     /// <returns></returns>
@@ -195,64 +258,5 @@ public class UIManager : MonoBehaviour
         return keyScriptRef;
     }
 
-    /// <summary>
-    /// Returns the radial menu script.
-    /// </summary>
-    /// <returns></returns>
-    public RadialMenu GetRadialScript()
-    {
-        return radialScript;
-    }
-
-    /// <summary>
-    /// Shows the info menu for item pickups.
-    /// </summary>
-    /// <param name="img">The image of the item.</param>
-    /// <param name="name">The name of the item.</param>
-    public void ShowInfoUI(Sprite img, string name)
-    {
-        GameManager.instance.TimePause();
-        objToShow.SetActive(true);
-        textToReplace.text = name;
-        displayedImage.sprite = img;
-    }
-
-    /// <summary>
-    /// Runs the saving icon at the bottom right of the screen
-    /// </summary>
-    public void SaveIcon()
-    {
-        savingIcon.SetActive(true);
-        loadingIconScript.WakeUp();
-    }
-
-    /// <summary>
-    /// Flashs the depleted focus bar.
-    /// </summary>
-    public void FocusDepleted()
-    {
-        depleteScript.ShowDeplete();
-    }
-
-    /// <summary>
-    /// Runs the Main Menu Confirm UI Script 
-    /// </summary>
-    public void ShowConfirmMainMenu()
-    {
-        confirmUIScript.OpenConfirm();
-    }
-
-    /// <summary>
-    /// Runs the Main Menu UI Close UI
-    /// </summary>
-    public void CloseMainMenu()
-    {
-        confirmUIScript.CloseConfirm();
-    }
-
-    public IEnumerator WaitCloseConfirm()
-    {
-        yield return new WaitForSeconds(0.25f);
-        CloseMainMenu();
-    }
+    #endregion
 }

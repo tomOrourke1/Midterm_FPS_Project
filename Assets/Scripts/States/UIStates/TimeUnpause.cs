@@ -7,7 +7,6 @@ public class TimeUnpause : MenuActivation
     public override void Activate()
     {
         GameManager.instance.PlayMenuState();
-        UIManager.instance.Unpaused();
     }
 
     public override void Deactivate()

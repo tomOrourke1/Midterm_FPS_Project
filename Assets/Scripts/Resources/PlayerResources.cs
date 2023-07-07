@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerResources : MonoBehaviour, IDamagable, IHealReciever, IFocusReciever, IShieldReceiver, IVoidDamage
@@ -21,7 +22,7 @@ public class PlayerResources : MonoBehaviour, IDamagable, IHealReciever, IFocusR
 
 
 
-
+    bool runningFlashLowHP = false;
     bool isVulnerable = true;
 
     private void Start()
@@ -70,6 +71,8 @@ public class PlayerResources : MonoBehaviour, IDamagable, IHealReciever, IFocusR
             health.Decrease(diff);
             //UIManager.instance.FlashPlayerHealthHit();
         }
+
+        LowHPWarning();
         UIManager.instance.GetPlayerStats().UpdateValues();
     }
     public void TakeIceDamage(float dmg)
@@ -98,12 +101,14 @@ public class PlayerResources : MonoBehaviour, IDamagable, IHealReciever, IFocusR
 
         // trigger lose game if the player dies
         UIManager.instance.LoseGame();
+        UIManager.instance.StopFlashLowHP();
     }
 
     public void AddHealing(float healAmount)
     {
         health.Increase(healAmount);
         UIManager.instance.GetPlayerStats().UpdateValues();
+        LowHPWarning();
     }
 
     public void AddShield(float shieldAmount)
@@ -194,5 +199,19 @@ public class PlayerResources : MonoBehaviour, IDamagable, IHealReciever, IFocusR
     public void FallIntoTheVoid()
     {
         TakeDamage(float.MaxValue);
+    }
+
+    private void LowHPWarning()
+    {
+        if (health.CurrentValue <= health.MaxValue * 0.20f && !runningFlashLowHP)
+        {
+            UIManager.instance.FlashLOWHP();
+            runningFlashLowHP = true;
+        }
+        else if (health.CurrentValue > health.MaxValue * 0.20f && runningFlashLowHP)
+        {
+            runningFlashLowHP = false;
+            UIManager.instance.StopFlashLowHP();
+        }
     }
 }

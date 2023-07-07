@@ -22,6 +22,7 @@ public class FlashDamage : MonoBehaviour
     private bool currentlyFlashingShield;
     private bool currentlyFlashingCrack;
 
+
     // =================================================================
     //          PLEASE DON'T TOUCH ANY OF THE WHILE LOOPS!
     // =================================================================
@@ -62,7 +63,7 @@ public class FlashDamage : MonoBehaviour
             flashDamage.gameObject.SetActive(false);
             currentlyFlashingDamage = false;
         }
-        else
+        else if (currentlyFlashingDamage)
         {
             tmpFlashHP += Time.deltaTime;
         }
@@ -128,24 +129,18 @@ public class FlashDamage : MonoBehaviour
         }
     }
 
-    //private IEnumerator CrackNShow(Image image, float r, float g, float b, float a)
-    //{
-    //    image.gameObject.SetActive(true);
-    //    image.color = new Color(r, g, b, a);
+    private void LowHPFlasher()
+    {
+        StartCoroutine(FlashDamageDisplay());
+    }
 
-    //    // While the timer is above a 'second'
-    //    while (showDuration > 0f)
-    //    {
-    //        // Add the Time.deltatime (interval in seconds from last frame to current frame) to the timer
-    //        showDuration -= Time.deltaTime;
-    //        // Evaluate the curve and then set that the alpha's amount
-    //        float alphaColorFadeIn = flashSpeedCurve.Evaluate(showDuration);
-    //        // Set the image color component to a new color of an decreased alpha
-    //        image.color = new Color(r, g, b, alphaColorFadeIn);
-    //        yield return 0;
-    //    }
+    public void RunHPFlash()
+    {
+        InvokeRepeating("LowHPFlasher", 0.1f, showDuration);
+    }
 
-    //    showDuration = tempShowDuration;
-    //    image.gameObject.SetActive(false);
-    //}
+    public void StopHPFlasher()
+    {
+        CancelInvoke("LowHPFlasher");
+    }
 }

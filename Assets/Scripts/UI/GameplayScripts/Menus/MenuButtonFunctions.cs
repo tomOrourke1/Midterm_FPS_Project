@@ -13,7 +13,7 @@ public class MenuButtonFunctions : MonoBehaviour
 
     public void Restart()
     {
-        UIManager.instance.Unpaused();
+        GameManager.instance.PlayMenuState();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -24,7 +24,7 @@ public class MenuButtonFunctions : MonoBehaviour
 
     public void ConfirmToMainMenu()
     {
-        UIManager.instance.Unpaused();
+        GameManager.instance.PlayMenuState();
         SceneManager.LoadScene("MainMenu");
     }
 
@@ -40,7 +40,7 @@ public class MenuButtonFunctions : MonoBehaviour
     
     public void NextLevel()
     {
-        UIManager.instance.Unpaused();
+        GameManager.instance.PlayMenuState();
     }
 
     public void Respawn()
