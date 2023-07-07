@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -6,9 +7,12 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Windows;
 
 public class MainMenu : MonoBehaviour
 {
+    public static MainMenu instance;
+
     [SerializeField] Image sceneFader;
     [SerializeField] ElevatorScript eScript;
     [SerializeField] GameObject baseMenu;
@@ -27,12 +31,20 @@ public class MainMenu : MonoBehaviour
     [Header("Scene Loading Info")]
     [SerializeField] string tutorialLevelStart;
     [SerializeField] TextMeshProUGUI gameContinueText;
-    string sceneToLoad;
+    private string sceneToLoad;
 
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
     {
+
         GameLoadData();
         SetGameText();
 
@@ -44,6 +56,7 @@ public class MainMenu : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
+
     }
 
     public void NewGame()
@@ -109,6 +122,18 @@ public class MainMenu : MonoBehaviour
         else
         {
             gameContinueText.text = "Continue";
+        }
+    }
+
+    public void ToggleSettings()
+    {
+        if (settingsMenuObj.activeInHierarchy)
+        {
+            CloseSettingsMenu();
+        }
+        else if (!settingsMenuObj.activeInHierarchy)
+        {
+            ShowSettingsMenu();
         }
     }
 }

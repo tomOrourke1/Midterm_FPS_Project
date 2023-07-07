@@ -138,7 +138,8 @@ public class InputManager : MonoBehaviour
 
     private void OnEscape(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        UIManager.instance.uiStateMachine.SetOnEscape(true);
+        MainMenu.instance?.ToggleSettings();
+        UIManager.instance?.uiStateMachine?.SetOnEscape(true);
     }
 
     private void OnInteract(UnityEngine.InputSystem.InputAction.CallbackContext context)

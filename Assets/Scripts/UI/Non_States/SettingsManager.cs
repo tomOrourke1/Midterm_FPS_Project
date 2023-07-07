@@ -61,6 +61,7 @@ public class SettingsManager : MonoBehaviour
         UpdateSliders();
     }
 
+
     /// <summary>
     /// Only called in Game Manager, don't use anywhere else.
     /// </summary>
