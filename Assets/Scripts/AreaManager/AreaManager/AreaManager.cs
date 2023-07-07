@@ -27,16 +27,20 @@ public class AreaManager : MonoBehaviour
     }
 
     [Header("Place the start and end doors to your area")]
+    [Tooltip("The entrance to the room.")]
     [SerializeField] DoorScript EntryDoor;
+    [Tooltip("The exit to the room.")]
     [SerializeField] DoorScript ExitDoor;
 
 
     [Header("Select the type of area this is")]
+    [Tooltip("This determines how the area manager handles the room.")]
     [SerializeField] RoomType roomType;
 
 
     [Header("Place objective to track below")]
-    [SerializeField] GameObject TrackedObject;
+    [Tooltip("If you are using an elite room, place the spawner of the elite enemy here.")]
+    [SerializeField] GameObject EliteSpawner;
 
 
     List<GameObject> Entities = new List<GameObject>();
@@ -184,11 +188,11 @@ public class AreaManager : MonoBehaviour
     void SetObjectiveElite()
     {
         // Makes sure that the Tracked object isn't null
-        TrackedObject.GetComponent<EntitySpawners>();
+        EliteSpawner.GetComponent<EntitySpawners>();
     }
     void CheckObjectiveElite()
     {
-        ObjectiveComplete = TrackedObject.GetComponent<EntitySpawners>().IsMyEnemyDead();
+        ObjectiveComplete = EliteSpawner.GetComponent<EntitySpawners>().IsMyEnemyDead();
     }
 
     void SetObjectivePuzzle()
