@@ -15,6 +15,8 @@ public class DisplaySettingsBoxes : MonoBehaviour
     [SerializeField] GameObject keybindsObj;
     [SerializeField] GameObject keybindsSelectedObj;
 
+    private GameObject lastOpened;
+
     private void HideAll()
     {
         audioObj.SetActive(false);
@@ -23,35 +25,66 @@ public class DisplaySettingsBoxes : MonoBehaviour
         gameplayObj.SetActive(false);
     }
 
+    private void Awake()
+    {
+        HideAll();
+
+        if (lastOpened == null)
+        {
+            DisplayGameplay();
+        }
+        else
+        {
+            lastOpened.SetActive(true);
+        }
+
+    }
+
     public void DisplayAudio()
     {
         HideAll();
-        audioObj.SetActive(true);
+
+        lastOpened = audioObj;
+        
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(audioSelectedObj);
+
+        lastOpened.SetActive(true);
     }
 
     public void DisplayGraphics()
     {
         HideAll();
-        graphicsObj.SetActive(true);
+
+        lastOpened = graphicsObj;
+
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(graphicsSelectedObj);
+
+        lastOpened.SetActive(true);
     }
 
     public void DisplayGameplay()
     {
         HideAll();
-        gameplayObj.SetActive(true);
+
+        lastOpened = gameplayObj;
+
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(gameplaySelectedObj);
+
+        lastOpened.SetActive(true);
     }
 
     public void DisplayKeybinds()
     {
         HideAll();
-        keybindsObj.SetActive(true);
+
+        lastOpened = keybindsObj;
+
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(keybindsSelectedObj);
+
+        lastOpened.SetActive(true);
     }
 }

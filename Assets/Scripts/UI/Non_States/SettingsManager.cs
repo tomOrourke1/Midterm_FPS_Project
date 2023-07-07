@@ -35,6 +35,8 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] RectTransform highlighterOutline;
     [SerializeField] GameObject graphicsApplyButton;
 
+    [SerializeField] GameObject backButton;
+
     // Temp data containers
     float tempMaster;
     float tempSFX;
@@ -68,9 +70,12 @@ public class SettingsManager : MonoBehaviour
         masterMix.SetFloat("SFXVolume", Mathf.Log10(settings.sfxVol) * 20f);
         masterMix.SetFloat("MusicVolume", Mathf.Log10(settings.musicVol) * 20f);
 
-        Camera.main.fieldOfView = settings.fieldOfView;
-        Camera.main.GetComponent<CameraController>().SetSensitivity(settings.mouseSensitivity);
-        Camera.main.GetComponent<CameraController>().SetInvert(settings.invertY);
+        if (SceneManager.GetActiveScene().name != "MainMenu")
+        {
+            Camera.main.fieldOfView = settings.fieldOfView;
+            Camera.main.GetComponent<CameraController>().SetSensitivity(settings.mouseSensitivity);
+            Camera.main.GetComponent<CameraController>().SetInvert(settings.invertY);
+        }
 
         // Add the code thats in ChangeCameraSensitivty() in here because this is using settings obj values not the other ones
 
@@ -116,6 +121,8 @@ public class SettingsManager : MonoBehaviour
         SetOriginalValues();
         UpdateSliders();
         KeepKinesis();
+
+        EventSystem.current.SetSelectedGameObject(backButton);
     }
 
     private void SetOriginalValues()
