@@ -218,8 +218,8 @@ public class SettingsManager : MonoBehaviour
         hitmarkerParentObj.SetActive(tempHitmarkerEnabled);
         reticleImage.sprite = tempSprite;
 
-        reticleImage.sprite = tempSprite;
-        hitmarkerParentObj.SetActive(tempHitmarkerEnabled);
+        settings.hitmarkerEnabled = tempHitmarkerEnabled;
+        settings.currentRetical = tempSprite;
 
         EventSystem.current.SetSelectedGameObject(graphicsApplyButton);
     }
