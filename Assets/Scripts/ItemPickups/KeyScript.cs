@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KeyScript : MonoBehaviour, IEntity
+public class KeyScript : MonoBehaviour, IEntity, IVoidDamage
 {
     /// <summary>
     /// When the player enters the collider, check to make sure it is the player. 
@@ -30,5 +30,14 @@ public class KeyScript : MonoBehaviour, IEntity
     public void Respawn()
     {
         Destroy(gameObject);
+    }
+
+    public void FallIntoTheVoid()
+    {
+        if (GameManager.instance.GetKeyChain().GetKeys() < GameManager.instance.GetKeyChain().GetMaxKeys())
+        {
+            GameManager.instance.GetKeyChain().addKeys(1);
+            Destroy(gameObject);
+        }
     }
 }

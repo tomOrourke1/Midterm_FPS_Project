@@ -38,18 +38,20 @@ public class DoorDetectPlayerInProximity : MonoBehaviour, IEnvironment
             return;
         }
 
-        if (door.GetLockedStatus())
-        {
-            bool player = other.CompareTag("Player");
-            if (player)
-            {
-                if (GameManager.instance.GetKeyChain().GetKeys() > 0)
-                {
-                    door.SetLockStatus(false);
-                    GameManager.instance.GetKeyChain().removeKeys(1);
-                }
-            }
-        }
+        // This function has been remove in favor of Key Terminals
+
+        //if (door.GetLockedStatus())
+        //{
+        //    bool player = other.CompareTag("Player");
+        //    if (player)
+        //    {
+        //        if (GameManager.instance.GetKeyChain().GetKeys() > 0)
+        //        {
+        //            door.SetLockStatus(false);
+        //            GameManager.instance.GetKeyChain().removeKeys(1);
+        //        }
+        //    }
+        //}
 
         if (count == 0)
         {
