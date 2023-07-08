@@ -993,11 +993,6 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!1 &630930289 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3475993868179790231, guid: b3ca3b269812e6c4d85ab046258236fc, type: 3}
-  m_PrefabInstance: {fileID: 3475993867735655142}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &639035827 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3168126176269232434, guid: b64843f511663504598329d917e46dba, type: 3}
@@ -2061,6 +2056,10 @@ PrefabInstance:
       propertyPath: m_Positions.Array.data[1].z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3475410598386075985, guid: 67744bc2cc1f26d4885bd5672607df13, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67744bc2cc1f26d4885bd5672607df13, type: 3}
 --- !u!4 &1838128554 stripped
@@ -2442,6 +2441,10 @@ PrefabInstance:
       propertyPath: m_Positions.Array.data[1].z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3475410598386075985, guid: 67744bc2cc1f26d4885bd5672607df13, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67744bc2cc1f26d4885bd5672607df13, type: 3}
 --- !u!1001 &614619961429753639
@@ -2705,7 +2708,7 @@ MonoBehaviour:
   EntryDoor: {fileID: 225211701}
   ExitDoor: {fileID: 639035827}
   roomType: 4
-  TrackedObject: {fileID: 630930289}
+  EliteSpawner: {fileID: 0}
 --- !u!1 &1909099582915723155
 GameObject:
   m_ObjectHideFlags: 0

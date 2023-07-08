@@ -7,7 +7,7 @@ public class KillZones : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.LogError("other name : " + other.name);
+        //Debug.LogError("other name : " + other.name);
         if (other.isTrigger == false)
         {
             Kill(other);
@@ -15,7 +15,7 @@ public class KillZones : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        Debug.LogError("other name : " + other.name);
+        //Debug.LogError("other name : " + other.name);
         if (other.isTrigger == false)
         {
             Kill(other);
