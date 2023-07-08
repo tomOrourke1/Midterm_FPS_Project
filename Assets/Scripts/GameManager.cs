@@ -263,6 +263,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void RespawnCaller()
     {
+        UIManager.instance.StopFlashLowHP();
         playerscript.RespawnPlayer();
         //player.GetComponentInChildren<CameraController>().ResetCamera();
         currentRoomManager?.Respawn();
