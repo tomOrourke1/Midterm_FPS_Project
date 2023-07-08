@@ -20,6 +20,14 @@ public class ReusableSpawner : MonoBehaviour
         RespawnObject();
     }
 
+    private void Update()
+    {
+        if (currentObject == null)
+        {
+            RespawnObject();
+
+        }
+    }
 
     public void RespawnObject()
     {

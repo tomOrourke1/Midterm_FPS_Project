@@ -16,7 +16,7 @@ public class ResuasbleSpawnerCollisionFlagBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.Equals(spawner.currentObject))
+        if (other.gameObject.Equals(spawner.currentObject))
         {
             spawner.RespawnObject();
         }

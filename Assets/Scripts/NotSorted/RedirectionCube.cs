@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class RedirectionCube : MonoBehaviour, IReflector
 {
+    [SerializeField] Transform LaserStartPos;
+
     bool isReflecting = false;
 
     float laserDamage = 0;
@@ -51,7 +53,7 @@ public class RedirectionCube : MonoBehaviour, IReflector
 
     RaycastHit CastLaser()
     {
-        return gameObject.GetComponent<LaserCast>().RecieveLaser(laser, transform.position, transform.forward, laserDamage, laserRange, impactFX, impactLight);
+        return gameObject.GetComponent<LaserCast>().RecieveLaser(laser, LaserStartPos.position, transform.forward, laserDamage, laserRange, impactFX, impactLight);
     }
 
     void StopReflections()
