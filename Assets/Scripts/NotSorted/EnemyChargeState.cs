@@ -14,8 +14,8 @@ public class EnemyChargeState : EnemyState
     [SerializeField] float maxChargeDistance;
 
     [Header("Colliders")]
-    [SerializeField] SphereCollider trigger;
-    [SerializeField] SphereCollider collider;
+    [SerializeField] SphereCollider hitTrigger;
+    [SerializeField] SphereCollider hitCollider;
 
 
     [HideInInspector]
@@ -38,17 +38,22 @@ public class EnemyChargeState : EnemyState
         base.OnEnter();
         isCharging = true;
         forceDirection = gameObject.transform.forward;
-        rb.freezeRotation = true;
-        LaunchCharge();
+
+        agent.enabled = false;
+        rb.isKinematic = false;
         startPos = transform.position;
 
-        trigger.enabled = true;
-        collider.enabled = true;
+        hitTrigger.enabled = true;
+        //hitCollider.enabled = true;
+        exit = false;
     }
 
 
     public override void Tick()
     {
+
+        Vector3 speed = forceDirection * chargeSpeed;
+        rb.velocity = speed;
 
     }
 
@@ -56,12 +61,11 @@ public class EnemyChargeState : EnemyState
     {
         isCharging = false;
         rb.velocity = Vector3.zero;
-        rb.isKinematic = true;
-        agent.enabled = true;
+        
 
 
-        trigger.enabled = false;
-        collider.enabled = false;
+        hitTrigger.enabled = false;
+        hitCollider.enabled = false;
     }
 
 
@@ -69,21 +73,16 @@ public class EnemyChargeState : EnemyState
     {
         return exit || OverDist;
     }
-    void LaunchCharge()
-    {
 
-        agent.enabled = false;
-        rb.isKinematic = false;
-
-        Vector3 speed = forceDirection * chargeSpeed;
-        rb.AddForce(speed, ForceMode.Force);
-    }
     private void OnTriggerEnter(Collider other)
     {
-
+        if (other.isTrigger)
+            return;
 
         if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Enemy"))
         {
+            if (other.gameObject == agent.gameObject)
+                return;
             IDamagable damagable = other.gameObject.GetComponent<IDamagable>();
             damagable?.TakeDamage(chargeDamage);
             var applyVel = other.gameObject.GetComponent<IApplyVelocity>();
@@ -94,10 +93,9 @@ public class EnemyChargeState : EnemyState
                 applyVel.ApplyVelocity(velocity);
             }
 
+            exit = true;
         }
 
-
-        exit = true;
     }
     private void OnCollisionEnter(Collision collision)
     {

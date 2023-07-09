@@ -6,7 +6,7 @@ public class EnemyChargePrepState : EnemyState
 {
     [Space]
     [SerializeField] float chargeTime;
-
+    [SerializeField] Rigidbody rb;
 
 
     [HideInInspector]
@@ -19,6 +19,8 @@ public class EnemyChargePrepState : EnemyState
         isCharging = true;
         base.OnEnter();
         StartCoroutine(ChargeTimer());
+        rb.isKinematic = false;
+        agent.enabled = false;
     }
 
 

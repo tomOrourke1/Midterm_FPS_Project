@@ -79,12 +79,11 @@ public class ArmoredBrute : EnemyBase, IDamagable, IEntity, IVoidDamage
 
     void Update()
     {
-        Debug.Log("State: " + stateMachine.CurrentState);
         if (enemyEnabled)
         {
             stateMachine.Tick();
 
-            if (GetDoesSeePlayer() && chargePrepState.isCharging == false && chargeState.isCharging == false)
+            if (GetDoesSeePlayer() && !isDead && chargePrepState.isCharging == false && chargeState.isCharging == false)
             {
                 RotToPlayer();
             }
@@ -118,6 +117,7 @@ public class ArmoredBrute : EnemyBase, IDamagable, IEntity, IVoidDamage
         if (temp)
         {
             canAttack = false;
+            timeToNextAttack = 0;
         }
 
 
@@ -139,6 +139,7 @@ public class ArmoredBrute : EnemyBase, IDamagable, IEntity, IVoidDamage
         if(temp)
         {
             canCharge = false;
+            timeToNextCharge = 0;
         }
         
         return inDistance && temp;

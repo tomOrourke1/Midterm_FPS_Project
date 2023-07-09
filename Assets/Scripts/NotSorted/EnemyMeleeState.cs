@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyMeleeState : EnemyState
@@ -36,15 +37,22 @@ public class EnemyMeleeState : EnemyState
            animScript?.StopMelee();
 
         animator.applyRootMotion = false;
-        
-        animator.gameObject.transform.localPosition = Vector3.zero;
-        animator.gameObject.transform.localRotation = Quaternion.Euler(new Vector3(0, 45, 0));
-    }
+        StartCoroutine(StopStuff());
+      }
 
     public override bool ExitCondition()
     {
-        Debug.LogError("exit: " + exit + " animdoing: " + animScript.DoingMelee);
         return exit || !animScript.DoingMelee;
     }
     
+
+    IEnumerator StopStuff()
+    {
+        // I think it needs a bit of time to to be reconfigured
+        yield return new WaitForNextFrameUnit();
+        animator.gameObject.transform.localPosition = Vector3.zero;
+        animator.gameObject.transform.localRotation = Quaternion.Euler(new Vector3(0, 45, 0));
+
+    }
+
 }

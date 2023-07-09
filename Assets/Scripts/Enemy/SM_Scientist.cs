@@ -77,7 +77,7 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoi
         {
             stateMachine.Tick();
             
-            if(GetDoesSeePlayer() && isUnstunned == true)
+            if(GetDoesSeePlayer() && !isDead && isUnstunned == true)
             {
                 RotToPlayer();
             }

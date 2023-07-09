@@ -49,7 +49,8 @@ MonoBehaviour:
   acceleration: 0
   rotSpeed: 0
   stoppingDist: 0
-  chargeTime: 1
+  chargeTime: 0.23
+  rb: {fileID: 8233778890620620094}
   isCharging: 0
 --- !u!1 &1031653988
 GameObject:
@@ -156,10 +157,10 @@ MonoBehaviour:
   chargeDamage: 5
   force: 5
   upwardForce: 3
-  chargeSpeed: 50
-  maxChargeDistance: 0
-  trigger: {fileID: 759101806}
-  collider: {fileID: 759101805}
+  chargeSpeed: 22
+  maxChargeDistance: 10
+  hitTrigger: {fileID: 759101806}
+  hitCollider: {fileID: 759101805}
   isCharging: 0
 --- !u!135 &759101805
 SphereCollider:
@@ -320,6 +321,7 @@ MonoBehaviour:
   rotSpeed: 0
   stoppingDist: 0
   stunTime: 1
+  rb: {fileID: 8233778890620620094}
   isStunned: 0
 --- !u!1 &3630473751005386118
 GameObject:
@@ -615,12 +617,12 @@ MonoBehaviour:
   chargePrepState: {fileID: 371531519}
   deathState: {fileID: 1031653990}
   damage: 2
-  timeBetweenAttacks: 0
+  timeBetweenAttacks: 2
   playerFaceSpeed: 66
   timeBetweenCharges: 3
-  moveDistance: 1.35
-  chargeDistance: 1.54
-  attackDistance: 1.83
+  moveDistance: 10
+  chargeDistance: 11
+  attackDistance: 2
   Armor: 1
   agent: {fileID: 8233778890620620065}
   OnEnemyDeathEvent:
@@ -645,7 +647,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8233778890620620064}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 5e7b7a066cad7ee43b41fb0805603518, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
@@ -702,7 +704,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 1
   m_Constraints: 112
-  m_CollisionDetection: 2
+  m_CollisionDetection: 1
 --- !u!1 &8233778891009058724
 GameObject:
   m_ObjectHideFlags: 0
@@ -921,7 +923,7 @@ MonoBehaviour:
   meleeCollider: {fileID: 3737250057648690708}
   animScript: {fileID: 66128687320444398}
   animator: {fileID: 7417473549678094140}
-  totalTime: 2
+  totalTime: 0.5
 --- !u!1001 &7417473549687575132
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ public class EnemyStunState : EnemyState
 {
     [Space]
     [SerializeField] float stunTime;
+    [SerializeField] Rigidbody rb;
     [HideInInspector]
     public bool isStunned;
 
@@ -13,7 +14,7 @@ public class EnemyStunState : EnemyState
     public override void OnEnter()
     {
         base.OnEnter();
-        agent.SetDestination(transform.position);
+        //agent.SetDestination(transform.position);
         isStunned = true;
         exit = false;
 
@@ -30,6 +31,11 @@ public class EnemyStunState : EnemyState
     {
         isStunned = false;
         StopAllCoroutines();
+
+        rb.isKinematic = true;
+        agent.enabled = true;
+
+
     }
 
 
