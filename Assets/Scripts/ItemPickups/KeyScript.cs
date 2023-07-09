@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class KeyScript : MonoBehaviour, IEntity, IVoidDamage
 {
+    [SerializeField] ShrinkAndDelete shrinkScript;
+    [SerializeField] PickupSFX sfxScript;
+
     int spawnIndex;
 
     /// <summary>
@@ -20,7 +23,8 @@ public class KeyScript : MonoBehaviour, IEntity, IVoidDamage
             {
                 GameManager.instance.GetKeyChain().addKeys(1);
                 GameManager.instance.GetCurrentRoomManager()?.CallDeath(spawnIndex);
-                Destroy(gameObject);
+                sfxScript.Play_OneShot();
+                shrinkScript.Shrink();
             }
         }
     }
@@ -50,4 +54,6 @@ public class KeyScript : MonoBehaviour, IEntity, IVoidDamage
             Destroy(gameObject);
         }
     }
+
+    
 }
