@@ -18,6 +18,8 @@ public class WindKinesis : KinesisBase
     public UnityEvent OnAeroPush;
     public UnityEvent OnAeroStopped;
 
+    bool isReady;
+    bool canActivate;
 
     public override void Fire()
     {
@@ -30,9 +32,16 @@ public class WindKinesis : KinesisBase
             isCasting = true;
             base.DisableOpenRadial();
         }
-        if (InputManager.Instance.Action.Kinesis.WasReleasedThisFrame())
+        if (!InputManager.Instance.Action.Kinesis.IsPressed() && isReady)
         {
             OnAeroPush?.Invoke();
+            isReady = false ;
+            base.EnableOpenRadial();
+        }
+        if (canActivate)
+        {
+           
+            canActivate = false;
             GameManager.instance.GetPlayerResources().SpendFocus(focusCost);
             forceDirection = Camera.main.transform.forward;
             Vector3 velocity = forceDirection * force + transform.up * upwardForce;
@@ -52,16 +61,27 @@ public class WindKinesis : KinesisBase
                 }
 
             }
+            isCasting = false;
             base.EnableOpenRadial();
         }
 
 
 
     }
+    public void SetIsReady(bool red)
+    {
+        isReady = red;
+    }
 
+    public void SetCanActive(bool act)
+    {
+        canActivate = act;
+    }
     public override void StopFire()
     {
         isCasting = false;
+        isReady = false;
+        canActivate = false;
         OnAeroStopped?.Invoke();
         base.EnableOpenRadial();
 

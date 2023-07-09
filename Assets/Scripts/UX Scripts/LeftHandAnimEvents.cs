@@ -8,6 +8,7 @@ public class LeftHandAnimEvents : MonoBehaviour
     [SerializeField] IceKinesis ice;
     [SerializeField] LightningKinesis lightning;
     [SerializeField] pyroBlast pyro;
+    [SerializeField] WindKinesis aero;
 
     public void ThrowIce()
     {
@@ -33,6 +34,13 @@ public class LeftHandAnimEvents : MonoBehaviour
     {
         pyro.SetCanActive(true);
     }
-
+    public void AeroHold()
+    {
+        aero.SetIsReady(true);
+    }
+    public void AeroThrow()
+    {
+        aero.SetCanActive(true);
+    }
 
 }
