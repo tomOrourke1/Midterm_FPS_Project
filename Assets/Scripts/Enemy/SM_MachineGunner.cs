@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
 
-public class SM_MachineGunner : EnemyBase , IDamagable, IEntity, IVoidDamage
+public class SM_MachineGunner : EnemyBase, IDamagable, IEntity, IVoidDamage, IApplyVelocity
 {
 
     [Header("----Machine Gunner States----")]
@@ -15,6 +15,7 @@ public class SM_MachineGunner : EnemyBase , IDamagable, IEntity, IVoidDamage
     [SerializeField] EnemyDeathState deathState;
     [SerializeField] Transform shootPos;
     [SerializeField] EnemyStunState stunState;
+    [SerializeField] EnemyPushedState pushedState;
 
 
     [Header("--- other values ---")]
@@ -32,6 +33,11 @@ public class SM_MachineGunner : EnemyBase , IDamagable, IEntity, IVoidDamage
     bool isUnstunned;
     float timeBetweenShots;
 
+    bool hasLanded;
+    bool wasPushed;
+
+    bool shootTimer = true;
+
     void Start()
     {
         health.FillToMax();
@@ -40,9 +46,11 @@ public class SM_MachineGunner : EnemyBase , IDamagable, IEntity, IVoidDamage
         stateMachine.SetState(idleState);
 
         stateMachine.AddTransition(idleState, chasePlayerState, OnChasePlayer);
+        stateMachine.AddTransition(chasePlayerState, idleState, OnIdle);
 
         stateMachine.AddTransition(chasePlayerState, enemyShootState, OnShoot);
-        stateMachine.AddTransition(enemyShootState, idleState, enemyShootState.ExitCondition);
+        stateMachine.AddTransition(idleState, enemyShootState, OnShoot);
+        stateMachine.AddTransition(enemyShootState, idleState, OnShootStop);
        
 
         stateMachine.AddAnyTransition(stunState, OnStunned);
@@ -50,12 +58,19 @@ public class SM_MachineGunner : EnemyBase , IDamagable, IEntity, IVoidDamage
 
         stateMachine.AddAnyTransition(deathState, () => isDead);
 
+
+        stateMachine.AddAnyTransition(pushedState, OnPushed);
+        stateMachine.AddTransition(pushedState, idleState, OnPushLanding);
+
+
         enemyColor = enemyMeshRenderer.material.color;
     }
 
     
     void Update()
     {
+
+        Debug.Log("state: " + stateMachine.CurrentState);
         if (enemyEnabled)
         {
             stateMachine.Tick();
@@ -68,6 +83,27 @@ public class SM_MachineGunner : EnemyBase , IDamagable, IEntity, IVoidDamage
         }
     }
 
+    bool OnShootStop()
+    {
+        var x = enemyShootState.ExitCondition();
+
+        if (x)
+        {
+            StopCoroutine(OnWait());
+            StartCoroutine(OnWait());
+        }
+
+        return x;
+    }
+
+    bool OnIdle()
+    {
+        bool enabled = enemyEnabled;
+        bool inDistance = Vector3.Distance(GameManager.instance.GetPlayerObj().transform.position, transform.position) < attackRange;
+
+        return inDistance;
+    }
+
     bool OnChasePlayer()
     {
         bool enabled = enemyEnabled;
@@ -75,12 +111,31 @@ public class SM_MachineGunner : EnemyBase , IDamagable, IEntity, IVoidDamage
 
         return enabled && inDistance;
     }
+    bool OnPushLanding()
+    {
+        var temp = hasLanded;
+        hasLanded = false;
 
-   
+        if (temp)
+        {
+            agent.enabled = true;
+            rb.isKinematic = true;
+            wasPushed = false;
+        }
+
+        return temp;
+    }
+    bool OnPushed()
+    {
+        var temp = wasPushed;
+        wasPushed = false;
+        return temp;
+    }
+
     bool OnShoot()
     {
         bool toAttack = GetDoesSeePlayer();
-        return toAttack;
+        return toAttack && shootTimer;
     }
 
     bool OnStunned()
@@ -166,7 +221,9 @@ public class SM_MachineGunner : EnemyBase , IDamagable, IEntity, IVoidDamage
 
     IEnumerator OnWait()
     {
-        yield return new WaitForSeconds(2);
+        shootTimer = false;
+        yield return new WaitForSeconds(betweenShotTime);
+        shootTimer = true;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -198,4 +255,33 @@ public class SM_MachineGunner : EnemyBase , IDamagable, IEntity, IVoidDamage
     {
         Destroy(gameObject);
     }
+
+    public void ApplyVelocity(Vector3 velocity)
+    {
+
+        wasPushed = true;
+        agent.enabled = false;
+        rb.isKinematic = false;
+
+        rb.AddForce(velocity, ForceMode.Impulse);
+
+
+
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+
+        foreach (var cont in collision.contacts)
+        {
+            var norm = cont.normal;
+            if (Vector3.Dot(norm, Vector3.up) > 0.8f)
+            {
+                hasLanded = true;
+                return;
+            }
+        }
+
+    }
+
 }

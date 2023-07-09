@@ -27,6 +27,8 @@ public class EnemyMeleeState : EnemyState
     public override void Tick()
     {
         exit = ((Time.time - timeInState) >= totalTime);
+
+        
     }
 
     public override void OnExit()
@@ -49,6 +51,7 @@ public class EnemyMeleeState : EnemyState
     IEnumerator StopStuff()
     {
         // I think it needs a bit of time to to be reconfigured
+        yield return new WaitForNextFrameUnit();
         yield return new WaitForNextFrameUnit();
         animator.gameObject.transform.localPosition = Vector3.zero;
         animator.gameObject.transform.localRotation = Quaternion.Euler(new Vector3(0, 45, 0));

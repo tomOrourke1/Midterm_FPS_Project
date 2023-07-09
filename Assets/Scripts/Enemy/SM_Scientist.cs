@@ -54,7 +54,6 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoi
         stateMachine.AddAnyTransition(stunState, OnStunned);
         stateMachine.AddTransition(stunState, idleState, OnUnstunned);
 
-        rb.isKinematic = false;
 
         stateMachine.AddAnyTransition(deathState, () => isDead);
     }
@@ -157,7 +156,7 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoi
         health.Decrease(dmg); // decrease the enemies hp with the weapon's damage
 
         SetFacePlayer();
-
+        StopCoroutine(FlashDamage());
         StartCoroutine(FlashDamage()); // has the enemy flash red when taking damage
     }
     public void TakeIceDamage(float dmg)
