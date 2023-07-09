@@ -5,17 +5,31 @@ using UnityEngine.Events;
 
 public class WireSegment : MonoBehaviour
 {
+    [SerializeField] Transform BaseWire;
+    [SerializeField] Transform PoweredWire;
+
     bool activated = false;
 
-    public void TurnOn(Material Activated)
+    public bool Activate(float growRate)
     {
-        gameObject.GetComponent<MeshRenderer>().material = Activated;
-        activated = true;
+        float newSize = PoweredWire.transform.localScale.y + growRate * Time.deltaTime;
+
+        newSize = Mathf.Clamp(newSize, 0.0f, BaseWire.transform.localScale.y);
+
+        PoweredWire.transform.localScale = new Vector3(PoweredWire.transform.localScale.x, newSize, PoweredWire.transform.localScale.z);
+
+        if (PoweredWire.transform.localScale.y >= BaseWire.transform.localScale.y)
+        {
+            activated = true;
+        }
+
+        return activated;
     }
 
-    public void TurnOff(Material Inate) 
+    public void Deactivate()
     {
-        gameObject.GetComponent<MeshRenderer>().material = Inate;
+        PoweredWire.transform.localScale = new Vector3(PoweredWire.transform.localScale.x, 0, PoweredWire.transform.localScale.z);
+
         activated = false;
     }
 

@@ -4,19 +4,17 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.PlayerLoop;
+using static UnityEngine.ParticleSystem;
 
 public class WireManager : MonoBehaviour, IEnvironment
 {
     [SerializeField] UnityEvent Activate;
     [SerializeField] UnityEvent Deactivate;
 
-    [SerializeField] Material Activated;
-    [SerializeField] Material Inate;
-
     [SerializeField] float Delay;
+    [SerializeField] float IncrementSize;
 
-    bool powered = false;
-    bool waiting = false;
+    bool powered;
     bool activated = false;
 
     bool canRunCO;
@@ -27,7 +25,7 @@ public class WireManager : MonoBehaviour, IEnvironment
 
     private void Awake()
     {
-        waiting = false;
+        powered = false;
         segments = GetComponentsInChildren<WireSegment>();
     }
 
@@ -36,61 +34,56 @@ public class WireManager : MonoBehaviour, IEnvironment
         i = 0;
         foreach (WireSegment segment in segments)
         {
-            segment.GetComponent<MeshRenderer>().material = Inate;
+            segment.Deactivate();
         }
     }
 
     private void Update()
     {
+        if (powered)
+        {
+            if (canRunCO)
+            {
+                StartCoroutine(ActivateAllWires());
+            }
+        }
+        else
+        {
+            i = 0;
+
+            foreach (WireSegment segment in segments)
+            {
+                segment.Deactivate();
+            }
+
+            StopAllCoroutines();
+        }
+
         if (segments[segments.Length - 1].IsActivated() && !activated)
         {
             Activate.Invoke();
             activated = true;
         }
-
-        if (!segments[segments.Length - 1].IsActivated() && activated)
+        else if (!segments[segments.Length - 1].IsActivated() && activated)
         {
             Deactivate.Invoke();
             activated = false;
         }
-
-        HandlePower();
     }
 
-
-
-    void HandlePower()
+    IEnumerator ActivateAllWires()
     {
-        if (powered)
-        {
-            if (!canRunCO)
-            {
-                canRunCO = true;
-                StartCoroutine(wait());
-            }
-        }
-        else
-        {
-            foreach (WireSegment segment in segments)
-            {
-                segment.TurnOff(Inate);
-            }
-            i = 0;
-        }
-    }
-
-    IEnumerator wait()
-    {
+        canRunCO = false;
         while (i < segments.Length)
         {
-            segments[i].TurnOn(Activated);
-            waiting = true;
-            i++;
-            
+            if (segments[i].Activate(IncrementSize))
+            {
+                i++;
+            }
+
             yield return new WaitForSeconds(Delay);
         }
-        waiting = false;
-        canRunCO = false;
+        canRunCO = true;
     }
 
     public void PowerOn()
@@ -105,16 +98,19 @@ public class WireManager : MonoBehaviour, IEnvironment
 
     public void StopObject()
     {
+        StopAllCoroutines();
         PowerOff();
-        waiting = false;
+        powered = false;
+        canRunCO = true;
     }
 
     public void StartObject()
     {
         i = 0;
+
         foreach (WireSegment segment in segments)
         {
-            segment.GetComponent<MeshRenderer>().material = Inate;
+            segment.Deactivate();
         }
     }
 }
