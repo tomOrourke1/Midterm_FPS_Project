@@ -140,7 +140,7 @@ public class Sniper : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidDamag
         {
             stateMachine.Tick();
 
-            if(GetDoesSeePlayer() && !isDead)
+            if(GetDoesSeePlayer() && !isDead && !isStunned)
             {
                 RotToPlayer();
             }
