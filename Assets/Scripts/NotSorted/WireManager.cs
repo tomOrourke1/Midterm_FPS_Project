@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.PlayerLoop;
 
-public class WireManager : MonoBehaviour
+public class WireManager : MonoBehaviour, IEnvironment
 {
     [SerializeField] UnityEvent Activate;
     [SerializeField] UnityEvent Deactivate;
@@ -103,4 +103,18 @@ public class WireManager : MonoBehaviour
         powered = false;
     }
 
+    public void StopObject()
+    {
+        PowerOff();
+        waiting = false;
+    }
+
+    public void StartObject()
+    {
+        i = 0;
+        foreach (WireSegment segment in segments)
+        {
+            segment.GetComponent<MeshRenderer>().material = Inate;
+        }
+    }
 }
