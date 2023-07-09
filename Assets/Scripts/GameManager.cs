@@ -352,4 +352,22 @@ public class GameManager : MonoBehaviour
     {
         return settingsManager.settings.fieldOfView;
     }
+
+    /// <summary>
+    /// Returns the controllers sensitivity.
+    /// </summary>
+    /// <returns></returns>
+    public float GetControllerSens()
+    {
+        return settingsManager.settings.controllerSensitivty;
+    }
+
+    /// <summary>
+    /// Returns the mouses sensitivity;
+    /// </summary>
+    /// <returns></returns>
+    public float GetMouseSens()
+    {
+        return settingsManager.settings.mouseSensitivity;
+    }
 }

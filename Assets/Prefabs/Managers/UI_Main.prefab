@@ -2675,12 +2675,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 2
+    m_Mode: 4
     m_WrapAround: 1
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnUp: {fileID: 3965648078655249154}
+    m_SelectOnDown: {fileID: 3965648078655249154}
+    m_SelectOnLeft: {fileID: 3965648078655249154}
+    m_SelectOnRight: {fileID: 3965648078655249154}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 0}
@@ -4837,7 +4837,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69c73f4887231a74e9aa11bb0086f2ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doesActivate: 0
+  doesActivate: 1
   doesDeactivate: 1
   deathAnimController: {fileID: 1763678697942226988}
   selectedGameObject: {fileID: 2339116790722389720}
@@ -8008,7 +8008,7 @@ MonoBehaviour:
   reticleImage: {fileID: 1886728015193708851}
   highlighterOutline: {fileID: 3902260879959687778}
   graphicsApplyButton: {fileID: 1474987729440582032}
-  backButton: {fileID: 0}
+  backButton: {fileID: 69087146339306884}
   hlStorePos: {fileID: 3902260879959687778}
 --- !u!1 &2322299764107087010
 GameObject:
@@ -8145,12 +8145,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 2
+    m_Mode: 4
     m_WrapAround: 1
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnUp: {fileID: 7835763838784699717}
+    m_SelectOnDown: {fileID: 7835763838784699717}
+    m_SelectOnLeft: {fileID: 7835763838784699717}
+    m_SelectOnRight: {fileID: 7835763838784699717}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 0}
@@ -19257,6 +19257,7 @@ GameObject:
   - component: {fileID: 159179957656058662}
   - component: {fileID: 4335624063267669263}
   - component: {fileID: 1763678697942226988}
+  - component: {fileID: 1283788957856801282}
   m_Layer: 5
   m_Name: LoseMenu
   m_TagString: Untagged
@@ -19344,7 +19345,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 1
+--- !u!114 &1283788957856801282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6258659710695957990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a76aff426981da54898553a7f6de768f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  retryObj: {fileID: 2339116790722389720}
+  mainMenuObj: {fileID: 637312877229202596}
 --- !u!1 &6315288280741129996
 GameObject:
   m_ObjectHideFlags: 0
