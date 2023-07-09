@@ -74,6 +74,7 @@ public class WireManager : MonoBehaviour, IEnvironment
     IEnumerator ActivateAllWires()
     {
         canRunCO = false;
+
         while (i < segments.Length)
         {
             if (segments[i].Activate(IncrementSize))
@@ -83,6 +84,7 @@ public class WireManager : MonoBehaviour, IEnvironment
 
             yield return new WaitForSeconds(Delay);
         }
+
         canRunCO = true;
     }
 
