@@ -5344,6 +5344,8 @@ GameObject:
   - component: {fileID: 7991753425847873261}
   - component: {fileID: 1113753353031639484}
   - component: {fileID: 8657473239933320101}
+  - component: {fileID: 3087825354176168861}
+  - component: {fileID: 2629227120415317604}
   m_Layer: 0
   m_Name: Health Pack
   m_TagString: Untagged
@@ -5419,7 +5421,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 5298858325094725193, guid: 94efd4a4905cf0d4b932e654d29a8da0, type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 102c3ee1755a48e4883b29c2c0ddc3da, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -5518,7 +5520,63 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 1113753353031639484}
-  pickupSFX: {fileID: 8300000, guid: 102c3ee1755a48e4883b29c2c0ddc3da, type: 3}
+--- !u!114 &3087825354176168861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7293869456169958750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b913c5cd86886b49ae56d0d8f6c27af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shrinkTime: 1
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  model: {fileID: 5805470619097293557}
+  colliders:
+  - {fileID: 7991753425847873261}
+  particles:
+  - {fileID: 3455956927937837967}
+--- !u!114 &2629227120415317604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7293869456169958750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dcae5d09ec9a524cab41b72b6d49f24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shrinkScript: {fileID: 3087825354176168861}
+  sfxScript: {fileID: 8657473239933320101}
+  interact: {fileID: 0}
 --- !u!1 &7623256312911277618
 GameObject:
   m_ObjectHideFlags: 0

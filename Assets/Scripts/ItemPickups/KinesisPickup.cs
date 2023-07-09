@@ -43,8 +43,6 @@ public class KinesisPickup : MonoBehaviour
     [Header("Kinesis")]
     public KinesisSelect pickupSelect;
     [SerializeField] bool active = true;
-    [SerializeField] ShrinkAndDelete shrinkScript;
-    [SerializeField] PickupSFX sfxScript;
 
     [Header("Renderers")]
     [SerializeField] MeshRenderer core;
@@ -90,8 +88,6 @@ public class KinesisPickup : MonoBehaviour
     {
         if (other.CompareTag("Player") && !DoesPlayerHaveKinesis(pickupSelect))
         {
-            sfxScript.Play_OneShot();
-            shrinkScript.Shrink(); 
             StartCoroutine(WaitToEnable());
         }
     }

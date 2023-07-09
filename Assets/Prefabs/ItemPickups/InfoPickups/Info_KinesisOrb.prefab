@@ -97,8 +97,10 @@ GameObject:
   - component: {fileID: 8766814951803083748}
   - component: {fileID: 3299153656411385889}
   - component: {fileID: 4664678264632771207}
-  - component: {fileID: 4936498862079768378}
+  - component: {fileID: 4319053007342847332}
+  - component: {fileID: 4109455137020091273}
   - component: {fileID: 3617240645752294008}
+  - component: {fileID: 4936498862079768378}
   m_Layer: 0
   m_Name: Info_KinesisOrb
   m_TagString: Untagged
@@ -137,8 +139,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickupSelect: 4
   active: 1
-  shrinkScript: {fileID: 3299153656411385889}
-  sfxScript: {fileID: 4664678264632771207}
   core: {fileID: 360594198758703271}
   inner: {fileID: 5850918964138412282}
   outer: {fileID: 2555684697433176735}
@@ -265,19 +265,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 3617240645752294008}
---- !u!135 &4936498862079768378
-SphereCollider:
+--- !u!114 &4319053007342847332
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1272882866489034896}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9741c2e1402f93d42ba9fff4921e88b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4109455137020091273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272882866489034896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dcae5d09ec9a524cab41b72b6d49f24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shrinkScript: {fileID: 3299153656411385889}
+  sfxScript: {fileID: 4664678264632771207}
+  interact: {fileID: 4319053007342847332}
 --- !u!82 &3617240645752294008
 AudioSource:
   m_ObjectHideFlags: 0
@@ -374,6 +388,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!135 &4936498862079768378
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272882866489034896}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1309295828370960674
 GameObject:
   m_ObjectHideFlags: 0

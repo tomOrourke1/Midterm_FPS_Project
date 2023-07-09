@@ -6,7 +6,7 @@ using UnityEngine;
 public class ShrinkAndDelete : MonoBehaviour
 {
 
-    [SerializeField] float shrinkTime;
+    [SerializeField] float shrinkTime = 1;
     [SerializeField] AnimationCurve curve;
     [SerializeField] GameObject model;
     [SerializeField] SphereCollider[] colliders;
@@ -33,7 +33,6 @@ public class ShrinkAndDelete : MonoBehaviour
     {
         float t = shrinkTime;
 
-
         while (t > 0)
         {
             t -= Time.deltaTime;
@@ -52,6 +51,7 @@ public class ShrinkAndDelete : MonoBehaviour
 
             yield return 0;
         }
+
         Destroy(gameObject);
     }
 }

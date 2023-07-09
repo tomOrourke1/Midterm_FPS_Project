@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.ProBuilder.Shapes;
 using UnityEngine.UI;
 
-public class ItemPickup : MonoBehaviour
+public class InfoItemPickup : MonoBehaviour
 {
     [SerializeField] PickupInfo info;
 

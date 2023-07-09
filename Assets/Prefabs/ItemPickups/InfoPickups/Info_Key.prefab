@@ -220,9 +220,11 @@ GameObject:
   - component: {fileID: -6236096366069715660}
   - component: {fileID: 1708825783014803540}
   - component: {fileID: 2247266260277229879}
-  - component: {fileID: 3832747886250208293}
-  - component: {fileID: 384575503566654924}
+  - component: {fileID: 1640163634848906395}
+  - component: {fileID: 974715502630571787}
   - component: {fileID: 2315613204995687214}
+  - component: {fileID: 384575503566654924}
+  - component: {fileID: 3832747886250208293}
   m_Layer: 0
   m_Name: Info_Key
   m_TagString: Untagged
@@ -258,8 +260,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08ab31729b2a7024fb2c0b689f485e60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shrinkScript: {fileID: 2247266260277229879}
-  sfxScript: {fileID: 1708825783014803540}
 --- !u!114 &3669166037010330571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -344,32 +344,34 @@ MonoBehaviour:
   colliders:
   - {fileID: 3832747886250208293}
   - {fileID: 384575503566654924}
---- !u!135 &3832747886250208293
-SphereCollider:
+  particles: []
+--- !u!114 &1640163634848906395
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3832747886250208295}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!135 &384575503566654924
-SphereCollider:
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9741c2e1402f93d42ba9fff4921e88b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &974715502630571787
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3832747886250208295}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dcae5d09ec9a524cab41b72b6d49f24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shrinkScript: {fileID: 2247266260277229879}
+  sfxScript: {fileID: 1708825783014803540}
+  interact: {fileID: 1640163634848906395}
 --- !u!82 &2315613204995687214
 AudioSource:
   m_ObjectHideFlags: 0
@@ -466,6 +468,32 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!135 &384575503566654924
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3832747886250208295}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &3832747886250208293
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3832747886250208295}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5793354792786404794
 GameObject:
   m_ObjectHideFlags: 0

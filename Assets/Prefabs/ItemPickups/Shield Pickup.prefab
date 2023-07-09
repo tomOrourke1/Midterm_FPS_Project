@@ -170,9 +170,11 @@ GameObject:
   - component: {fileID: 2775969196625280720}
   - component: {fileID: 2775969196625280732}
   - component: {fileID: 6125263629832078121}
-  - component: {fileID: 4213834665870244500}
-  - component: {fileID: 681298573530311941}
   - component: {fileID: 4802287920805933808}
+  - component: {fileID: 5053667617666829304}
+  - component: {fileID: 6336531889983357890}
+  - component: {fileID: 681298573530311941}
+  - component: {fileID: 4213834665870244500}
   m_Layer: 0
   m_Name: Shield Pickup
   m_TagString: Untagged
@@ -225,19 +227,76 @@ MonoBehaviour:
   bobRate: 1
   amplitude: 0.25
   rotateSpeed: 0.75
---- !u!135 &4213834665870244500
-SphereCollider:
+--- !u!114 &4802287920805933808
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2775969196625280733}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1
-  m_Center: {x: 0, y: 1, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de38e9e7e46d4d54f9e2c661e4ce009c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  source: {fileID: 681298573530311941}
+--- !u!114 &5053667617666829304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2775969196625280733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b913c5cd86886b49ae56d0d8f6c27af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shrinkTime: 1
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  model: {fileID: 3490926532724654282}
+  colliders:
+  - {fileID: 4213834665870244500}
+  particles:
+  - {fileID: 2095749170566415377}
+--- !u!114 &6336531889983357890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2775969196625280733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dcae5d09ec9a524cab41b72b6d49f24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shrinkScript: {fileID: 5053667617666829304}
+  sfxScript: {fileID: 4802287920805933808}
+  interact: {fileID: 0}
 --- !u!82 &681298573530311941
 AudioSource:
   m_ObjectHideFlags: 0
@@ -248,7 +307,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 5298858325094725193, guid: 94efd4a4905cf0d4b932e654d29a8da0, type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: cff1840c40fd21744b34aca3dbba0885, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -334,20 +393,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &4802287920805933808
-MonoBehaviour:
+--- !u!135 &4213834665870244500
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2775969196625280733}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de38e9e7e46d4d54f9e2c661e4ce009c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  source: {fileID: 0}
-  pickupSFX: {fileID: 8300000, guid: cff1840c40fd21744b34aca3dbba0885, type: 3}
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &2876473215421201437
 GameObject:
   m_ObjectHideFlags: 0

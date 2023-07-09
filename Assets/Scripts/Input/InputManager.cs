@@ -13,8 +13,8 @@ public class InputManager : MonoBehaviour
     // instance
     public static InputManager Instance;
     private bool radialShowing;
+    public bool canInteract;
     GameInput input;
-
 
 
 
@@ -150,7 +150,11 @@ public class InputManager : MonoBehaviour
 
     private void OnInteract(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        UIManager.instance?.uiStateMachine.SetInteract(true);
+        if (canInteract)
+        {
+            UIManager.instance?.uiStateMachine.SetInteract(true);
+            canInteract = false;
+        }
     }
 
     private void Update()
