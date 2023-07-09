@@ -32,7 +32,7 @@ public class UnlockTerminal : MonoBehaviour, IInteractable, IEnvironment
         } 
         else
         {
-            Debug.LogError("No");
+            Debug.LogError("No kevin go cry in a corner.");
         }
     }
 
