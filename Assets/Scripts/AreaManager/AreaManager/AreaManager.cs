@@ -19,10 +19,15 @@ public class AreaManager : MonoBehaviour
 
     enum RoomType
     {
+        [Tooltip("Does nothing to the room. Keeps room in state it was in during editor.")]
         Default = 0,
+        [Tooltip("Locks the door, requires a 'KEY TERMINAL' for the player to unlock the door.")]
         Key,
+        [Tooltip("Locks the door, keeps track of all 'ENEMY SPAWNERS'. Requires all enemies to be defeated for Exit Door to be unlocked.")]
         Encounter,
+        [Tooltip("Locks the door, Keeps track of the 'ELITE SPAWNER' entity and unlocks the door when they entity is killed.")]
         Elite,
+        [Tooltip("Locks the door, requires a 'PUZZLE METHOD' to unlock the door.")]
         Puzzle
     }
 
