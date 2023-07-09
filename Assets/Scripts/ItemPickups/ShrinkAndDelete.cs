@@ -2,12 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class ShrinkAndDelete : MonoBehaviour
 {
+
     [SerializeField] float shrinkTime;
     [SerializeField] AnimationCurve curve;
     [SerializeField] GameObject model;
     [SerializeField] SphereCollider[] colliders;
+
+    [Header("Particles?")]
+    [SerializeField] ParticleSystem[] particles;
 
     private bool isShrinking;
 
@@ -36,6 +41,14 @@ public class ShrinkAndDelete : MonoBehaviour
             float scaleSizeXYZ = curve.Evaluate(t);
 
             model.transform.localScale = new Vector3(scaleSizeXYZ, scaleSizeXYZ, scaleSizeXYZ);
+
+            if (particles.Length > 0)
+            {
+                foreach (var p in particles)
+                {
+                    p.transform.localScale = new Vector3(scaleSizeXYZ, scaleSizeXYZ, scaleSizeXYZ);
+                }
+            }
 
             yield return 0;
         }

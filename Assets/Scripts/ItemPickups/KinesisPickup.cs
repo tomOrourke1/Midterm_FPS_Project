@@ -15,23 +15,26 @@ public enum KinesisSelect
 public struct OrbMaterials
 {
     [Header("Material Properties")]
-    [SerializeField] Material Core;
-    [SerializeField] Material Inner;
-    [SerializeField] Material Outer;
+    [Tooltip("The material for the central model.")]
+    [SerializeField] Material center;
+    [Tooltip("The material for the outside model.")]
+    [SerializeField] Material outside;
+    [Tooltip("The material for the outermost model.")]
+    [SerializeField] Material outermost;
 
     public Material GetCore()
     {
-        return Core;
+        return center;
     }
 
     public Material GetInner()
     {
-        return Inner;
+        return outside;
     }
 
     public Material GetOuter()
     {
-        return Outer;
+        return outermost;
     }
 }
 
@@ -40,6 +43,8 @@ public class KinesisPickup : MonoBehaviour
     [Header("Kinesis")]
     public KinesisSelect pickupSelect;
     [SerializeField] bool active = true;
+    [SerializeField] ShrinkAndDelete shrinkScript;
+    [SerializeField] PickupSFX sfxScript;
 
     [Header("Renderers")]
     [SerializeField] MeshRenderer core;
@@ -85,6 +90,8 @@ public class KinesisPickup : MonoBehaviour
     {
         if (other.CompareTag("Player") && !DoesPlayerHaveKinesis(pickupSelect))
         {
+            sfxScript.Play_OneShot();
+            shrinkScript.Shrink(); 
             StartCoroutine(WaitToEnable());
         }
     }
@@ -196,6 +203,5 @@ public class KinesisPickup : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         EnableKinesis(pickupSelect, active);
-        Destroy(gameObject);
     }
 }

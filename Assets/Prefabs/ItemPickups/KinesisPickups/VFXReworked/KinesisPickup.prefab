@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 1272882866489034908}
   - component: {fileID: 1272882866489034899}
   - component: {fileID: 8766814951803083748}
+  - component: {fileID: 1815758170545334307}
   - component: {fileID: 4936498862079768378}
   m_Layer: 0
   m_Name: KinesisPickup
@@ -174,6 +175,46 @@ MonoBehaviour:
   bobRate: 1
   amplitude: 0.25
   rotateSpeed: 0.75
+--- !u!114 &1815758170545334307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272882866489034896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b913c5cd86886b49ae56d0d8f6c27af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shrinkTime: 1
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  model: {fileID: 1309295828370960674}
+  colliders:
+  - {fileID: 4936498862079768378}
 --- !u!135 &4936498862079768378
 SphereCollider:
   m_ObjectHideFlags: 0

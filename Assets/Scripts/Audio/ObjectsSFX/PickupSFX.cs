@@ -8,7 +8,6 @@ public class PickupSFX : MonoBehaviour
     public void Play_OneShot()
     {
         source.Play();
-        Debug.Log("played");
     }
 
 }
