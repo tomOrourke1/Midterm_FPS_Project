@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
 
-public class ArmoredBrute : EnemyBase, IDamagable
+public class ArmoredBrute : EnemyBase, IDamagable, IEntity, IVoidDamage
 {
     [Header("-----States-----")]
     [SerializeField] EnemyIdleState idleState;
@@ -215,5 +215,15 @@ public class ArmoredBrute : EnemyBase, IDamagable
     {
         return health.CurrentValue;
     }
-    
+
+    public void Respawn()
+    {
+        Destroy(gameObject);
+    }
+
+
+    public void FallIntoTheVoid()
+    {
+        Destroy(gameObject);
+    }
 }

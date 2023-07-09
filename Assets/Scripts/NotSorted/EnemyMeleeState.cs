@@ -6,7 +6,8 @@ public class EnemyMeleeState : EnemyState
 {
    
     [SerializeField] Collider meleeCollider;
-   // [SerializeField] EnemyAnimaterScript animScript;
+    [SerializeField] EnemyAnimaterScript animScript;
+    [SerializeField] Animator animator;
 
     [SerializeField] float totalTime;
     float timeInState;
@@ -16,8 +17,9 @@ public class EnemyMeleeState : EnemyState
         base.OnEnter();
         meleeCollider.enabled = true;
         exit = false;
-       // animScript?.StartMelee();
+        animScript?.StartMelee();
         timeInState = Time.time;
+        animator.applyRootMotion = true;
     }
 
 
@@ -29,12 +31,17 @@ public class EnemyMeleeState : EnemyState
     public override void OnExit()
     {
         meleeCollider.enabled = false;
-    //   animScript?.StopMelee();
+
+        if(animScript.DoingMelee)
+           animScript?.StopMelee();
+
+        animator.applyRootMotion = false;
+        
     }
 
     public override bool ExitCondition()
     {
-        return exit;
+        return exit || !animScript.DoingMelee;
     }
     
 }

@@ -11,6 +11,9 @@ public class EnemyAnimaterScript : MonoBehaviour
     [SerializeField] Transform enemyBaseTransform;
 
 
+    bool meleeing;
+
+    public bool DoingMelee => meleeing;
 
     private void Update()
     {
@@ -58,12 +61,16 @@ public class EnemyAnimaterScript : MonoBehaviour
 
     public void StartMelee()
     {
+        enemyAnimator.SetTrigger("Meloo");
         enemyAnimator.SetBool("Melee", true);
+        meleeing = true;
     }
     
     public void StopMelee()
     {
         enemyAnimator.SetBool("Melee", false);
+        meleeing = false;
+
     }
 
     public void TransposeBody()
@@ -72,5 +79,6 @@ public class EnemyAnimaterScript : MonoBehaviour
         pos.y -= 1;
         transform.localPosition = pos;
     }
+
 
 }
