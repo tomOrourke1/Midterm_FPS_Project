@@ -16,11 +16,17 @@ public class DamgableObject : MonoBehaviour, IEnvironment, IDamagable
     private void Start()
     {
         durabilityPool.FillToMax();
-        durabilityPool.OnResourceDepleted += Die;
-        durabilityPool.OnResourceDecrease += CheckDurability;
 
         wallMeshRenderer = GetComponent<MeshRenderer>();
         wallMeshRenderer.material = Dur3;
+    }
+
+
+    private void OnEnable()
+    {
+        durabilityPool.OnResourceDepleted += Die;
+        durabilityPool.OnResourceDecrease += CheckDurability;
+        
     }
 
     private void OnDisable()
@@ -33,8 +39,7 @@ public class DamgableObject : MonoBehaviour, IEnvironment, IDamagable
         if (dmg > 0)
         {
             durabilityPool.Decrease(dmg);
-         
-         
+
             
         }
     }

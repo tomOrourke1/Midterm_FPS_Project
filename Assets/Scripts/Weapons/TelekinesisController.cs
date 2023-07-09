@@ -168,7 +168,12 @@ public class TelekinesisController : KinesisBase
 
             timePressed += Time.deltaTime;
             timePressed = Mathf.Clamp01(timePressed);
+        } else if (stachedObject == null)
+        {
+            StopFire();
         }
+
+
     }
 
     void ReleaseObject()
