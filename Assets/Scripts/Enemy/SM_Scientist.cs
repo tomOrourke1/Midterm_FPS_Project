@@ -39,6 +39,7 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoi
     private void Start()
     {
         health.FillToMax();
+        enemyColor = enemyMeshRenderer.material.color;
 
         stateMachine = new StateMachine();
         stateMachine.SetState(idleState);

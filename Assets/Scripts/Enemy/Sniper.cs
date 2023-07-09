@@ -58,7 +58,6 @@ public class Sniper : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidDamag
         stateMachine.AddAnyTransition(stunState, OnStunned);
         stateMachine.AddTransition(stunState, idleState, OnUnstunned);
 
-        rb.isKinematic = false;
 
         stateMachine.AddAnyTransition(deathState, () => isDead);
     }

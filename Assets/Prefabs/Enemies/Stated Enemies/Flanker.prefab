@@ -150,6 +150,9 @@ MonoBehaviour:
   acceleration: 0
   rotSpeed: 0
   stoppingDist: 0
+  stunTime: 1
+  rb: {fileID: 4536940295761009002}
+  isStunned: 0
 --- !u!1 &2021841616974148822
 GameObject:
   m_ObjectHideFlags: 0
@@ -823,7 +826,7 @@ MonoBehaviour:
   acceleration: 0
   rotSpeed: 0
   stoppingDist: 0
-  rb: {fileID: 0}
+  rb: {fileID: 4536940295761009002}
 --- !u!1001 &3746247523857629979
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -887,6 +890,10 @@ PrefabInstance:
       propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 13700002, guid: 317a56890b5c8e74ab1d492a2c7fb608, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 11b732a7ca1c590459b7a56038889a5b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 317a56890b5c8e74ab1d492a2c7fb608, type: 3}
 --- !u!1 &3746247523857662977 stripped

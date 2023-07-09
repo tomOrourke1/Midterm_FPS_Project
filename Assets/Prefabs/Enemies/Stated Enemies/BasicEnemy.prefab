@@ -99,6 +99,9 @@ MonoBehaviour:
   acceleration: 0
   rotSpeed: 0
   stoppingDist: 0
+  stunTime: 0.2
+  rb: {fileID: 985107345994495972}
+  isStunned: 0
 --- !u!1 &692440547503518859
 GameObject:
   m_ObjectHideFlags: 0
@@ -781,7 +784,7 @@ MonoBehaviour:
   acceleration: 0
   rotSpeed: 0
   stoppingDist: 0
-  animScript: {fileID: 0}
+  animScript: {fileID: 7279943310949234950}
   bullet: {fileID: 5779099364001243127, guid: 1907d588480e97948a8cd1d1c3d48f28, type: 3}
   gunPos: {fileID: 7403589600273502123}
   timeToShoot: 0.05
@@ -934,6 +937,10 @@ PrefabInstance:
       propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 13700002, guid: 317a56890b5c8e74ab1d492a2c7fb608, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ed5813ee59b326140b8539e45d7f2281, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 317a56890b5c8e74ab1d492a2c7fb608, type: 3}
 --- !u!95 &541750346817581228 stripped

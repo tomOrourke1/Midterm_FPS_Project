@@ -49,7 +49,7 @@ MonoBehaviour:
   acceleration: 0
   rotSpeed: 0
   stoppingDist: 0
-  rb: {fileID: 0}
+  rb: {fileID: 825021957}
 --- !u!1 &553514749700212797
 GameObject:
   m_ObjectHideFlags: 0
@@ -724,7 +724,7 @@ MonoBehaviour:
   acceleration: 0
   rotSpeed: 800
   stoppingDist: 0
-  animScript: {fileID: 0}
+  animScript: {fileID: 1368758868349280189}
   bullet: {fileID: 5779099364001243127, guid: 1907d588480e97948a8cd1d1c3d48f28, type: 3}
   gunPos: {fileID: 3075039027522649403}
   timeToShoot: 0.5
@@ -818,6 +818,9 @@ MonoBehaviour:
   acceleration: 0
   rotSpeed: 0
   stoppingDist: 0
+  stunTime: 0.2
+  rb: {fileID: 825021957}
+  isStunned: 0
 --- !u!1 &8874964555743751489
 GameObject:
   m_ObjectHideFlags: 0

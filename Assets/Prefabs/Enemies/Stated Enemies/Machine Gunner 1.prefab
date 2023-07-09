@@ -683,8 +683,8 @@ MonoBehaviour:
   acceleration: 0
   rotSpeed: 0
   stoppingDist: 0
-  stunTime: 0
-  rb: {fileID: 0}
+  stunTime: 0.2
+  rb: {fileID: 3125698736885215808}
   isStunned: 0
 --- !u!1001 &722882025196278789
 PrefabInstance:
@@ -827,6 +827,10 @@ PrefabInstance:
       propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 13700002, guid: 317a56890b5c8e74ab1d492a2c7fb608, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 26d1377d67a684e4287b2ac11ed076a1, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 317a56890b5c8e74ab1d492a2c7fb608, type: 3}
 --- !u!95 &970499662855707679 stripped

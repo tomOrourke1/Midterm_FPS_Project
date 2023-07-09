@@ -70,12 +70,11 @@ public class SM_MachineGunner : EnemyBase, IDamagable, IEntity, IVoidDamage, IAp
     void Update()
     {
 
-        Debug.Log("state: " + stateMachine.CurrentState);
         if (enemyEnabled)
         {
             stateMachine.Tick();
 
-            if (GetDoesSeePlayer())
+            if (GetDoesSeePlayer() && !isDead)
             {
                 RotToPlayer();
             }

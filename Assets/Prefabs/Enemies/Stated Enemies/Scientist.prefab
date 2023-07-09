@@ -593,6 +593,9 @@ MonoBehaviour:
   acceleration: 0
   rotSpeed: 0
   stoppingDist: 0
+  stunTime: 0.2
+  rb: {fileID: -2567119409572389372}
+  isStunned: 0
 --- !u!1 &7127301067120649378
 GameObject:
   m_ObjectHideFlags: 0
@@ -642,7 +645,7 @@ MonoBehaviour:
   acceleration: 0
   rotSpeed: 0
   stoppingDist: 0
-  rb: {fileID: 0}
+  rb: {fileID: -2567119409572389372}
 --- !u!1001 &658133080420584844
 PrefabInstance:
   m_ObjectHideFlags: 0

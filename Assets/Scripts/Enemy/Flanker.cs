@@ -46,6 +46,7 @@ public class Flanker : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidDama
 
         health.FillToMax();
 
+
         stateMachine = new StateMachine();
         stateMachine.SetState(idleState);
 

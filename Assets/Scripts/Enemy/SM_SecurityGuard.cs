@@ -39,6 +39,7 @@ public class SM_SecurityGuard : EnemyBase, IDamagable, IEntity, IApplyVelocity, 
     private void Start()
     {
         health.FillToMax(); // Makes Security Guards have full health
+        enemyColor = enemyMeshRenderer.material.color;
 
         stateMachine = new StateMachine(); // creates new instance of state machine
         stateMachine.SetState(idleState); // sets state machine to idle state
@@ -65,8 +66,6 @@ public class SM_SecurityGuard : EnemyBase, IDamagable, IEntity, IApplyVelocity, 
 
         stateMachine.AddAnyTransition(stunState, OnStunned);
         stateMachine.AddTransition(stunState, idleState, OnUnstunned);
-
-        rb.isKinematic = false;
 
         stateMachine.AddAnyTransition(deathState, () => isDead);
     }

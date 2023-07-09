@@ -47,6 +47,7 @@ public class ArmoredBrute : EnemyBase, IDamagable, IEntity, IVoidDamage
     void Start()
     {
         health.FillToMax();
+        enemyColor = enemyMeshRenderer.material.color;
 
         stateMachine = new StateMachine();
         stateMachine.SetState(idleState);
