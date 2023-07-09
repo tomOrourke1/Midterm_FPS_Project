@@ -19,7 +19,7 @@ public class KeyScript : MonoBehaviour, IEntity, IVoidDamage
             if (GameManager.instance.GetKeyChain().GetKeys() < GameManager.instance.GetKeyChain().GetMaxKeys())
             {
                 GameManager.instance.GetKeyChain().addKeys(1);
-                GameManager.instance.GetCurrentRoomManager().CallDeath(spawnIndex);
+                GameManager.instance.GetCurrentRoomManager()?.CallDeath(spawnIndex);
                 Destroy(gameObject);
             }
         }

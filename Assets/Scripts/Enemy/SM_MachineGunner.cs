@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
 
-public class SM_MachineGunner : EnemyBase , IDamagable, IEntity
+public class SM_MachineGunner : EnemyBase , IDamagable, IEntity, IVoidDamage
 {
 
     [Header("----Machine Gunner States----")]
@@ -193,5 +193,9 @@ public class SM_MachineGunner : EnemyBase , IDamagable, IEntity
     {
         Destroy(gameObject);
     }
-   
+
+    public void FallIntoTheVoid()
+    {
+        Destroy(gameObject);
+    }
 }

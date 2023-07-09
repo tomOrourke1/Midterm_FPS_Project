@@ -47,4 +47,5 @@ public abstract class EnemyState : MonoBehaviour, IState
     {
         return false;
     }
+
 }

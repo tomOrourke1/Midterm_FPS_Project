@@ -5,7 +5,7 @@ using UnityEngine.AI;
 using UnityEngine.Events;
 using UnityEngine.UIElements;
 
-public class Sniper : EnemyBase, IDamagable, IEntity, IApplyVelocity
+public class Sniper : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidDamage
 {
     [Header("-----Sniper States-----")]
     [SerializeField] EnemyIdleState idleState;
@@ -263,4 +263,8 @@ public class Sniper : EnemyBase, IDamagable, IEntity, IApplyVelocity
 
     }
 
+    public void FallIntoTheVoid()
+    {
+        Destroy(gameObject);
+    }
 }

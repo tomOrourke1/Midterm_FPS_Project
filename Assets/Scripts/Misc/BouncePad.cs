@@ -10,6 +10,9 @@ public class BouncePad : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.isTrigger)
+            return;
+
         var vel = other.GetComponent<IApplyVelocity>(); 
         if(vel != null)
         {

@@ -12,7 +12,6 @@ public class EnemyAnimaterScript : MonoBehaviour
 
 
 
-
     private void Update()
     {
         TickMovement();
@@ -24,7 +23,14 @@ public class EnemyAnimaterScript : MonoBehaviour
         var y = Vector3.Dot(enemyBaseTransform.forward, agent.velocity);
         var x = Vector3.Dot(enemyBaseTransform.right, agent.velocity);
 
+        y = y / agent.speed;
+        y = x / agent.speed;
 
+       // y = Mathf.Clamp(y, -1, 1);
+       // y = Mathf.Round(y);
+
+       // x = Mathf.Clamp(x, -1, 1);
+       // x = Mathf.Round(x);
 
         enemyAnimator.SetFloat("X", x);
         enemyAnimator.SetFloat("Y", y);

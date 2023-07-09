@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
 
-public class Flanker : EnemyBase, IDamagable, IEntity, IApplyVelocity
+public class Flanker : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidDamage
 {
     [Header("----- Flanker States -----")]
     [SerializeField] EnemyIdleState idleState;
@@ -76,7 +76,6 @@ public class Flanker : EnemyBase, IDamagable, IEntity, IApplyVelocity
         stateMachine.AddAnyTransition(stunState, OnStunned);
         stateMachine.AddTransition(stunState, idleState, OnUnstunned);
 
-        rb.isKinematic = false;
 
         stateMachine.AddAnyTransition(deathState, () => isDead);
     }
@@ -284,5 +283,10 @@ public class Flanker : EnemyBase, IDamagable, IEntity, IApplyVelocity
             }
         }
 
+    }
+
+    public void FallIntoTheVoid()
+    {
+        Destroy(gameObject);
     }
 }

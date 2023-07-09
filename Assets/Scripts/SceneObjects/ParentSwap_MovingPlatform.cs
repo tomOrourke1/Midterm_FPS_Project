@@ -8,6 +8,8 @@ public class ParentSwap_MovingPlatform : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.isTrigger)
+            return;
         other.transform.SetParent(parentPlatform);
     }
 

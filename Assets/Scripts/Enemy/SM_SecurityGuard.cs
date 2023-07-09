@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
 
-public class SM_SecurityGuard : EnemyBase, IDamagable, IEntity, IApplyVelocity
+public class SM_SecurityGuard : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidDamage
 {
     [Header("----- States ----- ")]
     [SerializeField] EnemyIdleState idleState; // creates Idle state
@@ -278,4 +278,8 @@ public class SM_SecurityGuard : EnemyBase, IDamagable, IEntity, IApplyVelocity
 
     }
 
+    public void FallIntoTheVoid()
+    {
+        Destroy(gameObject);
+    }
 }

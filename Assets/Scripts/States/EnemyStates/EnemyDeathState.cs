@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class EnemyDeathState : EnemyState
 {
+    [SerializeField] Rigidbody rb;
+
     public override void OnEnter()
     {
         base.OnEnter();
-        agent.SetDestination(agent.transform.position);
-        agent.isStopped = true;
+        agent.enabled = false;
+        rb.velocity = Vector3.zero;
     }
 }

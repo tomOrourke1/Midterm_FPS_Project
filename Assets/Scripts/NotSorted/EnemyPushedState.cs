@@ -5,12 +5,13 @@ using UnityEngine;
 
 public class EnemyPushedState : EnemyState
 {
-
+    [SerializeField] Rigidbody rb;
 
     public override void OnEnter()
     {
         base.OnEnter();
-      
+
+        rb.isKinematic = false;
     }
 
 

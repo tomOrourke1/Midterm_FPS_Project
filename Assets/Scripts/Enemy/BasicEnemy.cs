@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
 
-public class BasicEnemy : EnemyBase, IDamagable, IEntity, IApplyVelocity
+public class BasicEnemy : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidDamage
 {
     [Header("---- States ----")]
     [SerializeField] EnemyIdleState idleState;
@@ -64,7 +64,6 @@ public class BasicEnemy : EnemyBase, IDamagable, IEntity, IApplyVelocity
         stateMachine.AddAnyTransition(stunState, OnStunned);
         stateMachine.AddTransition(stunState, idleState, OnUnstunned);
 
-        rb.isKinematic = false;
 
         enemyColor = enemyMeshRenderer.material.color;
 
@@ -285,4 +284,8 @@ public class BasicEnemy : EnemyBase, IDamagable, IEntity, IApplyVelocity
         }
     }
 
+    public void FallIntoTheVoid()
+    {
+        Destroy(gameObject);
+    }
 }
