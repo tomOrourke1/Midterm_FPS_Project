@@ -18,11 +18,11 @@ public class ArmoredBrute : EnemyBase, IDamagable, IEntity, IVoidDamage
 
     [Header("-----Brute Stats-----")]
     [SerializeField] int damage;
-   
-    [SerializeField] int attackRate;
-    [SerializeField] int playerFaceSpeed;
-    [SerializeField] float stunTime;
+    [SerializeField] float timeBetweenAttacks;
+    [SerializeField] float playerFaceSpeed;
+    [SerializeField] float timeBetweenCharges;
 
+    [Header("--- movement ranges ----")]
     [SerializeField] float moveDistance;
     [SerializeField] float chargeDistance;
     [SerializeField] float attackDistance;
@@ -33,14 +33,17 @@ public class ArmoredBrute : EnemyBase, IDamagable, IEntity, IVoidDamage
     Rigidbody rb;
 
 
-
-    float beginningStunTime;
     public UnityEvent OnEnemyDeathEvent;
-    bool isAttacking;
-    bool startChargePrep;
-    bool timerOn;
    
     private bool isDead;
+
+
+
+    float timeToNextCharge;
+    float timeToNextAttack;
+    bool canCharge;
+    bool canAttack;
+
     void Start()
     {
         health.FillToMax();
@@ -52,14 +55,23 @@ public class ArmoredBrute : EnemyBase, IDamagable, IEntity, IVoidDamage
         stateMachine.AddTransition(chasePlayerState, idleState, OnIdle);
 
         stateMachine.AddTransition(chasePlayerState, meleeState, OnAttack);
+        stateMachine.AddTransition(idleState, meleeState, OnAttack);
         stateMachine.AddTransition(meleeState, idleState, meleeState.ExitCondition);
 
         stateMachine.AddTransition(chasePlayerState, chargePrepState, OnChargePrep);
-        stateMachine.AddTransition(chargePrepState, chargeState, chargePrepState.ExitCondition);
+        stateMachine.AddTransition(idleState, chargePrepState, OnChargePrep);
 
+
+        stateMachine.AddTransition(chargePrepState, chargeState, chargePrepState.ExitCondition);
         stateMachine.AddTransition(chargeState, stunState, OnStun);
+
         stateMachine.AddTransition(stunState, idleState, OnUnstun);
 
+
+
+
+
+        // any transitions
         stateMachine.AddAnyTransition(deathState, () => isDead);
 
         rb = GetComponent<Rigidbody>();
@@ -67,60 +79,71 @@ public class ArmoredBrute : EnemyBase, IDamagable, IEntity, IVoidDamage
 
     void Update()
     {
-
+        Debug.Log("State: " + stateMachine.CurrentState);
         if (enemyEnabled)
         {
             stateMachine.Tick();
 
-            if (GetDoesSeePlayer() && chargePrepState.isCharging == false && chargeState.isStunned == false && startChargePrep == false)
+            if (GetDoesSeePlayer() && chargePrepState.isCharging == false && chargeState.isCharging == false)
             {
                 RotToPlayer();
             }
         }
     }
     bool OnIdle()
-
     {
-        Debug.Log("on idle");
         float distance = Vector3.Distance(GameManager.instance.GetPlayerObj().transform.position, gameObject.transform.position);
-        bool inDistance = distance > moveDistance;
+        bool inDistance = distance <= moveDistance && distance > attackDistance;
         return inDistance;
     }
 
     bool OnMove()
     {
-        Debug.Log("on move");
         float distance = Vector3.Distance(GameManager.instance.GetPlayerObj().transform.position, gameObject.transform.position);
-        bool inDistance = distance < moveDistance;
+        bool inDistance = distance > moveDistance;
 
-
-        if (distance < moveDistance && distance > chargeDistance && GetDoesSeePlayer())
-        {
-            if (timerOn == false) { StartCoroutine(Timer()); }
-            StartCoroutine(Timer());
-            //RotToPlayer();
-            startChargePrep = true;
-        }
-        else if (distance < attackDistance && GetDoesSeePlayer())
-        {
-            if (timerOn == false) { StartCoroutine(Timer()); }
-
-            isAttacking = true;
-        }
         return inDistance;
     }
 
     bool OnAttack()
     {
-        Debug.Log("on attack");
-     
-        return isAttacking;
+        float distance = Vector3.Distance(GameManager.instance.GetPlayerObj().transform.position, gameObject.transform.position);
+        bool inDistance = distance <= attackDistance;
+
+
+        timeToNextAttack += Time.deltaTime;
+        canAttack = timeToNextAttack >= timeBetweenAttacks;
+        var temp = canAttack;
+
+        if (temp)
+        {
+            canAttack = false;
+        }
+
+
+        return inDistance && temp;
     }
     bool OnChargePrep()
     {
-        Debug.Log("on charge prep");
-        return startChargePrep;
+        // if the arbitrary timer has completed
+        // and within charge range
+
+        float distance = Vector3.Distance(GameManager.instance.GetPlayerObj().transform.position, gameObject.transform.position);
+        bool inDistance = distance <= chargeDistance;
+
+
+        timeToNextCharge += Time.deltaTime;
+        canCharge = timeToNextCharge >= timeBetweenCharges;
+        var temp = canCharge;
+
+        if(temp)
+        {
+            canCharge = false;
+        }
+        
+        return inDistance && temp;
     }
+
 
 
 
@@ -145,13 +168,12 @@ public class ArmoredBrute : EnemyBase, IDamagable, IEntity, IVoidDamage
     }
     bool OnStun()
     {
-        Debug.Log("on stun");
-       
-        return chargeState.isStunned;
+
+        return chargeState.ExitCondition();
     }
     bool OnUnstun()
     {
-        return chargeState.isUnstunned;
+        return stunState.ExitCondition();
     }
     public void TakeDamage(float dmg)
     {
@@ -182,20 +204,7 @@ public class ArmoredBrute : EnemyBase, IDamagable, IEntity, IVoidDamage
         enemyMeshRenderer.material.color = enemyColor;
     }
 
-    IEnumerator StunTimer()
-    {
-        yield return new WaitForSeconds(stunTime);
-        chargeState.isUnstunned = true;
-        chargeState.isStunned = false;
 
-    }
-    IEnumerator Timer()
-    {
-        timerOn = true;
-        yield return new WaitForSeconds(2);
-        timerOn = false;
-
-    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -210,18 +219,14 @@ public class ArmoredBrute : EnemyBase, IDamagable, IEntity, IVoidDamage
             enemyEnabled = false;
         }
     }
-
     public float GetCurrentHealth()
     {
         return health.CurrentValue;
     }
-
     public void Respawn()
     {
         Destroy(gameObject);
     }
-
-
     public void FallIntoTheVoid()
     {
         Destroy(gameObject);

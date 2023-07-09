@@ -260,5 +260,7 @@ public class TelekinesisController : KinesisBase
         stachedObject = null;
 
         OnTeleStopped?.Invoke();
+
+        base.EnableOpenRadial();
     }
 }

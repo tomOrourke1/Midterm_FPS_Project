@@ -37,7 +37,7 @@ public class StateMachine
     {
         if(currentState == state) 
             return;
-        Debug.Log("State: " + state.ToString());
+        //Debug.Log("State: " + state.ToString());
         currentState?.OnExit();
         currentState = state;
         currentState?.OnEnter();

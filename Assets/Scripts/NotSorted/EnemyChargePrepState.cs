@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class EnemyChargePrepState : EnemyState
 {
-    public bool isCharging;
+    [Space]
     [SerializeField] float chargeTime;
-    [SerializeField] Rigidbody rb;
-    [SerializeField] Collider attackTrigger;
-    [SerializeField] Collider detectTrigger;
+
+
+
+    [HideInInspector]
+    public bool isCharging;
+
+    bool canCharge;
     public override void OnEnter()
     {
+        canCharge = false;
+        isCharging = true;
         base.OnEnter();
-        agent.enabled = false;
-        rb.isKinematic = true;
-        attackTrigger.enabled = true;
-        detectTrigger.enabled = false;
         StartCoroutine(ChargeTimer());
     }
 
@@ -27,18 +29,20 @@ public class EnemyChargePrepState : EnemyState
 
     public override void OnExit()
     {
-
+        isCharging = false;
+        StopAllCoroutines();
+        
     }
 
 
     public override bool ExitCondition()
     {
-        return isCharging;
+        return canCharge;
     }
     IEnumerator ChargeTimer()
     {
         yield return new WaitForSeconds(chargeTime);
-        isCharging = true;
+        canCharge = true;
         
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyDeathState : EnemyState
 {
+    [Space]
     [SerializeField] Rigidbody rb;
 
     public override void OnEnter()

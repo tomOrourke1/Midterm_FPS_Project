@@ -14,7 +14,18 @@ public class EnemyMeleeScript : MonoBehaviour
         
     }
 
-    
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Player"))
+        {
+            IDamagable idamage = other.GetComponent<IDamagable>();
+            if(idamage != null)
+            {
+                idamage.TakeDamage(damage);
+            }
+        }
+    }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))

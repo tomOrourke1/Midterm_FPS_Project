@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyMeleeState : EnemyState
 {
-   
+    [Space]
     [SerializeField] Collider meleeCollider;
     [SerializeField] EnemyAnimaterScript animScript;
     [SerializeField] Animator animator;
@@ -37,10 +37,13 @@ public class EnemyMeleeState : EnemyState
 
         animator.applyRootMotion = false;
         
+        animator.gameObject.transform.localPosition = Vector3.zero;
+        animator.gameObject.transform.localRotation = Quaternion.Euler(new Vector3(0, 45, 0));
     }
 
     public override bool ExitCondition()
     {
+        Debug.LogError("exit: " + exit + " animdoing: " + animScript.DoingMelee);
         return exit || !animScript.DoingMelee;
     }
     
