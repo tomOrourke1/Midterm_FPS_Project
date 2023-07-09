@@ -14,25 +14,37 @@ public class UnlockTerminal : MonoBehaviour, IInteractable, IEnvironment
     [SerializeField] Material LockedMaterial;
     [SerializeField] Material UnlockedMaterial;
 
+    [Tooltip("This is the maximum amount of times that you can interract with the terminal")]
+    [SerializeField, Range(1,5)] int InteractLimit;
+
+    bool ActivationLock = false;
+
     public void Interact()
     {
-        if (GameManager.instance.GetKeyChain().GetKeys() >= 1)
+        if (GameManager.instance.GetKeyChain().GetKeys() >= 1 && !ActivationLock)
         {
             // Activate
             Activate.Invoke();
 
-            // Remove display text  
-            Text.SetActive(false);
-
-            // Change material
-            GetComponent<MeshRenderer>().material = UnlockedMaterial;
-
             // Remove a key
             GameManager.instance.GetKeyChain().removeKeys(1);
+
+            InteractLimit--;
         } 
         else
         {
             Debug.LogError("No kevin go cry in a corner.");
+        }
+
+        if (InteractLimit == 0)
+        {
+            ActivationLock = true;
+
+            // Change material
+            GetComponent<MeshRenderer>().material = UnlockedMaterial;
+
+            // Remove display text  
+            Text.SetActive(false);
         }
     }
 
