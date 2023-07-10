@@ -96,33 +96,85 @@ public class LightningKinesis : KinesisBase
     }
     void LaserCast(Vector3 target) 
     {
-        RaycastHit hit;
-        if (Physics.Raycast(attackPoint.transform.position, target - attackPoint.transform.position, out hit, maxDistance))
+
+        var aimValue = GameManager.instance.GetAimAssistValue();
+        var isOn = GameManager.instance.GetSettingsManager().settings.aimAssistEnabled;
+        bool regCast = true;
+
+        Vector3 forceDirection;
+
+        if (isOn)
         {
-            IDamagable damageable = hit.collider.GetComponent<IDamagable>();
+            RaycastHit hit;
+            var doHIt = Physics.SphereCast(Camera.main.transform.position, aimValue, Camera.main.transform.forward, out hit);
 
+            if (doHIt)
+            {
 
-            if (!spawningHits)
-            {
-                StartCoroutine(spawnHit(hit.point));
+                IDamagable damageable = hit.collider.GetComponent<IDamagable>();
+
+                if (!spawningHits)
+                {
+                    StartCoroutine(spawnHit(hit.point));
+                }
+
+                if (damageable != null && !hit.collider.CompareTag("Player"))
+                {
+                    //Debug.Log("reached inside of null check");
+                    damageable.TakeElectroDamage(Damage * Time.deltaTime);
+                }
+
+                if (hit.point != null)
+                {
+                    UpdateLightning(hit.point);
+                }
+
+                regCast = false;
             }
-            
-            if (damageable != null && !hit.collider.CompareTag("Player"))
+            else
             {
-                //Debug.Log("reached inside of null check");
-                damageable.TakeElectroDamage(Damage * Time.deltaTime);
+                regCast = true;
             }
-           
-            if(hit.point != null)
-            {
-                UpdateLightning(hit.point);
-            }
-            
+
         }
-        else {
 
-            UpdateLightningNoPoint(target-attackPoint.transform.position); 
+        if(regCast)
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(attackPoint.transform.position, target - attackPoint.transform.position, out hit, maxDistance))
+            {
+                IDamagable damageable = hit.collider.GetComponent<IDamagable>();
+
+
+                if (!spawningHits)
+                {
+                    StartCoroutine(spawnHit(hit.point));
+                }
+
+                if (damageable != null && !hit.collider.CompareTag("Player"))
+                {
+                    //Debug.Log("reached inside of null check");
+                    damageable.TakeElectroDamage(Damage * Time.deltaTime);
+                }
+
+                if (hit.point != null)
+                {
+                    UpdateLightning(hit.point);
+                }
+
+            }
+            else
+            {
+
+                UpdateLightningNoPoint(target - attackPoint.transform.position);
+            }
+
         }
+
+
+
+
+
 
 
         electroSFX.PlayElectro_Shoot();

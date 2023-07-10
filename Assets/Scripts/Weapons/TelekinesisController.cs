@@ -69,30 +69,80 @@ public class TelekinesisController : KinesisBase
           
             // suck item
 
-            Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f));
-            RaycastHit hit;
-            bool doesHit = Physics.Raycast(ray, out hit, range);
-
-            if (doesHit)
+            var aimValue = GameManager.instance.GetAimAssistValue();
+            var isOn = GameManager.instance.GetSettingsManager().settings.aimAssistEnabled;
+            bool defaultCast = true;
+            if(isOn)
             {
-                // Changed this from an interface to a script
-                stachedObject = hit.collider.GetComponent<MoveableObject>();
-                timePressed = 0;
-                if(stachedObject != null && GameManager.instance.GetPlayerResources().SpendFocus(focusCost))
-                {
-                    isCasting = true;
+                RaycastHit hit;
+                var doHIt = Physics.SphereCast(Camera.main.transform.position, aimValue, Camera.main.transform.forward, out hit);
 
-                    OnTeleStart?.Invoke();
-                    originalPos = stachedObject.GetPosition();
-                    stachedObject.GetRigidbody().useGravity = false;
-                    //Debug.Log("Here");
-                    stachedObject.SetVolitile(true);
+                if(doHIt)
+                {
+                    // Changed this from an interface to a script
+                    stachedObject = hit.collider.GetComponent<MoveableObject>();
+                    timePressed = 0;
+                    if (stachedObject != null && GameManager.instance.GetPlayerResources().SpendFocus(focusCost))
+                    {
+                        isCasting = true;
+
+                        OnTeleStart?.Invoke();
+                        originalPos = stachedObject.GetPosition();
+                        stachedObject.GetRigidbody().useGravity = false;
+                        //Debug.Log("Here");
+                        stachedObject.SetVolitile(true);
+                    }
+                    else
+                    {
+                        stachedObject = null;
+                    }
+
+
+
+
+                    defaultCast = false;
                 }
                 else
                 {
-                    stachedObject = null;
+                    defaultCast = true;
+                }
+
+
+            }
+
+
+
+            if (defaultCast)
+            {
+
+                Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f));
+                RaycastHit hit;
+                bool doesHit = Physics.Raycast(ray, out hit, range);
+
+
+                if (doesHit)
+                {
+                    // Changed this from an interface to a script
+                    stachedObject = hit.collider.GetComponent<MoveableObject>();
+                    timePressed = 0;
+                    if (stachedObject != null && GameManager.instance.GetPlayerResources().SpendFocus(focusCost))
+                    {
+                        isCasting = true;
+
+                        OnTeleStart?.Invoke();
+                        originalPos = stachedObject.GetPosition();
+                        stachedObject.GetRigidbody().useGravity = false;
+                        //Debug.Log("Here");
+                        stachedObject.SetVolitile(true);
+                    }
+                    else
+                    {
+                        stachedObject = null;
+                    }
                 }
             }
+
+
         }
     }
 
