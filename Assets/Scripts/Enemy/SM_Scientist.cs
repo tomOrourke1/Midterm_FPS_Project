@@ -23,6 +23,8 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoi
     [Header("Keys")]
     [SerializeField] GameObject key;
 
+    bool voided = false;
+
     private bool isDead;
     bool wasPushed;
     bool hasLanded;
@@ -76,8 +78,8 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoi
         if (enemyEnabled)
         {
             stateMachine.Tick();
-            
-            if(GetDoesSeePlayer() && !isDead && isUnstunned == true)
+
+            if (GetDoesSeePlayer() && !isDead && isUnstunned == true)
             {
                 RotToPlayer();
             }
@@ -105,26 +107,26 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoi
         wasPushed = false;
         return temp;
     }
-    bool OnStunned() 
+    bool OnStunned()
     {
-     
+
         var temp = isStunned;
         isStunned = false;
         return temp;
     }
-    bool OnUnstunned() 
+    bool OnUnstunned()
     {
-        
+
         var temp = isUnstunned;
         isUnstunned = false;
-        if (temp) 
+        if (temp)
         {
             isStunned = false;
         }
         return temp;
     }
     private void OnEnable()
-    { 
+    {
         health.OnResourceDepleted += OnDeath;
     }
 
@@ -168,7 +170,7 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoi
     {
         isStunned = true;
         TakeDamage(dmg);
-      
+
         StopCoroutine(StunTimer());
         StartCoroutine(StunTimer());
     }
@@ -238,6 +240,12 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoi
 
     public void FallIntoTheVoid()
     {
+        if (!voided)
+        {
+            GameManager.instance.GetKeyChain().addKeys(1);
+            voided = true;
+        }
+
         Destroy(gameObject);
     }
 }
