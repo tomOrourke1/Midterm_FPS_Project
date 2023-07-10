@@ -56,6 +56,9 @@ public class DamageIndicator : MonoBehaviour
     private IEnumerator FadeOff(GameObject obj)
     {
         obj.gameObject.SetActive(true);
+
+        obj.transform.rotation = Quaternion.Euler(0f, 0f, -ang);
+
         Image _i = obj.GetComponentInChildren<Image>();
         _i.color = new UnityEngine.Color(_i.color.r, _i.color.g, _i.color.b, 255f);
 

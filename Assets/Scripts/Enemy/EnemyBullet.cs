@@ -71,8 +71,15 @@ public class EnemyBullet : MonoBehaviour
 
     private void SendHitSignedAngle()
     {
-        var dirToSelf = transform.position - GameManager.instance.GetPlayerPOS();
-        float ang = Vector3.SignedAngle(GameManager.instance.GetPlayerObj().transform.forward, dirToSelf, Vector3.up);
-        DamageIndicator.Instance.ReceiveAngle(ang);
+        var val1 = GameManager.instance.GetPlayerObj().transform;
+
+        var otherDir = new Vector3(-transform.forward.x, 0f - transform.forward.z);
+        var playFwd = Vector3.ProjectOnPlane(val1.forward, Vector3.up);
+
+        var angle = Vector3.SignedAngle(playFwd, otherDir, Vector3.up);
+
+        //var dirToSelf = transform.position - GameManager.instance.GetPlayerPOS();
+        //float ang = Vector3.SignedAngle(GameManager.instance.GetPlayerObj().transform.forward, dirToSelf, Vector3.up);
+        DamageIndicator.Instance.ReceiveAngle(angle);
     }
 }
