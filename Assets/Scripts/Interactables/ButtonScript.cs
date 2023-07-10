@@ -23,21 +23,44 @@ public class ButtonScript : MonoBehaviour, IEnvironment
         {
             var tr = GetComponent<BoxCollider>();
 
-            Vector3 bounds = tr.size;
+           // Debug.LogError("box: " + tr.size + " scale: " + transform.localScale + " mult: " + VecMult(transform.localScale, tr.size));
+
+            Vector3 bounds = (VecMult(transform.localScale, tr.size)) / 2f;
+
+
             Vector3 pos = tr.center + transform.position;
 
 
-            Collider[] objs = Physics.OverlapBox(pos, bounds / 2);
-
-            
+            Collider[] objs = Physics.OverlapBox(pos, bounds);
 
             count = objs.Length;
+
+            Debug.LogError("Before removal: " +count);
+            foreach (Collider obj in objs)
+            {
+                if (obj.GetComponent<IEntity>() == null && !obj.CompareTag("Player"))
+                {
+                    // Everything that isn't an entity or the player will be ignored
+                    count--;
+                }
+            }
+
+            Debug.LogError("after Removal: " +count);
+
             if (count == 0 && !activated)
             {
                 Exit();
-                activated = true;
             }
         }
+    }
+
+    Vector3 VecMult(Vector3 v, Vector3 v2)
+    {
+        Vector3 value;
+        value.x = v.x * v2.x;
+        value.y = v.y * v2.y;
+        value.z = v.z * v2.z;
+        return value;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -46,15 +69,19 @@ public class ButtonScript : MonoBehaviour, IEnvironment
         {
             return;
         }
-        activated = false;
+
+
+
         if (count == 0)
         {
+            Debug.Log("Enter");
             buttonRenderer.material = pressedColor;
             buttonPress?.Invoke();
+            activated = false;
+            count++;
         }
 
 
-        count++;
     }
 
     void Exit()
@@ -62,27 +89,28 @@ public class ButtonScript : MonoBehaviour, IEnvironment
 
         if (count == 0)
         {
+            Debug.Log("Exit");
             buttonRenderer.material = releasedColor;
             buttonRelease?.Invoke();
+            activated = true;
         }
     }
 
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.isTrigger)
-        {
-            return;
-        }
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (other.isTrigger)
+    //    {
+    //        return;
+    //    }
 
-        //count--;
+    //    //count--;
 
-        if (count == 0)
-        {
-            buttonRenderer.material = releasedColor;
-            buttonRelease?.Invoke();
-        }
-    }
+    //    if (count == 0)
+    //    {
+    //        Exit();
+    //    }
+    //}
 
     public void StartObject()
     {
