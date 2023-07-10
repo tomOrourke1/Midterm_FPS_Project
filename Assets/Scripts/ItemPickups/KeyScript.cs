@@ -5,6 +5,7 @@ using UnityEngine;
 public class KeyScript : MonoBehaviour, IEntity
 {
     int spawnIndex;
+    bool collected = false;
 
     /// <summary>
     /// When the player enters the collider, check to make sure it is the player. 
@@ -16,8 +17,9 @@ public class KeyScript : MonoBehaviour, IEntity
         if (other.CompareTag("Player"))
         {
             // Gets the current keys and will add keys until max keys reached.
-            if (GameManager.instance.GetKeyChain().GetKeys() < GameManager.instance.GetKeyChain().GetMaxKeys())
+            if (GameManager.instance.GetKeyChain().GetKeys() < GameManager.instance.GetKeyChain().GetMaxKeys() && !collected)
             {
+                collected = true;
                 GameManager.instance.GetKeyChain().addKeys(1);
                 GameManager.instance.GetCurrentRoomManager()?.CallDeath(spawnIndex);
             }

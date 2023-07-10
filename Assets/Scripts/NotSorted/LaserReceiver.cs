@@ -9,6 +9,7 @@ public class LaserReceiver : MonoBehaviour, IReflector
     [SerializeField] UnityEvent Off;
 
     bool isActive = false;
+    bool activated = false;
     // Start is called before the first frame update
 
 
@@ -19,14 +20,20 @@ public class LaserReceiver : MonoBehaviour, IReflector
 
     public void Reflect(float remainingDistance, float damage, ParticleSystem ImpactFX, Light ImpactLight, RaycastHit hit, Vector3 LaserDir, LineRenderer originalLaser)
     {
-        isActive = true;
-        On?.Invoke();
+        if (!isActive)
+        {
+            isActive = true;
+            On?.Invoke();
+        }
     }
 
     public void StopReflection(LineRenderer laserToStop)
     {
-        isActive = false;
-        Off?.Invoke();
+        if (isActive)
+        {
+            isActive = false;
+            Off?.Invoke();
+        }
     }
 
 
