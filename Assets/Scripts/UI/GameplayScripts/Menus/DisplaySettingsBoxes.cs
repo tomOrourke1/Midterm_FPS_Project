@@ -14,6 +14,8 @@ public class DisplaySettingsBoxes : MonoBehaviour
     [SerializeField] GameObject gameplaySelectedObj;
     [SerializeField] GameObject keybindsObj;
     [SerializeField] GameObject keybindsSelectedObj;
+    [SerializeField] GameObject controllerObj;
+    [SerializeField] GameObject controllerSelectedObj;
 
     private GameObject lastOpened;
 
@@ -23,6 +25,7 @@ public class DisplaySettingsBoxes : MonoBehaviour
         graphicsObj.SetActive(false);
         keybindsObj.SetActive(false);
         gameplayObj.SetActive(false);
+        controllerObj.SetActive(false);
     }
 
     private void Awake()
@@ -84,6 +87,18 @@ public class DisplaySettingsBoxes : MonoBehaviour
 
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(keybindsSelectedObj);
+
+        lastOpened.SetActive(true);
+    }
+
+    public void DisplayController()
+    {
+        HideAll();
+
+        lastOpened = controllerObj;
+
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(controllerObj);
 
         lastOpened.SetActive(true);
     }
