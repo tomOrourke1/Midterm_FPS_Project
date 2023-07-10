@@ -20,18 +20,30 @@ public class ButtonScript : MonoBehaviour, IEnvironment
 
     private void OnTriggerEnter(Collider other)
     {
-        if(count == 0 && !other.isTrigger)
+        if (other.isTrigger)
+        {
+            return;
+        }
+
+        if(count == 0)
         {
             buttonRenderer.material = pressedColor;
             buttonPress?.Invoke();
         }
+
         count++;
     }
 
     private void OnTriggerExit(Collider other)
     {
+        if (other.isTrigger)
+        {
+            return;
+        }
+
         count--;
-        if(count == 0 && !other.isTrigger)
+
+        if(count == 0)
         {
             buttonRenderer.material = releasedColor;
             buttonRelease?.Invoke();
