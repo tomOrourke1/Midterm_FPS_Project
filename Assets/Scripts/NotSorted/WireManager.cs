@@ -50,6 +50,7 @@ public class WireManager : MonoBehaviour, IEnvironment
         else
         {
             i = 0;
+            canRunCO = true;
 
             foreach (WireSegment segment in segments)
             {
