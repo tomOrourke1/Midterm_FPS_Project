@@ -12,11 +12,33 @@ public class ButtonScript : MonoBehaviour, IEnvironment
     [SerializeField] Material pressedColor;
     [SerializeField] Material releasedColor;
 
-
     [SerializeField] Renderer buttonRenderer;
 
     int count;
+    bool activated = false;
 
+    private void Update()
+    {
+        if (count != 0)
+        {
+            var tr = GetComponent<BoxCollider>();
+
+            Vector3 bounds = tr.size;
+            Vector3 pos = tr.center + transform.position;
+
+
+            Collider[] objs = Physics.OverlapBox(pos, bounds / 2);
+
+            
+
+            count = objs.Length;
+            if (count == 0 && !activated)
+            {
+                Exit();
+                activated = true;
+            }
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -24,15 +46,27 @@ public class ButtonScript : MonoBehaviour, IEnvironment
         {
             return;
         }
-
-        if(count == 0)
+        activated = false;
+        if (count == 0)
         {
             buttonRenderer.material = pressedColor;
             buttonPress?.Invoke();
         }
 
+
         count++;
     }
+
+    void Exit()
+    {
+
+        if (count == 0)
+        {
+            buttonRenderer.material = releasedColor;
+            buttonRelease?.Invoke();
+        }
+    }
+
 
     private void OnTriggerExit(Collider other)
     {
@@ -41,15 +75,13 @@ public class ButtonScript : MonoBehaviour, IEnvironment
             return;
         }
 
-        count--;
+        //count--;
 
-        if(count == 0)
+        if (count == 0)
         {
             buttonRenderer.material = releasedColor;
             buttonRelease?.Invoke();
         }
-
-
     }
 
     public void StartObject()

@@ -9,7 +9,6 @@ public class LaserReceiver : MonoBehaviour, IReflector
     [SerializeField] UnityEvent Off;
 
     bool isActive = false;
-    bool activated = false;
     // Start is called before the first frame update
 
 

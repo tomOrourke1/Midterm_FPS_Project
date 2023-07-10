@@ -95,7 +95,7 @@ public class DoorScript : MonoBehaviour, IEnvironment
         if(activation && !locked)
         {
             InvertDoorState();
-        } else if (LockClose)
+        } else if (LockClose && isOpen)
         {
             InvertDoorState();
         }

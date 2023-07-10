@@ -93,8 +93,8 @@ public class AreaManager : MonoBehaviour
 
     void LockExit()
     {
-        ExitDoor.CloseDoor();
         ExitDoor.SetLockStatus(true);
+        ExitDoor.CloseLockedDoor();
     }
 
     void CheckObjective()
@@ -331,5 +331,6 @@ public class AreaManager : MonoBehaviour
     public void LeaveArea()
     {
         LockExit();
+        
     }
 }
