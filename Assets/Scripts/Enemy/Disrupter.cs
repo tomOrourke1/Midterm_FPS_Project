@@ -10,9 +10,13 @@ public class Disrupter : EnemyBase, IDamagable, IEntity
     [SerializeField] SphereCollider ball;
     [SerializeField] DisruptorField fieldScript;
 
+    bool wasCryoOn, wasPyroOn, wasElectroOn, wasAeroOn;
+
+
     [System.Obsolete]
     private void Start()
     {
+        UpdateBools();
         health.FillToMax();
 
         enemyColor = enemyMeshRenderer.material.color;
@@ -36,10 +40,14 @@ public class Disrupter : EnemyBase, IDamagable, IEntity
     {
         switch (_k)
         {
-            case KinesisSelect.cryokinesis: GameManager.instance.GetEnabledList().CryoSetActive(false); break;
-            case KinesisSelect.aerokinesis: GameManager.instance.GetEnabledList().AeroSetActive(false); break;
-            case KinesisSelect.electrokinesis: GameManager.instance.GetEnabledList().ElectroSetActive(false); break;
-            case KinesisSelect.pyrokinesis: GameManager.instance.GetEnabledList().PyroSetActive(false); break;
+            case KinesisSelect.cryokinesis: 
+                GameManager.instance.GetEnabledList().CryoSetActive(false); break;
+            case KinesisSelect.aerokinesis: 
+                GameManager.instance.GetEnabledList().AeroSetActive(false); break;
+            case KinesisSelect.electrokinesis: 
+                GameManager.instance.GetEnabledList().ElectroSetActive(false); break;
+            case KinesisSelect.pyrokinesis: 
+                GameManager.instance.GetEnabledList().PyroSetActive(false); break;
         }
            
     }
@@ -47,10 +55,30 @@ public class Disrupter : EnemyBase, IDamagable, IEntity
     {
         switch (_k)
         {
-            case KinesisSelect.cryokinesis: GameManager.instance.GetEnabledList().CryoSetActive(true); break;
-            case KinesisSelect.aerokinesis: GameManager.instance.GetEnabledList().AeroSetActive(true); break;
-            case KinesisSelect.electrokinesis: GameManager.instance.GetEnabledList().ElectroSetActive(true); break;
-            case KinesisSelect.pyrokinesis: GameManager.instance.GetEnabledList().PyroSetActive(true); break;
+            case KinesisSelect.cryokinesis:
+                if (wasCryoOn)
+                {
+                    GameManager.instance.GetEnabledList().CryoSetActive(true);
+                }
+                break;
+            case KinesisSelect.aerokinesis:
+                if (wasAeroOn)
+                {
+                    GameManager.instance.GetEnabledList().AeroSetActive(true);
+                }
+                break;
+            case KinesisSelect.electrokinesis:
+                if (wasElectroOn)
+                {
+                    GameManager.instance.GetEnabledList().ElectroSetActive(true);
+                }
+                break;
+            case KinesisSelect.pyrokinesis:
+                if (wasPyroOn)
+                {
+                    GameManager.instance.GetEnabledList().PyroSetActive(true);
+                }
+                break;
         }
 
     }
@@ -59,7 +87,7 @@ public class Disrupter : EnemyBase, IDamagable, IEntity
 
     private void OnTriggerEnter(Collider other)
     {
-       
+        UpdateBools();
         if (other.CompareTag("Player"))
         {
             enemyEnabled = true;
@@ -116,5 +144,13 @@ public class Disrupter : EnemyBase, IDamagable, IEntity
     public void Respawn()
     {
         Destroy(gameObject);
+    }
+
+    private void UpdateBools()
+    {
+        wasPyroOn = GameManager.instance.GetEnabledList().PyroEnabled();
+        wasCryoOn = GameManager.instance.GetEnabledList().CryoEnabled();
+        wasElectroOn = GameManager.instance.GetEnabledList().ElectroEnabled();
+        wasAeroOn = GameManager.instance.GetEnabledList().AeroEnabled();
     }
 }
