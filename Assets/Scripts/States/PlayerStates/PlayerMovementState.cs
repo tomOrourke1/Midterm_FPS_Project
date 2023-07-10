@@ -113,7 +113,6 @@ public class PlayerMovementState : PlayerState, IApplyVelocity
             {
                 crouchToggled = false;
             }
-            Debug.LogError("TogExit: " + togExit);
 
             exitCrouch = togExit;
 

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -30,27 +31,85 @@ public class fingerGun : MonoBehaviour
     IEnumerator shoot()
     {
         isShooting = true;
-        RaycastHit hit;
 
         shootEvent?.Invoke();
 
-        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
+
+
+        // if doing aimassist 
+        // then do a spherecast to ind the enemy instead of the raycast
+
+        var aimValue =  GameManager.instance.GetAimAssistValue();
+        var isOn = GameManager.instance.GetSettingsManager().settings.aimAssistEnabled;
+
+
+
+        if (isOn)
         {
-            Instantiate(hitParticles, hit.point, Quaternion.identity);
-
-
-            IDamagable damageable = hit.collider.GetComponent<IDamagable>();
-
-            if (damageable != null)
+            RaycastHit hit;
+            var doHIt = Physics.SphereCast(Camera.main.transform.position, aimValue, Camera.main.transform.forward, out hit);
+            
+            if(doHIt)
             {
-                damageable.TakeDamage(bulletDamage);
-                UIManager.instance.GetHitmarker().SetActive(true);
-                yield return new WaitForSeconds(0.05f);
-                UIManager.instance.GetHitmarker().SetActive(false);
-                GameManager.instance.GetPlayerResources().AddFocus(focusPerShot);
+
+                Instantiate(hitParticles, hit.point, Quaternion.identity);
+
+                IDamagable damageable = hit.collider.GetComponent<IDamagable>();
+
+                if (damageable != null)
+                {
+                    damageable.TakeDamage(bulletDamage);
+                    UIManager.instance.GetHitmarker().SetActive(true);
+                    yield return new WaitForSeconds(0.05f);
+                    UIManager.instance.GetHitmarker().SetActive(false);
+                    GameManager.instance.GetPlayerResources().AddFocus(focusPerShot);
+                }
             }
 
         }
+        else
+        {
+
+            RaycastHit hit;
+            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
+            {
+                Instantiate(hitParticles, hit.point, Quaternion.identity);
+
+
+                IDamagable damageable = hit.collider.GetComponent<IDamagable>();
+
+                if (damageable != null)
+                {
+                    damageable.TakeDamage(bulletDamage);
+                    UIManager.instance.GetHitmarker().SetActive(true);
+                    yield return new WaitForSeconds(0.05f);
+                    UIManager.instance.GetHitmarker().SetActive(false);
+                    GameManager.instance.GetPlayerResources().AddFocus(focusPerShot);
+                }
+
+            }
+        }
+
+
+
+
+        //if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
+        //{
+        //    Instantiate(hitParticles, hit.point, Quaternion.identity);
+
+
+        //    IDamagable damageable = hit.collider.GetComponent<IDamagable>();
+
+        //    if (damageable != null)
+        //    {
+        //        damageable.TakeDamage(bulletDamage);
+        //        UIManager.instance.GetHitmarker().SetActive(true);
+        //        yield return new WaitForSeconds(0.05f);
+        //        UIManager.instance.GetHitmarker().SetActive(false);
+        //        GameManager.instance.GetPlayerResources().AddFocus(focusPerShot);
+        //    }
+
+        //}
 
         yield return new WaitForSeconds(fireRate);
         isShooting = false;

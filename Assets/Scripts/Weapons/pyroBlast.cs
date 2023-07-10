@@ -8,7 +8,7 @@ public class pyroBlast : KinesisBase
     [Header("------ Fireball Settings ------")]
     //[SerializeField] public float focusCost;
     //[SerializeField] public float fireRate;
-    
+
     [Header("------ Fireball Components ------")]
     [SerializeField] Transform attackPoint;
     [SerializeField] Rigidbody rb;
@@ -62,11 +62,49 @@ public class pyroBlast : KinesisBase
 
             Vector3 forceDirection = Camera.main.transform.forward;
 
-            RaycastHit hit;
-            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 100f))
+
+
+
+
+            var aimValue = GameManager.instance.GetAimAssistValue();
+            var isOn = GameManager.instance.GetSettingsManager().settings.aimAssistEnabled;
+
+
+
+            if (isOn)
             {
-                forceDirection = (hit.point - attackPoint.position).normalized;
+                RaycastHit hit;
+                var doHIt = Physics.SphereCast(Camera.main.transform.position, aimValue, Camera.main.transform.forward, out hit);
+
+                if (doHIt)
+                {
+
+                    IDamagable damageable = hit.collider.GetComponent<IDamagable>();
+
+                    if (damageable != null)
+                    {
+                        forceDirection = (hit.point - attackPoint.position).normalized;
+                    }
+                }
+                else
+                {
+                    if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 100f))
+                    {
+                        forceDirection = (hit.point - attackPoint.position).normalized;
+                    }
+                }
+
             }
+            else
+            {
+                RaycastHit hit;
+                if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 100f))
+                {
+                    forceDirection = (hit.point - attackPoint.position).normalized;
+                }
+
+            }
+
 
 
             Vector3 forceApplied = forceDirection * ThrowForce + transform.up * ThrowUpwardForce;

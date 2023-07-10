@@ -46,13 +46,53 @@ public class IceKinesis : KinesisBase
 
             Vector3 forceDirection = Camera.main.transform.forward;
 
-            RaycastHit hit;
-            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 100f))
+            //RaycastHit hit;
+            //if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 100f))
+            //{
+            //    forceDirection = (hit.point - attackPoint.position).normalized;
+            //}
+
+            
+            var aimValue = GameManager.instance.GetAimAssistValue();
+            var isOn = GameManager.instance.GetSettingsManager().settings.aimAssistEnabled;
+
+
+
+            if (isOn)
             {
-                forceDirection = (hit.point - attackPoint.position).normalized;
+                RaycastHit hit;
+                var doHIt = Physics.SphereCast(Camera.main.transform.position, aimValue, Camera.main.transform.forward, out hit);
+
+                if (doHIt)
+                {
+
+                    IDamagable damageable = hit.collider.GetComponent<IDamagable>();
+
+                    if (damageable != null)
+                    {
+                        forceDirection = (hit.point - attackPoint.position).normalized;
+                    }
+                }
+                else
+                {
+                    if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 100f))
+                    {
+                        forceDirection = (hit.point - attackPoint.position).normalized;
+                    }
+                }
+
+            }
+            else
+            {
+                RaycastHit hit;
+                if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 100f))
+                {
+                    forceDirection = (hit.point - attackPoint.position).normalized;
+                }
+
             }
 
-            currentSpear = Instantiate(iceSpear, attackPoint.position, Camera.main.transform.rotation);
+            currentSpear = Instantiate(iceSpear, attackPoint.position, Quaternion.LookRotation(forceDirection.normalized));
             Vector3 forceApplied = forceDirection * ThrowForce + transform.up * ThrowUpwardForce;
             currentSpear.GetComponent<Rigidbody>().AddForce(forceApplied, ForceMode.Impulse);
             
