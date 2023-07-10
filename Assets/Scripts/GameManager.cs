@@ -315,6 +315,13 @@ public class GameManager : MonoBehaviour
         else return false;
     }
 
+    public bool IsSceneMMorCS()
+    {
+        if (GetCurrentLevel() == "MainMenu" || GetCurrentLevel() == "CreditsScene")
+            return true;
+        else return false;
+    }
+
     /// <summary>
     /// For use in the elevator script.
     /// </summary>

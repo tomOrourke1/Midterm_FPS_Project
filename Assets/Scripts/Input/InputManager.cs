@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
+using UnityEngine.SceneManagement;
 
 public class InputManager : MonoBehaviour
 {
@@ -38,10 +39,10 @@ public class InputManager : MonoBehaviour
         input.Player.Enable();
 
         input.Player.Escape.performed += OnEscape;
+
         input.Player.OpenRadialWheel.started += OnRadShow;
         input.Player.OpenRadialWheel.canceled += OnRadClose;
         input.Player.Interact.performed += OnInteract;
-
 
         pInput.onControlsChanged += ControlsChanged;
 
@@ -59,22 +60,22 @@ public class InputManager : MonoBehaviour
             gamepadActive = true;
             isJoystick = false;
         }
-        else if(input.currentControlScheme == "Joystick")
+        else if (input.currentControlScheme == "Joystick")
         {
             gamepadActive = true;
             isJoystick = true;
         }
-        
+
     }
 
 
     public Vector2 GetLookDelta()
     {
-        if(isJoystick)
+        if (isJoystick)
         {
             var x = Action.JoyX.ReadValue<float>();
             var y = -Action.JoyY.ReadValue<float>();
-            return new Vector2(x,y);
+            return new Vector2(x, y);
         }
         else
         {
@@ -99,7 +100,7 @@ public class InputManager : MonoBehaviour
 
     private void OnRadShow(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        if (!GameManager.instance.AllKinesisDisabled())
+        if (!GameManager.instance.AllKinesisDisabled() && SceneNotMainMenuOrCredits())
         {
             UIManager.instance.uiStateMachine.SetRadialAsync(true);
             radialShowing = true;
@@ -117,7 +118,7 @@ public class InputManager : MonoBehaviour
 
     private void OnEscape(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        if (GameManager.instance.GetCurrentLevel() == "MainMenu")
+        if (SceneManager.GetActiveScene().name == "MainMenu")
         {
             MainMenu.instance?.ToggleSettings();
         }
@@ -147,5 +148,13 @@ public class InputManager : MonoBehaviour
     public void ChangeInput()
     {
 
+    }
+
+    private bool SceneNotMainMenuOrCredits()
+    {
+        if (SceneManager.GetActiveScene().name != "CreditsScene" && SceneManager.GetActiveScene().name != "MainMenu")
+            return true;
+        
+        return false;
     }
 }

@@ -98,7 +98,7 @@ public class DisplaySettingsBoxes : MonoBehaviour
         lastOpened = controllerObj;
 
         EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(controllerObj);
+        EventSystem.current.SetSelectedGameObject(controllerSelectedObj);
 
         lastOpened.SetActive(true);
     }

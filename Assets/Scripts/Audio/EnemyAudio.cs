@@ -42,7 +42,6 @@ public class EnemyAudio : MonoBehaviour
         if (!playingDisruptorSFX)
         {
             source.Play();
-            Debug.Log("played");
             StartCoroutine(PlayDisruptor());
         }
     }
