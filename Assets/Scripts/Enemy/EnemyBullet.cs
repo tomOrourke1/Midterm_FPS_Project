@@ -33,12 +33,12 @@ public class EnemyBullet : MonoBehaviour
         RaycastHit hit;
         var dist = (transform.position - lastPos).magnitude;
         bool doesHit = Physics.Raycast(lastPos, transform.forward, out hit, dist);
-        if(doesHit)
+        if (doesHit)
         {
-            if(hit.collider.gameObject != gameObject)
+            if (hit.collider.gameObject != gameObject)
             {
                 var dam = hit.collider.GetComponent<IDamagable>();
-                if(dam != null)
+                if (dam != null)
                 {
                     dam.TakeDamage(bulletDamage);
                 }
@@ -61,10 +61,18 @@ public class EnemyBullet : MonoBehaviour
         if (damagable != null)
             damagable.TakeDamage(bulletDamage);
 
+        if (other.CompareTag("Player"))
+        {
+            SendHitSignedAngle();
+        }
+
         Destroy(gameObject);
     }
 
-
-
-
+    private void SendHitSignedAngle()
+    {
+        var dirToSelf = transform.position - GameManager.instance.GetPlayerPOS();
+        float ang = Vector3.SignedAngle(GameManager.instance.GetPlayerObj().transform.forward, dirToSelf, Vector3.up);
+        DamageIndicator.Instance.ReceiveAngle(ang);
+    }
 }
