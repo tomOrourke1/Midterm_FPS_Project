@@ -19,9 +19,13 @@ public class KeyScript : MonoBehaviour, IEntity
             // Gets the current keys and will add keys until max keys reached.
             if (GameManager.instance.GetKeyChain().GetKeys() < GameManager.instance.GetKeyChain().GetMaxKeys() && !collected)
             {
-                collected = true;
-                GameManager.instance.GetKeyChain().addKeys(1);
-                GameManager.instance.GetCurrentRoomManager()?.CallDeath(spawnIndex);
+                if (!collected)
+                {
+                    collected = true;
+                    GameManager.instance.GetKeyChain().addKeys(1);
+                    Debug.Log("FUCK");
+                    GameManager.instance.GetCurrentRoomManager()?.CallDeath(spawnIndex);
+                }
             }
         }
     }
@@ -42,5 +46,5 @@ public class KeyScript : MonoBehaviour, IEntity
         Destroy(gameObject);
     }
 
-    
+
 }
