@@ -35,7 +35,7 @@ public class ButtonScript : MonoBehaviour, IEnvironment
 
             count = objs.Length;
 
-            Debug.LogError("Before removal: " +count);
+            //Debug.LogError("Before removal: " +count);
             foreach (Collider obj in objs)
             {
                 if (obj.GetComponent<IEntity>() == null && !obj.CompareTag("Player"))
@@ -45,7 +45,7 @@ public class ButtonScript : MonoBehaviour, IEnvironment
                 }
             }
 
-            Debug.LogError("after Removal: " +count);
+            //Debug.LogError("after Removal: " +count);
 
             if (count == 0 && !activated)
             {
@@ -74,7 +74,7 @@ public class ButtonScript : MonoBehaviour, IEnvironment
 
         if (count == 0)
         {
-            Debug.Log("Enter");
+            //Debug.Log("Enter");
             buttonRenderer.material = pressedColor;
             buttonPress?.Invoke();
             activated = false;
@@ -89,7 +89,7 @@ public class ButtonScript : MonoBehaviour, IEnvironment
 
         if (count == 0)
         {
-            Debug.Log("Exit");
+            //Debug.Log("Exit");
             buttonRenderer.material = releasedColor;
             buttonRelease?.Invoke();
             activated = true;

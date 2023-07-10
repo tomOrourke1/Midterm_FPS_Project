@@ -62,15 +62,15 @@ public class DoorScript : MonoBehaviour, IEnvironment
 
     private void Activate()
     {
-        if(!locked)
-        {
+        //if(!locked)
+        //{
             if(activation)
             {
                 isOpen = !isOpen;
             }
             activation = true;
             
-        }
+        //}
     }
 
     public void CloseLockedDoor() { LockClose = true; }
