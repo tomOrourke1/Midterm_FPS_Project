@@ -179,11 +179,28 @@ public class RadialMenu : MonoBehaviour
     /// </summary>
     private void UpdateMousePosition()
     {
-        var screenPos = new Vector3(Screen.width / 2, Screen.height / 2);
-        //mousePos = Input.mousePosition - screenPos;
-        mousePos = (Vector3)InputManager.Instance.Action.MousePos.ReadValue<Vector2>() - screenPos;
 
-        arrowScale = mousePos.magnitude / 75;
+        if (InputManager.Instance.GamepadActive)
+        {
+
+
+            var inp = InputManager.Instance.Action.LookDelta.ReadValue<Vector2>().normalized;
+
+            if (inp.magnitude > 0)
+            {
+                mousePos = inp;
+                arrowScale = maxArrowDist;
+            }
+
+        }
+        else
+        {
+            var screenPos = new Vector3(Screen.width / 2, Screen.height / 2);
+            //mousePos = Input.mousePosition - screenPos;
+            mousePos = (Vector3)InputManager.Instance.Action.MousePos.ReadValue<Vector2>() - screenPos;
+            arrowScale = mousePos.magnitude / 75;
+
+        }
         if (arrowScale >= maxArrowDist)
             arrowScale = maxArrowDist;
 
@@ -192,6 +209,7 @@ public class RadialMenu : MonoBehaviour
 
         arrow.rotation = Quaternion.Euler(0, 0, rotateAngle);
         arrow.localScale = new Vector3(1, arrowScale, 1);
+
     }
 
     /// <summary>
@@ -242,7 +260,7 @@ public class RadialMenu : MonoBehaviour
         selector.transform.rotation = Quaternion.Euler(0, 0, idx * sliceAng + (sliceAng * 1) - offsetAngle);
 
         // Play the tick SFX as a one shot from the audio source
-        
+
         if (playSFX)
         {
             audSource.PlayOneShot(tickSFX);
@@ -254,7 +272,7 @@ public class RadialMenu : MonoBehaviour
         {
             playSFX = true;
         }
-        
+
 
     }
 

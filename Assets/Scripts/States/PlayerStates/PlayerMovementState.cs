@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Presets;
 using UnityEngine;
 
 public class PlayerMovementState : PlayerState, IApplyVelocity
@@ -20,7 +21,7 @@ public class PlayerMovementState : PlayerState, IApplyVelocity
     [SerializeField] int jumpMax;
     [SerializeField] float jumpPowerDivision = 2.5f;
     [SerializeField] int postGroundingFramesAllowance = 10;
-    
+
 
     [Header("----- Crouch Stats -----")]
     [SerializeField] float CrouchSpeed;
@@ -43,6 +44,8 @@ public class PlayerMovementState : PlayerState, IApplyVelocity
 
     // Crouch
     private bool isCrouching;
+    bool crouchToggled;
+    int framesSinceCrouched;
     private float origHeight;
     private Vector3 origCamPos;
     private Vector3 crouchCameraPos;
@@ -67,7 +70,7 @@ public class PlayerMovementState : PlayerState, IApplyVelocity
 
         unCrouching = false;
 
-        
+
     }
 
 
@@ -79,14 +82,64 @@ public class PlayerMovementState : PlayerState, IApplyVelocity
 
     public override void Tick()
     {
-        if (InputManager.Instance.Action.Crouch.WasPressedThisFrame())
+
+        bool crouchPressed = InputManager.Instance.Action.Crouch.WasPressedThisFrame();
+        bool togglePressed = InputManager.Instance.Action.CrouchToggle.WasPressedThisFrame();
+
+        /// enter the croouch condition 
+        /// needs to be here for some reason
+        /// 
+        bool enterCrouch;
+        bool value = crouchPressed;// InputManager.Instance.Action.Crouch.WasPressedThisFrame();
+
+        bool toggled = togglePressed;// InputManager.Instance.Action.CrouchToggle.WasPressedThisFrame();
+
+        if (toggled && (!isCrouching || unCrouching))
+        {
+            crouchToggled = true;
+        }
+
+        value |= toggled;
+        enterCrouch = value;
+
+        /// exit crouch condition
+        /// 
+        bool exitCrouch;
+        if (crouchToggled)
+        {
+            bool togExit = isCrouching && toggled;// InputManager.Instance.Action.CrouchToggle.WasPressedThisFrame();
+
+            if (togExit)
+            {
+                crouchToggled = false;
+            }
+            Debug.LogError("TogExit: " + togExit);
+
+            exitCrouch = togExit;
+
+        }
+        else
+        {
+            bool e = isCrouching && !InputManager.Instance.Action.Crouch.IsPressed();
+
+
+            exitCrouch = e;
+        }
+
+
+        /// there is issue where the player doesn't properly crouch and un crouch toggle
+
+
+
+        if (enterCrouch)
         {
             // crouch
             isCrouching = true;
             controller.height = origHeight * 0.5f;
             unCrouching = false;
+
         }
-        else if (isCrouching && !InputManager.Instance.Action.Crouch.IsPressed())
+        else if (exitCrouch)
         {
             // crouch end
             RaycastHit hit;
@@ -105,10 +158,15 @@ public class PlayerMovementState : PlayerState, IApplyVelocity
                     isCrouching = false;
                     unCrouching = false;
                     mainCamera.transform.localPosition = origCamPos;
+
                 }
             }
         }
 
+        if (isCrouching)
+        {
+            framesSinceCrouched++;
+        }
 
         groundedPlayer = controller.isGrounded;
         if (groundedPlayer && playerVelocity.y < 0)
@@ -135,22 +193,22 @@ public class PlayerMovementState : PlayerState, IApplyVelocity
 
         if (InputManager.Instance.Action.Jump.WasPressedThisFrame())
         {
-            if(groundedPlayer)
+            if (groundedPlayer)
             {
                 playerVelocity.y = jumpHeight;
             }
-            else if(jumpTimes < jumpMax)
+            else if (jumpTimes < jumpMax)
             {
                 playerVelocity.y = jumpHeight;
                 jumpTimes++;
             }
-            else if(framesSinceGrounded <= postGroundingFramesAllowance)
+            else if (framesSinceGrounded <= postGroundingFramesAllowance)
             {
                 playerVelocity.y = jumpHeight;
                 framesSinceGrounded += postGroundingFramesAllowance;
             }
         }
-        else if(InputManager.Instance.Action.Jump.WasReleasedThisFrame() && playerVelocity.y > 0)
+        else if (InputManager.Instance.Action.Jump.WasReleasedThisFrame() && playerVelocity.y > 0)
         {
             playerVelocity.y = playerVelocity.y / jumpPowerDivision;
         }
@@ -211,5 +269,5 @@ public class PlayerMovementState : PlayerState, IApplyVelocity
         return nextVec;
     }
 
-    
+
 }
