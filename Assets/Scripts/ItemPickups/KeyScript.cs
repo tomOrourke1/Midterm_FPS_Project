@@ -23,7 +23,7 @@ public class KeyScript : MonoBehaviour, IEntity
                 {
                     collected = true;
                     GameManager.instance.GetKeyChain().addKeys(1);
-                    Debug.Log("FUCK");
+                    //Debug.Log("FUCK");
                     GameManager.instance.GetCurrentRoomManager()?.CallDeath(spawnIndex);
                 }
             }

@@ -11,6 +11,8 @@ public class PromptFacePlayer : MonoBehaviour
         dir.y = 0;
         dir.Normalize();
 
+        DisplayInteractText();
+
         transform.localRotation = Quaternion.LookRotation(-dir);
     }
 

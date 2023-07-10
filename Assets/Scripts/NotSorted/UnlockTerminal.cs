@@ -9,8 +9,6 @@ public class UnlockTerminal : MonoBehaviour, IInteractable, IEnvironment
     [SerializeField] UnityEvent Activate;
     [SerializeField] UnityEvent Deactivate;
 
-    [SerializeField] GameObject Text;
-
     [SerializeField] Material LockedMaterial;
     [SerializeField] Material UnlockedMaterial;
 
@@ -33,7 +31,7 @@ public class UnlockTerminal : MonoBehaviour, IInteractable, IEnvironment
         } 
         else
         {
-            Debug.LogError("No kevin go cry in a corner.");
+//            Debug.LogError("No kevin go cry in a corner.");
         }
 
         if (InteractLimit == 0)
@@ -42,9 +40,6 @@ public class UnlockTerminal : MonoBehaviour, IInteractable, IEnvironment
 
             // Change material
             GetComponent<MeshRenderer>().material = UnlockedMaterial;
-
-            // Remove display text  
-            Text.SetActive(false);
         }
     }
 
