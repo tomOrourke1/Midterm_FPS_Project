@@ -184,7 +184,7 @@ public class RadialMenu : MonoBehaviour
         {
 
 
-            var inp = InputManager.Instance.Action.LookDelta.ReadValue<Vector2>().normalized;
+            var inp = InputManager.Instance.GetLookDelta().normalized;
 
             if (inp.magnitude > 0)
             {

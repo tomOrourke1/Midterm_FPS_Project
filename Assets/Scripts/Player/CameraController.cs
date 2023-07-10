@@ -48,8 +48,9 @@ public class CameraController : MonoBehaviour
 
         var sens = InputManager.Instance.GamepadActive ? GameManager.instance.GetControllerSens() : GameManager.instance.GetMouseSens();
 
-        var input = InputManager.Instance.Action.LookDelta.ReadValue<Vector2>() * Time.deltaTime * sens;
-        
+        var input = InputManager.Instance.GetLookDelta() * Time.deltaTime * sens;
+
+
 
         // mouse's y location will modify the camera's x rotation
         if (invertY)

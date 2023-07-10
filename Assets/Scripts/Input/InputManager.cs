@@ -17,6 +17,7 @@ public class InputManager : MonoBehaviour
     GameInput input;
 
     bool gamepadActive;
+    bool isJoystick;
 
     public bool GamepadActive => gamepadActive;
 
@@ -48,15 +49,39 @@ public class InputManager : MonoBehaviour
 
     private void ControlsChanged(PlayerInput input)
     {
-        if(input.currentControlScheme == "Gamepad")
-        {
-            gamepadActive = true;
-        }
-        else if(input.currentControlScheme == "KeyboardMouse")
+        if (input.currentControlScheme == "KeyboardMouse")
         {
             gamepadActive = false;
+            isJoystick = false;
+        }
+        else if (input.currentControlScheme == "Gamepad")
+        {
+            gamepadActive = true;
+            isJoystick = false;
+        }
+        else if(input.currentControlScheme == "Joystick")
+        {
+            gamepadActive = true;
+            isJoystick = true;
+        }
+        
+    }
+
+
+    public Vector2 GetLookDelta()
+    {
+        if(isJoystick)
+        {
+            var x = Action.JoyX.ReadValue<float>();
+            var y = -Action.JoyY.ReadValue<float>();
+            return new Vector2(x,y);
+        }
+        else
+        {
+            return Action.LookDelta.ReadValue<Vector2>();
         }
     }
+
 
 
     private void OnEnable()

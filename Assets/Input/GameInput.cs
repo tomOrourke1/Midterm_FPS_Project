@@ -161,6 +161,24 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""JoyX"",
+                    ""type"": ""Value"",
+                    ""id"": ""694d38d7-6465-4209-8125-fc3ecfb16fc9"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""JoyY"",
+                    ""type"": ""Value"",
+                    ""id"": ""799d3361-9bc7-44fe-8af8-381480676c3e"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -232,6 +250,17 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""0a934f4b-87f6-49af-9151-93a43a1cc3b0"",
+                    ""path"": ""<Joystick>/stick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""def668fa-8d16-4870-9810-4135b9119b12"",
                     ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
@@ -251,6 +280,61 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""action"": ""LookDelta"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""24934f51-3984-464e-a7f5-a548583b80f2"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LookDelta"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""f37a41c9-9495-4db2-ac0e-2cba564cab7f"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""LookDelta"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""8d28f9a8-f1d4-4f77-9b16-f06efd030b37"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""LookDelta"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""9bffb4bd-20ce-4965-bc9d-9fcab58f1ddc"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""LookDelta"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""83304a9a-552b-4503-a495-222d2ad1a0cd"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""LookDelta"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 },
                 {
                     ""name"": """",
@@ -287,6 +371,17 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""6fa1b1e0-f81d-4d57-b1a3-438e08ad7177"",
+                    ""path"": ""<HID::Logitech Logitech RumblePad 2 USB>/button8"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""b82a65eb-4572-4c43-b9ca-baa7429d2ed3"",
                     ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
@@ -309,6 +404,17 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""1d242811-8dff-4319-a80b-8834717c1d03"",
+                    ""path"": ""<HID::Logitech Logitech RumblePad 2 USB>/button7"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Kinesis"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""11f4c414-5fc1-489e-bd2a-c9ca027c38c2"",
                     ""path"": ""<Keyboard>/shift"",
                     ""interactions"": """",
@@ -325,6 +431,17 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5a7e2aa3-e90e-4060-a101-9d41fafeccda"",
+                    ""path"": ""<HID::Logitech Logitech RumblePad 2 USB>/button3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
                     ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -364,6 +481,17 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""94d6af71-9540-417b-8cb8-c6ab70b45d68"",
+                    ""path"": ""<HID::Logitech Logitech RumblePad 2 USB>/button2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""35426ac9-f777-46d7-8cb1-649049535378"",
                     ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
@@ -380,6 +508,17 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
+                    ""action"": ""Melee"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6c19e688-ba29-4a63-b0f2-5cd906495764"",
+                    ""path"": ""<Joystick>/trigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
                     ""action"": ""Melee"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -408,6 +547,17 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""8fd5402f-d785-4bfc-bbeb-8c0e6e6cca6e"",
+                    ""path"": ""<HID::Logitech Logitech RumblePad 2 USB>/button5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""OpenRadialWheel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""87eedfdd-b07b-4ffc-bb2a-d3beb84c11e7"",
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
@@ -430,6 +580,17 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""accf49f2-71c5-40d9-abe1-289e1cb7abaf"",
+                    ""path"": ""<HID::Logitech Logitech RumblePad 2 USB>/button10"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Escape"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""074b1443-6594-4c14-b118-04b1b9d7a625"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
@@ -446,6 +607,17 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d3df1508-0f1d-4ca2-8599-31fd002fb50a"",
+                    ""path"": ""<HID::Logitech Logitech RumblePad 2 USB>/button4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -479,6 +651,17 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
+                    ""action"": ""CrouchToggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e530182a-7cfa-4411-9c4e-bff1f3570697"",
+                    ""path"": ""<HID::Logitech Logitech RumblePad 2 USB>/button11"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
                     ""action"": ""CrouchToggle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -559,6 +742,83 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""action"": ""any"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bebb1ec7-d467-4ae6-a691-910f32a50981"",
+                    ""path"": ""<HID::Logitech Logitech RumblePad 2 USB>/button10"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""any"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2eebc0f6-eb15-4303-9fad-4fdaf10f500f"",
+                    ""path"": ""<HID::Logitech Logitech RumblePad 2 USB>/button2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""any"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e88984d2-f5a3-44dc-8c0f-8b175344e5bf"",
+                    ""path"": ""<Joystick>/trigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""any"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""913212fe-3d3c-4493-bb69-9660cf5b7df9"",
+                    ""path"": ""<HID::Logitech Logitech RumblePad 2 USB>/button4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""any"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7296b69a-bdd5-4f45-8ef8-a0d1aa6c2802"",
+                    ""path"": ""<HID::Logitech Logitech RumblePad 2 USB>/button3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""any"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""12e3d21d-ea4c-48a5-844d-94d05ab125fc"",
+                    ""path"": ""<HID::Logitech Logitech RumblePad 2 USB>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""JoyX"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""28e0385a-f9f6-41f2-96fa-2b8aa4c16803"",
+                    ""path"": ""<HID::Logitech Logitech RumblePad 2 USB>/rz"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""JoyY"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -590,6 +850,17 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""isOR"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Joystick"",
+            ""bindingGroup"": ""Joystick"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<HID::Logitech Logitech RumblePad 2 USB>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
         }
     ]
 }");
@@ -610,6 +881,8 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         m_Player_Escape = m_Player.FindAction("Escape", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_any = m_Player.FindAction("any", throwIfNotFound: true);
+        m_Player_JoyX = m_Player.FindAction("JoyX", throwIfNotFound: true);
+        m_Player_JoyY = m_Player.FindAction("JoyY", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -686,6 +959,8 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Escape;
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_any;
+    private readonly InputAction m_Player_JoyX;
+    private readonly InputAction m_Player_JoyY;
     public struct PlayerActions
     {
         private @GameInput m_Wrapper;
@@ -705,6 +980,8 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         public InputAction @Escape => m_Wrapper.m_Player_Escape;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @any => m_Wrapper.m_Player_any;
+        public InputAction @JoyX => m_Wrapper.m_Player_JoyX;
+        public InputAction @JoyY => m_Wrapper.m_Player_JoyY;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -759,6 +1036,12 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @any.started += instance.OnAny;
             @any.performed += instance.OnAny;
             @any.canceled += instance.OnAny;
+            @JoyX.started += instance.OnJoyX;
+            @JoyX.performed += instance.OnJoyX;
+            @JoyX.canceled += instance.OnJoyX;
+            @JoyY.started += instance.OnJoyY;
+            @JoyY.performed += instance.OnJoyY;
+            @JoyY.canceled += instance.OnJoyY;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -808,6 +1091,12 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @any.started -= instance.OnAny;
             @any.performed -= instance.OnAny;
             @any.canceled -= instance.OnAny;
+            @JoyX.started -= instance.OnJoyX;
+            @JoyX.performed -= instance.OnJoyX;
+            @JoyX.canceled -= instance.OnJoyX;
+            @JoyY.started -= instance.OnJoyY;
+            @JoyY.performed -= instance.OnJoyY;
+            @JoyY.canceled -= instance.OnJoyY;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -843,6 +1132,15 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             return asset.controlSchemes[m_GamepadSchemeIndex];
         }
     }
+    private int m_JoystickSchemeIndex = -1;
+    public InputControlScheme JoystickScheme
+    {
+        get
+        {
+            if (m_JoystickSchemeIndex == -1) m_JoystickSchemeIndex = asset.FindControlSchemeIndex("Joystick");
+            return asset.controlSchemes[m_JoystickSchemeIndex];
+        }
+    }
     public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
@@ -860,5 +1158,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         void OnEscape(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnAny(InputAction.CallbackContext context);
+        void OnJoyX(InputAction.CallbackContext context);
+        void OnJoyY(InputAction.CallbackContext context);
     }
 }
