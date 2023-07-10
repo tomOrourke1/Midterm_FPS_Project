@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -15,6 +16,16 @@ public class ShrinkAndDelete : MonoBehaviour
     [SerializeField] ParticleSystem[] particles;
 
     private bool isShrinking;
+    //private int i;
+
+    //private void Start()
+    //{
+    //    foreach (SphereCollider coll in gameObject.GetComponentsInChildren<SphereCollider>())
+    //    {
+    //        colliders[i] = coll;
+    //        i++;
+    //    }
+    //}
 
     public void Shrink()
     {
@@ -22,6 +33,7 @@ public class ShrinkAndDelete : MonoBehaviour
         {
             foreach (var collider in colliders)
             {
+                
                 collider.enabled = false;
             }
 
