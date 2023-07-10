@@ -26,6 +26,10 @@ public class SettingsObject : ScriptableObject
     public bool electroOn;
     public bool teleOn;
 
+    // Aim Assist
+    public bool aimAssistEnabled;
+    public float aimAssistValue;
+
     // Scene tracker
     public string currentScene;
 }

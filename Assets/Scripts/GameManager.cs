@@ -370,4 +370,13 @@ public class GameManager : MonoBehaviour
     {
         return settingsManager.settings.mouseSensitivity;
     }
+
+    /// <summary>
+    /// Returns the aim assist value
+    /// </summary>
+    /// <returns></returns>
+    public float GetAimAssistValue()
+    {
+        return settingsManager.settings.aimAssistValue;
+    }
 }

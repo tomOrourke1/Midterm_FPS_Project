@@ -26,6 +26,8 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] Slider mouseSensSlider;
     [SerializeField] Slider controllerSensSlider;
     [SerializeField] Toggle invertYToggle;
+    [SerializeField] Toggle aimAssistToggle;
+    [SerializeField] Slider aimAssistSlider;
     [SerializeField] GameObject gameplayApplyButton;
 
     [Header("Graphics")]
@@ -44,8 +46,10 @@ public class SettingsManager : MonoBehaviour
     float tempFOV;
     float tempMouseSens;
     float tempControllerSens;
+    float tempAimAssistValue;
     bool tempInvY;
     bool tempHitmarkerEnabled;
+    bool tempAimAssistEnabled;
     Sprite tempSprite;
 
     [SerializeField] Transform hlStorePos;
@@ -83,6 +87,8 @@ public class SettingsManager : MonoBehaviour
         hitmarkerParentObj.SetActive(settings.hitmarkerEnabled);
         reticleImage.sprite = settings.currentRetical;
 
+        // Aim assist force start values go here.
+        // Calls the value that needs it, like the Main Camera needs the current sensitivity so we force kick it in there
 
         SetOriginalValues();
         UpdateSliders();
@@ -138,6 +144,8 @@ public class SettingsManager : MonoBehaviour
         tempMouseSens = settings.mouseSensitivity;
         tempControllerSens = settings.controllerSensitivty;
         tempInvY = settings.invertY;
+        tempAimAssistEnabled = settings.aimAssistEnabled;
+        tempAimAssistValue = settings.aimAssistValue;
 
         // Graphics
         tempHitmarkerEnabled = settings.hitmarkerEnabled;
@@ -159,6 +167,10 @@ public class SettingsManager : MonoBehaviour
         controllerSensSlider.value = tempControllerSens;
         invertYToggle.isOn = tempInvY;
 
+        // Aim Assist
+        aimAssistToggle.isOn = tempAimAssistEnabled;
+        aimAssistSlider.value = tempAimAssistValue;
+
         // Graphics
         hitmarkerParentObj.SetActive(tempHitmarkerEnabled);
         reticleImage.sprite = tempSprite;
@@ -179,6 +191,9 @@ public class SettingsManager : MonoBehaviour
             Camera.main.GetComponent<CameraController>().SetInvert(tempInvY);
             ChangeControllerSensitivity();
         }
+
+        // Aim assist force start values go here.
+        // Calls the value that needs it, like the Main Camera needs the current sensitivity so we force kick it in there
 
         // Graphics
         reticleImage.sprite = tempSprite;
@@ -250,6 +265,9 @@ public class SettingsManager : MonoBehaviour
             ChangeControllerSensitivity();
         }
 
+        settings.aimAssistEnabled = tempAimAssistEnabled;
+        settings.aimAssistValue = tempAimAssistValue;
+
         EventSystem.current.SetSelectedGameObject(gameplayApplyButton);
     }
 
@@ -265,6 +283,8 @@ public class SettingsManager : MonoBehaviour
 
     private void Subscriber()
     {
+        aimAssistSlider.interactable = settings.aimAssistEnabled ? true : false;
+        
         masterSlider.onValueChanged.AddListener(SetMasterVolume);
         sfxSlider.onValueChanged.AddListener(SetSFXVolume);
         musicSlider.onValueChanged.AddListener(SetMusicVolume);
@@ -275,6 +295,8 @@ public class SettingsManager : MonoBehaviour
         hitmarkerToggle.onValueChanged.AddListener(SetHitmarkerEnabled);
         invertYToggle.onValueChanged.AddListener(SetCameraInvertY);
 
+        aimAssistToggle.onValueChanged.AddListener(SetAimAssistEnabled);
+        aimAssistSlider.onValueChanged.AddListener(SetAimAssistValue);
     }
 
     public void SetMasterVolume(float value)
@@ -315,6 +337,18 @@ public class SettingsManager : MonoBehaviour
     public void SetHitmarkerEnabled(bool value)
     {
         tempHitmarkerEnabled = value;
+    }
+
+    public void SetAimAssistEnabled(bool value)
+    {
+        aimAssistSlider.interactable = value ? true : false;
+        tempAimAssistEnabled = value;
+    }
+
+    public void SetAimAssistValue(float value)
+    {
+        if (tempAimAssistEnabled)
+            tempAimAssistValue = value;
     }
 
     private FOVController GetFOVControlScript()
