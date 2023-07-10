@@ -39,35 +39,39 @@ public class fingerGun : MonoBehaviour
         // if doing aimassist 
         // then do a spherecast to ind the enemy instead of the raycast
 
-        var aimValue =  GameManager.instance.GetAimAssistValue();
+        var aimValue = GameManager.instance.GetAimAssistValue();
         var isOn = GameManager.instance.GetSettingsManager().settings.aimAssistEnabled;
 
-
+        bool regShot = true;
 
         if (isOn)
         {
             RaycastHit hit;
             var doHIt = Physics.SphereCast(Camera.main.transform.position, aimValue, Camera.main.transform.forward, out hit);
-            
-            if(doHIt)
+
+            if (doHIt)
             {
 
-                Instantiate(hitParticles, hit.point, Quaternion.identity);
 
                 IDamagable damageable = hit.collider.GetComponent<IDamagable>();
 
                 if (damageable != null)
                 {
+                    Instantiate(hitParticles, hit.point, Quaternion.identity);
+
                     damageable.TakeDamage(bulletDamage);
                     UIManager.instance.GetHitmarker().SetActive(true);
                     yield return new WaitForSeconds(0.05f);
                     UIManager.instance.GetHitmarker().SetActive(false);
                     GameManager.instance.GetPlayerResources().AddFocus(focusPerShot);
+
+                    regShot = false;
                 }
             }
 
         }
-        else
+
+        if (regShot)
         {
 
             RaycastHit hit;
