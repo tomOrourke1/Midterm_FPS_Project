@@ -49,6 +49,7 @@ MonoBehaviour:
   acceleration: 0
   rotSpeed: 0
   stoppingDist: 0
+  audioScript: {fileID: 8891101838813407473}
   rb: {fileID: 985107345994495972}
 --- !u!1 &1530211220
 GameObject:
@@ -99,6 +100,7 @@ MonoBehaviour:
   acceleration: 0
   rotSpeed: 0
   stoppingDist: 0
+  audioScript: {fileID: 0}
   stunTime: 0.2
   rb: {fileID: 985107345994495972}
   isStunned: 0
@@ -151,6 +153,7 @@ MonoBehaviour:
   acceleration: 0
   rotSpeed: 0
   stoppingDist: 0
+  audioScript: {fileID: 0}
   rb: {fileID: 985107345994495972}
 --- !u!1 &2025770730018684991
 GameObject:
@@ -232,6 +235,7 @@ MonoBehaviour:
   acceleration: 10
   rotSpeed: 0
   stoppingDist: 0
+  audioScript: {fileID: 0}
   dist: 1
 --- !u!1 &2818649103621592272
 GameObject:
@@ -282,6 +286,7 @@ MonoBehaviour:
   acceleration: 50
   rotSpeed: 600
   stoppingDist: 6
+  audioScript: {fileID: 0}
 --- !u!1 &2818649104011526438
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,13 +328,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2818649104419558321}
+  - component: {fileID: 2818649104419558325}
+  - component: {fileID: 8891101838813407473}
   - component: {fileID: 2818649104419558324}
   - component: {fileID: 2818649104419558319}
-  - component: {fileID: 2818649104419558325}
   - component: {fileID: 2818649104419558320}
   - component: {fileID: 985107345994495972}
   - component: {fileID: 6126919844453029840}
-  - component: {fileID: 8891101838813407473}
   m_Layer: 8
   m_Name: BasicEnemy
   m_TagString: Enemy
@@ -354,33 +359,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &2818649104419558324
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2818649104419558326}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
---- !u!135 &2818649104419558319
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2818649104419558326}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 35
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2818649104419558325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -412,6 +390,7 @@ MonoBehaviour:
   strafeTime: 0.8
   agent: {fileID: 2818649104419558320}
   rb: {fileID: 985107345994495972}
+  audScript: {fileID: 8891101838813407473}
   OnEnemyDeathEvent:
     m_PersistentCalls:
       m_Calls:
@@ -427,6 +406,69 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &8891101838813407473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2818649104419558326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abeeab394c633a849b3fc948fc66a8b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  source: {fileID: 6126919844453029840}
+  enemyWalk:
+  - {fileID: 8300000, guid: 619e4196520d76c488748d7436ee5697, type: 3}
+  - {fileID: 8300000, guid: c58c32ddeca39c84da5fe2460eedd3bd, type: 3}
+  - {fileID: 8300000, guid: d5751883a8f6a634f86360c875e6e50b, type: 3}
+  - {fileID: 8300000, guid: a3f3913f14420554bb8a4da3868beb31, type: 3}
+  - {fileID: 8300000, guid: fa8f206512bf22e459deea70e0bb7e4a, type: 3}
+  - {fileID: 8300000, guid: 95f09c1c9a737234d8d303ff9b9fb435, type: 3}
+  - {fileID: 8300000, guid: f847d99d721da3e43895e859ac1de296, type: 3}
+  - {fileID: 8300000, guid: 1319fe05d77aaae4ab0965b2669db7a1, type: 3}
+  - {fileID: 8300000, guid: ac8584ef7541d6b40902092cf5627f73, type: 3}
+  - {fileID: 8300000, guid: d679790714e45264496567d7fa16715b, type: 3}
+  enemyShoot:
+  - {fileID: 8300000, guid: 56fdff98c03ef084fbc21628763a9d07, type: 3}
+  enemyHurt:
+  - {fileID: 8300000, guid: d6682da5d2255c547a83628972b53baf, type: 3}
+  - {fileID: 8300000, guid: 93eeefe2a85e98e40ba0abedd5c32700, type: 3}
+  - {fileID: 8300000, guid: e5c1d335c1deec34499f968a7bc1a6ec, type: 3}
+  - {fileID: 8300000, guid: d2fd3a179ae8e744688ddda69eb2b7ea, type: 3}
+  - {fileID: 8300000, guid: 5b785622484ef2f498c65da9cdc13c00, type: 3}
+  - {fileID: 8300000, guid: 0d7069a61f4469c4b96aea43a8ec8395, type: 3}
+  - {fileID: 8300000, guid: f7c60e3e9c20c9c49958592833a80241, type: 3}
+  - {fileID: 8300000, guid: bdd34378edab6194d8eedbbe7c14233a, type: 3}
+  enemyDeath: []
+--- !u!136 &2818649104419558324
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2818649104419558326}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!135 &2818649104419558319
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2818649104419558326}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 35
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &2818649104419558320
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -476,7 +518,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 5298858325094725193, guid: 94efd4a4905cf0d4b932e654d29a8da0, type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -561,42 +603,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8891101838813407473
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2818649104419558326}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abeeab394c633a849b3fc948fc66a8b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  source: {fileID: 6126919844453029840}
-  enemyWalk:
-  - {fileID: 8300000, guid: 619e4196520d76c488748d7436ee5697, type: 3}
-  - {fileID: 8300000, guid: c58c32ddeca39c84da5fe2460eedd3bd, type: 3}
-  - {fileID: 8300000, guid: d5751883a8f6a634f86360c875e6e50b, type: 3}
-  - {fileID: 8300000, guid: a3f3913f14420554bb8a4da3868beb31, type: 3}
-  - {fileID: 8300000, guid: fa8f206512bf22e459deea70e0bb7e4a, type: 3}
-  - {fileID: 8300000, guid: 95f09c1c9a737234d8d303ff9b9fb435, type: 3}
-  - {fileID: 8300000, guid: f847d99d721da3e43895e859ac1de296, type: 3}
-  - {fileID: 8300000, guid: 1319fe05d77aaae4ab0965b2669db7a1, type: 3}
-  - {fileID: 8300000, guid: ac8584ef7541d6b40902092cf5627f73, type: 3}
-  - {fileID: 8300000, guid: d679790714e45264496567d7fa16715b, type: 3}
-  enemyShoot:
-  - {fileID: 8300000, guid: 56fdff98c03ef084fbc21628763a9d07, type: 3}
-  enemyHurt:
-  - {fileID: 8300000, guid: d6682da5d2255c547a83628972b53baf, type: 3}
-  - {fileID: 8300000, guid: 93eeefe2a85e98e40ba0abedd5c32700, type: 3}
-  - {fileID: 8300000, guid: e5c1d335c1deec34499f968a7bc1a6ec, type: 3}
-  - {fileID: 8300000, guid: d2fd3a179ae8e744688ddda69eb2b7ea, type: 3}
-  - {fileID: 8300000, guid: 5b785622484ef2f498c65da9cdc13c00, type: 3}
-  - {fileID: 8300000, guid: 0d7069a61f4469c4b96aea43a8ec8395, type: 3}
-  - {fileID: 8300000, guid: f7c60e3e9c20c9c49958592833a80241, type: 3}
-  - {fileID: 8300000, guid: bdd34378edab6194d8eedbbe7c14233a, type: 3}
-  enemyDeath: []
 --- !u!1 &2818649105043999724
 GameObject:
   m_ObjectHideFlags: 0
@@ -685,6 +691,7 @@ MonoBehaviour:
   acceleration: 50
   rotSpeed: 600
   stoppingDist: 7
+  audioScript: {fileID: 0}
 --- !u!1 &2818649105371405158
 GameObject:
   m_ObjectHideFlags: 0
@@ -734,6 +741,7 @@ MonoBehaviour:
   acceleration: 50
   rotSpeed: 600
   stoppingDist: 0
+  audioScript: {fileID: 8891101838813407473}
   pointDistance: 6
 --- !u!1 &3292559292101591996
 GameObject:
@@ -784,6 +792,7 @@ MonoBehaviour:
   acceleration: 0
   rotSpeed: 0
   stoppingDist: 0
+  audioScript: {fileID: 0}
   animScript: {fileID: 7279943310949234950}
   bullet: {fileID: 5779099364001243127, guid: 1907d588480e97948a8cd1d1c3d48f28, type: 3}
   gunPos: {fileID: 7403589600273502123}

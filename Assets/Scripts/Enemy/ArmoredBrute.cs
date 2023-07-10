@@ -28,10 +28,11 @@ public class ArmoredBrute : EnemyBase, IDamagable, IEntity, IVoidDamage
     [SerializeField] float attackDistance;
     [Range(1, 10)][SerializeField] int Armor;
 
-
     [SerializeField] NavMeshAgent agent;
     Rigidbody rb;
 
+    [Header("Hit SFX")]
+    [SerializeField] EnemyAudio audScript; 
 
     public UnityEvent OnEnemyDeathEvent;
    
@@ -46,6 +47,8 @@ public class ArmoredBrute : EnemyBase, IDamagable, IEntity, IVoidDamage
 
     void Start()
     {
+        audScript = GetComponent<EnemyAudio>();
+
         health.FillToMax();
         enemyColor = enemyMeshRenderer.material.color;
 
@@ -180,6 +183,7 @@ public class ArmoredBrute : EnemyBase, IDamagable, IEntity, IVoidDamage
     public void TakeDamage(float dmg)
     {
         health.Decrease(dmg / Armor);
+        audScript.PlayEnemy_Hurt();
         StartCoroutine(FlashDamage());
     }
     public void TakeIceDamage(float dmg)

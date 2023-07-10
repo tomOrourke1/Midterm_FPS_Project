@@ -17,12 +17,13 @@ public class SM_SecurityGuard : EnemyBase, IDamagable, IEntity, IApplyVelocity, 
     [SerializeField] EnemyStunState stunState;
     [SerializeField] EnemyDeathState deathState;
 
-
     [Header("----- Other Vars -----")]
     [SerializeField] float attackRange;
     [SerializeField] float closeToPlayer;
     [SerializeField] float stunTime;
 
+    [Header("Hit SFX")]
+    [SerializeField] EnemyAudio audScript;
 
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Rigidbody rb;
@@ -38,6 +39,7 @@ public class SM_SecurityGuard : EnemyBase, IDamagable, IEntity, IApplyVelocity, 
     bool isUnstunned;
     private void Start()
     {
+        audScript = GetComponent<EnemyAudio>();
         health.FillToMax(); // Makes Security Guards have full health
         enemyColor = enemyMeshRenderer.material.color;
 
@@ -175,6 +177,8 @@ public class SM_SecurityGuard : EnemyBase, IDamagable, IEntity, IApplyVelocity, 
     public void TakeDamage(float dmg)
     {
         health.Decrease(dmg); // decrease the enemies hp with the weapon's damage
+
+        audScript.PlayEnemy_Hurt();
 
         //SetFacePlayer();
 

@@ -255,6 +255,7 @@ MonoBehaviour:
   shootPos: {fileID: 5089480226212791447}
   attackRange: 15
   closeToPlayer: 10
+  audScript: {fileID: 0}
 --- !u!195 &5089480225250971541
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -288,7 +289,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 5298858325094725193, guid: 94efd4a4905cf0d4b932e654d29a8da0, type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -585,6 +586,7 @@ MonoBehaviour:
   acceleration: 3
   rotSpeed: 90
   stoppingDist: 0
+  audioScript: {fileID: 0}
   animScript: {fileID: 0}
   bullet: {fileID: 7887278697679521842, guid: 3c3f939396b82df46a8bc879939fed1d, type: 3}
   gunPos: {fileID: 5089480226212791447}
@@ -671,6 +673,7 @@ MonoBehaviour:
   acceleration: 0
   rotSpeed: 0
   stoppingDist: 0
+  audioScript: {fileID: 0}
 --- !u!1 &5089480226488241567
 GameObject:
   m_ObjectHideFlags: 0

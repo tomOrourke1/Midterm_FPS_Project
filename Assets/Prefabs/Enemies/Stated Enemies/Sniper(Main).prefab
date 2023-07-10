@@ -49,6 +49,7 @@ MonoBehaviour:
   acceleration: 0
   rotSpeed: 0
   stoppingDist: 0
+  audioScript: {fileID: 0}
   rb: {fileID: 625189119}
 --- !u!1 &413012834
 GameObject:
@@ -99,6 +100,7 @@ MonoBehaviour:
   acceleration: 10
   rotSpeed: 600
   stoppingDist: 0
+  audioScript: {fileID: 0}
   pointDistance: 9.6
 --- !u!1 &1960701105
 GameObject:
@@ -149,6 +151,7 @@ MonoBehaviour:
   acceleration: 0
   rotSpeed: 0
   stoppingDist: 0
+  audioScript: {fileID: 0}
   rb: {fileID: 625189119}
 --- !u!1 &53029952853888250
 GameObject:
@@ -199,6 +202,7 @@ MonoBehaviour:
   acceleration: 0
   rotSpeed: 0
   stoppingDist: 0
+  audioScript: {fileID: 0}
   stunTime: 0.2
   rb: {fileID: 625189119}
   isStunned: 0
@@ -272,6 +276,7 @@ MonoBehaviour:
   stunTime: 2
   agent: {fileID: 2316556541207348243}
   rb: {fileID: 625189119}
+  audScript: {fileID: 0}
   OnEnemyDeathEvent:
     m_PersistentCalls:
       m_Calls:
@@ -462,7 +467,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 5298858325094725193, guid: 94efd4a4905cf0d4b932e654d29a8da0, type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -753,6 +758,7 @@ MonoBehaviour:
   acceleration: 0
   rotSpeed: 0
   stoppingDist: 0
+  audioScript: {fileID: 0}
 --- !u!1 &2316556542854699220
 GameObject:
   m_ObjectHideFlags: 0
@@ -933,6 +939,7 @@ MonoBehaviour:
   acceleration: 0
   rotSpeed: 0
   stoppingDist: 0
+  audioScript: {fileID: 0}
   bullet: {fileID: 528839881283951694, guid: fdb38eea100b65d428a1ff009d4179b8, type: 3}
   gunPos: {fileID: 2316556542854699221}
   timeToShoot: 2.4

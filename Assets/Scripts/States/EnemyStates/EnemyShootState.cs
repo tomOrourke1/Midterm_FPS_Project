@@ -54,6 +54,7 @@ public class EnemyShootState : EnemyState
             var dir = playerPos - gunPos.position;
             Instantiate(bullet, gunPos.position, Quaternion.LookRotation(dir));
 
+            audioScript.PlayEnemy_Shoot();
             animScript?.PlayShoot();
         }
 

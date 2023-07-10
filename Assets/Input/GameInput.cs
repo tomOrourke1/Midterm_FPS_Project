@@ -179,6 +179,15 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""UISelect"",
+                    ""type"": ""Button"",
+                    ""id"": ""13236cc9-06e1-490c-ba8e-00d50669a1ab"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -819,6 +828,61 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""action"": ""JoyY"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6baee744-2ad8-4543-8dce-349407eaf8d0"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""UISelect"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7d5589ee-5edc-43d2-9a8b-b6cca83159e1"",
+                    ""path"": ""<HID::Logitech Logitech RumblePad 2 USB>/button2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""UISelect"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9512221f-2766-44fa-98c6-458256af0f33"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""UISelect"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7b470a58-35a9-4450-92a6-3643e014d15a"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UISelect"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2a477321-cca0-4fe5-8997-643a52ad71d5"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UISelect"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -883,6 +947,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         m_Player_any = m_Player.FindAction("any", throwIfNotFound: true);
         m_Player_JoyX = m_Player.FindAction("JoyX", throwIfNotFound: true);
         m_Player_JoyY = m_Player.FindAction("JoyY", throwIfNotFound: true);
+        m_Player_UISelect = m_Player.FindAction("UISelect", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -961,6 +1026,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_any;
     private readonly InputAction m_Player_JoyX;
     private readonly InputAction m_Player_JoyY;
+    private readonly InputAction m_Player_UISelect;
     public struct PlayerActions
     {
         private @GameInput m_Wrapper;
@@ -982,6 +1048,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         public InputAction @any => m_Wrapper.m_Player_any;
         public InputAction @JoyX => m_Wrapper.m_Player_JoyX;
         public InputAction @JoyY => m_Wrapper.m_Player_JoyY;
+        public InputAction @UISelect => m_Wrapper.m_Player_UISelect;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1042,6 +1109,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @JoyY.started += instance.OnJoyY;
             @JoyY.performed += instance.OnJoyY;
             @JoyY.canceled += instance.OnJoyY;
+            @UISelect.started += instance.OnUISelect;
+            @UISelect.performed += instance.OnUISelect;
+            @UISelect.canceled += instance.OnUISelect;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1097,6 +1167,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @JoyY.started -= instance.OnJoyY;
             @JoyY.performed -= instance.OnJoyY;
             @JoyY.canceled -= instance.OnJoyY;
+            @UISelect.started -= instance.OnUISelect;
+            @UISelect.performed -= instance.OnUISelect;
+            @UISelect.canceled -= instance.OnUISelect;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1160,5 +1233,6 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         void OnAny(InputAction.CallbackContext context);
         void OnJoyX(InputAction.CallbackContext context);
         void OnJoyY(InputAction.CallbackContext context);
+        void OnUISelect(InputAction.CallbackContext context);
     }
 }

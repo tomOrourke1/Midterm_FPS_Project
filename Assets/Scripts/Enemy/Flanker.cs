@@ -26,6 +26,8 @@ public class Flanker : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidDama
     [SerializeField] Transform shootPos;
     [SerializeField] Rigidbody rb;
 
+    [Header("Hit SFX")]
+    [SerializeField] EnemyAudio audScript;
 
     [Header("- timers -")]
     [SerializeField] float timeBetweenShots;
@@ -44,6 +46,7 @@ public class Flanker : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidDama
     void Start()
     {
 
+        audScript = GetComponent<EnemyAudio>();
         health.FillToMax();
 
 
@@ -198,6 +201,7 @@ public class Flanker : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidDama
     public void TakeDamage(float dmg)
     {
         health.Decrease(dmg);
+        audScript.PlayEnemy_Hurt();
         SetFacePlayer();
         StartCoroutine(FlashDamage());
     }

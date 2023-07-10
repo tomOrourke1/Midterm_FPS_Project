@@ -12,11 +12,13 @@ public class EnemyAudio : MonoBehaviour
     [SerializeField] AudioClip[] enemyShoot;
     [SerializeField] AudioClip[] enemyHurt;
     [SerializeField] AudioClip[] enemyDeath;
+    [SerializeField] AudioClip disruptorClip;
 
-   
+    private bool playingDisruptorSFX;
+
     public void PlayEnemy_Walk()
     {
-        source.PlayOneShot(enemyWalk[Random.Range(0,enemyWalk.Length)]);
+        source.PlayOneShot(enemyWalk[Random.Range(0, enemyWalk.Length)]);
     }
 
     public void PlayEnemy_Shoot()
@@ -31,7 +33,24 @@ public class EnemyAudio : MonoBehaviour
 
     public void PlayEnemy_Death()
     {
-        source.PlayOneShot(enemyDeath[Random.Range(0, enemyDeath.Length)]);
+        // Needs to be changed to death when/if we get death sounds.
+        source.PlayOneShot(enemyHurt[Random.Range(0, enemyHurt.Length)]);
     }
 
+    public void DisruptorLoopedAudio()
+    {
+        if (!playingDisruptorSFX)
+        {
+            source.Play();
+            StartCoroutine(PlayDisruptor());
+        }
+    }
+
+    private IEnumerator PlayDisruptor()
+    {
+        playingDisruptorSFX = true;
+        yield return new WaitForSeconds(disruptorClip.length);
+        playingDisruptorSFX = false;
+        DisruptorLoopedAudio();
+    }
 }

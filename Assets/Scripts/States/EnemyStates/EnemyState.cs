@@ -15,9 +15,13 @@ public abstract class EnemyState : MonoBehaviour, IState
     [SerializeField] protected float rotSpeed;
     [SerializeField] protected float stoppingDist;
 
+    [Header("--- Audio ----")]
+    [SerializeField] protected EnemyAudio audioScript;
 
-
-
+    private void Start()
+    {
+        audioScript = transform.parent.GetComponentInParent<EnemyAudio>();
+    }
 
     protected void SetAgent()
     {

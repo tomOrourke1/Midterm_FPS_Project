@@ -12,13 +12,16 @@ public class Disrupter : EnemyBase, IDamagable, IEntity
 
     bool wasCryoOn, wasPyroOn, wasElectroOn, wasAeroOn;
 
+    [Header("Hit SFX")]
+    [SerializeField] EnemyAudio audScript;
 
     [System.Obsolete]
     private void Start()
     {
+        audScript = GetComponent<EnemyAudio>();
         UpdateBools();
         health.FillToMax();
-
+        audScript.DisruptorLoopedAudio();
         enemyColor = enemyMeshRenderer.material.color;
         fieldScript.GetParticleSystem().startSize = ball.radius * 2f;
     }
@@ -118,6 +121,7 @@ public class Disrupter : EnemyBase, IDamagable, IEntity
 
     public void TakeDamage(float dmg)
     {
+        audScript.PlayEnemy_Hurt();
         health.Decrease(dmg);
     }
     public void TakeIceDamage(float dmg)

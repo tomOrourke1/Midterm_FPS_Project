@@ -9,5 +9,8 @@ public class EnemyMoveState : EnemyState
         agent.SetDestination((GameManager.instance.GetPlayerObj().transform.position));
         //Debug.Log(agent.acceleration + "ACCEL");
         //Debug.Log(agent.remainingDistance + "REMAINING");
+
+        audioScript.PlayEnemy_Walk();
+
     }
 }

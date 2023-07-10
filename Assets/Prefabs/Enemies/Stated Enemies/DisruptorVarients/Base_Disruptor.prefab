@@ -5060,13 +5060,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health:
-    maxValue: 0
+    maxValue: 5
   enemyMeshRenderer: {fileID: 2196605285968002162}
   viewConeAngle: 0
   eyeOffset: 1
   select: 3
   ball: {fileID: 2196605286066655763}
   fieldScript: {fileID: 2196605286066655759}
+  audScript: {fileID: 0}
 --- !u!82 &1156867556873060103
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5077,7 +5078,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 5298858325094725193, guid: 94efd4a4905cf0d4b932e654d29a8da0, type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: e93f105d98217574aa9308abd8948b8f, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -5176,20 +5177,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 1156867556873060103}
-  enemyWalk:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  enemyShoot:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  enemyHurt:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  enemyDeath:
-  - {fileID: 0}
+  enemyWalk: []
+  enemyShoot: []
+  enemyHurt: []
+  enemyDeath: []
+  disruptorClip: {fileID: 8300000, guid: e93f105d98217574aa9308abd8948b8f, type: 3}
 --- !u!1 &2196605286369197185
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,9 +15,12 @@ public class SM_Turret : EnemyBase, IDamagable, IEntity
     [SerializeField] float attackRange;
     [SerializeField] float closeToPlayer;
 
+    [Header("Hit SFX")]
+    [SerializeField] EnemyAudio audScript;
 
     private void Start()
     {
+        audScript = GetComponent<EnemyAudio>();
         health.FillToMax();
 
         stateMachine = new StateMachine();
@@ -80,6 +83,7 @@ public class SM_Turret : EnemyBase, IDamagable, IEntity
     {
         health.Decrease(dmg); // decrease the enemies hp with the weapon's damage
 
+        audScript.PlayEnemy_Hurt();
 
         SetFacePlayer();
 

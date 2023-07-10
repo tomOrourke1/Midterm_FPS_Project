@@ -12,12 +12,16 @@ public class Scientist : MonoBehaviour, IDamagable
     [SerializeField] NavMeshAgent agent;
     [SerializeField] GameObject key;
 
+    [Header("Hit SFX")]
+    [SerializeField] EnemyAudio audScript;
+
     // Color Component for when the scientist gets damaged
     Color scientistColor;
 
     // Start is called before the first frame update
     void Start()
     {
+        audScript = GetComponent<EnemyAudio>();
         agent = GetComponent<NavMeshAgent>();
         scientistColor = model.material.color;
     }
@@ -40,6 +44,8 @@ public class Scientist : MonoBehaviour, IDamagable
     public void TakeDamage(float playerDmg)
     {
         scientistHP -= playerDmg;
+
+        audScript.PlayEnemy_Hurt();
 
         agent.SetDestination(GameManager.instance.GetPlayerObj().transform.position);
         StartCoroutine(EnemyDamageFlash());

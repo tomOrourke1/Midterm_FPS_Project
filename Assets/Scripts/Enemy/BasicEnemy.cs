@@ -25,10 +25,13 @@ public class BasicEnemy : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidD
      float timeInStrafe;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Rigidbody rb;
-
+    
+    [Header("Hit SFX")]
+    [SerializeField] EnemyAudio audScript;
+    
     [Header("----Events----")]
     public UnityEvent OnEnemyDeathEvent;
-
+    
     private bool isDead;
     bool wasPushed;
     bool hasLanded;
@@ -37,6 +40,7 @@ public class BasicEnemy : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidD
 
     private void Start()
     {
+        audScript = GetComponent<EnemyAudio>();
         health.FillToMax();
 
         stateMachine = new StateMachine();
@@ -182,7 +186,7 @@ public class BasicEnemy : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidD
     public void TakeDamage(float dmg)
     {
         health.Decrease(dmg);
-
+        audScript.PlayEnemy_Hurt();
         StartCoroutine(FlashDamage());        
     }
     public void TakeIceDamage(float dmg)

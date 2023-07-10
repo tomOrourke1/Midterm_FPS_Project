@@ -17,13 +17,15 @@ public class SM_MachineGunner : EnemyBase, IDamagable, IEntity, IVoidDamage, IAp
     [SerializeField] EnemyStunState stunState;
     [SerializeField] EnemyPushedState pushedState;
 
-
     [Header("--- other values ---")]
     [SerializeField] float attackRange;
     [SerializeField] float stunTime;
     [SerializeField] float betweenShotTime;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Rigidbody rb;
+
+    [Header("Hit SFX")]
+    [SerializeField] EnemyAudio audScript;
 
     [Header("----Events----")]
     public UnityEvent OnEnemyDeathEvent;
@@ -40,6 +42,7 @@ public class SM_MachineGunner : EnemyBase, IDamagable, IEntity, IVoidDamage, IAp
 
     void Start()
     {
+        audScript = GetComponent<EnemyAudio>();
         health.FillToMax();
 
         stateMachine = new StateMachine();
@@ -178,6 +181,8 @@ public class SM_MachineGunner : EnemyBase, IDamagable, IEntity, IVoidDamage, IAp
     public void TakeDamage(float dmg)
     {
         health.Decrease(dmg);
+
+        audScript.PlayEnemy_Hurt();
 
         SetFacePlayer();
 

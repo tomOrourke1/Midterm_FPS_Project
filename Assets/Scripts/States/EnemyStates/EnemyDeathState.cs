@@ -12,5 +12,6 @@ public class EnemyDeathState : EnemyState
         base.OnEnter();
         agent.enabled = false;
         rb.velocity = Vector3.zero;
+        audioScript.PlayEnemy_Death();
     }
 }

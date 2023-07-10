@@ -18,7 +18,9 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoi
     [Header("----- Other Vars -----")]
     [SerializeField] float idleRange;
     [SerializeField] float stunTime;
-
+    
+    [Header("Hit SFX")]
+    [SerializeField] EnemyAudio audScript;
 
     [Header("Keys")]
     [SerializeField] GameObject key;
@@ -40,6 +42,7 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoi
 
     private void Start()
     {
+        audScript = GetComponent<EnemyAudio>();
         health.FillToMax();
         enemyColor = enemyMeshRenderer.material.color;
 
@@ -157,6 +160,8 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoi
     public void TakeDamage(float dmg)
     {
         health.Decrease(dmg); // decrease the enemies hp with the weapon's damage
+
+        audScript.PlayEnemy_Hurt();
 
         SetFacePlayer();
         StopCoroutine(FlashDamage());

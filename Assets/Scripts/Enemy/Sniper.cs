@@ -24,6 +24,9 @@ public class Sniper : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidDamag
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Rigidbody rb;
 
+    [Header("Hit SFX")]
+    [SerializeField] EnemyAudio audScript; 
+    
     [Header("----Events----")]
     public UnityEvent OnEnemyDeathEvent;
 
@@ -38,6 +41,8 @@ public class Sniper : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidDamag
 
     void Start()
     {
+        audScript = GetComponent<EnemyAudio>();
+
         health.FillToMax();
         enemyColor = enemyMeshRenderer.material.color;
         stateMachine = new StateMachine();
@@ -171,6 +176,8 @@ public class Sniper : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidDamag
     public void TakeDamage(float dmg)
     {
         health.Decrease(dmg);
+
+        audScript.PlayEnemy_Hurt();
 
         SetFacePlayer();
 
