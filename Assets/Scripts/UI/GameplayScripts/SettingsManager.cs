@@ -20,6 +20,7 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] Slider sfxSlider;
     [SerializeField] Slider musicSlider;
     [SerializeField] GameObject audioApplyButton;
+    [SerializeField] AudioSource sfxTestSound;
 
     [Header("Game Sliders")]
     [SerializeField] Slider fovSlider;
@@ -40,17 +41,19 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] GameObject backButton;
 
     // Temp data containers
-    float tempMaster;
-    float tempSFX;
-    float tempMusic;
-    float tempFOV;
-    float tempMouseSens;
-    float tempControllerSens;
-    float tempAimAssistValue;
-    bool tempInvY;
-    bool tempHitmarkerEnabled;
-    bool tempAimAssistEnabled;
-    Sprite tempSprite;
+    private float tempMaster;
+    private float tempSFX;
+    private float tempMusic;
+    private float tempFOV;
+    private float tempMouseSens;
+    private float tempControllerSens;
+    private float tempAimAssistValue;
+    private bool tempInvY;
+    private bool tempHitmarkerEnabled;
+    private bool tempAimAssistEnabled;
+    private Sprite tempSprite;
+
+    private bool playingTestAudio;
 
     [SerializeField] Transform hlStorePos;
 
@@ -276,6 +279,21 @@ public class SettingsManager : MonoBehaviour
         // change controller sensitivity in here
     }
 
+    private void RunTestSFX()
+    {
+        if (!playingTestAudio)
+        {
+            StartCoroutine(PlayTestAudio());
+        }
+    }
+
+    private IEnumerator PlayTestAudio()
+    {
+        playingTestAudio = true;
+        sfxTestSound.Play();
+        yield return new WaitForSeconds(0.25f);
+        playingTestAudio = false;
+    }
 
     // ================================================================================
     //         SUBSCRIPTION BASED EVENTS BELOW - DON'T TOUCH PLEASE AND THANK YOU
@@ -307,6 +325,8 @@ public class SettingsManager : MonoBehaviour
     public void SetSFXVolume(float value)
     {
         tempSFX = value;
+        masterMix.SetFloat("TestSFX", Mathf.Log10(value) * 20f);
+        RunTestSFX();
     }
 
     public void SetMusicVolume(float value)

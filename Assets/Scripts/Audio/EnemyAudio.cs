@@ -42,6 +42,7 @@ public class EnemyAudio : MonoBehaviour
         if (!playingDisruptorSFX)
         {
             source.Play();
+            Debug.Log("played");
             StartCoroutine(PlayDisruptor());
         }
     }
@@ -51,6 +52,5 @@ public class EnemyAudio : MonoBehaviour
         playingDisruptorSFX = true;
         yield return new WaitForSeconds(disruptorClip.length);
         playingDisruptorSFX = false;
-        DisruptorLoopedAudio();
     }
 }
