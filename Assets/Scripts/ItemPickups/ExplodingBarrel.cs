@@ -6,6 +6,7 @@ public class ExplodingBarrel : MonoBehaviour, IDamagable, IEntity
 {
     [SerializeField] ParticleSystem ignitionFX;
     [SerializeField] ParticleSystem explosionFX;
+    [SerializeField] ExplosiveBarrelSFX sfxScript;
     [SerializeField] GameObject explosionParticles;
     [SerializeField] int durability;
     [SerializeField] float timer;
@@ -75,6 +76,7 @@ public class ExplodingBarrel : MonoBehaviour, IDamagable, IEntity
         }
 
         // Play Explosion effects
+        sfxScript.Play_Explosion();
         Effects();
 
         // Delete Barrel

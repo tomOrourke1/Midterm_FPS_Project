@@ -4968,7 +4968,7 @@ GameObject:
   - component: {fileID: 1156867556873060103}
   - component: {fileID: 7028885300489794644}
   m_Layer: 8
-  m_Name: Disruptor
+  m_Name: Base_Disruptor
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5023,25 +5023,25 @@ MonoBehaviour:
   outer: {fileID: 2196605286369197246}
   field: {fileID: 3959433831402457803}
   aerokinesisMaterials:
-    Core: {fileID: 2100000, guid: 08454b84733062846984d364ad93a77f, type: 2}
-    Inner: {fileID: 2100000, guid: d187a3be29de6e74794ec04b62f68405, type: 2}
-    Outer: {fileID: 2100000, guid: 1b6e56954a8543b46a5890282d3de39e, type: 2}
+    center: {fileID: 0}
+    outside: {fileID: 0}
+    outermost: {fileID: 0}
   electrokinesisMaterials:
-    Core: {fileID: 2100000, guid: a93caba449542864cbb089044d8f709d, type: 2}
-    Inner: {fileID: 2100000, guid: 1c419106002821347b4f3e1460dea456, type: 2}
-    Outer: {fileID: 2100000, guid: b7c0c7b88bfa1024193a0482014e406f, type: 2}
+    center: {fileID: 0}
+    outside: {fileID: 0}
+    outermost: {fileID: 0}
   telekinesisMaterials:
-    Core: {fileID: 2100000, guid: c11dceee52639e143b01e214950df950, type: 2}
-    Inner: {fileID: 2100000, guid: a251f52fbecbb5e4fb73aded4dd75ea4, type: 2}
-    Outer: {fileID: 2100000, guid: 4387553eb2a55f244bf3dba3a1e22f2a, type: 2}
+    center: {fileID: 0}
+    outside: {fileID: 0}
+    outermost: {fileID: 0}
   pyrokinesisMaterials:
-    Core: {fileID: 2100000, guid: 992a2cf281db9394a934aeea20df81d8, type: 2}
-    Inner: {fileID: 2100000, guid: 3cbe246ab883c7342bd5f3189187adea, type: 2}
-    Outer: {fileID: 2100000, guid: 2e7ab5153be9cd3409c66cf9ec35b75b, type: 2}
+    center: {fileID: 0}
+    outside: {fileID: 0}
+    outermost: {fileID: 0}
   cryokinesisMaterials:
-    Core: {fileID: 2100000, guid: 96da7b95bfc831148b92cf486cb81351, type: 2}
-    Inner: {fileID: 2100000, guid: 7f3b02c330c10a341adf1f5d6ce3a39d, type: 2}
-    Outer: {fileID: 2100000, guid: eac92291fb61be3499a20620c19c929e, type: 2}
+    center: {fileID: 0}
+    outside: {fileID: 0}
+    outermost: {fileID: 0}
   aero: {fileID: 2100000, guid: b3621b5029f98af4e85f1dc7fb67a675, type: 2}
   cryo: {fileID: 2100000, guid: d83bcce8daab33e49be2d75c6579efe3, type: 2}
   tele: {fileID: 2100000, guid: 98dedf4c14fe64b42aa52679b8470705, type: 2}
@@ -5078,7 +5078,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 5298858325094725193, guid: 94efd4a4905cf0d4b932e654d29a8da0, type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
