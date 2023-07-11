@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ReusableSpawner : MonoBehaviour
+public class ReusableSpawner : MonoBehaviour, IEnvironment
 {
 
 
@@ -14,15 +14,17 @@ public class ReusableSpawner : MonoBehaviour
     [HideInInspector] 
     public GameObject currentObject;
 
+    bool Activated;
 
-    private void Start()
+    private void Awake()
     {
-        RespawnObject();
+        Activated = false;
+        //RespawnObject();
     }
 
     private void Update()
     {
-        if (currentObject == null)
+        if (currentObject == null && Activated)
         {
             RespawnObject();
 
@@ -36,5 +38,15 @@ public class ReusableSpawner : MonoBehaviour
         currentObject = Instantiate(spawnable, spawnTransform.position, Quaternion.identity);
     }
 
+    public void StopObject()
+    {
+        Activated = false;
+        Destroy(currentObject);
+    }
 
+    public void StartObject()
+    {
+        Activated = true;
+        RespawnObject();
+    }
 }

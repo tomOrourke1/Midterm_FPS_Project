@@ -41,7 +41,7 @@ public class AreaManager : MonoBehaviour
 
     [Header("Place objective to track below")]
     [Tooltip("If you are using an elite room, place the spawner of the elite enemy here.")]
-    [SerializeField] GameObject EliteSpawner;
+    [SerializeField] List<GameObject> EliteSpawners;
 
 
     List<GameObject> Entities = new List<GameObject>();
@@ -58,7 +58,7 @@ public class AreaManager : MonoBehaviour
     private void Awake()
     {
         EntryDoor.GetComponentInChildren<DoorDetectPlayerInProximity>().EnterTransitionMode(this);
-        
+
     }
 
     private void Start()
@@ -121,16 +121,16 @@ public class AreaManager : MonoBehaviour
 
                 break;
 
-            //case RoomType.Puzzle:
+                //case RoomType.Puzzle:
 
-            //    CheckObjectivePuzzle();
+                //    CheckObjectivePuzzle();
 
-            //    if (PuzzleIsComplete)
-            //    {
-            //        ObjectiveComplete = true;
-            //    }
+                //    if (PuzzleIsComplete)
+                //    {
+                //        ObjectiveComplete = true;
+                //    }
 
-            //    break;
+                //    break;
         }
     }
 
@@ -188,12 +188,34 @@ public class AreaManager : MonoBehaviour
 
     void SetObjectiveElite()
     {
-        // Makes sure that the Tracked object isn't null
-        EliteSpawner.GetComponent<EntitySpawners>();
+
+        foreach (GameObject spawner in EliteSpawners)
+        {
+            // Makes sure that the Tracked object isn't null
+            spawner.GetComponent<EntitySpawners>();
+        }
+
     }
     void CheckObjectiveElite()
     {
-        ObjectiveComplete = EliteSpawner.GetComponent<EntitySpawners>().IsMyEnemyDead();
+        int num = 0;
+
+        foreach (GameObject spawner in EliteSpawners)
+        {
+            if (spawner.GetComponent<EntitySpawners>().IsMyEnemyDead())
+            {
+                num++;
+            }
+        }
+
+        if (num == EliteSpawners.Count)
+        {
+            ObjectiveComplete = true;
+        }
+        else
+        {
+            ObjectiveComplete = false;
+        }
     }
 
     void SetObjectivePuzzle()
@@ -331,6 +353,6 @@ public class AreaManager : MonoBehaviour
     public void LeaveArea()
     {
         LockExit();
-        
+
     }
 }
