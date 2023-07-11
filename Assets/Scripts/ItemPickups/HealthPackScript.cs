@@ -6,6 +6,8 @@ public class HealthPackScript : MonoBehaviour, IEntity
 {
     [Header("Values")]
     [Range(0, 100)][SerializeField] int healingAmount;
+    [SerializeField] PickupSFX sfx;
+    [SerializeField] ShrinkAndDelete sAD;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -13,8 +15,10 @@ public class HealthPackScript : MonoBehaviour, IEntity
 
         if(heal != null && !GameManager.instance.GetPlayerResources().Health.AtMax())
         {
+            Debug.Log(!GameManager.instance.GetPlayerResources().Health.AtMax());
             heal.AddHealing(healingAmount);
-            Destroy(gameObject);
+            sfx.Play_OneShot();
+            sAD.Shrink();
         }
     }
 

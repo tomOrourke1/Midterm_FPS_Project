@@ -7,6 +7,8 @@ public class ShieldPickup : MonoBehaviour, IEntity
     [Header("Values")]
     [Range(0, 100)][SerializeField] int shieldAmount;
 
+    [SerializeField] PickupSFX sfx;
+    [SerializeField] ShrinkAndDelete sAD;
     private void OnTriggerEnter(Collider other)
     {
         var shield = other.GetComponent<IShieldReceiver>();
@@ -14,7 +16,8 @@ public class ShieldPickup : MonoBehaviour, IEntity
         if (shield != null && !GameManager.instance.GetPlayerResources().Shield.AtMax())
         {
             shield.AddShield(shieldAmount);
-            Destroy(gameObject);
+            sfx.Play_OneShot();
+            sAD.Shrink();
         }
     }
 

@@ -5345,7 +5345,6 @@ GameObject:
   - component: {fileID: 1113753353031639484}
   - component: {fileID: 8657473239933320101}
   - component: {fileID: 3087825354176168861}
-  - component: {fileID: 2629227120415317604}
   m_Layer: 0
   m_Name: Health Pack
   m_TagString: Untagged
@@ -5383,6 +5382,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healingAmount: 5
+  sfx: {fileID: 8657473239933320101}
+  sAD: {fileID: 3087825354176168861}
 --- !u!114 &1612342869464202610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5562,21 +5563,6 @@ MonoBehaviour:
   - {fileID: 7991753425847873261}
   particles:
   - {fileID: 3455956927937837967}
---- !u!114 &2629227120415317604
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7293869456169958750}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dcae5d09ec9a524cab41b72b6d49f24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shrinkScript: {fileID: 3087825354176168861}
-  sfxScript: {fileID: 8657473239933320101}
-  interact: {fileID: 0}
 --- !u!1 &7623256312911277618
 GameObject:
   m_ObjectHideFlags: 0
