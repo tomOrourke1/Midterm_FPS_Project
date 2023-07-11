@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.Experimental.AI;
 
 public class DamgableObject : MonoBehaviour, IEnvironment, IDamagable
 {
@@ -76,8 +78,7 @@ public class DamgableObject : MonoBehaviour, IEnvironment, IDamagable
     }
     public void Die()
     {
-       // Destroy(gameObject);
-
+        // Destroy(gameObject);
         wallMeshRenderer.enabled = false;
         colliderC.enabled = false;
     }
