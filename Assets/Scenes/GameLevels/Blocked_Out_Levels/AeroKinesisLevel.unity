@@ -17980,7 +17980,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1469044343214040271, guid: c888af20fd150ac48947c1c82768fa6a, type: 3}
       propertyPath: m_Name
-      value: Entity Spawner (8)
+      value: Elite Spawner
       objectReference: {fileID: 0}
     - target: {fileID: 5511470309215650957, guid: c888af20fd150ac48947c1c82768fa6a, type: 3}
       propertyPath: m_RootOrder
@@ -25075,7 +25075,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1469044343214040271, guid: c888af20fd150ac48947c1c82768fa6a, type: 3}
       propertyPath: m_Name
-      value: Entity Spawner (5)
+      value: Elite Spawner
       objectReference: {fileID: 0}
     - target: {fileID: 5511470309215650957, guid: c888af20fd150ac48947c1c82768fa6a, type: 3}
       propertyPath: m_RootOrder
@@ -63642,7 +63642,7 @@ MonoBehaviour:
   EntryDoor: {fileID: 1538001256}
   ExitDoor: {fileID: 1124115803}
   roomType: 0
-  EliteSpawner: {fileID: 0}
+  EliteSpawners: []
 --- !u!1 &3159529579120366012
 GameObject:
   m_ObjectHideFlags: 0
@@ -71950,8 +71950,8 @@ Transform:
   - {fileID: 803834494}
   - {fileID: 1740294489}
   - {fileID: 333311895}
-  - {fileID: 38768380}
   - {fileID: 322663447}
+  - {fileID: 38768380}
   - {fileID: 699115267}
   - {fileID: 521257559}
   - {fileID: 1556719000}
@@ -123720,7 +123720,7 @@ MonoBehaviour:
   EntryDoor: {fileID: 100115198775334270}
   ExitDoor: {fileID: 200493733}
   roomType: 0
-  EliteSpawner: {fileID: 0}
+  EliteSpawners: []
 --- !u!114 &8024480610575309655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123736,7 +123736,7 @@ MonoBehaviour:
   EntryDoor: {fileID: 361446598}
   ExitDoor: {fileID: 100115198900112587}
   roomType: 0
-  EliteSpawner: {fileID: 0}
+  EliteSpawners: []
 --- !u!114 &8024480610796880364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123752,7 +123752,7 @@ MonoBehaviour:
   EntryDoor: {fileID: 7147110228279536671}
   ExitDoor: {fileID: 3068323290957678853}
   roomType: 4
-  EliteSpawner: {fileID: 0}
+  EliteSpawners: []
 --- !u!114 &8024480610977189922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123768,7 +123768,7 @@ MonoBehaviour:
   EntryDoor: {fileID: 100115199814449143}
   ExitDoor: {fileID: 3624840607818035789}
   roomType: 0
-  EliteSpawner: {fileID: 0}
+  EliteSpawners: []
 --- !u!114 &8024480611118283670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123784,7 +123784,7 @@ MonoBehaviour:
   EntryDoor: {fileID: 100115198214778843}
   ExitDoor: {fileID: 3068323290463721970}
   roomType: 1
-  EliteSpawner: {fileID: 0}
+  EliteSpawners: []
 --- !u!114 &8024480611731682903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123800,7 +123800,7 @@ MonoBehaviour:
   EntryDoor: {fileID: 3168126176562442142}
   ExitDoor: {fileID: 7147110228404276639}
   roomType: 0
-  EliteSpawner: {fileID: 0}
+  EliteSpawners: []
 --- !u!114 &8024480611943725194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123816,7 +123816,8 @@ MonoBehaviour:
   EntryDoor: {fileID: 7147110228516219870}
   ExitDoor: {fileID: 5249177475204997267}
   roomType: 3
-  EliteSpawner: {fileID: 990551340}
+  EliteSpawners:
+  - {fileID: 990551340}
 --- !u!114 &8024480612007891367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123832,7 +123833,7 @@ MonoBehaviour:
   EntryDoor: {fileID: 5249177475348676883}
   ExitDoor: {fileID: 5249177474596403514}
   roomType: 4
-  EliteSpawner: {fileID: 0}
+  EliteSpawners: []
 --- !u!114 &8024480612017698920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123848,7 +123849,7 @@ MonoBehaviour:
   EntryDoor: {fileID: 100115200038076065}
   ExitDoor: {fileID: 3068323289950544727}
   roomType: 0
-  EliteSpawner: {fileID: 0}
+  EliteSpawners: []
 --- !u!114 &8024480612034172367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123864,7 +123865,8 @@ MonoBehaviour:
   EntryDoor: {fileID: 3068323290607370311}
   ExitDoor: {fileID: 100115198980908269}
   roomType: 3
-  EliteSpawner: {fileID: 1471671185}
+  EliteSpawners:
+  - {fileID: 1471671185}
 --- !u!114 &8024480612195966588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123880,7 +123882,7 @@ MonoBehaviour:
   EntryDoor: {fileID: 1150840746}
   ExitDoor: {fileID: 3068323291571977083}
   roomType: 1
-  EliteSpawner: {fileID: 0}
+  EliteSpawners: []
 --- !u!114 &8024480612366401901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123896,7 +123898,7 @@ MonoBehaviour:
   EntryDoor: {fileID: 7147110227688961462}
   ExitDoor: {fileID: 5249177475514099538}
   roomType: 0
-  EliteSpawner: {fileID: 0}
+  EliteSpawners: []
 --- !u!114 &8024480612507639708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123912,7 +123914,7 @@ MonoBehaviour:
   EntryDoor: {fileID: 100115199220893065}
   ExitDoor: {fileID: 3068323291758866989}
   roomType: 0
-  EliteSpawner: {fileID: 0}
+  EliteSpawners: []
 --- !u!114 &8178889816121013868
 MonoBehaviour:
   m_ObjectHideFlags: 0
