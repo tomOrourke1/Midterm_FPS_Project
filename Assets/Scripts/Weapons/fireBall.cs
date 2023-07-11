@@ -29,11 +29,7 @@ public class fireBall : MonoBehaviour
         var colliders = Physics.OverlapSphere(transform.position, explosionRange);
         foreach (var collider in colliders)
         {
-            if (collider.CompareTag("Player"))
-            {
-                
-            }
-            else if (collider.GetComponent<IDamagable>() != null)
+            if (collider.GetComponent<IDamagable>() != null && !collider.CompareTag("Player"))
             {
                 RaycastHit hit;
 
@@ -50,7 +46,7 @@ public class fireBall : MonoBehaviour
                 }
             }
 
-            if (collider.GetComponent<IApplyVelocity>() != null)
+            if (collider.GetComponent<IApplyVelocity>() != null && !collider.CompareTag("Player"))
             {
                 RaycastHit hit;
 

@@ -55,7 +55,7 @@ public class ExplodingBarrel : MonoBehaviour, IDamagable, IEntity
 
             }
             
-            if (collider.GetComponent<IApplyVelocity>() != null)
+            if (collider.GetComponent<IApplyVelocity>() != null && !collider.CompareTag("Player"))
             {
                 RaycastHit hit;
 
