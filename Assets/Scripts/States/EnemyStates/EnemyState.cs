@@ -20,7 +20,7 @@ public abstract class EnemyState : MonoBehaviour, IState
 
     private void Start()
     {
-        audioScript = transform.parent.GetComponentInParent<EnemyAudio>();
+        audioScript = transform.GetComponentInParent<EnemyAudio>();
     }
 
     protected void SetAgent()

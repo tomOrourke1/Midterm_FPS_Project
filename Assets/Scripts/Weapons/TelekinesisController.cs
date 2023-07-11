@@ -221,6 +221,7 @@ public class TelekinesisController : KinesisBase
         } else if (stachedObject == null)
         {
             StopFire();
+
         }
 
 
