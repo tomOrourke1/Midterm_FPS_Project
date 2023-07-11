@@ -4737,6 +4737,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8957824721187020206}
     m_Modifications:
+    - target: {fileID: 2814723236822065333, guid: 3048424601af839449b00f456673126f, type: 3}
+      propertyPath: locked
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2814723236822065334, guid: 3048424601af839449b00f456673126f, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -15412,7 +15416,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5511470309215650957, guid: c888af20fd150ac48947c1c82768fa6a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.6620636
+      value: -4.6620636
       objectReference: {fileID: 0}
     - target: {fileID: 5511470309215650957, guid: c888af20fd150ac48947c1c82768fa6a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -15420,7 +15424,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5511470309215650957, guid: c888af20fd150ac48947c1c82768fa6a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 12.062515
+      value: 12.187515
       objectReference: {fileID: 0}
     - target: {fileID: 5511470309215650957, guid: c888af20fd150ac48947c1c82768fa6a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -16128,6 +16132,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6086012913821970453, guid: 0f63d0b6e68d0f44a8f6821c1c11ace2, type: 3}
+      propertyPath: Delay
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6086012913821970453, guid: 0f63d0b6e68d0f44a8f6821c1c11ace2, type: 3}
       propertyPath: Activate.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 6
       objectReference: {fileID: 0}
@@ -16142,7 +16150,7 @@ PrefabInstance:
     - target: {fileID: 6086012913821970453, guid: 0f63d0b6e68d0f44a8f6821c1c11ace2, type: 3}
       propertyPath: Deactivate.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 576135347}
     - target: {fileID: 6086012913821970453, guid: 0f63d0b6e68d0f44a8f6821c1c11ace2, type: 3}
       propertyPath: Activate.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SetLockStatus
@@ -16154,6 +16162,10 @@ PrefabInstance:
     - target: {fileID: 6086012913821970453, guid: 0f63d0b6e68d0f44a8f6821c1c11ace2, type: 3}
       propertyPath: Activate.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: DoorScript, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6086012913821970453, guid: 0f63d0b6e68d0f44a8f6821c1c11ace2, type: 3}
+      propertyPath: Activate.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6086012913821970453, guid: 0f63d0b6e68d0f44a8f6821c1c11ace2, type: 3}
       propertyPath: Deactivate.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -19427,17 +19439,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2814723236822065334, guid: 3048424601af839449b00f456673126f, type: 3}
   m_PrefabInstance: {fileID: 1310160730}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1310160732 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2814723236822065333, guid: 3048424601af839449b00f456673126f, type: 3}
-  m_PrefabInstance: {fileID: 1310160730}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d37206cfd58a44e4db64e8741ac0196d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1314580595
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33334,7 +33335,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EntryDoor: {fileID: 1011715448}
-  ExitDoor: {fileID: 1310160732}
+  ExitDoor: {fileID: 576135347}
   roomType: 1
   EliteSpawner: {fileID: 0}
 --- !u!4 &6223342461796950346

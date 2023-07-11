@@ -69,6 +69,7 @@ public class DoorDetectPlayerInProximity : MonoBehaviour, IEnvironment
         }
 
         count--;
+        count = Mathf.Max(count, 0);
         if (count == 0)
         {
             door.CloseDoor();
