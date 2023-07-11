@@ -72,7 +72,7 @@ public class PlayerResources : MonoBehaviour, IDamagable, IHealReciever, IFocusR
             //UIManager.instance.FlashPlayerHealthHit();
         }
 
-        LowHPWarning();
+        //LowHPWarning();
         UIManager.instance.GetPlayerStats().UpdateValues();
     }
     public void TakeIceDamage(float dmg)
