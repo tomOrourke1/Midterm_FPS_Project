@@ -37,6 +37,7 @@ public class IceKinesis : KinesisBase
         if (!InputManager.Instance.Action.Kinesis.IsPressed() && canFire)
         {
             OnCryoThrow?.Invoke();
+            base.DisableOpenRadial();
             canFire = false;
         }
 

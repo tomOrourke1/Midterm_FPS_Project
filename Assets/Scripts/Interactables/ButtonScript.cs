@@ -60,7 +60,7 @@ public class ButtonScript : MonoBehaviour, IEnvironment
 
     Collider[] GetOverlap()
     {
-        var pos = transform.position + boxCol.center;
+        var pos = transform.position + (transform.forward * boxCol.center.y + transform.right * boxCol.center.x + transform.up * boxCol.center.y);
         var size = VecMult(transform.localScale, boxCol.size) / 2;
         return Physics.OverlapBox(pos, size, transform.localRotation);
     }

@@ -79,7 +79,7 @@ public abstract class EnemyBase : MonoBehaviour
         var dir = GetDirToPlayer();
         dir.y = 0;
         dir.Normalize();
-        transform.localRotation = Quaternion.LookRotation(dir);
+        transform.rotation = Quaternion.LookRotation(dir);
     }
 
     Vector3 SamplePoint(Vector3 point)

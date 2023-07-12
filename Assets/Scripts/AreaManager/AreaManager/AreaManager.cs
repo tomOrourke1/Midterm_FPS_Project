@@ -58,7 +58,6 @@ public class AreaManager : MonoBehaviour
     private void Awake()
     {
         EntryDoor.GetComponentInChildren<DoorDetectPlayerInProximity>().EnterTransitionMode(this);
-
     }
 
     private void Start()
