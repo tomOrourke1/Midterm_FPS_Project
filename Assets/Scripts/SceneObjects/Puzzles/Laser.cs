@@ -38,6 +38,16 @@ public class Laser : MonoBehaviour, IEnvironment
     bool started = false;
 
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+        laser.positionCount = 2;
+        initDelayAmount = initialDelay;
+        laser = GetComponent<LineRenderer>();
+        Debug.Log(LaserOn);
+        initialLaserOn = LaserOn;
+    }
+
     void Start()
     {
         //laser.positionCount = 2;
@@ -45,7 +55,7 @@ public class Laser : MonoBehaviour, IEnvironment
         //laser = GetComponent<LineRenderer>();
         //Debug.Log(LaserOn);
         //initialLaserOn = LaserOn;
-        StartObject();
+        //StartObject();
     }
 
     // Update is called once per frame
@@ -113,8 +123,9 @@ public class Laser : MonoBehaviour, IEnvironment
 
         this.enabled = true;
         initialDelay = initDelayAmount;
-        Debug.Log(LaserOn);
+        //Debug.Log(LaserOn);
         LaserOn = initialLaserOn;
+        //Debug.LogError("Laser on: " + LaserOn + "initalon: " + initialLaserOn);
         laser = GetComponent<LineRenderer>();
         laser.enabled = false;
         started = false;
