@@ -6,7 +6,7 @@ public class ExplodingBarrel : MonoBehaviour, IDamagable, IEntity
 {
     [SerializeField] ParticleSystem ignitionFX;
     [SerializeField] ParticleSystem explosionFX;
-    [SerializeField] ExplosiveBarrelSFX sfxScript;
+    [SerializeField] AudioSource source;
     [SerializeField] GameObject explosionParticles;
     [SerializeField] int durability;
     [SerializeField] float timer;
@@ -29,6 +29,7 @@ public class ExplodingBarrel : MonoBehaviour, IDamagable, IEntity
     {
         // Gets everything within range
         Collider[] colliders = Physics.OverlapSphere(transform.position, range);
+        source.Play();
         explosionFX.Play();
         // Grabs everything that was hit and checks if they are damagable
         foreach (Collider collider in colliders)
@@ -76,7 +77,6 @@ public class ExplodingBarrel : MonoBehaviour, IDamagable, IEntity
         }
 
         // Play Explosion effects
-        sfxScript.Play_Explosion();
         Effects();
 
         // Delete Barrel

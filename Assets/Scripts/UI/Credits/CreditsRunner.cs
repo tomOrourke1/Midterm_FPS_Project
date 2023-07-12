@@ -32,6 +32,7 @@ public class CreditsRunner : MonoBehaviour
     void Start()
     {
         StartCoroutine(FadeIn());
+        InputManager.Instance.Input.Enable();
 
         gitSpeedupOrig = gitscript.GetSpeed();
     }
