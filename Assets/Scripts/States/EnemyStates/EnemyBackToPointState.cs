@@ -18,7 +18,23 @@ public class EnemyBackToPointState : EnemyState
 
     public override void Tick()
     {
-        agent.SetDestination(point);
+
+        //var hit = SamplePoint(point, 1000, out bool b);
+        //if (b)
+        //{
+
+        //    agent.ResetPath();
+        //    agent.SetDestination(hit.position);
+        //}
+
+        if(agent.enabled)
+        {
+
+            agent.SetDestination(point);
+        }
+
+        //agent?.SetDestination(point);
+
     }
 
 

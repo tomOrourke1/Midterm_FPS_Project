@@ -48,7 +48,22 @@ public class EnemyToFlankState : EnemyState
 
             var newPos = (cross * dist * sideMod) + playerPos;
 
-            agent.SetDestination(newPos);
+
+
+            //var hit = SamplePoint(newPos, 1000, out bool b);
+            //if (b)
+            //{
+            //    agent.ResetPath();
+            //    agent.SetDestination(hit.position);
+            //}
+
+
+            if(agent.enabled)
+            {
+                agent.SetDestination(newPos);
+            }
+
+           // agent?.SetDestination(newPos);
 
         }
         else

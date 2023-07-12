@@ -52,4 +52,14 @@ public abstract class EnemyState : MonoBehaviour, IState
         return false;
     }
 
+
+
+    public NavMeshHit SamplePoint(Vector3 point, float dist, out bool does)
+    {
+        NavMeshHit hit;
+
+        does = NavMesh.SamplePosition(point, out hit, dist, 1);
+        return hit;
+    }
+
 }

@@ -12,9 +12,20 @@ public class EnemyChasePlayerState : EnemyState
     {
 
         //var dist = Vector3.Distance(GameManager.instance.GetPlayerObj().transform.position, transform.position);
+        var hit = SamplePoint(GameManager.instance.GetPlayerObj().transform.position, 1000, out bool b);
+        if (b)
+        {
+            agent.ResetPath();
+            agent.SetDestination(hit.position);
+        }
 
 
-        agent.SetDestination(GameManager.instance.GetPlayerObj().transform.position);
+        if(agent.enabled)
+        {
+            agent.SetDestination(GameManager.instance.GetPlayerObj().transform.position);
+        }
+
+       // agent?.SetDestination(GameManager.instance.GetPlayerObj().transform.position);
     }
 
 

@@ -15,6 +15,21 @@ public class EnemySpottedPlayer : EnemyState
 
     public override void Tick()
     {
-        agent.SetDestination(spotPosition);
+
+        //var hit = SamplePoint(spotPosition, 1000, out bool b);
+        //if (b)
+        //{
+
+        //    agent.ResetPath();
+        //    agent.SetDestination(hit.position);
+        //}
+
+        if(agent.enabled)
+        {
+            agent.SetDestination(spotPosition);
+        }
+
+
+      //  agent?.SetDestination(spotPosition);
     }
 }

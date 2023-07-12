@@ -23,7 +23,22 @@ public class EnemyStrafeState : EnemyState
 
 
         var pos = (dirToStrafe * dist) + transform.position;
-        agent.SetDestination(pos);
+
+        //var hit = SamplePoint(pos, 1000, out bool b);
+        //if (b)
+        //{
+
+        //    agent.ResetPath();
+        //    agent.SetDestination(hit.position);
+        //}
+
+
+        if(agent.enabled)
+        {
+            agent.SetDestination(pos);
+        }
+
+      //  agent?.SetDestination(pos);
 
 
 

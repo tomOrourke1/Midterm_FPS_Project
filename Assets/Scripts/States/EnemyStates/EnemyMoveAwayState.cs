@@ -22,8 +22,19 @@ public class EnemyMoveAwayState : EnemyState
 
         var newPos = direction + transform.position;
 
+        //var hit = SamplePoint(newPos, 1000, out bool b);
+        //if (b)
+        //{
+        //    agent.ResetPath();
+        //    agent.SetDestination(hit.position);
+        //}
 
-        agent.SetDestination(newPos);
+        if(agent.enabled)
+        {
+            agent.SetDestination(newPos);
+        }
+
+       // agent?.SetDestination(newPos);
 
 
     }

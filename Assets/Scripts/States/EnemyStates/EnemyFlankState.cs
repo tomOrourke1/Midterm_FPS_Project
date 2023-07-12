@@ -9,8 +9,20 @@ public class EnemyFlankState : EnemyState
 
     public override void Tick()
     {
+        //var hit = SamplePoint(GetBehindPlayer(), 1000, out bool b);
+        //if (b)
+        //{
+        //    agent.ResetPath();
+        //    agent.SetDestination(hit.position);
+        //}
 
-        agent.SetDestination(GetBehindPlayer());
+        if(agent.enabled)
+        {
+            agent.SetDestination(GetBehindPlayer());
+        }
+
+
+        //agent?.SetDestination(GetBehindPlayer());
 
 
     }

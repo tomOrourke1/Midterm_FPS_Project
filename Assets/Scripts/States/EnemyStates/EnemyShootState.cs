@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyShootState : EnemyState
 {
@@ -38,7 +39,17 @@ public class EnemyShootState : EnemyState
         fired = false;
         timeInState = Time.time;
 
-        agent.SetDestination(agent.transform.position);
+        //var hit = SamplePoint(agent.gameObject.transform.position, 1000, out bool b);
+        //if (b)
+        //{
+
+        //    agent.ResetPath();
+        //    agent.SetDestination(hit.position);
+        //}
+        if(agent.enabled)
+        {
+            agent.SetDestination(agent.gameObject.transform.position);
+        }
 
         playerPos = GameManager.instance.GetPlayerPOS();
 

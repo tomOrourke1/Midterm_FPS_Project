@@ -22,7 +22,7 @@ public class TestState01 : IState
 
     public void Tick()
     {
-        agent.SetDestination(Vector3.zero);
+        agent?.SetDestination(Vector3.zero);
     }
 }
 

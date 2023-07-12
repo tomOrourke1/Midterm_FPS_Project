@@ -19,7 +19,19 @@ public class EnemyIdleState : EnemyState
     public override void OnEnter()
     {
         base.OnEnter(); // this has to be here
-        agent.SetDestination(transform.position);
+
+        //var hit = SamplePoint(transform.position, 1000, out bool b);
+        //if (b)
+        //{
+        //    agent.ResetPath();
+        //    agent.SetDestination(hit.position);
+        //}
+
+        if (agent.enabled)
+        {
+            agent.SetDestination(transform.position);
+        }
+
 
     }
 
