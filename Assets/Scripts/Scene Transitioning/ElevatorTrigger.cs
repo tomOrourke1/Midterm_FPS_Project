@@ -8,6 +8,10 @@ public class ElevatorTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.isTrigger)
+            return;
+
+
         doorToLock.SetLockStatus(true);
         doorToLock.CloseLockedDoor();
     }
