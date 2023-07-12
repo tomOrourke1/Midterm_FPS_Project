@@ -20,8 +20,6 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] PlayerCooldownBehaviour dash2;
     [SerializeField] PlayerCooldownBehaviour dashCooldown;
 
-
-
     private void Start()
     {
         RespawnPlayer();

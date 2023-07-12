@@ -8,7 +8,7 @@ public class FocusFuel : MonoBehaviour, IDamagable
     [SerializeField] Renderer render;
 
     [SerializeField] Material mat;
-    [SerializeField] EnemyAudio source;
+    [SerializeField] FocusFuelEnemy source;
 
 
     Material enemyColor;

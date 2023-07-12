@@ -41,10 +41,10 @@ AudioSource:
   m_GameObject: {fileID: 1378205252}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5298858325094725193, guid: 94efd4a4905cf0d4b932e654d29a8da0, type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -52,10 +52,10 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  MinDistance: 2.864502
+  MaxDistance: 16.177002
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -88,7 +88,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -555,7 +555,7 @@ GameObject:
   - component: {fileID: 7870947707004299944}
   - component: {fileID: 963615291}
   - component: {fileID: 963615290}
-  - component: {fileID: 963615292}
+  - component: {fileID: 8618216522772203008}
   m_Layer: 0
   m_Name: FocusFuel
   m_TagString: Untagged
@@ -614,7 +614,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   render: {fileID: 1522544403610761625}
   mat: {fileID: 2100000, guid: 07266382cdd3e2342a67843e9a556fa0, type: 2}
-  source: {fileID: 963615292}
+  source: {fileID: 8618216522772203008}
 --- !u!114 &963615290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -630,7 +630,7 @@ MonoBehaviour:
   speed: 10
   offSetMax: 0.5
   offSetMin: 0.1
---- !u!114 &963615292
+--- !u!114 &8618216522772203008
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -639,15 +639,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 7870947707004299942}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abeeab394c633a849b3fc948fc66a8b7, type: 3}
+  m_Script: {fileID: 11500000, guid: e3c1290bd2c98e04389ee5410d51e48b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waitTime: 1
   source: {fileID: 1378205254}
-  enemyWalk: []
-  enemyShoot: []
-  enemyHurt: []
-  enemyDeath: []
-  disruptorClip: {fileID: 0}
+  enemyHurt:
+  - {fileID: 8300000, guid: eeb8f9e9a0916c04bb1287dda71a5b2a, type: 3}
+  - {fileID: 8300000, guid: 4dbbb94e7e585694799758a3528e4a37, type: 3}
+  - {fileID: 8300000, guid: 1f58d97ee8493da4abfec0bd2859f780, type: 3}
+  - {fileID: 8300000, guid: c425133c4ec875c43bf70a6f71d2a2a4, type: 3}
+  - {fileID: 8300000, guid: cdef9167c6628ac408d99f5907e7fef7, type: 3}
+  - {fileID: 8300000, guid: 710bd2e834951c64d85c60b607b7daf9, type: 3}
+  - {fileID: 8300000, guid: bea22470458a23140ab385b5f76c8a2f, type: 3}
+  - {fileID: 8300000, guid: 8430c08a01b284040a73f61433f60733, type: 3}
+  - {fileID: 8300000, guid: e80236227eb36ac4c91bb8689256a280, type: 3}
+  - {fileID: 8300000, guid: 7a576c42bf665a5479d77aa01e7fafd7, type: 3}
+  - {fileID: 8300000, guid: 12b54c47540707d43bcfea1986f06809, type: 3}
+  - {fileID: 8300000, guid: 47ae4ddbcfb55cd42908172840e7a4b0, type: 3}
+  - {fileID: 8300000, guid: 7c4f73b527f8212498611e02d18246a3, type: 3}
 --- !u!1 &7870947707248000163
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,7 +8,7 @@ public class ElevatorScript : MonoBehaviour, IInteractable
     [Header("Components")]
     [SerializeField, Range(.01f, 5)] float loadingTime = 1.5f;
     [SerializeField, Range(.01f, 5)] float exitingTime = 3.5f;
-
+    
     [Tooltip("The animation curve component to use.")]
     [SerializeField] AnimationCurve curve;
 
