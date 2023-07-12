@@ -7,6 +7,10 @@ public class KeyScript : MonoBehaviour, IEntity
     int spawnIndex;
     bool collected = false;
 
+
+    [SerializeField] ShrinkAndDelete shrinkScript;
+    [SerializeField] PickupSFX sfxScript;
+
     /// <summary>
     /// When the player enters the collider, check to make sure it is the player. 
     /// Then check to make sure the player can pickup the key. They must have one less than the max.
@@ -25,6 +29,9 @@ public class KeyScript : MonoBehaviour, IEntity
                     GameManager.instance.GetKeyChain().addKeys(1);
                     //Debug.Log("FUCK");
                     GameManager.instance.GetCurrentRoomManager()?.CallDeath(spawnIndex);
+
+                    sfxScript.Play_OneShot();
+                    shrinkScript.Shrink();
                 }
             }
         }

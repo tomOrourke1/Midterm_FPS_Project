@@ -6,7 +6,8 @@ public class PyroSFX : MonoBehaviour
 {
     [Header("Kinesis Audio Source")]
     [SerializeField] AudioSource kinesisSouce;
-    
+    [SerializeField] AudioSource holdSource;
+
     [Header("Pyro SFX")]
     [SerializeField] AudioClip pyroForm;
     [SerializeField] AudioClip pyroHold;
@@ -15,21 +16,29 @@ public class PyroSFX : MonoBehaviour
 
     public void PlayPyro_Forming()
     {
+        holdSource.Stop();
         kinesisSouce.PlayOneShot(pyroForm);
     }
 
     public void PlayPyro_Hold()
     {
-        kinesisSouce.PlayOneShot(pyroHold);
+        holdSource.Play();
     }
 
     public void PlayPyro_Launch()
     {
+        holdSource.Stop();
         kinesisSouce.PlayOneShot(pyroLaunch);
     }
 
     public void PlayPyro_Explode()
     {
+        holdSource.Stop();
         kinesisSouce.PlayOneShot(pyroExplode);
+    }
+
+    public void ForceStopHoldSource()
+    {
+        holdSource.Stop();
     }
 }

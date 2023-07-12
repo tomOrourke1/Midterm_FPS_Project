@@ -15,7 +15,6 @@ public class HealthPackScript : MonoBehaviour, IEntity
 
         if(heal != null && !GameManager.instance.GetPlayerResources().Health.AtMax())
         {
-            Debug.Log(!GameManager.instance.GetPlayerResources().Health.AtMax());
             heal.AddHealing(healingAmount);
             sfx.Play_OneShot();
             sAD.Shrink();

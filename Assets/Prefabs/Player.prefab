@@ -71,9 +71,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 6541666339236494325}
-        m_TargetAssemblyTypeName: PyroSFX, Assembly-CSharp
-        m_MethodName: PlayPyro_Hold
+      - m_Target: {fileID: 6659937156708965362}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Play
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -123,6 +123,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: LeftHandIdle
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6659937156708965362}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Stop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
   fireFocusParticles: {fileID: 6229319264460631047}
@@ -1531,7 +1543,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 5298858325094725193, guid: 94efd4a4905cf0d4b932e654d29a8da0, type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1826,6 +1838,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f55bafa6797929b47b0c9425228b7483, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &6659937156708965362 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6807487934919073242, guid: afe13f3e498187b4b8147cc0dd44ab8a, type: 3}
+  m_PrefabInstance: {fileID: 150263362516403752}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8007733217610519352 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7869188588805461264, guid: afe13f3e498187b4b8147cc0dd44ab8a, type: 3}

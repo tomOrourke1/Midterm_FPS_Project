@@ -16,8 +16,8 @@ public class ShieldPickup : MonoBehaviour, IEntity
         if (shield != null && !GameManager.instance.GetPlayerResources().Shield.AtMax())
         {
             shield.AddShield(shieldAmount);
-            sfx.Play_OneShot();
-            sAD.Shrink();
+            sfx?.Play_OneShot();
+            sAD?.Shrink();
         }
     }
 

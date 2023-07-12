@@ -10,7 +10,6 @@ public class ElectroSFX : MonoBehaviour
     [Header("Electro SFX")]
     [SerializeField] AudioClip electroCast;
     [SerializeField] AudioClip electroShoot;
-    [SerializeField] AudioClip electroHit;
 
     public void PlayElectro_Cast()
     {
@@ -20,11 +19,6 @@ public class ElectroSFX : MonoBehaviour
     public void PlayElectro_Shoot()
     {
         kinesisSouce.PlayOneShot(electroShoot);
-    }
-
-    public void PlayElectro_Hit()
-    {
-        kinesisSouce.PlayOneShot(electroHit);
     }
 
 }
