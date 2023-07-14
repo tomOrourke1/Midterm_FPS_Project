@@ -118,4 +118,10 @@ public class fingerGun : MonoBehaviour
         yield return new WaitForSeconds(fireRate);
         isShooting = false;
     }
+
+
+    public int GetShootDist()
+    {
+        return shootDist;
+    }
 }

@@ -1298,18 +1298,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 3009171625201175178}
-        m_TargetAssemblyTypeName: KnifeSFX, Assembly-CSharp
-        m_MethodName: Play_OneShot
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   hitParticles: {fileID: 3847021886455464005, guid: 4c2aa85e80ac84847a42f6689dc76ce8, type: 3}
 --- !u!114 &1769448000
 MonoBehaviour:
@@ -1553,9 +1541,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 50
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -1588,7 +1576,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1773,17 +1761,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2142224829550916407, guid: afe13f3e498187b4b8147cc0dd44ab8a, type: 3}
   m_PrefabInstance: {fileID: 150263362516403752}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3009171625201175178 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3159114735359020194, guid: afe13f3e498187b4b8147cc0dd44ab8a, type: 3}
-  m_PrefabInstance: {fileID: 150263362516403752}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37194408d940b344ca84bb45e6c133e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4916946962153604043 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5055667222086796771, guid: afe13f3e498187b4b8147cc0dd44ab8a, type: 3}

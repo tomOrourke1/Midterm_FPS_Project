@@ -9,15 +9,17 @@ public class ReticleHover : MonoBehaviour
     [Header("Components")]
     [SerializeField] Color defaultColor;
     [SerializeField] Color enemyTargetedColor;
-    [SerializeField] int shootDistance;
 
     RaycastHit hit;
     Image reticle;
 
+    int shootDistance;
 
     // Start is called before the first frame update
     void Start()
     {
+        shootDistance = GameManager.instance.GetPlayerObj().GetComponent<fingerGun>().GetShootDist();
+
         reticle = GetComponentInChildren<Image>();
         reticle.GetComponent<Image>().color = defaultColor;
         reticle.sprite = GameManager.instance.GetSettingsManager().settings.currentRetical;
