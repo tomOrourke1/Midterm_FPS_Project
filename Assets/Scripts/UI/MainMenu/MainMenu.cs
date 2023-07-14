@@ -54,9 +54,14 @@ public class MainMenu : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(mainMenuFirstSelected);
 
+        StartCoroutine(CursorMainMenuFix());
+    }
+
+    private IEnumerator CursorMainMenuFix()
+    {
+        yield return new WaitForEndOfFrame();
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
-
     }
 
     public void NewGame()
@@ -103,6 +108,7 @@ public class MainMenu : MonoBehaviour
         settingsMenuObj.SetActive(false);
         baseMenu.SetActive(true);
         mainMenusAudio?.RunUnMuffler();
+        StartCoroutine(CursorMainMenuFix());
     }
 
     /// <summary>
