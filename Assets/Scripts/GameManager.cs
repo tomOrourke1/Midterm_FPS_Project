@@ -112,6 +112,7 @@ public class GameManager : MonoBehaviour
     public void PauseMenuState()
     {
         audioManager?.RunMuffler();
+        UIManager.instance.GetSceneFader().gameObject.SetActive(false);
         TimePause();
         MouseUnlockShow();
     }

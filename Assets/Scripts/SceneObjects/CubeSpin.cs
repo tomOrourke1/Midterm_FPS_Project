@@ -16,6 +16,10 @@ public class CubeSpin : MonoBehaviour
         float rotY = flipY ? rotRate : -rotRate;
         float rotZ = flipZ ? rotRate : -rotRate;
 
+        rotX *= Time.deltaTime;
+        rotY *= Time.deltaTime;
+        rotZ *= Time.deltaTime;
+
         if (!runningIENUM)
         {
             StartCoroutine(flipDir());
