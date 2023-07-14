@@ -37,6 +37,8 @@ public class GameManager : MonoBehaviour
 
     private EventSystem eSys;
 
+    bool inPauseState;
+
     void Awake()
     {
         instance = this;
@@ -92,6 +94,7 @@ public class GameManager : MonoBehaviour
     public void TimePause()
     {
         Time.timeScale = 0;
+        inPauseState = true;
     }
 
     /// <summary>
@@ -100,6 +103,7 @@ public class GameManager : MonoBehaviour
     public void TimeUnpause()
     {
         Time.timeScale = timescaleOrig;
+        inPauseState = false;
     }
 
     /// <summary>
@@ -256,6 +260,11 @@ public class GameManager : MonoBehaviour
     public KinesisEnabler GetEnabledList()
     {
         return isEnabledScript;
+    }
+
+    public bool InPauseState()
+    {
+        return inPauseState;
     }
 
     /// <summary>

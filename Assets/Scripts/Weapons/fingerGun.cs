@@ -22,7 +22,7 @@ public class fingerGun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (InputManager.Instance.Action.Fire.IsPressed() && !isShooting)
+        if (InputManager.Instance.Action.Fire.IsPressed() && !isShooting && !GameManager.instance.InPauseState())
         {
             StartCoroutine(shoot());
         }

@@ -39,5 +39,9 @@ public class ReticleHover : MonoBehaviour
                 reticle.GetComponent<Image>().color = defaultColor;
             }
         }
+        else
+        {
+            reticle.GetComponent<Image>().color = defaultColor;
+        }
     }
 }

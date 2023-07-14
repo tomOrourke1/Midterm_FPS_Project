@@ -38,7 +38,7 @@ public class MeleeScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (InputManager.Instance.Action.Melee.WasPressedThisFrame())
+        if (InputManager.Instance.Action.Melee.WasPressedThisFrame() && !GameManager.instance.InPauseState())
         {
             OnKnife?.Invoke();
             //StartCoroutine(Knife());
