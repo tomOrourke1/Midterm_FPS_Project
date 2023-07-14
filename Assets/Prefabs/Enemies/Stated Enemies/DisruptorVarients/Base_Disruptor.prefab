@@ -4966,7 +4966,6 @@ GameObject:
   - component: {fileID: 2196605286066655759}
   - component: {fileID: 2196605286066655758}
   - component: {fileID: 1156867556873060103}
-  - component: {fileID: 7028885300489794644}
   m_Layer: 8
   m_Name: Base_Disruptor
   m_TagString: Enemy
@@ -5079,17 +5078,17 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 5298858325094725193, guid: 94efd4a4905cf0d4b932e654d29a8da0, type: 2}
   m_audioClip: {fileID: 8300000, guid: e93f105d98217574aa9308abd8948b8f, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 30
+  MaxDistance: 25
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -5164,24 +5163,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &7028885300489794644
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2196605286066655765}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abeeab394c633a849b3fc948fc66a8b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  source: {fileID: 1156867556873060103}
-  enemyWalk: []
-  enemyShoot: []
-  enemyHurt: []
-  enemyDeath: []
-  disruptorClip: {fileID: 8300000, guid: e93f105d98217574aa9308abd8948b8f, type: 3}
 --- !u!1 &2196605286369197185
 GameObject:
   m_ObjectHideFlags: 0

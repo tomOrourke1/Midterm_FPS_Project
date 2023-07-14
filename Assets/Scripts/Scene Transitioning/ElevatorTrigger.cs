@@ -8,9 +8,8 @@ public class ElevatorTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.isTrigger)
+        if (other.isTrigger || !other.CompareTag("Player"))
             return;
-
 
         doorToLock.SetLockStatus(true);
         doorToLock.CloseLockedDoor();

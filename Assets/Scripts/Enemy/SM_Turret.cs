@@ -66,6 +66,7 @@ public class SM_Turret : EnemyBase, IDamagable, IEntity
 
     void OnDeath()
     {
+        audScript.PlayEnemy_Death();
         Destroy(gameObject); // destroy enemy
     }
 

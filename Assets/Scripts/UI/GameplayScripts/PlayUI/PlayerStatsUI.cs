@@ -98,33 +98,6 @@ public class PlayerStatsUI : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Returns the health slider that updates for the current hp amount;
-    /// </summary>
-    /// <returns></returns>
-    public Image GetRealHealthSlider()
-    {
-        return healthSlider;
-    }
-
-    /// <summary>
-    /// Returns the shield slider that updates for the current shield amount;
-    /// </summary>
-    /// <returns></returns>
-    public Image GetRealShieldSlider()
-    {
-        return shieldSlider;
-    }
-
-    /// <summary>
-    /// Returns the focus slider that updates for the current focus amount;
-    /// </summary>
-    /// <returns></returns>
-    public Image GetRealFocusSlider()
-    {
-        return focusSlider;
-    }
-
     public void SetKinesisIcon(Sprite refImage)
     {
         kinesisIcon.sprite = refImage;

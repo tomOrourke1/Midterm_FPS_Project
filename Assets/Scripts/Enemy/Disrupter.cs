@@ -21,7 +21,6 @@ public class Disrupter : EnemyBase, IDamagable, IEntity
         audScript = GetComponent<EnemyAudio>();
         UpdateBools();
         health.FillToMax();
-        audScript.DisruptorLoopedAudio();
         enemyColor = enemyMeshRenderer.material.color;
         fieldScript.GetParticleSystem().startSize = ball.radius * 2f;
     }
