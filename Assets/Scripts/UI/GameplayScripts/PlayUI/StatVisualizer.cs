@@ -49,6 +49,7 @@ public class StatVisualizer : MonoBehaviour
 
     public void UpdateSliderBools()
     {
+        // FOCUS IMAGE FILL AMOUNTS
         if (fauxFocusSlider.fillAmount > realFocusSlider.fillAmount)
         {
             runFocusUpdate = true;
@@ -59,6 +60,7 @@ public class StatVisualizer : MonoBehaviour
             currentFocusTimer = waitTime;
         }
 
+        // HEALTH IMAGE FILL AMOUNTS
         if (fauxHealthSlider.fillAmount > realHealthSlider.fillAmount)
         {
             runHealthUpdate = true;
@@ -69,6 +71,7 @@ public class StatVisualizer : MonoBehaviour
             currentHealthTimer = waitTime;
         }
 
+        // SHIELD IMAGE FILL AMOUNTS
         if (fauxShieldSlider.fillAmount > realShieldSlider.fillAmount)
         {
             runShieldUpdate = true;
