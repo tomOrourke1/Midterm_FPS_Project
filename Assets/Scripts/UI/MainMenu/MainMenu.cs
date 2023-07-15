@@ -13,13 +13,19 @@ public class MainMenu : MonoBehaviour
 {
     public static MainMenu instance;
 
+    [Header("Scene Transitioning")]
     [SerializeField] Image sceneFader;
     [SerializeField] ElevatorScript eScript;
     [SerializeField] GameObject baseMenu;
+    [SerializeField] string tutorialLevelStart;
+    [SerializeField] TextMeshProUGUI gameContinueText;
+    private string sceneToLoad;
 
+    [Header("Event System")]
     [SerializeField] GameObject settingsSelectedFirst;
     [SerializeField] GameObject mainMenuFirstSelected;
 
+    [Header("Confirm Close Button")]
     [SerializeField] MainMenuConfirmUI mmcu;
 
     [Header("Settings Components")]
@@ -28,10 +34,11 @@ public class MainMenu : MonoBehaviour
     [Header("Audio Mixer")]
     [SerializeField] AudioManagerMainMenu mainMenusAudio;
 
-    [Header("Scene Loading Info")]
-    [SerializeField] string tutorialLevelStart;
-    [SerializeField] TextMeshProUGUI gameContinueText;
-    private string sceneToLoad;
+    LevelSelectScript lSScript;
+    [SerializeField] GameObject levelSelectObj;
+    [SerializeField] GameObject mainButtonsObj;
+
+    private bool showingLevelSelection;
 
     private void Awake()
     {
@@ -87,6 +94,27 @@ public class MainMenu : MonoBehaviour
     public void CloseMainMenu()
     {
         mmcu.CloseConfirm();
+    }
+
+    public void ToggleLevelSelectionMenu()
+    {
+        if (!showingLevelSelection)
+        {
+            mainButtonsObj.SetActive(false);
+            levelSelectObj.SetActive(true);
+            showingLevelSelection = true;
+        }
+        else if (showingLevelSelection)
+        {
+            mainButtonsObj.SetActive(true);
+            levelSelectObj.SetActive(false);
+            showingLevelSelection = false;
+        }
+    }
+
+    public void LevelSelection(int pos)
+    {
+        lSScript.Selection(pos);
     }
 
 
