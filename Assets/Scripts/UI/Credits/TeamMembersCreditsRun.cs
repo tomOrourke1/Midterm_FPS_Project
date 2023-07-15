@@ -7,15 +7,23 @@ using UnityEngine.UI;
 
 public class TeamMembersCreditsRun : MonoBehaviour
 {
-    [SerializeField] float scrollTime;
-    [Tooltip("Half the max screen size.")]
-    [SerializeField] float endPosY = 540;
-    [SerializeField] CallNext script;
-    [SerializeField] Image image;
+    float scrollTime;
     [SerializeField] float fadeTime;
+    [SerializeField] Image image;
+    [SerializeField] CallNext script;
     [SerializeField] AnimationCurve curve;
-
+    
+    RectTransform uiTransform;
     private bool runFinal;
+    private float endPosY = Screen.height/2f;
+
+    private void Start()
+    {
+        uiTransform = GetComponent<RectTransform>();
+        scrollTime = Screen.height / 180f;
+        
+        uiTransform.position.Set(uiTransform.position.x, -uiTransform.rect.height - Screen.height, uiTransform.position.z);
+    }
 
     // Update is called once per frame
     void Update()

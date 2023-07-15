@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class GitHistoryCredits : MonoBehaviour
 {
-    [SerializeField] float scrollTime;
+    float scrollTime;
     [SerializeField] CallNext script;
+    
+    RectTransform uiTransform;
     private float yTmp;
     private bool runFinal;
 
     private void Start()
     {
-        yTmp = Mathf.Abs(gameObject.transform.position.y) + 1000;
+        uiTransform = GetComponent<RectTransform>();
+        scrollTime = Screen.height / 180f;
+        
+        uiTransform.position.Set(uiTransform.position.x, -uiTransform.rect.height - Screen.height, uiTransform.position.z);
+        yTmp = Mathf.Abs(uiTransform.position.y) + Screen.height;
     }
 
     // Update is called once per frame
@@ -20,7 +26,7 @@ public class GitHistoryCredits : MonoBehaviour
         float tmp = Mathf.MoveTowards(gameObject.transform.position.y, yTmp, scrollTime);
         gameObject.transform.position = new Vector3(gameObject.transform.position.x, tmp, gameObject.transform.position.z);
         
-        if (!runFinal && tmp > yTmp)
+        if (!runFinal && tmp >= yTmp)
         {
             runFinal = true;
             StartCoroutine(script.Next());

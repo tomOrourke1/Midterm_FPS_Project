@@ -1,5 +1,43 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1679920199
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1679920200}
+  m_Layer: 5
+  m_Name: Orbs
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1679920200
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1679920199}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1988530871448676048}
+  - {fileID: 1988530871113069614}
+  m_Father: {fileID: 734823908800714804}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &734823908237223894
 GameObject:
   m_ObjectHideFlags: 0
@@ -36,8 +74,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000015259, y: -2322.6646}
-  m_SizeDelta: {x: 1471.9735, y: 3450.3442}
+  m_AnchoredPosition: {x: 0.000015259, y: -2502.7522}
+  m_SizeDelta: {x: 1471.9735, y: 3810.5195}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &734823908237223721
 MonoBehaviour:
@@ -51,7 +89,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 512093666fd623940ae2791780a94c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollTime: 6
   script: {fileID: 734823908237223720}
   image: {fileID: 734823909455613281}
 --- !u!114 &734823908237223720
@@ -1395,8 +1432,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.0015869141}
-  m_SizeDelta: {x: 0, y: -0.0043945}
+  m_AnchoredPosition: {x: 0, y: -0.0018310547}
+  m_SizeDelta: {x: 0, y: -0.0036621}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &734823908712823778
 MonoBehaviour:
@@ -1455,13 +1492,14 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 734823909275722511}
+  - {fileID: 1679920200}
   m_Father: {fileID: 734823908712823777}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 735.98676, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -101.391464}
+  m_SizeDelta: {x: 1471.9735, y: 202.78293}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &734823908800714806
 CanvasRenderer:
@@ -1611,7 +1649,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97364c9506b67e448b47f89c623af7e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollTime: 6
   script: {fileID: 734823908887071394}
 --- !u!114 &734823908887071394
 MonoBehaviour:
@@ -1799,7 +1836,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -877}
+  m_AnchoredPosition: {x: 0, y: -1000}
   m_SizeDelta: {x: 1920, y: 604.0737}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &734823909265259641
@@ -1814,11 +1851,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15011f0b738a8764295e24ec8f4cd25b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollTime: 6
-  endPosY: 540
-  script: {fileID: 734823909265259640}
+  fadeTime: 3
   image: {fileID: 734823909455613281}
-  fadeTime: 5
+  script: {fileID: 734823909265259640}
   curve:
     serializedVersion: 2
     m_Curve:
@@ -1892,7 +1927,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 102.7}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1146.9695, y: 11.4476}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &734823909275722497
@@ -2687,10 +2722,10 @@ RectTransform:
   m_Father: {fileID: 734823908712823777}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 735.98676, y: 0}
-  m_SizeDelta: {x: 1471.9735, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -2011.6494}
+  m_SizeDelta: {x: 0, y: 3597.733}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &734823910012858405
 CanvasRenderer:
@@ -2720,38 +2755,53 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Audio:\r\n----------------------\r\nSoundscape & Ambience, Makoto Hiramatsu,
-    makotohiramatsu.itch.io/lost\r\nButton Click, Mixkit, mixkit.com\r\nClock Tick,
-    Fesliyan Studios, www.fesliyanstudios.com\r\nSwoosh FX, Christian D'amelio, samplefocus.com/\r\nHeavy
-    Ice Cracking, freeSFX, freesfx.co.uk\r\nIce 10, Pixabey, pixabay.com/\r\nIce
-    Cracking 02, Sound Jay, www.soundjay.com/\r\nMarker, Pixabey, pixabay.com/\r\nBig
-    fireball explosion 1, ZapSplat, www.zapsplat.com/\r\nWhoosh FX, \u041D\u0438\u043A\u043E\u043B\u0430\u0439
-    \u0412\u043E\u043B\u043A\u043E\u0432, samplefocus.com/\r\nTiny Laser Blip FX,
-    infinitysquared, samplefocus.com/\r\nVoice_Male_Grunt, Pixabey, pixabay.com/\r\nGRUNT
-    1, Pixabey, pixabay.com/\r\n060381_Male Grunts, Pixabey, pixabay.com/\r\nMale
-    Grunting In Pain, Pixabey, pixabay.com/\r\nConcrete Footsteps 1, Pixabey, pixabay.com/\r\nConcreteFootsteps,
-    Pixabey, pixabay.com/\r\nFist Punch or kick, Pixabey, pixabay.com/\r\nFast simple
-    chop 5, Pixabey, pixabay.com/\r\nSniper Rifle, Pixabey, pixabay.com/\r\nForce
-    Field, Pixabey, pixabay.com/ \r\nGunshot heavy, Amen Breaks, samplefocus.com/\r\nGame
-    gun shot, Mixkit, mixkit.com\r\nBlast hit with echo, Mixkit, mixkit.com\r\nCardboard
-    box drop, hit, handling, Pixabey, pixabay.com/ \r\nInterface device click, Mixkit,
-    mixkit.com\r\nHeavy sliding door, Pixabey, pixabay.com/ \r\nAir hiss, Pixabey,
-    pixabay.com/ \r\nIndustrial machine hum, Mixkit, mixkit.com\r\nEnergy, Pixabey,
-    pixabay.com/ \r\nClick melodic tone, Mixkit, mixkit.com\r\nRandom Space Sound
-    with Ping , Pixabey, pixabay.com/ \r\nBlip, Pixabey, pixabay.com/ \r\nOpen special
-    box, Mixkit, mixkit.com\r\nStone on frozen lake, Pixabey, pixabay.com/ \r\nAir
-    woosh, Mixkit, mixkit.com\r\nLow Whoosh FX, \u041D\u0438\u043A\u043E\u043B\u0430\u0439
-    \u0412\u043E\u043B\u043A\u043E\u0432, samplefocus.com/\r\nKnife slice, Pixabey,
-    pixabay.com/\r\n\r\n\n\n\nModels:\r\n-----------------------\r\nHand (low poly),
-    scribbletoad, sketchfab.com\r\n3D Character Dummy, Kevin Iglesias, assetstore.unity.com\r\nElectric
-    Turret, ursa.anim,  assetstore.unity.com\r\nSci-fi Turrets, Vertex Studio, assetstore.unity.com\r\n\r\n\n\n\nSprites:\r\n-----------------------\r\nKinesis
+  m_text: "Audio / Sound Effects:\r\n----------------------\r\nPower Down 10, Eric
+    Matyas, https://soundimage.org/sfx-pwrupdn/ \r\nInterface Bleeps, Bleeoop, bleeoop.itch.io/interface-bleeps\r\nSoundscape
+    & Ambience, Makoto Hiramatsu, makotohiramatsu.itch.io/lost\r\nUnpublished Scifi
+    Music, Makoto Hiramatsu, makotohiramatsu.itch.io/unpublished01\r\nExperimental
+    Soundscapes, Makoto Hiramatsu, https://makotohiramatsu.itch.io/omniscience\r\nOmniscience
+    Music, Makoto Hiramatsu, https://makotohiramatsu.itch.io/omniscience\r\nButton
+    Click, Mixkit, mixkit.com\r\nClock Tick, Fesliyan Studios, www.fesliyanstudios.com\r\nSwoosh
+    FX, Christian D'amelio, samplefocus.com/\r\nHeavy Ice Cracking, freeSFX, freesfx.co.uk\r\nIce
+    10, Pixabey, pixabay.com/\r\nIce Cracking 02, Sound Jay, www.soundjay.com/\r\nMarker,
+    Pixabey, pixabay.com/\r\nBig fireball explosion 1, ZapSplat, www.zapsplat.com/\r\nWhoosh
+    FX, \u041D\u0438\u043A\u043E\u043B\u0430\u0439 \u0412\u043E\u043B\u043A\u043E\u0432,
+    samplefocus.com/\r\nTiny Laser Blip FX, infinitysquared, samplefocus.com/\r\nVoice_Male_Grunt,
+    Pixabey, pixabay.com/\r\nGRUNT 1, Pixabey, pixabay.com/\r\n060381_Male Grunts,
+    Pixabey, pixabay.com/\r\nMale Grunting In Pain, Pixabey, pixabay.com/\r\nConcrete
+    Footsteps 1, Pixabey, pixabay.com/\r\nConcreteFootsteps, Pixabey, pixabay.com/\r\nFist
+    Punch or kick, Pixabey, pixabay.com/\r\nFast simple chop 5, Pixabey, pixabay.com/\r\nSniper
+    Rifle, Pixabey, pixabay.com/\r\nForce Field, Pixabey, pixabay.com/ \r\nGunshot
+    heavy, Amen Breaks, samplefocus.com/\r\nGame gun shot, Mixkit, mixkit.com\r\nBlast
+    hit with echo, Mixkit, mixkit.com\r\nCardboard box drop, hit, handling, Pixabey,
+    pixabay.com/ \r\nInterface device click, Mixkit, mixkit.com\r\nHeavy sliding
+    door, Pixabey, pixabay.com/ \r\nAir hiss, Pixabey, pixabay.com/ \r\nIndustrial
+    machine hum, Mixkit, mixkit.com\r\nEnergy, Pixabey, pixabay.com/ \r\nClick melodic
+    tone, Mixkit, mixkit.com\r\nRandom Space Sound with Ping , Pixabey, pixabay.com/
+    \r\nBlip, Pixabey, pixabay.com/ \r\nOpen special box, Mixkit, mixkit.com\r\nStone
+    on frozen lake, Pixabey, pixabay.com/ \r\nAir woosh, Mixkit, mixkit.com\r\nLow
+    Whoosh FX, \u041D\u0438\u043A\u043E\u043B\u0430\u0439 \u0412\u043E\u043B\u043A\u043E\u0432,
+    samplefocus.com/\r\nKnife slice, Pixabey, pixabay.com/\r\nFireball form, Epidemic
+    Sound, https://www.epidemicsound.com/track/YL2ICgcpBH/\r\nFireball Launch, Mixkit,
+    https://mixkit.co/free-sound-effects/fire/\r\nFireball hold, MaxHammarb\xE4ck,
+    Pixaby, https://pixabay.com/sound-effects/fire-sound-efftect-21991//\r\nBullet
+    hit, Deutsch, Pixaby, https://pixabay.com/sound-effects/080884-bullet-hit-39872/\r\nKey
+    Terminal Rejected, Pixabay, https://pixabay.com/sound-effects/access-denied-101308/\r\nKey
+    Terminal Accepted , Epidemic Sound, https://www.epidemicsound.com/track/ubs8jlV12o/\r\nLightning
+    Cast, Epidemic Sound, https://www.epidemicsound.com/track/Cu1erUE0mE/\r\nIce
+    Form, Pixaby, https://pixabay.com/sound-effects/ice-6-104141/\r\nAero Form, Pixaby,
+    https://pixabay.com/sound-effects/woosh-muffled-000212-0029s3-d-057-062-069-100-032-039-36966/\r\n\r\n\r\nModels:\r\n-----------------------\r\nHand
+    (low poly), scribbletoad, sketchfab.com\r\n3D Character Dummy, Kevin Iglesias,
+    assetstore.unity.com\r\nElectric Turret, ursa.anim,  assetstore.unity.com\r\nSci-fi
+    Turrets, Vertex Studio, assetstore.unity.com\r\n\r\nSprites:\r\n-----------------------\r\nKinesis
     Ability Icons, Judah Smith-Dyer, www.linkedin.com\r\nPsychic Protocol Launch
     Icon, Judah Smith-Dyer, www.linkedin.com\r\nXelu Prompts, Xelu, www.thoseawesomeguys.com
     \r\nSimple Shapes, Giant Light Studios, www.giantlightstudios.com \r\nEcke Thin
     Font, 1001 Free Fonts, www.1001freefonts.com\r\nMech Warrior, 1001 Free Fonts,
     www.1001freefonts.com\r\nNeuropolitical, 1001 Free Fonts, www.1001freefonts.com\r\nNulshock,
     1001 Free Fonts, www.1001freefonts.com\r\nRecharge, 1001 Free Fonts, www.1001freefonts.com\r\nPoint
-    of Light, SeekPng, www.seekpng.com\r\nShield Icon, Icon Packs, www.iconpacks.net\r\n"
+    of Light, SeekPng, www.seekpng.com\r\nShield Icon, Icon Packs, www.iconpacks.net\r\n\r\nMaterials:\r\nCustomizable
+    Grid, Zaroa, assetstore.unity.com\r\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7dfbf6c9be10f2a4f859b7ab0e8bb00e, type: 2}
   m_sharedMaterial: {fileID: 3334241885000890528, guid: 7dfbf6c9be10f2a4f859b7ab0e8bb00e, type: 2}
@@ -2814,7 +2864,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 55.072388, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -3015,3 +3065,167 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1001 &734823908663504460
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1679920200}
+    m_Modifications:
+    - target: {fileID: 1272882866489034896, guid: 829deaccd9c201e44ac0c0460e30400c, type: 3}
+      propertyPath: m_Name
+      value: Info_KinesisOrb
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272882866489034899, guid: 829deaccd9c201e44ac0c0460e30400c, type: 3}
+      propertyPath: pickupSelect
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272882866489034908, guid: 829deaccd9c201e44ac0c0460e30400c, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272882866489034908, guid: 829deaccd9c201e44ac0c0460e30400c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272882866489034908, guid: 829deaccd9c201e44ac0c0460e30400c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272882866489034908, guid: 829deaccd9c201e44ac0c0460e30400c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272882866489034908, guid: 829deaccd9c201e44ac0c0460e30400c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -346
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272882866489034908, guid: 829deaccd9c201e44ac0c0460e30400c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272882866489034908, guid: 829deaccd9c201e44ac0c0460e30400c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272882866489034908, guid: 829deaccd9c201e44ac0c0460e30400c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272882866489034908, guid: 829deaccd9c201e44ac0c0460e30400c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272882866489034908, guid: 829deaccd9c201e44ac0c0460e30400c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272882866489034908, guid: 829deaccd9c201e44ac0c0460e30400c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272882866489034908, guid: 829deaccd9c201e44ac0c0460e30400c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272882866489034908, guid: 829deaccd9c201e44ac0c0460e30400c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272882866489034908, guid: 829deaccd9c201e44ac0c0460e30400c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272882866489034908, guid: 829deaccd9c201e44ac0c0460e30400c, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 829deaccd9c201e44ac0c0460e30400c, type: 3}
+--- !u!4 &1988530871448676048 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1272882866489034908, guid: 829deaccd9c201e44ac0c0460e30400c, type: 3}
+  m_PrefabInstance: {fileID: 734823908663504460}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &734823909132942514
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1679920200}
+    m_Modifications:
+    - target: {fileID: 1272882866489034896, guid: 829deaccd9c201e44ac0c0460e30400c, type: 3}
+      propertyPath: m_Name
+      value: Info_KinesisOrb (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272882866489034899, guid: 829deaccd9c201e44ac0c0460e30400c, type: 3}
+      propertyPath: pickupSelect
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272882866489034908, guid: 829deaccd9c201e44ac0c0460e30400c, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272882866489034908, guid: 829deaccd9c201e44ac0c0460e30400c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272882866489034908, guid: 829deaccd9c201e44ac0c0460e30400c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272882866489034908, guid: 829deaccd9c201e44ac0c0460e30400c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272882866489034908, guid: 829deaccd9c201e44ac0c0460e30400c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 343.19232
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272882866489034908, guid: 829deaccd9c201e44ac0c0460e30400c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272882866489034908, guid: 829deaccd9c201e44ac0c0460e30400c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272882866489034908, guid: 829deaccd9c201e44ac0c0460e30400c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272882866489034908, guid: 829deaccd9c201e44ac0c0460e30400c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272882866489034908, guid: 829deaccd9c201e44ac0c0460e30400c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272882866489034908, guid: 829deaccd9c201e44ac0c0460e30400c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272882866489034908, guid: 829deaccd9c201e44ac0c0460e30400c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272882866489034908, guid: 829deaccd9c201e44ac0c0460e30400c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272882866489034908, guid: 829deaccd9c201e44ac0c0460e30400c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272882866489034908, guid: 829deaccd9c201e44ac0c0460e30400c, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 829deaccd9c201e44ac0c0460e30400c, type: 3}
+--- !u!4 &1988530871113069614 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1272882866489034908, guid: 829deaccd9c201e44ac0c0460e30400c, type: 3}
+  m_PrefabInstance: {fileID: 734823909132942514}
+  m_PrefabAsset: {fileID: 0}

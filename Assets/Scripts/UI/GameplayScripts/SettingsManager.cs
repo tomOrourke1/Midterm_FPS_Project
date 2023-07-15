@@ -14,13 +14,14 @@ public class SettingsManager : MonoBehaviour
     [Header("Settings Scriptable Object")]
     public SettingsObject settings;
 
+    [SerializeField] BypassAudioApplyCancel bpScript;
+
     [Header("Audio Sliders")]
     [SerializeField] AudioMixer masterMix;
     [SerializeField] Slider masterSlider;
     [SerializeField] Slider sfxSlider;
     [SerializeField] Slider musicSlider;
     [SerializeField] GameObject audioApplyButton;
-    [SerializeField] AudioSource sfxTestSound;
 
     [Header("Game Sliders")]
     [SerializeField] Slider fovSlider;
@@ -116,7 +117,7 @@ public class SettingsManager : MonoBehaviour
         reticleImage.sprite = tempSprite;
 
         KeepKinesis();
-        GetFOVControlScript().SetOrigFov(tempFOV);
+        GetFOVControlScript().SetOrigFov(settings.fieldOfView);
     }
 
 
@@ -133,6 +134,7 @@ public class SettingsManager : MonoBehaviour
         KeepKinesis();
 
         EventSystem.current.SetSelectedGameObject(backButton);
+        bpScript.PlayCancel();
     }
 
     private void SetOriginalValues()
@@ -234,6 +236,7 @@ public class SettingsManager : MonoBehaviour
         masterMix.SetFloat("MusicVolume", Mathf.Log10(tempMusic) * 20f);
 
         EventSystem.current.SetSelectedGameObject(audioApplyButton);
+        bpScript.PlayApply();
     }
 
     /// <summary>
@@ -248,6 +251,7 @@ public class SettingsManager : MonoBehaviour
         settings.currentRetical = tempSprite;
 
         EventSystem.current.SetSelectedGameObject(graphicsApplyButton);
+        bpScript.PlayApply();
     }
 
     /// <summary>
@@ -272,27 +276,13 @@ public class SettingsManager : MonoBehaviour
         settings.aimAssistValue = tempAimAssistValue;
 
         EventSystem.current.SetSelectedGameObject(gameplayApplyButton);
+
+        bpScript.PlayApply();
     }
 
     public void ChangeControllerSensitivity()
     {
         // change controller sensitivity in here
-    }
-
-    private void RunTestSFX()
-    {
-        if (!playingTestAudio)
-        {
-            StartCoroutine(PlayTestAudio());
-        }
-    }
-
-    private IEnumerator PlayTestAudio()
-    {
-        playingTestAudio = true;
-        sfxTestSound.Play();
-        yield return new WaitForSeconds(0.25f);
-        playingTestAudio = false;
     }
 
     // ================================================================================
@@ -325,8 +315,6 @@ public class SettingsManager : MonoBehaviour
     public void SetSFXVolume(float value)
     {
         tempSFX = value;
-        masterMix.SetFloat("TestSFX", Mathf.Log10(value) * 20f);
-        RunTestSFX();
     }
 
     public void SetMusicVolume(float value)

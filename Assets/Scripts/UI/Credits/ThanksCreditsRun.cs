@@ -5,17 +5,22 @@ using UnityEngine.UI;
 
 public class ThanksCreditsRun : MonoBehaviour
 {
-    [SerializeField] float scrollTime;
+    float scrollTime;
     [SerializeField] CallNext script;
     [SerializeField] Image image;
+    
+    RectTransform uiTransform;
     private float yTmp;
     private bool runFinal;
 
     private void Start()
     {
-        image.gameObject.SetActive(false);
+        uiTransform = GetComponent<RectTransform>();
+        scrollTime = Screen.height / 180f;
 
-        yTmp = Mathf.Abs(gameObject.transform.position.y) + 1000;
+        image.gameObject.SetActive(false);
+        uiTransform.position.Set(uiTransform.position.x, -uiTransform.rect.height - Screen.height, uiTransform.position.z);
+        yTmp = Mathf.Abs(uiTransform.position.y) + Screen.height;
     }
 
     // Update is called once per frame
@@ -23,7 +28,7 @@ public class ThanksCreditsRun : MonoBehaviour
     {
         float tmp = Mathf.MoveTowards(gameObject.transform.position.y, yTmp, scrollTime);
         gameObject.transform.position = new Vector3(gameObject.transform.position.x, tmp, gameObject.transform.position.z);
-       
+        
         if (!runFinal && tmp >= yTmp)
         {
             runFinal = true;
