@@ -38,10 +38,10 @@ public class AudioManagerMainMenu : MonoBehaviour
         {
             mixer.GetFloat("Cutoff", out cutoffCurr);
 
-            cutoffVal = Mathf.Lerp(cutoffCurr, 1500f, rateToMuffle * Time.deltaTime);
+            cutoffVal = Mathf.Lerp(cutoffCurr, 7500f, rateToMuffle * Time.deltaTime);
             mixer.SetFloat("Cutoff", cutoffVal);
 
-            if (cutoffVal >= 1500)
+            if (cutoffVal >= 7500)
             {
                 unmuffeling = false;
             }

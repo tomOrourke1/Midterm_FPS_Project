@@ -18,9 +18,9 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         unmuffeling = true;
-        mixer.SetFloat("MasterVolume", GameManager.instance.GetSettingsManager().settings.masterVol);
-        mixer.SetFloat("SFXVolume", GameManager.instance.GetSettingsManager().settings.sfxVol);
-        mixer.SetFloat("MusicVolume", GameManager.instance.GetSettingsManager().settings.musicVol);
+       //mixer.SetFloat("MasterVolume", GameManager.instance.GetSettingsManager().settings.masterVol);
+       //mixer.SetFloat("SFXVolume", GameManager.instance.GetSettingsManager().settings.sfxVol);
+       //mixer.SetFloat("MusicVolume", GameManager.instance.GetSettingsManager().settings.musicVol);
     }
 
     private void Update()

@@ -331,4 +331,9 @@ public class RadialMenu : MonoBehaviour
             }
         }
     }
+
+    public void KinesisEnablerToCurrentSelected(int a)
+    {
+        confirmedKinesis = a;
+    }
 }

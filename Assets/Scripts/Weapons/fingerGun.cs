@@ -55,7 +55,7 @@ public class fingerGun : MonoBehaviour
 
                 IDamagable damageable = hit.collider.GetComponent<IDamagable>();
 
-                if (damageable != null)
+                if (damageable != null && !hit.collider.CompareTag("Player"))
                 {
                     Instantiate(hitParticles, hit.point, Quaternion.identity);
 

@@ -9,6 +9,7 @@ public class ReticleHover : MonoBehaviour
     [Header("Components")]
     [SerializeField] Color defaultColor;
     [SerializeField] Color enemyTargetedColor;
+    [SerializeField] Color pickupableObjectColor;
 
     RaycastHit hit;
     Image reticle;
@@ -33,6 +34,11 @@ public class ReticleHover : MonoBehaviour
             if (hit.collider.CompareTag("Enemy"))
             {
                 reticle.GetComponent<Image>().color = enemyTargetedColor;
+            }
+            else if (hit.collider.GetComponent<MoveableObject>() != null && UIManager.instance.GetRadialScript().GetConfirmedKinesis() == 2)
+            {
+                Debug.Log(UIManager.instance.GetRadialScript().GetConfirmedKinesis());
+                reticle.GetComponent<Image>().color = pickupableObjectColor;
             }
             else
             {

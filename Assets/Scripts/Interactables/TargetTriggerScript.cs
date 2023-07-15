@@ -15,22 +15,21 @@ public class TargetTriggerScript : MonoBehaviour, IEnvironment
 
     private void OnTriggerEnter(Collider other)
     {
-        targetEvent?.Invoke();
-        targetRenderer.material = targeCheckedMaterial;
+        if (!other.isTrigger)
+        {
+            targetEvent?.Invoke();
+            targetRenderer.material = targeCheckedMaterial;
+
+        }
     }
 
     public void StartObject()
     {
-        //initMaterials = targetRenderer.material;
+
     }
 
     public void StopObject()
     {
 
-    }
-
-    public void ResetObject()
-    {
-        //targetRenderer.material = initMaterials;
     }
 }
