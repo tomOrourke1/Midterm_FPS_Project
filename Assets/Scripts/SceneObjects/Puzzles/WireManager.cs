@@ -70,7 +70,6 @@ public class WireManager : MonoBehaviour, IEnvironment
             }
             else if (!segments[segments.Length - 1].IsActivated() && activated)
             {
-                Debug.LogError("Decrement: WireManager" + RoomEnabled);
                 Deactivate.Invoke();
                 activated = false;
             }
@@ -127,8 +126,6 @@ public class WireManager : MonoBehaviour, IEnvironment
         PowerOff();
 
         activated = false;
-
-
 
         RoomEnabled = true;
     }
