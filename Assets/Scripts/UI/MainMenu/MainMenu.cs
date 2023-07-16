@@ -24,6 +24,7 @@ public class MainMenu : MonoBehaviour
     [Header("Event System")]
     [SerializeField] GameObject settingsSelectedFirst;
     [SerializeField] GameObject mainMenuFirstSelected;
+    [SerializeField] GameObject levelSelectFirstSelected;
 
     [Header("Confirm Close Button")]
     [SerializeField] MainMenuConfirmUI mmcu;
@@ -37,8 +38,6 @@ public class MainMenu : MonoBehaviour
     LevelSelectScript lSScript;
     [SerializeField] GameObject levelSelectObj;
     [SerializeField] GameObject mainButtonsObj;
-
-    private bool showingLevelSelection;
 
     private void Awake()
     {
@@ -73,7 +72,7 @@ public class MainMenu : MonoBehaviour
 
     public void NewGame()
     {
-        eScript.FadeTo(sceneToLoad);
+        eScript.FadeTo(GameManager.instance.GetNextLevel());
     }
     public void ExitGame()
     {
@@ -98,18 +97,23 @@ public class MainMenu : MonoBehaviour
 
     public void ToggleLevelSelectionMenu()
     {
-        if (!showingLevelSelection)
+        if (!levelSelectObj.activeInHierarchy)
         {
-            mainButtonsObj.SetActive(false);
-            levelSelectObj.SetActive(true);
-            showingLevelSelection = true;
+            ShowLevelSelect();
         }
-        else if (showingLevelSelection)
+        else if (levelSelectObj.activeInHierarchy)
         {
-            mainButtonsObj.SetActive(true);
-            levelSelectObj.SetActive(false);
-            showingLevelSelection = false;
+            CloseMenus();
         }
+    }
+
+    private void ShowLevelSelect()
+    {
+        mainButtonsObj.SetActive(false);
+        levelSelectObj.SetActive(true);
+        
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(levelSelectFirstSelected);
     }
 
     public void LevelSelection(int pos)
@@ -128,13 +132,15 @@ public class MainMenu : MonoBehaviour
         mainMenusAudio?.RunMuffler();
     }
 
-    public void CloseSettingsMenu()
+    public void CloseMenus()
     {
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(mainMenuFirstSelected);
 
         settingsMenuObj.SetActive(false);
+        levelSelectObj.SetActive(false);
         baseMenu.SetActive(true);
+        mainButtonsObj.SetActive(true);
         mainMenusAudio?.RunUnMuffler();
         StartCoroutine(CursorMainMenuFix());
     }
@@ -163,14 +169,11 @@ public class MainMenu : MonoBehaviour
     {
         if (settingsMenuObj.activeInHierarchy)
         {
-            CloseSettingsMenu();
+            CloseMenus();
         }
         else if (!settingsMenuObj.activeInHierarchy)
         {
             ShowSettingsMenu();
         }
-
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(mainMenuFirstSelected);
     }
 }

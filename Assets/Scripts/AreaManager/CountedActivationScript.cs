@@ -9,6 +9,9 @@ public class CountedActivationScript : MonoBehaviour, IEnvironment
 
     [SerializeField] UnityEvent activationEvent;
     [SerializeField] UnityEvent deactivationEvent;
+    [SerializeField] MeshRenderer lightActivated;
+    [SerializeField] Material activeMat;
+    [SerializeField] Material deactiveMat;
 
     [SerializeField] bool Reverseable;
 
@@ -20,6 +23,7 @@ public class CountedActivationScript : MonoBehaviour, IEnvironment
     {
         activated = false;
         count = 0;
+        SetLight();
     }
 
     public void Increment()
@@ -31,6 +35,7 @@ public class CountedActivationScript : MonoBehaviour, IEnvironment
             activationEvent?.Invoke();
             activated = true;
         }
+        SetLight();
     }
 
     public void Decrement()
@@ -46,6 +51,7 @@ public class CountedActivationScript : MonoBehaviour, IEnvironment
                 activated = false;
             }
         }
+        SetLight();
     }
 
     public void StopObject()
@@ -53,6 +59,7 @@ public class CountedActivationScript : MonoBehaviour, IEnvironment
         Debug.Log("Stop: " + count);
         count = 0;
         activated = false;
+        SetLight();
     }
 
     public void StartObject()
@@ -60,5 +67,18 @@ public class CountedActivationScript : MonoBehaviour, IEnvironment
         Debug.Log("Start: " + count);
         count = 0;
         activated = false;
+        SetLight();
+    }
+
+    private void SetLight()
+    {
+        if (activated)
+        {
+            lightActivated.material = activeMat;
+        }
+        else if (!activated)
+        {
+            lightActivated.material = deactiveMat;
+        }
     }
 }
