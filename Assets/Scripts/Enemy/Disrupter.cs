@@ -120,7 +120,7 @@ public class Disrupter : EnemyBase, IDamagable, IEntity
 
     public void TakeDamage(float dmg)
     {
-        audScript.PlayEnemy_Hurt();
+        //audScript.PlayEnemy_Hurt();
         health.Decrease(dmg);
     }
     public void TakeIceDamage(float dmg)
