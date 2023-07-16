@@ -35,6 +35,7 @@ public class CountedActivationScript : MonoBehaviour, IEnvironment
 
     public void Decrement()
     {
+        Debug.LogWarning("Decrement");
         count--;
 
         if (count < desiredCount)
@@ -49,12 +50,14 @@ public class CountedActivationScript : MonoBehaviour, IEnvironment
 
     public void StopObject()
     {
+        Debug.Log("Stop: " + count);
         count = 0;
         activated = false;
     }
 
     public void StartObject()
     {
+        Debug.Log("Start: " + count);
         count = 0;
         activated = false;
     }

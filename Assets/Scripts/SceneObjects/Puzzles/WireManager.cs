@@ -16,6 +16,7 @@ public class WireManager : MonoBehaviour, IEnvironment
 
     bool powered;
     bool activated = false;
+    bool RoomEnabled = false;
 
     bool canRunCO;
 
@@ -40,35 +41,39 @@ public class WireManager : MonoBehaviour, IEnvironment
 
     private void Update()
     {
-        if (powered)
+        if (RoomEnabled)
         {
-            if (canRunCO)
+            if (powered)
             {
-                StartCoroutine(ActivateAllWires());
+                if (canRunCO)
+                {
+                    StartCoroutine(ActivateAllWires());
+                }
             }
-        }
-        else
-        {
-            i = 0;
-            canRunCO = true;
-
-            foreach (WireSegment segment in segments)
+            else
             {
-                segment.Deactivate();
+                i = 0;
+                canRunCO = true;
+
+                foreach (WireSegment segment in segments)
+                {
+                    segment.Deactivate();
+                }
+
+                StopAllCoroutines();
             }
 
-            StopAllCoroutines();
-        }
-
-        if (segments[segments.Length - 1].IsActivated() && !activated)
-        {
-            Activate.Invoke();
-            activated = true;
-        }
-        else if (!segments[segments.Length - 1].IsActivated() && activated)
-        {
-            Deactivate.Invoke();
-            activated = false;
+            if (segments[segments.Length - 1].IsActivated() && !activated)
+            {
+                Activate.Invoke();
+                activated = true;
+            }
+            else if (!segments[segments.Length - 1].IsActivated() && activated)
+            {
+                Debug.LogError("Decrement: WireManager" + RoomEnabled);
+                Deactivate.Invoke();
+                activated = false;
+            }
         }
     }
 
@@ -101,19 +106,30 @@ public class WireManager : MonoBehaviour, IEnvironment
 
     public void StopObject()
     {
+        RoomEnabled = false;
         StopAllCoroutines();
-        PowerOff();
         powered = false;
         canRunCO = true;
-    }
 
-    public void StartObject()
-    {
         i = 0;
 
         foreach (WireSegment segment in segments)
         {
             segment.Deactivate();
         }
+
+    }
+
+    public void StartObject()
+    {
+        StopAllCoroutines();
+
+        PowerOff();
+
+        activated = false;
+
+
+
+        RoomEnabled = true;
     }
 }

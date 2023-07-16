@@ -11,7 +11,7 @@ public class TargetTriggerScript : MonoBehaviour, IEnvironment
     [SerializeField] Renderer targetRenderer;
     [SerializeField] Material targeCheckedMaterial;
 
-    Material initMaterials;
+    [SerializeField] Material initMaterials;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -30,6 +30,6 @@ public class TargetTriggerScript : MonoBehaviour, IEnvironment
 
     public void StopObject()
     {
-
+        targetRenderer.material = initMaterials;
     }
 }

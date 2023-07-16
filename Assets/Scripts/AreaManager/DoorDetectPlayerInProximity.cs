@@ -19,6 +19,7 @@ public class DoorDetectPlayerInProximity : MonoBehaviour, IEnvironment
     }
     private void Start()
     {
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -63,7 +64,7 @@ public class DoorDetectPlayerInProximity : MonoBehaviour, IEnvironment
 
     private void OnTriggerExit(Collider other)
     {
-        if (blackList(other))
+        if (blackList(other) || other.isTrigger)
         {
             return;
         }

@@ -340,13 +340,13 @@ public class AreaManager : MonoBehaviour
     {
         SetObjective();
 
+        KillEntities();
+        KillEntities();
+
         StopEnvironments();
 
-        KillEntities();
-        KillEntities();
-
-        StartEnvironments();
         SpawnEntities();
+        StartEnvironments();
     }
 
     public void LeaveArea()
