@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem.HID;
@@ -47,17 +48,29 @@ public class WindKinesis : KinesisBase
             Vector3 velocity = forceDirection * force + transform.up * upwardForce;
 
             var hits = Physics.SphereCastAll(Camera.main.transform.position, windRadius, Camera.main.transform.forward, windRange);
-
+          
             foreach (var currentHit in hits)
             {
+              bool wallHit = false;
                 if (!currentHit.collider.CompareTag("Player"))
                 {
+                    var dir = currentHit.transform.position - Camera.main.transform.position;
+                    RaycastHit[] rayHits = Physics.RaycastAll(Camera.main.transform.position, dir, windRange);
+                    foreach (var hit in rayHits)
+                    {
+                        IApplyVelocity vel = hit.collider.gameObject.GetComponent<IApplyVelocity>();
+                        if (vel == null )
+                        {
+                          wallHit = true;
+                            break;
+                        }
+                    }
                     var applyVel = currentHit.collider.GetComponent<IApplyVelocity>();
-
-                    if (applyVel != null)
+                    if (applyVel != null && wallHit == false)
                     {
                         applyVel.ApplyVelocity(velocity);
                     }
+                    
                 }
 
             }
