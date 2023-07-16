@@ -48,7 +48,34 @@ public class WindKinesis : KinesisBase
             Vector3 velocity = forceDirection * force + transform.up * upwardForce;
 
             var hits = Physics.SphereCastAll(Camera.main.transform.position, windRadius, Camera.main.transform.forward, windRange);
-          
+
+            var zero = Physics.OverlapSphere(Camera.main.transform.position, windRadius);
+
+            
+            foreach(var z in zero)
+            {
+                bool wallHit = false;
+                if(!z.CompareTag("Player"))
+                {
+                    var dir = z.ClosestPoint(Camera.main.transform.position) - Camera.main.transform.position;
+                    var rayHits = Physics.RaycastAll(Camera.main.transform.position, dir, windRadius);
+                    foreach(var hit in rayHits)
+                    {
+                        IApplyVelocity vel = hit.collider.gameObject.GetComponent<IApplyVelocity>();
+                        if(vel == null)
+                        {
+                            wallHit = true;
+                            break;
+                        }
+                    }
+                    var applyVel = z.GetComponent<IApplyVelocity>();
+                    if(applyVel != null && !wallHit)
+                    {
+                        applyVel.ApplyVelocity(velocity);
+                    }
+                }
+            }
+            
             foreach (var currentHit in hits)
             {
               bool wallHit = false;

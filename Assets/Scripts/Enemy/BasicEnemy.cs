@@ -32,9 +32,8 @@ public class BasicEnemy : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidD
     [Header("----Events----")]
     public UnityEvent OnEnemyDeathEvent;
     
-    private bool isDead;
+
     bool wasPushed;
-    bool hasLanded;
     bool isStunned;
     bool isUnstunned;
 
@@ -177,9 +176,9 @@ public class BasicEnemy : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidD
     {
         isDead = true;
         OnEnemyDeathEvent?.Invoke();
-        GetComponent<Collider>().enabled = false;
+        //<Collider>().enabled = false;
         // GetComponent<NavMeshAgent>().enabled = false;
-        GetComponent<Rigidbody>().isKinematic = true;
+        //GetComponent<Rigidbody>().isKinematic = true;
         //Destroy(gameObject);
         StopAllCoroutines();
         enemyMeshRenderer.material.color = enemyColor;

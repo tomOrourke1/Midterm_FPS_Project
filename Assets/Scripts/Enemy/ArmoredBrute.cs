@@ -36,7 +36,7 @@ public class ArmoredBrute : EnemyBase, IDamagable, IEntity, IVoidDamage
 
     public UnityEvent OnEnemyDeathEvent;
    
-    private bool isDead;
+
 
 
 
@@ -167,9 +167,9 @@ public class ArmoredBrute : EnemyBase, IDamagable, IEntity, IVoidDamage
     {
         isDead = true;
         OnEnemyDeathEvent?.Invoke();
-        GetComponent<Collider>().enabled = false;
+        //GetComponent<Collider>().enabled = false;
         // GetComponent<NavMeshAgent>().enabled = false;
-        GetComponent<Rigidbody>().isKinematic = true;
+        //GetComponent<Rigidbody>().isKinematic = true;
         StopAllCoroutines();
         enemyMeshRenderer.material.color = enemyColor;
     }
