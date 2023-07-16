@@ -60,9 +60,12 @@ public class ButtonScript : MonoBehaviour, IEnvironment
 
     Collider[] GetOverlap()
     {
-        var pos = transform.position + (transform.forward * boxCol.center.y + transform.right * boxCol.center.x + transform.up * boxCol.center.y);
-        var size = VecMult(transform.localScale, boxCol.size) / 2;
-        return Physics.OverlapBox(pos, size, transform.localRotation);
+
+        var mult = VecMult(transform.localScale, boxCol.center);
+        var pos = transform.position + (transform.forward * mult.z + transform.right * mult.x + transform.up * mult.y);
+
+        var size = VecMult(transform.localScale, boxCol.size);
+        return Physics.OverlapBox(pos, size / 2, transform.localRotation);
     }
 
 
@@ -78,7 +81,24 @@ public class ButtonScript : MonoBehaviour, IEnvironment
 
 
 
+    //private void OnDrawGizmos()
+    //{
+    //    //var pos = transform.position + (transform.forward * (boxCol.center.z * transform.localScale.z) + transform.right * (boxCol.center.x * transform.localScale.x) + transform.up * (boxCol.center.y * transform.localScale.y));
+    //    //var size = VecMult(transform.localScale, boxCol.size);
 
+
+    //    var mult = VecMult(transform.localScale, boxCol.center);
+    //    var pos = transform.position + (transform.forward * mult.z + transform.right * mult.x + transform.up * mult.y);
+
+    //    var size = VecMult(transform.localScale, boxCol.size);
+
+    //    Gizmos.color = Color.red;
+    //    Gizmos.DrawWireCube(pos, size);
+
+    //    Gizmos.color = Color.green;
+    //    Gizmos.DrawWireSphere(transform.position, 0.1f);
+        
+    //}
 
 
     public void StartObject()
