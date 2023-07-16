@@ -181,6 +181,8 @@ public class BasicEnemy : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidD
         // GetComponent<NavMeshAgent>().enabled = false;
         GetComponent<Rigidbody>().isKinematic = true;
         //Destroy(gameObject);
+        StopAllCoroutines();
+        enemyMeshRenderer.material.color = enemyColor;
     }
 
     public void TakeDamage(float dmg)

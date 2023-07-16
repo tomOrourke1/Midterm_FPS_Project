@@ -170,6 +170,8 @@ public class Sniper : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidDamag
         GetComponent<Collider>().enabled = false;
         // GetComponent<NavMeshAgent>().enabled = false;
         GetComponent<Rigidbody>().isKinematic = true;
+        StopAllCoroutines();
+        enemyMeshRenderer.material.color = enemyColor;
         //Destroy(gameObject);
     }
 

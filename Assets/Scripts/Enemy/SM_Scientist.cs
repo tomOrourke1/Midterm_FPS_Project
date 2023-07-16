@@ -146,6 +146,8 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoi
         // GetComponent<NavMeshAgent>().enabled = false;
         GetComponent<Rigidbody>().isKinematic = true;
         //Destroy(gameObject);
+        StopAllCoroutines();
+        enemyMeshRenderer.material.color =  enemyColor;
     }
     public void ApplyVelocity(Vector3 velocity)
     {
@@ -189,7 +191,7 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoi
     }
     IEnumerator FlashDamage()
     {
-        enemyColor = enemyMeshRenderer.material.color; // saves enemy's color
+        //enemyColor = enemyMeshRenderer.material.color; // saves enemy's color
         enemyMeshRenderer.material.color = Color.red; // sets enemy's color to red to show damage
         yield return new WaitForSeconds(0.15f); // waits for a few seconds for the player to notice
         enemyMeshRenderer.material.color = enemyColor; // changes enemy's color back to their previous color

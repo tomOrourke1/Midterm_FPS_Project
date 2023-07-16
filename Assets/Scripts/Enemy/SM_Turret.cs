@@ -67,6 +67,8 @@ public class SM_Turret : EnemyBase, IDamagable, IEntity
     void OnDeath()
     {
         audScript.PlayEnemy_Death();
+        StopAllCoroutines();
+        enemyMeshRenderer.material.color = enemyColor;
         Destroy(gameObject); // destroy enemy
     }
 

@@ -170,6 +170,8 @@ public class ArmoredBrute : EnemyBase, IDamagable, IEntity, IVoidDamage
         GetComponent<Collider>().enabled = false;
         // GetComponent<NavMeshAgent>().enabled = false;
         GetComponent<Rigidbody>().isKinematic = true;
+        StopAllCoroutines();
+        enemyMeshRenderer.material.color = enemyColor;
     }
     bool OnStun()
     {

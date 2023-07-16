@@ -162,6 +162,8 @@ public class SM_SecurityGuard : EnemyBase, IDamagable, IEntity, IApplyVelocity, 
         // GetComponent<NavMeshAgent>().enabled = false;
         GetComponent<Rigidbody>().isKinematic = true;
         //Destroy(gameObject);
+        StopAllCoroutines();
+        enemyMeshRenderer.material.color = enemyColor;
     }
 
     private void OnEnable()
