@@ -234,7 +234,6 @@ public class Flanker : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidDama
 
         rb.AddForce(velocity, ForceMode.Impulse);
 
-        Debug.LogError("ENemy: " + gameObject.name);
     }
 
     IEnumerator FlashDamage()
