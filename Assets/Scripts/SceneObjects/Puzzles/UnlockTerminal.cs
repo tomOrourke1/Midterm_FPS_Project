@@ -11,11 +11,24 @@ public class UnlockTerminal : MonoBehaviour, IInteractable, IEnvironment
 
     [SerializeField] Material LockedMaterial;
     [SerializeField] Material UnlockedMaterial;
+    [SerializeField] MeshRenderer rend;
+
+    // Kevins things he added when reworking the model + fancy things
+    [Header("Don't Touch Below")]
+    [SerializeField] TextMeshProUGUI textCountUI;
+    [SerializeField] GameObject remainingUI;
+    [SerializeField] GameObject completedUI;
 
     [Tooltip("This is the maximum amount of times that you can interract with the terminal")]
     [SerializeField, Range(1,5)] int InteractLimit;
 
     bool ActivationLock = false;
+
+    private void Start()
+    {
+        textCountUI.text = InteractLimit.ToString();
+
+    }
 
     public void Interact()
     {
@@ -29,32 +42,52 @@ public class UnlockTerminal : MonoBehaviour, IInteractable, IEnvironment
 
             InteractLimit--;
         } 
-        else
-        {
-//            Debug.LogError("No kevin go cry in a corner.");
-        }
+        //else
+        //{
+        //    Debug.LogError("No kevin go cry in a corner.");
+        //}
 
         if (InteractLimit == 0)
         {
             ActivationLock = true;
 
             // Change material
-            GetComponent<MeshRenderer>().material = UnlockedMaterial;
+            rend.material = UnlockedMaterial;
+
         }
+        
+        UIUpdate();
     }
 
     public void StartObject()
     {
         //Debug.Log("Hello?");
-        GetComponent<MeshRenderer>().material = LockedMaterial;
+        rend.material = LockedMaterial;
+        UIUpdate();
     }
 
     public void StopObject()
     {
-        GetComponent<MeshRenderer>().material = LockedMaterial;
+        rend.material = LockedMaterial;
 
         //Debug.Log("Hello?");
         //Debug.Log(GetComponent<MeshRenderer>().material == LockedMaterial);
         Deactivate.Invoke();
+    }
+
+    private void UIUpdate()
+    {
+        if (InteractLimit == 0)
+        {
+            completedUI.SetActive(true);
+            remainingUI.SetActive(false);
+            textCountUI.text = " ";
+        }
+        else if (InteractLimit > 0)
+        {
+            completedUI.SetActive(false);
+            remainingUI.SetActive(true);
+            textCountUI.text = InteractLimit.ToString();
+        }
     }
 }

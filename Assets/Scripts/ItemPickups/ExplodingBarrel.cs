@@ -8,6 +8,7 @@ public class ExplodingBarrel : MonoBehaviour, IDamagable, IEntity
     [SerializeField] ParticleSystem explosionFX;
     [SerializeField] AudioSource source;
     [SerializeField] GameObject explosionParticles;
+    [SerializeField] GameObject mainObj;
     [SerializeField] int durability;
     [SerializeField] float timer;
     [SerializeField] float range;
@@ -80,7 +81,7 @@ public class ExplodingBarrel : MonoBehaviour, IDamagable, IEntity
         Effects();
 
         // Delete Barrel
-        Destroy(gameObject);
+        Destroy(mainObj);
     }
 
     void Effects()
@@ -146,7 +147,7 @@ public class ExplodingBarrel : MonoBehaviour, IDamagable, IEntity
 
     public void Respawn()
     {
-        Destroy(gameObject);
+        Destroy(mainObj);
     }
 
     public float GetCurrentHealth()
