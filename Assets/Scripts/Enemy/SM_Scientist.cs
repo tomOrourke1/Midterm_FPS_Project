@@ -27,9 +27,8 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoi
 
     bool voided = false;
 
-    private bool isDead;
+
     bool wasPushed;
-    bool hasLanded;
     bool isStunned;
     bool isUnstunned;
     [SerializeField] Rigidbody rb;
@@ -142,10 +141,12 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoi
         Instantiate(key, transform.position, Quaternion.identity);
         isDead = true;
         OnEnemyDeathEvent?.Invoke();
-        GetComponent<Collider>().enabled = false;
+       // GetComponent<Collider>().enabled = false;
         // GetComponent<NavMeshAgent>().enabled = false;
-        GetComponent<Rigidbody>().isKinematic = true;
+     //   GetComponent<Rigidbody>().isKinematic = true;
         //Destroy(gameObject);
+        StopAllCoroutines();
+        enemyMeshRenderer.material.color =  enemyColor;
     }
     public void ApplyVelocity(Vector3 velocity)
     {
@@ -189,7 +190,7 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoi
     }
     IEnumerator FlashDamage()
     {
-        enemyColor = enemyMeshRenderer.material.color; // saves enemy's color
+        //enemyColor = enemyMeshRenderer.material.color; // saves enemy's color
         enemyMeshRenderer.material.color = Color.red; // sets enemy's color to red to show damage
         yield return new WaitForSeconds(0.15f); // waits for a few seconds for the player to notice
         enemyMeshRenderer.material.color = enemyColor; // changes enemy's color back to their previous color

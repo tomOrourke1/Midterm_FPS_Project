@@ -5,7 +5,10 @@ using UnityEngine;
 public class EnemyDeathState : EnemyState
 {
     [Space]
+    [SerializeField] EnemyBase enemy;
     [SerializeField] Rigidbody rb;
+    [SerializeField] Collider colliderd;
+    
 
     public override void OnEnter()
     {
@@ -18,13 +21,33 @@ public class EnemyDeathState : EnemyState
         //    agent.SetDestination(hit.position);
         //}
 
-        if(agent.enabled)
+        
+
+       
+
+
+    }
+
+    public override void Tick()
+    {
+        if (enemy.Landed)
         {
-            agent.SetDestination(agent.gameObject.transform.position);
+            if (agent.enabled)
+            {
+                agent.SetDestination(agent.gameObject.transform.position);
+            }
+
+            agent.enabled = false;
+            rb.velocity = Vector3.zero;
+            audioScript.PlayEnemy_Death();
+            colliderd.enabled = false;
+            rb.isKinematic = true;
+
         }
 
-        agent.enabled = false;
-        rb.velocity = Vector3.zero;
-        audioScript.PlayEnemy_Death();
+
+
+
     }
+
 }

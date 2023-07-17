@@ -36,9 +36,8 @@ public class Flanker : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidDama
     [Header("----Events----")]
     public UnityEvent OnEnemyDeathEvent;
 
-    private bool isDead;
+
     bool wasPushed;
-    bool hasLanded;
     bool isStunned;
     bool isUnstunned;
     float time;
@@ -192,10 +191,12 @@ public class Flanker : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidDama
     {
         isDead = true;
         OnEnemyDeathEvent?.Invoke();
-        GetComponent<Collider>().enabled = false;
+        //GetComponent<Collider>().enabled = false;
         // GetComponent<NavMeshAgent>().enabled = false;
-        GetComponent<Rigidbody>().isKinematic = true;
+       // GetComponent<Rigidbody>().isKinematic = true;
         //Destroy(gameObject);
+        StopAllCoroutines();
+        enemyMeshRenderer.material.color = enemyColor;
     }
 
     public void TakeDamage(float dmg)
@@ -232,7 +233,6 @@ public class Flanker : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidDama
         rb.isKinematic = false;
 
         rb.AddForce(velocity, ForceMode.Impulse);
-
 
     }
 

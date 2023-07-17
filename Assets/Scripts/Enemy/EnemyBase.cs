@@ -25,7 +25,11 @@ public abstract class EnemyBase : MonoBehaviour
 
     protected Color enemyColor;
 
+    protected bool hasLanded;
+    protected bool isDead;
 
+    public bool Landed => hasLanded;
+    public bool IsDead => isDead;
 
     public HealthPool HealthPool => health;
 

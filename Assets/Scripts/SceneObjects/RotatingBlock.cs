@@ -22,12 +22,17 @@ public class RotatingBlock : MonoBehaviour, IEnvironment
     float timeWating;
 
 
-    private void Start()
+    private void Awake()
     {
         initRotation = transform.localRotation;
         rotating = false;
         waiting = false;
         StopObject();
+        
+    }
+
+    private void Start()
+    {
     }
 
     // Update is called once per frame

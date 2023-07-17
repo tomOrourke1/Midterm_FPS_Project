@@ -33,11 +33,11 @@ public class Sniper : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidDamag
     // values for the timer
     float timeBetweenShots;
 
-    private bool isDead;
+
     bool wasPushed;
-    bool hasLanded;
     bool isStunned;
     bool isUnstunned;
+
 
     void Start()
     {
@@ -167,9 +167,11 @@ public class Sniper : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidDamag
     {
         isDead = true;
         OnEnemyDeathEvent?.Invoke();
-        GetComponent<Collider>().enabled = false;
+        //GetComponent<Collider>().enabled = false;
         // GetComponent<NavMeshAgent>().enabled = false;
-        GetComponent<Rigidbody>().isKinematic = true;
+        //GetComponent<Rigidbody>().isKinematic = true;
+        StopAllCoroutines();
+        enemyMeshRenderer.material.color = enemyColor;
         //Destroy(gameObject);
     }
 
