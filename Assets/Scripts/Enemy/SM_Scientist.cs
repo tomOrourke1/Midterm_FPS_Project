@@ -25,6 +25,9 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoi
     [Header("Keys")]
     [SerializeField] GameObject key;
 
+
+    [Header("--- anims----")]
+    [SerializeField] EnemyAnimaterScript animScript;
     bool voided = false;
 
 
@@ -38,9 +41,13 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoi
     public UnityEvent OnEnemyDeathEvent;
 
 
+    bool seenPlayer;
+
+    Vector3 lastPos;
 
     private void Start()
     {
+        seenPlayer = false;
         audScript = GetComponent<EnemyAudio>();
         health.FillToMax();
         enemyColor = enemyMeshRenderer.material.color;
@@ -81,10 +88,22 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoi
         {
             stateMachine.Tick();
 
-            if (GetDoesSeePlayer() && !isDead && isUnstunned == true)
+            if (GetDoesSeePlayer() && !isDead)// && isUnstunned == true)
             {
                 RotToPlayer();
+                seenPlayer = true;
             }
+
+            if(seenPlayer && (stateMachine.CurrentState is EnemyIdleState || stateMachine.CurrentState is EnemyMoveAwayState) && Vector3.Distance(transform.position, lastPos) < 0.05f)
+            {
+                animScript.StartCower();
+            }
+            else
+            {
+                animScript.StopCower();
+            }
+
+            lastPos = transform.position;
         }
 
     }

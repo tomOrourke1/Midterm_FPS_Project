@@ -80,5 +80,23 @@ public class EnemyAnimaterScript : MonoBehaviour
         transform.localPosition = pos;
     }
 
+    public void StartPush()
+    {
+        enemyAnimator.SetBool("Pushed", true);
+    }
+
+    public void StopPush()
+    {
+        enemyAnimator.SetBool("Pushed", false);
+    }
+
+    public void StartCower()
+    {
+        enemyAnimator.SetBool("Cower", true);
+    }
+    public void StopCower()
+    {
+        enemyAnimator.SetBool("Cower", false);
+    }
 
 }

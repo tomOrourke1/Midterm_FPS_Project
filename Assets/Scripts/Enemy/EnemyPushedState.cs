@@ -6,12 +6,13 @@ using UnityEngine;
 public class EnemyPushedState : EnemyState
 {
     [SerializeField] Rigidbody rb;
-
+    [SerializeField] EnemyAnimaterScript enAmin;
     public override void OnEnter()
     {
         base.OnEnter();
 
         rb.isKinematic = false;
+        enAmin.StartPush();
     }
 
 
@@ -22,7 +23,7 @@ public class EnemyPushedState : EnemyState
 
     public override void OnExit()
     {
-
+        enAmin.StopPush();
     }
 
 
