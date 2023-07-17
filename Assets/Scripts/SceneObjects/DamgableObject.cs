@@ -15,7 +15,7 @@ public class DamgableObject : MonoBehaviour, IEnvironment, IDamagable
     [SerializeField] Material Dur1;
     Color wallColor;
     // Start is called before the first frame update
-    private void Start()
+    private void Awake()
     {
         durabilityPool.FillToMax();
 
@@ -69,6 +69,10 @@ public class DamgableObject : MonoBehaviour, IEnvironment, IDamagable
     public void StartObject()
     {
         this.enabled = true;
+        durabilityPool.FillToMax();
+
+        wallMeshRenderer = GetComponent<MeshRenderer>();
+        wallMeshRenderer.material = Dur3;
     }
 
    
