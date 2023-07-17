@@ -56,7 +56,7 @@ public class CountedActivationScript : MonoBehaviour, IEnvironment
 
     public void StopObject()
     {
-        Debug.Log("Stop: " + count);
+        //Debug.Log("Stop: " + count);
         count = 0;
         activated = false;
         SetLight();
@@ -64,7 +64,7 @@ public class CountedActivationScript : MonoBehaviour, IEnvironment
 
     public void StartObject()
     {
-        Debug.Log("Start: " + count);
+        //Debug.Log("Start: " + count);
         count = 0;
         activated = false;
         SetLight();

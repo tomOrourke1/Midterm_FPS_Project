@@ -44,7 +44,7 @@ public class Laser : MonoBehaviour, IEnvironment
         laser.positionCount = 2;
         initDelayAmount = initialDelay;
         laser = GetComponent<LineRenderer>();
-        Debug.Log(LaserOn);
+        //Debug.Log(LaserOn);
         initialLaserOn = LaserOn;
     }
 
