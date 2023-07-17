@@ -25,7 +25,7 @@ public class GitHistoryCredits : MonoBehaviour
     {
         float tmp = Mathf.MoveTowards(gameObject.transform.position.y, yTmp, scrollTime);
         gameObject.transform.position = new Vector3(gameObject.transform.position.x, tmp, gameObject.transform.position.z);
-        
+
         if (!runFinal && tmp >= yTmp)
         {
             runFinal = true;
