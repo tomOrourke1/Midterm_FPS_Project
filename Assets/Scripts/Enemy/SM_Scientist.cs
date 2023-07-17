@@ -92,7 +92,7 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoi
     bool OnPushLanding()
     {
         var temp = hasLanded;
-        hasLanded = false;
+        //sLanded = false;
 
         if (temp)
         {
@@ -107,6 +107,7 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoi
     {
         var temp = wasPushed;
         wasPushed = false;
+        hasLanded = false;
         return temp;
     }
     bool OnStunned()
@@ -231,17 +232,11 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoi
     }
     private void OnCollisionEnter(Collision collision)
     {
-
-        foreach (var cont in collision.contacts)
-        {
-            var norm = cont.normal;
-            if (Vector3.Dot(norm, Vector3.up) > 0.8f)
-            {
-                hasLanded = true;
-                return;
-            }
-        }
-
+        GroundCheck(collision);
+    }
+    private void OnCollisionStay(Collision collision)
+    {
+        GroundCheck(collision);
     }
 
     public void FallIntoTheVoid()

@@ -115,7 +115,7 @@ public class SM_MachineGunner : EnemyBase, IDamagable, IEntity, IVoidDamage, IAp
     bool OnPushLanding()
     {
         var temp = hasLanded;
-        hasLanded = false;
+       // hasLanded = false;
 
         if (temp)
         {
@@ -130,6 +130,7 @@ public class SM_MachineGunner : EnemyBase, IDamagable, IEntity, IVoidDamage, IAp
     {
         var temp = wasPushed;
         wasPushed = false;
+        hasLanded = false;
         return temp;
     }
 
@@ -277,16 +278,12 @@ public class SM_MachineGunner : EnemyBase, IDamagable, IEntity, IVoidDamage, IAp
     private void OnCollisionEnter(Collision collision)
     {
 
-        foreach (var cont in collision.contacts)
-        {
-            var norm = cont.normal;
-            if (Vector3.Dot(norm, Vector3.up) > 0.8f)
-            {
-                hasLanded = true;
-                return;
-            }
-        }
+        GroundCheck(collision);
+    }
 
+    private void OnCollisionStay(Collision collision)
+    {
+        GroundCheck(collision);
     }
 
 }

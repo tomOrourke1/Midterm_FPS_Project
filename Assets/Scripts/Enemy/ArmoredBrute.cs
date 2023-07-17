@@ -79,6 +79,8 @@ public class ArmoredBrute : EnemyBase, IDamagable, IEntity, IVoidDamage
         stateMachine.AddAnyTransition(deathState, () => isDead);
 
         rb = GetComponent<Rigidbody>();
+
+        hasLanded = true;
     }
 
     void Update()

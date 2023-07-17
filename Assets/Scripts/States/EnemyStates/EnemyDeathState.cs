@@ -21,8 +21,8 @@ public class EnemyDeathState : EnemyState
         //    agent.SetDestination(hit.position);
         //}
 
-        
 
+        SetUpDeath();
        
 
 
@@ -30,7 +30,17 @@ public class EnemyDeathState : EnemyState
 
     public override void Tick()
     {
-        if (enemy.Landed)
+        SetUpDeath();
+
+
+
+
+    }
+
+
+    private void SetUpDeath()
+    {
+        if (enemy.RayGroundCheck())
         {
             if (agent.enabled)
             {
@@ -44,10 +54,6 @@ public class EnemyDeathState : EnemyState
             rb.isKinematic = true;
 
         }
-
-
-
-
     }
 
 }

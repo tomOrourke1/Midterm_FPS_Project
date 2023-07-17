@@ -25,7 +25,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     protected Color enemyColor;
 
-    protected bool hasLanded;
+    protected bool hasLanded = true;
     protected bool isDead;
 
     public bool Landed => hasLanded;
@@ -94,5 +94,26 @@ public abstract class EnemyBase : MonoBehaviour
         return hit.position;
     }
 
+
+
+
+    protected void GroundCheck(Collision col)
+    {
+        foreach(var c in col.contacts)
+        {
+            var norm = c.normal;
+            if(Vector3.Dot(norm, Vector3.up) > 0.8f)
+            {
+                hasLanded = true;
+                
+                return;
+            }
+        }
+    }
+
+    public bool RayGroundCheck()
+    {
+        return Physics.Raycast(transform.position, Vector3.down, 0.2f);
+    }
 
 }

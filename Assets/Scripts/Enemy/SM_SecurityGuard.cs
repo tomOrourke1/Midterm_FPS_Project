@@ -228,7 +228,7 @@ public class SM_SecurityGuard : EnemyBase, IDamagable, IEntity, IApplyVelocity, 
 
     IEnumerator FlashDamage()
     {
-        enemyColor = enemyMeshRenderer.material.color; // saves enemy's color
+        //enemyColor = enemyMeshRenderer.material.color; // saves enemy's color
         enemyMeshRenderer.material.color = Color.red; // sets enemy's color to red to show damage
         yield return new WaitForSeconds(0.15f); // waits for a few seconds for the player to notice
         enemyMeshRenderer.material.color = enemyColor; // changes enemy's color back to their previous color
@@ -269,18 +269,14 @@ public class SM_SecurityGuard : EnemyBase, IDamagable, IEntity, IApplyVelocity, 
 
     private void OnCollisionEnter(Collision collision)
     {
-
-        foreach(var cont in collision.contacts)
-        {
-            var norm = cont.normal;
-            if(Vector3.Dot(norm, Vector3.up) > 0.8f)
-            {
-                hasLanded = true;
-                return;
-            }
-        }
+        GroundCheck(collision);
 
     }
+    private void OnCollisionStay(Collision collision)
+    {
+        GroundCheck(collision);
+    }
+
 
     public void FallIntoTheVoid()
     {

@@ -117,7 +117,7 @@ public class BasicEnemy : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidD
     bool OnPushLanding()
     {
         var temp = hasLanded;
-        hasLanded = false;
+        //hasLanded = false;
         if (temp)
         {
             agent.enabled = true;
@@ -131,6 +131,7 @@ public class BasicEnemy : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidD
     {
         var temp = wasPushed;
         wasPushed = false;
+        hasLanded = false;
         return temp;
     }
     bool OnStunned()
@@ -263,7 +264,7 @@ public class BasicEnemy : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidD
     {
         if (stateMachine.CurrentState is EnemyPushedState)
         {
-            CheckHasLanded(collision);
+            GroundCheck(collision);
         }
     }
 
@@ -271,23 +272,10 @@ public class BasicEnemy : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidD
     {
         if (stateMachine.CurrentState is EnemyPushedState)
         {
-            CheckHasLanded(collision);
+            GroundCheck(collision);
         }
     }
 
-    private void CheckHasLanded(Collision collision)
-    {
-        foreach (var cont in collision.contacts)
-        {
-            var norm = cont.normal;
-            if (Vector3.Dot(norm, Vector3.up) > 0.8f)
-            {
-        
-                hasLanded = true;
-                return;
-            }
-        }
-    }
 
     public void FallIntoTheVoid()
     {
