@@ -33,7 +33,7 @@ public class ReusableSpawner : MonoBehaviour, IEnvironment
 
     public void RespawnObject()
     {
-        if(currentObject != null)
+        if (currentObject != null)
             Destroy(currentObject);
         currentObject = Instantiate(spawnable, spawnTransform.position, Quaternion.identity);
     }

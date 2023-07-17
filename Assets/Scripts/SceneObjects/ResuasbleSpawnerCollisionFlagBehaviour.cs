@@ -7,7 +7,7 @@ public class ResuasbleSpawnerCollisionFlagBehaviour : MonoBehaviour
 
     ReusableSpawner spawner;
 
-    private void Start()
+    private void Awake()
     {
         // has to go two levels up for it to work
         spawner = gameObject.transform.parent.parent.GetComponent<ReusableSpawner>();
@@ -16,7 +16,10 @@ public class ResuasbleSpawnerCollisionFlagBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.Equals(spawner.currentObject))
+        MoveableObject Mo = other.gameObject.GetComponentInChildren<MoveableObject>();
+
+
+        if (Mo != null && Mo.Equals(spawner.currentObject.GetComponentInChildren<MoveableObject>()))
         {
             spawner.RespawnObject();
         }
