@@ -8,7 +8,7 @@ public class EnemyDeathState : EnemyState
     [SerializeField] EnemyBase enemy;
     [SerializeField] Rigidbody rb;
     [SerializeField] Collider colliderd;
-    
+
 
     public override void OnEnter()
     {
@@ -23,7 +23,8 @@ public class EnemyDeathState : EnemyState
 
 
         SetUpDeath();
-       
+        audioScript.PlayEnemy_Death();
+
 
 
     }
@@ -49,7 +50,6 @@ public class EnemyDeathState : EnemyState
 
             agent.enabled = false;
             rb.velocity = Vector3.zero;
-            audioScript.PlayEnemy_Death();
             colliderd.enabled = false;
             rb.isKinematic = true;
 
