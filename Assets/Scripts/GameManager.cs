@@ -268,6 +268,7 @@ public class GameManager : MonoBehaviour
         return inPauseState;
     }
 
+
     /// <summary>
     /// Respawn the player, reset the current room. 
     /// </summary>

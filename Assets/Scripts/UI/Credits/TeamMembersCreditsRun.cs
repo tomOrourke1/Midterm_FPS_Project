@@ -12,7 +12,9 @@ public class TeamMembersCreditsRun : MonoBehaviour
     [SerializeField] Image image;
     [SerializeField] CallNext script;
     [SerializeField] AnimationCurve curve;
-    
+    [SerializeField] float scrollMultiplier;
+    [SerializeField] CreditsRunner cRScript;
+
     RectTransform uiTransform;
     private bool runFinal;
     private float endPosY = Screen.height/2f;
@@ -20,15 +22,15 @@ public class TeamMembersCreditsRun : MonoBehaviour
     private void Start()
     {
         uiTransform = GetComponent<RectTransform>();
-        scrollTime = Screen.height / 180f;
-        
+        scrollTime = cRScript.GetScrollSpeed();
+
         uiTransform.position.Set(uiTransform.position.x, -uiTransform.rect.height - Screen.height, uiTransform.position.z);
     }
 
     // Update is called once per frame
     void Update()
     {
-        float tmp = Mathf.MoveTowards(gameObject.transform.position.y, endPosY, scrollTime);
+        float tmp = Mathf.MoveTowards(gameObject.transform.position.y, endPosY, scrollTime * Time.deltaTime * scrollMultiplier);
         gameObject.transform.position = new Vector3(gameObject.transform.position.x, tmp, gameObject.transform.position.z);
 
         if (!runFinal && tmp >= endPosY)
@@ -57,5 +59,6 @@ public class TeamMembersCreditsRun : MonoBehaviour
             yield return 0;
         }
         StartCoroutine(script.Next());
+        image.gameObject.SetActive(false);
     }
 }

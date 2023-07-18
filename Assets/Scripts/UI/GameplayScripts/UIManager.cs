@@ -23,6 +23,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject playerStatsObj;
 
     [Header("Confirm Menu")]
+    [SerializeField] ElevatorScript gameManagerESCRIPT;
     [SerializeField] MainMenuConfirmUI confirmUIScript;
 
     [Header("Animator Components")]
@@ -258,5 +259,13 @@ public class UIManager : MonoBehaviour
         return keyScriptRef;
     }
 
+    /// <summary>
+    /// Returns the Elevator Script from the UI Mananger.
+    /// </summary>
+    /// <returns></returns>
+    public ElevatorScript GetElevatorScript()
+    {
+        return gameManagerESCRIPT;
+    }
     #endregion
 }

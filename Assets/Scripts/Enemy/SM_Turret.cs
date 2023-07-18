@@ -13,7 +13,6 @@ public class SM_Turret : EnemyBase, IDamagable, IEntity
     [SerializeField] Transform shootPos;
     [Header("----- Other Vars -----")]
     [SerializeField] float attackRange;
-    [SerializeField] float closeToPlayer;
 
     [Header("Hit SFX")]
     [SerializeField] EnemyAudio audScript;

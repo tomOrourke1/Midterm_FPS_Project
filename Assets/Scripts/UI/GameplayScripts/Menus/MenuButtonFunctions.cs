@@ -25,7 +25,7 @@ public class MenuButtonFunctions : MonoBehaviour
     public void ConfirmToMainMenu()
     {
         GameManager.instance.PlayMenuState();
-        SceneManager.LoadScene("MainMenu");
+        UIManager.instance.GetElevatorScript().FadeTo("MainMenu");
     }
 
     public void ConfirmToPause()

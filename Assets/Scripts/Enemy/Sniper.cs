@@ -18,7 +18,6 @@ public class Sniper : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidDamag
     [Header("-----Sniper Stats------")]
     [SerializeField] float betweenShotTime;
     [SerializeField] float runDistance;
-    [SerializeField] float rotSpeed;
     [SerializeField] float stunTime;
 
     [SerializeField] NavMeshAgent agent;

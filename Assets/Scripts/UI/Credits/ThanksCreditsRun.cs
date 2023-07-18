@@ -7,8 +7,10 @@ public class ThanksCreditsRun : MonoBehaviour
 {
     float scrollTime;
     [SerializeField] CallNext script;
-    [SerializeField] Image image;
-    
+    //[SerializeField] Image image;
+    [SerializeField] float scrollMultiplier;
+    [SerializeField] CreditsRunner cRScript;
+
     RectTransform uiTransform;
     private float yTmp;
     private bool runFinal;
@@ -16,9 +18,9 @@ public class ThanksCreditsRun : MonoBehaviour
     private void Start()
     {
         uiTransform = GetComponent<RectTransform>();
-        scrollTime = Screen.height / 180f;
+        scrollTime = cRScript.GetScrollSpeed();
 
-        image.gameObject.SetActive(false);
+        //image.gameObject.SetActive(false);
         uiTransform.position.Set(uiTransform.position.x, -uiTransform.rect.height - Screen.height, uiTransform.position.z);
         yTmp = Mathf.Abs(uiTransform.position.y) + Screen.height;
     }
@@ -26,9 +28,9 @@ public class ThanksCreditsRun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float tmp = Mathf.MoveTowards(gameObject.transform.position.y, yTmp, scrollTime);
+        float tmp = Mathf.MoveTowards(gameObject.transform.position.y, yTmp, scrollTime * Time.deltaTime * scrollMultiplier);
         gameObject.transform.position = new Vector3(gameObject.transform.position.x, tmp, gameObject.transform.position.z);
-        
+
         if (!runFinal && tmp >= yTmp)
         {
             runFinal = true;

@@ -3170,10 +3170,10 @@ RectTransform:
   m_Father: {fileID: 4834539147092547816}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 195.8886, y: -183.54323}
+  m_SizeDelta: {x: 391.7772, y: 122.36215}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9028015813092406781
 CanvasRenderer:
@@ -3229,7 +3229,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5661053257741582650}
         m_TargetAssemblyTypeName: MenuButtonFunctions, Assembly-CSharp
-        m_MethodName: ExitToConfirm
+        m_MethodName: ConfirmToMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10175,10 +10175,10 @@ RectTransform:
   m_Father: {fileID: 4834539147092547816}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 195.8886, y: -61.181076}
+  m_SizeDelta: {x: 391.7772, y: 122.36215}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5675099438191489528
 CanvasRenderer:
@@ -15548,7 +15548,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -202.20526, y: -122.44284}
+  m_AnchoredPosition: {x: -202.20508, y: -122.44287}
   m_SizeDelta: {x: 279.5533, y: 139.9928}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &535610316
@@ -22866,6 +22866,7 @@ GameObject:
   - component: {fileID: 5661053257741582650}
   - component: {fileID: 5988196484222682889}
   - component: {fileID: 866238320461390695}
+  - component: {fileID: 4213734023385930741}
   - component: {fileID: 5661053257741582646}
   - component: {fileID: 5661053257741582645}
   - component: {fileID: 5661053257741582644}
@@ -22923,6 +22924,7 @@ MonoBehaviour:
   loadingIconScript: {fileID: 6836807779373388626}
   damageIndicatorScript: {fileID: 3866586456700602635}
   playerStatsObj: {fileID: 7165290681494119844}
+  gameManagerESCRIPT: {fileID: 4213734023385930741}
   confirmUIScript: {fileID: 7843949310060606103}
   loseAnimController: {fileID: 1763678697942226988}
   objToShow: {fileID: 1970838912654609865}
@@ -23062,6 +23064,45 @@ MonoBehaviour:
   shieldIcon: {fileID: 8376193255644537307}
   sliderScript: {fileID: 776298868}
   kinesisIcon: {fileID: 4377999483146452582}
+--- !u!114 &4213734023385930741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5661053257741582640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ee863b4151046a46b3efcc4875f5519, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadingTime: 1.5
+  exitingTime: 1.5
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  image: {fileID: 6075739459790756786}
 --- !u!114 &5661053257741582646
 MonoBehaviour:
   m_ObjectHideFlags: 0
