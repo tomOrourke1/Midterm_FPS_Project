@@ -20,6 +20,8 @@ public class MeleeScript : MonoBehaviour
     [SerializeField] float smallCastRadius;
 
 
+   
+
    // private bool isKnifing;
 
 
@@ -38,7 +40,7 @@ public class MeleeScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (InputManager.Instance.Action.Melee.WasPressedThisFrame() && !GameManager.instance.InPauseState())
+        if (InputManager.Instance.Action.Melee.WasPressedThisFrame() && !GameManager.instance.InPauseState() && InputManager.Instance.Action.Fire.IsPressed() == false)
         {
             OnKnife?.Invoke();
             //StartCoroutine(Knife());

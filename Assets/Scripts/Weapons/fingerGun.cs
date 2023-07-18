@@ -13,7 +13,7 @@ public class fingerGun : MonoBehaviour
     [SerializeField] float focusPerShot;
     [SerializeField] int shootDist;
 
-    private bool isShooting;
+    public bool isShooting;
 
     [SerializeField] UnityEvent shootEvent;
     [SerializeField] GameObject hitParticles;
@@ -22,7 +22,7 @@ public class fingerGun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (InputManager.Instance.Action.Fire.IsPressed() && !isShooting && !GameManager.instance.InPauseState())
+        if (InputManager.Instance.Action.Fire.IsPressed() && !isShooting && !GameManager.instance.InPauseState() && InputManager.Instance.Action.Melee.IsPressed() == false)
         {
             StartCoroutine(shoot());
         }
