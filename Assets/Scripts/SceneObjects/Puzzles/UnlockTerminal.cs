@@ -22,12 +22,13 @@ public class UnlockTerminal : MonoBehaviour, IInteractable, IEnvironment
     [Tooltip("This is the maximum amount of times that you can interract with the terminal")]
     [SerializeField, Range(1,5)] int InteractLimit;
 
+    int InteractLimitInit;
     bool ActivationLock = false;
 
     private void Start()
     {
         textCountUI.text = InteractLimit.ToString();
-
+        InteractLimitInit = InteractLimit;
     }
 
     public void Interact()
@@ -62,6 +63,7 @@ public class UnlockTerminal : MonoBehaviour, IInteractable, IEnvironment
     public void StartObject()
     {
         //Debug.Log("Hello?");
+        ActivationLock = false;
         rend.material = LockedMaterial;
         UIUpdate();
     }
@@ -69,6 +71,8 @@ public class UnlockTerminal : MonoBehaviour, IInteractable, IEnvironment
     public void StopObject()
     {
         rend.material = LockedMaterial;
+
+        InteractLimit = InteractLimitInit;
 
         //Debug.Log("Hello?");
         //Debug.Log(GetComponent<MeshRenderer>().material == LockedMaterial);
