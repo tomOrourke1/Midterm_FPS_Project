@@ -270,6 +270,7 @@ public class Sniper : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidDamag
 
     public void FallIntoTheVoid()
     {
+        OnDeath();
         Destroy(gameObject);
     }
 }

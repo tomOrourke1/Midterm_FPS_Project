@@ -280,6 +280,7 @@ public class SM_SecurityGuard : EnemyBase, IDamagable, IEntity, IApplyVelocity, 
 
     public void FallIntoTheVoid()
     {
+        OnDeath();
         Destroy(gameObject);
     }
 }

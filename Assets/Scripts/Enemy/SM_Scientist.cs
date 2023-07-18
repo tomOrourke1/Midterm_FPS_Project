@@ -18,7 +18,7 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoi
     [Header("----- Other Vars -----")]
     [SerializeField] float idleRange;
     [SerializeField] float stunTime;
-    
+
     [Header("Hit SFX")]
     [SerializeField] EnemyAudio audScript;
 
@@ -94,7 +94,7 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoi
                 seenPlayer = true;
             }
 
-            if(seenPlayer && (stateMachine.CurrentState is EnemyIdleState || stateMachine.CurrentState is EnemyMoveAwayState) && Vector3.Distance(transform.position, lastPos) < 0.05f)
+            if (seenPlayer && (stateMachine.CurrentState is EnemyIdleState || stateMachine.CurrentState is EnemyMoveAwayState) && Vector3.Distance(transform.position, lastPos) < 0.05f)
             {
                 animScript.StartCower();
             }
@@ -158,15 +158,19 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoi
     }
     void OnDeath()
     {
-        Instantiate(key, transform.position, Quaternion.identity);
+        if (!voided)
+        {
+            Instantiate(key, transform.position, Quaternion.identity);
+        }
+
         isDead = true;
         OnEnemyDeathEvent?.Invoke();
-       // GetComponent<Collider>().enabled = false;
+        // GetComponent<Collider>().enabled = false;
         // GetComponent<NavMeshAgent>().enabled = false;
-     //   GetComponent<Rigidbody>().isKinematic = true;
+        //   GetComponent<Rigidbody>().isKinematic = true;
         //Destroy(gameObject);
         StopAllCoroutines();
-        enemyMeshRenderer.material.color =  enemyColor;
+        enemyMeshRenderer.material.color = enemyColor;
     }
     public void ApplyVelocity(Vector3 velocity)
     {
@@ -266,6 +270,7 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoi
             voided = true;
         }
 
+        OnDeath();
         Destroy(gameObject);
     }
 }

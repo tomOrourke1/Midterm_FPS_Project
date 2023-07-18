@@ -239,6 +239,7 @@ public class ArmoredBrute : EnemyBase, IDamagable, IEntity, IVoidDamage
     }
     public void FallIntoTheVoid()
     {
+        OnDeath();
         Destroy(gameObject);
     }
 }

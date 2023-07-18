@@ -259,6 +259,7 @@ public class SM_MachineGunner : EnemyBase, IDamagable, IEntity, IVoidDamage, IAp
 
     public void FallIntoTheVoid()
     {
+        OnDeath();
         Destroy(gameObject);
     }
 

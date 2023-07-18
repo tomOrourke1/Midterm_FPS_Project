@@ -279,6 +279,7 @@ public class BasicEnemy : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidD
 
     public void FallIntoTheVoid()
     {
+        Die();
         Destroy(gameObject);
     }
 }

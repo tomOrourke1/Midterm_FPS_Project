@@ -289,6 +289,7 @@ public class Flanker : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidDama
 
     public void FallIntoTheVoid()
     {
+        OnDeath();
         Destroy(gameObject);
     }
 }
