@@ -163,8 +163,9 @@ public class FOVController : MonoBehaviour
 
     public void SetOrigFov(float newFov)
     {
-        if (newFov == cam.fieldOfView)
-            return;
+        //if (newFov == cam.fieldOfView)
+        //    return;
+        Debug.Log("new fov: " + newFov);
 
 
         lastFov = cam.fieldOfView;

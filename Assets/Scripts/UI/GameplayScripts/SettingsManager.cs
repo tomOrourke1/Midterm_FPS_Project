@@ -267,6 +267,7 @@ public class SettingsManager : MonoBehaviour
         if (SceneManager.GetActiveScene().name != "MainMenu")
         {
             Camera.main.fieldOfView = tempFOV;
+            GameManager.instance.GetPlayerScript().GetFov().SetOrigFov(tempFOV);
             Camera.main.GetComponent<CameraController>().SetSensitivity(tempMouseSens);
             Camera.main.GetComponent<CameraController>().SetInvert(tempInvY);
             ChangeControllerSensitivity();
