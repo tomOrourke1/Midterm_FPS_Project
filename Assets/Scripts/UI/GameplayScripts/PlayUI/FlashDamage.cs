@@ -34,9 +34,7 @@ public class FlashDamage : MonoBehaviour
         tmpFlashSH = showDuration;
         tmpFlashCR = showDuration;
 
-        flashDamage.gameObject.SetActive(false);
-        flashShield.gameObject.SetActive(false);
-        flashCrack.gameObject.SetActive(false);
+        Disabler();
     }
 
     public IEnumerator FlashDamageDisplay()
@@ -142,5 +140,12 @@ public class FlashDamage : MonoBehaviour
     public void StopHPFlasher()
     {
         CancelInvoke("LowHPFlasher");
+    }
+
+    public void Disabler()
+    {
+        flashDamage.gameObject.SetActive(false);
+        flashShield.gameObject.SetActive(false);
+        flashCrack.gameObject.SetActive(false);
     }
 }

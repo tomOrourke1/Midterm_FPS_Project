@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -266,6 +267,13 @@ public class UIManager : MonoBehaviour
     public ElevatorScript GetElevatorScript()
     {
         return gameManagerESCRIPT;
+    }
+
+    public void DeathEvents()
+    {
+        StopFlashLowHP();
+        damageIndicatorScript.Disabler();
+        flashImageScript.Disabler();
     }
     #endregion
 }
