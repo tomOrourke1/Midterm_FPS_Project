@@ -42,7 +42,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     protected Vector3 GetDirToPlayer()
     {
-        return (GameManager.instance.GetPlayerPOS() - (transform.position + (Vector3.up * eyeOffset))).normalized;
+        return ((GameManager.instance.GetPlayerPOS() + Vector3.up * 0.2f) - (transform.position + (Vector3.up * eyeOffset))).normalized;
     }
 
     protected float GetAngleToPlayer()
