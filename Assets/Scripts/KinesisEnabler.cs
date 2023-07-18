@@ -19,6 +19,11 @@ public class KinesisEnabler : MonoBehaviour
         GameManager.instance.GetSettingsManager().settings.teleOn = teleEnabled;
         GameManager.instance.GetSettingsManager().settings.pyroOn = pyroEnabled;
         GameManager.instance.GetSettingsManager().settings.cryoOn = cryoEnabled;
+
+        if (teleEnabled)
+        {
+
+        }
     }
 
     public bool RetrieveLoop(int idx)
