@@ -31,10 +31,6 @@ public class RotatingBlock : MonoBehaviour, IEnvironment
         
     }
 
-    private void Start()
-    {
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -68,32 +64,11 @@ public class RotatingBlock : MonoBehaviour, IEnvironment
             rotation = transform.localRotation * Quaternion.AngleAxis(rotationAngle, Vector3.up);
             rotating = true;
 
-
-
-
-
-
-
-
-
-
-
-
             if (transform.localRotation != rotation && !waiting)
             {
-
-
                 // hey rotation = false after stop duration seconds??
 
-
-
-
-
-
-
-
-
-            //    StartCoroutine(wait());
+                // StartCoroutine(wait());
             }
         }
         else

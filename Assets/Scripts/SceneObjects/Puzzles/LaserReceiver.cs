@@ -11,7 +11,6 @@ public class LaserReceiver : MonoBehaviour, IReflector
     bool isActive = false;
     // Start is called before the first frame update
 
-
     public bool AlreadyReflecting()
     {
         return isActive;

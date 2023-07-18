@@ -61,6 +61,7 @@ public class DamgableObject : MonoBehaviour, IEnvironment, IDamagable
     {
       
     }
+
     public void StopObject()
     {
         this.enabled = false;

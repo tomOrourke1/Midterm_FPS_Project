@@ -89,16 +89,6 @@ public class MovingPlatform : MonoBehaviour, IEnvironment
         }
     }
 
-    // This is a function tied to IEnvironment meant to be used to reset a room
-    public void ResetObject()
-    {
-        //// This needs to be done because I swap the start and end positions when the platform is heading backwards.
-        //startPos = initialStartPos;
-        //endPos = initialEndPos;
-
-        //currentTime = 0;
-    }
-
     public void StartObject()
     {
         gameObject.SetActive(true);
