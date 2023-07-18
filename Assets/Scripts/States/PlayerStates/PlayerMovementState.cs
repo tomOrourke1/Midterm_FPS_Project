@@ -221,7 +221,7 @@ public class PlayerMovementState : PlayerState, IApplyVelocity
 
     public override void OnExit()
     {
-
+        StopAllMovement();
 
 
     }
