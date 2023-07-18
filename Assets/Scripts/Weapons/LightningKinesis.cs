@@ -41,7 +41,11 @@ public class LightningKinesis : KinesisBase
    
     public override void Fire()
     {
-        
+        if (InputManager.Instance.Action.Kinesis.WasPressedThisFrame() && !HasFocus())
+        {
+            UIManager.instance.FocusDepleted();
+            return;
+        }
         if (InputManager.Instance.Action.Kinesis.IsPressed() && HasFocus())
         {
             if(InputManager.Instance.Action.Kinesis.WasPressedThisFrame())

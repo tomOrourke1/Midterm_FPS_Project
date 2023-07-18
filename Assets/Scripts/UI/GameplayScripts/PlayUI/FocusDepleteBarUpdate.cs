@@ -5,16 +5,32 @@ using UnityEngine;
 public class FocusDepleteBarUpdate : MonoBehaviour
 {
     [SerializeField] GameObject depleteBar;
+    [SerializeField] float waitTime;
+
+    float timeStart;
+    bool running;
+
+    private void Update()
+    {
+        if (running)
+        {
+            if(Time.time - timeStart >= waitTime)
+            {
+                TurnOff();
+            }
+        }
+    }
 
     public void ShowDeplete()
     {
+        timeStart = Time.time;
+        running = true;
         depleteBar.SetActive(true);
-        StartCoroutine(TurnOff());
     }
 
-    private IEnumerator TurnOff()
+    private void TurnOff()
     {
-        yield return new WaitForSeconds(0.15f);
         depleteBar.SetActive(false);
+        running = false;
     }
 }

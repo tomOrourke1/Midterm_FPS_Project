@@ -122,11 +122,6 @@ public class PlayerResources : MonoBehaviour, IDamagable, IHealReciever, IFocusR
         var b = focus.SpendResource(amt);
         UIManager.instance.GetPlayerStats().UpdateValues();
 
-        if (amt > focus.CurrentValue)
-        {
-            UIManager.instance.FocusDepleted();
-        }
-
         return b;
     }
 

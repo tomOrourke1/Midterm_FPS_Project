@@ -64,9 +64,16 @@ public class TelekinesisController : KinesisBase
 
     void TelekinesisStart()
     {
+
         if (InputManager.Instance.Action.Kinesis.WasPressedThisFrame())
         {
-          
+
+            if (!HasFocus())
+            {
+                UIManager.instance.FocusDepleted();
+                return;
+            }
+            
             // suck item
 
             var aimValue = GameManager.instance.GetAimAssistValue();
@@ -318,5 +325,9 @@ public class TelekinesisController : KinesisBase
         OnTeleStopped?.Invoke();
 
         base.EnableOpenRadial();
+    }
+    bool HasFocus()
+    {
+        return GameManager.instance.GetPlayerResources().Focus.CurrentValue >= focusCost;
     }
 }

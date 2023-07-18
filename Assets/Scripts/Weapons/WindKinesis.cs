@@ -24,8 +24,11 @@ public class WindKinesis : KinesisBase
 
     public override void Fire()
     {
-
-
+        if (InputManager.Instance.Action.Kinesis.WasPressedThisFrame() && !HasFocus())
+        {
+            UIManager.instance.FocusDepleted();
+            return;
+        }
 
         if (InputManager.Instance.Action.Kinesis.WasPressedThisFrame() && HasFocus())
         {
@@ -37,7 +40,7 @@ public class WindKinesis : KinesisBase
         {
             OnAeroPush?.Invoke();
             isReady = false ;
-            base.EnableOpenRadial();
+            //base.EnableOpenRadial();
         }
         if (canActivate)
         {
