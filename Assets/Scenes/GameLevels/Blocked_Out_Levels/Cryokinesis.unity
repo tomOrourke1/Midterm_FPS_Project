@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -27051,7 +27051,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4948695828340567614, guid: d3ef9cc9c1fa04240b7fb1b665d94d28, type: 3}
       propertyPath: Deactivate.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4948695828340567614, guid: d3ef9cc9c1fa04240b7fb1b665d94d28, type: 3}
       propertyPath: Activate.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -27063,8 +27063,12 @@ PrefabInstance:
       objectReference: {fileID: 1292602384}
     - target: {fileID: 4948695828340567614, guid: d3ef9cc9c1fa04240b7fb1b665d94d28, type: 3}
       propertyPath: Deactivate.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 4948695828340567614, guid: d3ef9cc9c1fa04240b7fb1b665d94d28, type: 3}
+      propertyPath: Deactivate.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1292602384}
     - target: {fileID: 4948695828340567614, guid: d3ef9cc9c1fa04240b7fb1b665d94d28, type: 3}
       propertyPath: Activate.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -27078,11 +27082,27 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4948695828340567614, guid: d3ef9cc9c1fa04240b7fb1b665d94d28, type: 3}
+      propertyPath: Deactivate.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetLockStatus
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948695828340567614, guid: d3ef9cc9c1fa04240b7fb1b665d94d28, type: 3}
       propertyPath: Activate.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: DoorScript, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4948695828340567614, guid: d3ef9cc9c1fa04240b7fb1b665d94d28, type: 3}
+      propertyPath: Deactivate.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DoorScript, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948695828340567614, guid: d3ef9cc9c1fa04240b7fb1b665d94d28, type: 3}
+      propertyPath: Deactivate.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948695828340567614, guid: d3ef9cc9c1fa04240b7fb1b665d94d28, type: 3}
       propertyPath: Activate.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948695828340567614, guid: d3ef9cc9c1fa04240b7fb1b665d94d28, type: 3}
+      propertyPath: Deactivate.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8506417014691828476, guid: d3ef9cc9c1fa04240b7fb1b665d94d28, type: 3}
