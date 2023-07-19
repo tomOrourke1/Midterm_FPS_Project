@@ -18,6 +18,7 @@ public class fingerGun : MonoBehaviour
     [SerializeField] UnityEvent shootEvent;
     [SerializeField] GameObject hitParticles;
 
+    [SerializeField] FingerGunSFX audioScript;
 
     // Update is called once per frame
     void Update()
@@ -60,6 +61,7 @@ public class fingerGun : MonoBehaviour
                     Instantiate(hitParticles, hit.point, Quaternion.identity);
 
                     damageable.TakeDamage(bulletDamage);
+                    audioScript.PlayOneShot_HitEnemy();
                     UIManager.instance.GetHitmarker().SetActive(true);
                     yield return new WaitForSeconds(0.05f);
                     UIManager.instance.GetHitmarker().SetActive(false);

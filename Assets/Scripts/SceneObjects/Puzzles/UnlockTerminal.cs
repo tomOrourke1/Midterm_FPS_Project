@@ -22,6 +22,7 @@ public class UnlockTerminal : MonoBehaviour, IInteractable, IEnvironment
     [Tooltip("This is the maximum amount of times that you can interract with the terminal")]
     [SerializeField, Range(1,5)] int InteractLimit;
 
+    KeyTerminalSFX sfx;
     int InteractLimitInit;
     bool ActivationLock = false;
 
@@ -29,6 +30,7 @@ public class UnlockTerminal : MonoBehaviour, IInteractable, IEnvironment
     {
         textCountUI.text = InteractLimit.ToString();
         InteractLimitInit = InteractLimit;
+        sfx = GetComponent<KeyTerminalSFX>();
     }
 
     public void Interact()
@@ -42,11 +44,13 @@ public class UnlockTerminal : MonoBehaviour, IInteractable, IEnvironment
             GameManager.instance.GetKeyChain().removeKeys(1);
 
             InteractLimit--;
+            sfx.PlayOneShot_Accepted();
         } 
-        //else
-        //{
-        //    Debug.LogError("No kevin go cry in a corner.");
-        //}
+        else if (!ActivationLock)
+        {
+
+            sfx.PlayOneShot_NoKeys();
+        }
 
         if (InteractLimit == 0)
         {

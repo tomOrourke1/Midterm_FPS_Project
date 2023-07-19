@@ -6,13 +6,19 @@ public class FingerGunSFX : MonoBehaviour
 {
     [Header("Audio Source")]
     [SerializeField] AudioSource source;
+    [SerializeField] AudioSource source2;
 
     [Header("SFX")]
-    [SerializeField] AudioClip sfx;
+    [SerializeField] AudioClip shootSFX;
+    [SerializeField] AudioClip hitEnemySFX;
 
     public void Play_OneShot()
     {
-        source.PlayOneShot(sfx);
+        source.PlayOneShot(shootSFX);
     }
 
+    public void PlayOneShot_HitEnemy()
+    {
+        source2.PlayOneShot(hitEnemySFX);
+    }
 }
