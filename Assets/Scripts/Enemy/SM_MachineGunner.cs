@@ -39,6 +39,9 @@ public class SM_MachineGunner : EnemyBase, IDamagable, IEntity, IVoidDamage, IAp
 
     bool shootTimer = true;
 
+    bool activatePush;
+    Vector3 pVel;
+
     void Start()
     {
         audScript = GetComponent<EnemyAudio>();
@@ -265,16 +268,32 @@ public class SM_MachineGunner : EnemyBase, IDamagable, IEntity, IVoidDamage, IAp
     public void ApplyVelocity(Vector3 velocity)
     {
 
-        wasPushed = true;
-        agent.enabled = false;
-        rb.isKinematic = false;
+        //wasPushed = true;
+        //agent.enabled = false;
+        //rb.isKinematic = false;
 
-        rb.AddForce(velocity, ForceMode.Impulse);
+        //rb.AddForce(velocity, ForceMode.Impulse);
 
 
-
+        activatePush = true;
+        pVel = velocity;
     }
+    private void FixedUpdate()
+    {
+        if (!enemyEnabled)
+            return;
+        if (activatePush)
+        {
+            activatePush = false;
 
+            wasPushed = true;
+            agent.enabled = false;
+
+            rb.isKinematic = false;
+
+            rb.AddForce(pVel, ForceMode.Impulse);
+        }
+    }
     private void OnCollisionEnter(Collision collision)
     {
 

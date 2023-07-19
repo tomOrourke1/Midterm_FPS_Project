@@ -36,6 +36,11 @@ public class SM_SecurityGuard : EnemyBase, IDamagable, IEntity, IApplyVelocity, 
     bool wasPushed;
     bool isStunned;
     bool isUnstunned;
+
+
+    bool activatePush;
+    Vector3 pVel;
+
     private void Start()
     {
         audScript = GetComponent<EnemyAudio>();
@@ -218,14 +223,34 @@ public class SM_SecurityGuard : EnemyBase, IDamagable, IEntity, IApplyVelocity, 
     }
     public void ApplyVelocity(Vector3 velocity)
     {
-        wasPushed = true;
-        agent.enabled = false;
-        rb.isKinematic = false;
-    
-        rb.AddForce(velocity, ForceMode.Impulse);
+        //wasPushed = true;
+        //agent.enabled = false;
+        //rb.isKinematic = false;
 
+        //rb.AddForce(velocity, ForceMode.Impulse);
 
+        activatePush = true;
+        pVel = velocity;
     }
+
+    private void FixedUpdate()
+    {
+        if (!enemyEnabled)
+            return;
+        if (activatePush)
+        {
+            activatePush = false;
+
+            wasPushed = true;
+            agent.enabled = false;
+
+            rb.isKinematic = false;
+
+            rb.AddForce(pVel, ForceMode.Impulse);
+        }
+    }
+
+
 
     IEnumerator FlashDamage()
     {

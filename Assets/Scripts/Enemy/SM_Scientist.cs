@@ -45,6 +45,10 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoi
 
     Vector3 lastPos;
 
+
+    bool activatePush;
+    Vector3 pVel;
+
     private void Start()
     {
         seenPlayer = false;
@@ -174,14 +178,33 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoi
     }
     public void ApplyVelocity(Vector3 velocity)
     {
-        wasPushed = true;
-        agent.enabled = false;
-        rb.isKinematic = false;
+        //wasPushed = true;
+        //agent.enabled = false;
+        //rb.isKinematic = false;
 
-        rb.AddForce(velocity, ForceMode.Impulse);
+        //rb.AddForce(velocity, ForceMode.Impulse);
 
-
+        activatePush = true;
+        pVel = velocity;
     }
+
+    private void FixedUpdate()
+    {
+        if (!enemyEnabled)
+            return;
+        if (activatePush)
+        {
+            activatePush = false;
+
+            wasPushed = true;
+            agent.enabled = false;
+
+            rb.isKinematic = false;
+
+            rb.AddForce(pVel, ForceMode.Impulse);
+        }
+    }
+
     public void TakeDamage(float dmg)
     {
         health.Decrease(dmg); // decrease the enemies hp with the weapon's damage

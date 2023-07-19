@@ -48,19 +48,19 @@ public class WindKinesis : KinesisBase
             canActivate = false;
             GameManager.instance.GetPlayerResources().SpendFocus(focusCost);
             forceDirection = Camera.main.transform.forward;
-            Vector3 velocity = forceDirection * force + transform.up * upwardForce;
+            Vector3 velocity = (forceDirection * force) + (transform.up * upwardForce);// * Time.fixedDeltaTime;
 
             var hits = Physics.SphereCastAll(Camera.main.transform.position, windRadius, Camera.main.transform.forward, windRange);
 
             var zero = Physics.OverlapSphere(Camera.main.transform.position, windRadius);
 
-            
+
             foreach(var z in zero)
             {
                 bool wallHit = false;
                 if(!z.CompareTag("Player"))
                 {
-                    var dir = z.ClosestPoint(Camera.main.transform.position) - Camera.main.transform.position;
+                    var dir = (z.transform.position + Vector3.up) /*z.ClosestPoint(Camera.main.transform.position)*/ - Camera.main.transform.position;
                     var rayHits = Physics.RaycastAll(Camera.main.transform.position, dir, windRadius);
                     foreach(var hit in rayHits)
                     {
@@ -79,12 +79,14 @@ public class WindKinesis : KinesisBase
                 }
             }
             
+
+
             foreach (var currentHit in hits)
             {
               bool wallHit = false;
                 if (!currentHit.collider.CompareTag("Player"))
                 {
-                    var dir = currentHit.transform.position - Camera.main.transform.position;
+                    var dir = (currentHit.transform.position + Vector3.up) - Camera.main.transform.position;
                     RaycastHit[] rayHits = Physics.RaycastAll(Camera.main.transform.position, dir, windRange);
                     foreach (var hit in rayHits)
                     {
