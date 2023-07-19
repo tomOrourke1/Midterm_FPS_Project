@@ -4,52 +4,26 @@ using UnityEngine;
 
 public class BatteryChargeManager : MonoBehaviour
 {
-    [SerializeField] List<GameObject> chargeLevels = new List<GameObject>();
-
-    [SerializeField] Material inateMaterial = null;
-    [SerializeField] Material ChargedMaterial = null;
+    [SerializeField] GameObject Powered;
+    [SerializeField] GameObject unPowered;
 
     public void UpdateChargeLevel(float maxCharge, float currCharge)
     {
-        /*
-         
-            0 = 25%
-            1 = 50%
-            2 = 75%
-            3 = 100%
-
-         */
-
-        int chargeLevel = 0;
-
-        if (currCharge >= maxCharge)
+        if (currCharge <= 0)
         {
-            chargeLevel = 4;
-        } 
-        else if (currCharge >= maxCharge * .75)
-        {
-            chargeLevel = 3;
+            Powered.SetActive(false);
         }
-        else if (currCharge >= maxCharge * .5)
+        else
         {
-            chargeLevel = 2;
-        }
-        else if (currCharge >= maxCharge * .25)
-        {
-            chargeLevel = 1;
+            Powered.SetActive(true);
         }
 
-        for (int i = 0; i < chargeLevels.Count; i++)
-        {
-            if (i + 1 <= chargeLevel)
-            {
-                chargeLevels[i].GetComponent<MeshRenderer>().material = ChargedMaterial;
-            }
-            else
-            { 
-                chargeLevels[i].GetComponent<MeshRenderer>().material = inateMaterial;
-            }
-        }
+        float y_size = unPowered.transform.localScale.y * (currCharge / maxCharge);
+
+        float x_size = Powered.transform.localScale.x;
+        float z_size = Powered.transform.localScale.z;
+
+        Powered.transform.localScale = new Vector3(x_size, y_size, z_size);
     }
 
 }
