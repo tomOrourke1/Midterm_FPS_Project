@@ -71,6 +71,14 @@ public class Flanker : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidDama
         // flank to attack
 
 
+
+
+        stateMachine.AddAnyTransition(shootState, OnGettingTooCloseToThePlayer);
+
+
+
+
+
         stateMachine.AddAnyTransition(idleState, OnIdle);
 
 
@@ -84,6 +92,16 @@ public class Flanker : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidDama
 
 
         stateMachine.AddAnyTransition(deathState, () => isDead);
+    }
+
+
+
+    bool OnGettingTooCloseToThePlayer()
+    {
+        var dist = GetDistToPlayer();
+        bool tooClose = dist <= 1.85f;
+
+        return tooClose;
     }
 
     bool OnToFlank()

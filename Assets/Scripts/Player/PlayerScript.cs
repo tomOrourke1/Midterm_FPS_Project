@@ -48,9 +48,8 @@ public class PlayerScript : MonoBehaviour
             forward.y = 0;
             forward.Normalize();
             transform.rotation = Quaternion.LookRotation(forward);
-
-
         }
+
         controller.enabled = true;
 
         GameManager.instance.GetKeyChain().Clear();
@@ -60,7 +59,13 @@ public class PlayerScript : MonoBehaviour
             GameManager.instance.GetKeyChain().addKeys(GameManager.instance.GetPlayerSpawnPOS().transform.parent.GetComponent<CheckPointSetter>().GetKeysHeld());
         }
 
+
+        CameraShaker.instance.ForceStop();
+
+        ResetPlayer();
+
         UpdatePlayerStats();
+        
     }
 
     void UpdatePlayerStats()

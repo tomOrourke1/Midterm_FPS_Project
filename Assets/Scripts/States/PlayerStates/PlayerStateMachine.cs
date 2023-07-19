@@ -67,4 +67,6 @@ public class PlayerStateMachine : MonoBehaviour
     {
         stateMachine.SetState(playerMoveState);
     }
+
+    
 }

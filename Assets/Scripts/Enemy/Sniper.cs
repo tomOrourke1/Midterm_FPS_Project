@@ -55,6 +55,7 @@ public class Sniper : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidDamag
 
         stateMachine.AddTransition(idleState, enemyShootState, OnAttack);
         stateMachine.AddTransition(enemyShootState, idleState, enemyShootState.ExitCondition);
+        stateMachine.AddTransition(enemyShootState, idleState, () => !GetDoesSeePlayer());
 
 
         stateMachine.AddTransition(idleState, runAway, OnRunAway);
@@ -69,7 +70,6 @@ public class Sniper : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidDamag
 
         stateMachine.AddAnyTransition(deathState, () => isDead);
     }
-
 
 
     bool OnBetweenShots()

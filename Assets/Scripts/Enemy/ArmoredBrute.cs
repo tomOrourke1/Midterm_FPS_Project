@@ -45,6 +45,11 @@ public class ArmoredBrute : EnemyBase, IDamagable, IEntity, IVoidDamage
     bool canCharge;
     bool canAttack;
 
+
+
+    bool hitWall;
+
+
     void Start()
     {
         audScript = GetComponent<EnemyAudio>();
@@ -148,7 +153,7 @@ public class ArmoredBrute : EnemyBase, IDamagable, IEntity, IVoidDamage
             timeToNextCharge = 0;
         }
         
-        return inDistance && temp;
+        return inDistance && temp && GetDoesSeePlayer();
     }
 
 
@@ -178,14 +183,23 @@ public class ArmoredBrute : EnemyBase, IDamagable, IEntity, IVoidDamage
     bool OnStun()
     {
 
-        return chargeState.ExitCondition();
+        bool temp = hitWall;
+
+        if (temp)
+            hitWall = false;
+
+        return chargeState.ExitCondition() || temp;
     }
     bool OnUnstun()
     {
+        RotToPlayer();
         return stunState.ExitCondition();
     }
     public void TakeDamage(float dmg)
     {
+
+        RotToPlayer();
+
         health.Decrease(dmg / Armor);
         audScript.PlayEnemy_Hurt();
         StartCoroutine(FlashDamage());
@@ -242,4 +256,21 @@ public class ArmoredBrute : EnemyBase, IDamagable, IEntity, IVoidDamage
         OnDeath();
         Destroy(gameObject);
     }
+
+
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        foreach (var cont in collision.contacts)
+        {
+            var norm = cont.normal;
+            var dot = Vector3.Dot(norm, Vector3.up);
+            if (dot < 0.1f && dot > -0.1f)
+            {
+                hitWall = true;
+                return;
+            }
+        }
+    }
+
 }

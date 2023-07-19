@@ -73,7 +73,11 @@ public class CameraShaker : MonoBehaviour
         pos = cam.transform.localPosition;
     }
 
-
+    public void ForceStop()
+    {
+        cam.transform.localPosition = pos;
+        doesShake = false;
+    }
 
 
 
