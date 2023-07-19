@@ -137,10 +137,29 @@ public class RadialMenu : MonoBehaviour
     /// Current vs Previous Highlight
     /// </summary>
     int prevKinesis;
+
+    bool openCooldownStart;
+    int currentFrame;
     #endregion
+
+    private void Update()
+    {
+        if (openCooldownStart)
+        {
+            currentFrame++;
+            Debug.Log("Can't Open");
+            if (currentFrame >= 30)
+            {
+                currentFrame = 0;
+                openCooldownStart = false;
+                //InputManager.Instance.Action.OpenRadialWheel.Enable();
+            }
+        }
+    }
 
     private void Start()
     {
+        openCooldownStart = false;
         sliceAng = 360 / _slices.Length;
         offsetAngle = sliceAng * 3;
         UpdateSlices();
@@ -179,11 +198,8 @@ public class RadialMenu : MonoBehaviour
     /// </summary>
     private void UpdateMousePosition()
     {
-
         if (InputManager.Instance.GamepadActive)
         {
-
-
             var inp = InputManager.Instance.GetLookDelta().normalized;
 
             if (inp.magnitude > 0)
@@ -191,7 +207,6 @@ public class RadialMenu : MonoBehaviour
                 mousePos = inp;
                 arrowScale = maxArrowDist;
             }
-
         }
         else
         {
@@ -241,6 +256,8 @@ public class RadialMenu : MonoBehaviour
     {
         UIManager.instance.GetPlayerStats().SetKinesisIcon(_slices[confirmedKinesis].GetIcon());
         GameManager.instance.GetPlayerObj().GetComponent<CasterScript>().SetCurrentKinesis(confirmedKinesis);
+        openCooldownStart = true;
+        //InputManager.Instance.Action.OpenRadialWheel.Disable();
     }
 
     /// <summary>
@@ -335,5 +352,10 @@ public class RadialMenu : MonoBehaviour
     public void KinesisEnablerToCurrentSelected(int a)
     {
         confirmedKinesis = a;
+    }
+
+    public bool GetRadialCooldown()
+    {
+        return openCooldownStart;
     }
 }
