@@ -319,7 +319,10 @@ public class TelekinesisController : KinesisBase
     public override void StopFire()
     {
         isCasting = false;
-
+        if(stachedObject != null)
+        {
+            stachedObject.GetRigidbody().useGravity = true;
+        }
         stachedObject = null;
 
         OnTeleStopped?.Invoke();
