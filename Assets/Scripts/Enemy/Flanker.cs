@@ -142,7 +142,6 @@ public class Flanker : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidDama
     {
         var temp = wasPushed;
         wasPushed = false;
-        hasLanded = false;
         return temp;
     }
     bool OnStunned()
@@ -169,6 +168,7 @@ public class Flanker : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidDama
         if (enemyEnabled)
         {
             stateMachine.Tick();
+            
 
             if (GetDoesSeePlayer() && !isDead)
             {

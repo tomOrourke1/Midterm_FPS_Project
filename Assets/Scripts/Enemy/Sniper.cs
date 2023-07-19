@@ -109,15 +109,16 @@ public class Sniper : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidDamag
             rb.isKinematic = true;
             wasPushed = false;
         }
-
+      
         return temp;
     }
     bool OnPushed()
     {
         var temp = wasPushed;
         wasPushed = false;
-        hasLanded = false;
+      
         return temp;
+        
     }
     bool OnStunned()
     {
@@ -260,11 +261,14 @@ public class Sniper : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidDamag
     {
 
         GroundCheck(collision);
+      
+
 
     }
     private void OnCollisionStay(Collision collision)
     {
         GroundCheck(collision);
+       
     }
 
 

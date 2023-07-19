@@ -7,6 +7,7 @@ public class EnemyPushedState : EnemyState
 {
     [SerializeField] Rigidbody rb;
     [SerializeField] EnemyAnimaterScript enAmin;
+    [SerializeField] EnemyBase enemy;
     public override void OnEnter()
     {
         base.OnEnter();
@@ -18,7 +19,7 @@ public class EnemyPushedState : EnemyState
 
     public override void Tick()
     {
-
+        enemy.Landed = enemy.RayGroundCheck() && rb.velocity.y <= 0;
     }
 
     public override void OnExit()

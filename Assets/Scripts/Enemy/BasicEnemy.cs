@@ -116,6 +116,7 @@ public class BasicEnemy : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidD
 
     bool OnPushLanding()
     {
+     //   Debug.LogError("LANDING: " + hasLanded);
         var temp = hasLanded;
         //hasLanded = false;
         if (temp)
@@ -129,9 +130,9 @@ public class BasicEnemy : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidD
     }
     bool OnPushed()
     {
+      //  Debug.Log("ONPushed: " + wasPushed);
         var temp = wasPushed;
         wasPushed = false;
-        hasLanded = false;
         return temp;
     }
     bool OnStunned()
@@ -154,10 +155,11 @@ public class BasicEnemy : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidD
     }
     private void Update()
     {
-       // Debug.LogError("Current state: " + stateMachine.CurrentState.ToString());
+      //  Debug.LogError("Current state: " + stateMachine.CurrentState.ToString());
         if(enemyEnabled)
         {
             stateMachine.Tick();
+
         }
     }
 

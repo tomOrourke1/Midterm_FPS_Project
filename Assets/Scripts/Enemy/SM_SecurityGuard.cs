@@ -93,6 +93,7 @@ public class SM_SecurityGuard : EnemyBase, IDamagable, IEntity, IApplyVelocity, 
     }
     bool OnPushLanding()
     {
+
         var temp = hasLanded;
         hasLanded = false;
 
@@ -143,7 +144,7 @@ public class SM_SecurityGuard : EnemyBase, IDamagable, IEntity, IApplyVelocity, 
         {
             stateMachine.Tick();
 
-            if(GetDoesSeePlayer() && !isDead)
+            if (GetDoesSeePlayer() && !isDead)
             {
                 RotToPlayer();
             }
@@ -269,12 +270,14 @@ public class SM_SecurityGuard : EnemyBase, IDamagable, IEntity, IApplyVelocity, 
 
     private void OnCollisionEnter(Collision collision)
     {
-        GroundCheck(collision);
+     //   GroundCheck(collision);
+       
 
     }
     private void OnCollisionStay(Collision collision)
     {
         GroundCheck(collision);
+    
     }
 
 

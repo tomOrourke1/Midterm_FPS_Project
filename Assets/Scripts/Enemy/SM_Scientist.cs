@@ -94,6 +94,7 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoi
                 seenPlayer = true;
             }
 
+
             if (seenPlayer && (stateMachine.CurrentState is EnemyIdleState || stateMachine.CurrentState is EnemyMoveAwayState) && Vector3.Distance(transform.position, lastPos) < 0.05f)
             {
                 animScript.StartCower();
@@ -126,7 +127,6 @@ public class SM_Scientist : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoi
     {
         var temp = wasPushed;
         wasPushed = false;
-        hasLanded = false;
         return temp;
     }
     bool OnStunned()

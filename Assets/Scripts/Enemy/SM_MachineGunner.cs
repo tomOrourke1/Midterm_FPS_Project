@@ -75,7 +75,7 @@ public class SM_MachineGunner : EnemyBase, IDamagable, IEntity, IVoidDamage, IAp
         if (enemyEnabled)
         {
             stateMachine.Tick();
-
+           // Debug.LogError("Currentstate: " + stateMachine.CurrentState.ToString());
             if (GetDoesSeePlayer() && !isDead)
             {
                 RotToPlayer();
@@ -130,7 +130,6 @@ public class SM_MachineGunner : EnemyBase, IDamagable, IEntity, IVoidDamage, IAp
     {
         var temp = wasPushed;
         wasPushed = false;
-        hasLanded = false;
         return temp;
     }
 

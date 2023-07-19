@@ -28,7 +28,11 @@ public abstract class EnemyBase : MonoBehaviour
     protected bool hasLanded = true;
     protected bool isDead;
 
-    public bool Landed => hasLanded;
+    public bool Landed
+    {
+        get => hasLanded;
+        set => hasLanded = value;
+    }
     public bool IsDead => isDead;
 
     public HealthPool HealthPool => health;
@@ -113,7 +117,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     public bool RayGroundCheck()
     {
-        return Physics.Raycast(transform.position, Vector3.down, 0.2f);
+        return Physics.Raycast(transform.position + Vector3.up * 0.01f, Vector3.down, 0.2f);
     }
 
 }
