@@ -42,6 +42,9 @@ public class Flanker : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidDama
     bool isUnstunned;
     float time;
 
+    bool activatePush;
+    Vector3 pVel;
+
     void Start()
     {
 
@@ -229,14 +232,32 @@ public class Flanker : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidDama
     }
     public void ApplyVelocity(Vector3 velocity)
     {
-        wasPushed = true;
-        agent.enabled = false;
-        rb.isKinematic = false;
+        //wasPushed = true;
+        //agent.enabled = false;
+        //rb.isKinematic = false;
 
-        rb.AddForce(velocity, ForceMode.Impulse);
+        //rb.AddForce(velocity, ForceMode.Impulse);
+
+        activatePush = true;
+        pVel = velocity;
 
     }
+    private void FixedUpdate()
+    {
+        if (!enemyEnabled)
+            return;
+        if (activatePush)
+        {
+            activatePush = false;
 
+            wasPushed = true;
+            agent.enabled = false;
+
+            rb.isKinematic = false;
+
+            rb.AddForce(pVel, ForceMode.Impulse);
+        }
+    }
     IEnumerator FlashDamage()
     {
         enemyMeshRenderer.material.color = Color.red;

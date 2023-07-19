@@ -8,18 +8,28 @@ public class EnemyPushedState : EnemyState
     [SerializeField] Rigidbody rb;
     [SerializeField] EnemyAnimaterScript enAmin;
     [SerializeField] EnemyBase enemy;
+
+    int frames;
     public override void OnEnter()
     {
         base.OnEnter();
 
         rb.isKinematic = false;
         enAmin.StartPush();
+        frames = 0;
+
+        enemy.Landed = false;
     }
 
 
     public override void Tick()
     {
-        enemy.Landed = enemy.RayGroundCheck() && rb.velocity.y <= 0;
+        if (frames > 1)
+        {
+            enemy.Landed = enemy.RayGroundCheck() && rb.velocity.y <= 0;
+            //Debug.LogError("Vel: " + rb.velocity);
+        }
+        frames++;
     }
 
     public override void OnExit()

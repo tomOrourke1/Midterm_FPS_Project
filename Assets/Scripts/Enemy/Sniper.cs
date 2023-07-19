@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
@@ -37,6 +38,9 @@ public class Sniper : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidDamag
     bool isStunned;
     bool isUnstunned;
 
+
+    bool activatePush;
+    Vector3 pVel;
 
     void Start()
     {
@@ -209,13 +213,32 @@ public class Sniper : EnemyBase, IDamagable, IEntity, IApplyVelocity, IVoidDamag
     }
     public void ApplyVelocity(Vector3 velocity)
     {
-        wasPushed = true;
-        agent.enabled = false;
-        rb.isKinematic = false;
+        activatePush = true;
+        pVel = velocity;
+    }
 
-        rb.AddForce(velocity, ForceMode.Impulse);
+    private void FixedUpdate()
+    {
+        if (!enemyEnabled)
+            return;
+        if(activatePush)
+        {
+            activatePush = false;
+
+            wasPushed = true;
+            agent.enabled = false;
+
+            rb.isKinematic = false;
+
+            rb.AddForce(pVel, ForceMode.Impulse);
+        }
+    }
 
 
+    private IEnumerator DUMMYFUNCTION(Vector3 Vel)
+    {
+        yield return new WaitForSeconds(0.1f);
+        rb.AddForce(Vel, ForceMode.Impulse);
     }
 
     IEnumerator FlashDamage()

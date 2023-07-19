@@ -31,7 +31,6 @@ public class EnemyShield : EnemyBase, IEntity, IDamagable, IApplyVelocity
 
     //private bool isDead;
     bool wasPushed;
-    bool hasLanded;
     private void Start()
     {
         health.FillToMax();
