@@ -13,6 +13,7 @@ public class InputManager : MonoBehaviour
 
     // instance
     public static InputManager Instance;
+    public bool radialClosedPing;
     private bool radialShowing;
     public bool canInteract;
     GameInput input;
@@ -100,6 +101,7 @@ public class InputManager : MonoBehaviour
 
     private void OnRadShow(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
+        radialClosedPing = false;
         if (!GameManager.instance.AllKinesisDisabled() && SceneNotMainMenuOrCredits())
         {
             UIManager.instance.uiStateMachine.SetRadialAsync(true);
@@ -113,6 +115,7 @@ public class InputManager : MonoBehaviour
         {
             UIManager.instance.uiStateMachine.SetPlay(true);
             radialShowing = false;
+            radialClosedPing = true;
         }
     }
 
