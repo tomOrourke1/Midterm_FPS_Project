@@ -241,6 +241,8 @@ public class RadialMenu : MonoBehaviour
     {
         UIManager.instance.GetPlayerStats().SetKinesisIcon(_slices[confirmedKinesis].GetIcon());
         GameManager.instance.GetPlayerObj().GetComponent<CasterScript>().SetCurrentKinesis(confirmedKinesis);
+
+        GameManager.instance.GetPlayerObj()?.GetComponent<CasterScript>()?.Current?.StopFire();
     }
 
     /// <summary>

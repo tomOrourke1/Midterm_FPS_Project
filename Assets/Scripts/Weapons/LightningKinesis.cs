@@ -53,9 +53,10 @@ public class LightningKinesis : KinesisBase
                 OnElectroStart?.Invoke();
                 focusParticles.SetActive(true); 
                 isCasting = true;
+                base.DisableOpenRadial();
             }
 
-            if(doesLightning && GameManager.instance.GetPlayerResources().SpendFocus(focusCost * Time.deltaTime))
+            if (doesLightning && GameManager.instance.GetPlayerResources().SpendFocus(focusCost * Time.deltaTime))
             {
                 LookCast();
                 //lightning.enabled = true;
