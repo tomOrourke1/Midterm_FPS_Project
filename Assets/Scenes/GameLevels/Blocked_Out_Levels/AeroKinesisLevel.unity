@@ -35454,27 +35454,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4948695828340567614, guid: d3ef9cc9c1fa04240b7fb1b665d94d28, type: 3}
       propertyPath: Activate.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4948695828340567614, guid: d3ef9cc9c1fa04240b7fb1b665d94d28, type: 3}
       propertyPath: Activate.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 3068323291571977083}
+      objectReference: {fileID: 1898784805}
     - target: {fileID: 4948695828340567614, guid: d3ef9cc9c1fa04240b7fb1b665d94d28, type: 3}
       propertyPath: Deactivate.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4948695828340567614, guid: d3ef9cc9c1fa04240b7fb1b665d94d28, type: 3}
       propertyPath: Deactivate.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 3068323291571977083}
+      objectReference: {fileID: 1898784805}
     - target: {fileID: 4948695828340567614, guid: d3ef9cc9c1fa04240b7fb1b665d94d28, type: 3}
       propertyPath: Activate.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4948695828340567614, guid: d3ef9cc9c1fa04240b7fb1b665d94d28, type: 3}
       propertyPath: Activate.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetLockStatus
+      value: PowerOn
       objectReference: {fileID: 0}
     - target: {fileID: 4948695828340567614, guid: d3ef9cc9c1fa04240b7fb1b665d94d28, type: 3}
       propertyPath: Deactivate.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -35482,15 +35482,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4948695828340567614, guid: d3ef9cc9c1fa04240b7fb1b665d94d28, type: 3}
       propertyPath: Deactivate.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetLockStatus
+      value: PowerOff
       objectReference: {fileID: 0}
     - target: {fileID: 4948695828340567614, guid: d3ef9cc9c1fa04240b7fb1b665d94d28, type: 3}
       propertyPath: Activate.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: DoorScript, Assembly-CSharp
+      value: WireManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4948695828340567614, guid: d3ef9cc9c1fa04240b7fb1b665d94d28, type: 3}
       propertyPath: Deactivate.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: DoorScript, Assembly-CSharp
+      value: WireManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4948695828340567614, guid: d3ef9cc9c1fa04240b7fb1b665d94d28, type: 3}
       propertyPath: Deactivate.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
@@ -39198,6 +39198,17 @@ Transform:
   m_Father: {fileID: 1958236995}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1898784805 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6086012913821970453, guid: 0f63d0b6e68d0f44a8f6821c1c11ace2, type: 3}
+  m_PrefabInstance: {fileID: 1158062450}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8fda1f43b41ddf44956ac346bfec884, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1899764154
 GameObject:
   m_ObjectHideFlags: 0

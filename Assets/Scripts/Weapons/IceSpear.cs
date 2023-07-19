@@ -26,7 +26,7 @@ public class IceSpear : MonoBehaviour
         var dir = collision.GetContact(0).normal;
         Instantiate(breakParticles, point + dir * 0.2f, Quaternion.identity);
         IDamagable damagable = collision.gameObject.GetComponent<IDamagable>();
-        if (damagable != null)
+        if (damagable != null && collision.collider.gameObject.CompareTag("Player"))
         {
             damagable.TakeIceDamage(damage);
             sfx.PlayCryo_Hit();
