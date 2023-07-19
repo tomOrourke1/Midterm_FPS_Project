@@ -24,7 +24,7 @@ public class DoorDetectPlayerInProximity : MonoBehaviour, IEnvironment
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.isTrigger)
+        if (other.isTrigger || (transitionMode && !other.CompareTag("Player")))
             return;
 
         if (transitionMode)
