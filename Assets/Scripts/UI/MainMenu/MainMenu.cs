@@ -50,6 +50,9 @@ public class MainMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Just dont bother arguing with me, im trying to fix the mouse not working at this point. IM LOSING MY MIND!
+        Time.timeScale = GameManager.instance.GetSettingsManager().GetOriginalTimeScale();
+
         InputManager.Instance.Input.Enable();
         GameLoadData();
         SetGameText();
@@ -57,18 +60,14 @@ public class MainMenu : MonoBehaviour
         baseMenu.SetActive(true);
         settingsMenuObj?.SetActive(false);
 
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
+
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(mainMenuFirstSelected);
 
-        StartCoroutine(CursorMainMenuFix());
     }
 
-    private IEnumerator CursorMainMenuFix()
-    {
-        yield return new WaitForEndOfFrame();
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = true;
-    }
 
     public void NewGame()
     {
@@ -142,7 +141,6 @@ public class MainMenu : MonoBehaviour
         baseMenu.SetActive(true);
         mainButtonsObj.SetActive(true);
         mainMenusAudio?.RunUnMuffler();
-        StartCoroutine(CursorMainMenuFix());
     }
 
     /// <summary>

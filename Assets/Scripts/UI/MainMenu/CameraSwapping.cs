@@ -32,7 +32,7 @@ public class CameraSwapping : MonoBehaviour
 
         if (currentCamera.fieldOfView != changed && canChange)
         {
-            currentCamera.fieldOfView = Mathf.MoveTowards(currentCamera.fieldOfView, changed, rateFOV);
+            currentCamera.fieldOfView = Mathf.MoveTowards(currentCamera.fieldOfView, changed, rateFOV * Time.unscaledDeltaTime);
         }
         else if (!canChange)
         {
@@ -86,7 +86,7 @@ public class CameraSwapping : MonoBehaviour
 
     private IEnumerator FOVChange()
     {
-        rateFOV = Random.Range(0.05f, 0.1f);
+        rateFOV = Random.Range(10f, 25f);
         changed = 60 + Random.Range(-7f, 7f);
         canChange = true;
         yield return new WaitForSeconds(Random.Range(2.5f, 6f));

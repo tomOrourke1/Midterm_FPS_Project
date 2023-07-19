@@ -114,6 +114,9 @@ public class SettingsManager : MonoBehaviour
 
         // Graphics
         hitmarkerParentObj.SetActive(tempHitmarkerEnabled);
+        settings.hitmarkerEnabled = tempHitmarkerEnabled;
+        settings.aimAssistEnabled = tempAimAssistEnabled;
+        settings.aimAssistValue = tempAimAssistValue;
         reticleImage.sprite = tempSprite;
 
         KeepKinesis();
@@ -178,6 +181,7 @@ public class SettingsManager : MonoBehaviour
 
         // Graphics
         hitmarkerParentObj.SetActive(tempHitmarkerEnabled);
+        hitmarkerToggle.isOn = tempHitmarkerEnabled;
         reticleImage.sprite = tempSprite;
     }
 
@@ -199,10 +203,13 @@ public class SettingsManager : MonoBehaviour
 
         // Aim assist force start values go here.
         // Calls the value that needs it, like the Main Camera needs the current sensitivity so we force kick it in there
+        aimAssistToggle.isOn = tempAimAssistEnabled;
+        aimAssistSlider.value = tempAimAssistValue;
 
         // Graphics
         reticleImage.sprite = tempSprite;
         hitmarkerParentObj.SetActive(tempHitmarkerEnabled);
+        hitmarkerToggle.isOn = tempHitmarkerEnabled;
     }
 
     public void SetReticleImage(Image img)
@@ -246,6 +253,8 @@ public class SettingsManager : MonoBehaviour
     {
         hitmarkerParentObj.SetActive(tempHitmarkerEnabled);
         reticleImage.sprite = tempSprite;
+        hitmarkerToggle.isOn = tempHitmarkerEnabled;
+        aimAssistToggle.isOn = tempAimAssistEnabled;
 
         settings.hitmarkerEnabled = tempHitmarkerEnabled;
         settings.currentRetical = tempSprite;
@@ -363,5 +372,10 @@ public class SettingsManager : MonoBehaviour
     private FOVController GetFOVControlScript()
     {
         return GameManager.instance.GetPlayerScript()?.GetFov();
+    }
+
+    public float GetOriginalTimeScale()
+    {
+        return settings.normalTimeScale;
     }
 }

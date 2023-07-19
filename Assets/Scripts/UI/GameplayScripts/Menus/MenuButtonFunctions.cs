@@ -24,20 +24,15 @@ public class MenuButtonFunctions : MonoBehaviour
 
     public void ConfirmToMainMenu()
     {
-        GameManager.instance.PlayMenuState();
-        GameManager.instance.GetPlayerResources().SetVulnerability(false);
-        
+        GameManager.instance.AudioManagerUnmuffle();
+        UIManager.instance.TurnOffCameraScript();
+        GameManager.instance.GetPlayerResources().SetVulnerability(false);        
         UIManager.instance.GetElevatorScript().FadeTo("MainMenu");
     }
 
     public void ConfirmToPause()
     {
         UIManager.instance.CloseMainMenu();
-    }
-
-    public void ExitGame()
-    {
-        Application.Quit();
     }
     
     public void NextLevel()

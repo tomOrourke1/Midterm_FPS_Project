@@ -62,7 +62,7 @@ public class ElevatorScript : MonoBehaviour, IInteractable
         while (timerFadeIn > 0f)
         {
             // Add the Time.deltatime (interval in seconds from last frame to current frame) to the timer
-            timerFadeIn -= Time.deltaTime;
+            timerFadeIn -= Time.unscaledDeltaTime;
             // Evaluate the curve and then set that the alpha's amount
             float alphaColorFadeIn = curve.Evaluate(timerFadeIn);
             // Set the image color component to a new color of an decreased alpha
@@ -91,7 +91,7 @@ public class ElevatorScript : MonoBehaviour, IInteractable
         while (timerFadeOut < exitingTime)
         {
             // Add the Time.deltatime (interval in seconds from last frame to current frame) to the timer
-            timerFadeOut += Time.deltaTime;
+            timerFadeOut += Time.unscaledDeltaTime;
             // Evaluate the curve and then set that the alpha's amount
             float alphaColorFadeOut = curve.Evaluate(timerFadeOut);
             // Set the image color component to a new color of an increased alpha

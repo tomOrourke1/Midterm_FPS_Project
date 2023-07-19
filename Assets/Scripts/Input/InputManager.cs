@@ -51,7 +51,7 @@ public class InputManager : MonoBehaviour
     private void ControlsChanged(PlayerInput input)
     {
         if (input.currentControlScheme == "KeyboardMouse")
-        {
+        { 
             gamepadActive = false;
             isJoystick = false;
         }

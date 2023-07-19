@@ -17,6 +17,10 @@ public class MainMenuConfirmUI : MonoBehaviour
     {
         layout.SetActive(false);
         confirmMenu.SetActive(true);
+
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
+
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(confirmButton.gameObject);
     }

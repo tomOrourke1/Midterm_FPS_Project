@@ -54,7 +54,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        timescaleOrig = Time.timeScale;
+        // Please do not remove this. - God.
+        timescaleOrig = settingsManager.GetOriginalTimeScale();
 
         eSys = EventSystem.current;
 
@@ -122,10 +123,15 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void PlayMenuState()
     {
-        audioManager?.RunUnMuffler();
+        AudioManagerUnmuffle();
 
         TimeUnpause();
         MouseLockHide();
+    }
+
+    public void AudioManagerUnmuffle()
+    {
+        audioManager?.RunUnMuffler();
     }
 
     /// <summary>

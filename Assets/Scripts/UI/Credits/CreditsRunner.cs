@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -46,14 +47,21 @@ public class CreditsRunner : MonoBehaviour
         forceEnd = true;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
+        // There is literally no game manager in the Credits Scene. This is explicit, do not try me.
+        Time.timeScale = 1f;
         InputManager.Instance.Input.Enable();
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
 
         SetupObjects();
         SetupValues();
+    }
 
+    // Start is called before the first frame update
+    void Start()
+    {
         StartCoroutine(StartFadeIn());
     }
 
@@ -64,17 +72,17 @@ public class CreditsRunner : MonoBehaviour
 
         if (teamObj.activeInHierarchy)
         {
-            HandleObj(teamObj, rectTransform_TeamObj, teamObjDesiredHeight, scrollSpeed);
+            HandleObj(teamObj, rectTransform_TeamObj, teamObjDesiredHeight, scrollSpeed * Time.unscaledDeltaTime);
             HandleTransitions(teamObj);
         }
         else if (assetsObj.activeInHierarchy)
         {
-            HandleObj(assetsObj, rectTransform_AssetsObj, assetsObjDesiredHeight, scrollSpeed);
+            HandleObj(assetsObj, rectTransform_AssetsObj, assetsObjDesiredHeight, scrollSpeed * Time.unscaledDeltaTime);
             HandleTransitions(assetsObj);
         }
         else if (gitObj.activeInHierarchy)
         {
-            HandleObj(gitObj, rectTransform_GitObj, gitObjDesiredHeight, currentSpeed_git);
+            HandleObj(gitObj, rectTransform_GitObj, gitObjDesiredHeight, currentSpeed_git * Time.unscaledDeltaTime);
             HandleTransitions(gitObj);
         }
 
@@ -102,14 +110,15 @@ public class CreditsRunner : MonoBehaviour
     /// <returns></returns>
     IEnumerator StartFadeIn()
     {
+        
         // Create a float storing the timer
-        float timerFadeIn = 1.5f;
+        float timerFadeIn = loadingTime;
 
         // While the timer is above a 'second'
         while (timerFadeIn > 0f)
         {
             // Add the Time.deltatime (interval in seconds from last frame to current frame) to the timer
-            timerFadeIn -= Time.deltaTime;
+            timerFadeIn -= Time.unscaledDeltaTime;
             // Evaluate the curve and then set that the alpha's amount
             float alphaColorFadeIn = curve.Evaluate(timerFadeIn);
             // Set the image color component to a new color of an decreased alpha
@@ -138,7 +147,7 @@ public class CreditsRunner : MonoBehaviour
         while (timerFadeOut < exitingTime)
         {
             // Add the Time.deltatime (interval in seconds from last frame to current frame) to the timer
-            timerFadeOut += Time.deltaTime;
+            timerFadeOut += Time.unscaledDeltaTime;
             // Evaluate the curve and then set that the alpha's amount
             float alphaColorFadeOut = curve.Evaluate(timerFadeOut);
             // Set the image color component to a new color of an increased alpha
@@ -146,7 +155,8 @@ public class CreditsRunner : MonoBehaviour
             yield return 0;
         }
         // After fading the scene out transition to the scene we want to load
-
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
 
         // DO NOT TOUCH THIS
         // THIS LOADS THE MAIN MENU AND ONLY THE MAIN MENU AFTER CREDITS ARE ROLLING
@@ -202,17 +212,17 @@ public class CreditsRunner : MonoBehaviour
         }
         else if (LeaveCreditsScene() == 1)
         {
-            currentSpeed_git = normalSpeed_git;
+            currentSpeed_git = alteredSpeed_git;
         }
         else
         {
-            currentSpeed_git = scrollSpeed;
+            currentSpeed_git = normalSpeed_git;
         }
     }
 
     private void HandleObj(GameObject obj, RectTransform rectTrans, float height, float speed)
     {
-        float tmp = Mathf.MoveTowards(obj.transform.position.y, height, speed * Time.deltaTime);
+        float tmp = Mathf.MoveTowards(obj.transform.position.y, height, speed);
         obj.transform.position = new Vector3(obj.transform.position.x, tmp, obj.transform.position.z);
     }
 
@@ -256,7 +266,7 @@ public class CreditsRunner : MonoBehaviour
         while (timerFadeOut < 1.5f)
         {
             // Add the Time.deltatime (interval in seconds from last frame to current frame) to the timer
-            timerFadeOut += Time.deltaTime;
+            timerFadeOut += Time.unscaledDeltaTime;
             // Evaluate the curve and then set that the alpha's amount
             float alphaColorFadeOut = curve.Evaluate(timerFadeOut);
             // Set the image color component to a new color of an increased alpha

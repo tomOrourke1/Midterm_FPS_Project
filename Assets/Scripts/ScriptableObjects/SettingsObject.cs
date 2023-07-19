@@ -32,4 +32,7 @@ public class SettingsObject : ScriptableObject
 
     // Scene tracker
     public string currentScene;
+
+    // DON'T TOUCH
+    public float normalTimeScale;
 }
