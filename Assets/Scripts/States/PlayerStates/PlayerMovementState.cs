@@ -25,7 +25,7 @@ public class PlayerMovementState : PlayerState, IApplyVelocity
     [Header("----- Crouch Stats -----")]
     [SerializeField] float CrouchSpeed;
     [SerializeField] float unCrouchSpeed;
-
+    [SerializeField] LayerMask crouchDetectionlayerMask;
 
     [Header("--- Velocity degregation ----")]
     [SerializeField] float airDecrese = 3;
@@ -57,18 +57,19 @@ public class PlayerMovementState : PlayerState, IApplyVelocity
 
     // getters 
     public bool IsCrouching => isCrouching;
+    bool Bandaid;
 
-
-    private void Start()
+    private void Awake()
     {
+        // Crouching
         isCrouching = false;
+        crouchToggled = false;
+        unCrouching = false;
         crouchCameraPos = Vector3.zero;
+        Bandaid = true;
 
         origHeight = controller.height;
         origCamPos = mainCamera.transform.localPosition;
-
-        unCrouching = false;
-
 
     }
 
@@ -81,68 +82,59 @@ public class PlayerMovementState : PlayerState, IApplyVelocity
 
     public override void Tick()
     {
-
+        // Gets if the crouch buttons were pressed
         bool crouchPressed = InputManager.Instance.Action.Crouch.WasPressedThisFrame();
         bool togglePressed = InputManager.Instance.Action.CrouchToggle.WasPressedThisFrame();
+        
+        bool enterCrouch = false;
+        bool exitCrouch = false;
 
-        /// enter the croouch condition 
-        /// needs to be here for some reason
-        /// 
-        bool enterCrouch;
-        bool value = crouchPressed;// InputManager.Instance.Action.Crouch.WasPressedThisFrame();
-
-        bool toggled = togglePressed;// InputManager.Instance.Action.CrouchToggle.WasPressedThisFrame();
-
-        if (toggled && (!isCrouching || unCrouching))
+        // Pressing toggle crouch will toggle crouch
+        if (togglePressed && !InputManager.Instance.Action.Crouch.IsPressed())
+        {
+            crouchToggled = !crouchToggled;
+        } else if (crouchPressed)
         {
             crouchToggled = true;
         }
 
-        value |= toggled;
-        enterCrouch = value;
-
-        /// exit crouch condition
-        /// 
-        bool exitCrouch;
-        if (crouchToggled)
+        // If you press crouch while toggled, uncrouch
+        if (InputManager.Instance.Action.Crouch.WasReleasedThisFrame() && crouchToggled)
         {
-            bool togExit = isCrouching && toggled;// InputManager.Instance.Action.CrouchToggle.WasPressedThisFrame();
-
-            if (togExit)
-            {
-                crouchToggled = false;
-            }
-
-            exitCrouch = togExit;
-
-        }
-        else
-        {
-            bool e = isCrouching && !InputManager.Instance.Action.Crouch.IsPressed();
-
-
-            exitCrouch = e;
+            crouchToggled = false;
         }
 
+        //Should I enter crouch?
+        if (crouchToggled && (!isCrouching || unCrouching))
+        {
+            enterCrouch = true;
+        }
 
-        /// there is issue where the player doesn't properly crouch and un crouch toggle
+        //Should I exit crouch?
 
+        if (!crouchToggled && isCrouching)
+        {
+            exitCrouch = true;
+        }
 
+        // there is issue where the player doesn't properly crouch and un crouch toggle
 
         if (enterCrouch)
         {
+            //Debug.Log("Enter True");
             // crouch
             isCrouching = true;
             controller.height = origHeight * 0.5f;
             unCrouching = false;
-
         }
-        else if (exitCrouch)
+        else if (exitCrouch || Bandaid)
         {
+            //Debug.Log("Exit True");
             // crouch end
             RaycastHit hit;
-            if (!Physics.SphereCast(playerTransform.position, controller.radius, playerTransform.up, out hit, controller.height * 2))
+            if (!Physics.SphereCast(playerTransform.position, controller.radius, playerTransform.up, out hit, controller.height / 2))
             {
+
                 if (!unCrouching)
                 {
                     mainCamera.transform.localPosition = crouchCameraPos;
@@ -156,7 +148,7 @@ public class PlayerMovementState : PlayerState, IApplyVelocity
                     isCrouching = false;
                     unCrouching = false;
                     mainCamera.transform.localPosition = origCamPos;
-
+                    Bandaid = false;
                 }
             }
         }
