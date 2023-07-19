@@ -9,6 +9,8 @@ public abstract class KinesisBase : MonoBehaviour
     public abstract void Fire();
     public virtual void EnableOpenRadial()
     {
+        if (InputManager.Instance.Input == null)
+            return;
         InputManager.Instance.Action.OpenRadialWheel.Enable();
     }
 

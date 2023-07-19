@@ -129,7 +129,7 @@ public class DoorScript : MonoBehaviour, IEnvironment
 
     public void CloseDoor()
     {
-
+        
         if (isOpen || d == doorState.opening)
         {
             Activate();
@@ -184,6 +184,6 @@ public class DoorScript : MonoBehaviour, IEnvironment
 
     public void StopObject()
     {
-        // Nothing needs to happen here
+        
     }
 }
