@@ -26,8 +26,6 @@ public class PlayerDashState : PlayerState
     Vector3 dashDir;
     float timeInsideState;
 
-
-
     public override void OnEnter()
     {
         var inp = InputManager.Instance.Action.Move.ReadValue<Vector2>();

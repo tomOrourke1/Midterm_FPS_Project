@@ -28,6 +28,7 @@ public class PlayerResources : MonoBehaviour, IDamagable, IHealReciever, IFocusR
     private void Start()
     {
         FillAllStats();
+        SetVulnerability(true);
     }
 
     private void OnEnable()

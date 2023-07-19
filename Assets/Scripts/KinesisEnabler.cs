@@ -22,7 +22,7 @@ public class KinesisEnabler : MonoBehaviour
 
         if (teleEnabled)
         {
-
+            UIManager.instance.GetRadialScript().SelectKinesis();
         }
     }
 

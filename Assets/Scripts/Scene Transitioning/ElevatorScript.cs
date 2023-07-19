@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 public class ElevatorScript : MonoBehaviour, IInteractable
 {
@@ -51,6 +52,9 @@ public class ElevatorScript : MonoBehaviour, IInteractable
     /// <returns></returns>
     IEnumerator FadeIn()
     {
+        image.color = new Color(0f, 0f, 0f, 0f);
+        image.gameObject.SetActive(true);
+        
         // Create a float storing the timer
         float timerFadeIn = loadingTime;
 
@@ -77,6 +81,9 @@ public class ElevatorScript : MonoBehaviour, IInteractable
     /// <returns></returns>
     IEnumerator FadeOut(string scene)
     {
+        image.color = new Color(0f, 0f, 0f, 0f);
+        image.gameObject.SetActive(true);
+
         // Create a float storing the timer
         float timerFadeOut = 0f;
 

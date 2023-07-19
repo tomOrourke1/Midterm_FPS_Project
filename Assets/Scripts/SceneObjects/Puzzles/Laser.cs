@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Net;
 using System.Xml.Schema;
 using UnityEngine;
@@ -26,6 +27,8 @@ public class Laser : MonoBehaviour, IEnvironment
 
     // Reflection
     GameObject StoredReflector;
+
+    IReflector storeThisThingForJerryToFix;
 
 
     float startTime;
@@ -210,7 +213,11 @@ public class Laser : MonoBehaviour, IEnvironment
         else if (reflector != null && !reflector.AlreadyReflecting() && !CompareWithStoredReflector(hit))
         {
             // Stop the old reflector
-            StoredReflector?.GetComponent<IReflector>().StopReflection(laser);
+            if (StoredReflector != null)
+            {
+                storeThisThingForJerryToFix = StoredReflector.GetComponent<IReflector>();
+                storeThisThingForJerryToFix.StopReflection(laser);
+            }
             // store the collider
             StoredReflector = hit.collider.gameObject;
             // Get Remaining distance
