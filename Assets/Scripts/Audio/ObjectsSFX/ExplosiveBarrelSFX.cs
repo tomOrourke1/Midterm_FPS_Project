@@ -6,12 +6,12 @@ public class ExplosiveBarrelSFX : MonoBehaviour
 {
     [Header("Audio Source")]
     [SerializeField] AudioSource source;
-
-    [Header("SFX")]
-    [SerializeField] AudioClip explosion;
+    [SerializeField] AudioClip clip;
 
     public void Play_Explosion()
     {
-        source.PlayOneShot(explosion);
+        source.transform.parent = null;
+        source.PlayOneShot(clip);
+        Destroy(source, clip.length);
     }
 }

@@ -4933,7 +4933,7 @@ GameObject:
   - component: {fileID: 4637125676207992793}
   - component: {fileID: 2224328985047003166}
   - component: {fileID: 7695186426278659552}
-  - component: {fileID: 6133454580469461832}
+  - component: {fileID: 8764831500313579616}
   - component: {fileID: 8136998477768592689}
   m_Layer: 0
   m_Name: BarrelItems
@@ -4957,6 +4957,7 @@ Transform:
   - {fileID: 1041496449}
   - {fileID: 4489386253567834816}
   - {fileID: 7412853382266658025}
+  - {fileID: 1494398916651445081}
   m_Father: {fileID: 687369978754009020}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5004,7 +5005,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ignitionFX: {fileID: 1041496451}
   explosionFX: {fileID: 5944377917015317949, guid: f791a308a7fc658489085b7523216be3, type: 3}
-  source: {fileID: 6133454580469461832}
+  sfxScript: {fileID: 8764831500313579616}
   explosionParticles: {fileID: 5944377917015317947, guid: f791a308a7fc658489085b7523216be3, type: 3}
   mainObj: {fileID: 687369978754009017}
   durability: 3
@@ -5013,17 +5014,77 @@ MonoBehaviour:
   damage: 5
   pushStrength: 10
   upwardForce: 5
---- !u!82 &6133454580469461832
-AudioSource:
+--- !u!114 &8764831500313579616
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3324397266638362994}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ceb62da3f8628947955a5e28f4f6cb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  source: {fileID: 1137582523966720598}
+  clip: {fileID: 8300000, guid: 003a656ab130b174e85e36a2f94724a9, type: 3}
+--- !u!64 &8136998477768592689
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3324397266638362994}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: -1
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &3955100891938671949
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1494398916651445081}
+  - component: {fileID: 1137582523966720598}
+  m_Layer: 0
+  m_Name: AudioSource
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1494398916651445081
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3955100891938671949}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6070186366744274524}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1137582523966720598
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3955100891938671949}
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 5298858325094725193, guid: 94efd4a4905cf0d4b932e654d29a8da0, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 3e3c7e91037365643b0ba0cac7426366, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -5033,7 +5094,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 0.01
+  MinDistance: 1
   MaxDistance: 25
   Pan2D: 0
   rolloffMode: 1
@@ -5109,20 +5170,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!64 &8136998477768592689
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3324397266638362994}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: -1
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &4730773476514071943
 GameObject:
   m_ObjectHideFlags: 0
