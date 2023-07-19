@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class MoveableObject : MonoBehaviour, /*ITelekinesis,*/ IEntity, IApplyVelocity
+public class MoveableObject : MonoBehaviour, /*ITelekinesis,*/ IEntity, IApplyVelocity, IVoidDamage
 {
 
     [SerializeField] Rigidbody rb;
@@ -84,5 +84,10 @@ public class MoveableObject : MonoBehaviour, /*ITelekinesis,*/ IEntity, IApplyVe
     public bool GetVolitile()
     {
         return volitile;
+    }
+
+    public void FallIntoTheVoid()
+    {
+        Destroy(gameObject);
     }
 }

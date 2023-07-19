@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Linq;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
@@ -52,21 +53,35 @@ public class DoorDetectPlayerInProximity : MonoBehaviour, IEnvironment
         var h = GetOverlap();
         count = h.Length - initialCount;
 
+        bool playerHere = false;
+
         foreach (var element in h)
         {
             if (blackList(element))
             {
                 count--;
             }
+            else if (element.CompareTag("Player"))
+            {
+                playerHere = true;
+            }
+        }
+
+        if (transitionMode && playerHere)
+        {
+            GameManager.instance.SetCurrentRoomManager(manager);
+
+            transitionMode = false;
+        } else if (transitionMode && !playerHere)
+        {
+            return;
         }
 
         if (count > 0 && !Opening)
         {
             if (transitionMode)
             {
-                GameManager.instance.SetCurrentRoomManager(manager);
-
-                transitionMode = false;
+                
             }
 
             door.OpenDoor();
@@ -166,7 +181,7 @@ public class DoorDetectPlayerInProximity : MonoBehaviour, IEnvironment
 
     public void StartObject()
     {
-        
+
         count = 0;
     }
 

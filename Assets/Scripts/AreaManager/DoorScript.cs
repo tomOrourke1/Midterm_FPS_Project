@@ -184,6 +184,6 @@ public class DoorScript : MonoBehaviour, IEnvironment
 
     public void StopObject()
     {
-
+        
     }
 }
