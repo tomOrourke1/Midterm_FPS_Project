@@ -51,7 +51,6 @@ public class CreditsRunner : MonoBehaviour
     {
         // There is literally no game manager in the Credits Scene. This is explicit, do not try me.
         Time.timeScale = 1f;
-        InputManager.Instance.Input.Enable();
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
@@ -62,6 +61,7 @@ public class CreditsRunner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        InputManager.Instance.Input.Enable();
         StartCoroutine(StartFadeIn());
     }
 
