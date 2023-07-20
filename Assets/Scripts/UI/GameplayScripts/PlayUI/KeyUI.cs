@@ -12,6 +12,11 @@ public class KeyUI : MonoBehaviour
 
     int keyCount = 0;
 
+    private void Start()
+    {
+        ShowKeyUI();
+    }
+
     /// <summary>
     /// Runs the function to update the keys displayed on the screen.
     /// </summary>
