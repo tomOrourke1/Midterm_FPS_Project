@@ -31,6 +31,7 @@ public class UnlockTerminal : MonoBehaviour, IInteractable, IEnvironment
         textCountUI.text = InteractLimit.ToString();
         InteractLimitInit = InteractLimit;
         sfx = GetComponent<KeyTerminalSFX>();
+        UIUpdate();
     }
 
     public void Interact()
