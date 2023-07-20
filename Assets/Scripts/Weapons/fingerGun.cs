@@ -134,7 +134,7 @@ public class fingerGun : MonoBehaviour
 
                 IDamagable damageable = hit.collider.GetComponent<IDamagable>();
 
-                if (damageable != null)
+                if (damageable != null && !hit.collider.CompareTag("Player"))
                 {
                     damageable.TakeDamage(bulletDamage);
                     UIManager.instance.GetHitmarker().SetActive(true);

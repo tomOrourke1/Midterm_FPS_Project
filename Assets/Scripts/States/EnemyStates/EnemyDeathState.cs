@@ -64,9 +64,9 @@ public class EnemyDeathState : EnemyState
                 {
                     agent.SetDestination(agent.gameObject.transform.position);
                 }
-                Debug.LogError("I'M IN THE DEATH STATE WHEN THEIS IS HAPPENING");
+                //Debug.LogError("I'M IN THE DEATH STATE WHEN THEIS IS HAPPENING");
 
-                Debug.LogError("vel: " + rb.velocity);
+                //Debug.LogError("vel: " + rb.velocity);
 
 
                 agent.enabled = false;
