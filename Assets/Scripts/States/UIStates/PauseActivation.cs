@@ -13,9 +13,7 @@ public class PauseActivation : MenuActivation
         pauseAnimController.SetBool("ExitPause", false);
         GameManager.instance.PauseMenuState();
 
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(selectedGameObject);
-
+        PingCurrentEvent();
     }
 
     public override void Deactivate()
@@ -25,4 +23,9 @@ public class PauseActivation : MenuActivation
         StartCoroutine(UIManager.instance.WaitCloseConfirm());
     }
 
+    public void PingCurrentEvent()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(selectedGameObject);
+    }
 }

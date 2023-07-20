@@ -9,12 +9,17 @@ public class InfographicActivation : MenuActivation
 
     public override void Activate()
     {
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(selectedGameObject);
+        PingCurrentEvent();
     }
 
     public override void Deactivate()
     {
 
+    }
+
+    public void PingCurrentEvent()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(selectedGameObject);
     }
 }

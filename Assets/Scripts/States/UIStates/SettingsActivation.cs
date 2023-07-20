@@ -10,13 +10,16 @@ public class SettingsActivation : MenuActivation
     public override void Activate()
     {
         GameManager.instance.PauseMenuState();
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(selectedGameObject);
-
+        PingCurrentEvent();
     }
 
     public override void Deactivate()
     {
         GameManager.instance.PlayMenuState();
+    }
+    public void PingCurrentEvent()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(selectedGameObject);
     }
 }
