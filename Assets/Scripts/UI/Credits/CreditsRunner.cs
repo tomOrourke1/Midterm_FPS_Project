@@ -61,7 +61,7 @@ public class CreditsRunner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InputManager.Instance.Input.Enable();
+       // InputManager.Instance.Input.Enable();
         StartCoroutine(StartFadeIn());
     }
 

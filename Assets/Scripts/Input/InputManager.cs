@@ -32,10 +32,7 @@ public class InputManager : MonoBehaviour
     {
         Instance = this;
 
-    }
 
-    private void Start()
-    {
         input = new GameInput();
         input.Player.Enable();
 
@@ -46,6 +43,10 @@ public class InputManager : MonoBehaviour
         input.Player.Interact.performed += OnInteract;
 
         pInput.onControlsChanged += ControlsChanged;
+    }
+
+    private void Start()
+    {
 
     }
 
