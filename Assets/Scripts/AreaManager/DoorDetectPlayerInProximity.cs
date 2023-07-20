@@ -187,7 +187,7 @@ public class DoorDetectPlayerInProximity : MonoBehaviour, IEnvironment
 
     public void StopObject()
     {
-
+        Opening = false;    
     }
 
     bool blackList(Collider other)
