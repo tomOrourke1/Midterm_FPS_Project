@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -63,33 +64,61 @@ public class IceKinesis : KinesisBase
             var aimValue = GameManager.instance.GetAimAssistValue();
             var isOn = GameManager.instance.GetSettingsManager().settings.aimAssistEnabled;
 
-
+            bool regFire = true;
 
             if (isOn)
             {
                 RaycastHit hit;
-                var doHIt = Physics.SphereCast(Camera.main.transform.position, aimValue, Camera.main.transform.forward, out hit);
+                //var doHIt = Physics.SphereCast(Camera.main.transform.position, aimValue, Camera.main.transform.forward, out hit);
 
-                if (doHIt)
+
+
+                var doHItAll = Physics.SphereCastAll(Camera.main.transform.position, aimValue, Camera.main.transform.forward, 100f);
+
+
+                if(doHItAll.Length > 0)
                 {
+                    List<RaycastHit> results = new();
 
-                    IDamagable damageable = hit.collider.GetComponent<IDamagable>();
-
-                    if (damageable != null)
+                    foreach(var c in doHItAll)
                     {
-                        forceDirection = (hit.point - attackPoint.position).normalized;
+                        if(c.collider?.GetComponent<IDamagable>() !=null && !c.collider.CompareTag("Player"))
+                        {
+                            results.Add(c);
+                        }
+                    }
+
+
+                    if (results.Count > 0)
+                    {
+                        RaycastHit closest = results[0];
+                        foreach (var r in results)
+                        {
+                            if (r.distance < closest.distance)
+                            {
+                                closest = r;
+                            }
+                        }
+
+                        forceDirection = (closest.point - attackPoint.position).normalized;
+
+                        regFire = false;
+                    }
+                    else
+                    {
+                        regFire = true;
                     }
                 }
                 else
                 {
-                    if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 100f))
-                    {
-                        forceDirection = (hit.point - attackPoint.position).normalized;
-                    }
+                    regFire = true;
                 }
 
+
             }
-            else
+            
+
+            if(regFire)
             {
                 RaycastHit hit;
                 if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 100f))

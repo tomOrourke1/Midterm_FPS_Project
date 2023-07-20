@@ -82,13 +82,42 @@ public class TelekinesisController : KinesisBase
             if(isOn)
             {
                 RaycastHit hit;
-                var doHIt = Physics.SphereCast(Camera.main.transform.position, aimValue, Camera.main.transform.forward, out hit);
+               // var doHIt = Physics.SphereCast(Camera.main.transform.position, aimValue, Camera.main.transform.forward, out hit, range);
+                var doHItAll = Physics.SphereCastAll(Camera.main.transform.position, aimValue, Camera.main.transform.forward, range);
 
-                if(doHIt)
+
+                if(doHItAll.Length > 0)
                 {
-                    // Changed this from an interface to a script
-                    stachedObject = hit.collider.GetComponent<MoveableObject>();
+
+
+
+                    List<RaycastHit> moveables = new();
+
+                    foreach(var all in doHItAll)
+                    {
+                        var d = all.collider?.GetComponent<MoveableObject>() != null;
+                        if(d)
+                        {
+                            moveables.Add(all);
+                        }
+                    }
+                    if (moveables.Count > 0)
+                    {
+                        RaycastHit closestHit = moveables[0];
+
+                        foreach (var c in moveables)
+                        {
+                            if (c.distance < closestHit.distance)
+                            {
+                                closestHit = c;
+                            }
+                        }
+
+
+                    stachedObject = closestHit.collider?.GetComponent<MoveableObject>();
                     timePressed = 0;
+                    }
+
                     if (stachedObject != null && GameManager.instance.GetPlayerResources().SpendFocus(focusCost))
                     {
                         isCasting = true;
@@ -108,11 +137,38 @@ public class TelekinesisController : KinesisBase
 
 
                     defaultCast = false;
+
+
                 }
                 else
                 {
                     defaultCast = true;
                 }
+
+                //if (doHIt)
+                //{
+                //    // Changed this from an interface to a script
+                //    stachedObject = hit.collider.GetComponent<MoveableObject>();
+                //    timePressed = 0;
+                //    if (stachedObject != null && GameManager.instance.GetPlayerResources().SpendFocus(focusCost))
+                //    {
+                //        isCasting = true;
+                //        OnTeleStart?.Invoke();
+                //        originalPos = stachedObject.GetPosition();
+                //        stachedObject.GetRigidbody().useGravity = false;
+                //        //Debug.Log("Here");
+                //        stachedObject.SetVolitile(true);
+                //    }
+                //    else
+                //    {
+                //        stachedObject = null;
+                //    }
+                //    defaultCast = false;
+                //}
+                //else
+                //{
+                //    defaultCast = true;
+                //}
 
 
             }

@@ -113,33 +113,104 @@ public class LightningKinesis : KinesisBase
             RaycastHit hit;
             var doHIt = Physics.SphereCast(Camera.main.transform.position, aimValue, Camera.main.transform.forward, out hit);
 
-            if (doHIt)
+
+
+            var doHItAll = Physics.SphereCastAll(Camera.main.transform.position, aimValue, Camera.main.transform.forward, maxDistance);
+
+
+            if (doHItAll.Length > 0)
             {
 
-                IDamagable damageable = hit.collider.GetComponent<IDamagable>();
+
+
+                List<RaycastHit> damageables = new();
+                IDamagable damage = null;
+                RaycastHit closestHit = new();
+                bool assigned = false;
+                foreach (var all in doHItAll)
+                {
+                    var d = all.collider?.GetComponent<IDamagable>() != null;
+                    if (d)
+                    {
+                        damageables.Add(all);
+                    }
+                }
+                if (damageables.Count > 0)
+                {
+                    closestHit = damageables[0];
+
+                    foreach (var c in damageables)
+                    {
+                        if (c.distance < closestHit.distance)
+                        {
+                            closestHit = c;
+                            assigned = true;
+                        }
+                    }
+
+
+                    damage = closestHit.collider?.GetComponent<IDamagable>();
+
+                }
 
                 if (!spawningHits)
                 {
                     StartCoroutine(spawnHit(hit.point));
                 }
-
-                if (damageable != null && !hit.collider.CompareTag("Player"))
+                if (assigned)
                 {
-                    //Debug.Log("reached inside of null check");
-                    damageable.TakeElectroDamage(Damage * Time.deltaTime);
+                    if (damage != null && !closestHit.collider.CompareTag("Player"))
+                    {
+                        damage.TakeElectroDamage(Damage * Time.deltaTime);
+                    }
+                    if (closestHit.point != null)
+                    {
+                        UpdateLightning(closestHit.point);
+                    }
+                    regCast = false;
+                }
+                else
+                {
+                    regCast = true;
                 }
 
-                if (hit.point != null)
-                {
-                    UpdateLightning(hit.point);
-                }
-
-                regCast = false;
             }
             else
             {
                 regCast = true;
             }
+
+
+            //if (doHIt)
+            //{
+                
+
+            //    // old code
+
+            //    IDamagable damageable = hit.collider.GetComponent<IDamagable>();
+
+            //    if (!spawningHits)
+            //    {
+            //        StartCoroutine(spawnHit(hit.point));
+            //    }
+
+            //    if (damageable != null && !hit.collider.CompareTag("Player"))
+            //    {
+            //        //Debug.Log("reached inside of null check");
+            //        damageable.TakeElectroDamage(Damage * Time.deltaTime);
+            //    }
+
+            //    if (hit.point != null)
+            //    {
+            //        UpdateLightning(hit.point);
+            //    }
+
+            //    regCast = false;
+            //}
+            //else
+            //{
+            //    regCast = true;
+            //}
 
         }
 

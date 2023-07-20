@@ -40,10 +40,10 @@ public class pyroBlast : KinesisBase
             UIManager.instance.FocusDepleted();
             return;
         }
-       
+
         if (InputManager.Instance.Action.Kinesis.WasPressedThisFrame() && HasFocus())
         {
-            //base.DisableOpenRadial();
+            base.DisableOpenRadial();
             OnFireHold?.Invoke();
             fireFocusParticles.SetActive(true);
             //    fireballRadius.enabled = false;
@@ -52,7 +52,7 @@ public class pyroBlast : KinesisBase
         }
         if (!InputManager.Instance.Action.Kinesis.IsPressed() && isReady)
         {
-            //base.DisableOpenRadial();
+            base.DisableOpenRadial();
             OnFireThrow?.Invoke();
             isReady = false;
             fireFocusParticles.SetActive(false);
@@ -73,7 +73,7 @@ public class pyroBlast : KinesisBase
 
             var aimValue = GameManager.instance.GetAimAssistValue();
             var isOn = GameManager.instance.GetSettingsManager().settings.aimAssistEnabled;
-
+            bool regFire = true;
 
 
             if (isOn)
@@ -81,26 +81,69 @@ public class pyroBlast : KinesisBase
                 RaycastHit hit;
                 var doHIt = Physics.SphereCast(Camera.main.transform.position, aimValue, Camera.main.transform.forward, out hit);
 
-                if (doHIt)
+
+
+                var doHItAll = Physics.SphereCastAll(Camera.main.transform.position, aimValue, Camera.main.transform.forward, 100f);
+                if (doHItAll.Length > 0)
                 {
-
-                    IDamagable damageable = hit.collider.GetComponent<IDamagable>();
-
-                    if (damageable != null)
+                    List<RaycastHit> resul = new();
+                    foreach (var c in doHItAll)
                     {
-                        forceDirection = (hit.point - attackPoint.position).normalized;
+                        if (c.collider?.GetComponent<IDamagable>() != null && !c.collider.CompareTag("Player"))
+                        {
+                            resul.Add(c);
+                        }
+                    }
+                    if (resul.Count > 0)
+                    {
+                        RaycastHit closest = resul[0];
+                        foreach (var r in resul)
+                        {
+                            if (r.distance < closest.distance)
+                            {
+                                closest = r;
+                            }
+                        }
+                        forceDirection = (closest.point - attackPoint.position).normalized;
+                        regFire = false;
+                    }
+                    else
+                    {
+                        regFire = true;
                     }
                 }
                 else
                 {
-                    if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 100f))
-                    {
-                        forceDirection = (hit.point - attackPoint.position).normalized;
-                    }
+                    regFire = true;
                 }
 
+
+
+
+
+
+                //if (doHIt)
+                //{
+
+                //    IDamagable damageable = hit.collider.GetComponent<IDamagable>();
+
+                //    if (damageable != null)
+                //    {
+                //        forceDirection = (hit.point - attackPoint.position).normalized;
+                //    }
+                //}
+                //else
+                //{
+                //    if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 100f))
+                //    {
+                //        forceDirection = (hit.point - attackPoint.position).normalized;
+                //    }
+                //}
+
             }
-            else
+
+
+            if (regFire)
             {
                 RaycastHit hit;
                 if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 100f))
@@ -118,7 +161,7 @@ public class pyroBlast : KinesisBase
             fireFocusParticles.SetActive(false);
 
             isCasting = false;
-            //base.EnableOpenRadial();
+            base.EnableOpenRadial();
         }
 
     }
