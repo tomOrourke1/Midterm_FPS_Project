@@ -48,19 +48,38 @@ public class fingerGun : MonoBehaviour
         if (isOn)
         {
             RaycastHit hit;
-            var doHIt = Physics.SphereCast(Camera.main.transform.position, aimValue, Camera.main.transform.forward, out hit);
+            //var doHIt = Physics.SphereCast(Camera.main.transform.position, aimValue, Camera.main.transform.forward, out hit);
 
-            if (doHIt)
+
+
+            var doHItAll = Physics.SphereCastAll(Camera.main.transform.position, aimValue, Camera.main.transform.forward, shootDist);
+            if(doHItAll.Length > 0)
             {
-
-
-                IDamagable damageable = hit.collider.GetComponent<IDamagable>();
-
-                if (damageable != null && !hit.collider.CompareTag("Player"))
+                List<RaycastHit> results = new();
+                foreach(var c in doHItAll)
                 {
-                    Instantiate(hitParticles, hit.point, Quaternion.identity);
+                    if (c.collider?.GetComponent<IDamagable>() != null && !c.collider.CompareTag("Player"))
+                    {
+                        results.Add(c);
+                    }
+                }
 
-                    damageable.TakeDamage(bulletDamage);
+                if(results.Count > 0)
+                {
+                    RaycastHit closest = results[0];
+                    foreach (var r in results)
+                    {
+                        if(r.distance < closest.distance)
+                        {
+                            closest = r;
+                        }
+                    }
+                    
+                    var d = closest.collider.GetComponent<IDamagable>();
+
+                    Instantiate(hitParticles, closest.point, Quaternion.identity);
+
+                    d.TakeDamage(bulletDamage);
                     audioScript.PlayOneShot_HitEnemy();
                     UIManager.instance.GetHitmarker().SetActive(true);
                     yield return new WaitForSeconds(0.05f);
@@ -69,7 +88,38 @@ public class fingerGun : MonoBehaviour
 
                     regShot = false;
                 }
+                else
+                {
+                    regShot = true;
+                }
+
             }
+            else
+            {
+                regShot = true;
+            }
+
+
+            //if (doHIt)
+            //{
+
+
+            //    IDamagable damageable = hit.collider.GetComponent<IDamagable>();
+
+            //    if (damageable != null && !hit.collider.CompareTag("Player"))
+            //    {
+            //        Instantiate(hitParticles, hit.point, Quaternion.identity);
+
+            //        damageable.TakeDamage(bulletDamage);
+            //        audioScript.PlayOneShot_HitEnemy();
+            //        UIManager.instance.GetHitmarker().SetActive(true);
+            //        yield return new WaitForSeconds(0.05f);
+            //        UIManager.instance.GetHitmarker().SetActive(false);
+            //        GameManager.instance.GetPlayerResources().AddFocus(focusPerShot);
+
+            //        regShot = false;
+            //    }
+            //}
 
         }
 
