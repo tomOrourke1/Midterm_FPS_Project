@@ -33,11 +33,9 @@ public class GameManager : MonoBehaviour
     // level info
     [Header("Next Level")]
     [SerializeField] string nextLevel;
-    string currentLevel;
-
+    private string currentLevel;
     private EventSystem eSys;
-
-    bool inPauseState;
+    private bool inPauseState;
 
     void Awake()
     {

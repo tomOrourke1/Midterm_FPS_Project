@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class InputManager : MonoBehaviour
 {
@@ -65,7 +66,7 @@ public class InputManager : MonoBehaviour
             gamepadActive = true;
             isJoystick = true;
         }
-
+        UIManager.instance.PingEventSystem();
     }
 
 

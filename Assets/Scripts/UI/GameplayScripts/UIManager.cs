@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -40,6 +40,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] Image sceneFader;
     [SerializeField] GameObject savingIcon;
     [SerializeField] FocusDepleteBarUpdate depleteScript;
+
+    [Header("Scripts That Fix Bugs")]
+    [SerializeField] CurrentSelectedFix eventSystemFixScript;
 
     private void Awake()
     {
@@ -275,5 +278,14 @@ public class UIManager : MonoBehaviour
         damageIndicatorScript.Disabler();
         flashImageScript.Disabler();
     }
+
+    public void PingEventSystem()
+    {
+        if (EventSystem.current == null)
+        {
+            eventSystemFixScript.RunPing();
+        }
+    }
+
     #endregion
 }

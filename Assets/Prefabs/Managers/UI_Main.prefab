@@ -22870,6 +22870,7 @@ GameObject:
   - component: {fileID: 5661053257741582646}
   - component: {fileID: 5661053257741582645}
   - component: {fileID: 5661053257741582644}
+  - component: {fileID: 7529482876845827905}
   m_Layer: 5
   m_Name: UI_Main
   m_TagString: Untagged
@@ -22934,6 +22935,7 @@ MonoBehaviour:
   sceneFader: {fileID: 6075739459790756786}
   savingIcon: {fileID: 4219166262949315958}
   depleteScript: {fileID: 8703781872312265154}
+  eventSystemFixScript: {fileID: 0}
 --- !u!114 &636357373037390307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23164,6 +23166,27 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &7529482876845827905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5661053257741582640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81fc601323ef7a0489bfc6d1f62e6152, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathActivateEvent: {fileID: 29438057607474054}
+  infoActivateEvent: {fileID: 6825855553238592957}
+  pauseActivateEvent: {fileID: 6630592284576281825}
+  playActivateEvent: {fileID: 3310193884697746120}
+  settingsActivateEvent: {fileID: 506991502237152373}
+  settingsMenuSelectedBoxEvent: {fileID: 148501445041147954}
+  settingsManagerActivateEvent: {fileID: 7318639298074973295}
+  mainMenuActivateEvent: {fileID: 0}
+  confirmUIEvent: {fileID: 7843949310060606103}
 --- !u!1 &5678456092179585548
 GameObject:
   m_ObjectHideFlags: 0

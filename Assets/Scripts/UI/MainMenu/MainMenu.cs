@@ -53,7 +53,7 @@ public class MainMenu : MonoBehaviour
         // Just dont bother arguing with me, im trying to fix the mouse not working at this point. IM LOSING MY MIND!
         Time.timeScale = GameManager.instance.GetSettingsManager().GetOriginalTimeScale();
 
-        InputManager.Instance.Input.Enable();
+        InputManager.Instance?.Input.Enable();
         GameLoadData();
         SetGameText();
 
