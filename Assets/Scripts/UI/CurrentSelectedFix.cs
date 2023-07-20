@@ -20,59 +20,39 @@ public class CurrentSelectedFix : MonoBehaviour
     [Header("Settings Fix")]
     [SerializeField] SettingsActivation settingsActivateEvent;
     [SerializeField] GameObject settingsObj;
-    [Header("DisplaySettings Fix")]
-    [SerializeField] DisplaySettingsBoxes settingsMenuSelectedBoxEvent;
-    [SerializeField] GameObject displaySettingsObj;
-    [Header("MainMenu Fix")]
-    [SerializeField] MainMenu mainMenuActivateEvent;
-    [SerializeField] GameObject mainMenuObj;
     [Header("ConfirmUI Fix")]
     [SerializeField] MainMenuConfirmUI confirmUIEvent;
     [SerializeField] GameObject confirmUI;
 
     public void RunPing()
     {
-        // run PingCurrentEvent on each script after checking if the object is active
-        if (SceneManager.GetActiveScene().name == "Main Menu")
+        if (SceneManager.GetActiveScene().name != "MainMenu")
         {
-            RunPing_OnMainMenuObjs();
-        }
-        else
-        {
-            RunPing_OnNonMainMenuObjs();
+            RunPing_Normal();
         }
     }
 
-    private void RunPing_OnMainMenuObjs()
-    {
-        if (mainMenuObj.activeInHierarchy)
-        {
-            
-        }
-        else if (confirmUI.activeInHierarchy)
-        {
-
-        }
-        
-    }
-
-    private void RunPing_OnNonMainMenuObjs()
+    private void RunPing_Normal()
     {
         if (deathObj.activeInHierarchy)
         {
-
+            deathActivateEvent.PingCurrentEvent();
         }
         else if (pauseObj.activeInHierarchy)
         {
-
+            pauseActivateEvent.PingCurrentEvent();
         }
         else if (infoObj.activeInHierarchy)
         {
-
+            infoActivateEvent.PingCurrentEvent();
         }
         else if (playObj.activeInHierarchy)
         {
-
+            pauseActivateEvent.PingCurrentEvent();
+        }
+        else if (settingsObj.activeInHierarchy)
+        {
+            settingsActivateEvent.PingCurrentEvent();
         }
     }
 }

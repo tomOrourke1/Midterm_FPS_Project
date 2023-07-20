@@ -50,8 +50,6 @@ public class fingerGun : MonoBehaviour
             RaycastHit hit;
             //var doHIt = Physics.SphereCast(Camera.main.transform.position, aimValue, Camera.main.transform.forward, out hit);
 
-
-
             var doHItAll = Physics.SphereCastAll(Camera.main.transform.position, aimValue, Camera.main.transform.forward, shootDist);
             if(doHItAll.Length > 0)
             {
@@ -81,9 +79,9 @@ public class fingerGun : MonoBehaviour
 
                     d.TakeDamage(bulletDamage);
                     audioScript.PlayOneShot_HitEnemy();
-                    UIManager.instance.GetHitmarker().SetActive(true);
-                    yield return new WaitForSeconds(0.05f);
-                    UIManager.instance.GetHitmarker().SetActive(false);
+                    UIManager.instance.GetHitmarkerImageObj().gameObject.SetActive(true);
+                    yield return new WaitForSeconds(0.1f);
+                    UIManager.instance.GetHitmarkerImageObj().gameObject.SetActive(false);
                     GameManager.instance.GetPlayerResources().AddFocus(focusPerShot);
 
                     regShot = false;

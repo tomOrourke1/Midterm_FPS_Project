@@ -37,6 +37,7 @@ public class UIManager : MonoBehaviour
 
     [Header("Misc Images")]
     [SerializeField] GameObject hitmarker;
+    [SerializeField] GameObject hitmarkerImageObj;
     [SerializeField] Image sceneFader;
     [SerializeField] GameObject savingIcon;
     [SerializeField] FocusDepleteBarUpdate depleteScript;
@@ -253,7 +254,15 @@ public class UIManager : MonoBehaviour
     {
         return hitmarker;
     }
-
+    
+    /// <summary>
+    /// Returns the Hitmarker game object to turn on and off. Used in the Finger Gun script during the Shoot IEnumerator.
+    /// </summary>
+    /// <returns></returns>
+    public GameObject GetHitmarkerImageObj()
+    {
+        return hitmarker;
+    }
     /// <summary>
     /// Gets the Key UI Script.
     /// </summary>
@@ -281,7 +290,7 @@ public class UIManager : MonoBehaviour
 
     public void PingEventSystem()
     {
-        if (EventSystem.current == null)
+        if (EventSystem.current.currentSelectedGameObject == null)
         {
             eventSystemFixScript.RunPing();
         }

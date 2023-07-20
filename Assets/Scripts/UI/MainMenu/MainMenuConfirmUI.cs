@@ -21,8 +21,7 @@ public class MainMenuConfirmUI : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
 
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(confirmButton.gameObject);
+        RunPingEvent();
     }
 
     public void CloseConfirm()
@@ -31,6 +30,12 @@ public class MainMenuConfirmUI : MonoBehaviour
         layout.SetActive(true);
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(denyFollowedButton);
+    }
+
+    public void RunPingEvent()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(confirmButton.gameObject);
     }
 
 }

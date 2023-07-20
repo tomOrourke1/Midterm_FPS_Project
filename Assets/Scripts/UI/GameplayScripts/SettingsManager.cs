@@ -180,8 +180,7 @@ public class SettingsManager : MonoBehaviour
         aimAssistSlider.value = tempAimAssistValue;
 
         // Graphics
-        hitmarkerParentObj.SetActive(tempHitmarkerEnabled);
-        hitmarkerToggle.isOn = tempHitmarkerEnabled;
+        hitmarkerParentObj.SetActive(settings.hitmarkerEnabled);
         reticleImage.sprite = tempSprite;
     }
 
@@ -208,8 +207,7 @@ public class SettingsManager : MonoBehaviour
 
         // Graphics
         reticleImage.sprite = tempSprite;
-        hitmarkerParentObj.SetActive(tempHitmarkerEnabled);
-        hitmarkerToggle.isOn = tempHitmarkerEnabled;
+        hitmarkerParentObj.SetActive(settings.hitmarkerEnabled);
     }
 
     public void SetReticleImage(Image img)
@@ -251,9 +249,7 @@ public class SettingsManager : MonoBehaviour
     /// </summary>
     public void ApplyGraphicsButton()
     {
-        hitmarkerParentObj.SetActive(tempHitmarkerEnabled);
         reticleImage.sprite = tempSprite;
-        hitmarkerToggle.isOn = tempHitmarkerEnabled;
         aimAssistToggle.isOn = tempAimAssistEnabled;
 
         settings.hitmarkerEnabled = tempHitmarkerEnabled;
@@ -261,6 +257,10 @@ public class SettingsManager : MonoBehaviour
 
         EventSystem.current.SetSelectedGameObject(graphicsApplyButton);
         bpScript.PlayApply();
+
+        hitmarkerParentObj.gameObject.SetActive(settings.hitmarkerEnabled);
+        Debug.Log(hitmarkerParentObj.name);
+        Debug.Log(settings.hitmarkerEnabled);
     }
 
     /// <summary>

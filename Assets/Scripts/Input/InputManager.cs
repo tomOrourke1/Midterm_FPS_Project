@@ -53,7 +53,7 @@ public class InputManager : MonoBehaviour
     private void ControlsChanged(PlayerInput input)
     {
         if (input.currentControlScheme == "KeyboardMouse")
-        { 
+        {
             gamepadActive = false;
             isJoystick = false;
         }
@@ -67,7 +67,15 @@ public class InputManager : MonoBehaviour
             gamepadActive = true;
             isJoystick = true;
         }
-        UIManager.instance.PingEventSystem();
+
+        if (SceneManager.GetActiveScene().name == "MainMenu")
+        {
+            MainMenu.instance.Ping_FixEventSystem();
+        }
+        else
+        {
+            UIManager.instance.PingEventSystem();
+        }
     }
 
 
@@ -156,7 +164,7 @@ public class InputManager : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name != "CreditsScene" && SceneManager.GetActiveScene().name != "MainMenu")
             return true;
-        
+
         return false;
     }
 }

@@ -22932,10 +22932,11 @@ MonoBehaviour:
   displayedImage: {fileID: 7992331499454501720}
   textToReplace: {fileID: 6021873862181846390}
   hitmarker: {fileID: 8152793537435899874}
+  hitmarkerImageObj: {fileID: 7201314954740038336}
   sceneFader: {fileID: 6075739459790756786}
   savingIcon: {fileID: 4219166262949315958}
   depleteScript: {fileID: 8703781872312265154}
-  eventSystemFixScript: {fileID: 0}
+  eventSystemFixScript: {fileID: 7529482876845827905}
 --- !u!114 &636357373037390307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23179,14 +23180,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathActivateEvent: {fileID: 29438057607474054}
+  deathObj: {fileID: 6258659710695957990}
   infoActivateEvent: {fileID: 6825855553238592957}
+  infoObj: {fileID: 1970838912654609865}
   pauseActivateEvent: {fileID: 6630592284576281825}
+  pauseObj: {fileID: 7135949735108110942}
   playActivateEvent: {fileID: 3310193884697746120}
+  playObj: {fileID: 8463448629903420530}
   settingsActivateEvent: {fileID: 506991502237152373}
-  settingsMenuSelectedBoxEvent: {fileID: 148501445041147954}
-  settingsManagerActivateEvent: {fileID: 7318639298074973295}
-  mainMenuActivateEvent: {fileID: 0}
+  settingsObj: {fileID: 2290653438531193365}
   confirmUIEvent: {fileID: 7843949310060606103}
+  confirmUI: {fileID: 4307566834175286101}
 --- !u!1 &5678456092179585548
 GameObject:
   m_ObjectHideFlags: 0
@@ -34533,19 +34537,7 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7318639298074973295}
-        m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
-        m_MethodName: SetHitmarkerEnabled
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_IsOn: 0
 --- !u!114 &4566394931404932029
 MonoBehaviour:

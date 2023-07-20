@@ -25,6 +25,8 @@ public class MainMenu : MonoBehaviour
     [SerializeField] GameObject settingsSelectedFirst;
     [SerializeField] GameObject mainMenuFirstSelected;
     [SerializeField] GameObject levelSelectFirstSelected;
+    [SerializeField] GameObject pingFix_Base;
+    [SerializeField] GameObject pingFix_Confirm;
 
     [Header("Confirm Close Button")]
     [SerializeField] MainMenuConfirmUI mmcu;
@@ -53,7 +55,7 @@ public class MainMenu : MonoBehaviour
         // Just dont bother arguing with me, im trying to fix the mouse not working at this point. IM LOSING MY MIND!
         Time.timeScale = GameManager.instance.GetSettingsManager().GetOriginalTimeScale();
 
-        InputManager.Instance?.Input.Enable();
+        InputManager.Instance.Input.Enable();
         GameLoadData();
         SetGameText();
 
@@ -69,8 +71,9 @@ public class MainMenu : MonoBehaviour
 
     public void NewGame()
     {
-        eScript.FadeTo(GameManager.instance.GetNextLevel());
+        eScript.FadeTo(GameManager.instance.GetSettingsManager().settings.currentScene);
     }
+
     public void ExitGame()
     {
         Application.Quit();
@@ -129,7 +132,7 @@ public class MainMenu : MonoBehaviour
 
     public void CloseMenus()
     {
-        PingEventSystem_FixCloseSettings();
+        PingEventSystem_FixPlay();
 
         settingsMenuObj.SetActive(false);
         levelSelectObj.SetActive(false);
@@ -143,7 +146,7 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     private void GameLoadData()
     {
-        sceneToLoad = GameManager.instance.GetNextLevel();
+        
     }
 
     private void SetGameText()
@@ -170,27 +173,38 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    public void PingEventSystem_FixPlay()
+    public void Ping_FixEventSystem()
+    {
+        if (pingFix_Confirm.activeInHierarchy)
+        {
+            mmcu.RunPingEvent();
+        }
+        else if (pingFix_Base.activeInHierarchy)
+        {
+            PingEventSystem_FixPlay();
+        }
+        else if (levelSelectObj.activeInHierarchy)
+        {
+            PingEventSystem_FixLevelSelect();
+        }
+    }
+
+
+    private void PingEventSystem_FixPlay()
     {
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(mainMenuFirstSelected);
     }
 
-    public void PingEventSystem_FixLevelSelect()
+    private void PingEventSystem_FixLevelSelect()
     {
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(levelSelectFirstSelected);
     }
 
-    public void PingEventSystem_FixShowSettings()
+    private void PingEventSystem_FixShowSettings()
     {
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(settingsSelectedFirst);
-    }
-
-    public void PingEventSystem_FixCloseSettings()
-    {
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(mainMenuFirstSelected);
     }
 }
