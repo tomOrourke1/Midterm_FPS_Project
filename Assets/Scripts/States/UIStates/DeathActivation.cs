@@ -10,15 +10,19 @@ public class DeathActivation : MenuActivation
 
     public override void Activate()
     {
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(selectedGameObject);
-        
+        PingCurrentEvent();
     }
 
     public override void Deactivate()
     {
         deathAnimController.SetTrigger("ExitLose");
         GameManager.instance.PlayMenuState();
+    }
+
+    public void PingCurrentEvent()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(selectedGameObject);
     }
 
 }

@@ -55,14 +55,9 @@ public class UnlockTerminal : MonoBehaviour, IInteractable, IEnvironment
 
         if (InteractLimit == 0)
         {
-            ActivationLock = true;
-
-            // Change material
-            rend.material = UnlockedMaterial;
-
+            UIUpdate();
         }
-        
-        UIUpdate();
+
     }
 
     public void StartObject()
@@ -91,6 +86,8 @@ public class UnlockTerminal : MonoBehaviour, IInteractable, IEnvironment
             completedUI.SetActive(true);
             remainingUI.SetActive(false);
             textCountUI.text = " ";
+            ActivationLock = true;
+            rend.material = UnlockedMaterial;
         }
         else if (InteractLimit > 0)
         {

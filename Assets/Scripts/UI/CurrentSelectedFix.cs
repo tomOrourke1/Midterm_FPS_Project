@@ -16,7 +16,7 @@ public class CurrentSelectedFix : MonoBehaviour
 
     public void RunPing()
     {
-
+        // run PingCurrentEvent on each script after checking if the object is active
     }
 
 
