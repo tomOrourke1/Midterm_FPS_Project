@@ -26,7 +26,7 @@ public class UnlockTerminal : MonoBehaviour, IInteractable, IEnvironment
     int InteractLimitInit;
     bool ActivationLock = false;
 
-    private void Start()
+    private void Awake()
     {
         textCountUI.text = InteractLimit.ToString();
         InteractLimitInit = InteractLimit;
@@ -34,13 +34,15 @@ public class UnlockTerminal : MonoBehaviour, IInteractable, IEnvironment
         UIUpdate();
     }
 
+    private void Start()
+    {
+    }
+
     public void Interact()
     {
         if (GameManager.instance.GetKeyChain().GetKeys() >= 1 && !ActivationLock)
         {
-            // Activate
-            Activate.Invoke();
-
+            
             // Remove a key
             GameManager.instance.GetKeyChain().removeKeys(1);
 
@@ -53,11 +55,7 @@ public class UnlockTerminal : MonoBehaviour, IInteractable, IEnvironment
             sfx.PlayOneShot_NoKeys();
         }
 
-        if (InteractLimit == 0)
-        {
-            UIUpdate();
-        }
-
+        UIUpdate();
     }
 
     public void StartObject()
@@ -83,6 +81,8 @@ public class UnlockTerminal : MonoBehaviour, IInteractable, IEnvironment
     {
         if (InteractLimit == 0)
         {
+            // Activate
+            Activate.Invoke();
             completedUI.SetActive(true);
             remainingUI.SetActive(false);
             textCountUI.text = " ";
