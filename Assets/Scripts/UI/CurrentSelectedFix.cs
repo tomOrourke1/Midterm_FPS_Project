@@ -45,6 +45,19 @@ public class CurrentSelectedFix : MonoBehaviour
 
     private void RunPing_OnMainMenuObjs()
     {
+        if (mainMenuObj.activeInHierarchy)
+        {
+            
+        }
+        else if (confirmUI.activeInHierarchy)
+        {
+
+        }
+        
+    }
+
+    private void RunPing_OnNonMainMenuObjs()
+    {
         if (deathObj.activeInHierarchy)
         {
 
@@ -61,11 +74,5 @@ public class CurrentSelectedFix : MonoBehaviour
         {
 
         }
-        
-    }
-
-    private void RunPing_OnNonMainMenuObjs()
-    {
-
     }
 }

@@ -63,9 +63,7 @@ public class MainMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
 
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(mainMenuFirstSelected);
-
+        PingEventSystem_FixPlay();
     }
 
 
@@ -108,11 +106,10 @@ public class MainMenu : MonoBehaviour
 
     private void ShowLevelSelect()
     {
+        PingEventSystem_FixLevelSelect();
+        
         mainButtonsObj.SetActive(false);
         levelSelectObj.SetActive(true);
-        
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(levelSelectFirstSelected);
     }
 
     public void LevelSelection(int pos)
@@ -123,9 +120,8 @@ public class MainMenu : MonoBehaviour
 
     public void ShowSettingsMenu()
     {
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(settingsSelectedFirst);
-
+        PingEventSystem_FixShowSettings();
+        
         baseMenu.SetActive(false);
         settingsMenuObj.SetActive(true);
         mainMenusAudio?.RunMuffler();
@@ -133,8 +129,7 @@ public class MainMenu : MonoBehaviour
 
     public void CloseMenus()
     {
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(mainMenuFirstSelected);
+        PingEventSystem_FixCloseSettings();
 
         settingsMenuObj.SetActive(false);
         levelSelectObj.SetActive(false);
@@ -173,5 +168,29 @@ public class MainMenu : MonoBehaviour
         {
             ShowSettingsMenu();
         }
+    }
+
+    public void PingEventSystem_FixPlay()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(mainMenuFirstSelected);
+    }
+
+    public void PingEventSystem_FixLevelSelect()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(levelSelectFirstSelected);
+    }
+
+    public void PingEventSystem_FixShowSettings()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(settingsSelectedFirst);
+    }
+
+    public void PingEventSystem_FixCloseSettings()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(mainMenuFirstSelected);
     }
 }
