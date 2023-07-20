@@ -26,8 +26,17 @@ public class EnemyPushedState : EnemyState
     {
         if (frames > 1)
         {
-            enemy.Landed = enemy.RayGroundCheck() && rb.velocity.y <= 0;
+            enemy.Landed = enemy.RayGroundCheck() && rb.velocity.y <= 0 && rb.velocity.magnitude < 0.1f;
             //Debug.LogError("Vel: " + rb.velocity);
+            Debug.LogError("enemy is in tick here");
+
+            if (enemy.Landed && rb.velocity.y < 0)
+            {
+                Debug.LogError("ENEMY GOING DOWN");
+                var v = rb.velocity;
+                v.y = 0;
+                rb.velocity = v;
+            }
         }
         frames++;
     }

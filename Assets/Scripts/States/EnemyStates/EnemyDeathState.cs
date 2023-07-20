@@ -9,7 +9,8 @@ public class EnemyDeathState : EnemyState
     [SerializeField] Rigidbody rb;
     [SerializeField] Collider colliderd;
 
-
+    bool die = false;
+    bool run = false;
     public override void OnEnter()
     {
         base.OnEnter();
@@ -26,7 +27,8 @@ public class EnemyDeathState : EnemyState
         audioScript.PlayEnemy_Death();
 
 
-
+        die = true;
+        run = true;
     }
 
     public override void Tick()
@@ -37,21 +39,43 @@ public class EnemyDeathState : EnemyState
 
 
     }
-
+    public override void OnExit()
+    {
+        run = false;
+    }
 
     private void SetUpDeath()
     {
-        if (enemy.RayGroundCheck())
+        die = true;
+        
+    }
+
+    private void FixedUpdate()
+    {
+        if (!run)
+            return;
+
+        if(die)
         {
-            if (agent.enabled)
+            die = false;
+            if (enemy.RayGroundCheck())
             {
-                agent.SetDestination(agent.gameObject.transform.position);
+                if (agent.enabled)
+                {
+                    agent.SetDestination(agent.gameObject.transform.position);
+                }
+                Debug.LogError("I'M IN THE DEATH STATE WHEN THEIS IS HAPPENING");
+
+                Debug.LogError("vel: " + rb.velocity);
+
+
+                agent.enabled = false;
+                rb.velocity = Vector3.zero;
+                colliderd.enabled = false;
+                rb.isKinematic = true;
+
             }
 
-            agent.enabled = false;
-            rb.velocity = Vector3.zero;
-            colliderd.enabled = false;
-            rb.isKinematic = true;
 
         }
     }
