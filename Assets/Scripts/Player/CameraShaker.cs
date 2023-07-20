@@ -21,7 +21,7 @@ public class CameraShaker : MonoBehaviour
     float yOffset;
 
 
-    private void Start()
+    private void Awake()
     {
         if(instance == null)
             instance = this;
