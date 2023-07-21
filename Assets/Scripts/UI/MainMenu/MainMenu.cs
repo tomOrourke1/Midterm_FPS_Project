@@ -19,7 +19,6 @@ public class MainMenu : MonoBehaviour
     [SerializeField] GameObject baseMenu;
     [SerializeField] string tutorialLevelStart;
     [SerializeField] TextMeshProUGUI gameContinueText;
-    private string sceneToLoad;
 
     [Header("Event System")]
     [SerializeField] GameObject settingsSelectedFirst;
@@ -56,8 +55,6 @@ public class MainMenu : MonoBehaviour
         Time.timeScale = GameManager.instance.GetSettingsManager().GetOriginalTimeScale();
 
         InputManager.Instance.Input.Enable();
-        GameLoadData();
-        SetGameText();
 
         baseMenu.SetActive(true);
         settingsMenuObj?.SetActive(false);
@@ -70,6 +67,11 @@ public class MainMenu : MonoBehaviour
 
 
     public void NewGame()
+    {
+        eScript.FadeTo("Tom_Tutorial_MK_2");
+    }
+
+    public void ContinueGame()
     {
         eScript.FadeTo(GameManager.instance.GetSettingsManager().settings.currentScene);
     }
@@ -139,26 +141,6 @@ public class MainMenu : MonoBehaviour
         baseMenu.SetActive(true);
         mainButtonsObj.SetActive(true);
         mainMenusAudio?.RunUnMuffler();
-    }
-
-    /// <summary>
-    /// Processess if the player is starting a new game or continuing off of the old one.
-    /// </summary>
-    private void GameLoadData()
-    {
-        
-    }
-
-    private void SetGameText()
-    {
-        if (tutorialLevelStart == GameManager.instance.GetSettingsManager().settings.currentScene)
-        {
-            gameContinueText.text = "New Game";
-        }
-        else
-        {
-            gameContinueText.text = "Continue";
-        }
     }
 
     public void ToggleSettings()
